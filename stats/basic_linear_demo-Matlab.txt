@@ -1,0 +1,9 @@
+
+path =
+
+/home/tools/matlab_r14/toolbox/matlab/general:/home/tools/matlab_r14/toolbox/matlab/ops:/home/tools/matlab_r14/toolbox/matlab/lang:/home/tools/matlab_r14/toolbox/matlab/elmat:/home/tools/matlab_r14/toolbox/matlab/elfun:/home/tools/matlab_r14/toolbox/matlab/specfun:/home/tools/matlab_r14/toolbox/matlab/matfun:/home/tools/matlab_r14/toolbox/matlab/datafun:/home/tools/matlab_r14/toolbox/matlab/polyfun:/home/tools/matlab_r14/toolbox/matlab/funfun:/home/tools/matlab_r14/toolbox/matlab/sparfun:/home/tools/matlab_r14/toolbox/matlab/scribe:/home/tools/matlab_r14/toolbox/matlab/graph2d:/home/tools/matlab_r14/toolbox/matlab/graph3d:/home/tools/matlab_r14/toolbox/matlab/specgraph:/home/tools/matlab_r14/toolbox/matlab/graphics:/home/tools/matlab_r14/toolbox/matlab/uitools:/home/tools/matlab_r14/toolbox/matlab/strfun:/home/tools/matlab_r14/toolbox/matlab/imagesci:/home/tools/matlab_r14/toolbox/matlab/iofun:/home/tools/matlab_r14/toolbox/matlab/audiovideo:/home/tools/matlab_r14/toolbox/matlab/timefun:/home/tools/matlab_r14/toolbox/matlab/datatypes:/home/tools/matlab_r14/toolbox/matlab/verctrl:/home/tools/matlab_r14/toolbox/matlab/codetools:/home/tools/matlab_r14/toolbox/matlab/helptools:/home/tools/matlab_r14/toolbox/matlab/demos:/home/tools/matlab_r14/toolbox/local:/home/cism/weigel/tmp/octave-rsw-1.0.0/system_functions
+
+Reference calc: 0.7601152546292973
+Reference calc: 0.1736224359556550
+Reference calc: w(1) = 0.344046, w(2) = 1.708341
+Test on arv ok

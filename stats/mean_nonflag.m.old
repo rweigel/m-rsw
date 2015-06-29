@@ -1,0 +1,170 @@
+function [B,Ng] = mean_nonflag(A,DIM,FLAG,COND,force_internal_fn)
+%MEAN_NONFLAG Average of non-FLAG elements.
+%
+%   [B,Ng] = mean_nonflag(A) for 1-D array is the mean of elements not equal
+%   to NaN.  Ng contains the number of elements used in the average.
+%
+%   [B,Ng] = mean_nonflag(A,DIM) is mean of elements not equal to NaN.
+%
+%   [B,Ng] = mean_nonflag(A,DIM,FLAG) is mean of elements not equal to FLAG.
+%
+%   [B,Ng] = mean_nonzero(A,DIM,FLAG,COND) uses a flag condition COND
+%           (see IS_FLAG for COND values).
+%
+%   If all elements along dimension DIM are equal to FLAG, a fill of FLAG is
+%   used.  Maximum DIM is 2.
+%  
+%   Computation is done with a mex or oct program if mean_nonflag_oct.oct or
+%   mean_nonflag_mex.mex are found in path.  Use exist('mean_nonflag_mex')
+%   or exist('mean_nonflag_oct') to see if these binaries are in your path.
+%   Use mean_nonzero(A,DIM,FLAG,COND,1) to prevent usage of mex or oct
+%   programs.
+%
+%   See also MEAN, *_NONFLAG.
+
+% R.S. Weigel, 04/02/2004.  
+
+if (nargin < 2)
+  if (min(size(A) > 1))
+    DIM = 1;
+  else
+    [junk,DIM] = max(size(A));
+    if (DIM > 2)
+      error('DIM must be 1 or 2.');
+    end
+  end
+end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (nargin < 3)
+  FLAG = NaN;
+end
+if (nargin < 4)
+  COND = 1;
+end
+if (isnan(FLAG))
+  COND = -1;
+end
+if (nargin < 5)
+  force_internal_fn = 0;
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if ( (size(A,2) == 1) & (DIM == 2) ) | ( (size(A,1) == 1) & (DIM == 1) )
+  B = A; clear A;
+  if (nargout > 1)
+    Ng = is_flag(B,FLAG,COND);
+  end
+  return;
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (size(A,1)==1)
+  DIM = 2;
+end
+if (size(A,2)==1)
+  DIM = 1;
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (prod(size(A)) == 1)
+  B = FLAG;  % If one element and is zero, return FLAG
+  return;
+end
+if ( isempty(A) )
+  B = FLAG;  % If empty, return FLAG
+  return;
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+external_fn = 1;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (is_octave == 0)
+if (exist('mean_nonflag_mex') ~= 3)
+  fprintf('mean_nonflag.m: Did not find mex function mean_nonflag_mex.\n');
+  fprintf('mean_nonflag.m: Using slow method.\n');
+  %fprintf('Attempting to compile mean_nonflag_mex.c\n');
+  %system('mex mean_nonflag_mex.c');
+  external_fn = 0;
+end
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (is_octave == 1)
+if (exist('mean_nonflag_oct') ~= 3)
+  fprintf('mean_nonflag.m: Did not find oct function mean_nonflag_oct.oct.\n');
+  fprintf('mean_nonflag.m: Using slow method.\n');
+  %fprintf('Attempting to compile mean_nonflag_oct.cc\n');
+  %system('mkoctfile mean_nonflag_oct.cc')
+  external_fn = 0;
+end
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+
+if (external_fn == 1) & (force_internal_fn == 0)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (DIM == 1)
+  if (is_octave == 0)
+    [B,Ng] = mean_nonflag_mex(A,FLAG,COND);
+  else
+    [B,Ng] = mean_nonflag_oct(A,FLAG,COND);
+  end
+end
+
+if (DIM == 2)
+  if (is_octave == 0)
+    [B,Ng] = mean_nonflag_mex(A',FLAG,COND);
+  else
+    [B,Ng] = mean_nonflag_oct(A',FLAG,COND);
+  end
+  B  = B';
+  Ng = Ng';
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+end
+
+if (external_fn == 0) | (force_internal_fn == 1)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
+if (DIM == 2)
+  A = A';
+end  
+
+mrows = size(A,1);
+ncols = size(A,2);
+
+for j = 1:ncols
+
+  k    = 0;
+  temp = 0.0;
+  
+  for i = 1:mrows
+
+    ind = i + (j-1)*mrows;
+    
+    if ( is_flag(A(ind),FLAG,COND) == 0 )
+	temp = temp + A(ind);
+	k   = k+1;
+    end
+  
+  end
+
+  if (k == 0)
+    B(j)  = FLAG;
+    Ng(j) = 0;
+  else
+    B(j)  = temp/k;
+    Ng(j) = k;
+  end
+
+end
+
+if (DIM == 2)
+  B  = B';
+  Ng = Ng';
+end  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+end

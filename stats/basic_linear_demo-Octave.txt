@@ -1,0 +1,15 @@
+
+LOADPATH contains the following directories:
+
+  
+  
+  ~/tmp/octave-rsw-1.0.0/system_functions
+
+ans = []
+dim = 1
+dim = 1
+Reference calc: 0.7601152546292973
+Reference calc: 0.1736224359556550
+Reference calc: w(1) = 0.344046, w(2) = 1.708341
+dim = 1
+Test on arv ok
