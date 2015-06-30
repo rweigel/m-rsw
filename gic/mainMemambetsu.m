@@ -3,7 +3,29 @@ addpath('../plot');
 addpath('../set');
 addpath('../time');
 
-pre = 'figures/mainMemambetsu_';
+long = 'Kakioka';
+short = lower(long(1:3));
+
+pre = sprintf('figures/main_%s',short);
+tit = sprintf('%s Magnetic Observatory (%s)',long,upper(short));
+
+[B,E] = prepareData(short);
+
+t = [0:size(B,1)-1]'/86400;
+figure(1);clf;
+    plot(t,E);hold on;grid on;
+    set(gca,'XLim',[0,t(end)])
+    title(tit)
+    xlabel('Days since 12/01/2006 00:00:00.0')
+    ylabel('mV/m')
+    legend('E_x','E_y')
+    print('-dpng','-r600',...
+        sprintf('%s_E_timeseries.png',pre));
+    print('-depsc',...
+        sprintf('%s_E_timeseries.png',pre));
+    fprintf('Wrote %s_E_timeseries.{png,eps}\n',pre)
+
+break
 
 Bx = B(:,1);
 Bx = diff(Bx);
@@ -35,22 +57,7 @@ while 1
     k = k+1;
 end
 
-break
-[B,E] = prepareMemambetsu();
 
-t = [0:size(B,1)-1]'/86400;
-figure(1);clf;
-    plot(t,E);hold on;grid on;
-    set(gca,'XLim',[0,t(end)])
-    title('Memambetsu Magnetic Observatory (MMB)')
-    xlabel('Days since 12/01/2006 00:00:00.0')
-    ylabel('mV/m')
-    legend('E_x','E_y')
-    print('-dpng','-r600',...
-        sprintf('%s_E_timeseries.png',pre));
-    print('-depsc',...
-        sprintf('%s_E_timeseries.png',pre));
-    fprintf('Wrote %s_E_timeseries.{png,eps}\n',pre)
 
 figure(2);clf;
     plot(t,B);hold on;grid on;
