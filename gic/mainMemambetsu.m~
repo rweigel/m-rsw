@@ -5,17 +5,21 @@ addpath('../time');
 
 pre = 'figures/mainMemambetsu_';
 
+[B,E] = prepareData(');
+
 Bx = B(:,1);
+Bx = diff(Bx);
 Ey = E(:,2);
+Ey = Ey(1:end-1);
 
 k = 1;
-W = 3600*8;
-dW = W;
-N = length(Bx)/dW;
+w = 3600*8;
+dw = w;
+N = floor(length(Bx)/dw);
 Nl = 60*3;
 while 1
-    a = dW*(k-1)+1;
-	b = a+W;
+    a = dw*(k-1)+1;
+	b = a+w;
     if (b > length(Bx)) break;end
     I = [a:b];
 
@@ -26,15 +30,13 @@ while 1
     LIN = basic_linear(X,T,Ite,Itr);
     fprintf('k = %d/%d PE = %.2f, %.2f\n',...
          k,N,1-LIN.ARVtrain,1-LIN.ARVtest);
-    W(:,k)  = LIN3.Weights;
-    PEte(i) = 1-LIN3.ARVtest;
-    petr3(i) = 1-LIN3.ARVtrain;
+    W(:,k)  = LIN.Weights;
+    PEte(k) = 1-LIN.ARVtest;
+    PEtr(k) = 1-LIN.ARVtrain;
 
-     k = k+1;
+    k = k+1;
 end
 
-break
-[B,E] = prepareMemambetsu();
 
 t = [0:size(B,1)-1]'/86400;
 figure(1);clf;
