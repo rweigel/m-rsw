@@ -1,4 +1,8 @@
 % Executes three tests for ZPLANEWAVE
+%
+% First two tests compare direct calculation with zplanewave calculation.
+% Third test creates plots for comparison with Figure 2.4(c) of
+% Simpson and Baer.
 
 clear;
 
@@ -88,7 +92,7 @@ figure(1);clf;
     lh = legend(' $\|\widetilde{Z}\| = \|\widetilde{E_x}/\widetilde{B_y}\| = \omega\cdot\|\widetilde{C}\|\quad\mbox{[m/s]}$',' $\rho_a = \|\widetilde{C}\|^2\cdot\omega\mu_0\quad\mbox{[Ohm}\cdot\mbox{m]}$');
     set(lh,'Interpreter','Latex');
     fname = './figures/zplanewave_test_rho_a';
-    print('-dpng','-r600',[fname,'.png']);
+    print('-dpng','-r150',[fname,'.png']);
     print('-depsc',[fname,'.eps']);
     fprintf('Wrote %s.{png,eps}\n',fname);
     
@@ -104,7 +108,7 @@ figure(2);clf;
                 'Location','NorthWest');
     set(lh,'Interpreter','Latex');
     fname = './figures/zplanewave_test_phi_a';
-    print('-dpng','-r600',[fname,'.png']);
+    print('-dpng','-r150',[fname,'.png']);
     print('-depsc',[fname,'.eps']);
     fprintf('Wrote %s.{png,eps}\n',fname);
 
@@ -124,7 +128,7 @@ figure(3);clf;
     ylabel('Depth [km]');
     axis([.7 10^4 1 10^4]);
     fname = './figures/zplanewave_test_geometry';
-    print('-dpng','-r600',[fname,'.png']);
+    print('-dpng','-r150',[fname,'.png']);
     print('-depsc',[fname,'.eps']);
     fprintf('Wrote %s.{png,eps}\n',fname);
 
