@@ -90,7 +90,7 @@ figure(1);clf;
         vs = 'Ex_dBydt';
     end
     xlabel('t');
-    print('-dpng','-r600',sprintf('figures/%s_timeseries_%s.png',base,vs));
+    print('-dpng','-r150',sprintf('figures/%s_timeseries_%s.png',base,vs));
     print('-depsc',sprintf('figures/%s_timeseries_%s.eps',base,vs));
     fprintf('Wrote figures/%s_timeseries_%s.{png,eps}\n',base,vs)
     
@@ -107,7 +107,7 @@ figure(2);clf;
         title('Response of E_x to dB_y/dt = \delta(t)');
     end
     legend('Time domain method','Freq. domain method');
-    print('-dpng','-r600',sprintf('figures/%s_irf_%s.png',base,vs));
+    print('-dpng','-r150',sprintf('figures/%s_irf_%s.png',base,vs));
     print('-depsc',sprintf('figures/%s_irf_%s.eps',base,vs));
     fprintf('Wrote figures/%s_irf_%s.{png,eps}\n',base,vs)
 
@@ -123,7 +123,7 @@ figure(3);clf;
     if (alpha == +0.5)
         legend('E_x','dB_y/dt','E_x / (dB_y/dt)');
     end
-    print('-dpng','-r600',sprintf('figures/%s_dft_%s.png',base,vs));
+    print('-dpng','-r150',sprintf('figures/%s_dft_%s.png',base,vs));
     print('-depsc',sprintf('figures/%s_dft_%s.eps',base,vs));
     fprintf('Wrote figures/%s_dft_%s.{png,eps}\n',base,vs)
 

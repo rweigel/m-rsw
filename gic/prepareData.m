@@ -2,8 +2,8 @@ function [Bi,dBi,Ei] = prepareData(short,long)
 
 % 1-second B and E data from http://www.kakioka-jma.go.jp/metadata?locale=en
 
-bname = sprintf('./data/%s/Bfile.mat',long);
-ename = sprintf('./data/%s/Efile.mat',long);
+bname = sprintf('./data/%s/Bfile1.mat',long);
+ename = sprintf('./data/%s/Efile1.mat',long);
 bname2 = sprintf('./data/%s/Bfile2.mat',long);
 ename2 = sprintf('./data/%s/Efile2.mat',long);
 
