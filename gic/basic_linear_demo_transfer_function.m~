@@ -19,6 +19,9 @@
 
 clear;
 addpath('../time');
+addpath('../stats');
+base = './figures/basic_linear_demo_transfer_function_';
+
 writeimgs = 0;
 
 N = 1e4;
@@ -109,8 +112,8 @@ figure(1);clf
         set(gca,'FontSize',14);
         set(gca,'YTickLabel','');
         if (writeimgs)
-            print('-depsc','basic_linear_demo_transfer_function_IRFtimeseries.eps');
-            print('-dpng','-r600','basic_linear_demo_transfer_function_IRF_timeseries.png');
+            print('-depsc',[base,'IRFtimeseries.eps']);
+            print('-dpng','-r150',[base,'_IRF_timeseries.png']);
         end
 figure(2);clf;
     hold on;grid on;
@@ -124,7 +127,10 @@ figure(2);clf;
     plot(hbl(2:end),'b','LineWidth',1,'Marker','square');
 
     title('Time Domain Estimate of Impulse Response');
-    lh = legend(' Actual Response to $\delta(t)$',' Predicted Response to $\delta(t)$',' $\dot{x}(t)+x(t)/\tau_c = \delta (t)$','Location','North');
+    lh = legend(' Actual Response to $\delta(t)$',...
+                ' Predicted Response to $\delta(t)$',...
+                ' $\dot{x}(t)+x(t)/\tau_c = \delta (t)$',...
+                'Location','North');
     xlabel('Time Since Impulse','FontSize',14);
  
     set(lh,'Interpreter','Latex');
@@ -132,15 +138,16 @@ figure(2);clf;
     set(lh,'Box','off');
     axis([0 tau*5 -0.1 1.1]);
     if (writeimgs)
-        print('-depsc','basic_linear_demo_transfer_function_IRF.eps');
-        print('-dpng','-r600','basic_linear_demo_transfer_function_IRF.png');
+        print('-depsc',[base,'_IRF.eps']);
+        print('-dpng','-r150',[base,'_IRF.png']);
     end
 
 %%%%%%%%%%%%%
 
 % Raw periodogram of h
 [I,f,a,b,a0] = periodogramraw(h,'fast');
-phix = (180/pi)*atan2(b,a); % Phase (phase is lag is relative to sin(2*pi*f*t))
+% Phase (phase is lag is relative to sin(2*pi*f*t))
+phix = (180/pi)*atan2(b,a); 
 
 haib = fft(h);
 I    = haib.*conj(haib);
@@ -174,7 +181,8 @@ h0   = ifft(R0);
 
 % Raw periodogram of h
 [I02,f02,a,b,a0] = periodogramraw([h0(1:length(h0))],'fast');
-phi02 = (180/pi)*atan2(b,a); % Phase (phase is lag is relative to sin(2*pi*f*t))
+% Phase (phase is lag is relative to sin(2*pi*f*t))
+phi02 = (180/pi)*atan2(b,a); 
 
 %figure(3);clf;hold on;grid on;
 %plot(phi0)

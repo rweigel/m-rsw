@@ -8,12 +8,21 @@ addpath('../time');
 savefigs = 1;
 %savefigs = 0;
 
+<<<<<<< HEAD
 long  = 'Memambetsu';
 short = 'mmb';
 
 long = 'Kakioka';
 short = 'kak';
 
+=======
+long = 'Kakioka';
+short = 'kak';
+
+long  = 'Memambetsu';
+short = 'mmb';
+
+>>>>>>> d445017373976f894afa1634861e2967775694ca
 labels  = {'B_x','B_y','B_z','dB_x/dt','B_y/dt','dB_z/dt','E_x','E_y'};
 labels2 = {'B_x','B_y','B_z','dBxdt','dBydt','Bzdt','E_x','E_y'};
 
@@ -32,7 +41,11 @@ figure(1);clf;
     legend('E_x','E_y')
     if (savefigs)
     fprintf('Writing %s_E_timeseries.{png,eps}\n',pre)    
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_E_timeseries.png',pre));
     print('-depsc',...
         sprintf('%s_E_timeseries.eps',pre));
@@ -48,7 +61,11 @@ figure(2);clf;
     legend('B_x','B_y','B_z')
     if (savefigs)
     fprintf('Writing %s_B_timeseries.{png,eps}\n',pre)
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_B_timeseries.png',pre));
     print('-depsc',...
         sprintf('%s_B_timeseries.eps',pre));
@@ -66,7 +83,11 @@ figure(3);clf;
     legend('dB_x/dt','dB_y/dt','dB_z/dt')
     if (savefigs)
     fprintf('Writing %s_dBdt_timeseries.{png,eps}\n',pre)
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
     sprintf('%s_dBdt_timeseries.png',pre));
     print('-depsc',...
         sprintf('%s_dBdt_timeseries.eps',pre));
@@ -88,7 +109,11 @@ figure(4);clf
     title(tit)
     ylabel('Periodogram magnitude [nT]');
     if (savefigs)
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_All_periodogram.png',pre));
     print('-depsc',...
         sprintf('%s_All_periodogram.eps',pre));
@@ -113,7 +138,11 @@ figure(5);clf
     title(tit);
     ylabel('Periodogram magnitude [nT]');
     if (savefigs)
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_All_periodogram_ave.png',pre));
     print('-depsc',...
         sprintf('%s_All_periodogram_ave.eps',pre));
@@ -129,7 +158,11 @@ for i=1:size(X,2)
     xlabel('f [Hz]');    
     title([labels{i}, ' ', tit]);
     if (savefigs)    
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_%s_periodograms_for_ave.png',pre,labels2{i}));
     print('-depsc',...
         sprintf('%s_%s_spectrograms_for_ave.eps',pre,labels2{i}));
@@ -165,7 +198,11 @@ figure(6);clf
     
     xlabel('Days since 12/01/2006 00:00:00.0')
 
+<<<<<<< HEAD
     print('-dpng','-r600',...
+=======
+    print('-dpng','-r300',...
+>>>>>>> d445017373976f894afa1634861e2967775694ca
         sprintf('%s_%s_spectrogram.png',pre,labels{i}));
     print('-depsc',...
         sprintf('%s_%s_spectrogram.eps',pre,labels{i}));
