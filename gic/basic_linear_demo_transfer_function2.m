@@ -67,13 +67,21 @@ LIN   = basic_linear(X,T)
 % Frequency domain estimate of transfer function
 xtfft = fft(xt);
 ytfft = fft(yt);
-R     = xtfft./ytfft;
-phi   = (180/pi)*atan2(imag(R),real(R));
+Rft   = xtfft./ytfft;
+phift = (180/pi)*atan2(imag(Rft),real(Rft));
+Nft   = length(xt);
+frft  = [0:Nft/2]/Nft;
+
 hft   = ifft(xtfft./ytfft);
 hft   = fftshift(hft);
 tft   = [-N/2:1:N/2-1];
+
 hbl   = LIN.Weights(1:end-1);    
 tbl   = [-Nl+1:1:Nl];
+Rbl   = fft(hbl);
+phibl = (180/pi)*atan2(imag(Rbl),real(Rbl));
+Nbl   = length(hbl);
+frbl  = [0:Nbl/2]/Nbl;
 
 if (alpha == -0.5)  
     vs = 'Ex_By';
@@ -90,50 +98,91 @@ figure(1);clf;
     plot(t,xt,'k');
     plot(t,yt,'g');
     if (alpha == -0.5)  
-        legend('E_x','B_y');
+        lh = legend('$E_x$','$B_y$');
         vs = 'Ex_By';
     end
     if (alpha == +0.5)
-        legend('E_x','dB_y/dt');
+        lh = legend('$E_x$','$B_y''$');
         vs = 'Ex_dBydt';
     end
+    set(lh,'Interpreter','Latex');
+
     xlabel('t');
     print('-dpng','-r150',sprintf('figures/%s_timeseries_%s.png',base,vs));
     print('-depsc',sprintf('figures/%s_timeseries_%s.eps',base,vs));
     fprintf('Wrote figures/%s_timeseries_%s.{png,eps}\n',base,vs)
     
 figure(2);clf;
+    loglog(frft(2:Nft/2),abs(ytfft(2:Nft/2)),'k','LineWidth',2,'Marker','.','MarkerSize',10);
+    hold on;grid on;
+    loglog(frft(2:Nft/2),abs(xtfft(2:Nft/2)),'g','LineWidth',2,'Marker','.','MarkerSize',10);
+    %loglog(f(2:N/2),abs(R(2:N/2)),'m','LineWidth',2,'Marker','.','MarkerSize',10);
+    xlabel('f');
+    if (alpha == -0.5)
+        lh = legend('$\|\widetilde{E}_y\|$','$\|\widetilde{B}_y\|$');
+    end
+    if (alpha == +0.5)
+        lh = legend('$\|\widetilde{E}_y\|$','$\|\widetilde{B}_y''\|$');
+    end
+    set(lh,'Interpreter','Latex');
+    print('-dpng','-r150',sprintf('figures/%s_dft_%s.png',base,vs));
+    print('-depsc',sprintf('figures/%s_dft_%s.eps',base,vs));
+    fprintf('Wrote figures/%s_dft_%s.{png,eps}\n',base,vs)
+
+figure(3);clf;
     plot(tbl,hbl,'b','LineWidth',3,'Marker','.','MarkerSize',30);
     hold on;grid on;
     plot(tft,hft,'r','LineWidth',2,'Marker','.','MarkerSize',20);
     set(gca,'XLim',[tbl(1)-5 tbl(end)+5]);
     xlabel('t');
     if (alpha == -0.5)
-        title('Response of E_x to B_y = \delta(t)');
+        th = title('Response of $E_x$ to $B_y = \delta(t)$');
     end
     if (alpha == 0.5)
-        title('Response of E_x to dB_y/dt = \delta(t)');
+        th = title('Response of $E_x$ to $B_y'' = \delta(t)$');
     end
+    set(th,'Interpreter','Latex');    
     legend('Time domain method','Freq. domain method');
     print('-dpng','-r150',sprintf('figures/%s_irf_%s.png',base,vs));
     print('-depsc',sprintf('figures/%s_irf_%s.eps',base,vs));
     fprintf('Wrote figures/%s_irf_%s.{png,eps}\n',base,vs)
 
-figure(3);clf;
-    loglog(f(2:N/2),abs(ytfft(2:N/2)),'g','LineWidth',2,'Marker','.','MarkerSize',10);
+figure(4);clf;
+    loglog(frbl(2:Nbl/2),abs(Rbl(2:Nbl/2)),'b','Marker','.','MarkerSize',10);
     hold on;grid on;
-    loglog(f(2:N/2),abs(xtfft(2:N/2)),'k','LineWidth',2,'Marker','.','MarkerSize',10);
-    loglog(f(2:N/2),abs(R(2:N/2)),'m','LineWidth',2,'Marker','.','MarkerSize',10);
+    loglog(frft(2:Nft/2),abs(Rft(2:Nft/2)),'r','Marker','.','MarkerSize',10);
+    hold on;grid on;
     xlabel('f');
     if (alpha == -0.5)
-        legend('E_x','B_y','E_x/B_y');
+        th = title('$\|\widetilde{E_x}\|/\|\widetilde{B}_y\|$');
     end
     if (alpha == +0.5)
-        legend('E_x','dB_y/dt','E_x / (dB_y/dt)');
+        th = title('$\|\widetilde{E}_x\|/\|\widetilde{B}''_y\|$');
     end
-    print('-dpng','-r150',sprintf('figures/%s_dft_%s.png',base,vs));
-    print('-depsc',sprintf('figures/%s_dft_%s.eps',base,vs));
-    fprintf('Wrote figures/%s_dft_%s.{png,eps}\n',base,vs)
+    set(th,'Interpreter','Latex');
+
+    legend('Time domain method','Freq. domain method');
+    print('-dpng','-r150',sprintf('figures/%s_transferfn_%s.png',base,vs));
+    print('-depsc',sprintf('figures/%s_transferfn_%s.eps',base,vs));
+    fprintf('Wrote figures/%s_transferfn_%s.{png,eps}\n',base,vs)
+
+figure(5);clf;
+    plot(frbl(2:Nbl/2),phibl(2:Nbl/2),'r','Marker','.','MarkerSize',10);
+    hold on;grid on;
+    plot(frft(2:Nft/2),phift(2:Nft/2),'b','Marker','.','MarkerSize',10);
+    xlabel('f');
+    if (alpha == -0.5)
+        th = title('Phase $\|\widetilde{E_x}\|/\|\widetilde{B}_y\|$');
+    end
+    if (alpha == +0.5)
+        th = title('Phase $\|\widetilde{E}_x\|/\|\widetilde{B}''_y\|$');
+    end
+    set(th,'Interpreter','Latex');
+
+    legend('Time domain method','Freq. domain method');
+    print('-dpng','-r150',sprintf('figures/%s_phase_%s.png',base,vs));
+    print('-depsc',sprintf('figures/%s_phase_%s.eps',base,vs));
+    fprintf('Wrote figures/%s_phase_%s.{png,eps}\n',base,vs)
 
 end % alpha    
     
