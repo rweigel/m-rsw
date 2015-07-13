@@ -3,7 +3,7 @@
 
 clear;
 
-base = 'zplanewave_demo1'; % Output files will be named ./figures/base_...
+base = 'zplanewave_demo'; % Output files will be named ./figures/base_...
 mu_0 = 4*pi*1e-7; % Vacuum permeability
 
 for profile = 1:5
