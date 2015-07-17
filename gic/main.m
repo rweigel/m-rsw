@@ -43,62 +43,6 @@ pX  = abs(ftX);
 N   = size(pX,1);
 f   = [0:N/2]'/N;
 
-% Evaluation frequencies for frequency domain smoothing
-fe(1) = f(end)/2;
-Ne(1) = fe(1)/(2*(1/N));
-k = 1;
-while fe(k) > f(2)
-    k = k+1;
-    % Evaluation frequencies.
-    fe(k) = fe(1)/sqrt(2^(k-1));
-    % Number of points to left and right of fe to apply window to.
-    Ne(k) = fe(k)/(2*(1/N));     
-end
-% Omit last value (for which fe > f(2)) and make increasing in freq.
-fe = fliplr(fe(1:end-1)); 
-Ne = ceil(fliplr(Ne(1:end-1)));
-fprintf('Created %d evaluation frequencies.\n',length(fe));
-
-% Smooth in frequency domain with Parzen window.
-for i = 1:size(X,2)
-    for j = 1:length(fe)
-        pw{j}   = parzenwin(2*Ne(j)+1); % Create window.
-        pw{j}   = pw{j}/sum(pw{j});     % Normalize window function.
-        Ic(j)   = find(f-fe(j) > 0,1);  % Find nearest frequency above eval freq.
-        fc(j,1) = f(Ic(j));             % New frequency will be this freq.    
-        parts{j,i} = pX(Ic(j)-Ne(j):Ic(j)+Ne(j),i); % Parts to apply window to.
-        pP(j,i) = sum(pw{j}.*parts{j,i}); % Apply window for freqency j.
-    end
-end
-for j = 1:length(fe)
-    pw{j}   = parzenwin(2*Ne(j)+1); 
-    pw{j}   = pw{j}/sum(pw{j});     
-    Ic(j)   = find(f-fe(j) > 0,1);
-    r = Ic(j)-Ne(j):Ic(j)+Ne(j);  
-    BxBx(j) = sum(pw{j}.*ftX(r,1).*conj(ftX(r,1))); 
-    ByBx(j) = sum(pw{j}.*ftX(r,2).*conj(ftX(r,1))); 
-    ExBx(j) = sum(pw{j}.*ftX(r,7).*conj(ftX(r,1))); 
-    EyBx(j) = sum(pw{j}.*ftX(r,8).*conj(ftX(r,1))); 
-
-    ByBy(j) = sum(pw{j}.*ftX(r,2).*conj(ftX(r,2))); 
-    ExBy(j) = sum(pw{j}.*ftX(r,7).*conj(ftX(r,2))); 
-    EyBy(j) = sum(pw{j}.*ftX(r,8).*conj(ftX(r,2))); 
-
-    ExEx(j) = sum(pw{j}.*ftX(r,7).*conj(ftX(r,7)));
-    EyEx(j) = sum(pw{j}.*ftX(r,8).*conj(ftX(r,7)));
-
-    EyEy(j) = sum(pw{j}.*ftX(r,8).*conj(ftX(r,8)));
-
-    BxBy(j) = sum(pw{j}.*ftX(r,1).*conj(ftX(r,2)));
-
-    DET(j) =  BxBx(j)*ByBy(j) - BxBy(j)*ByBx(j);
-    Zxx(j) = (ExBx(j)*ByBy(j) - ExBy(j)*ByBx(j))/DET(j);
-    Zxy(j) = (ExBy(j)*BxBx(j) - ExBx(j)*BxBy(j))/DET(j);
-    Zyx(j) = (EyBx(j)*ByBy(j) - EyBy(j)*ByBx(j))/DET(j);
-    Zyy(j) = (EyBy(j)*BxBx(j) - EyBx(j)*BxBy(j))/DET(j);
-end
-break
-
 % Averaged periodograms
 for i = 1:size(X,2)
     tmp     = reshape(X(:,i),86400,size(X,1)/86400);
@@ -114,65 +58,6 @@ for i = 1:size(X,2)
  end
 NA = size(pA,1);
 fA = [0:NA/2]'/NA;
-
-% Ex(f) = Zxx(f)Bx(f) + Zxy(f)By(f)
-% For each f, create one equation for each FT over a 1-day window.
-% Ey(f) = Zyx(f)Bx(f) + Zyy(f)By(f)
-
-for i = 1:size(p{1},1)
-    B = [p{1}(i,:)',p{2}(i,:)'];
-    E = [p{7}(i,:)'];
-    rZxxZxy(i,:) = real(B)\real(E);
-    iZxxZxy(i,:) = imag(B)\imag(E);
-    %B = [p{1}(i,:)',p{2}(i,:)'];
-    %E = [p{8}(i,:)'];
-    %ZyxZyy(i,:) = B\E;
-end
-
-Zxx = rZxxZxy(:,1) + j*iZxxZxy(:,1);
-Zxy = rZxxZxy(:,2) + j*iZxxZxy(:,2);
-
-figure();clf
-loglog(fA,abs(Zxx(1:NA/2+1,1)));hold on;
-loglog(fA,abs(Zxy(1:NA/2+1,1)),'r');hold on;
-break
-
-phs = (180/pi)*atan2(imag(Zxx),real(Zxx));
-
-pR1 = mean(p{7},2)./mean(p{2},2);
-pR1 = mean(pR1,2);
-
-if (0)
-Bx = B(:,1);
-Bx = diff(Bx);
-Ey = E(:,2);
-Ey = Ey(1:end-1);
-
-k = 1;
-w = 3600*8;
-dw = w;
-N = floor(length(Bx)/dw);
-Nl = 60*3;
-while 1
-    a = dw*(k-1)+1;
-    b = a+w;
-    if (b > length(Bx)) break;end
-    I = [a:b];
-
-    [T,X] = time_delay(Bx(I),Ey(I),Nl,0,Nl/2,'pad');
-
-    Itr = [1:round(0.5*length(I))-Nl];
-    Ite = [round(0.5*length(I))+Nl:length(I)];
-    LIN = basic_linear(X,T,Ite,Itr);
-    fprintf('k = %d/%d PE = %.2f, %.2f\n',...
-         k,N,1-LIN.ARVtrain,1-LIN.ARVtest);
-    W(:,k)  = LIN.Weights;
-    PEte(k) = 1-LIN.ARVtest;
-    PEtr(k) = 1-LIN.ARVtrain;
-
-    k = k+1;
-end
-end
 
 figure(1);clf;
     for i = 1:3
