@@ -26,17 +26,19 @@ if (nargin == 2 && ~writeimgs)
 	return
 end
 
-fprintf('plotcmds: Writing %s.{png,eps}\n',base);
+fprintf('plotcmds: Writing (using print) %s.eps\n',base);
 print('-depsc',sprintf('%s.eps',base))
-fprintf('plotcmds: Wrote %s.eps (using print)\n',base);
+fprintf('plotcmds: Done. \n',base);
 
 if exist('/usr/local/bin/convert')
+	fprintf('plotcmds: Writing (using convert on eps) %s.png\n',base);
 	% MATLAB does not allow quality parameter for png.
 	% Use convert if available to create a better image.
 	com = sprintf('convert -quality 100 -density 150 %s.eps %s.png',base,base);
 	system(com);
-	fprintf('plotcmds: Wrote %s.png (using convert on eps)\n',base);
+	fprintf('plotcmds: Done.\n',base);
 else
+	fprintf('plotcmds: Writing (using print) %s.png\n',base);
 	print('-dpng',sprintf('%s.png',base))
-	fprintf('plotcmds: Wrote %s.png (using print)\n',base);
+	fprintf('plotcmds: Done.\n',base);
 end

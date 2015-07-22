@@ -5,20 +5,29 @@ addpath('../stats/')
 
 writeimgs = 1;
 
-N = 1e4;
+tau = 10;  % Filter decay constant
+N   = 1e4; % Simulation length
+Nc  = 51; % Comment out to use Nc = length(h)
+df  = 50;  % Width of rectangual window
+nb  = 0.0; % Noise in B
+ne  = 0.1; % Noise in E
+ndb = 0.0; % Noise in dB
 
 % Compute IRF for dx/dt + x/tau = delta(0), and IC of x_0 = 0 dx_0/dt = 0
 % using forward Euler.
-tau = 10;
 dt = 1;
 gamma = (1-dt/tau);
 for i = 1:10*tau
     h(i,1) = gamma^(i-1);
     t(i,1) = dt*(i-1);
 end
-
+hstr = sprintf('(1-1/%d)^{t}; t=1 ... %d; h_{xy}(0)=0;', tau, length(h));
 h  = [0;h];
 th = [0:length(h)-1];
+
+% Add extra values to get nice length
+% (because we cut off non-steady state).
+N = N + 2*length(h);
 
 % Transfer function
 Zxy = fft(h);
@@ -27,9 +36,9 @@ Zxy = Zxy(1:floor(Nh/2)+1);
 fh  = [0:Nh/2]'/Nh;
 
 % Noise
-ne = 0.1;
-NE = [ne*randn(N,1),ne*randn(N,1)];
-NB = [0*randn(N,1),0*randn(N,1)];
+NE  = [ne*randn(N,1),ne*randn(N,1)];
+NB  = [nb*randn(N,1),nb*randn(N,1)];
+NdB = [ndb*randn(N,1),ndb*randn(N,1)];
 
 % Create an input signal
 B(:,1) = randn(N,1);
@@ -44,13 +53,19 @@ dB = [dB;dB(end,:)];
 B  = B(2*length(h)+1:end,:);
 dB = dB(2*length(h)+1:end,:);
 E  = E(2*length(h)+1:end,:);
-NE = NE(2*length(h)+1:end,:);
-NB = NB(2*length(h)+1:end,:);
+
+NE  = NE(2*length(h)+1:end,:);
+NB  = NB(2*length(h)+1:end,:);
+NdB = NdB(2*length(h)+1:end,:);
+
+N = size(B,1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time Domain
 Na = 0;         % The number of acausal coefficients
-Nc = length(h); % The number of causal coefficients
+if ~exist('Nc')
+    Nc = length(h); % The number of causal coefficients
+end
 Ts = 0;         % Shift input with respect to output
 
 % T is the output, X is the input.
@@ -78,21 +93,34 @@ feBL  = [0:NBL/2]'/NBL;
 
 EyBL = filter(hBL,1,B(:,1));
 
+if (feBL(2) > fh(2))
+    % If lowest evaluation frequency is larger than first point on
+    % frequency grid, extrapolate. 
+    ZxyBLi = interp1(feBL(2:end),ZxyBL(2:end),fh(2:end),'linear','extrap');
+else
+    ZxyBLi = interp1(feBL(2:end),ZxyBL(2:end),fh(2:end),'linear');
+end
+ZxyBLi(isnan(ZxyBLi)) = 0;
+ZxyBLi = [ZxyBL(1);ZxyBLi];
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Rectangular
 
 % Raw periodograms
-X    = [B,dB,E];
+X    = [B,dB,E,NB,NdB,NE];
 ftX  = fft(X);
 pX   = ftX;
 
-ftB = pX(:,1:2);
-ftE = pX(:,5:6);
+ftB   = pX(:,1:2);
+ftdB  = pX(:,3:4);
+ftE   = pX(:,5:6);
+ftNB  = pX(:,7:8);
+ftNdB = pX(:,9:10);
+ftNE  = pX(:,11:12);
 
 f   = [0:N/2]'/N;
 
 % Smooth in frequency domain with Rectangular window.
-df = 50;
 IcR = [df+1:df:length(f)];
 for i = 1:size(X,2)
     for j = 1:length(IcR)
@@ -218,45 +246,47 @@ figure(1);clf;hold on; grid on;
     plot(NaN*E(1:2,2),'k','LineWidth',3)
     plot(NaN*E(1:2,2),'Color',[0.5,0.5,0.5],'LineWidth',3)
 
-    title('E_y = filter(h_{xy},1,B_x+\deltaBx) + \deltaE_y');
+    ts = sprintf('E_y = filter(h_{xy},1,B_x+\\deltaBx) + \\deltaE_y; \\deltaE_y = \\eta(0,%.2f); \\deltaB_x = \\eta(0,%.2f)',ne,nb);
+    title(ts);
     plot(B(:,1)+15,'r')
     plot(NB(:,1)+5,'Color',[1,0.5,0])
     plot(E(:,2)-5,'k')
     plot(NE(:,2)-15,'Color',[0.5,0.5,0.5])
-    xlabel('t')
+    xlabel('t (sample number-1)')
     set(gca,'YLim',[-25 25])
     legend('B_x+15 (input)','\deltaB_x+5 (noise)','E_y-5 (output)','\deltaE_y-15 (noise)')
     plotcmds('timeseries',writeimgs)
 
 figure(2);clf;
+    loglog(NaN*ftB(1:2,1),'r','LineWidth',3)
     hold on;grid on;
-    plot(fh,abs(Zxy),'k','Marker','+','MarkerSize',10,'LineWidth',5)
-    plot(feBL,abs(ZxyBL),'m','Marker','.','MarkerSize',25,'LineWidth',3);
-    plot(feR,abs(ZxyR),'b','Marker','.','MarkerSize',15,'LineWidth',2);
-    plot(feP,abs(ZxyP),'g','Marker','.','MarkerSize',10,'LineWidth',1);
-    xlabel('f')
-    title('Transfer Function')
-    legend(...
-            'Z_{xy}',...
-            'Z_{xy} time domain',...
-            'Z_{xy} freq. domain Rectangular',...
-            'Z_{xy} freq. domain Parzen'...
-            )
-   plotcmds('transfer_functions',writeimgs)
 
-figure(3);clf;
-    hold on;grid on;
-    plot(fh,abs(ZxyBL)-abs(Zxy),'m','Marker','.','MarkerSize',20,'LineWidth',2);
-    plot(fh,abs(ZxyRi)-abs(Zxy),'b','Marker','.','MarkerSize',20,'LineWidth',2);
-    plot(fh,abs(ZxyPi)-abs(Zxy),'g','Marker','.','MarkerSize',20,'LineWidth',2);
+    loglog(NaN*ftE(1:2,2),'Color',[1,0.5,0],'LineWidth',3)
+    loglog(NaN*ftNB(1:2,1),'k','LineWidth',3)
+    loglog(NaN*ftNE(1:2,2),'Color',[0.5,0.5,0.5],'LineWidth',3)
+    %ts = sprintf('E_y = filter(h_{xy},1,B_x+\\deltaBx) + \\deltaE_y; \\deltaE_y = \\eta(0,%.2f); \\deltaB_x = \\eta(0,%.2f)',ne,nb);
+    %title(ts);
+    title('Raw Periodograms')
+    loglog(f(2:end),abs(ftB(2:N/2+1,1)),'r')
+    loglog(f(2:end),abs(ftNB(2:N/2+1,1)),'Color',[1,0.5,0])
+    loglog(f(2:end),abs(ftE(2:N/2+1,2)),'k')
+    loglog(f(2:end),abs(ftNE(2:N/2+1,2)),'Color',[0.5,0.5,0.5])
     xlabel('f')
-    title('Transfer Function Error')
-    legend(...
-            '\deltaZ_{xy} time domain',...
-            '\deltaZ_{xy} freq. domain Rectangular',...
-            '\deltaZ_{xy} freq. domain Parzen',...
-            'Location','SouthWest')
-   plotcmds('transfer_function_errors',writeimgs)
+    legend('B_x (input)','\deltaB_x (noise)','E_y (output)','\deltaE_y (noise)')
+    plotcmds('rawperiodograms',writeimgs)
+
+figure(3);clf;grid on;
+    me = mean(E(:,2));
+    mb = mean(B(:,1));
+    xc = xcorr(E(:,2)-me,B(:,1)-mb,'unbiased');
+    tl = [-N+1:N-1];
+    xc = fftshift(xc);
+    plot(tl,xc,'Color','r','Marker','.','MarkerEdgeColor','k');grid on;
+    set(gca,'XLim',[-3*length(h) 3*length(h)]);
+    title('Cross correlation')
+    xlabel('lag')
+    legend('E_y,Bx')
+    plotcmds('crosscorrelation',writeimgs)
 
 figure(4);clf;
     hold on;grid on;
@@ -266,22 +296,33 @@ figure(4);clf;
     plot(tP,hP,'g','LineWidth',2)
     xlabel('t')
     title('Impulse Response')
-    legend('h_{xy}',...
-            'h_{xy} time domain',...            
-            'h_{xy} freq. domain Rectangular',...
-            'h_{xy} freq. domain Parzen'...
+    legend( sprintf('h_{xy} = %s',hstr),...
+            sprintf('h_{xy} time domain; nl = %d',length(hBL)),...
+            sprintf('h_{xy} freq. domain rectangular (n = %d)', df),...
+            'h_{xy} freq. domain parzen'...
            )
    plotcmds('impulse_responses',writeimgs)
 
-% Create padded impulse responses.
-tp  = [tP(1):th(end)];
-Np  = length(tp)-length(h);
-hp  = [zeros(Np,1);h];
-hPp = [hP;zeros(Np,1)];
-hRp = [hR;zeros(Np,1)];
-hBLp = [zeros(Np,1);hBL];
-
 figure(5);clf;
+    % Create padded impulse responses.
+    tp  = [tP(1):th(end)];
+    Nl  = length(tp)-length(h);
+
+    if (length(hBL) >= length(h))
+        Nr   = Nc - length(h);
+        tp   = [tP(1):length(h)+Nr-1];
+        hp   = [zeros(Nl,1);h;zeros(Nr,1)];
+        hBLp = [zeros(Nl,1);hBL];
+    else
+        Nr = length(h)-length(hBL);
+        hp   = [zeros(Nl,1);h];
+        hBLp = [zeros(Nl,1);hBL;zeros(Nr,1)];
+    end
+    
+    Nr = length(hBLp)-length(hP);
+    hPp = [hP;zeros(Nr,1)];
+    hRp = [hR;zeros(Nr,1)];
+
     hold on;grid on;
     plot(tp,hBLp-hp,'m','LineWidth',4)
     plot(tp,hRp-hp,'b','LineWidth',2)
@@ -289,13 +330,43 @@ figure(5);clf;
     xlabel('t')
     title('Impulse Response Error')
     legend(...
-            '\deltah_{xy} time domain',...
-            '\deltah_{xy} freq. domain Rectangular',...
-            '\deltah_{xy} freq. domain Parzen'...            
+            sprintf('\\deltah_{xy} time domain; nl = %d',length(hBL)),...
+            sprintf('\\deltah_{xy} freq. domain rectangular (n = %d)', df),...
+            '\deltah_{xy} freq. domain parzen'...
             )
    plotcmds('impulse_response_errors',writeimgs)
 
 figure(6);clf;
+    hold on;grid on;
+    plot(fh,abs(Zxy),'k','Marker','+','MarkerSize',10,'LineWidth',5)
+    plot(feBL,abs(ZxyBL),'m','Marker','.','MarkerSize',25,'LineWidth',3);
+    plot(feR,abs(ZxyR),'b','Marker','.','MarkerSize',15,'LineWidth',2);
+    plot(feP,abs(ZxyP),'g','Marker','.','MarkerSize',10,'LineWidth',1);
+    xlabel('f')
+    title('Transfer Function')
+    legend(...
+            'Z_{xy}',...
+            sprintf('Z_{xy} time domain; nl = %d',length(hBL)),...
+            sprintf('Z_{xy} freq. domain rectangular (n = %d)', df),...
+            'Z_{xy} freq. domain parzen'...
+            )
+   plotcmds('transfer_functions',writeimgs)
+
+figure(7);clf;
+    hold on;grid on;
+    plot(fh,abs(ZxyBLi)-abs(Zxy),'m','Marker','.','MarkerSize',20,'LineWidth',2);
+    plot(fh,abs(ZxyRi)-abs(Zxy),'b','Marker','.','MarkerSize',20,'LineWidth',2);
+    plot(fh,abs(ZxyPi)-abs(Zxy),'g','Marker','.','MarkerSize',20,'LineWidth',2);
+    xlabel('f')
+    title('Transfer Function Error')
+    legend(...
+            sprintf('\\deltaZ_{xy} time domain; nl = %d',length(hBL)),...
+            sprintf('\\deltaZ_{xy} freq. domain rectangular (n = %d)', df),...
+            '\deltaZ_{xy} freq. domain parzen',...
+            'Location','SouthWest')
+   plotcmds('transfer_function_errors',writeimgs)
+
+figure(8);clf;
     hold on;grid on;
     plot(E(:,2),'k','LineWidth',3)
     plot(EyBL,'m')
@@ -310,7 +381,7 @@ figure(6);clf;
             )
    plotcmds('predictions',writeimgs)
 
-figure(7);clf;
+figure(9);clf;
     hold on;grid on;
     plot(E(:,2)-EyBL+10,'m')
     plot(E(1:length(EyR),2)-EyR,'b')

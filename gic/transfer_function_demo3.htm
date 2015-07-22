@@ -1,46 +1,92 @@
-<img title="" src="figures/transfer_function_demo3_timeseries.png" width="600px">
+<!DOCTYPE html>
+<html>
+<body>
+Effect of frequency domain smoothing on prediction of the geoelectric field or geomagnetic currents from surface magnetic field methods
 
-<table style="margin-bottom:1em" border="0" cellpadding="2" width="1024px" align="left">
-	<tbody>
+<p>R.S. Weigel, July 2015</p>
+
+<h1>Abstract</h1>
+We show that common methods of computing the geoelectric field/geomagnetic field transfer function based on frequency domain smoothing lead to inferior predictions compared to a straightforward time domain method for computing the transfer function.  
+
+<h1>Overview</h1>
+
+<p>
+An input signal <code>Bx</code> of length <code>N</code> is filtered using a causal low-pass filter <code>h</code> to create output signal <code>Ey</code>.  Noise is added to both the input and output signal.
+</p>
+
+<p>
+Different methods are compared for computing the impulse response and transfer function.  The computed impulse response for each method is used to generate a prediction.
+</p>
+
+<p>
+The time domain method is based on estimating the coefficients <code>h</code> in the over-determined matrix equation <code><b>B</b>y = <b>B</b>x*<b>h</b></code>, where <code><b>E</b>y = [Ey(1);Ey(2);...]</code> and <code><b>B</b>x = [Bx(2),Bx(3), ....,Bx(nl),1; Bx(3), Bx(4), ... Bx(nl),1;...]</code>.  The total number of rows of  <code><b>B</b>x</code> is <code>N/nl</code>, where <code>N</code> is the length of the input signal.
+</p>
+
+<p>
+The Rectangular frequency domain method is based on computing the raw periodogram of each signal and applying a box-car window of width <code>n</code> to compute a smoothed periodogram.
+</p>
+
+<p>
+The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (chapter 4).  The raw periodogram of each signal of length <code>N</code> is smoothed in the frequency domain applying a Parzen window on points centered on evaluation frequencies.  The evaluation frequencies are <code>fe = 2<sup>-(k+1)/2</sup></code> for all positive integers <code>k</code> for which <code>fe < 1/N</code>, i.e., <code>kmax = floor(2log<sub>2</sub>N-1)</code>. 
+</p>
+<h1>Code</h1>
+<code>transfer_function_demo3.m</code>
+<iframe width="100%" height="500px" src="transfer_function_demo3.m"></iframe>
+<h1>Figures</h1>
+<table style="margin-bottom:1em;display:block" border="1" cellpadding="2" width="1826px" align="left">
+	<tbody style="overflow-x:auto">
 		<tr>
-			<td style="vertical-align:top" width="50%">
-				<img title="" src="figures/transfer_function_demo3_transfer_functions.png" width="600px">
-				<div style="display:block"></div>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_timeseries.png" width="600px">
 			</td>
-			<td style="vertical-align:top" width="50%">
-				<img title="" src="figures/transfer_function_demo3_transfer_function_errors.png" width="600px">
-				<div style="display:block"></div>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_rawperiodograms.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_crosscorrelation.png" width="600px">
 			</td>
 		</tr>
-	</tbody>
-</table>
-
-<table style="margin-bottom:1em" border="0" cellpadding="2" width="1024px" align="left">
-	<tbody>
 		<tr>
-			<td style="vertical-align:top" width="50%">
+			<td style="vertical-align:top">
 				<img title="" src="figures/transfer_function_demo3_impulse_responses.png" width="600px">
 				<div style="display:block"></div>
 			</td>
-			<td style="vertical-align:top" width="50%">
+			<td style="vertical-align:top">
 				<img title="" src="figures/transfer_function_demo3_impulse_response_errors.png" width="600px">
 				<div style="display:block"></div>
 			</td>
+			<td style="vertical-align:top">
+				
+			</td>
 		</tr>
-	</tbody>
-</table>
-
-<table style="margin-bottom:1em" border="0" cellpadding="2" width="1024px" align="left">
-	<tbody>
 		<tr>
-			<td style="vertical-align:top" width="50%">
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_functions.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_errors.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
 				<img title="" src="figures/transfer_function_demo3_predictions.png" width="600px">
 				<div style="display:block"></div>
 			</td>
-			<td style="vertical-align:top" width="50%">
+			<td style="vertical-align:top">
 				<img title="" src="figures/transfer_function_demo3_prediction_errors.png" width="600px">
 				<div style="display:block"></div>
 			</td>
+			<td style="vertical-align:top">
+				
+			</td>
 		</tr>
-	</tbody>
+
+</tbody>
 </table>
+</body>
+</html>

@@ -22,9 +22,6 @@ addpath('../time');
 addpath('../stats');
 base = './figures/transfer_function_demo_';
 
-writeimgs = 1;
-
-N = 1e4;
 
 % Compute IRF for dx/dt + x/tau = delta(0), and IC of x_0 = 0 dx_0/dt = 0
 % using forward Euler.

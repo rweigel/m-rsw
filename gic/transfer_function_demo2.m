@@ -151,9 +151,9 @@ for alpha = [-1/2]
         end
 
     figure(4);clf;
-        loglog(frbl(2:Nbl/2),Rbl(2:Nbl/2)),'b','Marker','.','MarkerSize',10);
+        loglog(frbl(2:Nbl/2),Rbl(2:Nbl/2),'b','Marker','.','MarkerSize',10);
         hold on;grid on;
-        loglog(frft(2:Nft/2),Rft(2:Nft/2)),'r','Marker','.','MarkerSize',10);
+        loglog(frft(2:Nft/2),Rft(2:Nft/2),'r','Marker','.','MarkerSize',10);
         hold on;grid on;
         xlabel('f');
         if (alpha == -0.5)
