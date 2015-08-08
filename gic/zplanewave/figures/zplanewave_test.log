@@ -1,0 +1,38 @@
+Test 1: Infinite half-space, sigma = 2, f = 0.1.
+Test 1     error/eps :   0.00
+Test 1         rho_a :   0.50 [Ohm m]
+Test 1         phi_a : -45.00 [degrees]
+Test 1 Re(error)/eps :   0.00
+Test 1 Im(error)/eps :   0.00
+
+Test 2: Two layers
+Test 2: Two layers, sigma = [100,1], h = (penetration depth of first layer)/10, f = 0.1.
+Test 2         rho_a   :   0.20 [Ohm m]
+Test 2         sigma_a :   4.91 [1/(Ohm m)]
+Test 2         phi_a   : -70.77 [degrees]
+Test 2 Re(error)/eps   :   0.00
+Test 2 Im(error)/eps   :   0.00
+
+Test 3: Visual comparison of Figure 2.4(c) of Simpson and Baer
+Wrote ./figures/zplanewave_test_rho_a.{png,eps}
+Wrote ./figures/zplanewave_test_phi_a.{png,eps}
+Wrote ./figures/zplanewave_test_geometry.{png,eps}
+Test 1: Infinite half-space, sigma = 2, f = 0.1.
+Test 1     error/eps :   0.00
+Test 1         rho_a :   0.50 [Ohm m]
+Test 1         phi_a : -45.00 [degrees]
+Test 1 Re(error)/eps :   0.00
+Test 1 Im(error)/eps :   0.00
+
+Test 2: Two layers
+Test 2: Two layers, sigma = [100,1], h = (penetration depth of first layer)/10, f = 0.1.
+Test 2         rho_a   :   0.20 [Ohm m]
+Test 2         sigma_a :   4.91 [1/(Ohm m)]
+Test 2         phi_a   : -70.77 [degrees]
+Test 2 Re(error)/eps   :   0.00
+Test 2 Im(error)/eps   :   0.00
+
+Test 3: Visual comparison of Figure 2.4(c) of Simpson and Baer
+Wrote ./figures/zplanewave_test_rho_a.{png,eps}
+Wrote ./figures/zplanewave_test_phi_a.{png,eps}
+Wrote ./figures/zplanewave_test_geometry.{png,eps}
