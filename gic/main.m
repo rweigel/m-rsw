@@ -20,7 +20,7 @@ cs      = ['r','g','b','r','g','b','m','k'];
 pre = sprintf('figures/main_%s',short);
 tit = sprintf('%s Magnetic Observatory (%s)',long,upper(short));
 
-[B,dB,E] = prepareData(short,lower(long));
+[B,dB,E] = mainPrepare(short,lower(long));
 
 B  = B(1:86400*25,:);
 dB = dB(1:86400*25,:);
