@@ -4,7 +4,7 @@
 clear;
 
 base = 'zplanewave_demo'; % Output files will be named ./figures/base_...
-mu_0 = 4*pi*1e-7; % Vacuum permeability
+mu_0 = 4*pi*1e-7; % Vac uum permeability
 
 for profile = 1:5
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,7 +94,8 @@ figure(2);clf;
                 ' $\phi_{\widetilde{Z}}\quad\mbox{[deg]}$',...
                 'Location','NorthWest');
     set(lh,'Interpreter','Latex');
-    print('-dpng',sprintf('figures/%s_phase_profile_%d.eps',base,profile));
+    print('-dpng','-r150',sprintf('figures/%s_phase_profile_%d.png',base,profile));
+    print('-depsc',sprintf('figures/%s_phase_profile_%d.eps',base,profile));
     fprintf('Wrote figures/%s_phase_profile_%d.{png,eps}\n',base,profile)
 
 if (isempty(h))

@@ -1,5 +1,5 @@
 function Cs = zplanewave(s,h,f)
-%ZPLANEWAVE 1-D surface impedance for plane wave incidenct on half space.
+%ZPLANEWAVE 1-D surface impedance for plane wave incident on half space.
 %
 %   C = ZPLANEWAVE(s,h,f)
 %   
@@ -24,7 +24,7 @@ function Cs = zplanewave(s,h,f)
 %
 %   Computed using Eqns. 2.33 and 2.34 of Simpson and Bahr,
 %   Practical Magnetotellurics, 2005 (Eqn. 2.33 is recursion
-%   formula from Wait 1954).  All layers have vaccum permeability.
+%   formula from Wait 1954).  All layers have vacuum permeability.
 %
 %   For an infinite half-layer with s(1) = s0, h = [], and f(1) = f0,
 %       C = zplanewave(s,h,f)
@@ -34,8 +34,7 @@ function Cs = zplanewave(s,h,f)
 %
 %   See also
 %       ZPLANEWAVE_TEST - Verify calculations
-%       ZPLANEWAVE_DEMO1 - Plot transfer fn, phase, and impulse response
-%       ZPLANEWAVE_DEMO2 - Compare IRFs computed in time and frequency domain
+%       ZPLANEWAVE_DEMO - Plot transfer fn, phase, and impulse response
 
 % R.S. Weigel, 04/09/2015
 
