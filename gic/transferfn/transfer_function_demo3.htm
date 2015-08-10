@@ -12,7 +12,7 @@ We show that common methods of computing the geoelectric field/geomagnetic field
 <h3>Overview</h3>
 
 <p>
-An input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input and output signal.
+An input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input and output signal.
 </p>
 
 <p>
@@ -21,7 +21,7 @@ Different methods are compared for computing the transfer function and impulse r
 
 <h4>Time Domain Method</h4>
 <p>
-The time domain method is based on estimating the coefficients <code>h</code> in the over-determined matrix equation <b>E</b><sub>y</sub> = <b>B</b><sub>x</sub>·<b>h</b>, where <b>E</b><sub>y</sub><code> = [Ey(0);Ey(1);...;Ey(N-n<sub>T</sub>)]</code> and <b>B</b><sub>x</sub><code> = [Bx(1), Bx(2), ... , Bx(n<sub>T</sub>), 1 ; Bx(2), Bx(3), ..., Bx(n<sub>T</sub>), 1; ...; Bx(N-n<sub>T</sub>+1), Bx(N-n<sub>T</sub>+1), ..., Bx(N), 1]</code>.  (Notation: commas separate columns and semi-colons separate rows.) The total number of rows of  <code><b>B</b><sub>x</sub></code> is <code>(N-n<sub>T</sub>)/n<sub>T</sub></code>, where <code>N</code> is the length of the input signal.  Without noise and with <code>n<sub>T</sub> = 100</code>, we expect to recover the exact <b>h</b>.
+The time domain method is based on estimating the coefficients <b>h</b> in the over-determined matrix equation <b>E</b><sub>y</sub> = <b>B</b><sub>x</sub><b>h</b>, where <b>E</b><sub>y</sub><code> = [Ey(0);Ey(1);...;Ey(N-n<sub>T</sub>)]</code> and <b>B</b><sub>x</sub><code> = [Bx(1), Bx(2), ... , Bx(n<sub>T</sub>), 1 ; Bx(2), Bx(3), ..., Bx(n<sub>T</sub>+1), 1; ...; Bx(N-n<sub>T</sub>+1), Bx(N-n<sub>T</sub>+2), ..., Bx(N), 1]</code>.  (Notation: commas separate columns and semi-colons separate rows.) The total number of rows of  <code><b>B</b><sub>x</sub></code> is <code>N-n<sub>T</sub></code>, where <code>N</code> is the length of the input signal.  Without noise and with <code>n<sub>T</sub> = 100</code>, we expect to recover the exact <b>h</b>.
 </p>
 
 <h4>Frequency Domain Method - Rectangular</h4>
