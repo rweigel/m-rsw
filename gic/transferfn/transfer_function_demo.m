@@ -95,14 +95,14 @@ ft   = [0:Nt/2]/Nt;
 ht   = hbl;
 
 figure(1);clf;
-    subplot('position',[0.1 0.55 0.8 0.38]);
+    %subplot('position',[0.1 0.55 0.8 0.38]);
         grid on;hold on;    
         plot(y(1)+10,'k','LineWidth',3);
         plot(u(1),'g','LineWidth',3);
         plot(u-5,'g');
         plot(y+5,'k');
-        th = title('$\dot{y}(t)+y(t)/\tau = u(t)$');
-        set(th,'Interpreter','Latex')
+        %th = title('$\dot{y}(t)+y(t)/\tau = u(t)$');
+        %set(th,'Interpreter','Latex')
 
         lh = legend(' Output u',' Input y');
         set(lh,'FontSize',14);
@@ -110,6 +110,7 @@ figure(1);clf;
         set(gca,'FontSize',14);
         set(gca,'YTickLabel','');
         set(gca,'XTickLabel','');
+if (0)
     subplot('position',[0.1 0.1 0.8 0.44])
         grid on;hold on;
         % Plot nothing with large LineWidth to make line in legend
@@ -126,6 +127,7 @@ figure(1);clf;
         xlabel('Time','FontSize',14);
         set(gca,'FontSize',14);
         set(gca,'YTickLabel','');
+end
         if (writeimgs)
             print('-depsc',[base,'IRF_timeseries.eps']);
             print('-dpng','-r150',[base,'IRF_timeseries.png']);

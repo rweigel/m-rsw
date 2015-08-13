@@ -1,3 +1,31 @@
+<h3>Overview</h3>
+
+<p>
+Comparison of two approaches to determining transfer function for an infinite half-plane.
+</p>
+
+<p>
+Relationship between Ex and By or dBy/dt for infinite half-plane:
+</p>
+
+<code>Ex(t)  = sum_w cos(w*t)</code>
+<br/>
+<code>By(t)  = sum_w w^(-3/2)*cos(w*t - pi/4 + phi_w)</code>
+<br/>
+<code>dBy/dt = sum_w w^(-1/2)*cos(w*t - pi/4 + phi_w)</code>
+
+<h3>Method</h3>
+
+Create time series of each for w = <code>2*pi*f = [1:N/2]/N</code>, with <code>N</code> large.  To make both time series stationary, add a random phase <code>phi_w</code> for each <code>w</code>. (Time domain approach requires stationarity.)
+
+<h4>Frequency domain approach</h4>
+
+Transfer function is ratio of <code>By(f)/Ex(f)</code>.
+
+<h4>Time domain approach</h4>
+
+Impulse response coefficients are estimated.  Transfer function is periodogram of impulse response coefficients.  800 coefficients are used (400 causal, 400 acausal).
+
 <table style="margin-bottom:1em" border="0" cellpadding="2" width="1024px" align="left">
 	<tbody>
 		<tr>

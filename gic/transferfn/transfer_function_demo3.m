@@ -141,8 +141,6 @@ for i = 1:size(X,2)
         feR(j) = f(IcR(j));
         NeR(j) = df;
         r      = [IcR(j)-df:IcR(j)+df];
-        parts{j,i} = pX(r,i); % Parts to apply window to.
-        pR(j,i)    = sum(parts{j,i})/(2*df+1);
     end
 end
 % Add zero frequency.
@@ -234,8 +232,6 @@ for i = 1:size(X,2)
             fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                         feP(j),length(r),fa,fb)
         end
-        parts{j,i} = pX(r,i); % Parts to apply window to.
-        pP(j,i) = sum(pw{j}.*parts{j,i}); % Apply window for freqency j.
     end
 end
 
@@ -243,7 +239,7 @@ for j = 1:length(feP)
     r = [IcP(j)-df:IcP(j)+df];
     pw{j}   = parzenwin(2*NeP(j)+1); 
     pw{j}   = pw{j}/sum(pw{j});     
-    r = [IcP(j)-NeP(j):IcP(j)+NeP(j)];
+    r       = [IcP(j)-NeP(j):IcP(j)+NeP(j)];
     ZxyP(j) = sum(pw{j}.*ftE(r,1).*conj(ftB(r,2)))...
                     /sum(pw{j}.*ftB(r,2).*conj(ftB(r,2)));
 end

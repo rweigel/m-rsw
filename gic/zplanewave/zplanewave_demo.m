@@ -16,27 +16,27 @@ f = [1:N/2]/N;
 if (profile == 1)
     h = [];
     s = 1;
-    titlestr = sprintf('$\\mbox{Infinite half space}\\quad\\rho = %.1f \\mbox{ [Ohm}\\cdot\\mbox{m]}',1/s);
+    titlestr = sprintf('$\\mbox{Infinite half space}\\quad\\rho = %.1f \\mbox{ [}\\Omega\\cdot\\mbox{m]}',1/s);
 end
 if (profile == 2)
     s = [1/1000,1/10,1/100,1/5];
     h = 1e3*[10,20,400];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [Ohm}\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
 end
 if (profile == 3)
     s = [1/10,1/100,1/1000];
     h = 1e3*[1,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f] \\mbox{ [Ohm}\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
 end
 if (profile == 4)
     s = [10,0.1,10,0.1];
     h = 1e3*[10,10,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [Ohm}\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
 end
 if (profile == 5)
     s = [0.1,10,0.1,10];
     h = 1e3*[10,10,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [Ohm}\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
 end
 
 titlestr = [titlestr,sprintf('\\quad \\Delta f =1/(%d\\cdot 10^%d)$',no,ne)];
@@ -108,9 +108,9 @@ figure(3);clf;
     d = [10^(2),d,10^6];
     s(end+1) = s(end);
     for i = 1:length(s)-1
-        loglog([1/s(i),1/s(i)],[d(i),d(i+1)]/1e3,'LineWidth',5);
+        loglog([1/s(i),1/s(i)],[d(i),d(i+1)]/1e3,'k','LineWidth',5);
         hold on;
-        loglog([1/s(i),1/s(i+1)],[d(i+1),d(i+1)]/1e3,'LineWidth',1);
+        loglog([1/s(i),1/s(i+1)],[d(i+1),d(i+1)]/1e3,'k','LineWidth',1);
     end
     grid on;
     % Add some space to left and right.

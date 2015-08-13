@@ -12,7 +12,7 @@ We show that common methods of computing the geoelectric field/geomagnetic field
 <h3>Overview</h3>
 
 <p>
-An input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input and output signal.  Note that this transfer function is a rough approximation of a MT transfer function.  A more realistic transfer function decays as 1/t<sup>1/2</sup> and requires special treatment at t=0.
+An input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input and output signal.  Note that this transfer function is a rough approximation of a MT transfer function between dBx/dt and Ey.  In the following, Bx is used instead of dBx/dt for to simplify notation.  A more realistic transfer function decays as 1/t<sup>3/2</sup> and requires special treatment at t=0.
 </p>
 
 <p>
