@@ -1,9 +1,9 @@
 function Cs = zplanewave(s,h,f)
-%ZPLANEWAVE 1-D surface impedance for plane wave incident on half space.
+%ZPLANEWAVE 1-D surface impedance for plane wave incident on infinite half space.
 %
 %   C = ZPLANEWAVE(s,h,f)
 %   
-%   Surface impedence at positive frequencies f above layered
+%   Surface impedance at positive frequencies f above layered
 %   conductors with conductivities s, thicknesses h, and geometry
 %
 %   Conductivity    Thickness
@@ -26,7 +26,7 @@ function Cs = zplanewave(s,h,f)
 %   Practical Magnetotellurics, 2005 (Eqn. 2.33 is recursion
 %   formula from Wait 1954).  All layers have vacuum permeability.
 %
-%   For an infinite half-layer with s(1) = s0, h = [], and f(1) = f0,
+%   For an infinite half-layer with s = [s0], h = [], and f = [f0],
 %       C = zplanewave(s,h,f)
 %   returns
 %       C = 1/q, where
@@ -44,7 +44,7 @@ if size(f,1) > size(f,2)
 end
 
 if size(f,1) > 1 && size(f,2) > 1
-    error('frequency must me an array');
+    error('frequency must be an array');
 end
 if length(s) ~= (length(h) + 1)
   error('length(s) should be equal to length(h) + 1');
@@ -53,8 +53,8 @@ if any(f < 0)
   error('Frequencies must be positive');
 end;
 
-nl        = length(s);      % Number of layers  
-mu_0      = 4*pi*1e-7;      % Vacuum permeability
+nl    = length(s);      % Number of layers  
+mu_0  = 4*pi*1e-7;      % Vacuum permeability
 
 % Columns of C are frequencies.  Compute C at top of bottom layer.
     
