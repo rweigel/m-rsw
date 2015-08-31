@@ -2,17 +2,17 @@
 <html>
 <body>
 <h2>
-Effect of frequency domain smoothing on prediction of the geoelectric field from the surface geomagnetic field</h2>
+Comparison of predictions of the geoelectric field from the geomagnetic field using transfer functions derived using time and frequency methods</h2>
 
 <p>Draft</p>
 
 <h3>Abstract</h3>
-We show that common methods of computing the geoelectric field/geomagnetic field transfer function based on frequency domain smoothing lead to inferior predictions compared to a straightforward time domain method.  
+  
 
 <h3>Overview</h3>
 
 <p>
-An input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input and output signal.  Note that this transfer function is a rough approximation of a MT transfer function between dBx/dt and Ey.  In the following, Bx is used instead of dBx/dt for to simplify notation.  A more realistic transfer function decays as 1/t<sup>3/2</sup> and requires special treatment at t=0.
+A unit-variance and gaussian-distributed input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input signal (amplitude <code>N<sub>B<sub>x</sub></sub></code>) and output signal (amplitude <code>N<sub>E<sub>y</sub></sub></code>).  Note that this transfer function is a rough approximation of a MT transfer function between dBx/dt and Ey.  In the following, Bx is used instead of dBx/dt for to simplify notation.  A more realistic transfer function decays as 1/t<sup>3/2</sup> and requires special treatment at t=0.
 </p>
 
 <p>
@@ -26,22 +26,63 @@ The time domain method is based on estimating the coefficients <b>h</b> in the o
 
 <h4>Frequency Domain Method - Rectangular</h4>
 <p>
-The Rectangular frequency domain method is based on computing the raw periodogram of the length <code>N</code> signals <code>E<sub>y</sub></code> and <code>B<sub>x</sub></code> and applying a box-car window of width <code>n<sub>R</sub></code> to the cross- and auto-spectra to compute the transfer function. To compute the predictions, the transfer functions are interpolated on to the uniform frequency grid <code>f = 0, 1/N, ..., 1/2</code>prior to convolving with B.
+The Rectangular frequency domain method is based on computing the raw periodogram of the length <code>N</code> signals <code>E<sub>y</sub></code> and <code>B<sub>x</sub></code> and applying a box-car window of width <code>n<sub>R</sub></code> to the cross- and auto-spectra to compute the transfer function. To compute the predictions, the transfer functions are interpolated on to the uniform frequency grid <code>f = 0, 1/N, ..., 1/2</code> prior to convolving with B.
 </p>
 
-<h4>Frequency Domain Method - Parzen</h4>
+<h4>Frequency Domain Method - Parzen + non-uniform evaluation frequencies</h4>
 <p>
-The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (chapter 4).  The raw periodogram of each signal of length <code>N</code> is smoothed in the frequency domain applying a Parzen window on points centered on evaluation frequencies.  The computed evaluation frequencies are <code>fe = 2<sup>-(k+3)/2</sup></code> for all positive integers <code>k</code> for which <code>fe < 1/N</code>, i.e., <code>k<sub>max</sub> = floor(2log<sub>2</sub>N-3)</code>.   The windowed cross- and auto-spectra are used to compute the transfer function.  For <code>N = 10<sup>4</sup></code>, the number of evaluation frequencies is <code>n<sub>P</sub> = 23</code>.  The actual evaluation frequencies used are the nearest larger frequencies to <code>f = 0, 1/N, ..., 1/4</code>.  To compute the predictions, the transfer functions are interpolated on to the uniform frequency grid <code>f = 0, 1/N, ..., 1/2</code>prior to convolving with B.
+The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (chapter 4).  The raw periodogram of each signal of length <code>N</code> is smoothed in the frequency domain applying a Parzen window on points centered on evaluation frequencies.  The computed evaluation frequencies are <code>fe = 2<sup>-(k+3)/2</sup></code> for all positive integers <code>k</code> for which <code>fe < 1/N</code>, i.e., <code>k<sub>max</sub> = floor(2log<sub>2</sub>N-3)</code>.   The windowed cross- and auto-spectra are used to compute the transfer function.  For <code>N = 10<sup>4</sup></code>, the number of evaluation frequencies is <code>n<sub>P</sub> = 23</code>.  The actual evaluation frequencies used are the nearest larger frequencies to <code>f = 0, 1/N, ..., 1/4</code>.  To compute the predictions, the transfer functions are interpolated on to the uniform frequency grid <code>f = 0, 1/N, ..., 1/2</code> prior to convolving with B.
 </p>
+<h3>Discussion of Results</h3>
+
+Three sets of figures are show for three sets of experiments with varying level of noise in 
+<p>
+Prediction Efficiency represents the fraction of the variance in the signal <code>A(t)</code> that is predicted by predictor <code>P(t)</code>.
+</p>
+<p>
+<code>PE = 1 - ave( (A(t)-P(t))<sup>2</sup>) / var(A)</code>
+</p>
+
+<p>
+If a model produces predictions with a PE of zero, then it is no better than a model that used the mean of A for all time to predict A(t).  In general, for PEs not too close to zero, <code>PE</code> ~= cc<sup>2</sup>, where cc is the correlation between A(t) and P(t).
+</p>
+
+<p>
+In the zero noise case, the typical results are
+<ul>
+<li>Time Domain: PE = 1.00</li>
+<li>Frequency Domain Rectangular: PE = 0.99</li> 
+<li>Frequency Domain Parzen: PE = 0.96</li> 
+</ul>
+<p>
+<p>
+When the SNR ratio is 10 for <code>E<sub>y</sub></code> and zero for <code>B<sub>x</sub></code>, the results are similar to the zero noise case.
+</p>
+
+<p>
+When the SNR ratio is 2 for <code>E<sub>y</sub></code> and zero for <code>B<sub>x</sub></code>, typical results are
+</p>
+
+<p>
+<ul>
+<li>Time Domain: PE = 0.95</li>
+<li>Frequency Domain Rectangular: PE = 0.95</li> 
+<li>Frequency Domain Parzen: PE = 0.92</li> 
+</ul>
+</p>
+
 <h3>Code</h3>
 <a href="https://github.com/rweigel/m-rsw/blob/gh-pages/gic/transferfn/transfer_function_demo3.m">gic/transferfn/transfer_function_demo3.m</a>
 <br style="clear:both"/>
+
 <h3>Figures</h3>
+
+<h4><code>N<sub>B<sub>x</sub></sub> = 0.0</code>, <code>N<sub>E<sub>y</sub></sub> = 0.0</code></h4>
 <table style="margin-bottom:1em;display:block" border="1" cellpadding="2" width="1826px" align="left">
 	<tbody style="overflow-x:auto">
 		<tr>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_timeseries.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_timeseries_ne_0.0.png" width="600px">
 			</td>
 			<td style="vertical-align:top">
 			</td>
@@ -50,21 +91,21 @@ The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (c
 		</tr>
 		<tr>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_crosscorrelation.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_crosscorrelation_ne_0.0.png" width="600px">
 			</td>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_rawperiodograms.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_rawperiodograms_ne_0.0.png" width="600px">
 			</td>
 			<td style="vertical-align:top">
 			</td>
 		</tr>
 		<tr>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_impulse_responses.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_impulse_responses_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_impulse_response_errors.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_impulse_response_errors_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
@@ -73,24 +114,11 @@ The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (c
 		</tr>
 		<tr>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_transfer_functions.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_transfer_functions_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_transfer_function_errors.png" width="600px">
-				<div style="display:block"></div>
-			</td>
-			<td style="vertical-align:top">
-				
-			</td>
-		</tr>
-		<tr>
-			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_transfer_function_phases.png" width="600px">
-				<div style="display:block"></div>
-			</td>
-			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_transfer_function_phase_errors.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_errors_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
@@ -99,11 +127,24 @@ The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (c
 		</tr>
 		<tr>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_predictions.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phases_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
-				<img title="" src="figures/transfer_function_demo3_prediction_errors.png" width="600px">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phase_errors_ne_0.0.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_predictions_ne_0.0.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_prediction_errors_ne_0.0.png" width="600px">
 				<div style="display:block"></div>
 			</td>
 			<td style="vertical-align:top">
@@ -113,5 +154,166 @@ The Parzen frequency domain method is based on <i>Simpson and Bahr</i> [2005] (c
 
 </tbody>
 </table>
+
+<hr/>
+
+<h4><code>N<sub>B<sub>x</sub></sub> = 0.0</code>, <code>N<sub>E<sub>y</sub></sub> = 0.1/code></h4>
+<table style="margin-bottom:1em;display:block" border="1" cellpadding="2" width="1826px" align="left">
+	<tbody style="overflow-x:auto">
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_timeseries_ne_0.1.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_crosscorrelation_ne_0.1.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_rawperiodograms_ne_0.1.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_impulse_responses_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_impulse_response_errors_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_functions_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_errors_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phases_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phase_errors_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_predictions_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_prediction_errors_ne_0.1.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+
+</tbody>
+</table>
+
+<hr/>
+
+<h4><code>N<sub>B<sub>x</sub></sub> = 0.0</code>, <code>N<sub>E<sub>y</sub></sub> = 0.5</code></h4>
+<table style="margin-bottom:1em;display:block" border="1" cellpadding="2" width="1826px" align="left">
+	<tbody style="overflow-x:auto">
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_timeseries_ne_0.5.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_crosscorrelation_ne_0.5.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_rawperiodograms_ne_0.5.png" width="600px">
+			</td>
+			<td style="vertical-align:top">
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_impulse_responses_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_impulse_response_errors_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_functions_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_errors_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phases_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_transfer_function_phase_errors_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_predictions_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				<img title="" src="figures/transfer_function_demo3_prediction_errors_ne_0.5.png" width="600px">
+				<div style="display:block"></div>
+			</td>
+			<td style="vertical-align:top">
+				
+			</td>
+		</tr>
+
+</tbody>
+</table>
+
 </body>
 </html>

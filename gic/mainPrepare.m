@@ -1,5 +1,33 @@
 function [Bi,dBi,Ei] = prepareData(short,long)
 
+
+if strcmp('obibmt',short)
+    load('Pierre/Data/MT/Obib/Obib_MT_20130706141500.mat')
+end
+if strcmp('obibdm',short)
+    load('Pierre/Data/MT/Obib/Obib_DM_20130706110300.mat')
+end
+if strcmp('obibdm',short) || strcmp('obibmt',short)
+    for i = 1:3
+        B(:,i) = B(:,i) - mean(B(:,i));
+    end
+    Nd = ceil(size(B,1)/86400)*86400;
+    Np = Nd - size(B,1);
+    if (Np > 0) && (Np < 0.2*86400)
+        fprintf('Padding time series by %d points (to get full day).\n',Np);
+    end
+    Bp = repmat(B(end,:),Np,1);
+    Ep = repmat(E(end,:),Np,1);
+    B = [B;Bp];
+    E = [E;Ep];
+
+    dBi = diff(B);
+    dBi = [dBi;dBi(end,:)];
+    Bi = B;
+    Ei = E;
+    return
+end
+
 % 1-second B and E data from http://www.kakioka-jma.go.jp/metadata?locale=en
 
 bname = sprintf('./data/%s/Bfile1.mat',long);
@@ -7,40 +35,48 @@ ename = sprintf('./data/%s/Efile1.mat',long);
 bname2 = sprintf('./data/%s/Bfile2.mat',long);
 ename2 = sprintf('./data/%s/Efile2.mat',long);
 
+base  = 'http://mag.gmu.edu/git-data/m-rsw/gic/';
+fileB = 'data/kakioka/Bfile2.mat';
+fileE = 'data/kakioka/Efile2.mat';
+
 if ~exist(bname2)
-if ~exist(bname)
-    Bfile = [];
-    for i = 1:31
-        fname = sprintf('data/%s/unzip/%s200612%02ddsec.sec',long,short,i);
-        fprintf('Reading %s\n',fname);
-        com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
-        system(com);
-        load tmp.txt
-        Bfile = [Bfile;tmp];
+    fprintf('Downloading %s\n',[base,fileB]);
+    urlwrite([base,fileB],fileB);
+    if ~exist(bname)
+        Bfile = [];
+        for i = 1:31
+            fname = sprintf('data/%s/unzip/%s200612%02ddsec.sec',long,short,i);
+            fprintf('Reading %s\n',fname);
+            com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
+            system(com);
+            load tmp.txt
+            Bfile = [Bfile;tmp];
+        end
+        save(bname,'Bfile')
+    else
+        fprintf('Reading %s\n',bname);
+        load(bname)
     end
-    save(bname,'Bfile')
-else
-    fprintf('Reading %s\n',bname);
-    load(bname)
-end
 end
 
 if ~exist(ename2)
-if ~exist(ename)
-    Efile = [];
-    for i = 1:31
-        fname = sprintf('data/%s/unzip/%s200612%02ddgef.sec',long,short,i);
-        fprintf('Reading %s\n',fname);
-        com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
-        system(com);
-        load tmp.txt
-        Efile= [Efile;tmp];
+    fprintf('Downloading %s\n',[base,fileE]);
+    urlwrite([base,fileE],fileE);
+    if ~exist(ename)
+        Efile = [];
+        for i = 1:31
+            fname = sprintf('data/%s/unzip/%s200612%02ddgef.sec',long,short,i);
+            fprintf('Reading %s\n',fname);
+            com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
+            system(com);
+            load tmp.txt
+            Efile= [Efile;tmp];
+        end
+        save(ename,'Efile')
+    else
+        fprintf('Reading %s\n',ename);
+        load(ename)
     end
-    save(ename,'Efile')
-else
-    fprintf('Reading %s\n',ename);
-    load(ename)
-end
 end
 
 if ~exist(bname2)
@@ -87,7 +123,20 @@ if ~exist(bname2)
         tg = ti(Ig);
         dBi(:,i) = interp1(tg,dBg,ti);
         fprintf('Interpolated over %d of %d points in component %d\n',Nb,N,i)
-end
+    end
+
+    B   = B(1:86400*25,:);
+    Bi  = Bi(1:86400*25,:);
+    dBi = dBi(1:86400*25,:);
+    dB  = dB(1:86400*25,:);
+
+    for i = 1:size(dBi,2)
+        I = find(abs(dBi(:,i)>2));
+        dB(I,i) = 0;
+        fprintf('Set %d of %d values of |dB_%d| > 2 to zero.\n',...
+            length(I),size(dBi,1),i);
+    end
+
     save(bname2,'B','Bi','dB','dBi')
 else
     fprintf('Reading %s\n',bname2);
@@ -131,9 +180,14 @@ if ~exist(ename2)
         Ei(:,i) = interp1(tg,Eg,ti);
         fprintf('Interpolated over %d of %d points in component %d\n',Nb,N,i)
     end
+
+    E  = E(1:86400*25,:);
+    Ei = Ei(1:86400*25,:);
+
     save(ename2,'E','Ei')
 else
     fprintf('Reading %s\n',ename2);
     load(ename2)
 end
+
 

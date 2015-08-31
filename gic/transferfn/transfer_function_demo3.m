@@ -11,8 +11,10 @@ N   = 1e4; % Simulation length
 Nc  = 51;  % Comment out to use Nc = length(h)
 df  = 50;  % Width of rectangualar window
 nb  = 0.0; % Noise in B
-ne  = 0.1; % Noise in E
+ne  = 0.0; % Noise in E
 ndb = 0.0; % Noise in dB
+
+paramstring = sprintf('_ne_%.1f',ne);
 
 % IRF for dx/dt + x/tau = delta(0), and ICs
 % x_0 = 0 dx_0/dt = 0 approximated using forward Euler.
@@ -46,8 +48,9 @@ NdB = [ndb*randn(N,1),ndb*randn(N,1)];
 
 % Create signals
 B(:,1) = randn(N,1);
-E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
 B(:,2) = randn(N,1);
+
+E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
 E(:,1) = filter(h,1,B(:,2)+NB(:,2)) + NE(:,1);
 
 dB = diff(B);
@@ -99,28 +102,17 @@ feBL  = [0:NBL/2]'/NBL;
 % Transfer Function Phase
 PxyBL = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
 
+[ZxyBLi,PxyBLi] = H2Z(feBL,hBL,fh);
+
 % Prediction
 EyBL = filter(hBL,1,B(:,1));
 
-if (feBL(2) > fh(2))
-    % If lowest evaluation frequency is larger than first point on
-    % frequency grid, extrapolate. 
-    ZxyBLi = interp1(feBL(2:end),ZxyBL(2:end),fh(2:end),'linear','extrap');
-    PxyBLi = interp1(feBL(2:end),PxyBL(2:end),fh(2:end),'linear','extrap');
-else
-    ZxyBLi = interp1(feBL(2:end),ZxyBL(2:end),fh(2:end),'linear');
-    PxyBLi = interp1(feBL(2:end),PxyBL(2:end),fh(2:end),'linear');
-end
-ZxyBLi(isnan(ZxyBLi)) = 0;
-ZxyBLi = [ZxyBL(1);ZxyBLi];
-
-PxyBLi(isnan(PxyBLi)) = 0;
-PxyBLi = [PxyBL(1);PxyBLi];
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Frequency Domain Rectangular
-
 % Raw periodograms
+
+N = size(B,1);
+f = [0:N/2]'/N;
+
 X    = [B,dB,E,NB,NdB,NE];
 ftX  = fft(X);
 pX   = ftX;
@@ -131,141 +123,43 @@ ftE   = pX(:,5:6);
 ftNB  = pX(:,7:8);
 ftNdB = pX(:,9:10);
 ftNE  = pX(:,11:12);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-f   = [0:N/2]'/N;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Frequency Domain Rectangular
 
-% Smooth in frequency domain with Rectangular window.
-IcR = [df+1:df:length(f)];
-for i = 1:size(X,2)
-    for j = 1:length(IcR)
-        feR(j) = f(IcR(j));
-        NeR(j) = df;
-        r      = [IcR(j)-df:IcR(j)+df];
-    end
-end
-% Add zero frequency.
-feR = [0,feR];
-NeR = [0,NeR];
-IcR = [1,IcR];
+[ZR,feR]        = impedanceFD(B,E,'rectangular');
+[HR,tR,ZRi,fRi] = Z2H(feR,ZR,fh);
+EpR             = Hpredict(tR,HR,B);
 
-% Compute transfer function.  No scaling window scaling needed
-% because ratio.
-for j = 1:length(feR)
-    r = [IcR(j)-NeR(j):IcR(j)+NeR(j)];
-    ZxyR(j) = sum(ftE(r,1).*conj(ftB(r,2)))/sum(ftB(r,2).*conj(ftB(r,2)));
-end
+ZxyR  = ZR(:,2);
+ZxyRi = ZRi(:,2);
+hR    = HR(:,2);
+EyR   = EpR(:,2);
 
 % Transfer Function Phase
-PxyR = (180/pi)*atan2(imag(ZxyR),real(ZxyR));
-
-% Interpolate onto regular frequency grid
-ZxyRi = interp1(feR(2:end),ZxyR(2:end),fh(2:end));
-Iz = find(isnan(ZxyRi));
-ZxyRi(Iz) = 0;
-ZxyRifull = [ZxyR(1);ZxyRi;flipud(conj(ZxyRi))];
-ZxyRi(Iz) = NaN;
-ZxyRi = [ZxyR(1);ZxyRi];
-
-PxyRi = interp1(feR(2:end),PxyR(2:end),fh(2:end));
-PxyRi = [PxyR(1);PxyRi];
-
-% Compute impulse response
-hR = fftshift(ifft(ZxyRifull));
-NR = (length(hR)-1)/2;
-tR = [-NR:NR];
-
-EyR  = filter(hR,1,B(:,1));
-EyR  = EyR(NR:end);
+PxyR  = (180/pi)*atan2(imag(ZxyR),real(ZxyR));
+PxyRi = (180/pi)*atan2(imag(ZxyRi),real(ZxyRi));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Parzen
+[ZP,feP]        = impedanceFD(B,E,'parzen');
+[HP,tP,ZPi,fPi] = Z2H(feP,ZP,fh);
+EpP             = Hpredict(tP,HP,B);
 
-% Evaluation frequencies for frequency domain smoothing
-fprintf('--\nComputing evaluation frequencies for parzen smoothing.\n--\n')
-k = 1;
-feP(k) = f(end)/2;
-NeP(k) = feP(k)/(2*(1/N));
-IcP(k) = find(f-feP(1) > 0,1);
-fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
-fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
-while feP(k) > f(2)
-    k = k+1;
-    tmp = feP(1)/sqrt(2^(k-1));
-    if (tmp < f(2)),break,end
-    feP(k) = tmp;
-    IcP(k) = find(f-feP(k) > 0,1);
-    fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
-    fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
-    feP(k) = f(IcP(k));
-    % Number of points to left and right of fe to apply window to.
-    NeP(k) = floor(feP(k)/(2*(1/N)));
-end
-
-fprintf('Created %d evaluation frequencies.\n',length(feP));
-feP = fliplr(feP);
-NeP = fliplr(NeP);
-IcP = fliplr(IcP);
-
-lo = length(feP);
-[feP,Iu] = unique(feP);
-NeP = NeP(Iu);
-IcP = IcP(Iu);
-if (lo > length(feP))
-    fprintf('Removed %d duplicate frequencies.\n',lo-length(feP));
-end
-% Add zero frequency.
-feP = [0,feP];
-NeP = [0,NeP];
-IcP = [1,IcP];
-
-fprintf('--\nUsing parzen window to compute smooth spectra and cross spectra.\n--\n')
-% Smooth spectra in frequency domain with Parzen window.
-for i = 1:size(X,2)
-    for j = 1:length(feP)
-        pw{j}   = parzenwin(2*NeP(j)+1); % Create window.
-        pw{j}   = pw{j}/sum(pw{j});     % Normalize window function.
-        r       = [IcP(j)-NeP(j):IcP(j)+NeP(j)];
-        fa      = f(IcP(j)-NeP(j));
-        fb      = f(IcP(j)+NeP(j));
-        if (i == 1)
-            fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
-                        feP(j),length(r),fa,fb)
-        end
-    end
-end
-
-for j = 1:length(feP)
-    r = [IcP(j)-df:IcP(j)+df];
-    pw{j}   = parzenwin(2*NeP(j)+1); 
-    pw{j}   = pw{j}/sum(pw{j});     
-    r       = [IcP(j)-NeP(j):IcP(j)+NeP(j)];
-    ZxyP(j) = sum(pw{j}.*ftE(r,1).*conj(ftB(r,2)))...
-                    /sum(pw{j}.*ftB(r,2).*conj(ftB(r,2)));
-end
+ZxyP  = ZP(:,2);
+ZxyPi = ZPi(:,2);
+hP    = HP(:,2);
+EyP   = EpP(:,2);
 
 % Transfer Function Phase
-PxyP = (180/pi)*atan2(imag(ZxyP),real(ZxyP));
-
-% Interpolate onto (uniform) frequency grid of Zxy
-% (uniform needed so ifft can be used).
-ZxyPi = interp1(feP(2:end),ZxyP(2:end),fh(2:end));
-Iz = find(isnan(ZxyPi));
-ZxyPi(Iz) = 0;
-ZxyPifull = [ZxyP(1);ZxyPi;flipud(conj(ZxyPi))];
-ZxyPi(Iz) = NaN;
-ZxyPi = [ZxyP(1);ZxyPi];
-
-PxyPi = interp1(feP(2:end),PxyP(2:end),fh(2:end));
-PxyPi = [PxyP(1);PxyPi];
-
-hP = fftshift(ifft(ZxyPifull));
-NP = (length(hP)-1)/2;
-tP = [-NP:NP];
-
-EyP  = filter(hP,1,B(:,1));
-EyP  = EyP(NP:end);
+PxyP  = (180/pi)*atan2(imag(ZxyP),real(ZxyP));
+PxyPi = (180/pi)*atan2(imag(ZxyPi),real(ZxyPi));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+set(0,'DefaultFigureWindowStyle','docked')
+%set(0,'DefaultFigureWindowStyle','normal')
 
 figure(1);clf;hold on; grid on;
     plot(NaN*B(1:2,1),'r','LineWidth',3)
@@ -282,7 +176,7 @@ figure(1);clf;hold on; grid on;
     xlabel('t (sample number-1)')
     set(gca,'YLim',[-30 30])
     legend('B_x+15 (input)','\deltaB_x+5 (noise)','E_y-5 (output)','\deltaE_y-15 (noise)')
-    plotcmds('timeseries',writeimgs)
+    plotcmds(['timeseries',paramstring],writeimgs)
 
 figure(2);clf;
     loglog(NaN*ftB(1:2,1),'r','LineWidth',3)
@@ -300,7 +194,7 @@ figure(2);clf;
     loglog(f(2:end),abs(ftNE(2:N/2+1,2)),'Color',[0.5,0.5,0.5])
     xlabel('f')
     legend('B_x (input)','\deltaB_x (noise)','E_y (output)','\deltaE_y (noise)')
-    plotcmds('rawperiodograms',writeimgs)
+    plotcmds(['rawperiodograms',paramstring],writeimgs)
 
 figure(3);clf;grid on;
     me = mean(E(:,2));
@@ -313,7 +207,7 @@ figure(3);clf;grid on;
     title('Raw Cross Correlation')
     xlabel('lag')
     legend('E_y,B_x')
-    plotcmds('crosscorrelation',writeimgs)
+    plotcmds(['crosscorrelation',paramstring],writeimgs)
 
 figure(4);clf;
     hold on;grid on;
@@ -328,12 +222,12 @@ figure(4);clf;
             sprintf('h_{xy} freq. domain Rectangular; n_R = %d', df),...
             sprintf('h_{xy} freq. domain Parzen; n_P = %d',length(feP))...
            )
-   plotcmds('impulse_responses',writeimgs)
+   plotcmds(['impulse_responses',paramstring],writeimgs)
 
 figure(5);clf;
     % Create padded impulse responses.
-    tp  = [tP(1):th(end)];
-    Nl  = length(tp)-length(h);
+    tp = [tP(1):th(end)];
+    Nl = length(tp)-length(h);
 
     if (length(hBL) >= length(h))
         Nr   = Nc - length(h);
@@ -361,7 +255,7 @@ figure(5);clf;
             sprintf('\\deltah_{xy} freq. domain Rectangular; n_f = %d', df),...
             sprintf('\\deltah_{xy} freq. domain Parzen; n_P = %d',length(feP))...
             )
-   plotcmds('impulse_response_errors',writeimgs)
+   plotcmds(['impulse_response_errors',paramstring],writeimgs)
 
 figure(6);clf;
     hold on;grid on;
@@ -377,8 +271,24 @@ figure(6);clf;
             sprintf('Z_{xy} freq. domain rectangular (n_R = %d)', df),...
             sprintf('Z_{xy} freq. domain parzen; n_P = %d',length(feP))...
             )
-   plotcmds('transfer_functions',writeimgs)
+   plotcmds(['transfer_functions',paramstring],writeimgs)
 
+figure(6);clf;
+    hold on;grid on;
+    plot(fh,abs(Zxy),'k','Marker','+','MarkerSize',10,'LineWidth',5)
+    plot(feBL,abs(ZxyBL),'m','Marker','.','MarkerSize',25,'LineWidth',3);
+    plot(fRi,abs(ZxyRi),'b','Marker','.','MarkerSize',15,'LineWidth',2);
+    plot(fPi,abs(ZxyPi),'g','Marker','.','MarkerSize',10,'LineWidth',1);
+    xlabel('f')
+    title('Interpolated Transfer Functions')
+    legend(...
+            'Z_{xy}',...
+            sprintf('Z_{xy} time domain; n_T = %d',length(hBL)),...
+            sprintf('Z_{xy} freq. domain rectangular (n_R = %d)', df),...
+            sprintf('Z_{xy} freq. domain parzen; n_P = %d',length(feP))...
+            )
+   plotcmds(['transfer_functions_interpolated',paramstring],writeimgs)
+break
 figure(7);clf;
     hold on;grid on;
     plot(fh,abs(ZxyBLi)-abs(Zxy),'m','Marker','.','MarkerSize',20,'LineWidth',2);
@@ -391,7 +301,7 @@ figure(7);clf;
             sprintf('\\deltaZ_{xy} freq. domain Rectangular; n_R = %d', df),...
             sprintf('\\deltaZ_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
             'Location','SouthEast')
-   plotcmds('transfer_function_errors',writeimgs)
+   plotcmds(['transfer_function_errors',paramstring],writeimgs)
 
 figure(8);clf;
     hold on;grid on;
@@ -402,13 +312,13 @@ figure(8);clf;
     xlabel('f')
     title('Transfer Function Phase')
     legend(...
-            '\phi_{xy}',...
-            sprintf('\\delta\\phi_{xy} time domain; n_T = %d',length(hBL)),...
-            sprintf('\\delta\\phi_{xy} freq. domain Rectangular; n_R = %d', df),...
-            sprintf('\\delta\\phi_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
-            'Location','SouthEast'...
-            )
-   plotcmds('transfer_function_phases',writeimgs)
+        '\phi_{xy}',...
+        sprintf('\\delta\\phi_{xy} time domain; n_T = %d',length(hBL)),...
+        sprintf('\\delta\\phi_{xy} freq. domain Rectangular; n_R = %d', df),...
+        sprintf('\\delta\\phi_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
+        'Location','SouthEast'...
+    )
+   plotcmds(['transfer_function_phases',paramstring],writeimgs)
 
 figure(9);clf;
     hold on;grid on;
@@ -422,7 +332,7 @@ figure(9);clf;
             sprintf('\\phi_{xy} freq. domain Rectangular; n_R = %d', df),...
             sprintf('\\phi_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
             'Location','NorthEast')
-   plotcmds('transfer_function_phase_errors',writeimgs)
+   plotcmds(['transfer_function_phase_errors',paramstring],writeimgs)
 
 figure(10);clf;
     hold on;grid on;
@@ -437,7 +347,7 @@ figure(10);clf;
             'E_y freq. domain Rectangular',...
             'E_y freq. domain Parzen'...
             )
-   plotcmds('predictions',writeimgs)
+   plotcmds(['predictions',paramstring],writeimgs)
 
 figure(11);clf;
     hold on;grid on;
@@ -455,4 +365,4 @@ figure(11);clf;
         sprintf('\\DeltaE_y freq. domain Rectangular; PE = %.3f',peR),...
         sprintf('\\DeltaE_y-10 freq. domain Parzen; PE = %.3f',peP)...
         );
-    plotcmds('prediction_errors',writeimgs)
+    plotcmds(['prediction_errors',paramstring],writeimgs)
