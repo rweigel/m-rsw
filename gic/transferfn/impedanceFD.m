@@ -1,0 +1,93 @@
+function [Z,fe] = impedanceFD(B,E,winfn,meth)
+
+N = size(B,1);
+f = [0:N/2]'/N;
+
+ftB = fft(B);
+ftE = fft(E);
+ftB = ftB(1:N/2+1,:);
+ftE = ftE(1:N/2+1,:);
+
+if strmatch(winfn,'rectangular')
+    df = 50;
+    % Smooth in frequency domain with Rectangular window.
+    Ic = [df+1:df:length(f)-df]; % Indicies of center points
+    for j = 1:length(Ic)
+        fe(j) = f(Ic(j)); % Evaluation frequency
+        Ne(j) = df;       % Number of points to right and left used in window.
+    end
+    % Add zero frequency.
+    fe = [0,fe]';
+    Ne = [0,Ne]';
+    Ic = [1,Ic]';
+end
+
+if strmatch(winfn,'parzen')
+    [fe,Ne,Ic] = evalfreq(f);
+end
+
+% Equation 4.17 of Simpson and Bahr 2005.
+
+%function parzen(N)
+%    I = [1:N];
+%    W = (1/N)*(sin(pi*I/N)./(pi*I/N)).^4;
+%    W = [fliplr(W),1/N,W];
+
+for j = 1:length(Ic)
+    if strmatch(winfn,'parzen')
+        W = parzenwin(2*Ne(j)+1); 
+        W = W/sum(W);
+    end
+    if strmatch(winfn,'bartlett')
+        W = bartlett(2*Ne(j)+1); 
+        W = W/sum(W);
+    end
+    if strmatch(winfn,'rectangular')
+       W = ones(2*Ne(j)+1,1);  
+       W = W/sum(W);
+    end
+    r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
+
+    fa = f(Ic(j)-Ne(j));    
+    fb = f(Ic(j)+Ne(j));
+    fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+            fe(j),length(r),fa,fb)
+
+    Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
+    Zyx1(j) = sum(W.*ftE(r,2).*conj(ftB(r,1)))/sum(W.*ftB(r,1).*conj(ftB(r,1)));
+
+    BxBx(j) = sum(W.*ftB(r,1).*conj(ftB(r,1))); 
+    ByBx(j) = sum(W.*ftB(r,2).*conj(ftB(r,1))); 
+    ExBx(j) = sum(W.*ftE(r,1).*conj(ftB(r,1))); 
+    EyBx(j) = sum(W.*ftE(r,2).*conj(ftB(r,1))); 
+
+    ByBy(j) = sum(W.*ftB(r,2).*conj(ftB(r,2)));
+    ExBy(j) = sum(W.*ftE(r,1).*conj(ftB(r,2))); 
+    EyBy(j) = sum(W.*ftE(r,2).*conj(ftB(r,2))); 
+
+    ExEx(j) = sum(W.*ftE(r,1).*conj(ftE(r,1)));
+    EyEx(j) = sum(W.*ftE(r,2).*conj(ftE(r,1)));
+
+    EyEy(j) = sum(W.*ftE(r,2).*conj(ftE(r,2)));
+
+    BxBy(j) = sum(W.*ftB(r,1).*conj(ftB(r,2)));
+
+    DET(j) =  BxBx(j)*ByBy(j) - BxBy(j)*ByBx(j);
+    Zxx(j) = (ExBx(j)*ByBy(j) - ExBy(j)*ByBx(j))/DET(j);
+    Zxy(j) = (ExBy(j)*BxBx(j) - ExBx(j)*BxBy(j))/DET(j);
+    Zyx(j) = (EyBx(j)*ByBy(j) - EyBy(j)*ByBx(j))/DET(j);
+    Zyy(j) = (EyBy(j)*BxBx(j) - EyBx(j)*BxBy(j))/DET(j);
+end
+
+% .' is non-conjugate transpose
+
+if (0)
+    Z{1,1} = Zxx.';
+    Z{1,2} = Zxy.';
+    Z{2,1} = Zyx.';
+    Z{2,2} = Zyy.';
+end
+
+Z(:,2) = Zxy1.';
+Z(:,4) = Zyx1.';
+
