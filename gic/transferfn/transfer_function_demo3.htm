@@ -12,7 +12,7 @@ Comparison of predictions of the geoelectric field from the geomagnetic field us
 <h3>Overview</h3>
 
 <p>
-A unit-variance and gaussian-distributed input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input signal (amplitude <code>N<sub>B<sub>x</sub></sub></code>) and output signal (amplitude <code>N<sub>E<sub>y</sub></sub></code>).  Note that this transfer function is a rough approximation of a MT transfer function between dBx/dt and Ey.  In the following, Bx is used instead of dBx/dt for to simplify notation.  A more realistic transfer function decays as 1/t<sup>3/2</sup> and requires special treatment at t=0.
+A unit-variance and gaussian-distributed input signal <code>B<sub>x</sub></code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t</sup>, t = 0, 1, ..., 100</code> with <code>h(0) = 0</code> to create output signal <code>E<sub>y</sub></code>.  Noise is added to both the input signal (amplitude <code>N<sub>B<sub>x</sub></sub></code>) and output signal (amplitude <code>N<sub>E<sub>y</sub></sub></code>).  Note that this transfer function is a rough approximation of a MT transfer function between dB<sub>x</sub>/dt and E<sub>y</sub>.  In the following, B<sub>x</sub> is used instead of dB<sub>x</sub>/dt for to simplify notation.  A more realistic transfer function decays as 1/t<sup>3/2</sup> and requires special treatment at t = 0.
 </p>
 
 <p>
@@ -50,26 +50,20 @@ If a model produces predictions with a PE of zero, then it is no better than a m
 <p>
 In the zero noise case, the typical results are
 <ul>
-<li>Time Domain: PE = 1.00</li>
-<li>Frequency Domain Rectangular: PE = 0.99</li> 
-<li>Frequency Domain Parzen: PE = 0.96</li> 
+<li>Time Domain: PE = 0.999</li>
+<li>Frequency Domain Rectangular: PE = 0.998</li> 
+<li>Frequency Domain Parzen: PE = 0.97</li> 
 </ul>
 <p>
-<p>
-When the SNR ratio is 10 for <code>E<sub>y</sub></code> and zero for <code>B<sub>x</sub></code>, the results are similar to the zero noise case.
-</p>
 
 <p>
-When the SNR ratio is 2 for <code>E<sub>y</sub></code> and zero for <code>B<sub>x</sub></code>, typical results are
-</p>
-
-<p>
+In the <code>N<sub>E<sub>y</sub></sub> = 0.1</code> noise case, the typical results are
 <ul>
-<li>Time Domain: PE = 0.95</li>
-<li>Frequency Domain Rectangular: PE = 0.95</li> 
-<li>Frequency Domain Parzen: PE = 0.92</li> 
+<li>Time Domain: PE = 0.999</li>
+<li>Frequency Domain Rectangular: PE = 0.998</li> 
+<li>Frequency Domain Parzen: PE = 0.97</li> 
 </ul>
-</p>
+<p>
 
 <h3>Code</h3>
 <a href="https://github.com/rweigel/m-rsw/blob/gh-pages/gic/transferfn/transfer_function_demo3.m">gic/transferfn/transfer_function_demo3.m</a>
@@ -157,7 +151,7 @@ When the SNR ratio is 2 for <code>E<sub>y</sub></code> and zero for <code>B<sub>
 
 <hr/>
 
-<h4><code>N<sub>B<sub>x</sub></sub> = 0.0</code>, <code>N<sub>E<sub>y</sub></sub> = 0.1/code></h4>
+<h4><code>N<sub>B<sub>x</sub></sub> = 0.0</code>, <code>N<sub>E<sub>y</sub></sub> = 0.1</code></h4>
 <table style="margin-bottom:1em;display:block" border="1" cellpadding="2" width="1826px" align="left">
 	<tbody style="overflow-x:auto">
 		<tr>

@@ -11,7 +11,7 @@ N   = 1e4; % Simulation length
 Nc  = 51;  % Comment out to use Nc = length(h)
 df  = 50;  % Width of rectangualar window
 nb  = 0.0; % Noise in B
-ne  = 0.0; % Noise in E
+ne  = 0.5; % Noise in E
 ndb = 0.0; % Noise in dB
 
 paramstring = sprintf('_ne_%.1f',ne);
@@ -68,6 +68,24 @@ NdB = NdB(2*length(h)+1:end,:);
 N = size(B,1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Raw periodograms
+
+N = size(B,1);
+f = [0:N/2]'/N;
+
+X    = [B,dB,E,NB,NdB,NE];
+ftX  = fft(X);
+pX   = ftX;
+
+ftB   = pX(:,1:2);
+ftdB  = pX(:,3:4);
+ftE   = pX(:,5:6);
+ftNB  = pX(:,7:8);
+ftNdB = pX(:,9:10);
+ftNE  = pX(:,11:12);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time Domain
 Na = 0; % The number of acausal coefficients
 if ~exist('Nc')
@@ -93,6 +111,16 @@ hBL = LIN.Weights(1:end-1) + LIN.Weights(end);
 hBL = [0;hBL]; % Zero is because Na = 0 -> h(t<=0) = 0.
 tBL = [0:length(hBL)-1];
 
+[HBL,TBL] = impedanceTD(B,E,Nc);
+[ZBL,fBL,HBLi,fBLi] = H2Z(TBL,HBL,th);
+EpBL = Hpredict(TBL,HBL,B);
+
+ZxyBL  = ZBL(:,2);
+ZxyBLi = ZBLi(:,2);
+hBL    = HBL(:,2);
+EyBL   = EpBL(:,2);
+
+break
 % Transfer Function
 ZxyBL = fft(hBL);
 NBL   = length(ZxyBL);
@@ -106,23 +134,6 @@ PxyBL = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
 
 % Prediction
 EyBL = filter(hBL,1,B(:,1));
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Raw periodograms
-
-N = size(B,1);
-f = [0:N/2]'/N;
-
-X    = [B,dB,E,NB,NdB,NE];
-ftX  = fft(X);
-pX   = ftX;
-
-ftB   = pX(:,1:2);
-ftdB  = pX(:,3:4);
-ftE   = pX(:,5:6);
-ftNB  = pX(:,7:8);
-ftNdB = pX(:,9:10);
-ftNE  = pX(:,11:12);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,4 +1,4 @@
-function [h,t,Zio,fg] = Z2H(fe,Z,fg)
+function [h,t,Zio,fg] = Z2H(t,H,fg)
 % Z2H Convert frequency domain transfer function to time domain
 
 dointerp = true;

@@ -1,10 +1,12 @@
-function [Z,f,Zxy1,Zyx1,fxy1,fyx1,H,hxy,hyx,Fxy,Fyx] = impedanceTD(B,E,Nc)
+function [H,t] = impedanceTD(B,E,Nc)
 
+if (0)
 for i = 1:size(B,2)
 	B(:,i) = B(:,i) - mean(B(:,i));
 end
 for i = 1:size(E,2)
 	E(:,i) = E(:,i) - mean(E(:,i));
+end
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time Domain
@@ -34,19 +36,8 @@ hxy = LINxy.Weights(1:end-1) + LINxy.Weights(end);
 hyx = LINyx.Weights(1:end-1) + LINyx.Weights(end);
 hxy = [0;hxy]; % Zero is because Na = 0 -> h(t<=0) = 0.
 hyx = [0;hyx]; % Zero is because Na = 0 -> h(t<=0) = 0.
-tyx = [0:length(hyx)-1];
 
-% Transfer Function
-Zxy  = fft(hxy);
-Zyx  = fft(hyx);
-Nxy  = length(Zxy);
-Nyx  = length(Zyx);
-Zxy1  = Zxy(1:floor(Nxy/2)+1);
-Zyx1  = Zyx(1:floor(Nyx/2)+1);
+H(:,2) = hxy;
+H(:,4) = hyx;
 
-fxy1 = [0:Nxy/2]'/Nxy;
-fyx1 = [0:Nyx/2]'/Nyx;
-
-f = fxy1; % Need to change this to be a cell array. 
-Z = {};
-H = {};
+t = [0:length(hyx)-1];
