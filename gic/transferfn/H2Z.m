@@ -1,5 +1,12 @@
 function [Z,f,Hi,tg] = H2Z(te,H,tg)
 
+if (size(te,1) ~= size(H,1))
+	te = te';
+end
+if (size(te,1) ~= size(tg,1))
+	tg = tg';
+end
+
 dointerp = true;
 if nargin == 3 && (length(te) == length(tg))
 	if all(te == tg)
@@ -15,18 +22,16 @@ fprintf('Last grid time   : %.4f\n',tg(end));
 
 if dointerp
 	for k = 1:size(H,2)
-		% Interpolate onto frequency grid
-		Ho(:,k) = interp1(te,H(:,k),tg(2:end));
+		% Interpolate onto time grid
+		Hio(:,k) = interp1(te,H(:,k),tg);
 		Hi(:,k) = Hio(:,k);
 		% Set NaN values to zero
 		I = find(isnan(Hi(:,k)));
 		if (length(I) > 0)
 			fprintf('Setting %d value(s) to zero in H(:,%d)\n',length(I),k);
 		end
-		Hi(I,k) = 0;
-		Z(:,k) = fft(Hi(:,k));
+		Z(:,k) = fft(H(:,k));
 	end
-
 else
 	Iz  = [];
 	Hi  = H;
@@ -34,5 +39,5 @@ else
 end
 
 N = size(H,1);
-Z = Z(1:floor(N/2)+1);
+Z = Z(1:floor(N/2)+1,:);
 f = [0:N/2]'/N;

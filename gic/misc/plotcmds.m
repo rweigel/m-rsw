@@ -14,7 +14,8 @@ for i = 1:length(a)
 	b = get(a(i));
 	if isfield(b,'Location') % The legend object.
 		set(a(i),'Color','none'); % Set legend background to transparent.
-	else
+	end
+	if isfield(b,'Title')
 		set(get(a(i),'Title'),'FontSize',14)
 		set(get(a(i),'XLabel'),'FontSize',14)
 		set(get(a(i),'YLabel'),'FontSize',14)

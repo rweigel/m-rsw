@@ -1,5 +1,6 @@
 function [Z,fe] = impedanceFD(B,E,winfn,meth)
 
+
 N = size(B,1);
 f = [0:N/2]'/N;
 
@@ -14,7 +15,7 @@ if strmatch(winfn,'rectangular')
     Ic = [df+1:df:length(f)-df]; % Indicies of center points
     for j = 1:length(Ic)
         fe(j) = f(Ic(j)); % Evaluation frequency
-        Ne(j) = df;       % Number of points to right and left used in window.
+        Ne(j) = df;        % Number of points to right and left used in window.
     end
     % Add zero frequency.
     fe = [0,fe]';
@@ -90,4 +91,3 @@ end
 
 Z(:,2) = Zxy1.';
 Z(:,4) = Zyx1.';
-

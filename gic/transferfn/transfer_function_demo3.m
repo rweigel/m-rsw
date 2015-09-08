@@ -4,14 +4,14 @@ addpath('../../time/')
 addpath('../../stats/')
 addpath('../misc/')
 
-writeimgs = 1;
+writeimgs = 0;
 
 tau = 10;  % Filter decay constant
 N   = 1e4; % Simulation length
 Nc  = 51;  % Comment out to use Nc = length(h)
 df  = 50;  % Width of rectangualar window
 nb  = 0.0; % Noise in B
-ne  = 0.5; % Noise in E
+ne  = 0.0; % Noise in E
 ndb = 0.0; % Noise in dB
 
 paramstring = sprintf('_ne_%.1f',ne);
@@ -25,14 +25,16 @@ for i = 1:10*tau
     t(i,1) = dt*(i-1);
 end
 hstr = sprintf('(1-1/%d)^{t}; t=1 ... %d; h_{xy}(0)=0;', tau, length(h));
+% Add a zero because MATLAB filter function requires it.  Also,
+% not having it causes non-physical phase drift with frequency.
 h  = [0;h];
-th = [0:length(h)-1];
+th = [0:length(h)-1]';
 
 % Exact transfer function
 Zxy = fft(h);
 Nh  = length(Zxy);
 Zxy = Zxy(1:floor(Nh/2)+1);
-fh  = [0:Nh/2]'/Nh;
+fh  = [0:floor(Nh/2)]'/Nh;
 
 % Exact transfer Function Phase
 Pxy = (180/pi)*atan2(imag(Zxy),real(Zxy));
@@ -67,6 +69,16 @@ NdB = NdB(2*length(h)+1:end,:);
 
 N = size(B,1);
 
+if (0)
+for i = 1:size(B,2)
+    B(:,i)  = B(:,i)  - mean(B(:,i));
+    dB(:,i) = dB(:,i) - mean(dB(:,i));
+end
+for i = 1:size(E,2)
+    E(:,i) = E(:,i) - mean(E(:,i));
+end
+end
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Raw periodograms
 
@@ -83,65 +95,33 @@ ftE   = pX(:,5:6);
 ftNB  = pX(:,7:8);
 ftNdB = pX(:,9:10);
 ftNE  = pX(:,11:12);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Time Domain
-Na = 0; % The number of acausal coefficients
-if ~exist('Nc')
-    Nc = length(h); % The number of causal coefficients
-end
-Ts = 0; % Shift input with respect to output
-
-% T is the output, X is the input.
-% Each row of X contains time delayed values of u
-[T,X] = time_delay(E(:,2),B(:,1),(Nc-1),Ts,Na,'pad');
-
-% Compute model by solving for H = {h0,h1,...} in overdetermined set
-% of equations
-% ym(n)   = h0 + u(n-1)*h(1) + u(n-2)*h(2) + ...
-% ym(n+1) = h0 + u(n-0)*h(1) + u(n-1)*h(2) + ...
-% ...
-% If any row above contains a NaN, it is omitted from the computation.
-% Solve for Ym = X*H -> H = Ym\U 
-LIN = basic_linear(X,T);
-
-% Impulse response function using basic_linear() (last element is h0)
-hBL = LIN.Weights(1:end-1) + LIN.Weights(end);
-hBL = [0;hBL]; % Zero is because Na = 0 -> h(t<=0) = 0.
-tBL = [0:length(hBL)-1];
-
-[HBL,TBL] = impedanceTD(B,E,Nc);
-[ZBL,fBL,HBLi,fBLi] = H2Z(TBL,HBL,th);
-EpBL = Hpredict(TBL,HBL,B);
+% Time domain
+[ZBL,feBL,HBL,tBL] = impedanceTD(B,E,Nc);
+ZBLi = Zinterp(feBL,ZBL,fh);
+EpBL = Hpredict(tBL,HBL,B);
 
 ZxyBL  = ZBL(:,2);
 ZxyBLi = ZBLi(:,2);
 hBL    = HBL(:,2);
 EyBL   = EpBL(:,2);
 
-break
-% Transfer Function
-ZxyBL = fft(hBL);
-NBL   = length(ZxyBL);
-ZxyBL = ZxyBL(1:floor(NBL/2)+1);
-feBL  = [0:NBL/2]'/NBL;
-
 % Transfer Function Phase
-PxyBL = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
-
-[ZxyBLi,PxyBLi] = H2Z(feBL,hBL,fh);
-
-% Prediction
-EyBL = filter(hBL,1,B(:,1));
+PxyBL  = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
+PxyBLi = (180/pi)*atan2(imag(ZxyBLi),real(ZxyBLi));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Rectangular
 
-[ZR,feR]        = impedanceFD(B,E,'rectangular');
-[HR,tR,ZRi,fRi] = Z2H(feR,ZR,fh);
-EpR             = Hpredict(tR,HR,B);
+[ZR,feR] = impedanceFD(B,E,'rectangular');
+ZRi      = Zinterp(feR,ZR,fh);
+HR       = Z2H(feR,ZR);
+HR       = fftshift(HR);
+NR       = (size(HR,1)-1)/2;
+tR       = [-NR:NR]';
+EpR      = Hpredict(tR,HR,B);
 
 ZxyR  = ZR(:,2);
 ZxyRi = ZRi(:,2);
@@ -155,9 +135,13 @@ PxyRi = (180/pi)*atan2(imag(ZxyRi),real(ZxyRi));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Parzen
-[ZP,feP]        = impedanceFD(B,E,'parzen');
-[HP,tP,ZPi,fPi] = Z2H(feP,ZP,fh);
-EpP             = Hpredict(tP,HP,B);
+[ZP,feP] = impedanceFD(B,E,'parzen');
+ZPi      = Zinterp(feP,ZP,fh);
+HP       = Z2H(feP,ZP,fh);
+HP       = fftshift(HP);
+NP       = (size(HP,1)-1)/2;
+tP       = [-NP:NP]';
+EpP      = Hpredict(tP,HP,B);
 
 ZxyP  = ZP(:,2);
 ZxyPi = ZPi(:,2);
@@ -237,28 +221,19 @@ figure(4);clf;
 
 figure(5);clf;
     % Create padded impulse responses.
-    tp = [tP(1):th(end)];
-    Nl = length(tp)-length(h);
+    tp = [min([tP(1),tR(1),th(1)]):max([tP(end),tR(end),th(end)])]';
 
-    if (length(hBL) >= length(h))
-        Nr   = Nc - length(h);
-        tp   = [tP(1):length(h)+Nr-1];
-        hp   = [zeros(Nl,1);h;zeros(Nr,1)];
-        hBLp = [zeros(Nl,1);hBL];
-    else
-        Nr = length(h)-length(hBL);
-        hp   = [zeros(Nl,1);h];
-        hBLp = [zeros(Nl,1);hBL;zeros(Nr,1)];
+    hp   = interp1(th,h,tp);
+    for i = 1:size(HBL,2)
+        hBLp(:,i) = interp1(tBL,HBL(:,i),tp);
+        hRp(:,i)  = interp1(tR,HR(:,i),tp);
+        hPp(:,i)  = interp1(tP,HP(:,i),tp);
     end
-    
-    Nr = length(hBLp)-length(hP);
-    hPp = [hP;zeros(Nr,1)];
-    hRp = [hR;zeros(Nr,1)];
 
     hold on;grid on;
-    plot(tp,hBLp-hp,'m','LineWidth',4)
-    plot(tp,hRp-hp,'b','LineWidth',2)
-    plot(tp,hPp-hp,'g','LineWidth',2)
+    plot(tp,hBLp(:,2)-hp,'m','LineWidth',4)
+    plot(tp,hRp(:,2)-hp,'b','LineWidth',2)
+    plot(tp,hPp(:,2)-hp,'g','LineWidth',2)
     xlabel('t')
     title('Impulse Response Error')
     legend(...
@@ -284,12 +259,12 @@ figure(6);clf;
             )
    plotcmds(['transfer_functions',paramstring],writeimgs)
 
-figure(6);clf;
+figure(7);clf;
     hold on;grid on;
     plot(fh,abs(Zxy),'k','Marker','+','MarkerSize',10,'LineWidth',5)
-    plot(feBL,abs(ZxyBL),'m','Marker','.','MarkerSize',25,'LineWidth',3);
-    plot(fRi,abs(ZxyRi),'b','Marker','.','MarkerSize',15,'LineWidth',2);
-    plot(fPi,abs(ZxyPi),'g','Marker','.','MarkerSize',10,'LineWidth',1);
+    plot(fh,abs(ZxyBLi),'m','Marker','.','MarkerSize',25,'LineWidth',3);
+    plot(fh,abs(ZxyRi),'b','Marker','.','MarkerSize',15,'LineWidth',2);
+    plot(fh,abs(ZxyPi),'g','Marker','.','MarkerSize',10,'LineWidth',1);
     xlabel('f')
     title('Interpolated Transfer Functions')
     legend(...
@@ -300,7 +275,7 @@ figure(6);clf;
             )
    plotcmds(['transfer_functions_interpolated',paramstring],writeimgs)
 
-figure(7);clf;
+figure(8);clf;
     hold on;grid on;
     plot(fh,abs(ZxyBLi)-abs(Zxy),'m','Marker','.','MarkerSize',20,'LineWidth',2);
     plot(fh,abs(ZxyRi)-abs(Zxy),'b','Marker','.','MarkerSize',20,'LineWidth',2);
@@ -314,12 +289,12 @@ figure(7);clf;
             'Location','SouthEast')
    plotcmds(['transfer_function_errors',paramstring],writeimgs)
 
-figure(8);clf;
+figure(9);clf;
     hold on;grid on;
     plot(fh,abs(Pxy),'k','Marker','+','MarkerSize',10,'LineWidth',5)
     plot(feBL,abs(PxyBL),'m','Marker','.','MarkerSize',25,'LineWidth',3);
-    plot(feR,abs(PxyR),'b','Marker','.','MarkerSize',15,'LineWidth',2);
-    plot(feP,abs(PxyP),'g','Marker','.','MarkerSize',10,'LineWidth',1);
+    plot(feR,abs(PxyR),'b','Marker','.','MarkerSize',25,'LineWidth',2);
+    plot(feP,abs(PxyP),'g','Marker','.','MarkerSize',25,'LineWidth',1);
     xlabel('f')
     title('Transfer Function Phase')
     legend(...
@@ -331,7 +306,7 @@ figure(8);clf;
     )
    plotcmds(['transfer_function_phases',paramstring],writeimgs)
 
-figure(9);clf;
+figure(10);clf;
     hold on;grid on;
     plot(fh,abs(PxyBLi)-abs(Pxy),'m','Marker','.','MarkerSize',20,'LineWidth',2);
     plot(fh,abs(PxyRi)-abs(Pxy),'b','Marker','.','MarkerSize',20,'LineWidth',2);
@@ -345,7 +320,7 @@ figure(9);clf;
             'Location','NorthEast')
    plotcmds(['transfer_function_phase_errors',paramstring],writeimgs)
 
-figure(10);clf;
+figure(11);clf;
     hold on;grid on;
     plot(E(:,2),'k','LineWidth',3)
     plot(EyBL,'m')
@@ -360,7 +335,7 @@ figure(10);clf;
             )
    plotcmds(['predictions',paramstring],writeimgs)
 
-figure(11);clf;
+figure(12);clf;
     hold on;grid on;
     plot(E(:,2)-EyBL+10,'m')
     plot(E(1:length(EyR),2)-EyR,'b')

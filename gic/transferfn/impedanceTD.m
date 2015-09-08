@@ -1,13 +1,5 @@
-function [H,t] = impedanceTD(B,E,Nc)
+function [Z,f,H,t] = impedanceTD(B,E,Nc)
 
-if (0)
-for i = 1:size(B,2)
-	B(:,i) = B(:,i) - mean(B(:,i));
-end
-for i = 1:size(E,2)
-	E(:,i) = E(:,i) - mean(E(:,i));
-end
-end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time Domain
 Na = 0; % The number of acausal coefficients
@@ -25,19 +17,26 @@ Ts = 0; % Shift input with respect to output
 
 [T,Xxy] = time_delay(E(:,2),B(:,1),(Nc-1),Ts,Na,'pad');
 LINxy = basic_linear(Xxy,T)
-Fxy = basic_linear(Xxy,LINxy.Weights,'predict');
 
 [T,Xyx] = time_delay(E(:,1),B(:,2),(Nc-1),Ts,Na,'pad');
 LINyx = basic_linear(Xyx,T)
-Fyx = basic_linear(Xyx,LINyx.Weights,'predict');
 
 % Impulse response function using basic_linear() (last element is h0)
 hxy = LINxy.Weights(1:end-1) + LINxy.Weights(end);
 hyx = LINyx.Weights(1:end-1) + LINyx.Weights(end);
-hxy = [0;hxy]; % Zero is because Na = 0 -> h(t<=0) = 0.
-hyx = [0;hyx]; % Zero is because Na = 0 -> h(t<=0) = 0.
+hxy = [0;hxy]; % Zero because Na = 0 -> h(t<=0) = 0.
+hyx = [0;hyx];
+
+% Note:
+% If Nc is even, Z2H(feBL,ZBL) will not return same H as above.
 
 H(:,2) = hxy;
 H(:,4) = hyx;
+t      = [0:Nc-1]';
 
-t = [0:length(hyx)-1];
+% Transfer Function
+Z(:,2)  = fft(hxy);
+Z(:,4)  = fft(hyx);
+N       = size(Z,1);
+Z       = Z(1:floor(N/2)+1,:);
+f       = [0:floor(N/2)]'/N;
