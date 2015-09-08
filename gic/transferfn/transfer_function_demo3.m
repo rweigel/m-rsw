@@ -99,13 +99,16 @@ ftNE  = pX(:,11:12);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time domain
 [ZBL,feBL,HBL,tBL] = impedanceTD(B,E,Nc);
+HBL2   = Z2H(feBL,ZBL);
 ZBLi = Zinterp(feBL,ZBL,fh);
 EpBL = Hpredict(tBL,HBL,B);
+EpBL2 = Zpredict(feBL,ZBL,B);
 
 ZxyBL  = ZBL(:,2);
 ZxyBLi = ZBLi(:,2);
 hBL    = HBL(:,2);
 EyBL   = EpBL(:,2);
+EyBL2  = EpBL2(:,2);
 
 % Transfer Function Phase
 PxyBL  = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
@@ -118,15 +121,44 @@ PxyBLi = (180/pi)*atan2(imag(ZxyBLi),real(ZxyBLi));
 [ZR,feR] = impedanceFD(B,E,'rectangular');
 ZRi      = Zinterp(feR,ZR,fh);
 HR       = Z2H(feR,ZR);
-HR       = fftshift(HR);
+HR       = fftshift(HR,1);
 NR       = (size(HR,1)-1)/2;
 tR       = [-NR:NR]';
 EpR      = Hpredict(tR,HR,B);
+EpR2     = Zpredict(feR,ZR,B);
+
+if (0)
+c = 2;
+figure(1);clf
+    plot(E(:,c),'b');hold on;
+    plot(EpR2(:,c),'k')
+    plot(EpR2(:,c)-E(:,c),'y')
+    %plot(EpR(:,c)-E(:,c),'g')
+
+Zi   = Zinterp(feR,ZR,f);
+Zraw = ftE(:,2)./ftB(:,1);
+
+Zi = [ Zi(1,:); Zi(2:end,:) ; flipud(conj(Zi(2:end-1,:))) ];
+epi = ifft(ftB(:,1).*Zi(:,2));
+epr = ifft(ftB(:,1).*Zraw);
+
+figure(1);clf
+    plot(abs(Zraw),'r');
+    hold on;
+    plot(abs(Zi(:,2)));
+figure(2);clf;
+    plot(epr,'r');
+    hold on
+    plot(epi);
+    plot(E(:,2),'g')
+    plot(EpR2(:,1),'k')
+end
 
 ZxyR  = ZR(:,2);
 ZxyRi = ZRi(:,2);
 hR    = HR(:,2);
 EyR   = EpR(:,2);
+EyR2  = EpR2(:,2);
 
 % Transfer Function Phase
 PxyR  = (180/pi)*atan2(imag(ZxyR),real(ZxyR));
@@ -138,15 +170,17 @@ PxyRi = (180/pi)*atan2(imag(ZxyRi),real(ZxyRi));
 [ZP,feP] = impedanceFD(B,E,'parzen');
 ZPi      = Zinterp(feP,ZP,fh);
 HP       = Z2H(feP,ZP,fh);
-HP       = fftshift(HP);
+HP       = fftshift(HP,1);
 NP       = (size(HP,1)-1)/2;
 tP       = [-NP:NP]';
 EpP      = Hpredict(tP,HP,B);
+EpP2     = Zpredict(feP,ZP,B);
 
 ZxyP  = ZP(:,2);
 ZxyPi = ZPi(:,2);
 hP    = HP(:,2);
 EyP   = EpP(:,2);
+EyP2   = EpR2(:,2);
 
 % Transfer Function Phase
 PxyP  = (180/pi)*atan2(imag(ZxyP),real(ZxyP));
@@ -338,13 +372,13 @@ figure(11);clf;
 figure(12);clf;
     hold on;grid on;
     plot(E(:,2)-EyBL+10,'m')
-    plot(E(1:length(EyR),2)-EyR,'b')
-    plot(E(1:length(EyP),2)-EyP-10,'g')
-    peP = pe(E(1:length(EyP),2),EyP);
-    peR = pe(E(1:length(EyR),2),EyR);
-    peBL = pe(E(:,2),EyBL);
+    plot(E(:,2)-EyR,'b')
+    plot(E(:,2)-EyP-10,'g')
+    peP = pe_nonflag(E(:,2),EyP);
+    peR = pe_nonflag(E(:,2),EyR);
+    peBL = pe_nonflag(E(:,2),EyBL);
     xlabel('t')
-    title('Prediction Error')
+    title('Prediction Error (using Hpredict)')
     set(gca,'YLim',[-20 20])
     legend(...
         sprintf('\\DeltaE_y+10 time domain; PE = %.3f',peBL),...        
@@ -352,3 +386,21 @@ figure(12);clf;
         sprintf('\\DeltaE_y-10 freq. domain Parzen; PE = %.3f',peP)...
         );
     plotcmds(['prediction_errors',paramstring],writeimgs)
+
+figure(13);clf;
+    hold on;grid on;
+    plot(E(:,2)-EyBL2+10,'m')
+    plot(E(:,2)-EyR2,'b')
+    plot(E(:,2)-EyP2-10,'g')
+    peP = pe_nonflag(E(:,2),EyP2);
+    peR = pe_nonflag(E(:,2),EyR2);
+    peBL = pe_nonflag(E(:,2),EyBL2);
+    xlabel('t')
+    title('Prediction Error (using Zpredict)')
+    set(gca,'YLim',[-20 20])
+    legend(...
+        sprintf('\\DeltaE_y+10 time domain; PE = %.3f',peBL),...        
+        sprintf('\\DeltaE_y freq. domain Rectangular; PE = %.3f',peR),...
+        sprintf('\\DeltaE_y-10 freq. domain Parzen; PE = %.3f',peP)...
+        );
+    plotcmds(['prediction_errors2',paramstring],writeimgs)

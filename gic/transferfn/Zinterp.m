@@ -1,4 +1,4 @@
-function Zi = Z2H(fe,Z,fg)
+function Zi = Zinterp(fe,Z,fg)
 
 if (size(fe,1) ~= size(Z,1))
 	fe = fe';

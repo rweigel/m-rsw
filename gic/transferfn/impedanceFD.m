@@ -89,5 +89,7 @@ if (0)
     Z{2,2} = Zyy.';
 end
 
+Z(:,1) = zeros(length(Zxy1),1);
 Z(:,2) = Zxy1.';
-Z(:,4) = Zyx1.';
+Z(:,3) = Zyx1.';
+Z(:,4) = zeros(length(Zxy1),1);

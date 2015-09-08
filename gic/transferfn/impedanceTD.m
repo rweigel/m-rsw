@@ -30,13 +30,19 @@ hyx = [0;hyx];
 % Note:
 % If Nc is even, Z2H(feBL,ZBL) will not return same H as above.
 
+H(:,1) = zeros(length(hxy),1);
 H(:,2) = hxy;
-H(:,4) = hyx;
+H(:,3) = hyx;
+H(:,4) = zeros(length(hxy),1);
+
 t      = [0:Nc-1]';
 
 % Transfer Function
+Z(:,1)  = zeros(length(hxy),1);
 Z(:,2)  = fft(hxy);
-Z(:,4)  = fft(hyx);
+Z(:,3)  = fft(hyx);
+Z(:,4)  = zeros(length(hxy),1);
+
 N       = size(Z,1);
 Z       = Z(1:floor(N/2)+1,:);
 f       = [0:floor(N/2)]'/N;
