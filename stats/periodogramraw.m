@@ -3,8 +3,8 @@ function [I,f,a,b,a0] = periodogramraw(x,method)
 %
 %   [I,f,a,b,a0] = PERIODOGRAMRAW(x)
 %
-%   [I,f] = PERIODOGRAMRAW(x,'fast') uses fft method to compute
-%   coefficients. a, b, and a0 are not returned.
+%   [I,f,a,b,a0] = PERIODOGRAMRAW(x,'fast') uses fft method to compute
+%   coefficients.
 %
 %   Notation is used in Fourier Methods section of
 %   http://bobweigel.net/csi763/
