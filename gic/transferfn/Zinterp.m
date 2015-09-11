@@ -22,9 +22,7 @@ fprintf('Last evaluation frequency  : %.4f\n',fe(end));
 
 for k = 1:size(Z,2)
 	% Interpolate onto frequency grid
-	%Zio(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end));
-	Zio(:,k) = interp1(fe,Z(:,k),fg);
-	Zi(:,k) = Zio(:,k);
+	Zi(:,k) = interp1(fe,Z(:,k),fg);
 	% Set NaN values to zero
 	I = find(isnan(Zi(:,k)));
 	if (length(I) > 0)
@@ -32,4 +30,3 @@ for k = 1:size(Z,2)
 	end
 	Zi(I,k) = 0;
 end
-%Zi = [Z(1,:);Zi];

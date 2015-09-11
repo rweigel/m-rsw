@@ -11,7 +11,7 @@ N   = 1e4; % Simulation length
 Nc  = 51;  % Comment out to use Nc = length(h)
 df  = 50;  % Width of rectangualar window
 nb  = 0.0; % Noise in B
-ne  = 0.1; % Noise in E
+ne  = 0.5; % Noise in E
 ndb = 0.0; % Noise in dB
 
 paramstring = sprintf('_ne_%.1f',ne);
@@ -99,9 +99,9 @@ ftNE  = pX(:,11:12);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time domain
 [ZBL,feBL,HBL,tBL] = transferfnTD(B,E,Nc);
-HBL2   = Z2H(feBL,ZBL);
-ZBLi = Zinterp(feBL,ZBL,fh);
-EpBL = Hpredict(tBL,HBL,B);
+HBL2  = Z2H(feBL,ZBL);
+ZBLi  = Zinterp(feBL,ZBL,fh);
+EpBL  = Hpredict(tBL,HBL,B);
 EpBL2 = Zpredict(feBL,ZBL,B);
 
 ZxyBL  = ZBL(:,2);
@@ -249,7 +249,8 @@ figure(4);clf;
     legend( sprintf('h_{xy} = %s',hstr),...
             sprintf('h_{xy} time domain; n_T = %d',length(hBL)),...
             sprintf('h_{xy} freq. domain Rectangular; n_R = %d', df),...
-            sprintf('h_{xy} freq. domain Parzen; n_P = %d',length(feP))...
+            sprintf('h_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
+            'Location','NorthWest'...
            )
    plotcmds(['impulse_responses',paramstring],writeimgs)
 
@@ -274,7 +275,8 @@ figure(5);clf;
     legend(...
             sprintf('\\deltah_{xy} time domain; n_T = %d',length(hBL)),...
             sprintf('\\deltah_{xy} freq. domain Rectangular; n_f = %d', df),...
-            sprintf('\\deltah_{xy} freq. domain Parzen; n_P = %d',length(feP))...
+            sprintf('\\deltah_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
+            'Location','NorthWest'...
             )
    plotcmds(['impulse_response_errors',paramstring],writeimgs)
 
