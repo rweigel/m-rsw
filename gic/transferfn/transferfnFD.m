@@ -1,5 +1,7 @@
 function [Z,fe] = transferfnFD(B,E,winfn,meth)
 
+s = dbstack;
+n = s(end).name;
 
 N = size(B,1);
 f = [0:N/2]'/N;
@@ -10,7 +12,7 @@ ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
 if strmatch(winfn,'rectangular')
-    df = 50;
+    df = 2;
     % Smooth in frequency domain with Rectangular window.
     Ic = [df+1:df:length(f)-df]; % Indicies of center points
     for j = 1:length(Ic)
@@ -51,8 +53,10 @@ for j = 1:length(Ic)
 
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
-    fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
-            fe(j),length(r),fa,fb)
+    if strmatch(winfn,'parzen')
+        fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+                n,fe(j),length(r),fa,fb)
+    end
 
     Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
     Zyx1(j) = sum(W.*ftE(r,2).*conj(ftB(r,1)))/sum(W.*ftB(r,1).*conj(ftB(r,1)));

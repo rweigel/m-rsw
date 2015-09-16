@@ -3,6 +3,7 @@ function Ep = Zpredict(fe,Z,B)
 N  = size(B,1);
 fg = [0:floor(N/2)]'/N;
 
+fprintf('Zpredict: Interpolating Z onto same frequency grid as input.\n');
 Z = Zinterp(fe,Z,fg);
 
 if mod(N,2) == 0

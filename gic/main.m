@@ -4,37 +4,48 @@ addpath('../plot');
 addpath('../set');
 addpath('../time');
 addpath('./transferfn');
+addpath('./misc');
 
-savefigs = 1;
-%savefigs = 0;
+writeimgs = 1;
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+long  = 'Obib Under Wire';
+short = 'obibdm';
+
+long  = 'Obib 100m Over from Wire';
+short = 'obibmt';
+
+start = '06-Jul-2013 14:15:00';
+tit   = sprintf('%s MT (%s)',long,upper(short));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+long  = 'Kakioka';
+short = 'kak';
 
 long  = 'Memambetsu';
 short = 'mmb';
 
-long  = 'Kakioka';
-short = 'kak';
+start = '2006-12-01 00:00:00';
+tit   = sprintf('%s Magnetic Observatory (%s)',long,upper(short));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-tit = sprintf('%s Magnetic Observatory (%s)',long,upper(short));
-
-long  = 'Obib Under';
-short = 'obibdm';
-
-long = 'Obib Over';
-short = 'obibmt';
-
-tit = sprintf('%s MT (%s)',long,upper(short));
-xlab = 'Days since 06-Jul-2013 14:15:00';
-
-pre = sprintf('figures/main_%s',short);
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 labels  = {'B_x','B_y','B_z','dB_x/dt','dB_y/dt','dB_z/dt','E_x','E_y'};
 labels2 = {'B_x','B_y','B_z','dBxdt','dBydt','Bzdt','E_x','E_y'};
+xlab    = ['Days since ',start];
 cs      = ['r','g','b','r','g','b','m','k'];
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Read data
 [B,dB,E] = mainPrepare(short,lower(long));
 
+dB = dB(14*86400:16*86400,:);
+B = B(14*86400:16*86400,:);
+E = E(14*86400:16*86400,:);
+
 t = [0:size(B,1)-1]'/86400;
-dno = datenum('06-Jul-2013 14:15:00');
+dno = datenum(start);
 dn = dno + t;
 
 X = [B,dB,E];    
@@ -47,78 +58,43 @@ pX  = abs(ftX);
 N   = size(pX,1);
 f   = [0:N/2]'/N;
 
-[ZLc,fL] = impedanceLEMI('Pierre/Data/MT/Obib/ObibMT.ide');
-
-ZxyL = ZLc{1,2};
-[hL,tL,ZxyLi,PxyLi] = Z2H(fL,ZxyL);
-
-% Frequency Domain
-[feP,NeP,IcP] = evalfreq(f);
-ftB = ftX(:,1:2);
-ftE = ftX(:,7:8);
-[tmp,ZxyP,ZyxP] = impedanceFD(f,feP,IcP,NeP,ftB,ftE,'parzen');
-[hP,tP,ZxyPi,PxyPi] = Z2H(feP,ZxyP);
-
-NP   = (length(hP)-1)/2;
-EyP  = filter(hP,1,B(:,1));
-EyP  = EyP(NP+1:end);
-
-% Time Domain
-for i = [5:5]
-    I = [86400*(i-1)+1:86400*i];
-    fprintf('Iteration %d\n',i)
-    [Zc,fc,ZxyT,ZyxT,feT,Hc,hxyT,hyxT,Fxy,Fyx] = impedanceTD(dB(I,:),E(I,:),60*20);
+if (0)
+Nc = 350;
+Na = 350;
+Ts = 0;
+[T,Xxy] = time_delay(E(:,2),B(:,1),(Nc-1),Ts,Na,'pad');
+LINxy = basic_linear(Xxy,T)
+break
+% Time domain
+[ZBL,feBL,HBL,tBL] = transferfnTD(dB,E,Nc);
 end
+[ZR,feR] = transferfnFD(dB,E,'rectangular');
+HR       = Z2H(feR,ZR,f);
+HR       = fftshift(HR,1);
+NR       = (size(HR,1)-1)/2;
+tR       = [-NR:NR]';
 
-EyT  = filter(hxyT,1,B(:,1));
-EyT  = [repmat(NaN,length(hxyT),1);EyT(length(hxyT)+1:end)];
+%EpR      = Hpredict(tR,HR,B);
+%EpR2     = Zpredict(feR,ZR,B);
 
-%[hyxT,tT,ZyxTi,PyxTi] = Z2H(feT,ZyxT);
-
-ExT  = filter(hyxT,1,B(:,2));
-ExT  = ExT(length(hyxT)+1:end);
-
-Ey = filter(hxy,1,dB(:,1));
-Ex = filter(hyx,1,dB(:,2));
-
-ZTm = abs(ZT);
-PT = (180/pi)*atan2(imag(ZT),real(ZT));
-
-% Frequency Domain
-[feP,NeP,IcP] = evalfreq(f);
-ftB = ftX(:,1:2);
-ftE = ftX(:,7:8);
-[tmp,Zxy1,Zyx1] = impedance(f,feP,IcP,NeP,ftB,ftE,'parzen');
-
-ZP = [Zxy1',Zyx1'];
-ZPm = abs(ZP);
-PP = (180/pi)*atan2(imag(ZP),real(ZP));
+% Transfer Function Phase
+PxyR  = (180/pi)*atan2(imag(ZR),real(ZR));
 
 figure(1);clf
-    loglog(feT(2:end,2),ZTm(2:end,1),'LineWidth',2,'MarkerSize',10);
-    hold on;
-    grid on;
-
-    loglog(feT(2:end,2),ZTm(2:end,2),'LineWidth',2,'MarkerSize',10);
-
-    xlabel('f [Hz]')
-
-    loglog(feP(2:end),100*ZPm(2:end,1),'LineWidth',3,'MarkerSize',10);
-    loglog(feP(2:end),100*ZPm(2:end,2),'LineWidth',3,'MarkerSize',10);
-    legend(' Z_{xy} TD',' Z_{yx} TD',' Z_{xy} FD',' Z_{yx} FD');
-    xlabel('f [Hz]')
-    grid on;
+    loglog(feR,abs(ZR(:,2)))
 
 figure(2);clf
-    plot(feT(2:end,2),PT(2:end,:),'LineWidth',3);
-    grid on;hold on;
-    plot(feP(2:end),PP(2:end,:),'LineWidth',3);
-    legend(' \phi_{xy} TD',' \phi_{yx} TD',' \phi_{xy} FD',' \phi_{yx} FD');
-    ylabel('[deg]')
-    xlabel('f [Hz]')
-    
+    plot(feR,PxyR(:,2))
 
-end
+figure(3);clf;grid on;hold on;
+    plot(tR,HR(:,2))
+
+break
+
+ZRi      = Zinterp(feR,ZR,fh);
+ZxyRi = ZRi(:,2);
+PxyRi = (180/pi)*atan2(imag(ZxyRi),real(ZxyRi));
+
 
 % Averaged periodograms
 for i = 1:size(X,2)
@@ -145,14 +121,7 @@ figure(1);clf;
     xlabel(xlab)
     ylabel('nT/s')
     legend('dB_x/dt','dB_y/dt','dB_z/dt')
-    if (savefigs)
-        fprintf('Writing %s_dBdt_timeseries.{png,eps}\n',pre)
-        print('-dpng','-r150',...
-        sprintf('%s_dBdt_timeseries.png',pre));
-        print('-depsc',...
-            sprintf('%s_dBdt_timeseries.eps',pre));
-        fprintf('Wrote %s_dBdt_timeseries.{png,eps}\n',pre)
-    end
+    plotcmds([short,'_dBdt_timeseries'],writeimgs)
 
 figure(2);clf;
     for i = 1:3
@@ -164,14 +133,7 @@ figure(2);clf;
     xlabel(xlab)
     ylabel('nT')
     legend('B_x','B_y','B_z')
-    if (savefigs)
-        fprintf('Writing %s_B_timeseries.{png,eps}\n',pre)
-        print('-dpng','-r150',...
-            sprintf('%s_B_timeseries.png',pre));
-        print('-depsc',...
-            sprintf('%s_B_timeseries.eps',pre));
-        fprintf('Wrote %s_B_timeseries.{png,eps}\n',pre)
-    end
+    plotcmds([short,'_B_timeseries'],writeimgs)
 
 figure(3);clf;
     for i = 1:2
@@ -183,14 +145,7 @@ figure(3);clf;
     xlabel(xlab)
     ylabel('mV/m')
     legend('E_x','E_y')
-    if (savefigs)
-        fprintf('Writing %s_E_timeseries.{png,eps}\n',pre)    
-        print('-dpng','-r150',...
-            sprintf('%s_E_timeseries.png',pre));
-        print('-depsc',...
-            sprintf('%s_E_timeseries.eps',pre));
-        fprintf('Wrote %s_E_timeseries.{png,eps}\n',pre)
-    end
+    plotcmds([short,'_E_timeseries'],writeimgs)
 
 Ip = [1,2,7,8];
 figure(4);clf
@@ -204,13 +159,7 @@ figure(4);clf
     title(tit);
     %vertline(fe);
     ylabel('Periodogram magnitude');
-    if (savefigs)
-        print('-dpng','-r150',...
-            sprintf('%s_All_periodogram.png',pre));
-        print('-depsc',...
-            sprintf('%s_All_periodogram.eps',pre));
-        fprintf('Wrote %s_All_periodogram.{png,eps}\n',pre)
-    end
+    plotcmds([short,'_All_periodogram'],writeimgs)
 
 figure(5);clf
     for i = 1:length(Ip)
@@ -220,15 +169,8 @@ figure(5);clf
     xlabel('f [Hz]');    
     legend(labels(Ip));
     title(tit);
-
     ylabel('Average periodogram magnitude');
-    if (savefigs)
-        print('-dpng','-r150',...
-            sprintf('%s_All_periodogram_ave.png',pre));
-        print('-depsc',...
-            sprintf('%s_All_periodogram_ave.eps',pre));
-        fprintf('Wrote %s_All_periodogram_ave.{png,eps}\n',pre);
-    end
+    plotcmds([short,'_All_periodogram_ave'],writeimgs)
 
 figure(6);clf
     for i = 1:length(Ip)
@@ -238,121 +180,12 @@ figure(6);clf
     xlabel('f [Hz]');    
     legend(labels(Ip));
     title(tit);
-
     ylabel('Average periodogram magnitude');
-    if (savefigs)
-        print('-dpng','-r150',...
-            sprintf('%s_All_periodogram_ave.png',pre));
-        print('-depsc',...
-            sprintf('%s_All_periodogram_ave.eps',pre));
-        fprintf('Wrote %s_All_periodogram_ave.{png,eps}\n',pre);
-    end
-
-figure(7);clf;
-    R_Ex_By = pA(1:NA/2+1,7)./pA(1:NA/2+1,2);
-    R_Ex_Bx = pA(1:NA/2+1,7)./pA(1:NA/2+1,1);
-    R_Ey_Bx = pA(1:NA/2+1,8)./pA(1:NA/2+1,1);
-    R_Ey_By = pA(1:NA/2+1,8)./pA(1:NA/2+1,2);
-    loglog(fA,R_Ex_By,'r');
-    hold on; grid on;
-    loglog(fA,R_Ey_Bx,'g');
-    loglog(fA,R_Ex_Bx,'b');
-    loglog(fA,R_Ey_By,'m');
-
-    legend('|Ex/By|','|Ey/Bx|','|Ex/Bx|','|Ey/By|')
-
+    plotcmds([short,'_All_periodogram_ave2'],writeimgs)
 
 break
-
-figure(1);clf;
-    plot(E(:,2)+20);hold on;grid on;
-    plot(ExT/1000)
-    %plot(EyT/1000)
-break
-
-%    legend('Ey Measured','Ey Parzen','Ey Time Domain')
-
-
-    t = [0:length(Fxy)-1];
-    figure(1);clf;
-        plot(t/3600,E(I,2),'b');hold on;
-        plot(t/3600,Fxy-23,'r');
-        xlabel('time [hr]')
-        ylabel('mV/m')
-        title('Obib MT site')
-        legend('Ey (measured)','Ey (modeled)');
-        print -dpng a.png 
-        plotcmds('a')
-    figure(2);clf;
-        title('Response of E_y to unit impulse of dB_x/dt at t = 0')
-        plot(hxyT,'b','LineWidth',3);hold on;
-        lh = legend('h_{xy} mV/nT');
-
-        set(gca,'XLim',[0 600])
-        grid on;
-        xlabel('time [s]')
-        print -dpng b.png 
-
-        %plotcmds('b')
-    figure(3);clf
-        Z = fft(hxyT);
-        f = [0:length(hxyT)/2]/(length(hxyT));
-        loglog(f,abs(Z(1:length(f))),'b','LineWidth',3)
-        xlabel('f [Hz]')
-        grid on
-        legend('Z_{xy} (Relating E_y to dB_x/dt)')
-        print -dpng c.png 
-
-    break
-
-figure(2);clf;
-    %loglog(feT(:,2),abs(ZTc{1,2}),'r','LineWidth',2);hold on;
-    %loglog(feT(:,3),abs(ZTc{2,1}),'b','LineWidth',2);grid on;
-    %        'Z_{xy} Time Domain','Z_{yx} Time Domain',...
-    semilogx(1./fL(2:end),abs(ZLc{1,2}(2:end)),'m','LineWidth',2);hold on;
-    semilogx(1./fL(2:end),abs(ZLc{2,1}(2:end)),'k','LineWidth',2);grid on;
-    semilogx(1./feP(2:end),100*abs(ZxyP(2:end)),'c','LineWidth',2);hold on;
-    semilogx(1./feP(2:end),100*abs(ZyxP(2:end)),'y','LineWidth',2);grid on;
-    legend(...
-            'Z_{xy} LEMI','Z_{yx} LEMI',...
-            'Z_{xy} Frequency Domain','Z_{yx} Frequency Domain')
-    %xlabel('f [Hz]')
-    xlabel('Period [s]')
-
-figure(1);clf
-    plot(HTc{1,2},'r','LineWidth',2);hold on;
-    plot(HTc{2,1},'b','LineWidth',2);grid on;
-    xlabel('seconds')
-    legend('h_{xy} Time Domain','h_{yx} Time Domain')
-
-figure(6);clf
-    R_Ex_By = pP(:,7)./pP(:,2);
-    R_Ey_Bx = pP(:,8)./pP(:,1);
-    loglog(fc,R_Ex_By,'g');
-    hold on; grid on;
-    loglog(fc,R_Ey_Bx);
-    legend('|Ex/By|','|Ey/Bx|')
-
-if (0)
-for i=1:size(X,2)    
-    figure(5+i);clf;
-    loglog(fA,p{i}(1:NA/2+1,:),'LineWidth',2);
-    grid on;
-    xlabel('f [Hz]');    
-    title([labels{i}, ' ', tit]);
-    if (savefigs)    
-    print('-dpng','-r150',...
-        sprintf('%s_%s_periodograms_for_ave.png',pre,labels2{i}));
-    print('-depsc',...
-        sprintf('%s_%s_spectrograms_for_ave.eps',pre,labels2{i}));
-    fprintf('Wrote %s_%s_spectrogram.{png,eps}\n',pre,labels2{i})
-    end
-end
-end
-
-if (0)
 for i=1:size(X,2)
-    figure(6);clf
+    figure(7);clf
         [T,P,aib,left,d_o] = spectrogram(X(:,i)',86400);
         I = find(T <= 86400/4);
         T = T(I)/86400;
@@ -366,7 +199,6 @@ for i=1:size(X,2)
         set(gca,'YAxisLocation','right')
         set(get(gca,'YLabel'),'Rotation',0)
 
-        
         axes(ah(2))
         ylabel('Period [days]')
 
@@ -376,14 +208,6 @@ for i=1:size(X,2)
         set(gca,'XTickLabel',[0:2:31])
         set(gca,'XTick',[1:86400*2:86400*31])
         
-        xlabel('Days since 12/01/2006 00:00:00.0')
-
-        if (savefigs)    
-            print('-dpng','-r150',...
-                sprintf('%s_%s_spectrogram.png',pre,labels{i}));
-            print('-depsc',...
-                sprintf('%s_%s_spectrogram.eps',pre,labels{i}));
-            fprintf('Wrote %s_%s_spectrogram.{png,eps}\n',pre,labels{i})
-        end
-    end
+        %xlabel('Days since 12/01/2006 00:00:00.0')
+        plotcmds(sprintf('%s_%s_spectrogram.png',short,labels2{i}),writeimgs)
 end

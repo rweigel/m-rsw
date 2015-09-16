@@ -18,10 +18,12 @@
 % domain for both methods is the same.
 
 clear;
-addpath('../time');
-addpath('../stats');
-base = './figures/transfer_function_demo_';
+addpath('../../time');
+addpath('../../stats');
+addpath('../misc/')
 
+N = 1e4;
+writeimgs = 1;
 
 % Compute IRF for dx/dt + x/tau = delta(0), and IC of x_0 = 0 dx_0/dt = 0
 % using forward Euler.
@@ -101,6 +103,7 @@ figure(1);clf;
         plot(u(1),'g','LineWidth',3);
         plot(u-5,'g');
         plot(y+5,'k');
+        title('10^4 points')
         %th = title('$\dot{y}(t)+y(t)/\tau = u(t)$');
         %set(th,'Interpreter','Latex')
 
@@ -128,72 +131,58 @@ if (0)
         set(gca,'FontSize',14);
         set(gca,'YTickLabel','');
 end
-        if (writeimgs)
-            print('-depsc',[base,'IRF_timeseries.eps']);
-            print('-dpng','-r150',[base,'IRF_timeseries.png']);
-        end
+        plotcmds('Timeseries',writeimgs)
 
 figure(2);clf;
     grid on;hold on;
-    plot(NaN,'k','LineWidth',3);
+    plot(NaN,'LineWidth',2,'Color',[0.5,0.5,0.5]);
     plot(NaN,'g','LineWidth',2);
 
     plot(exp(-(t(1:end))/tau)/exp(-t(1)/tau),'g','LineWidth',3);
     plot(h(2:end),'k','LineWidth',2);
 
-    title('Impulse Response Comparison');
+    title('Impulse Response');
     lh = legend(' Continuous exact solution',...
-                ' Discrete approximate solution',...
+                ' Discrete approximate to continuous',...
                 'Location','North');
     xlabel('Time Since Impulse','FontSize',14);
     set(lh,'FontSize',14);
     set(lh,'Box','off');
     set(gca,'FontSize',14);
     axis([0 tau*5 0 1.1]);
-    if (writeimgs)
-        print('-depsc',[base,'IRF.eps']);
-        print('-dpng','-r150',[base,'IRF.png']);
-    end
+    plotcmds('IRF',writeimgs)
 
 figure(3);clf;grid on;hold on;
     plot(ff(2:end),If(2:length(ff)),'b','LineWidth',2,'Marker','.','MarkerSize',5);
     plot(ft(2:end),It(2:length(ft)),'g','LineWidth',2,'Marker','.','MarkerSize',5);
     xlabel('f');
     legend('Frequency Domain Method','Time Domain Method');
-    title('Transfer Function Magnitude Estimate Comparison');
+    title('Transfer Function Magnitude Estimate');
     set(gca,'FontSize',14);
-
-    if (writeimgs)
-        print('-depsc',[base,'Magnitude.eps']);
-        print('-dpng','-r150',[base,'Magnitude.png']);
-    end
+    plotcmds('Magnitude',writeimgs)
 
 figure(4);clf;grid on;hold on;
     plot(ff(2:end),phif(2:length(ff)),'b','LineWidth',2,'Marker','.','MarkerSize',5);
     plot(ft(2:end),phit(2:length(ft)),'g','LineWidth',2,'Marker','.','MarkerSize',5)
     xlabel('f');
     ylabel('\phi [degrees]')
-    legend('Frequency Domain Method','Time Domain Method');
+    legend('Frequency Domain Method','Time Domain Method','Location','NorthWest');
     set(gca,'YLim',[-180 180]);
-    title('Transfer Function Phase Estimate Comparison');
+    title('Transfer Function Phase Estimate');
     set(gca,'FontSize',14);
-    if (writeimgs)
-        print('-depsc',[base,'Phase.eps']);
-        print('-dpng','-r150',[base,'Phase.png']);    
-    end
+    plotcmds('Phase',writeimgs)
 
 figure(5);clf;grid on;hold on;
+    plot(h(2:end),'Color',[0.5,0.5,0.5],'LineWidth',8);
     plot(hf(2:end),'b','LineWidth',3,'Marker','.','MarkerSize',5);
     plot(ht(2:end),'g','LineWidth',2,'Marker','.','MarkerSize',5);
-    legend('Frequency Domain Method','Time Domain Method');
+    legend('Actual','Frequency Domain Estimate','Time Domain Estimate');
     xlabel('Time Since Impulse');
-    title('Impulse Response Estimate Comparison');
+    title('Impulse Response Estimate');
     set(gca,'FontSize',14);
     set(gca,'XLim',[0 100])
-    if (writeimgs)
-        print('-depsc',[base,'IRF2.eps']);
-        print('-dpng','-r150',[base,'IRF2.png']);    
-    end
+    set(gca,'YLim',[0 1.1])
+    plotcmds('IRF2',writeimgs)
 
 % Visual inspection to determine phase and magnitude
 t    = [0:length(y)/10-1]';
@@ -208,6 +197,13 @@ yout = filter(ht,1,uin);
 figure(6);clf;hold on;grid on;
     plot(t,uin,'r','LineWidth',3,'Marker','.','MarkerSize',20);
     plot(t,yout,'b','LineWidth',3,'Marker','.','MarkerSize',20);
-    legend('Output','Input');
+    title('Time doamin method output given input of f = 1/100');
+    plot(150,0,'rx','MarkerSize',24)
+    plot(159,0,'bx','MarkerSize',24)
+    plot([149,160],[0,0],'k')
+    xlabel('time')
+    text(149.2,2,'Phase difference ~ 360(159-150)/100 = 32.')
+    legend('Output','Input',...
+        'Approximate output zero crossing','Approximate input zero crossing')
     set(gca,'XLim',[149 160])
-
+    plotcmds('Phase_Check',writeimgs)

@@ -127,33 +127,6 @@ tR       = [-NR:NR]';
 EpR      = Hpredict(tR,HR,B);
 EpR2     = Zpredict(feR,ZR,B);
 
-if (0)
-c = 2;
-figure(1);clf
-    plot(E(:,c),'b');hold on;
-    plot(EpR2(:,c),'k')
-    plot(EpR2(:,c)-E(:,c),'y')
-    %plot(EpR(:,c)-E(:,c),'g')
-
-Zi   = Zinterp(feR,ZR,f);
-Zraw = ftE(:,2)./ftB(:,1);
-
-Zi = [ Zi(1,:); Zi(2:end,:) ; flipud(conj(Zi(2:end-1,:))) ];
-epi = ifft(ftB(:,1).*Zi(:,2));
-epr = ifft(ftB(:,1).*Zraw);
-
-figure(1);clf
-    plot(abs(Zraw),'r');
-    hold on;
-    plot(abs(Zi(:,2)));
-figure(2);clf;
-    plot(epr,'r');
-    hold on
-    plot(epi);
-    plot(E(:,2),'g')
-    plot(EpR2(:,1),'k')
-end
-
 ZxyR  = ZR(:,2);
 ZxyRi = ZRi(:,2);
 hR    = HR(:,2);

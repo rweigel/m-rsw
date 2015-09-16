@@ -1,11 +1,16 @@
 function [Bi,dBi,Ei] = prepareData(short,long)
 
-
 if strcmp('obibmt',short)
-    load('Pierre/Data/MT/Obib/Obib_MT_20130706141500.mat')
+    if ~exist('data/Pierre','dir')
+        fprintf('Directory data/Pierre required. See Google Drive/Presentation/2015-SANSA.\n');
+    end
+    load('data/Pierre/Data/MT/Obib/Obib_MT_20130706141500.mat')
 end
 if strcmp('obibdm',short)
-    load('Pierre/Data/MT/Obib/Obib_DM_20130706110300.mat')
+    if ~exist('data/Pierre','dir')
+        fprintf('Directory data/Pierre required. See Google Drive/Presentation/2015-SANSA.\n');
+    end
+    load('data/Pierre/Data/MT/Obib/Obib_DM_20130706110300.mat')
 end
 if strcmp('obibdm',short) || strcmp('obibmt',short)
     for i = 1:3
@@ -30,19 +35,29 @@ end
 
 % 1-second B and E data from http://www.kakioka-jma.go.jp/metadata?locale=en
 
-bname = sprintf('./data/%s/Bfile1.mat',long);
-ename = sprintf('./data/%s/Efile1.mat',long);
-bname2 = sprintf('./data/%s/Bfile2.mat',long);
-ename2 = sprintf('./data/%s/Efile2.mat',long);
+bname  = sprintf('data/%s/Bfile1.mat',long);
+bname2 = sprintf('data/%s/Bfile2.mat',long);
+
+ename  = sprintf('data/%s/Efile1.mat',long);
+ename2 = sprintf('data/%s/Efile2.mat',long);
 
 base  = 'http://mag.gmu.edu/git-data/m-rsw/gic/';
-fileB = 'data/kakioka/Bfile2.mat';
-fileE = 'data/kakioka/Efile2.mat';
+
+d = sprintf('data/%s',long);
+if ~exist(d,'dir')
+    mkdir(d)
+end
 
 if ~exist(bname2)
-    fprintf('Downloading %s\n',[base,fileB]);
-    urlwrite([base,fileB],fileB);
+    fprintf('Downloading %s\n',[base,bname]);
+    [f,s] = urlwrite([base,bname],bname);
     if ~exist(bname)
+        % Need to download zip files here.
+        % wget -r -l1 http://mag.gmu.edu/git-data/m-rsw/gic/data/memambetsu/zip/
+        % mkdir data/memambetsu/zip/
+        % mkdir data/memambetsu/unzip/
+        % mv mag.gmu.edu/git-data/m-rsw/gic/data/memambetsu/zip data/memambetsu/zip/
+        % cd data/memambetsu/unzip/; unzip ../zip/*.zip
         Bfile = [];
         for i = 1:31
             fname = sprintf('data/%s/unzip/%s200612%02ddsec.sec',long,short,i);
@@ -60,9 +75,10 @@ if ~exist(bname2)
 end
 
 if ~exist(ename2)
-    fprintf('Downloading %s\n',[base,fileE]);
-    urlwrite([base,fileE],fileE);
+    fprintf('Downloading %s\n',[base,ename]);
+    [f,s] = urlwrite([base,ename],ename);
     if ~exist(ename)
+        % Need to download zip files here.
         Efile = [];
         for i = 1:31
             fname = sprintf('data/%s/unzip/%s200612%02ddgef.sec',long,short,i);

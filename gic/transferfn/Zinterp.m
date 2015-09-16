@@ -1,5 +1,8 @@
 function Zi = Zinterp(fe,Z,fg)
 
+s = dbstack;
+n = s(end).name;
+
 if (size(fe,1) ~= size(Z,1))
 	fe = fe';
 end
@@ -15,10 +18,10 @@ if nargin == 3 && (length(fe) == length(fg))
 	end
 end
 
-fprintf('First grid frequency       : %.4f\n',fg(1));
-fprintf('First evaluation frequency : %.4f\n',fe(1));
-fprintf('Last grid frequency        : %.4f\n',fg(end));
-fprintf('Last evaluation frequency  : %.4f\n',fe(end));
+fprintf('%s: First grid frequency       : %.4f\n',n,fg(1));
+fprintf('%s: First evaluation frequency : %.4f\n',n,fe(1));
+fprintf('%s: Last grid frequency        : %.4f\n',n,fg(end));
+fprintf('%s: Last evaluation frequency  : %.4f\n',n,fe(end));
 
 for k = 1:size(Z,2)
 	% Interpolate onto frequency grid
@@ -26,7 +29,7 @@ for k = 1:size(Z,2)
 	% Set NaN values to zero
 	I = find(isnan(Zi(:,k)));
 	if (length(I) > 0)
-		fprintf('Setting %d value(s) to zero in Z(:,%d)\n',length(I),k);
+		fprintf('%s: Setting %d value(s) to zero in Z(:,%d)\n',n,length(I),k);
 	end
 	Zi(I,k) = 0;
 end
