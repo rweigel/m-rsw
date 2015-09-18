@@ -1,7 +1,22 @@
-function [Z,fe] = transferfnFD(B,E,winfn,meth)
+function [Z,fe] = transferfnFD(B,E,method,winfn,winopts)
+%TRANSFERFN - Compute transfer function
+%
+%   [Z,fe] = TRANSFERFN(B,E)
 
 s = dbstack;
-n = s(end).name;
+n = s(1).name;
+
+fprintf('%s: Computing transfer function.\n',n);
+
+if (nargin < 3)
+    method = 1;
+end
+if (nargin < 4)
+    winfn = 1;
+end
+if (nargin < 5)
+    winopts = [];
+end
 
 N = size(B,1);
 f = [0:N/2]'/N;
@@ -12,12 +27,20 @@ ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
 if strmatch(winfn,'rectangular')
-    df = 2;
-    % Smooth in frequency domain with Rectangular window.
+    % Smooth in frequency domain with rectangular window.
+    if isempty(winopts)
+        % TODO: When df = 0, the for loop over frequencies is not needed.
+        % Zxy1 can be computed using
+        % ( ftE(:,1).*conj(ftB(:,2)) ) ./ ( ftB(:,2).*conj(ftB(:,2)) )
+        % and similar for Zyx1.
+        df = 1;
+    else
+        df = winopts;
+    end
     Ic = [df+1:df:length(f)-df]; % Indicies of center points
     for j = 1:length(Ic)
         fe(j) = f(Ic(j)); % Evaluation frequency
-        Ne(j) = df;        % Number of points to right and left used in window.
+        Ne(j) = df;       % Number of points to right and left used in window.
     end
     % Add zero frequency.
     fe = [0,fe]';
@@ -29,14 +52,8 @@ if strmatch(winfn,'parzen')
     [fe,Ne,Ic] = evalfreq(f);
 end
 
-% Equation 4.17 of Simpson and Bahr 2005.
+for j = 2:length(Ic)
 
-%function parzen(N)
-%    I = [1:N];
-%    W = (1/N)*(sin(pi*I/N)./(pi*I/N)).^4;
-%    W = [fliplr(W),1/N,W];
-
-for j = 1:length(Ic)
     if strmatch(winfn,'parzen')
         W = parzenwin(2*Ne(j)+1); 
         W = W/sum(W);
@@ -54,13 +71,18 @@ for j = 1:length(Ic)
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
     if strmatch(winfn,'parzen')
+        s = dbstack;
+        n = s(1).name;
         fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                 n,fe(j),length(r),fa,fb)
     end
 
+    % 1-D calculation
     Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
     Zyx1(j) = sum(W.*ftE(r,2).*conj(ftB(r,1)))/sum(W.*ftB(r,1).*conj(ftB(r,1)));
 
+    % 2-D calculation
+    % Equation 4.17 of Simpson and Bahr 2005.
     BxBx(j) = sum(W.*ftB(r,1).*conj(ftB(r,1))); 
     ByBx(j) = sum(W.*ftB(r,2).*conj(ftB(r,1))); 
     ExBx(j) = sum(W.*ftE(r,1).*conj(ftB(r,1))); 
@@ -86,14 +108,15 @@ end
 
 % .' is non-conjugate transpose
 
-if (0)
-    Z{1,1} = Zxx.';
-    Z{1,2} = Zxy.';
-    Z{2,1} = Zyx.';
-    Z{2,2} = Zyy.';
+if (method == 1)
+    Z(:,1) = zeros(length(Zxy1),1);
+    Z(:,2) = Zxy1.';
+    Z(:,3) = Zyx1.';
+    Z(:,4) = zeros(length(Zxy1),1);
 end
-
-Z(:,1) = zeros(length(Zxy1),1);
-Z(:,2) = Zxy1.';
-Z(:,3) = Zyx1.';
-Z(:,4) = zeros(length(Zxy1),1);
+if (method == 2)
+    Z(:,1) = Zxx.';
+    Z(:,2) = Zxy.';
+    Z(:,3) = Zyx.';
+    Z(:,4) = Zyy.';
+end

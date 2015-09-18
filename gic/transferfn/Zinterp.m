@@ -1,7 +1,7 @@
 function Zi = Zinterp(fe,Z,fg)
 
 s = dbstack;
-n = s(end).name;
+n = s(1).name;
 
 if (size(fe,1) ~= size(Z,1))
 	fe = fe';
@@ -25,7 +25,9 @@ fprintf('%s: Last evaluation frequency  : %.4f\n',n,fe(end));
 
 for k = 1:size(Z,2)
 	% Interpolate onto frequency grid
-	Zi(:,k) = interp1(fe,Z(:,k),fg);
+	%Zi(:,k) = interp1(fe,Z(:,k),fg);
+	%Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end));
+	Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end),'linear','extrap');
 	% Set NaN values to zero
 	I = find(isnan(Zi(:,k)));
 	if (length(I) > 0)
@@ -33,3 +35,4 @@ for k = 1:size(Z,2)
 	end
 	Zi(I,k) = 0;
 end
+Zi = [Z(1,:);Zi];
