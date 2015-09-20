@@ -4,9 +4,14 @@ f   = [0:N/2]'/N;
 
 IN   = dB;
 INs  = labels(4:5);
+INs2 = labels2(4:5);
+
 meth = 'rectangular';
 df   = 100;
-tit  = sprintf('Input = dB/dt; Method = Rectangular; df = %d',df);
+tit  = sprintf('%s; Input = dB/dt; Method = Rectangular; df = %d',short,df);
+
+ts1 = datestr(dn(1),30);
+ts2 = datestr(dn(end),30);
 
 [ZR,feR] = transferfnFD(IN,E,1,meth,df);
 HR       = Z2H(feR,ZR,f);
@@ -35,6 +40,8 @@ figure(fn);clf;
     title(tit)
     legend('Z_{xy}','Z_{yx}')
     xlabel('f [Hz]')
+    fname = sprintf('%s_Z_vs_f_%s-%s',short,ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 fn = fn+1;
 figure(fn);clf;
@@ -46,6 +53,8 @@ figure(fn);clf;
     title(tit)
     legend('Z_{xy}','Z_{yx}')
     xlabel('T [s]')
+    fname = sprintf('%s_Z_vs_T_%s-%s',short,ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 fn = fn+1;
 figure(fn);clf
@@ -57,6 +66,8 @@ figure(fn);clf
     title(tit)
     legend('\phi_{xy}','\phi_{yx}')
     xlabel('f [Hz]')
+    fname = sprintf('%s_Phase_vs_f_%s-%s',short,ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 fn = fn+1;
 figure(fn);clf
@@ -68,6 +79,8 @@ figure(fn);clf
     title(tit)
     legend('\phi_{xy}','\phi_{yx}')
     xlabel('T [s]')
+    fname = sprintf('%s_Phase_vs_T_%s-%s',short,ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 fn = fn+1;
 figure(fn);clf;
@@ -81,6 +94,8 @@ figure(fn);clf;
     set(gca,'XLim',[-10 20])
     set(gca,'XTick',[-10:5:20])
     xlabel('t [min]')
+    fname = sprintf('%s_H_%s-%s',short,ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 if (0) % Brute force method to determine optimal Nf
     Nfo = 3600;
@@ -98,9 +113,9 @@ Ef(:,1) = filter([0,f/sum(f)],1,E(:,1));
 Ef(:,2) = filter([0,f/sum(f)],1,E(:,2));
 
 pev(1) = pe(E(:,1)-Ef(:,1),EpR(:,1));
-fprintf('Nf = %04d\tpe = %0.2f\n',Nf,pev(1))
+fprintf('x: Nf = %04d\tpe = %0.2f\n',Nf,pev(1))
 pev(2) = pe(E(:,2)-Ef(:,2),EpR(:,2));
-fprintf('Nf = %04d\tpe = %0.2f\n',Nf,pev(2))
+fprintf('y: Nf = %04d\tpe = %0.2f\n',Nf,pev(2))
 
 t = [0:size(E,1)-1]'/86400;
 
@@ -113,6 +128,8 @@ figure(fn);clf;
     plot(t,E(:,1),'m');
     legend(INs{2},'E_x')
     xlabel(xlab)
+    fname = sprintf('%s_%s_E_x_%s-%s',short,INs2{2},ts1,ts2);
+    plotcmds(fname,writeimgs)
 
 fn = fn+1;
 figure(fn);clf;
@@ -123,19 +140,31 @@ figure(fn);clf;
     plot(t,E(:,2),'m');
     legend(INs{1},'E_y')
     xlabel(xlab)
+    ts1 = datestr(dn(1),30);
+    ts2 = datestr(dn(end),30);
+    fname = sprintf('%s_%s_E_y_%s-%s',short,INs2{1},ts1,ts2);
+    plotcmds(fname,writeimgs)
 
-fn = fn+1;
-figure(fn);clf;
-    plot(t,E(:,i),'m')  
-    hold on;grid on;
-    plot(t,E(:,i)-Ef(:,i),'k')
-    plot(t,real(EpR(:,i)),'r')
-    legend(...
-            ['E_',comp,' measured'],...
-            ['E_',comp,' filtered'],...
-            sprintf('E_%s predicted; PE = %.2f',comp,pev(i))...
-        )
-
+for i = 1:2
+    fn = fn+1;
+    figure(fn);clf;
+        plot(t,E(:,i),'m')  
+        hold on;grid on;
+        plot(t,E(:,i)-Ef(:,i),'k')
+        plot(t,real(EpR(:,i)),'r')
+        xlabel(xlab)
+        comp = 'x';if (i == 2),comp = 'y';end
+        legend(...
+                ['E_',comp,' measured'],...
+                ['E_',comp,' filtered'],...
+                sprintf('E_%s predicted; PE = %.2f',comp,pev(i))...
+            )
+    ts1 = datestr(dn(1),30);
+    ts2 = datestr(dn(end),30);
+    fname = sprintf('%s_E%s_predicted_%s-%s',short,comp,ts1,ts2);
+    plotcmds(fname,writeimgs)
+end
+break
 % 1 day of predictions per plot
 ta = [0:size(E,1)-1]'/3600;
 Nd = floor(size(E,1)/86400);
@@ -145,13 +174,13 @@ for j = [1:Nd]
     t = ta(I)-ta(I(1));
     for i = 1:2
         pev(i) = pe(E(I,i)-Ef(I,i),EpR(I,i));
-        fprintf('Nf = %04d\tpe = %0.2f\n',Nf,pev(i))
+        comp = 'x';
+        if (i == 2)
+            comp = 'y';
+        end
+        fprintf('dir = %s\tNf = %04d\tpe = %0.2f\n',comp,Nf,pev(i))
 
         figure(fn+i);clf;
-            comp = 'x';
-            if (i == 2)
-                comp = 'y';
-            end
             plot(NaN,0,'b','LineWidth',3);hold on 
             plot(NaN,0,'k','LineWidth',3)  
             plot(NaN,0,'r','LineWidth',3)  

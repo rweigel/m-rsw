@@ -64,10 +64,7 @@ t   = [0:size(B,1)-1]'/86400;
 dno = datenum(start);
 dn  = dno + t;
 
-mainZ
-
-break
-
+%mainZ
 
 X = [B,dB,E];
 
