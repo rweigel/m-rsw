@@ -27,7 +27,8 @@ for alpha = [-1/2,1/2]
     for i = 1:length(f)
         phi(i) = 2*pi*(rand(1)-0.5); % Random phase in [-pi,pi].
         Ey     = Ey + (1/f(i))               *cos(2*pi*t*f(i)   +phi(i));
-        Bx     = Bx - (1/f(i))*(f(i)^(alpha))*cos(2*pi*t*f(i)+dp+phi(i));    
+        Bx     = Bx - (1/f(i))*(f(i)^(alpha))*cos(2*pi*t*f(i)+dp+phi(i));
+        % Above is either Bx or dBx/dt depending on alpha.    
     end
 
     % Subtract off mean (not needed if random phase is used and large N).

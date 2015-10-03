@@ -1,0 +1,38 @@
+
+curl "http://localhost:7999/sync?return=stream&source=http%3A%2F%2Fservice.iris.edu%2Firisws%2Ftimeseries%2F1%2Fquery%3Fnet%3DEM%26sta%3DMBB05%26loc%3D--%26cha%3DLFE%26correct%3Dtrue%26starttime%3D2008-09-19T00%3A00%3A00%26endtime%3D2008-09-29T00%3A00%3A00%26output%3Dascii"
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LFE&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=ascii
+
+% IRIS Data
+
+% http://service.iris.edu/irisws/timeseries/1/query?net=IU&sta=ANMO&loc=00&cha=BHZ&starttime=2005-01-01T00:00:00&endtime=2005-01-02T00:00:00&output=plot
+
+http://service.iris.edu/irisws/virtualnetwork/1/query?code=_US-MT&format=XML
+
+http://service.iris.edu/irisws/fedcatalog/1/query?net=EM
+http://ds.iris.edu/mda/.EARTHSCOPE
+
+Query
+SITEID
+http://ds.iris.edu/spud/emtf
+http://ds.iris.edu/ds/products/emtf/
+http://ds.iris.edu/spudservice/emtf/1418021/edi
+
+http://ds.iris.edu/ds/nodes/dmc/
+http://ds.iris.edu/ds/nodes/dmc/earthscope/usarray/ALL/
+http://ds.iris.edu/ds/nodes/dmc/earthscope/usarray/_US-MT-operational/
+
+http://www.iris.washington.edu/mda/EM/MBB05?timewindow=2008/09/19%2020:13:48-2008/10/03%2011:40:20
+
+http://service.iris.edu/irisws/fedcatalog/1/query?net=IU&sta=ANMO&loc=00&cha=LF?&starttime=1997-06-07T01:00:00&endtime=2011-06-07T07:00:00&format=request&includeoverlaps=false&nodata=404
+
+http://www.iris.washington.edu/mda/EM/MBB05
+
+http://ds.iris.edu/mda/EM/MBB05/--/LFZ?timewindow=2008/09/19%2020:13:48-2008/10/03%2011:40:20
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LFE&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=plot
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LFN&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=plot
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LFZ&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=plot
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LQE&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=plot
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LQN&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=plot

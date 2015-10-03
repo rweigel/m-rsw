@@ -26,7 +26,8 @@ ftE = fft(E);
 ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
-if strmatch(winfn,'rectangular')
+%if strmatch(winfn,'rectangular')
+if ~isempty(winopts)
     % Smooth in frequency domain with rectangular window.
     if isempty(winopts)
         % TODO: When df = 0, the for loop over frequencies is not needed.
@@ -46,9 +47,7 @@ if strmatch(winfn,'rectangular')
     fe = [0,fe]';
     Ne = [0,Ne]';
     Ic = [1,Ic]';
-end
-
-if strmatch(winfn,'parzen')
+else
     [fe,Ne,Ic] = evalfreq(f);
 end
 
@@ -70,7 +69,7 @@ for j = 2:length(Ic)
 
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
-    if strmatch(winfn,'parzen')
+    if isempty(winopts)
         s = dbstack;
         n = s(1).name;
         fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...

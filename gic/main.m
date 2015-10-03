@@ -12,29 +12,38 @@ s = dbstack;
 nm = s(1).name;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Kakioka';
-short = 'kak';
-%Is = [13*86400:15*86400-1];
-
 long  = 'Memambetsu';
 short = 'mmb';
 %Is = [13*86400:15*86400-1];
+
+long  = 'Kakioka';
+short = 'kak';
+%Is = [10*86400:15*86400-1];
 
 start = '2006-12-01 00:00:00';
 tit   = sprintf('%s Magnetic Observatory (%s)',long,upper(short));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Obib Under Wire';
+long  = 'Obib Under Wire (SANSA)';
 short = 'obibdm';
 start = '06-Jul-2013 11:03:00';
 
-long  = 'Obib 100m Over from Wire';
+long  = 'Obib 100m Over from Wire (SANSA)';
 short = 'obibmt';
 start = '06-Jul-2013 14:15:00';
-%Is = [3*86400:4*86400-1];
+%Is = [3*86400:5*86400-1];
 
 tit   = sprintf('%s MT (%s)',long,upper(short));
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+long  = 'Kentland Farm, Blacksburg, VA (EarthScope)';
+short = 'MBB05';
+start = '05-Aug-2008 00:00:00';
+%Is = [3*86400:5*86400-1];
+
+tit   = sprintf('%s (%s)',long,upper(short));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -45,12 +54,18 @@ cs      = ['r','g','b','r','g','b','m','k'];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Read data
+% TODO: Pass start/stop times to function.
 [B,dB,E] = mainPrepare(short,lower(long));
+
+t   = [0:size(B,1)-1]'/86400;
+dno = datenum(start);
+dn  = dno + t;
 
 if (exist('Is'))
     dB = dB(Is,:);
     B  = B(Is,:);
     E  = E(Is,:);
+    dn = dn(Is);
 end
 for i = 1:size(B,2)
     B(:,i)  =  B(:,i) - mean(B(:,i));
@@ -60,12 +75,8 @@ for i = 1:size(E,2)
     E(:,i) = E(:,i) - mean(E(:,i));
 end
 
-t   = [0:size(B,1)-1]'/86400;
-dno = datenum(start);
-dn  = dno + t;
-
-%mainZ
-
+mainZ
+break
 X = [B,dB,E];
 
 % Raw periodograms
@@ -99,7 +110,7 @@ figure(1);clf;
     xlabel(xlab)
     ylabel('nT/s')
     legend('dB_x/dt','dB_y/dt','dB_z/dt')
-    plotcmds([short,'_dBdt_timeseries'],writeimgs)
+    fignames{1} = [short,'_dBdt_timeseries'];
 
 figure(2);clf;
     for i = 1:3
@@ -111,7 +122,7 @@ figure(2);clf;
     xlabel(xlab)
     ylabel('nT')
     legend('B_x','B_y','B_z')
-    plotcmds([short,'_B_timeseries'],writeimgs)
+    fignames{2} = [short,'_B_timeseries'];
 
 figure(3);clf;
     for i = 1:2
@@ -123,7 +134,7 @@ figure(3);clf;
     xlabel(xlab)
     ylabel('mV/m')
     legend('E_x','E_y')
-    plotcmds([short,'_E_timeseries'],writeimgs)
+    fignames{3} = [short,'_E_timeseries'];
 
 Ip = [1,2,7,8]; % Elements to plot
 % Elements 1 and 2 are Bx, By.
@@ -139,7 +150,7 @@ figure(4);clf
     title(tit);
     %vertline(fe);
     ylabel('Raw periodogram magnitude');
-    plotcmds([short,'_All_periodogram'],writeimgs)
+    fignames{4} = [short,'_All_periodogram'];
 
 figure(5);clf
     for i = 1:length(Ip)
@@ -152,7 +163,7 @@ figure(5);clf
     title(tit);
     %vertline(fe);
     ylabel('Raw periodogram magnitude');
-    plotcmds([short,'_All_periodogram_vs_T'],writeimgs)
+    fignames{5} = [short,'_All_periodogram_vs_T'];
 
 figure(6);clf
     for i = 1:length(Ip)
@@ -163,7 +174,7 @@ figure(6);clf
     legend(labels(Ip));
     title(tit);
     ylabel('Average periodogram magnitude');
-    plotcmds([short,'_All_periodogram_ave'],writeimgs)
+    fignames{6} = [short,'_All_periodogram_ave'];
 
 figure(7);clf
     for i = 1:length(Ip)
@@ -174,7 +185,7 @@ figure(7);clf
     legend(labels(Ip));
     title(tit);
     ylabel('Average periodogram magnitude');
-    plotcmds([short,'_All_periodogram_ave_vs_T'],writeimgs)
+    fignames{7} = [short,'_All_periodogram_ave_vs_T'];
 
 figure(8);clf
     for i = 1:length(Ip)
@@ -185,7 +196,7 @@ figure(8);clf
     legend(labels(Ip));
     title(tit);
     ylabel('Average periodogram magnitude');
-    plotcmds([short,'_All_periodogram_ave2'],writeimgs)
+    fignames{8} = [short,'_All_periodogram_ave2'];
 
 figure(9);clf
     for i = 1:length(Ip)
@@ -196,7 +207,12 @@ figure(9);clf
     legend(labels(Ip));
     title(tit);
     ylabel('Average periodogram magnitude');
-    plotcmds([short,'_All_periodogram_ave2_vs_T'],writeimgs)
+    fignames{9} = [short,'_All_periodogram_ave2_vs_T'];
+
+for i = 1:length(fignames)
+    figure(1);
+    plotcmds(fignames{i},writeimgs)
+end
 
 if (0)
     % Spectrograms

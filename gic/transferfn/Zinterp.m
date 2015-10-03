@@ -27,7 +27,8 @@ for k = 1:size(Z,2)
 	% Interpolate onto frequency grid
 	%Zi(:,k) = interp1(fe,Z(:,k),fg);
 	%Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end));
-	Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end),'linear','extrap');
+	%Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end),'linear','extrap');
+	Zi(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end),'linear');
 	% Set NaN values to zero
 	I = find(isnan(Zi(:,k)));
 	if (length(I) > 0)

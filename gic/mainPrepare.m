@@ -3,6 +3,24 @@ function [Bi,dBi,Ei,T] = prepareData(short,long)
 s = dbstack;
 n = s(1).name;
 
+if strcmp('MBB05',short)
+    % First month with data on all days.
+    start = '2008-08-05';
+    stop  = '2008-09-06';
+    fname = sprintf('data/iris/MBB05_%s_%s.mat',start,stop);
+    if ~exist(fname)
+        sta   = 'MBB05';
+        chas  = {'LFE','LFN','LFZ','LQE','LQN'};
+        mainPrepareIRIS(sta,start,stop,chas);
+    end
+    load(fname)
+    Bi = D(:,1:3);
+    Ei = D(:,4:5);
+    dBi = diff(Bi);
+    dBi = [dBi;dBi(end,:)];
+    return
+end
+
 if strcmp('obibmt',short)
     if ~exist('data/Pierre','dir')
         fprintf('%s: Directory data/Pierre required. See Google Drive/Presentation/2015-SANSA.\n',n);

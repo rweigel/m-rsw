@@ -2,7 +2,7 @@
 Example of direct computation of the transfer function in the frequency domain using <code>H(f) = Y(f)/U(f)</code>, where <code>Y(f)</code> is the DFT of <code>y(t)</code> and <code>U(f)</code> is the DFT of <code>u(t)</code>.  Neither the input or output contain noise.
 </p>
 <p>
-The input signal <code>y(t)</code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t-1</sup>, t = 1, ..., 100</code> with <code>h(0) = 0</code> to create the output signal <code>u(t)</code>. 
+The input signal <code>u(t)</code> of length <code>N = 10<sup>4</sup></code> is filtered using a discrete approximation of an exponential low-pass filter: <code>h(t) = (1-1/10)<sup>t-1</sup>, t = 1, ..., 100</code> with <code>h(0) = 0</code> to create the output signal <code>y(t)</code>. 
 </p>
 <br/>
 <img title="" src="figures/transferfn_demo_Timeseries.png" width="600px">
