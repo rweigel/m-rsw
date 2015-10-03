@@ -2,6 +2,69 @@ s = dbstack;
 n = s(1).name;
 
 D = readEDIXML('./data/iris/MBB05c_B6a.xml')
+feO = transpose(1./D.PERIOD);
+ZO = transpose(D.Z);
+mu_0 = 4*pi*1e-7; % Vacuum permeability
+
+for k = 1:size(ZO,2)
+    R0(:,k) = 1e6*(mu_0./(2*pi*feO)).*(abs(ZO(:,k)).^2);
+end
+
+fn = 0;
+fn = fn+1;
+figure(fn);clf;
+    loglog(NaN,0,'m','LineWidth',3);
+    hold on;grid on;
+    loglog(NaN,0,'b','LineWidth',3);
+    loglog(NaN,0,'k','LineWidth',3)
+    loglog(NaN,0,'r','LineWidth',3)
+    loglog(feO,abs(ZO(:,1)),'m','LineWidth',2);
+    loglog(feO,abs(ZO(:,2)),'b','LineWidth',2);
+    loglog(feO,abs(ZO(:,3)),'k','LineWidth',2);
+    loglog(feO,abs(ZO(:,4)),'r','LineWidth',2);
+    %loglog(f(2:end),abs(ZRi(2:end,1)),'k.');
+    title(tit)
+    legend('Z_{xx}','Z_{xy}','Z_{yx}','Z_{yy}')
+    xlabel('f [Hz]')
+    fname = sprintf('%s_other_Z_vs_f_%s-%s',short,ts1,ts2);
+    %plotcmds(fname,writeimgs)
+
+fn = fn+1;
+figure(fn);clf;
+    loglog(NaN,0,'m','LineWidth',3);
+    hold on;grid on;
+    loglog(NaN,0,'b','LineWidth',3);
+    loglog(NaN,0,'k','LineWidth',3)
+    loglog(NaN,0,'r','LineWidth',3)
+    loglog(1./feO,abs(ZO(:,1)),'m','LineWidth',2);
+    loglog(1./feO,abs(ZO(:,2)),'b','LineWidth',2);
+    loglog(1./feO,abs(ZO(:,3)),'k','LineWidth',2);
+    loglog(1./feO,abs(ZO(:,4)),'r','LineWidth',2);
+    %loglog(1./f(2:end),abs(ZRi(2:end,1)),'k.');
+    title(tit)
+    legend('Z_{xx}','Z_{xy}','Z_{yx}','Z_{yy}','Location','SouthEast')
+    xlabel('T [s]')
+    fname = sprintf('%s_other_Z_vs_T_%s-%s',short,ts1,ts2);
+    %plotcmds(fname,writeimgs)
+
+fn = fn+1;
+figure(fn);clf;
+    loglog(NaN,0,'m','LineWidth',3);
+    hold on;grid on;
+    loglog(NaN,0,'b','LineWidth',3);
+    loglog(NaN,0,'k','LineWidth',3)
+    loglog(NaN,0,'r','LineWidth',3)
+    loglog(1./feO,R0(:,1),'m','LineWidth',2);
+    loglog(1./feO,R0(:,2),'b','LineWidth',2);
+    loglog(1./feO,R0(:,3),'k','LineWidth',2);
+    loglog(1./feO,R0(:,4),'r','LineWidth',2);
+    %loglog(1./f(2:end),abs(ZRi(2:end,1)),'k.');
+    title(tit)
+    legend('\rho_{xx}','\rho_{xy}','\rho_{yx}','\rho_{yy}','Location','SouthEast')
+    xlabel('T [s]')
+    fname = sprintf('%s_other_Z_vs_T_%s-%s',short,ts1,ts2);
+    %plotcmds(fname,writeimgs)
+
 break
 
 N   = size(B,1);
