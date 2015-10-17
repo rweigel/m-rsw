@@ -12,7 +12,17 @@ else
 	Z = [ Z(1,:); Z(2:end,:) ; flipud(conj(Z(2:end,:))) ];
 end
 
-Ep(:,1) = ifft(fft(B(:,1)).*Z(:,1) + fft(B(:,2)).*Z(:,2));
-Ep(:,2) = ifft(fft(B(:,1)).*Z(:,3) + fft(B(:,2)).*Z(:,4));
-%Ep(:,1) = ifft(fft(B(:,2)).*Z(:,2));
-%Ep(:,2) = ifft(fft(B(:,1)).*Z(:,3));
+if (size(Z,2) == 1)
+	Ep(:,1) = ifft(fft(B(:,2)).*Z(:,1));
+	Ep(:,2) = -ifft(fft(B(:,1)).*Z(:,1));
+end
+
+if (size(Z,2) == 2)
+	Ep(:,1) = ifft(fft(B(:,2)).*Z(:,1));
+	Ep(:,2) = -ifft(fft(B(:,1)).*Z(:,2));
+end
+
+if (size(Z,2) == 4)
+	Ep(:,1) = ifft(fft(B(:,1)).*Z(:,1) + fft(B(:,2)).*Z(:,2));
+	Ep(:,2) = ifft(fft(B(:,1)).*Z(:,3) + fft(B(:,2)).*Z(:,4));
+end

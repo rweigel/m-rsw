@@ -1,0 +1,143 @@
+%   root PKDSAO data directory
+PKDSAOdata = setDataDir('PKDSAOdata');
+
+%add for use if your ebvironment variables are configured for your own dirs
+% PKDSAOdata= '/home/gauss/scratch/PKDSAOg/data/';
+
+
+%   define total time window to plot
+%  NOTE: YEAR is now given as a character string, denoting the
+%   directory to work in for ploting, not a numerical year 
+YEAR = '2004';
+DAYstart = 100;
+DAYend = 365;
+%  Number of days to put in one plot (only data for one page is loaded or
+%   saved at one time)
+% This is default ... full range on one page
+DaysPerPlot = DAYend-DAYstart+1;
+
+%  and sampling band
+BAND = 1;    %   1 or 40 (hz)
+
+%  SAVE = 1 to output SDM data structure for all segments
+SAVE = 0;
+%  set LOAD = 1 to load an already saved SDM structure
+%   need to run with SAVE = 1, LOAD = 0 for same time window, band before
+%   calling with LOAD = 1
+%  directory for to save plot results to
+SDMplotDir = 'SDMplots/';
+plotDIR = [PKDSAOdata YEAR '/' SDMplotDir];
+
+LOAD = 0;
+
+%    frac defines fraction of data that must be present to plot SDM
+%   results (this eliminates SDMs for which most data were missing)
+frac = .4;
+
+%   set SAVEplots = 1 to print figures to files in eps format;
+%   file names are generated automatically
+SAVEplots = 1;
+EQLINE = 0;
+
+%  ROOTS is a list of all plots that can be made at present ...
+%  mkPLOT is an indicator array which defines which plots to actually make
+%   ... just make them all
+mkPLOT = [1 1 1 1 1 1 0 0 0 0];
+
+%   set up TFTYPE for coherent nosie/residual estiamteoin
+setTFTYPE
+
+%  new plots can be added to this list, and instructions for computations
+%  what to plot, labels, etc., added to FTsdmPlotCases
+%   See FTsdmPlotCases for definitions of each of the available cases
+PLOTS = {'SDM Eigenvalues',...
+	'Magnetic Field SNR',...
+	'Electric Field SNR',...
+	'Canonical Coherences: PKD vs. SAO',...
+	'Canonical Coherences: H vs. E', ...
+	'Average Modes', ...
+	'Coherent Noise',...
+        'Coherent Between Sites',...
+        'Residuals: PKD',...
+        'Residuals: SAO'};
+
+binByHours = 0;
+
+%   ROOTS defines plot file name for each plot type; if new plot types
+%   are added to FTsdmPlotCases (and PLOTS list), add to this list also
+ROOTS = {'EVAL','MSNR','ESNR','CCPS','CCHE','MODE','CohN','CohS','ResP','ResS'};
+SdmAvgComputed = 0;
+
+%  loop over pages; first set beginging and ending day for each page
+for dayOne = DAYstart:DaysPerPlot:DAYend-1
+   dayEnd = dayOne+DaysPerPlot-1';
+   if LOAD
+       %  construct default file names, using same rules that SDM merge uses
+       %   for output
+       DataDir = [PKDSAOdata YEAR '/SDM/'];
+       if BAND == 40
+          cfile = [DataDir 'S0_' num2str(dayOne) '_' num2str(dayEnd) '_40Hz.mat'];
+       else
+         cfile = [DataDir 'S0_' num2str(dayOne) '_' num2str(dayEnd) '_1Hz.mat'];
+       end
+       eval(['load ' cfile])
+    else
+       %  SDMmerge returns cell arrays SDMS SDMHD containing all available
+       %   sdm processing results within selected time window.
+       [SDMS,SDMHD,TimeInDays,good] = SDMmerge(dayOne,dayEnd,YEAR,BAND,SAVE);
+    end
+
+    % set "good" indicator to 0 for segments with too few data
+    %   (this uses frac, defined above)
+    nFiles = length(SDMS);
+    NFS = [];
+    for k = 1:nFiles
+       if good(k)
+          NFS = [NFS SDMS{k}.nf(1)];
+       else
+          NFS = [NFS 0];
+       end
+    end
+    NFmin = max(NFS)*frac;
+    good(NFS<NFmin) = 0;
+
+    %   Period for each band in the SDM files .... this assumes
+    %   that all time segments are processed with the same
+    %   time windows and period bands (this is checked in SDMmerge)
+    k1 = min(find(good));
+    Period = SDMS{k1}.T;
+
+    nPLOTS = length(PLOTS);
+    %  loop over plots
+    for kPlot = 1:nPLOTS
+       if mkPLOT(kPlot)
+          if kPlot >= 7  
+             %  first call TFsdmPlotCases for calculation of coherent
+             %    noise and residuals
+             plotType = 'Coherent Noise Setup';
+             FTsdmPlotCases
+          end
+          %   FTsdmPlotCases does all of the computing and plot set up
+          %   for coherent noise cases there is a second call to FTsdmPlotCases
+          plotType = PLOTS{kPlot}
+          FTsdmPlotCases
+          %   multiplot does the actual plotting
+          if BAND == 1
+             for k = 1:length(OPTIONS)
+                OPTIONS{k}.DayLine = 0;
+             end
+          end
+          multiPlot(D,TimeInDays,Period,OPTIONS);
+          if EQLINE
+              plotEQ
+          end
+          if SAVEplots
+             %  print figure to eps file
+             %cfile = [ROOTS{kPlot} '_' num2str(dayOne) '-' num2str(dayEnd) '.eps'];
+             %eval(['print -depsc ' cfile]);
+             cfile = [plotDIR ROOTS{kPlot} '_' num2str(dayOne) '-' num2str(dayEnd) '.jpg'];
+             eval(['print -djpeg90 ' cfile]);
+          end
+       end
+    end
+end
