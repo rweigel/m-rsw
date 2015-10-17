@@ -1,4 +1,17 @@
 
+
+Transfer function
+http://ds.iris.edu/spud/emtf/1418021
+Method is "Robust Remote Reference".  Is this Method 5 [http://www.complete-mt-solutions.com/mtnet/papers/ClassicPapers/Jones_etal_1989_JGR.pdf], e.g., [http://onlinelibrary.wiley.com/doi/10.1029/JB094iB10p14215/abstract]?  Is there a link to the code?
+
+https://homepages.dias.ie/ajones/publications/67.pdf
+http://onlinelibrary.wiley.com/doi/10.1029/2000JB000119/full
+http://onlinelibrary.wiley.com/doi/10.1029/JB094iB10p14215/abstract
+
+Remote reference in Montana
+http://ds.iris.edu/mda/EM/MBB06
+
+
 curl "http://localhost:7999/sync?return=stream&source=http%3A%2F%2Fservice.iris.edu%2Firisws%2Ftimeseries%2F1%2Fquery%3Fnet%3DEM%26sta%3DMBB05%26loc%3D--%26cha%3DLFE%26correct%3Dtrue%26starttime%3D2008-09-19T00%3A00%3A00%26endtime%3D2008-09-29T00%3A00%3A00%26output%3Dascii"
 
 http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=MBB05&loc=--&cha=LFE&correct=true&starttime=2008-09-19T00:00:00&endtime=2008-09-29T00:00:00&output=ascii
