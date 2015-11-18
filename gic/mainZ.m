@@ -44,7 +44,7 @@ if (1)
     tx      = exp(-[0:Nf]/Nf);
     Ef(:,1) = filter([0,tx/sum(tx)],1,E(:,1));
     Ef(:,2) = filter([0,tx/sum(tx)],1,E(:,2));
-    tit       = 'Using filtered E to derive TF';
+    tit     = 'Using filtered E to derive TF';
 else
     label = 'nohp'
     Ef    = 0*E;
@@ -83,7 +83,6 @@ if strmatch('MBB05',short,'exact')
     % Add zero frequency
     ZA  = [0,0,0,0;ZA];
     feA = [0;feA];
-
 
     % Apparent Resistivity
     for k = 1:size(ZA,2)
@@ -137,7 +136,7 @@ if strmatch('MBB05',short,'exact')
     PA  = (180/pi)*atan2(imag(ZA),real(ZA));
 
     addpath('zplanewave')
-    rho_h = load('USGSModels/CP1_GroundModel.txt');
+    rho_h = load('USGSmodels/CP1_GroundModel.txt');
     s = 1./rho_h(:,1)';
     s(end+1) = s(end);
     h = rho_h(:,2)';
@@ -155,7 +154,7 @@ if strmatch('MBB05',short,'exact')
     fprintf('%s: y: Nf = %04d\tpe = %0.2f\n',n,Nf,pevU1(2))
     fprintf('\n')
 
-    rho_h = load('USGSModels/PT1_GroundModel.txt');
+    rho_h = load('USGSmodels/PT1_GroundModel.txt');
     s = 1./rho_h(:,1)';
     s(end+1) = s(end);
     h = rho_h(:,2)';
