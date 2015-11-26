@@ -15,8 +15,8 @@ if strcmp('MBB05',short)
         mainPrepareIRIS(sta,start,stop,chas);
     end
     load(fname)
-    Bi = D(:,1:3);
-    Ei = D(:,4:5);
+    Bi = D(:,1:3); % in T
+    Ei = D(:,4:5); % in V/m - see, e.g., header of data/iris/MBB05/MBB05_LQE_2009-05-24.txt
     dBi = diff(Bi);
     dBi = [dBi;dBi(end,:)];
     return
