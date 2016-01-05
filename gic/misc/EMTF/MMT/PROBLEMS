@@ -1,5 +1,0 @@
-When a channel is constant (dead) timing errors will
-come out NaN;  Dirty fix: for automated processing don't
-do timming error correction.
-
-
