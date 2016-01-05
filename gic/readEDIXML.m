@@ -13,6 +13,8 @@ function D = readEDIXML(fname)
 if (nargin == 0)
     % Sample file downloaded on 10-1-2015 from
     % http://ds.iris.edu/spudservice/data/1418020
+    % which is linked to from
+    % http://ds.iris.edu/spud/emtf/1418021
     fname = 'readEDIXML.xml';
 end
 
@@ -36,17 +38,27 @@ for z = 1:2:root.getLength-1
     end    
 end
 
+fname0 = fname;
+
+dnam  = fileparts(fname);
 fname = char(Filename);
 fname = regexprep(fname,'\..*','.mat');
+
+if (length(dnam) > 0) % If not local directory.
+    % Add path information
+    fname = [dnam,filesep(),fname];
+end
+
 if (exist(fname))
     fprintf('readEDIXML: Reading %s\n',fname);
     load(fname);
     return;
 end
 
+fprintf('readEDIXML: Reading %s\n',fname0);
+
 allListitems = xDoc.getElementsByTagName('Period');
 
-fprintf('readEDIXML: Reading %s\n',fname);
 for k = 0:allListitems.getLength-1
    
    thisListitem = allListitems.item(k);
@@ -141,7 +153,7 @@ for k = 0:allListitems.getLength-1
                 end        
             end
 
-            if strmatch(char(nm),'T','exact') % Impedance node
+            if strmatch(char(nm),'T','exact')
                 if strmatch(char(nm2),'Tx','exact')
                     tmp = str2num(char(dat));
                     Tx(k+1) = tmp(1)+j*tmp(2);
@@ -152,7 +164,7 @@ for k = 0:allListitems.getLength-1
                 end
             end
             
-            if strmatch(char(nm),'T.VAR','exact') % Impedance node
+            if strmatch(char(nm),'T.VAR','exact')
                 if strmatch(char(nm2),'Tx','exact')
                     TVARx(k+1) = str2num(char(dat));
                 end
@@ -204,9 +216,7 @@ D = struct(...
     'TVAR',[TVARx;TVARy],...
     'TINVSIGCOV',[TINVSIGCOVxx;TINVSIGCOVxy;TINVSIGCOVyx;TINVSIGCOVyy],...
     'TRESIDCOVzz',[TRESIDCOVzz]...
-    );
+);
 
-fname = char(Filename);
-fname = regexprep(fname,'\..*','.mat');
-fprintf('readEDIXML: Saving %s\n',fname);
-save(fname,'D');
+fprintf('readEDIXML: Saving %s\n',fname2);
+save(fname2,'D');

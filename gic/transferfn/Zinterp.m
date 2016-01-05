@@ -12,8 +12,8 @@ end
 
 if nargin == 3 && (length(fe) == length(fg))
 	if all(fe == fg)
-		warning('all(fe == fg) returned true.  No interpolation will be performed.');
-		Zio = Z;
+		fprintf('%s: all(fe == fg) returned true.  No interpolation will be performed.\n',n);
+		Zi = Z;
 		return;
 	end
 end

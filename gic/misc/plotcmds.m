@@ -26,9 +26,11 @@ if (nargin == 2 && ~writeimgs)
 	return
 end
 
-fprintf('plotcmds: Writing (using print)\n  %s.eps\n',base);
-print('-depsc',sprintf('%s.eps',base))
-fprintf('  Done.\n',base);
+if (0)
+	fprintf('plotcmds: Writing (using print)\n  %s.eps\n',base);
+	print('-depsc',sprintf('%s.eps',base))
+	fprintf('  Done.\n',base);
+end
 
 if exist('/usr/local/bin/convert') && ~isempty(findstr(computer,'LNX'))
 	fprintf('plotcmds: Writing (using convert on eps)\n  %s.png\n',base);

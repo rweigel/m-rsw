@@ -9,13 +9,14 @@ if strcmp('MBB05',short)
     stop  = '2008-09-06';
     fname = sprintf('data/iris/MBB05_%s_%s.mat',start,stop);
     if ~exist(fname)
+        % Instrument information: http://www.iris.washington.edu/mda/EM/MBB05
         sta   = 'MBB05';
         chas  = {'LFE','LFN','LFZ','LQE','LQN'};
         mainPrepareIRIS(sta,start,stop,chas);
     end
     load(fname)
-    Bi = D(:,1:3);
-    Ei = D(:,4:5);
+    Bi = D(:,1:3); % in T
+    Ei = D(:,4:5); % in V/m - see, e.g., header of data/iris/MBB05/MBB05_LQE_2009-05-24.txt
     dBi = diff(Bi);
     dBi = [dBi;dBi(end,:)];
     return
@@ -23,7 +24,7 @@ end
 
 if strcmp('obibmt',short)
     if ~exist('data/Pierre','dir')
-        fprintf('%s: Directory data/Pierre required. See Google Drive/Presentation/2015-SANSA.\n',n);
+        fprintf('%s: Directory data/Pierre required. See Google Drive/Presentations/2015-SANSA.\n',n);
     end
     load('data/Pierre/Data/MT/Obib/Obib_MT_20130706141500.mat')
 

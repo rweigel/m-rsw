@@ -3,8 +3,8 @@ function Cs = zplanewave(s,h,f)
 %
 %   C = ZPLANEWAVE(s,h,f)
 %   
-%   Surface impedance at positive frequencies f above layered
-%   conductors with conductivities s, thicknesses h, and geometry
+%   Surface transfer function in [m] at positive frequencies f [Hz] above layered
+%   conductors with conductivities s [1/Ohm-m], thicknesses h [m], and geometry
 %
 %   Conductivity    Thickness
 %
@@ -32,6 +32,10 @@ function Cs = zplanewave(s,h,f)
 %       C = 1/q, where
 %       q = sqrt(mu_0*s0*2*pi*f0)*(1+i)/sqrt(2)
 %
+%   C = Ex/(i*2*pi*f*Bx) = -Ey/(i*2*pi*f*Bx)
+%
+%   Apparent resistivity is r_a = |C|^2 mu_0*2*pi*f
+% 
 %   See also
 %       ZPLANEWAVE_TEST - Verify calculations
 %       ZPLANEWAVE_DEMO - Plot transfer fn, phase, and impulse response
