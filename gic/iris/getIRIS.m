@@ -18,12 +18,12 @@ for i = startdn:stopdn
     for j = 1:length(chas)
         ds = datestr(i,29);
         url = sprintf([url0,url1],sta,chas{j},ds,ds);
-	fprintf('%s\n',url);
         fname = sprintf('../data/iris/%s/%s_%s_%s.txt',sta,sta,chas{j},ds);
         if (exist(fname))
             fprintf('Found %s. Not re-downloading.\n',fname);
             continue
         end
+	fprintf('%s\n',url);
         fprintf('Downloading %s/%s on %s ...\n',sta,chas{j},ds);
         try
             [f,s] = urlwrite(url,fname);

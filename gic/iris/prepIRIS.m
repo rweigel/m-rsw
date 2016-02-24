@@ -4,7 +4,7 @@ startdn = datenum(start);
 stopdn  = datenum(stop);
 dir = '../data/iris';
 
-fnameout = sprintf('%s/%s/%s_%s_%s.mat',dir,sta,sta,start,stop);
+fnameout = sprintf('%s/%s/%s_%s_%s-original.mat',dir,sta,sta,start,stop);
 
 if exist(fnameout)
   return
@@ -39,5 +39,5 @@ for i = startdn:stopdn
 end
 
 save(fnameout,'D');
-fprintf('Wrote %s.\n',fname);
+fprintf('Wrote %s.\n',fnameout);
 

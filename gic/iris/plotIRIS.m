@@ -1,13 +1,20 @@
-function plotIRIS(sta,start,stop,chas)
+function plotIRIS(sta,start,stop,chas,type)
+
+if (nargin < 5)
+  type = 'original';
+end
 
 startdn = datenum(start);
 stopdn  = datenum(stop);
+ds1 = datestr(start,29);
+ds2 = datestr(stop,29);
+
+fname = sprintf('../data/iris/%s/%s_%s_%s-%s.mat',sta,sta,ds1,ds2,type);
+fprintf('Reading %s.\n',fname);
+load(fname);
 
 for j = 1:5
-  ds1 = datestr(start,29);
-  ds2 = datestr(stop,29);
-  fname = sprintf('../data/iris/%s/%s_%s_%s.mat',sta,sta,ds1,ds2);
-  load(fname);
+  figure(j);clf;
   t = startdn + [0:size(D,1)-1]/86400;
   if (i < 4)
     plot(t,D(:,j));
@@ -20,9 +27,9 @@ for j = 1:5
   datetick('x','mmm dd');
   set(gca,'XTickLabelRotation',45)
 
-  title(sprintf('Start Date: %s',start));
+  title(sprintf('Station: %s; Start Date: %s',sta,start));
   grid on;
-  fname = sprintf('../data/iris/%s/%s_%s_%s_%s.png',sta,sta,chas{j},ds1,ds2);
+  fname = sprintf('../data/iris/%s/%s_%s_%s_%s-%s.png',sta,sta,chas{j},ds1,ds2,type);
   print('-dpng',fname);
   fprintf('Wrote %s.\n',fname);
 end

@@ -10,6 +10,8 @@ function D = readEDIXML(fname)
 %   Rows of 4-row matrices correspond to subscripts xx, xy, yx, yy
 %   Rows of 2-row matrices correspond to subscripts x, y
 
+% Find URL using table at http://ds.iris.edu/spud/emtf
+% along with station id.
 if (nargin == 0)
     % Sample file downloaded on 10-1-2015 from
     % http://ds.iris.edu/spudservice/data/1418020
