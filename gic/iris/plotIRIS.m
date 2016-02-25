@@ -9,7 +9,7 @@ stopdn  = datenum(stop);
 ds1 = datestr(start,29);
 ds2 = datestr(stop,29);
 
-fname = sprintf('../data/iris/%s/%s_%s_%s-%s.mat',sta,sta,ds1,ds2,type);
+fname = sprintf('../data/iris/%s/%s-%s.mat',sta,sta,type);
 fprintf('Reading %s.\n',fname);
 load(fname);
 
@@ -29,7 +29,8 @@ for j = 1:5
 
   title(sprintf('Station: %s; Start Date: %s',sta,start));
   grid on;
-  fname = sprintf('../data/iris/%s/%s_%s_%s_%s-%s.png',sta,sta,chas{j},ds1,ds2,type);
+  fname = sprintf('../data/iris/%s/%s_%s-%s.png',...
+		  sta,sta,chas{j},type);
   print('-dpng',fname);
   fprintf('Wrote %s.\n',fname);
 end
