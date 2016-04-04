@@ -9,16 +9,16 @@ start = '2009-05-11';
 stop  = '2011-05-27';
 chas  = {'MFE','MFN','MFZ','MQE','MQN'};
 
-sta = 'WYH18';
-% Instrument information: http://www.iris.washington.edu/mda/EM/MBB05
-% http://ds.iris.edu/spud/emtf/1331436
-% XML
-% http://ds.iris.edu/spudservice/data/1331435
-
+sta = 'WYM20';
 sta = 'WAB05';
-% http://ds.iris.edu/spud/emtf/1428884
-% XML
-% http://ds.iris.edu/spudservice/data/1428884
+sta = 'CAM05';
+sta = 'MBB03';
+sta = 'NVN08';
+
+sta = 'UTN19';
+sta = 'CON20';
+sta = 'ORF03';
+sta = 'CON21';
 
 % Note: getIRISCatalog() does not work for stations with multiple
 % instruments such as MBB05.
@@ -31,11 +31,25 @@ for i = 1:length(C)
         break
     end
 end
+chas = unique(chas);
+if (length(chas) > 5)
+  error('Too many channels')
+end
 
-getIRIS(sta,start,stop,chas)
-prepIRIS(sta,start,stop,chas)
-plotIRIS(sta,start,stop,chas,'original')
-cleanIRIS(sta,start,stop,chas)
-plotIRIS(sta,start,stop,chas,'cleaned')
+if strcmp(sta,'MBB03')
+  start = '2010-10-25';
+  stop = '2010-11-16';
+end
+if strcmp(sta,'MBB03')
+  start = '2011-07-15';
+  stop = '2011-08-13';
+end
 
+units = 'counts';
+%units = 'natural';
 
+getIRIS(sta,start,stop,chas,units);
+prepIRIS(sta,start,stop,chas,units);
+plotIRIS(sta,start,stop,chas,units,'original');
+cleanIRIS(sta,start,stop,chas,units);
+plotIRIS(sta,start,stop,chas,units,'cleaned');

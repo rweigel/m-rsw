@@ -1,16 +1,15 @@
-function D = readEDIXML(fname)
+function D = readEDIXML(fname,base,regen)
 % READEDIXML Read EDI XML file
 %
 %   D = READEDIXML() - reads the test file readEDIXML.xml
 %
-%   D = READEDIXML(fname) - reads file fname
+%   D = READEDIXML(fname,base) - uses .mat version if regen = 0.
 %
-%   D is a structure with fields of matrices for PERIOD, Z, ZVAR, etc.
-%   Columns of matrices correspond to period.
-%   Rows of 4-row matrices correspond to subscripts xx, xy, yx, yy
-%   Rows of 2-row matrices correspond to subscripts x, y
+%   D = READEDIXML(siteid,base) - 
+%  
 
 % Find URL using table at http://ds.iris.edu/spud/emtf
+
 % along with station id.
 if (nargin == 0)
     % Sample file downloaded on 10-1-2015 from
@@ -20,11 +19,68 @@ if (nargin == 0)
     fname = 'readEDIXML.xml';
 end
 
-xDoc = xmlread(fname);
-% TODO: Use parseXML code
-% at http://www.mathworks.com/help/matlab/ref/xmlread.html
-% to simplify.
+verbose = 1;
+if nargin < 3
+  regen = 0;
+end
 
+fnameinf = [base,'/',base,'.mat'];
+
+if exist(fnameinf,'file') && regen == 0
+    if verbose
+	fprintf('readEDIXML: Reading %s\n',fnameinf);
+    end
+    load(fnameinf);
+    for i = 1:length(SiteId)
+	if strcmp(SiteId{i},fname)
+	    break
+	end
+    end
+    if verbose
+	fprintf('readEDIXML: Calling readEDIXML with fname of %s\n',Info{i}.FileName);
+    end
+    fname = Info{i}.FileName;
+else
+    fname = [base,'/',fname];
+end
+
+fnamemat = strrep(fname,'.xml','.mat');
+
+if ~exist(fnamemat,'file') || regen == 1
+    if verbose
+	fprintf('readEDIXML: Reading %s\n',fname);
+    end
+    So = xml2structure(fname);
+else
+    if verbose
+	fprintf('readEDIXML: Reading %s\n',fnamemat);
+    end
+    load(fnamemat);
+    return
+end
+
+Latitude = str2num(So.Site.Location{2}.Latitude);
+Longitude = str2num(So.Site.Location{2}.Longitude);
+
+Start = So.Site.Start;
+Stop = So.Site.End;
+DataQualityRating = str2num(So.Site.DataQualityNotes.Rating);
+
+if isstr(So.Site.DataQualityNotes.Comments)
+  DataQualityComments = So.Site.DataQualityNotes.Comments;
+else
+  DataQualityComments = So.Site.DataQualityNotes.Comments{end};
+end
+
+if isfield(So.Site.DataQualityNotes,'GoodFromPeriod')
+  DataQualityGoodPeriodRange = ...
+      [str2num(So.Site.DataQualityNotes.GoodFromPeriod),
+       str2num(So.Site.DataQualityNotes.GoodToPeriod)];
+else
+  DataQualityGoodPeriodRange = [];
+end
+
+xDoc = xmlread(fname);
 root = xDoc.getChildNodes.item(0).getChildNodes;
 
 for z = 1:2:root.getLength-1
@@ -35,15 +91,21 @@ for z = 1:2:root.getLength-1
         ProductId = root.item(z).getFirstChild.getData;
     end
     if strmatch(root.item(z).getNodeName,'Attachment')
-        % Assumes Filename is first node.
-        Filename = root.item(z).item(1).getFirstChild.getData;
-    end    
+        % Assumes FileName is first node.
+        FileName = root.item(z).item(1).getFirstChild.getData;
+    end
 end
 
+if ~exist('FileName')
+    if verbose
+      fprintf('readEDIXML: No filename found in xml. Using input filename.\n');
+    end
+    FileName = fname;
+end
 fname0 = fname;
 
 dnam  = fileparts(fname);
-fname = char(Filename);
+fname = char(FileName);
 fname = regexprep(fname,'\..*','.mat');
 
 if (length(dnam) > 0) % If not local directory.
@@ -51,13 +113,17 @@ if (length(dnam) > 0) % If not local directory.
     fname = [dnam,filesep(),fname];
 end
 
-if (exist(fname))
-    fprintf('readEDIXML: Reading %s\n',fname);
+if exist(fname) && regen == 0
+  if verbose
+    fprintf('readEDIXML: Found existing .mat version of .xml. Reading.\n',fname);
     load(fname);
     return;
+  end
 end
 
-fprintf('readEDIXML: Reading %s\n',fname0);
+if verbose
+  fprintf('readEDIXML: Reading %s\n',fname0);
+end
 
 allListitems = xDoc.getElementsByTagName('Period');
 
@@ -68,134 +134,134 @@ for k = 0:allListitems.getLength-1
    t = thisListitem.getAttribute('value');
    T(k+1) = str2num(char(t));
    
-   fprintf('readEDIXML: Reading data for T [sec] = %f\n',T(k+1));
+   %fprintf('readEDIXML: Reading data for T [sec] = %f\n',T(k+1));
    
    % Iterate over children of Period, e.g., Z, Z.VAR, ...
    for c = 1:2:thisListitem.getChildNodes.getLength-1
         el = thisListitem.getChildNodes.item(c);
-        nm = el.getNodeName;
+        nm = lower(el.getNodeName);
         
         % Iterate over children
         for i = 1:2:el.getChildNodes.getLength-1
-            nm2 = el.getChildNodes.item(i).getAttribute('name');
+            nm2 = upper(char(el.getChildNodes.item(i).getAttribute('name')));
             dat = el.getChildNodes.item(i).getFirstChild.getData;
 
-            out = el.getChildNodes.item(i).getAttribute('output');
-            in  = el.getChildNodes.item(i).getAttribute('input');
+            out = upper(char(el.getChildNodes.item(i).getAttribute('output')));
+            in  = upper(char(el.getChildNodes.item(i).getAttribute('input')));
 
-            if strmatch(char(nm),'Z','exact') % Impedance node
-                if strmatch(char(nm2),'Zxx','exact')
+            if strmatch(nm,'Z','exact') % Impedance node
+                if strmatch(nm2,'ZXX','exact')
                     tmp = str2num(char(dat));
                     Zxx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if strmatch(char(nm2),'Zxy','exact')
+                if strmatch(nm2,'ZXY','exact')
                     tmp = str2num(char(dat));
                     Zxy(k+1) = tmp(1)+j*tmp(2);
                 end
-                if strmatch(char(nm2),'Zyx','exact')
+                if strmatch(nm2,'ZYX','exact')
                     tmp = str2num(char(dat));
                     Zyx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if strmatch(char(nm2),'Zyy','exact')
+                if strmatch(nm2,'ZYY','exact')
                     tmp = str2num(char(dat));
                     Zyy(k+1) = tmp(1)+j*tmp(2);
                 end        
             end
             
-            if strmatch(char(nm),'Z.VAR','exact')
-                if strmatch(char(nm2),'Zxx','exact')
+            if strmatch(nm,'Z.VAR','exact')
+                if strmatch(nm2,'ZXX','exact')
                     ZVARxx(k+1) = str2num(char(dat));
                 end
-                if strmatch(char(nm2),'Zxy','exact')
+                if strmatch(nm2,'ZXY','exact')
                     ZVARxy(k+1) = str2num(char(dat));
                 end
-                if strmatch(char(nm2),'Zyx','exact')
+                if strmatch(nm2,'ZYX','exact')
                     ZVARyx(k+1) = str2num(char(dat));
                 end
-                if strmatch(char(nm2),'Zyy','exact')
+                if strmatch(nm2,'ZYY','exact')
                     ZVARyy(k+1) = str2num(char(dat));
                 end        
             end
-
-            if strmatch(char(nm),'Z.INVSIGCOV','exact')
-                if ~isempty(strmatch(char(out),'Hx','exact')) && ~isempty(strmatch(char(in),'Hx','exact'))
+            
+            if strmatch(nm,'Z.INVSIGCOV','exact')
+                if ~isempty(strmatch(out,'HX','exact')) && ~isempty(strmatch(in,'HX','exact'))
                     tmp = str2num(char(dat));
                     ZINVSIGCOVxx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hx','exact')) && ~isempty(strmatch(char(in),'Hy','exact'))
+                if ~isempty(strmatch(out,'HX','exact')) && ~isempty(strmatch(in,'HY','exact'))
                     tmp = str2num(char(dat));
                     ZINVSIGCOVxy(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hy','exact')) && ~isempty(strmatch(char(in),'Hx','exact'))
+                if ~isempty(strmatch(out,'HY','exact')) && ~isempty(strmatch(in,'HX','exact'))
                     tmp = str2num(char(dat));
                     ZINVSIGCOVyx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hy','exact')) && ~isempty(strmatch(char(in),'Hy','exact'))
+                if ~isempty(strmatch(out,'HY','exact')) && ~isempty(strmatch(in,'HY','exact'))
                     tmp = str2num(char(dat));
                     ZINVSIGCOVyy(k+1) = tmp(1)+j*tmp(2);
                 end        
             end
 
-            if strmatch(char(nm),'Z.RESIDCOV','exact')
-                if ~isempty(strmatch(char(out),'Ex','exact')) && ~isempty(strmatch(char(in),'Ex','exact'))
+            if strmatch(nm,'Z.RESIDCOV','exact')
+                if ~isempty(strmatch(out,'EX','exact')) && ~isempty(strmatch(in,'EX','exact'))
                     tmp = str2num(char(dat));                    
                     ZRESIDCOVxx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Ex','exact')) && ~isempty(strmatch(char(in),'Ey','exact'))
+                if ~isempty(strmatch(out,'EX','exact')) && ~isempty(strmatch(in,'EY','exact'))
                     tmp = str2num(char(dat));                    
                     ZRESIDCOVxy(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Ey','exact')) && ~isempty(strmatch(char(in),'Ex','exact'))
+                if ~isempty(strmatch(out,'EY','exact')) && ~isempty(strmatch(in,'EX','exact'))
                     tmp = str2num(char(dat));                    
                     ZRESIDCOVyx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Ey','exact')) && ~isempty(strmatch(char(in),'Ey','exact'))
+                if ~isempty(strmatch(out,'EY','exact')) && ~isempty(strmatch(in,'EY','exact'))
                     tmp = str2num(char(dat));                    
                     ZRESIDCOVyy(k+1) = tmp(1)+j*tmp(2);
                 end        
             end
 
-            if strmatch(char(nm),'T','exact')
-                if strmatch(char(nm2),'Tx','exact')
+            if strmatch(nm,'T','exact')
+                if strmatch(nm2,'TX','exact')
                     tmp = str2num(char(dat));
                     Tx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if strmatch(char(nm2),'Ty','exact')
+                if strmatch(nm2,'TY','exact')
                     tmp = str2num(char(dat));
                     Ty(k+1) = tmp(1)+j*tmp(2);
                 end
             end
             
-            if strmatch(char(nm),'T.VAR','exact')
-                if strmatch(char(nm2),'Tx','exact')
+            if strmatch(nm,'T.VAR','exact')
+                if strmatch(nm2,'TX','exact')
                     TVARx(k+1) = str2num(char(dat));
                 end
-                if strmatch(char(nm2),'Ty','exact')
+                if strmatch(nm2,'TY','exact')
                     TVARy(k+1) = str2num(char(dat));
                 end
             end            
 
-            if strmatch(char(nm),'T.INVSIGCOV','exact')
-                if ~isempty(strmatch(char(out),'Hx','exact')) && ~isempty(strmatch(char(in),'Hx','exact'))
+            if strmatch(nm,'T.INVSIGCOV','exact')
+                if ~isempty(strmatch(out,'HX','exact')) && ~isempty(strmatch(in,'HX','exact'))
                     tmp = str2num(char(dat));
                     TINVSIGCOVxx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hx','exact')) && ~isempty(strmatch(char(in),'Hy','exact'))
+                if ~isempty(strmatch(out,'HX','exact')) && ~isempty(strmatch(in,'HY','exact'))
                     tmp = str2num(char(dat));
                     TINVSIGCOVxy(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hy','exact')) && ~isempty(strmatch(char(in),'Hx','exact'))
+                if ~isempty(strmatch(out,'HY','exact')) && ~isempty(strmatch(in,'HX','exact'))
                     tmp = str2num(char(dat));
                     TINVSIGCOVyx(k+1) = tmp(1)+j*tmp(2);
                 end
-                if ~isempty(strmatch(char(out),'Hy','exact')) && ~isempty(strmatch(char(in),'Hy','exact'))
+                if ~isempty(strmatch(out,'HY','exact')) && ~isempty(strmatch(in,'HY','exact'))
                     tmp = str2num(char(dat));
                     TINVSIGCOVyy(k+1) = tmp(1)+j*tmp(2);
                 end        
             end
 
-            if strmatch(char(nm),'T.RESIDCOV','exact')
-                if ~isempty(strmatch(char(out),'Hz','exact')) && ~isempty(strmatch(char(in),'Hz','exact'))
+            if strmatch(nm,'T.RESIDCOV','exact')
+                if ~isempty(strmatch(out,'HZ','exact')) && ~isempty(strmatch(in,'HZ','exact'))
                     tmp = str2num(char(dat));
                     TRESIDCOVzz(k+1) = tmp(1)+j*tmp(2);
                 end
@@ -205,20 +271,55 @@ for k = 0:allListitems.getLength-1
    end
    
 end
+
+if exist('ZINVSIGCOVxx')
+    ZINVSIGCOV = [ZINVSIGCOVxx;ZINVSIGCOVxy;ZINVSIGCOVyx;ZINVSIGCOVyy];
+else
+     ZINVSIGCOV = [];
+end
+
+if exist('ZRESIDCOVxx')
+    ZRESIDCOV = [ZRESIDCOVxx;ZRESIDCOVxy;ZRESIDCOVyx;ZRESIDCOVyy];
+else
+    ZRESIDCOV = [];
+end
+if exist('TINVSIGCOVxx')
+    TINVSIGCOV = [TINVSIGCOVxx;TINVSIGCOVxy;TINVSIGCOVyx;TINVSIGCOVyy];
+else
+    TINVSIGCOV = [];
+end
+
+if exist('TINVSIGCOVxx')
+    TRESIDCOVzz = [TRESIDCOVzz];
+else
+    TRESIDCOVzz = [];
+end
+
+
 D = struct(...
+    'DataQualityRating',DataQualityRating,...
+    'DataQualityNotes',DataQualityComments,...
+    'DataQualityGoodPeriodRange',DataQualityGoodPeriodRange,...
+    'Latitude',Latitude,...
+    'Longitude',Longitude,...
+    'Start',Start,...
+    'Stop',Stop,...
     'Description',char(Description),...
     'ProductId',char(ProductId),...
-    'Filename',char(Filename),...
+    'FileName',char(FileName),...
     'PERIOD',T,...
     'Z',[Zxx;Zxy;Zyx;Zyy],...
     'ZVAR',[ZVARxx;ZVARxy;ZVARyx;ZVARyy],...
-    'ZINVSIGCOV',[ZINVSIGCOVxx;ZINVSIGCOVxy;ZINVSIGCOVyx;ZINVSIGCOVyy],...
-    'ZRESIDCOV',[ZRESIDCOVxx;ZRESIDCOVxy;ZRESIDCOVyx;ZRESIDCOVyy],...
+    'ZINVSIGCOV',ZINVSIGCOV,...
+    'ZRESIDCOV',ZRESIDCOV,...
     'T',[Tx;Ty],...
     'TVAR',[TVARx;TVARy],...
-    'TINVSIGCOV',[TINVSIGCOVxx;TINVSIGCOVxy;TINVSIGCOVyx;TINVSIGCOVyy],...
+    'TINVSIGCOV',TINVSIGCOV,...
     'TRESIDCOVzz',[TRESIDCOVzz]...
 );
 
-fprintf('readEDIXML: Saving %s\n',fname2);
-save(fname2,'D');
+fname2 = strrep(fname,'.xml','.mat');
+if verbose
+  fprintf('readEDIXML: Saving %s\n',fname2);
+end
+save(fname2,'D','So');

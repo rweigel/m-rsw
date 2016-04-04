@@ -1,0 +1,11 @@
+% Works: (ORF03, LQE, counts)
+% http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+Ic = imread('EM.ORF03..LQE.2007.244.00.00.00.000-2007.244.23.59.59.000.png');
+
+% Works: (ORF03, LQE, natural) 
+% http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&correct=true&units=DEF&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+% Note the inconsistent filename created by API.  Should start with EM.ORF03..?
+In = imread('ORF03.EM..LQE.2007.244.00.00.00.000-2007.244.23.59.59.000.correct.units-DEF.png');
+
+
+

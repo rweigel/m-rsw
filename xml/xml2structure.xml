@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <A atag="avalue"/>
+    <A atag="avalue"/>
+    <A atag="avalue"/>
+    <B btag="bvalue" btag2="bvalue2">B Content</B>
+    <C ctag="cvalue">
+        <C1>
+            <C12>C12 Content</C12>
+            <C12>C12 Content</C12>
+        </C1>
+        <C2>C2 Content</C2>
+    </C>
+    <D>D Content</D>
+</root>

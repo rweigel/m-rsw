@@ -1,12 +1,18 @@
-function [Z,fe] = transferfnFD(B,E,method,winfn,winopts)
+function [Z,fe] = transferfnFD(B,E,method,winfn,winopts,verbose)
 %TRANSFERFN - Compute transfer function
 %
 %   [Z,fe] = TRANSFERFN(B,E)
 
+if nargin < 6
+  verbose = 0;
+end
+
 s = dbstack;
 n = s(1).name;
 
-fprintf('%s: Computing transfer function.\n',n);
+if (verbose)
+  fprintf('%s: Computing transfer function.\n',n);
+end
 
 if (nargin < 3)
     method = 1;
@@ -19,6 +25,13 @@ if (nargin < 5)
 end
 
 N = size(B,1);
+if mod(N,2) ~= 0
+  if (verbose)
+    fprintf('%s: Removing last value to make # values even.\n');
+  end
+  B = B(1:end-1,:);
+  E = E(1:end-1,:);
+end
 f = [0:N/2]'/N;
 
 ftB = fft(B);
@@ -72,8 +85,10 @@ for j = 2:length(Ic)
     if isempty(winopts)
         s = dbstack;
         n = s(1).name;
-        fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+	if (verbose)
+	  fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                 n,fe(j),length(r),fa,fb)
+	end
     end
 
     % 1-D calculation

@@ -1,0 +1,73 @@
+function S = xml2structure(root,S,l)
+%XML2STRUCTURE
+%
+%   XML2STRUCTURE(filename) Returns a structure representation of XML file
+%   filename.
+%
+
+% TODO: Handle attribute nodes.
+
+if nargin < 2
+    xDoc = xmlread(root);
+    root = xDoc.getChildNodes.item(0).getChildNodes;
+    S = struct();
+    l = 0;
+end
+b = repmat(' ',l,1);
+
+first = 1;
+for z = 1:2:root.getLength-1
+    fieldname = char(root.item(z).getNodeName);
+    fieldname = strrep(fieldname,'.','_');
+    fprintf('%sNode: %s\n',b,fieldname);
+
+    clear attributes
+    if root.item(z).hasAttributes
+        attributes = struct();
+        fprintf('%sNode: %s has attributes.\n',b,fieldname);
+        for a = 0:root.item(z).getAttributes.getLength-1
+            if length(root.item(z).getAttributes.item(a)) > 0
+                attribname = char(root.item(z).getAttributes.item(a).getName);
+                attribdata = char(root.item(z).getAttributes.item(a).getNodeValue);
+
+                fprintf('%sname = value: %s=%s\n',...
+                    repmat('  ',l+1,1),attribname,attribdata);
+                attributes = setfield(attributes,[attribname,'_'],attribdata);
+            end
+        end
+        attributes
+    end
+    
+    if (root.item(z).getLength == 1)
+        if length(root.item(z).getFirstChild) == 0
+            data = '';
+        else
+            data = deblank(char(root.item(z).getFirstChild.getData));
+        end
+    else
+        tmp = xml2structure(root.item(z),struct(),1);
+        if isempty(fieldnames(tmp))
+            data = '';
+        else
+            data = tmp;
+        end
+    end
+    if exist('attributes')
+        data = {struct('attributes_',attributes),data};
+    end
+    if isfield(S,fieldname)
+        fprintf('%sAnother Node %s found at this level.\n',b,fieldname);
+        tmpo = getfield(S,fieldname);
+        if (first == 1)
+            tmpo = {tmpo};
+        end
+        if ~iscell(tmpo)
+            data = {tmpo,data};
+        else
+            tmpo{end+1} = data;
+            data = tmpo;
+        end
+        first = 0;
+    end
+    S = setfield(S,fieldname,data);
+end
