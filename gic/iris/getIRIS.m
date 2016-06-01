@@ -67,7 +67,7 @@ for i = startdn:stopdn
         %url = sprintf([url0,url1],sta,chas{j},ds1,ds2);
 	url = sprintf([url0,url1],sta,chas{j},ds,ds);
         fname = sprintf('%s/data/%s_%s_%s-%s.txt',dir,sta,chas{j},ds,units);
-        if (exist(fname))
+        if exist(fname) || exist([fname,'.gz'])
             fprintf('Found %s. Not re-downloading.\n',fname);
             continue
         end

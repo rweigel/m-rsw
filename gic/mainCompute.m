@@ -1,4 +1,4 @@
-function [f,pX,fA,pA,p] = mainCompute(B,dB,E);
+function [f,pX,fA,pA,p] = mainCompute(B,dB,E,ppd);
 
 fprintf('mainCompute: Computing periodograms\n');
 
@@ -17,8 +17,8 @@ f   = [0:N/2]'/N;
 
 % Averaged periodograms
 for i = 1:size(X,2)
-  tmp = X(1:86400*floor(size(X,1)/86400),i);
-  tmp = reshape(tmp,86400,size(tmp,1)/86400);
+  tmp = X(1:ppd*floor(size(X,1)/ppd),i);
+  tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
   % Remove any days with one or more NaNs.
   I = find(sum(isnan(tmp)) == 0); 
   fprintf('  Removed %d/%d days in column %d because of NaNs.\n',...

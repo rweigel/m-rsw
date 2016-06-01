@@ -1,0 +1,26 @@
+Works: (ORF03, LQE, counts)
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+Works: (ORF03, LQE, natural) 
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&correct=true&units=DEF&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+And find that visually, 1 count = 10^-11 V/m
+
+Does not work:
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=CON20&loc=--&correct=true&units=DEF&cha=LFN&starttime=2007-08-01T00:00:00&endtime=2007-08-01T23:59:59&output=plot
+
+Works:
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=CON20&loc=--&cha=LFN&starttime=2007-08-01T00:00:00&endtime=2007-08-01T23:59:59&output=plot
+
+Works: (ORF03, LFE, counts)
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LFE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+Works: (ORF03, LFE, natural)
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&correct=true&units=DEF&cha=LFE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+Works: (ORF03, LFE, counts)
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LFN&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+Works: (ORF03, LFN, natural) but note edge effects
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&correct=true&units=DEF&cha=LFN&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+

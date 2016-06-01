@@ -1,4 +1,4 @@
-function D = readEDIXML(fname,base,regen)
+function D = readEDIXML(fname,base,regen,verbose)
 % READEDIXML Read EDI XML file
 %
 %   D = READEDIXML() - reads the test file readEDIXML.xml
@@ -19,45 +19,53 @@ if (nargin == 0)
     fname = 'readEDIXML.xml';
 end
 
-verbose = 1;
 if nargin < 3
   regen = 0;
 end
+if nargin < 4
+    verbose = 0;
+end
 
-fnameinf = [base,'/',base,'.mat'];
-
-if exist(fnameinf,'file') && regen == 0
+% If siteid given
+if length(strfind(fname,'.xml')) == 0
     if verbose
-	fprintf('readEDIXML: Reading %s\n',fnameinf);
+	fprintf('readEDIXML: Looking for file associated with %s\n',fname);
     end
-    load(fnameinf);
-    for i = 1:length(SiteId)
-	if strcmp(SiteId{i},fname)
-	    break
+    list = dir(base); % List of all files in all directory
+    for i = 3:length(list)
+	el = list(i);
+	dirn = strsplit(list(i).name,'.');
+
+	if strcmp(dirn{2},fname)
+	    if verbose
+		fprintf('readEDIXML: Found file associated with %s\n',...
+			fname);
+	    end
+	    fname = [list(i).name,'/',strrep(list(i).name,'MT_TF_',''),'.xml'];
+	    D = readEDIXML(fname,base,regen);
+	    return;
+
 	end
+
     end
-    if verbose
-	fprintf('readEDIXML: Calling readEDIXML with fname of %s\n',Info{i}.FileName);
-    end
-    fname = Info{i}.FileName;
-else
-    fname = [base,'/',fname];
+end
+
+fname = sprintf('%s/%s',base,fname);
+if verbose
+    fprintf('readEDIXML: Reading %s\n',fname);
 end
 
 fnamemat = strrep(fname,'.xml','.mat');
-
-if ~exist(fnamemat,'file') || regen == 1
-    if verbose
-	fprintf('readEDIXML: Reading %s\n',fname);
-    end
-    So = xml2structure(fname);
-else
-    if verbose
-	fprintf('readEDIXML: Reading %s\n',fnamemat);
-    end
-    load(fnamemat);
-    return
+if exist(fnamemat) && regen == 0
+  if verbose
+      fprintf('readEDIXML: Found existing .mat version of .xml. Reading.\n',...
+	      fname);
+      load(fnamemat);
+      return;
+  end
 end
+
+So = xml2structure(fname);
 
 Latitude = str2num(So.Site.Location{2}.Latitude);
 Longitude = str2num(So.Site.Location{2}.Longitude);
@@ -113,20 +121,9 @@ if (length(dnam) > 0) % If not local directory.
     fname = [dnam,filesep(),fname];
 end
 
-if exist(fname) && regen == 0
-  if verbose
-    fprintf('readEDIXML: Found existing .mat version of .xml. Reading.\n',fname);
-    load(fname);
-    return;
-  end
-end
-
-if verbose
-  fprintf('readEDIXML: Reading %s\n',fname0);
-end
-
 allListitems = xDoc.getElementsByTagName('Period');
 
+j = sqrt(-1);
 for k = 0:allListitems.getLength-1
    
    thisListitem = allListitems.item(k);
@@ -318,8 +315,8 @@ D = struct(...
     'TRESIDCOVzz',[TRESIDCOVzz]...
 );
 
-fname2 = strrep(fname,'.xml','.mat');
+
 if verbose
-  fprintf('readEDIXML: Saving %s\n',fname2);
+  fprintf('readEDIXML: Saving %s\n',fnamemat);
 end
-save(fname2,'D','So');
+save(fnamemat,'D','So');

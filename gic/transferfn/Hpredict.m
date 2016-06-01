@@ -6,7 +6,8 @@ function Ep = Hpredict(t,H,B)
 
 % When there are acausal terms t < 0, need to shift output of FILTER
 % which only allows t >= 0 terms.
-N       = find(t == 0);
+N       = find(t >= 0);
+N = N(1);
 tmp     = filter(H(:,2),1,B(:,2));
 % Pad prediction with NaNs to make prediction array same length.
 Ep(:,1) = [tmp(N:end);repmat(NaN,N-1,1)];

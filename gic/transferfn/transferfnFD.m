@@ -1,37 +1,19 @@
-function [Z,fe] = transferfnFD(B,E,method,winfn,winopts,verbose)
-%TRANSFERFN - Compute transfer function
-%
-%   [Z,fe] = TRANSFERFN(B,E)
+function [Z,fe] = transferfnFD(B,E,method,winfn,winopts)
 
 if nargin < 6
-  verbose = 0;
+    verbose = 0;
 end
-
-s = dbstack;
-n = s(1).name;
-
-if (verbose)
-  fprintf('%s: Computing transfer function.\n',n);
-end
-
 if (nargin < 3)
     method = 1;
 end
 if (nargin < 4)
-    winfn = 1;
+    winfn = 'rectangular';
 end
 if (nargin < 5)
     winopts = [];
 end
 
 N = size(B,1);
-if mod(N,2) ~= 0
-  if (verbose)
-    fprintf('%s: Removing last value to make # values even.\n');
-  end
-  B = B(1:end-1,:);
-  E = E(1:end-1,:);
-end
 f = [0:N/2]'/N;
 
 ftB = fft(B);
@@ -39,23 +21,15 @@ ftE = fft(E);
 ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
-%if strmatch(winfn,'rectangular')
 if ~isempty(winopts)
+    df = winopts;
     % Smooth in frequency domain with rectangular window.
-    if isempty(winopts)
-        % TODO: When df = 0, the for loop over frequencies is not needed.
-        % Zxy1 can be computed using
-        % ( ftE(:,1).*conj(ftB(:,2)) ) ./ ( ftB(:,2).*conj(ftB(:,2)) )
-        % and similar for Zyx1.
-        df = 1;
-    else
-        df = winopts;
-    end
     Ic = [df+1:df:length(f)-df]; % Indicies of center points
     for j = 1:length(Ic)
         fe(j) = f(Ic(j)); % Evaluation frequency
-        Ne(j) = df;       % Number of points to right and left used in window.
+        Ne(j) = df;        % Number of points to right and left used in window.
     end
+
     % Add zero frequency.
     fe = [0,fe]';
     Ne = [0,Ne]';
@@ -64,8 +38,7 @@ else
     [fe,Ne,Ic] = evalfreq(f);
 end
 
-for j = 2:length(Ic)
-
+for j = 1:length(Ic)
     if strmatch(winfn,'parzen')
         W = parzenwin(2*Ne(j)+1); 
         W = W/sum(W);
@@ -82,21 +55,14 @@ for j = 2:length(Ic)
 
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
-    if isempty(winopts)
-        s = dbstack;
-        n = s(1).name;
-	if (verbose)
-	  fprintf('%s: Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
-                n,fe(j),length(r),fa,fb)
-	end
+    if verbose
+    fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+            fe(j),length(r),fa,fb)
     end
-
-    % 1-D calculation
+    
     Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
     Zyx1(j) = sum(W.*ftE(r,2).*conj(ftB(r,1)))/sum(W.*ftB(r,1).*conj(ftB(r,1)));
 
-    % 2-D calculation
-    % Equation 4.17 of Simpson and Bahr 2005.
     BxBx(j) = sum(W.*ftB(r,1).*conj(ftB(r,1))); 
     ByBx(j) = sum(W.*ftB(r,2).*conj(ftB(r,1))); 
     ExBx(j) = sum(W.*ftE(r,1).*conj(ftB(r,1))); 
@@ -128,6 +94,7 @@ if (method == 1)
     Z(:,3) = Zyx1.';
     Z(:,4) = zeros(length(Zxy1),1);
 end
+
 if (method == 2)
     Z(:,1) = Zxx.';
     Z(:,2) = Zxy.';

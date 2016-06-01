@@ -1,14 +1,15 @@
 % 1-second B and E data from http://www.kakioka-jma.go.jp/metadata?locale=en
-
-bname  = sprintf('data/%s/Bfile1.mat',long);
-bname2 = sprintf('data/%s/Bfile2.mat',long);
-
-ename  = sprintf('data/%s/Efile1.mat',long);
-ename2 = sprintf('data/%s/Efile2.mat',long);
+base   = '../data/jma';
+bname  = sprintf('%s/%s/Bfile1.mat',base,short);
+bname2 = sprintf('%s/%s/Bfile2.mat',base,short);
+ename  = sprintf('%s/%s/Efile1.mat',base,short);
+ename2 = sprintf('%s/%s/Efile2.mat',base,short);
 
 base  = 'http://mag.gmu.edu/git-data/m-rsw/gic/';
 
-d = sprintf('data/%s',long);
+GREP = 'grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt';
+
+d = sprintf('%s/%s',base,long);
 if ~exist(d,'dir')
     mkdir(d)
 end
@@ -17,24 +18,19 @@ if ~exist(bname2)
     fprintf('%s: Downloading %s\n',n,[base,bname]);
     [f,s] = urlwrite([base,bname],bname);
     if ~exist(bname)
-        % Need to download zip files here.
-        % wget -r -l1 http://mag.gmu.edu/git-data/m-rsw/gic/data/memambetsu/zip/
-        % mkdir data/memambetsu/zip/
-        % mkdir data/memambetsu/unzip/
-        % mv mag.gmu.edu/git-data/m-rsw/gic/data/memambetsu/zip data/memambetsu/zip/
-        % cd data/memambetsu/unzip/; unzip ../zip/*.zip
         Bfile = [];
         for i = 1:31
-            fname = sprintf('data/%s/unzip/%s200612%02ddsec.sec',long,short,i);
-            fprintf('%s: Reading %s\n',n,fname);
-            com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
+            fname = sprintf('%s/%s/unzip/%s200612%02ddsec.sec',...
+			    base,long,short,i);
+            fprintf('Reading %s\n',fname);
+            com = sprintf(GREP,fname);
             system(com);
             load tmp.txt
             Bfile = [Bfile;tmp];
         end
         save(bname,'Bfile')
     else
-        fprintf('%s: Reading %s\n',n,bname);
+        fprintf('Reading %s\n',bname);
         load(bname)
     end
 end
@@ -46,16 +42,17 @@ if ~exist(ename2)
         % Need to download zip files here.
         Efile = [];
         for i = 1:31
-            fname = sprintf('data/%s/unzip/%s200612%02ddgef.sec',long,short,i);
-            fprintf('%s: Reading %s\n',n,fname);
-            com = sprintf('grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt',fname);
-            system(com);
+            fname = sprintf('%s/%s/unzip/%s200612%02ddgef.sec',...
+			    base,long,short,i);
+            fprintf('Reading %s\n',fname);
+            com = sprintf(GREP,fname);
+	    system(com);
             load tmp.txt
             Efile= [Efile;tmp];
         end
         save(ename,'Efile')
     else
-        fprintf('%s: Reading %s\n',n,ename);
+        fprintf('Reading %s\n',ename);
         load(ename)
     end
 end
@@ -89,7 +86,7 @@ if ~exist(bname2)
         Bg = B(Ig,i);
         tg = ti(Ig);
         Bi(:,i) = interp1(tg,Bg,ti);
-        fprintf('%s: Interpolated over %d of %d points in component %d\n',n,Nb,N,i)
+        fprintf('Interpolated over %d of %d points in component %d\n',Nb,N,i)
     end
 
     dB = diff(B);
@@ -103,7 +100,7 @@ if ~exist(bname2)
         dBg = dB(Ig,i);
         tg = ti(Ig);
         dBi(:,i) = interp1(tg,dBg,ti);
-        fprintf('%s: Interpolated over %d of %d points in component %d\n',n,Nb,N,i)
+        fprintf('Interpolated over %d of %d points in component %d\n',Nb,N,i)
     end
 
     B   = B(1:86400*25,:);
@@ -120,7 +117,7 @@ if ~exist(bname2)
 
     save(bname2,'B','Bi','dB','dBi')
 else
-    fprintf('%s: Reading %s\n',n,bname2);
+    fprintf('Reading %s\n',bname2);
     load(bname2)
 end
 
@@ -167,7 +164,7 @@ if ~exist(ename2)
 
     save(ename2,'E','Ei')
 else
-    fprintf('%s: Reading %s\n',n,ename2);
+    fprintf('Reading %s\n',ename2);
     load(ename2)
 end
 

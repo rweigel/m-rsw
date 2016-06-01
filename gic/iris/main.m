@@ -1,4 +1,6 @@
 % Instrument information: http://www.iris.washington.edu/mda/EM/MBB05
+addpath('../../plot/')
+
 sta = 'MBB05';
 start = '2008-06-02';
 stop  = '2011-05-27';
@@ -19,6 +21,8 @@ sta = 'UTN19';
 sta = 'CON20';
 sta = 'ORF03';
 sta = 'CON21';
+sta = 'ORF09';
+sta = 'ORF10';
 
 % Note: getIRISCatalog() does not work for stations with multiple
 % instruments such as MBB05.
@@ -53,3 +57,5 @@ prepIRIS(sta,start,stop,chas,units);
 plotIRIS(sta,start,stop,chas,units,'original');
 cleanIRIS(sta,start,stop,chas,units);
 plotIRIS(sta,start,stop,chas,units,'cleaned');
+
+

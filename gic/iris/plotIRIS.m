@@ -20,30 +20,27 @@ if ~exist(dir2)
     system(sprintf('mkdir -p %s',dir2));
 end
 
+Nc = length(chas); % chas input is overwritten by variable in file
 fname = sprintf('%s/data/%s-%s-%s.mat',dir,sta,units,type);
 fprintf('Reading %s.\n',fname);
 load(fname);
 
-for j = 1:5
-  figure(j);
-  if (~overlay),clf;,else,hold on,end
-  t = startdn + [0:size(D,1)-1]/86400;
-  if (i < 4)
-    plot(t,D(:,j));
-    legend([chas{j},' [Counts]']);
-    else
-    plot(t,D(:,j));
-    legend([chas{j},' [Counts]']);
+for j = 1:Nc
+  figurex(j);
+  if (overlay == 0)
+      clf;
+  else
+      hold on;
   end
-  set(gca,'XTick',[startdn:1:stopdn])
+  t = startdn + [0:size(D,1)-1]/86400;
+  plot(t,D(:,j),'k');
+  legend([chas{j},' [Counts]']);
   datetick('x','mmm dd');
-  set(gca,'XTickLabelRotation',45)
-
-  title(sprintf('Station: %s; Start Date: %s',sta,start));
+  title(sprintf('%s',sta));
   grid on;
+  vertline([startdn:1:stopdn+1],[0.85,0.85,0.85],1,':');
   fname = sprintf('../data/iris/%s/figures/%s_%s-%s-%s.png',...
 		  sta,sta,chas{j},units,type);
   print('-dpng',fname);
   fprintf('Wrote %s.\n',fname);
 end
-

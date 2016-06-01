@@ -6,157 +6,57 @@ addpath('../time');
 addpath('./transferfn');
 addpath('./misc');
 
-writeimgs = 1;
+mainInfo;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Obib Under Wire (SANSA)';
-short = 'obibdm';
-agent = 'SANSA';
-%start = '06-Jul-2013 11:03:00';
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+writeimgs = 0;
+input     = 'dB';
+dim       = 2;
+hpNf      = 10000;
+hpNf      = 0;
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Obib 100m Over from Wire (SANSA)';
-short = 'obibmt';
-agent = 'SANSA';
-%start = '06-Jul-2013 14:15:00';
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+label      = sprintf('input-%s_dim-%d_hp-%d',input,dim,hpNf); 
+consolestr = sprintf('\n  Site: %s;\n  Agency: %s;\n  Label: %s',...
+		     short,agent,label);
+labelt     = regexprep(label,'_',', ');
+labelt     = regexprep(labelt,'-','=');
+titlestrs  = sprintf('%s/%s',short,agent); % Short title string
+titlestr   = sprintf('%s/%s; %s',long,agent,labelt); 
 
-base   = 'SPUD_bundle_2016-03-23T17.38.28';
+labels  = {'B_x','B_y','B_z','dB_x/dt','dB_y/dt','dB_z/dt','E_x','E_y'};
+labels2 = {'B_x','B_y','B_z','dBxdt','dBydt','Bzdt','E_x','E_y'};
+cs      = ['r','g','b','r','g','b','m','k'];
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Arlington Heights, WA, USA';
-short = 'WAB05';
-agent = 'IRIS';
-base  = 'SPUD_bundle_2016-03-23T17.38.28';
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-long  = 'Kentland Farm, Blacksburg, VA';
-short = 'MBB05';
-agent = 'IRIS';
-base  = 'SPUD_bundle_2016-03-23T17.38.28';
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% http://www.iris.washington.edu/mda/EM/UNT19
-long   = 'Browns Park, UT';
-short  = 'UTN19';
-agent  = 'IRIS';
-% 1e-11 to go from counts to T; 1e9 to convert from T to nT.
-sfB   = [1e-11,1e-11,1e-11]*1e9;
-% 3.0e-5 to go from counts to mV/km from iris/scale/scalefactor.m analysis.
-sfE   = [3.0e-5,3.0e-5];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% http://www.iris.washington.edu/mda/EM/CON20
-long   = 'Nipple Gulch, CO';
-short  = 'CON20';
-agent  = 'IRIS';
-% 1e-11 to go from counts to T; 1e9 to convert from T to nT.
-sfB   = [1e-11,1e-11,1e-11]*1e9;
-% 3.0e-5 to go from counts to mV/km from iris/scale/scalefactor.m analysis.
-sfE   = [3.0e-5,3.0e-5];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% http://www.iris.washington.edu/mda/EM/CON21
-long   = 'Slater Creek, CO';
-short  = 'CON21';
-agent  = 'IRIS';
-
-% 1e-11 to go from counts to T; 1e9 to convert from T to nT.
-sfB   = [1e-11,1e-11,1e-11]*1e9;
-% 3.0e-5 to go from counts to mV/km from iris/scale/scalefactor.m analysis.
-sfE   = [3.0e-5,3.0e-5];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% http://www.iris.washington.edu/mda/EM/ORF03
-long   = '';
-short  = 'ORF03';
-agent  = 'IRIS';
-% 1e-11 to go from counts to T; 1e9 to convert from T to nT.
-sfB   = [1e-11,1e-11,1e-11]*1e9;
-% 3.0e-5 to go from counts to mV/km from iris/scale/scalefactor.m analysis.
-sfE   = [3.0e-5,3.0e-5];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-fprintf('main: Working on %s\n',short);
+fprintf('main: Working on %s\n',consolestr);
 
 % Read data
-[B,dB,E,dn]  = mainPrepare(short, agent);
+[B,dB,E,dn] = mainPrepare(short, agent);
+
+if ~isempty(Ikeep)
+    B = B(Ikeep,:);
+    dB = dB(Ikeep,:);
+    E = E(Ikeep,:);
+    dn = dn(Ikeep);
+end
 
 % Scale data
 for i = 1:size(B,2)
   B(:,i)  = B(:,i)*sfB(i);
   dB(:,i) = dB(:,i)*sfB(i);
-  ifB(i) = find(~isnan(B(:,i)),1,'first'); % First non-NaN
-  ilB(i) = find(~isnan(B(:,i)),1,'last');  % Last non-NaN
 end
 for i = 1:size(E,2)
   E(:,i) = E(:,i)*sfE(i); 
-  ifE(i) = find(~isnan(E(:,i)),1,'first'); % First non-NaN
-  ilE(i) = find(~isnan(E(:,i)),1,'last');  % Last non-NaN
 end
+[B,dB,E,dn] = mainInterpolate(B,dB,E,dn);
+xlab = ['Days since ',datestr(dn(1),31)];
+ts1  = datestr(dn(1),29); % Time string for filename
+ts2  = datestr(dn(end),29);
 
-io= max([ifB,ifE]);
-il = min([ilB,ilE]) - 1; % -1 so dB has no NaNs.
+[fX,pX,fA,pA,p] = mainCompute(B,dB,E,ppd);
+t = [0:size(B,1)-1]'/ppd;
 
-% Remove first and last day (for now).
-B  = B([io:il],:);
-dB = dB([io:il],:);
-E  = E([io:il],:);
-dn = dn([io:il]);
+fn = 0;
 
-% Interpolate over bad points
-for i = 1:size(B,2)
-  ti = [1:size(B,1)]';
-  yi = B(:,i);
-  Ig = find(isnan(yi) == 0);
-  Nnan = size(B,1)-length(Ig);
-  Bnaninfo(1,i) = Nnan;
-  Bnaninfo(2,i) = max(diff(Ig));
-  fprintf('Found %d NaNs in component %d of B. ',Nnan,i);
-  fprintf('Max gap = %d\n',Bnaninfo(2,i));
-  Bi(:,i) = interp1(ti(Ig),yi(Ig),ti);
-end
-for i = 1:size(dB,2)
-  ti = [1:size(dB,1)]';
-  yi = dB(:,i);
-  Ig = find(isnan(yi) == 0);
-  dBnaninfo(1,i) = Nnan;
-  dBnaninfo(2,i) = max(diff(Ig));
-  fprintf('Found %d NaNs in component %d of dB. ',Nnan,i);
-  fprintf('Max gap = %d\n',Bnaninfo(2,i));
-  dBi(:,i) = interp1(ti(Ig),yi(Ig),ti);
-end
-for i = 1:size(E,2)
-  ti = [1:size(E,1)]';
-  yi = E(:,i);
-  Ig = find(isnan(yi) == 0);
-  Enaninfo(1,i) = length(Ig);
-  Enaninfo(2,i) = max(diff(Ig));
-  Nnan = size(B,1)-length(Ig);
-  Enaninfo(1,i) = Nnan;
-  Enaninfo(2,i) = max(diff(Ig));
-  fprintf('Found %d NaNs in component %d of E. ',Nnan,i);
-  fprintf('Max gap = %d\n',Bnaninfo(2,i));
-  Ei(:,i) = interp1(ti(Ig),yi(Ig),ti);
-end
-
-B = Bi;
-dB = dBi;
-E = Ei;
-
-[f,pX,fA,pA,p] = mainCompute(B,dB,E);
-
-fname = sprintf('data/%s/%s/main_%s',lower(agent),short,short);
-fprintf('main: Saving %s.mat\n',fname);
-save(fname);
-
-mainPlot
+%mainPlot
 mainZ
 mainZPlot
 

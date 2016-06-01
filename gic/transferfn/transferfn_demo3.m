@@ -4,15 +4,17 @@ addpath('../../time/')
 addpath('../../stats/')
 addpath('../misc/')
 
-writeimgs = 1;
+writeimgs = 0;
 
-tau = 10;  % Filter decay constant
-N   = 1e4; % Simulation length
-Nc  = 51;  % Comment out to use Nc = length(h)
-df  = 50;  % Width of rectangualar window
-nb  = 0.0; % Noise in B
-ne  = 0.5; % Noise in E
-ndb = 0.0; % Noise in dB
+tau  = 10;  % Filter decay constant
+Ntau = 10;  % Number of filter coefficients = Ntau*tau + 1
+N    = 2e4; % Simulation length
+Nc   = 51;  
+df   = 50;  % Width of rectangualar window
+Nss  = 4;   % Ntau*tau*Nss
+nb   = 0.0; % Noise in B
+ne   = 0.0; % Noise in E
+ndb  = 0.0; % Noise in dB
 
 paramstring = sprintf('_ne_%.1f',ne);
 
@@ -20,7 +22,7 @@ paramstring = sprintf('_ne_%.1f',ne);
 % x_0 = 0 dx_0/dt = 0 approximated using forward Euler.
 dt = 1;
 gamma = (1-dt/tau);
-for i = 1:10*tau
+for i = 1:Ntau*tau
     h(i,1) = gamma^(i-1);
     t(i,1) = dt*(i-1);
 end
@@ -41,7 +43,7 @@ Pxy = (180/pi)*atan2(imag(Zxy),real(Zxy));
 
 % Add extra values to get nice length
 % (because we cut off non-steady state).
-N = N + 2*length(h);
+N = N + Nss*length(h);
 
 % Noise
 NE  = [ne*randn(N,1),ne*randn(N,1)];
@@ -55,28 +57,47 @@ B(:,2) = randn(N,1);
 E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
 E(:,1) = filter(h,1,B(:,2)+NB(:,2)) + NE(:,1);
 
-dB = diff(B);
-dB = [dB;dB(end,:)];
-
-% Remove non-steady-state part of signals
-B  = B(2*length(h)+1:end,:);
-E  = E(2*length(h)+1:end,:);
-dB = dB(2*length(h)+1:end,:);
-
-NE  = NE(2*length(h)+1:end,:);
-NB  = NB(2*length(h)+1:end,:);
-NdB = NdB(2*length(h)+1:end,:);
-
-N = size(B,1);
-
-if (0)
 for i = 1:size(B,2)
-    B(:,i)  = B(:,i)  - mean(B(:,i));
-    dB(:,i) = dB(:,i) - mean(dB(:,i));
+    B(:,i)  = B(:,i) - mean(B(:,i));
 end
 for i = 1:size(E,2)
     E(:,i) = E(:,i) - mean(E(:,i));
 end
+
+dB = diff(B);
+dB = [dB;dB(end,:)];
+
+% Remove non-steady-state part of signals
+B  = B(Nss*length(h)+1:end,:);
+E  = E(Nss*length(h)+1:end,:);
+dB = dB(Nss*length(h)+1:end,:);
+
+NE  = NE(Nss*length(h)+1:end,:);
+NB  = NB(Nss*length(h)+1:end,:);
+NdB = NdB(Nss*length(h)+1:end,:);
+
+N = size(B,1);
+
+if (0) % Window in time domain.
+    for i = 1:size(B,2)
+	Bw(:,i) = B(:,i).*parzenwin(length(B));
+    end
+    for i = 1:size(E,2)
+	Ew(:,i) = E(:,i).*parzenwin(length(E));
+    end
+else
+    Bw = B;
+    Ew = E;
+end
+
+if (0)
+    for i = 1:size(B,2)
+	B(:,i)  = B(:,i)  - mean(B(:,i));
+	dB(:,i) = dB(:,i) - mean(dB(:,i));
+    end
+    for i = 1:size(E,2)
+	E(:,i) = E(:,i) - mean(E(:,i));
+    end
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -99,16 +120,18 @@ ftNE  = pX(:,11:12);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Time domain
 [ZBL,feBL,HBL,tBL] = transferfnTD(B,E,Nc);
-HBL2  = Z2H(feBL,ZBL);
-ZBLi  = Zinterp(feBL,ZBL,fh);
-EpBL  = Hpredict(tBL,HBL,B);
-EpBL2 = Zpredict(feBL,ZBL,B);
-
+HBL2   = Z2H(feBL,ZBL);
+ZBLi   = Zinterp(feBL,ZBL,fh);
+EpBL   = Hpredict(tBL,HBL,B);
+EpBL2  = Zpredict(feBL,ZBL,B);
 ZxyBL  = ZBL(:,2);
 ZxyBLi = ZBLi(:,2);
 hBL    = HBL(:,2);
 EyBL   = EpBL(:,2);
 EyBL2  = EpBL2(:,2);
+
+EyBL(1:Nc-1) = NaN;
+peBL = pe_nonflag(E(:,2),EyBL);
 
 % Transfer Function Phase
 PxyBL  = (180/pi)*atan2(imag(ZxyBL),real(ZxyBL));
@@ -117,8 +140,7 @@ PxyBLi = (180/pi)*atan2(imag(ZxyBLi),real(ZxyBLi));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Rectangular
-
-[ZR,feR] = transferfnFD(B,E,'rectangular');
+[ZR,feR] = transferfnFD(Bw,Ew,1,'rectangular',df);
 ZRi      = Zinterp(feR,ZR,fh);
 HR       = Z2H(feR,ZR);
 HR       = fftshift(HR,1);
@@ -126,33 +148,6 @@ NR       = (size(HR,1)-1)/2;
 tR       = [-NR:NR]';
 EpR      = Hpredict(tR,HR,B);
 EpR2     = Zpredict(feR,ZR,B);
-
-if (0)
-c = 2;
-figure(1);clf
-    plot(E(:,c),'b');hold on;
-    plot(EpR2(:,c),'k')
-    plot(EpR2(:,c)-E(:,c),'y')
-    %plot(EpR(:,c)-E(:,c),'g')
-
-Zi   = Zinterp(feR,ZR,f);
-Zraw = ftE(:,2)./ftB(:,1);
-
-Zi = [ Zi(1,:); Zi(2:end,:) ; flipud(conj(Zi(2:end-1,:))) ];
-epi = ifft(ftB(:,1).*Zi(:,2));
-epr = ifft(ftB(:,1).*Zraw);
-
-figure(1);clf
-    plot(abs(Zraw),'r');
-    hold on;
-    plot(abs(Zi(:,2)));
-figure(2);clf;
-    plot(epr,'r');
-    hold on
-    plot(epi);
-    plot(E(:,2),'g')
-    plot(EpR2(:,1),'k')
-end
 
 ZxyR  = ZR(:,2);
 ZxyRi = ZRi(:,2);
@@ -167,7 +162,7 @@ PxyRi = (180/pi)*atan2(imag(ZxyRi),real(ZxyRi));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Frequency Domain Parzen
-[ZP,feP] = transferfnFD(B,E,'parzen');
+[ZP,feP] = transferfnFD(B,E,1,'parzen');
 ZPi      = Zinterp(feP,ZP,fh);
 HP       = Z2H(feP,ZP,fh);
 HP       = fftshift(HP,1);
@@ -180,7 +175,7 @@ ZxyP  = ZP(:,2);
 ZxyPi = ZPi(:,2);
 hP    = HP(:,2);
 EyP   = EpP(:,2);
-EyP2   = EpR2(:,2);
+EyP2  = EpP2(:,2);
 
 % Transfer Function Phase
 PxyP  = (180/pi)*atan2(imag(ZxyP),real(ZxyP));
@@ -249,8 +244,7 @@ figure(4);clf;
     legend( sprintf('h_{xy} = %s',hstr),...
             sprintf('h_{xy} time domain; n_T = %d',length(hBL)),...
             sprintf('h_{xy} freq. domain Rectangular; n_R = %d', df),...
-            sprintf('h_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
-            'Location','NorthWest'...
+            sprintf('h_{xy} freq. domain Parzen; n_P = %d',length(feP))...
            )
    plotcmds(['impulse_responses',paramstring],writeimgs)
 
@@ -275,8 +269,7 @@ figure(5);clf;
     legend(...
             sprintf('\\deltah_{xy} time domain; n_T = %d',length(hBL)),...
             sprintf('\\deltah_{xy} freq. domain Rectangular; n_f = %d', df),...
-            sprintf('\\deltah_{xy} freq. domain Parzen; n_P = %d',length(feP)),...
-            'Location','NorthWest'...
+            sprintf('\\deltah_{xy} freq. domain Parzen; n_P = %d',length(feP))...
             )
    plotcmds(['impulse_response_errors',paramstring],writeimgs)
 
@@ -396,7 +389,7 @@ figure(13);clf;
     plot(E(:,2)-EyP-10,'g')
     peP = pe_nonflag(E(:,2),EyP);
     peR = pe_nonflag(E(:,2),EyR);
-    peBL = pe_nonflag(E(:,2),EyBL);
+
     xlabel('t')
     title('Prediction Errors (using H)')
     set(gca,'YLim',[-20 20])
