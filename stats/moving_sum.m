@@ -22,3 +22,4 @@ end
 
 x = filter(ones(N,1),1,x);
 x(1:N-1,:) = NaN;
+

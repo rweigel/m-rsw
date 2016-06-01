@@ -1,4 +1,4 @@
-function Do = block_detrend_nonflag(X,N,FLAG,COND)
+function [Do,Trend] = block_detrend_nonflag(X,N,FLAG,COND)
 %BLOCK_DETREND_NONFLAG Subtracts off block mean of non-FLAG elements.
 %
 %   D_dt = BLOCK_DETREND_NONFLAG(D,N) Subtracts off block mean of
@@ -56,8 +56,10 @@ for j = 1:size(X,2)
 
   Do(:,j) = [D(:) ; FLAG*ones(Lo-L*N,1)];
 
+  Trend(:,j) = [temp(:); FLAG*ones(Lo-L*N,1)];
 end
 
 if (flip == 1)
    Do = Do';   
+   Trend = Trend';   
 end

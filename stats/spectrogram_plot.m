@@ -112,7 +112,7 @@ subplot(3,1,2)
     set(gca(),'XTick',XTick);
   end
 
-  ylabel('Period');
+  ylabel('T');
   xlim(xl);
   set(gca(),'XTickLabel','');
 
@@ -124,11 +124,12 @@ subplot(3,1,2)
   grid on;
   set(gca,'Layer','top');
   
-  set(get(ch(1),'Title'),'String',sprintf('Normalized PSD'));
-  set(get(ch(1),'Title'),'Rotation',-90)
+%  set(get(ch(1),'Title'),'String',sprintf('I/I_o'));
+%  set(get(ch(1),'Title'),'Rotation',-90)
+  ylabel(ch(1),'I/I_o')
+  %set(get(ch(1),'Title'),'String','I/Io')
   set(ch(1),'YTick',[0:0.1:1.0])
   tmp = get(ch(1),'YLim');
-  set(get(ch(1),'Title'),'Position',[5.5 (tmp(end)-tmp(1))/2 1])
 
   % Plot PSD computed using full time series
   if (nargin > 6)
@@ -153,15 +154,14 @@ subplot(3,1,3)
   set(gca(),'Position',p3);
 
   %freezeColors; % Does not work for painters
-  %tmpc = jet(24);
-  %colormap(gca(),tmpc);
+  colormap(gca(),jet(10));
   ch(2) = colorbar;
 
   if (length(d_o) > 20) || length(T) > 10
     set(get(gca(),'Children'),'EdgeColor','none');
   end
 
-  ylabel('Period');
+  ylabel('T');
   xlim(xl);
   
   if (length(T) < 10)
@@ -177,14 +177,16 @@ subplot(3,1,3)
   end
   grid on;
 
-  set(gca,'Layer','top')
-  set(get(ch(2),'Title'),'String',sprintf('Phase [deg]'));
-  set(get(ch(2),'Title'),'Rotation',-90)
+  %set(gca,'Layer','top')
+  %set(get(ch(2),'Title'),'String','\phi [deg]')
+  ylabel(ch(2),'\phi [deg]')
+  %set(get(ch(2),'Title'),'Rotation',-90)
+  %set(get(ch(2),'Title'),'Position',[5.5 (tmp(end)-tmp(1))/2 1])
   set(ch(2),'YLim',[0,360])
   set(ch(2),'YTick',[0:40:360])
   %set(ch(2),'YTick',[0:60:360])
   tmp = get(ch(2),'YLim');
-  set(get(ch(2),'Title'),'Position',[5.5 (tmp(end)-tmp(1))/2 1])
+
   ah(3) = gca();
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %end

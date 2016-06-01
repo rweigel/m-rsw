@@ -1,5 +1,5 @@
 function LIN = basic_linear(X,T,Itrain,Itest)
-%BASIC_LINEAR A simple linear regression.
+%BASIC_LINEAR Multiple linear regression.
 % 
 %    LIN = BASIC_LINEAR(X,T) Each row of X is a set of observations that
 %    will be used to predict the respective row in the single-column target
@@ -34,6 +34,7 @@ function LIN = basic_linear(X,T,Itrain,Itest)
 if (nargin == 3)
   if (ischar(Itrain))
     if strmatch('predict',Itrain)
+      % LIN = BASIC_LINEAR(X,T,'predict')
       if isempty(X)
 	LIN = T(1);
 	return
