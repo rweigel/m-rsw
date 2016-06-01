@@ -3,8 +3,10 @@ function Cs = zplanewave(s,h,f)
 %
 %   C = ZPLANEWAVE(s,h,f)
 %   
-%   Surface transfer function in [m] at positive frequencies f [Hz] above layered
+%   Surface transfer function C in [m] at positive frequencies f [Hz] above layered
 %   conductors with conductivities s [1/Ohm-m], thicknesses h [m], and geometry
+%
+%   Apparent resistivity is rho_a = |C|^2 mu_0*2*pi*f [Ohm-m]
 %
 %   Conductivity    Thickness
 %
@@ -18,23 +20,23 @@ function Cs = zplanewave(s,h,f)
 %   .
 %   .
 %   --------------------------
-%   s(end-1)        h(end)
+%   s(end-1)        h(end-1)
 %   --------------------------  Top of bottom layer
-%   s(end)          Inf
+%   s(end)          h(end)
 %
-%   Computed using Eqns. 2.33 and 2.34 of Simpson and Bahr,
-%   Practical Magnetotellurics, 2005 (Eqn. 2.33 is recursion
-%   formula from Wait 1954).  All layers have vacuum permeability.
+%   If h(end) is not Inf, an extra infinite bottom layer with s = s(end) is assumed.
+%   
+%   Computed using Eqns. 2.33 and 2.34 of Simpson and Bahr, Practical
+%   Magnetotellurics, 2005 (Eqn. 2.33 is recursion formula from Wait 1954).
+%   All layers have vacuum permeability.
 %
-%   For an infinite half-layer with s = [s0], h = [], and f = [f0],
+%   For an infinite half-layer with s = [s0], h = [Inf], and f = [f0],
 %       C = zplanewave(s,h,f)
 %   returns
 %       C = 1/q, where
 %       q = sqrt(mu_0*s0*2*pi*f0)*(1+i)/sqrt(2)
-%
+%   and
 %   C = Ex/(i*2*pi*f*Bx) = -Ey/(i*2*pi*f*Bx)
-%
-%   Apparent resistivity is r_a = |C|^2 mu_0*2*pi*f
 % 
 %   See also
 %       ZPLANEWAVE_TEST - Verify calculations
@@ -50,9 +52,17 @@ end
 if size(f,1) > 1 && size(f,2) > 1
     error('frequency must be an array');
 end
-if length(s) ~= (length(h) + 1)
-  error('length(s) should be equal to length(h) + 1');
+
+if ~isinf(h(end))
+    % Set infinite layer to have same value as last layer.
+    if (0)
+    fprintf('zplanewave:\n  Warning: Last layer does not have infinite thickness\n');
+    fprintf('               Inserting infinite bottom layer with conductivity\n');
+    fprintf('               s = s(end)\n');
+    s(end+1) = s(end);
+    end
 end
+
 if any(f < 0)
   error('Frequencies must be positive');
 end;

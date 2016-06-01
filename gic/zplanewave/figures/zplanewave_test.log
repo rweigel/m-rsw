@@ -6,7 +6,9 @@ Test 1 Re(error)/eps :   0.00
 Test 1 Im(error)/eps :   0.00
 
 Test 2: Two layers
-Test 2: Two layers, sigma = [100,1], h = (penetration depth of first layer)/10, f = 0.1.
+Test 2: Two layers,
+        sigma = [100,1],        h     = (penetration depth of first layer)/10,
+        f     = 0.1.
 Test 2         rho_a   :   0.20 [Ohm m]
 Test 2         sigma_a :   4.91 [1/(Ohm m)]
 Test 2         phi_a   : -70.77 [degrees]

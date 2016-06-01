@@ -14,29 +14,29 @@ N = no*10^ne;
 f = [1:N/2]/N;
 
 if (profile == 1)
-    h = [];
+    h = Inf;
     s = 1;
     titlestr = sprintf('$\\mbox{Infinite half space}\\quad\\rho = %.1f \\mbox{ [}\\Omega\\cdot\\mbox{m]}',1/s);
 end
 if (profile == 2)
     s = [1/1000,1/10,1/100,1/5];
-    h = 1e3*[10,20,400];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    h = 1e3*[10,20,400,Inf];
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h(1:end-1)/1e3]);
 end
 if (profile == 3)
     s = [1/10,1/100,1/1000];
-    h = 1e3*[1,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    h = 1e3*[1,10,Inf];
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h(1:end-1)/1e3]);
 end
 if (profile == 4)
     s = [10,0.1,10,0.1];
-    h = 1e3*[10,10,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    h = 1e3*[10,10,10,Inf];
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h(1:end-1)/1e3]);
 end
 if (profile == 5)
-    s = [0.1,10,0.1,10];
-    h = 1e3*[10,10,10];
-    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h/1e3]);
+    s =     [0.1,10,0.1,10];
+    h = 1e3*[ 10,10, 10,Inf];
+    titlestr = sprintf('$\\rho = [%.1f,%.1f,%.1f,%.1f] \\mbox{ [}\\Omega\\cdot\\mbox{m]}\\quad t = [%.1f,%.1f,%.1f,\\infty] \\mbox{[km]}',[1./s,h(1:end-1)/1e3]);
 end
 
 titlestr = [titlestr,sprintf('\\quad \\Delta f =1/(%d\\cdot 10^%d)$',no,ne)];
@@ -59,7 +59,7 @@ phi_C = (180/pi)*atan2(imag(C),real(C));
 % Ex ~ exp(j*2*pi*f*t + phi) if By ~ exp(j*2*pi*f*t).
 phi_Z = (180/pi)*atan2(imag(Z),real(Z));
 
-figure(1);clf;
+figurex(1);clf;
     loglog(f,rho_a,'b','LineWidth',3,'Marker','.','MarkerSize',10);
     hold on;
     loglog(f,Cmag,'g','LineWidth',3,'Marker','.','MarkerSize',10);
@@ -78,8 +78,9 @@ figure(1);clf;
     print('-dpng','-r150',sprintf('figures/%s_transferfn_profile_%d.png',base,profile));
     print('-depsc',sprintf('figures/%s_transferfn_profile_%d.eps',base,profile));
     fprintf('Wrote figures/%s_transferfn_profile_%d.{png,eps}\n',base,profile);
-    
-figure(2);clf;
+
+
+figurex(2);clf;
     semilogx(f,phi_C,'g','LineWidth',3,'Marker','.','MarkerSize',10);
     hold on;
     semilogx(f,phi_Z,'k','LineWidth',3,'Marker','.','MarkerSize',10);
@@ -98,11 +99,12 @@ figure(2);clf;
     print('-depsc',sprintf('figures/%s_phase_profile_%d.eps',base,profile));
     fprintf('Wrote figures/%s_phase_profile_%d.{png,eps}\n',base,profile)
 
-if (isempty(h))
+if (isinf(h(1)))
     s = [s,s,s];
     h = 1e3*[1,100];
 end
-figure(3);clf;
+
+figurex(3);clf;
     d = cumsum(h);
     %d = [10^(round(log10(d(1)))-1),d,10^(round(log10(d(end)))+1)];
     d = [10^(2),d,10^6];
@@ -132,7 +134,7 @@ tft  = [-N/2:1:N/2];
 dhft = fftshift(ifft(dZf));
 hft  = fftshift(ifft(Zf));
 
-figure(4);clf;
+figurex(4);clf;
     plot(tft,hft,'k','LineWidth',2);
     hold on;grid on;
     plot(tft,dhft,'g','LineWidth',2);

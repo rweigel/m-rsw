@@ -14,7 +14,7 @@ mu_0 = 4*pi*1e-7; % Vacuum permeability
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Infinite half-space
 f = 0.1;
-h = [];
+h = Inf;
 s = 2;
 C = zplanewave(s,h,f);
 
@@ -40,7 +40,7 @@ fprintf('\n');
 f = 0.1;
 s = [100,1]';
 p = sqrt(2./(mu_0*s(1)*2*pi*f));
-h = [0.1*p(1)];
+h = [0.1*p(1),Inf];
 
 C = zplanewave(s,h,f);
 
@@ -52,7 +52,10 @@ q(1) = sqrt(j*mu_0*s(1)*2*pi*f);
 Ctest(1) = (1/q(1)) * ( q(1)*Ctest(2) + tanh(q(1)*h(1)) ) / (1 + q(1)*Ctest(2)*tanh(q(1)*h(1)));
 
 fprintf('Test 2: Two layers\n');
-fprintf('Test 2: Two layers, sigma = [100,1], h = (penetration depth of first layer)/10, f = 0.1.\n');
+fprintf('Test 2: Two layers,\n');
+fprintf('        sigma = [100,1],');
+fprintf('        h     = (penetration depth of first layer)/10,\n');
+fprintf('        f     = 0.1.\n');
 rho_a = C.*conj(C)*mu_0*2*pi*f;
 sigma_a = 1/rho_a;
 
@@ -74,7 +77,7 @@ T = logspace(-3,3,30);
 f = 1./T;
 
 s = [1/1000,1/10,1/100,1/5]';
-h = 1e3*[10,20,400];
+h = 1e3*[10,20,400,Inf];
 
 C    = zplanewave(s,h,f);
 Z    = j*2*pi*f.*C;
