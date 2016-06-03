@@ -20,7 +20,7 @@ Ts = 0; % Shift input with respect to output
 LINxy   = basic_linear(Xxy,T);
 Ep(:,1) = basic_linear(Xxy,LINxy.Weights,'predict');
 
-[T,Xyx] = time_delay(E(:,2),B(:,1),(Nc-1),Ts,Na,'pad');
+[T,Xyx] = time_delay(E(:,2),B(:,1),Nc-1,Ts,Na,'pad');
 LINyx   = basic_linear(Xyx,T);
 Ep(:,2) = basic_linear(Xyx,LINyx.Weights,'predict');
 

@@ -12,7 +12,7 @@ writeimgs = 0;
 input     = 'dB';
 dim       = 2;
 hpNf      = 10000;
-hpNf      = 0;
+%hpNf      = 0;
 
 label      = sprintf('input-%s_dim-%d_hp-%d',input,dim,hpNf); 
 consolestr = sprintf('\n  Site: %s;\n  Agency: %s;\n  Label: %s',...

@@ -1,4 +1,4 @@
-function [Z,fe] = transferfnFD(B,E,method,winfn,winopts)
+function [Z,fe,H,t] = transferfnFD(B,E,method,winfn,winopts)
 
 if nargin < 6
     verbose = 0;
@@ -101,3 +101,10 @@ if (method == 2)
     Z(:,3) = Zyx.';
     Z(:,4) = Zyy.';
 end
+
+Z(1,:) = 0;
+
+H = Z2H(fe,Z,f);
+H = fftshift(H,1);
+N = (size(H,1)-1)/2;
+t = [-N:N]';

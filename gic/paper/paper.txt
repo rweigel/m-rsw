@@ -1,6 +1,6 @@
 A Comparison of Methods for Predicting the Geoelectric Field in the U.S.
 
-We compare and contrast four methods for predicting the geoelectric field given the measured geomagnetic field at N location in the U.S.  The methods include using a pre-existing 1-D conductivty model, (2) a time domain method, (3) a simple frequency domain method, and (4) a robust and bias corrected remote reference frequency domain method.  It is shown that with respect to a sum-of-squares error metric that methods (2) and (3) perform the best.  Method (2) is computationally intensive but produces a causal impulse response.  Method (3) is computationally inexpensive but produces an acause impulse response and cannot produce predictions with lead times as short as method (2).
+We compare four methods for predicting the geoelectric field given the measured geomagnetic field at N location in the U.S.  The methods include using a pre-existing 1-D conductivty model, (2) a time domain method, (3) a simple frequency domain method, and (4) a robust and bias corrected remote reference frequency domain method.  It is shown that with respect to a sum-of-squares error metric that methods (2) and (3) perform the best.  Method (2) is computationally expensive but produces a causal impulse response.  Method (3) is computationally inexpensive but produces an acause impulse response and cannot produce predictions with lead times as short as method (2).
 
 Introduction
 

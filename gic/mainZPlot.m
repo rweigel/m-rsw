@@ -6,35 +6,34 @@ end
 
 set(0,'DefaultFigureWindowStyle','docked')
 writeimgs = 0;
-fn = fn+1;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot B
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fn = fn+1;
-figurex(fn);clf;
+figure(fn);clf;
     hold on;grid on;
     plot(1,NaN,'k','LineWidth',3)  
     plot(1,NaN,'g','LineWidth',3)  
     hold on;grid on;
-    plot(t,B(:,1)+50,'k');
+    plot(t,B(:,1),'k');
     plot(t,B(:,2),'g');
     xlabel(xlab)
     ylabel('[nT]');
     title(titlestr);
     box on;
-    legend(sprintf('B_x + %d',shiftBx),'B_y')
+    legend(sprintf('B_x'),'B_y')
     fignames{fn} = sprintf('%s_Bx_By_%s-%s',short,ts1,ts2);
     axis tight;
     drawnow
-    set(gca,'YLim',[-60 140])
+%    set(gca,'YLim',[-60 140])
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot Ex and Ey
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fn = fn+1;
-figurex(fn);clf;
+figure(fn);clf;
     hold on;grid on;
     comp = 'x';if (i == 2),comp = 'y';end        
     plot(1,NaN,'k','LineWidth',3)  
@@ -56,7 +55,7 @@ figurex(fn);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot Ex and Ey
 fn = fn+1;
-figurex(fn);clf;
+figure(fn);clf;
     hold on;grid on;
     plot(1,NaN,'r','LineWidth',3)  
     plot(1,NaN,'g','LineWidth',3)  
@@ -79,7 +78,7 @@ for i = 1:2
     fn = fn+1;
     c = 'r';
     if (i == 2), c = 'g';, end;
-    figurex(fn);clf;
+    figure(fn);clf;
         hold on;grid on;
         if (strmatch(label,'hp','exact'))
             plot(1,NaN,'k','LineWidth',3)  
@@ -88,9 +87,9 @@ for i = 1:2
         plot(1,NaN,'k','LineWidth',3)  
 	plot(1,NaN,'b','LineWidth',2)  
         hold on;grid on;
-        plot(t,Ep_FDRe(:,i)+shift,'k');  % Predicted
+        plot(t,Ep_FDRe(:,i),'k');  % Predicted
         plot(t,E(:,i),c); % Measured or filtered
-	plot(t,Ep_FDRe(:,i)-E(:,i)-shift,'b'); % Error
+	plot(t,E_FDRe(:,i)-shift,'b'); % Error
         xlabel(xlab)
 	ylabel('[mV/km]')
 	title(titlestr);
@@ -104,9 +103,9 @@ for i = 1:2
 	    fstr  = 'filtered';
 	end
         comp = 'x';if (i == 2),comp = 'y';end
-	legend(sprintf('E_%s %s + %d',comp,fstr,shift),...
-	       sprintf('E_%s FDRe predicted; PE = %.2f',comp,pev_FDRe(i)),...
-	       sprintf('Error + %d',shift),...
+	legend(sprintf('E_%s %s',comp,fstr),...
+	       sprintf('E_%s FDRe predicted; PE = %.2f',comp,petr_FDRe(i)),...
+	       sprintf('Error - %d',shift),...
 	       'Location','NorthEast')
     fignames{fn} = sprintf('%s_E%s_%s_predicted_%s-%s',...
 			   short,comp,label,ts1,ts2);
@@ -119,7 +118,7 @@ if strcmp(agent,'IRIS')
 	fn = fn+1;
 	c = 'r';
 	if (i == 2), c = 'g';, end;
-	figurex(fn);clf;
+	figure(fn);clf;
         hold on;grid on;
         if (strmatch(label,'hp','exact'))
             plot(1,NaN,'k','LineWidth',3)  
@@ -128,9 +127,9 @@ if strcmp(agent,'IRIS')
         plot(1,NaN,'k','LineWidth',3)  
 	plot(1,NaN,'b','LineWidth',2)  
         hold on;grid on;
-        plot(t(Ipe),Ep_O(Ipe,i)+shift,'k');  % Predicted
-        plot(t(Ipe),E(Ipe,i),c); % Measured or filtered
-	plot(t(Ipe),Ep_O(Ipe,i)-E(Ipe,i)-shift,'b'); % Error
+        plot(t,Ep_O(:,i),'k');  % Predicted
+        plot(t,E(:,i),c); % Measured or filtered
+	plot(t,E_O(:,i)-shift,'b'); % Error
         xlabel(xlab)
 	ylabel('[mV/km]')
 	title(titlestr);
@@ -140,9 +139,9 @@ if strcmp(agent,'IRIS')
 	axis([xl,-yo,yo]) 
 	box on;
         comp = 'x';if (i == 2),comp = 'y';end
-	legend(sprintf('E_%s %s + %d',comp,fstr,shift),...
+	legend(sprintf('E_%s %s',comp,fstr),...
 	       sprintf('E_%s OSU predicted; PE = %.2f',...
-		       comp,pev_O(i)),...
+		       comp,petr_O(i)),...
 	       sprintf('Error + %d',shift),...
 	       'Location','NorthEast')
 	fignames{fn} = sprintf('%s_%s_E%s_predicted_OSU_%s-%s',...
@@ -156,7 +155,7 @@ for i = 1:2
     fn = fn+1;
     c = 'r';
     if (i == 2), c = 'g';, end;
-    figurex(fn);clf;
+    figure(fn);clf;
     hold on;grid on;
     if (strmatch(label,'hp','exact'))
 	plot(1,NaN,'k','LineWidth',3)  
@@ -165,9 +164,9 @@ for i = 1:2
     plot(1,NaN,'k','LineWidth',3)  
     plot(1,NaN,'b','LineWidth',2)  
     hold on;grid on;
-    plot(t,Ep_U(:,i)+shift,'k');  % Predicted
+    plot(t,Ep_U(:,i),'k');  % Predicted
     plot(t,E(:,i),c); % Measured or filtered
-    plot(t,Ep_U(:,i)-E(:,i)-shift,'b'); % Error
+    plot(t,E_U(:,i)-shift,'b'); % Error
     xlabel(xlab)
     ylabel('[mV/km]')
     title(titlestr);
@@ -179,7 +178,7 @@ for i = 1:2
     comp = 'x';if (i == 2),comp = 'y';end
     legend(sprintf('E_%s %s + %d',comp,fstr,shift),...
 	   sprintf('E_%s %s predicted; PE = %.2f',...
-		   comp,modelstr,pev_U(i)),...
+		   comp,modelstr,petr_U(i)),...
 	   sprintf('Error + %d',shift),...
 	   'Location','NorthEast')
     fignames{fn} = sprintf('%s_%s_E%s_predicted_USGS_%s-%s',...
@@ -192,7 +191,7 @@ end
 % Z
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fn = fn+1;
-figurex(fn);clf
+figure(fn);clf
     % Compare computed with USGS
     if (modelsf > 1)
 	modells = sprintf('Z_0/%d %s',modelsf,modelstr);
@@ -237,7 +236,7 @@ figurex(fn);clf
 % Hxy and Hyx
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fn = fn+1;
-figurex(fn);clf;hold on;grid on;
+figure(fn);clf;hold on;grid on;
 if strcmp(agent,'IRIS')
     plot(t_U,H_U(:,1),'c','LineWidth',2);hold on;
     plot(t_O,H_O(:,2),'r','LineWidth',2)
@@ -252,7 +251,7 @@ end
 fignames{fn} = sprintf('%s_%s_Hxy_All_%s-%s',short,label,ts1,ts2);    
 
 fn = fn+1;
-figurex(fn);clf;hold on;grid on;
+figure(fn);clf;hold on;grid on;
 if strcmp(agent,'IRIS')
     plot(t_U,H_U(:,1),'c','LineWidth',2);hold on;
     plot(t_O,H_O(:,3),'r','LineWidth',2)
@@ -293,7 +292,7 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 for i = 1:2
 	fn = fn+1;
-	figurex(fn);clf;orient landscape
+	figure(fn);clf;orient landscape
 	comp = 'x';if i == 2,comp = 'y';end
 	%bins = [-100:1:100];
 	bins = logspace(0,2);
@@ -330,13 +329,13 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Error spectra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figurex(fn);clf;
+figure(fn);clf;
     fn = fn+1;
     loglog(1./fA,pA(:,8),'k');
     hold on;grid on;
-    loglog(1./f_FDP,EP_FDP(:,2),'b');
-    loglog(1./f_O,EP_O(:,2),'g');
-    loglog(1./f_U,EP_U(:,2),'r');
+    loglog(1./fte_FDP,EPte_FDP(:,2),'b');
+    loglog(1./fte_O,EPte_O(:,2),'g');
+    loglog(1./fte_U,EPte_U(:,2),'r');
     xlabel('Period [s]');
     title('E_y');
     legend('Measured','FDRP','OSU',modelstr);
@@ -345,13 +344,13 @@ figurex(fn);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Error spectra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-figurex(fn);clf;
+figure(fn);clf;
     fn = fn+1;
     loglog(fA,pA(:,8),'k');
     hold on;grid on;
-    loglog(f_FDP,EP_FDP(:,2),'b');
-    loglog(f_O,EP_O(:,2),'g');
-    loglog(f_U,EP_U(:,2),'r');
+    loglog(fte_FDP,EPte_FDP(:,2),'b');
+    loglog(fte_O,EPte_O(:,2),'g');
+    loglog(fte_U,EPte_U(:,2),'r');
     xlabel('frequency [Hz]');
     title('E_y');
     legend('Measured','FDRP','OSU',modelstr);
@@ -362,7 +361,7 @@ figurex(fn);clf;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 if (writeimgs)
   for i = [1:fn]
-    figurex(i);
+    figure(i);
     fig = gcf;
     set(fig,'PaperUnits','inches');
     set(fig,'PaperPosition',[0 0 6.5 2]);

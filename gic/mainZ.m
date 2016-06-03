@@ -40,8 +40,8 @@ end
 E = E-Ef;
 
 cut = floor(size(IN,1)/2);
-Itr = [1:cut];
-Ite = [cut+1:size(IN,1)];
+Ite = [1:cut];
+Itr = [cut+1:size(IN,1)];
 
 %Itr = [1:size(IN,1)];
 %Ite = [1:size(IN,1)];
@@ -70,157 +70,66 @@ fprintf('   Ey: pe = %0.2f; cc = %.2f\n',pev_TD(2),ccv_TD(2))
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute transfer function using transferfnFD.m
-[Z_FDRe,fe_FDRe] = transferfnFD(IN(Itr,:),E(Itr,:),2,'rectangular');
-
-Z_FDRe(1,:) = 0;
-
-H_FDRe = Z2H(fe_FDRe,Z_FDRe,f);
-H_FDRe = fftshift(H_FDRe,1);
-N_FDRe = (size(H_FDRe,1)-1)/2;
-t_FDRe = [-N_FDRe:N_FDRe]';
-
-% Apparent Resistivity
-for k = 1:size(Z_FDRe,2)
-    R_FDRe(:,k) = 1e6*(mu_0./(2*pi*fe_FDRe(2:end))).*(abs(Z_FDRe(2:end,k)).^2);
-end
-Z_FDRei = Zinterp(fe_FDRe,Z_FDRe,f);
+[Z_FDRe,fe_FDRe,H_FDRe,t_FDRe] = transferfnFD(IN(Itr,:),E(Itr,:),2,'rectangular');
 
 fprintf('  transferfnFD rectangular logarithmic frequencies\n')
 Ep_FDRe = Zpredict(fe_FDRe,Z_FDRe,IN);
 Ep_FDRe = real(Ep_FDRe);
 
 E_FDRe  = E-Ep_FDRe;
-for i = 1:2
-    tmp = E_FDRe(1:ppd*floor(size(E_FDRe,1)/ppd),i);
-    tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
-    p   = fft(tmp);
-    pa(:,i) = mean(abs(p),2);
-end
-NA   = size(pa,1);
-f_FDRe  = [0:NA/2]'/NA;
-f_FDRe  = f_FDRe(2:end);
-EP_FDRe = pa(2:NA/2+1,:);
 
-% Transfer Function Phase
-P_FDRe  = (180/pi)*atan2(imag(Z_FDRe),real(Z_FDRe));
-
-pev_FDRe(1) = pe(E(Itr,1),Ep_FDRe(Itr,1));
-pev_FDRe(2) = pe(E(Itr,2),Ep_FDRe(Itr,2));
-tmp         = corrcoef(E(Itr,1),Ep_FDRe(Itr,1));
-ccv_FDRe(1) = tmp(2);
-tmp         = corrcoef(E(Itr,2),Ep_FDRe(Itr,2));
-ccv_FDRe(2) = tmp(2);
+[cctr_FDRe,petr_FDRe,EPtr_FDRe,ftr_FDRe] = computeMetrics(E(Itr,:),Ep_FDRe(Itr,:),ppd);
+[ccte_FDRe,pete_FDRe,EPte_FDRe,fte_FDRe] = computeMetrics(E(Ite,:),Ep_FDRe(Ite,:),ppd);
+%[Cxy,f] = mscohere(E,Ep_FDRe);
 fprintf('   train\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pev_FDRe(1),ccv_FDRe(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pev_FDRe(2),ccv_FDRe(2))
-
-pete_FDRe(1) = pe(E(Ite,1),Ep_FDRe(Ite,1));
-pete_FDRe(2) = pe(E(Ite,2),Ep_FDRe(Ite,2));
-tmp         = corrcoef(E(Ite,1),Ep_FDRe(Ite,1));
-ccte_FDRe(1) = tmp(2);
-tmp         = corrcoef(E(Ite,2),Ep_FDRe(Ite,2));
-ccte_FDRe(2) = tmp(2);
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDRe(1),cctr_FDRe(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDRe(2),cctr_FDRe(2))
 fprintf('   test\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDRe(1),ccte_FDRe(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDRe(2),ccte_FDRe(2))
-
+[Cxy,f] = mscohere(E,Ep_FDRe);
+keyboard
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute transfer function using transferfnFD.m
-[Z_FDR,fe_FDR] = transferfnFD(IN(Itr,:),E(Ite,:),2,'rectangular',100);
-
-Z_FDR(1,:) = 0;
-
-H_FDR = Z2H(fe_FDR,Z_FDR,f);
-H_FDR = fftshift(H_FDR,1);
-N_FDR = (size(H_FDR,1)-1)/2;
-t_FDR = [-N_FDR:N_FDR]';
-
-% Apparent Resistivity
-for k = 1:size(Z_FDR,2)
-    R_FDR(:,k) = 1e6*(mu_0./(2*pi*fe_FDR(2:end))).*(abs(Z_FDR(2:end,k)).^2);
-end
-Z_FDRi = Zinterp(fe_FDR,Z_FDR,f);
+[Z_FDR,fe_FDR,H_FDR,t_FDR] = transferfnFD(IN(Itr,:),E(Ite,:),2,'rectangular',100);
 
 fprintf('  transferfnFD rectangular\n')
 Ep_FDR = Zpredict(fe_FDR,Z_FDR,IN);
 Ep_FDR = real(Ep_FDR);
 
 E_FDR  = E-Ep_FDR;
-for i = 1:2
-    tmp = E_FDR(1:ppd*floor(size(E_FDR,1)/ppd),i);
-    tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
-    p   = fft(tmp);
-    pa(:,i) = mean(abs(p),2);
-end
-NA   = size(pa,1);
-f_FDR  = [0:NA/2]'/NA;
-f_FDR  = f_FDR(2:end);
-EP_FDR = pa(2:NA/2+1,:);
 
-% Transfer Function Phase
-P_FDR  = (180/pi)*atan2(imag(Z_FDR),real(Z_FDR));
+[cctr_FDR,petr_FDR,EPtr_FDR] = computeMetrics(E(Itr,:),Ep_FDR(Itr,:),ppd);
+[ccte_FDR,pete_FDR,EPte_FDR] = computeMetrics(E(Ite,:),Ep_FDR(Ite,:),ppd);
 
-pev_FDR(1) = pe(E(:,1),Ep_FDR(:,1));
-pev_FDR(2) = pe(E(:,2),Ep_FDR(:,2));
-tmp        = corrcoef(E(:,1),Ep_FDR(:,1));
-ccv_FDR(1) = tmp(2);
-tmp        = corrcoef(E(:,2),Ep_FDR(:,2));
-ccv_FDR(2) = tmp(2);
-fprintf('   Ex: pe = %0.2f; cc = %.2f\n',pev_FDR(1),ccv_FDR(1))
-fprintf('   Ey: pe = %0.2f; cc = %.2f\n',pev_FDR(2),ccv_FDR(2))
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDR(1),cctr_FDR(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDR(2),cctr_FDR(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDR(1),ccte_FDR(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDR(2),ccte_FDR(2))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Compute transfer function using transferfnFD.m
-[Z_FDP,fe_FDP] = transferfnFD(IN,E,dim,'parzen');
-
-Z_FDP(1,:) = 0;
-
-H_FDP = Z2H(fe_FDP,Z_FDP,f);
-H_FDP = fftshift(H_FDP,1);
-N_FDP = (size(H_FDP,1)-1)/2;
-t_FDP = [-N_FDP:N_FDP]';
-
-% Apparent Resistivity
-for k = 1:size(Z_FDP,2)
-    RR(:,k) = 1e6*(mu_0./(2*pi*fe_FDP(2:end))).*(abs(Z_FDP(2:end,k)).^2);
-end
-%fprintf('\n')
-%fprintf('%s: Computing interpolated transfer function.\n',n)
-% Interpolate transfer function onto original frequency grid
-Z_FDPi = Zinterp(fe_FDP,Z_FDP,f);
+[Z_FDP,fe_FDP,H_FDP,t_FDP] = transferfnFD(IN(Itr,:),E(Itr,:),dim,'parzen');
 
 fprintf('  transferfnFD parzen\n')
-%fprintf('%s: Computing predictions.\n',n)
-% Predict using interpolated transfer function
 Ep_FDP = Zpredict(fe_FDP,Z_FDP,IN);
 Ep_FDP = real(Ep_FDP);
 
 E_FDP  = E-Ep_FDP;
-for i = 1:2
-    tmp = E_FDP(1:ppd*floor(size(E_FDP,1)/ppd),i);
-    tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
-    p   = fft(tmp);
-    pa(:,i) = mean(abs(p),2);
-end
-NA   = size(pa,1);
-f_FDP  = [0:NA/2]'/NA;
-f_FDP  = f_FDP(2:end);
-EP_FDP = pa(2:NA/2+1,:);
+[cctr_FDP,petr_FDP,EPtr_FDP,ftr_FDP] = computeMetrics(E(Itr,:),Ep_FDP(Itr,:),ppd);
+[ccte_FDP,pete_FDP,EPte_FDP,fte_FDP] = computeMetrics(E(Ite,:),Ep_FDP(Ite,:),ppd);
 
-% Transfer Function Phase
-P_FDP  = (180/pi)*atan2(imag(Z_FDP),real(Z_FDP));
-
-pev_FDP(1) = pe(E(:,1),Ep_FDP(:,1));
-pev_FDP(2) = pe(E(:,2),Ep_FDP(:,2));
-tmp        = corrcoef(E(:,1),Ep_FDP(:,1));
-ccv_FDP(1) = tmp(2);
-tmp        = corrcoef(E(:,2),Ep_FDP(:,2));
-ccv_FDP(2) = tmp(2);
-fprintf('   Ex: pe = %0.2f; cc = %.2f\n',pev_FDP(1),ccv_FDP(1))
-fprintf('   Ey: pe = %0.2f; cc = %.2f\n',pev_FDP(2),ccv_FDP(2))
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDP(1),cctr_FDP(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDP(2),cctr_FDP(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDP(1),ccte_FDP(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDP(2),ccte_FDP(2))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -243,36 +152,23 @@ Ep_U   = real(Zpredict(f,Z_U,-B)); % Give E in [mV/km]; B is in [nT]
 
 % ?????? Why does -B give better results ????????
 
-E_U  = E-Ep_U;
-for i = 1:2
-    tmp = E_U(1:ppd*floor(size(E_U,1)/ppd),i);
-    tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
-    p   = fft(tmp);
-    pa(:,i) = mean(abs(p),2);
-end
-NA   = size(pa,1);
-f_U  = [0:NA/2]'/NA;
-f_U  = f_U(2:end);
-EP_U = pa(2:NA/2+1,:);
-
-pev_U(1) = pe(E(:,1),Ep_U(:,1));
-pev_U(2) = pe(E(:,2),Ep_U(:,2));
-tmp      = corrcoef(E(:,1),Ep_U(:,1));
-ccv_U(1) = tmp(2);
-tmp      = corrcoef(E(:,2),Ep_U(:,2));
-ccv_U(2) = tmp(2);
-
 H_U = Z2H(f,Z_U,f);
 H_U = fftshift(H_U,1);
 N_U = (size(H_U,1)-1)/2;
 t_U = [-N_U:N_U]';
 
-% Transfer Function Phase
-P_U = (180/pi)*atan2(imag(Z_U),real(Z_U));
+E_U  = E-Ep_U;
 
-fprintf('  USGS %s\n',modelstr);
-fprintf('   Ex: pe = %0.2f; cc = %.2f\n',pev_U(1),ccv_U(1))
-fprintf('   Ey: pe = %0.2f; cc = %.2f\n',pev_U(2),ccv_U(2))
+[cctr_U,petr_U,EPtr_U,ftr_U] = computeMetrics(E(Itr,:),Ep_U(Itr,:),ppd);
+[ccte_U,pete_U,EPte_U,fte_U] = computeMetrics(E(Ite,:),Ep_U(Ite,:),ppd);
+
+fprintf('  USGS %s\n',modelstr)
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_U(1),cctr_U(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_U(2),cctr_U(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_U(1),ccte_U(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_U(2),ccte_U(2))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if strcmp(agent,'IRIS')
@@ -311,52 +207,26 @@ end
 % Interpolate transfer function onto original frequency grid
 Z_Oi = Zinterp(fe_O,Z_O,f);
 
+H_O  = Z2H(fe_O,Z_O,f);
+H_O  = fftshift(H_O,1);
+N_O  = (size(H_O,1)-1)/2;
+t_O  = [-N_O:N_O]';
+
 % Predict using interpolated transfer function
 %fprintf('%s: Computing predictions.\n',n)
 Ep_O = Zpredict(fe_O,Z_O,[B(:,1),B(:,2)]);
 Ep_O = real(Ep_O);
 
 E_O  = E-Ep_O;
-for i = 1:2
-    tmp = E_O(1:ppd*floor(size(E_O,1)/ppd),i);
-    tmp = reshape(tmp,ppd,size(tmp,1)/ppd);
-    p   = fft(tmp);
-    pa(:,i) = mean(abs(p),2);
-end
-NA   = size(pa,1);
-f_O  = [0:NA/2]'/NA;
-f_O  = f_O(2:end);
-EP_O = pa(2:NA/2+1,:);
 
-Ipe = [60*10:size(E,1)-60*10];
+[cctr_O,petr_O,EPtr_O,ftr_O] = computeMetrics(E(Itr,:),Ep_O(Itr,:),ppd);
+[ccte_O,pete_O,EPte_O,fte_O] = computeMetrics(E(Ite,:),Ep_O(Ite,:),ppd);
 
-pev_O(1) = pe(E(Itr,1),Ep_O(Itr,1));
-pev_O(2) = pe(E(Itr,2),Ep_O(Itr,2));
-tmp      = corrcoef(E(Itr,1),Ep_O(Itr,1));
-ccv_O(1) = tmp(2);
-tmp      = corrcoef(E(Itr,2),Ep_O(Itr,2));
-ccv_O(2) = tmp(2);
 fprintf('   train\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pev_O(1),ccv_O(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pev_O(2),ccv_O(2))
-
-pete_O(1) = pe(E(Ite,1),Ep_O(Ite,1));
-pete_O(2) = pe(E(Ite,2),Ep_O(Ite,2));
-tmp       = corrcoef(E(Ite,1),Ep_O(Ite,1));
-ccte_O(1) = tmp(2);
-tmp       = corrcoef(E(Ite,2),Ep_O(Ite,2));
-ccte_O(2) = tmp(2);
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_O(1),cctr_O(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_O(2),cctr_O(2))
 fprintf('   test\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_O(1),ccte_O(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_O(2),ccte_O(2))
-
-H_O  = Z2H(fe_O,Z_O,f);
-H_O  = fftshift(H_O,1);
-N_O  = (size(H_O,1)-1)/2;
-t_O  = [-N_O:N_O]';
-
-% Transfer Function Phase
-P_O  = (180/pi)*atan2(imag(Z_O),real(Z_O));
-%fprintf('%s\n',repmat('-',80,1));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
