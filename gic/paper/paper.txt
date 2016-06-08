@@ -1,64 +1,68 @@
-A Comparison of Methods for Predicting the Geoelectric Field in the U.S.
+A Comparison of Methods for Estimating the Geoelectric Field in the U.S.
 
-We compare four methods for predicting the geoelectric field given the measured geomagnetic field at N location in the U.S.  The methods include using a pre-existing 1-D conductivty model, (2) a time domain method, (3) a simple frequency domain method, and (4) a robust and bias corrected remote reference frequency domain method.  It is shown that with respect to a sum-of-squares error metric that methods (2) and (3) perform the best.  Method (2) is computationally expensive but produces a causal impulse response.  Method (3) is computationally inexpensive but produces an acause impulse response and cannot produce predictions with lead times as short as method (2).
+The geoelectric field is the primary input used for estimation of GICs in conducting systems.  We compare three methods for estimating the geoelectric field given the measured geomagnetic field at N locations in the U.S.  The methods include using a pre--existing 1-D conductivty model (2) a robust and bias--corrected remote reference frequency domain method and (3) a simple frequency domain method.  The quality of the estimations are determined using histogram and the power spectrum of the estimation errors.  It is shown that with respect to these estimation metrics, method (1) is not reliable and and often produces average electric field estimation errors that are above that measured and method (either due to over- or under-estimation), (2) produces in general reliable but inferior estimations than method (3).
 
 Introduction
 
-There is a large body of literature in the magnetotelluluric community on computing surface impedance tensors, $\mathbf{Z}(\omega)$, that connect the measured geomagnetic field to the geoelectric field on the surface of using $\mathbf{E{\omega}} = \mathbf{Z(\omega}}\mathbf{B(\omega)}$ [\cite{Chave2012} and references therein].  The primariy objective of such estimates is for an impedance tensor that can be used to compute a model of conductivity versus depth; most of the interpretation centers on interpretation $\mathbf{Z}(\omega)$. These models are derived with statictial methods that are taylored to reduce bias and increase robustness.  The quantity minimized in developing these models is a weighted sum-of-squares residual, where the weights and data used are based on an iterative process.
+Historically, estimation of geoelectric field magnitudes have been made with 1-D conductivity models [REF, REF] as they were the only widely available models of conductivity available.  Over the past decade, the EarthScope project has developed transfer functions over a large span of the U.S. and made the transfer functions publicly available [REF].  These transfer functions were developed to model conductivty structures and can in principle be used for estimation of the geoelectric field.
 
-In contrast, for predicting GICs, which are computed based on the predicted $E(t)$ [REF], the primary objective is to predict $\mathbf{E}$ given $\mathbf{B}$ with a high degree of accuracy; most of the interpretation centers on the impulse response, $\mathbf{H}$.  The primary assessment of the quality of the prediction is based on the sum-of-squares residual (although many other prediction quality metrics are possible, for example based on the models ability to predict large threshold crossings [\cite{Weigel2006}]).
+There is a large body of literature in the magnetotelluluric community on computing surface impedance tensors, $\mathbf{Z}(\omega)$, that connect the measured geomagnetic field to the geoelectric field on Earth's surface using $\mathbf{E{\omega}} = \mathbf{Z(\omega}}\mathbf{B(\omega)}$ [\cite{Chave2012} and references therein].  The primariy objective of such estimates is for an impedance tensor that can be used to compute a model of conductivity versus depth. These models are derived with statistical methods that are taylored to reduce bias and increase robustness.  The quantity minimized in developing these models is a weighted sum-of-squares residual, where the weights and data intervals used are based on an iterative process [Simpson and Bahr 2005; \cite{Chave2012} chapter 5].
 
-It is expected that the results of predictability will depend on the statistical method used to derive the transfer function and in this work a comparison of how these different methods perform is made.
+In contrast, for estimating GICs, which are computed based on the estimated $E(t)$ [REF], the primary objective is to estimate $\mathbf{E}$ given $\mathbf{B}$ with a high degree of accuracy.  The primary assessment of the quality of the estimateion is based generally on the overall match between the predicted and measured time series.  The most common metric for assessing quality is the sum-of-squares error or the sum-of-squares error scaled by the variance of the measurements (ARV), which provides insight into how much of the variance in the data is caputred by the model.  In addition, we also consider the frequency depedence of the error in order to identify situations where, for example, one model may captures higher frequency fluctuations but does not caputre low frequency variations.
 
-In this work, we compare five methods for predicting the surface geoelectric field given measurements of the surface geomagnetic field. 
+It is expected that estimates will depend on the statistical method used to derive the transfer function.  In this work a comparison of how these different methods perform is made.  Of course, models developed to minimize a sum-of-squares residual are expected to outperform models in which the minimization quantity differs.  In this work we quantify the impact of the method of derivation of the transfer function on estimates in terms of both a sum-of-squares residual and also by considering the spectra of estimation errors.
+
+Methods
+
+The three methods for estimating the surface geoelectric field given measurements of the surface geomagnetic field are given below.
 
 Method 1: A surface impedance computed from a pre-existing 1-D model of conductivity, $\sigma$, versus depth, $d$
 
 \begin{equation}
-Z_{xy}(\omega) = Z_{yx}(\omega) = f(\sigma(d),d,\omega)
+Z_{n}(\omega) = Z_{n}(\omega) = F(\sigma(d),d,\omega)
 \end{equation}
 
-where the function $f$ involves the use Wait's recursion formula (Wait [1954]; see also formula 2.33 of Simpson and Bahr 2005). $E_x(\omega)$ and $E_y(\omega)$ are computed using
+where the function $F$ provides the surface impedance from the use of Wait's recursion formula (Wait [1954]; see also formula 2.33 of Simpson and Bahr 2005). $E_x(\omega)$ and $E_y(\omega)$ are computed using
 
 \begin{equation}
-E_x(\omega) = Z_xy(\omega)B_y(\omega} 
-E_y(\omega) = Z_yx(\omega)B_x(\omega} 
+E_x(\omega) = Z_n(\omega)B_y(\omega} 
+E_y(\omega) = -Z_n(\omega)B_x(\omega} 
 \end{equation}
 
-and then $E_x(t)$ and $E_y(t)$ are computed from the fourier transforms of $E_x(\omega)$ and $E_y(\omega)$, respectively.
+and then $E_x(t)$ and $E_y(t)$ are computed from the inverse fourier transforms of $E_x(\omega)$ and $E_y(\omega)$, respectively.
 
-Method 2: Using $\mathbf{E}$ and $\mathbf{B}$ measurements and solving for $\mathbf{Z}$ in
+Method 2: $\mathbf{E}$ and $\mathbf{B}$ measurements are used to solving for $\mathbf{Z}$ in
 
-\end{equation}
+\begin{equation}
 \mathbf{E(\omega)} = \mathbf{Z(\omega)}\mathbf{B(\omega)} 
 \end{equation}
 
 where $\mathbf{B} = (B_x,B_y)^T, $\mathbf{E} = (E_x,E_y)^T, and
 
+\begin{equation}
 \mathbf{Z} = 
 \begin{bmatrix}
 Z_xx & Z_yx
 Z_xy & Z_yy
 \end{bmatrix}
+\end{equation}
 
-using using linear least squares regression (Sims 1971; Simpson and Bahr 2005).
+using linear least squares regression (Sims 1971; Simpson and Bahr 2005).  In this work, the evaluation freqencies are selected to be logarithmically spaced and the value at each evaluation frequency are determined using a parzen window.  $E_x(t)$ and $E_y(t)$ are computed from the inverse fourier transforms of $E_x(\omega)$ and $E_y(\omega)$, respectively after linear interpolation of the components of $\mathbf{Z}$ on to a uniform frequency grid determined by the length of the series being predicted.
 
-Method 3: Using $\mathbf{E}$ and $\mathbf{B}$ measurements and solving for $H_{xy}$ and $H_{yx}$ in
-
-E_x(t) = \Delta_{xy} + \sum_{\tau=-Na+1}^{Nc}H_{xy}{t-\tau}B_{y}(t)
-E_y(t) = \Delta_{yx} + \sum_{\tau=-Na+1}^{Nc}H_{xy}(t-\tau)B_{x}()
-
-using linear least squares regression, where $Na$ and $Nc$ are the number of acausal and causal terms respectively.  
-
-Method 4: Same as method 2 except instead of linear least squares regression, a robust regression method and an auxiliary remote reference measurements to reduce bias is used (Egbert and Booker, 1986; Chave and Thompson 1989).
-
-In principle, impedance tensors developed for magnetotelluluric purposes can be used for prediction as $\mathbf{Z}$ is mathematically related to $\mathbf{H}$ via a fourier transfrom. 
-
-A disadvantage of frequency domain methods is that they may have acausal terms, which makes direct interpretation of the impulse response difficult. 
+Method 3: Same as method 2 except instead of ordinary linear least squares regression, a robust regression method with auxiliary remote reference measurements is used (Egbert and Booker, 1986; Chave and Thompson 1989).  We have not implemented this alogithm but rather taken the computed impedance tensors from [REF] and used them to compute estimations of $E_x(t)$ and $E_y(t)$ in the same way as method 2.
 
 Data
 
-\caption{Magnetic field components}
+We consider four intervals for which different 1-D conductivity models exist, $\mathbf{E}$ and $\mathbf{B}$ measurements are available, and a method 3 conductivity model is available.
 
-\caption{Electric field components}
+Location, Time interval considered, 1-D model
 
+\caption{Magnetic field components for ...}
+
+\caption{Electric field components for ...}
+
+\caption{Electric field estimations for ...}
+
+Results
+
+P. Fernberg 2012, One-Dimensional Earth Resistivity Models for Selected Areas of Continental United States and Alaska, EPRI Technical Update 1026430, Palo Alto, CA.)
