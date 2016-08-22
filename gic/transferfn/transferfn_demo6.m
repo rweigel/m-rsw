@@ -1,8 +1,8 @@
 clear
 
-addpath('../../time/')
-addpath('../../stats/')
-addpath('../misc/')
+%addpath('../../time/')
+%addpath('../../stats/')
+%addpath('../misc/')
 
 writeimgs = 1;
 
@@ -10,7 +10,7 @@ tau = 10;  % Filter decay constant
 N   = 1e4; % Simulation length
 Nc  = tau*20;  % Comment out to use Nc = length(h)
 df  = 50;  % Width of rectangualar window
-nb  = 0.0; % Noise in B
+nb  = 0.1; % Noise in B
 ne  = 0.1; % Noise in E
 ndb = 0.0; % Noise in dB
 
@@ -21,7 +21,8 @@ paramstring = sprintf('_ne_%.1f',ne);
 dt = 1;
 gamma = (1-dt/tau);
 for i = 1:10*tau
-    h(i,1) = gamma^(i-1);
+    %h(i,1) = gamma^(i-1);
+    h(i,1) = 1./(i);
     t(i,1) = dt*(i-1);
 end
 hstr = sprintf('(1-1/%d)^{t}; t=1 ... %d; h_{xy}(0)=0;', tau, length(h));
@@ -52,8 +53,10 @@ NdB = [ndb*randn(N,1),ndb*randn(N,1)];
 B(:,1) = randn(N,1);
 B(:,2) = randn(N,1);
 
-E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
-E(:,1) = filter(h,1,B(:,2)+NB(:,2)) + NE(:,1);
+%E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
+%E(:,1) = filter(h,1,B(:,2)+NB(:,2)) + NE(:,1);
+E(:,1) = filter(h,1,B(:,1)) + filter(h,1,B(:,2));
+E(:,2) = filter(h,1,B(:,1)) + filter(h,1,B(:,2));
 
 dB = diff(B);
 dB = [dB;dB(end,:)];
@@ -69,12 +72,16 @@ NdB = NdB(2*length(h)+1:end,:);
 
 N = size(B,1);
 
-T = [1:10]';
-X = repmat(T',10,1);
-t = [1:25,26:2:50,51:5:200];
-%t = [1:199];
-[T,Xxy] = time_delay(E(:,2),B(:,1),200-1,0,0,'pad');
-LINxy   = basic_linear(Xxy(:,t),T);
+Nc = [1:10,11:5:20,100,200];
+[Z1,fe1,H1,t1,Ep1] = transferfnTD(B,E,Nc);
+Ep1 = Hpredict(t1,H1,B);
+
+Nc = 101;
+[Z2,fe2,H2,t2,Ep2] = transferfnTD(B,E,Nc);
+
+figure(1);clf;grid on;hold on;
+    plot(t1,H1(:,2),'k.','MarkerSize',30)
+    plot(t2,H2(:,2),'g.','MarkerSize',20);
 
 break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

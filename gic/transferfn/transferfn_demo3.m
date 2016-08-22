@@ -370,9 +370,9 @@ figure(11);clf;
 figure(12);clf;
     hold on;grid on;
     plot(E(:,2),'k','LineWidth',3)
-    plot(EyBL,'m')
-    plot(EyR,'b')
-    plot(EyP,'g')
+    plot(EyBL2,'m')
+    plot(EyR2,'b')
+    plot(EyP2,'g')
     xlabel('t')
     title('Predictions (using Z)')
     legend('E_y',...

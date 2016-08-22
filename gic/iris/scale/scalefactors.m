@@ -8,6 +8,7 @@ figure(1);
 imagesc(Ic);
 grid on;
 set(gca,'YTick',[32:1:1000])
+break
 
 % (determined from zooming in)
 % 0 counts @ 559

@@ -4,7 +4,15 @@ if (nargin < 2)
     verbose = 0;
 end
 
-N = 2*(length(f)-1);
+if (f(1) == 0)
+    fmin = f(2);
+    N = 2*(length(f)-1);
+else
+    fmin = f(1);
+    N = 2*(length(f));
+end
+
+
 % Evaluation frequencies for frequency domain smoothing
 if verbose
     fprintf('--\nComputing evaluation frequencies.\n--\n')
@@ -16,7 +24,8 @@ IcP(k) = find(f-feP(1) > 0,1);
 if verbose
     fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
     fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
-
+    fprintf('Nearest larger period available:    %.1f\n',1./f(IcP(k))); 
+    
     fl = f(IcP(k)-NeP(k));    
     fr = f(IcP(k)+NeP(k));
 
@@ -24,18 +33,22 @@ if verbose
     if verbose
 	fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
 		length(r),fl,fr)
+    	fprintf('Window has %.d points; Tl = %.1f Tr = %.1f\n',...
+		length(r),1/fl,1/fr)
     end
 end
 
-while feP(k) > f(2)
+while feP(k) > fmin
     k = k+1;
     tmp = feP(1)/sqrt(2^(k-1));
-    if (tmp < f(2)),break,end
+    %tmp = feP(1)/(1.1^(k-1));
+    if (tmp < fmin),break,end
     feP(k) = tmp;
     IcP(k) = find(f-feP(k) > 0,1);
     if verbose
 	fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
 	fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
+    fprintf('Nearest larger period available:        %.1f\n',1./f(IcP(k)));     
     end
     feP(k) = f(IcP(k));
     % Number of points to left and right of fe to apply window to.
@@ -46,6 +59,8 @@ while feP(k) > f(2)
     if verbose
 	fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
 		length(r),fl,fr)
+	fprintf('Window has %d points; Tl = %.1f Tr = %.1f\n',...
+		length(r),1/fl,1/fr)
     end
 
 end

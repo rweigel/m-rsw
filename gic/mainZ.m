@@ -1,6 +1,9 @@
 s = dbstack;
 n = s(1).name;
 
+hpNf = Info.hpNf;
+ppd  = Info.ppd;
+
 fprintf('mainZ:\n')
 mu_0 = 4*pi*1e-7; % Vacuum permeability
 
@@ -24,8 +27,8 @@ end
 N = size(B,1);
 
 f = [0:N/2]'/N;
-
 fstr = 'measured';
+if (0)
 if (hpNf > 0)
     tx      = exp(-[0:hpNf]/hpNf);
     Ef(:,1) = filter([0,tx/sum(tx)],1,E(:,1));
@@ -36,108 +39,50 @@ else
     Ef    = 0*E;
     tit   = 'Using measured E to derive TF';
 end
-
 E = E-Ef;
+end
+Eo = E;
+E = filterE(Eo,Tl,Th);
+Ef = Eo-E;
+
+%figure(1);clf;
+%plot(f,abs(fft(Ef(:,1))),'LineWidth',2);hold on;grid on;
+%plot(f,abs(fft(E(:,1))))
 
 cut = floor(size(IN,1)/2);
-Ite = [1:cut];
-Itr = [cut+1:size(IN,1)];
+
+reverse = 1;
+if (reverse)
+    Itr = [2e4+1:cut];
+    Ite = [cut+1:size(IN,1)-2e4];
+    Itro = [1:cut];
+    Iteo = [cut+1:size(IN,1)];
+else
+    Ite = [2e4+1:cut];
+    Itr = [cut+1:size(IN,1)-2e4];
+    Iteo = [1:cut];
+    Itro = [cut+1:size(IN,1)];
+end
+%Itr = Itro;
+%Ite = Iteo;
+
+if mod(length(Itr),2) ~= 0
+    Itr = Itr(1:end-1);
+end
+if mod(length(Ite),2) ~= 0
+    Ite = Ite(1:end-1);
+end
 
 %Itr = [1:size(IN,1)];
 %Ite = [1:size(IN,1)];
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Compute transfer function using transferfnTD.m
-Nc = 10;
-Ns = 86400;
-if ppd == 86400
-    [Z_TD,f_TD,H_TD,t_TD,E_TD] = transferfnTD2ave(IN,E,Nc,0,Ns);
-else
-    [Z_TD,f_TD,H_TD,t_TD,E_TD] = transferfnTD(IN,E,Nc,0);    
-end
-E_TD2 = Hpredict(t_TD,H_TD,IN);
 
-pev_TD(1)  = pe_nonflag(E(:,1),E_TD(:,1));
-pev_TD(2)  = pe_nonflag(E(:,2),E_TD(:,2));
-tmp        = corrcoef(E(:,1),E_TD(:,1),'rows','pairwise');
-ccv_TD(1)  = tmp(2);
-tmp        = corrcoef(E(:,2),E_TD(:,2),'rows','pairwise');
-ccv_TD(2)  = tmp(2);
-
-fprintf('  TD:\n');
-fprintf('   Ex: pe = %0.2f; cc = %.2f\n',pev_TD(1),ccv_TD(1))
-fprintf('   Ey: pe = %0.2f; cc = %.2f\n',pev_TD(2),ccv_TD(2))
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Compute transfer function using transferfnFD.m
-[Z_FDRe,fe_FDRe,H_FDRe,t_FDRe] = transferfnFD(IN(Itr,:),E(Itr,:),2,'rectangular');
-
-fprintf('  transferfnFD rectangular logarithmic frequencies\n')
-Ep_FDRe = Zpredict(fe_FDRe,Z_FDRe,IN);
-Ep_FDRe = real(Ep_FDRe);
-
-E_FDRe  = E-Ep_FDRe;
-
-[cctr_FDRe,petr_FDRe,EPtr_FDRe,ftr_FDRe] = computeMetrics(E(Itr,:),Ep_FDRe(Itr,:),ppd);
-[ccte_FDRe,pete_FDRe,EPte_FDRe,fte_FDRe] = computeMetrics(E(Ite,:),Ep_FDRe(Ite,:),ppd);
-%[Cxy,f] = mscohere(E,Ep_FDRe);
-fprintf('   train\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDRe(1),cctr_FDRe(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDRe(2),cctr_FDRe(2))
-fprintf('   test\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDRe(1),ccte_FDRe(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDRe(2),ccte_FDRe(2))
-[Cxy,f] = mscohere(E,Ep_FDRe);
-keyboard
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Compute transfer function using transferfnFD.m
-[Z_FDR,fe_FDR,H_FDR,t_FDR] = transferfnFD(IN(Itr,:),E(Ite,:),2,'rectangular',100);
-
-fprintf('  transferfnFD rectangular\n')
-Ep_FDR = Zpredict(fe_FDR,Z_FDR,IN);
-Ep_FDR = real(Ep_FDR);
-
-E_FDR  = E-Ep_FDR;
-
-[cctr_FDR,petr_FDR,EPtr_FDR] = computeMetrics(E(Itr,:),Ep_FDR(Itr,:),ppd);
-[ccte_FDR,pete_FDR,EPte_FDR] = computeMetrics(E(Ite,:),Ep_FDR(Ite,:),ppd);
-
-fprintf('   train\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDR(1),cctr_FDR(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDR(2),cctr_FDR(2))
-fprintf('   test\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDR(1),ccte_FDR(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDR(2),ccte_FDR(2))
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Compute transfer function using transferfnFD.m
-[Z_FDP,fe_FDP,H_FDP,t_FDP] = transferfnFD(IN(Itr,:),E(Itr,:),dim,'parzen');
-
-fprintf('  transferfnFD parzen\n')
-Ep_FDP = Zpredict(fe_FDP,Z_FDP,IN);
-Ep_FDP = real(Ep_FDP);
-
-E_FDP  = E-Ep_FDP;
-[cctr_FDP,petr_FDP,EPtr_FDP,ftr_FDP] = computeMetrics(E(Itr,:),Ep_FDP(Itr,:),ppd);
-[ccte_FDP,pete_FDP,EPte_FDP,fte_FDP] = computeMetrics(E(Ite,:),Ep_FDP(Ite,:),ppd);
-
-fprintf('   train\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDP(1),cctr_FDP(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDP(2),cctr_FDP(2))
-fprintf('   test\n');
-fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDP(1),ccte_FDP(1))
-fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDP(2),ccte_FDP(2))
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Use USGS apparent resistivity to compute transfer function
 addpath('zplanewave')
 
 M = 1;
-[rho,h] = ModelInfo(modelstr);
+[rho,h] = ModelInfo(Info.modelstr);
 
 s        = 1./rho'; % 1/[ohm-m]
 h        = h'; % in [m]
@@ -147,10 +92,9 @@ C      = zplanewave(s,h,f(2:end)); % in [m] or [V/m/(T-s)];
 C      = [0;transpose(C)];
 Z_U    = j*2*pi*f.*C; % [V/m / T] or [m/s]
 Z_U    = Z_U*1e-3; % Convert to mV/km / nT or [km/s]
-Z_U    = Z_U/modelsf;
-Ep_U   = real(Zpredict(f,Z_U,-B)); % Give E in [mV/km]; B is in [nT]
-
-% ?????? Why does -B give better results ????????
+Z_U    = -Z_U; % zplanwave has z direction downwards.  In my coordinate
+               % system, z is upwards.
+Ep_U   = real(Zpredict(f,Z_U,B)); % Gives E in [mV/km]; B is in [nT]
 
 H_U = Z2H(f,Z_U,f);
 H_U = fftshift(H_U,1);
@@ -159,10 +103,15 @@ t_U = [-N_U:N_U]';
 
 E_U  = E-Ep_U;
 
-[cctr_U,petr_U,EPtr_U,ftr_U] = computeMetrics(E(Itr,:),Ep_U(Itr,:),ppd);
-[ccte_U,pete_U,EPte_U,fte_U] = computeMetrics(E(Ite,:),Ep_U(Ite,:),ppd);
+[cctr_U,petr_U,EPtr_U,ftr_U] = computeMetrics(E(Itr,:),Ep_U(Itr,:),ppd,Tl,Th);
+[ccte_U,pete_U,EPte_U,fte_U] = computeMetrics(E(Ite,:),Ep_U(Ite,:),ppd,Tl,Th);
 
-fprintf('  USGS %s\n',modelstr)
+Ep_U = filterE(Ep_U,Tl,Th);
+E_U  = filterE(E_U,Tl,Th);
+
+[Cxy_U,f_Cxy] = mscohere(E,Ep_U);
+
+fprintf('  USGS %s\n',Info.modelstr)
 fprintf('   train\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_U(1),cctr_U(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_U(2),cctr_U(2))
@@ -171,25 +120,52 @@ fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_U(1),ccte_U(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_U(2),ccte_U(2))
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-if strcmp(agent,'IRIS')
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+fprintf('  transferfnFD parzen window; logarithmic frequencies\n')
+[Z_FDP,fe_FDP,H_FDP,t_FDP] = transferfnFD(IN(Itr,:),E(Itr,:),dim,'parzen');
+
+Ep_FDP = Zpredict(fe_FDP,Z_FDP,IN);
+Ep_FDP = real(Ep_FDP);
+
+E_FDP  = E-Ep_FDP;
+[cctr_FDP,petr_FDP,EPtr_FDP,ftr_FDP] = computeMetrics(E(Itr,:),Ep_FDP(Itr,:),ppd,Tl,Th);
+[ccte_FDP,pete_FDP,EPte_FDP,fte_FDP] = computeMetrics(E(Ite,:),Ep_FDP(Ite,:),ppd,Tl,Th);
+
+[Cxy_FDP,f_Cxy] = mscohere(E,Ep_FDP);
+
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDP(1),cctr_FDP(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDP(2),cctr_FDP(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDP(1),ccte_FDP(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDP(2),ccte_FDP(2))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if strcmp(Info.agent,'IRIS')
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % OSU-calculated Z
 addpath('iris');
 fprintf('  OSU:\n');
-xmlfile = sprintf('./data/iris/%s/%s.xml',short,short);
+xmlfile = sprintf('./data/iris/%s/%s.xml',Info.short,Info.short);
 addpath('../xml');
-D   = readEDIXML(short,'iris/SPUD_bundle_2016-03-23T17.38.28',0,0);
+D   = readEDIXML(Info.short,'iris/SPUD_bundle_2016-03-23T17.38.28',0,0);
 fe_O = transpose(1./D.PERIOD);
 Z_O  = transpose(D.Z);
 % Z units are [mV/km]/[nT] (see xml file)
 fprintf('   Data quality = %d; Note: %s\n',...
 	D.DataQualityRating,D.DataQualityNotes);
 
-% Zxx Zxy Zyx Zyy -> (Zyy Zyx Zxy Zxx)
-% Unless this is done, predictions using OSU model are very poor
-% (PE < 0) and inconsistencies with my calculation of Z
-% (Zxx and Zyy are reversed)
-Z_O = fliplr(Z_O);
+fprintf('   Period range %.1f/%1.f\n',1/fe_O(2),1/fe_O(end));
+
+% In my notation, x = East, y = North.
+% In OSU's notation, x' = North, y' = East
+% So
+%  Zx'x' corresponds to Zyy
+%  Zy'y' corresponds to Zxx
+%  Zx'y' corresponds to Zyx
+%  Zy'x' corresponds to Zxy
+% Columns of Z_O are [Zx'x',Zx'y',Zy'x',Zy'y']
+Z_O = fliplr(Z_O); % Transform to x = East, y = North system
 
 % Order fe and Z by increasing frequency.
 [fe_O,I] = sort(fe_O);
@@ -219,14 +195,103 @@ Ep_O = real(Ep_O);
 
 E_O  = E-Ep_O;
 
-[cctr_O,petr_O,EPtr_O,ftr_O] = computeMetrics(E(Itr,:),Ep_O(Itr,:),ppd);
-[ccte_O,pete_O,EPte_O,fte_O] = computeMetrics(E(Ite,:),Ep_O(Ite,:),ppd);
+%sf = [0.5:0.05:2.0];
+%for i = 1:length(sf)
+%[cctr_O,petr_O,EPtr_O,ftr_O] = computeMetrics(E(Itr,:),sf(i)*Ep_O(Itr,:),ppd,Tl,Th);
+%[ccte_O,pete_O,EPte_O,fte_O] = computeMetrics(E(Ite,:),sf(i)*Ep_O(Ite,:),ppd,Tl,Th);
+[cctr_O,petr_O,EPtr_O,ftr_O] = computeMetrics(E(Itr,:),Ep_O(Itr,:),ppd,Tl,Th);
+[ccte_O,pete_O,EPte_O,fte_O] = computeMetrics(E(Ite,:),Ep_O(Ite,:),ppd,Tl,Th);
 
+Ep_O = filterE(Ep_O,Tl,Th);
+E_O  = filterE(E_O,Tl,Th);
+
+[Cxy_O,f_Cxy] = mscohere(E,Ep_O);
 fprintf('   train\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_O(1),cctr_O(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_O(2),cctr_O(2))
 fprintf('   test\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_O(1),ccte_O(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_O(2),ccte_O(2))
+%end
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+fprintf('  transferfnFD rectangular; logarithmic frequencies\n')
+
+[Z_FDRe,fe_FDRe,H_FDRe,t_FDRe] = transferfnFD(IN(Itr,:),E(Itr,:),2,'rectangular');
+
+Ep_FDRe = Zpredict(fe_FDRe,Z_FDRe,IN);
+Ep_FDRe = real(Ep_FDRe);
+
+E_FDRe  = E-Ep_FDRe;
+
+[cctr_FDRe,petr_FDRe,EPtr_FDRe,ftr_FDRe] = computeMetrics(E(Itr,:),Ep_FDRe(Itr,:),ppd,Tl,Th);
+[ccte_FDRe,pete_FDRe,EPte_FDRe,fte_FDRe] = computeMetrics(E(Ite,:),Ep_FDRe(Ite,:),ppd,Tl,Th);
+
+Ep_FDRe = filterE(Ep_FDRe,Tl,Th);
+E_FDRe  = filterE(E_FDRe,Tl,Th);
+
+[Cxy_FDRe,f_Cxy] = mscohere(E,Ep_FDRe);
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDRe(1),cctr_FDRe(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDRe(2),cctr_FDRe(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDRe(1),ccte_FDRe(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDRe(2),ccte_FDRe(2))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+fprintf('  transferfnFD rectangular; 100 uniformly spaced frequencies per bin\n')
+[Z_FDR,fe_FDR,H_FDR,t_FDR] = transferfnFD(IN(Itr,:),E(Itr,:),dim,'rectangular',100);
+
+Ep_FDR = Zpredict(fe_FDR,Z_FDR,IN);
+Ep_FDR = real(Ep_FDR);
+
+E_FDR  = E-Ep_FDR;
+
+[cctr_FDR,petr_FDR,EPtr_FDR,ftr_FDR] = computeMetrics(E(Itr,:),Ep_FDR(Itr,:),ppd,Tl,Th);
+[ccte_FDR,pete_FDR,EPte_FDR,fte_FDR] = computeMetrics(E(Ite,:),Ep_FDR(Ite,:),ppd,Tl,Th);
+
+[Cxy_FDR,f_Cxy] = mscohere(E,Ep_FDR);
+
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDR(1),cctr_FDR(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDR(2),cctr_FDR(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDR(1),ccte_FDR(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDR(2),ccte_FDR(2))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Compute transfer function using transferfnTD.m
+Nc = 10;
+if ppd == 86400
+    %Nc = [1:120,121:10:1000];
+    %Nc = [1:500,501:100:2000];
+    %Nc = [3:10:1000];
+    %Nc = 1500;
+    Nc = 10;
+    [Z_TD,f_TD,H_TD,t_TD] = transferfnTD(IN(Itr,:),E(Itr,:),Nc,0);
+    Ep_TD = Hpredict(t_TD,H_TD,IN);
+    %[Z_TD,f_TD,H_TD,t_TD,Ep_TD] = transferfnTD(IN,E,Nc,0);    
+    %Ep_TD2 = Hpredict(t_TD,H_TD,IN);
+else
+    [Z_TD,f_TD,H_TD,t_TD,E_TD] = transferfnTD(IN,E,Nc,0);    
+end
+
+[cctr_TD,petr_TD,EPtr_TD,ftr_TD] = computeMetrics(E(Itr,:),Ep_TD(Itr,:),ppd,Tl,Th);
+[ccte_TD,pete_TD,EPte_TD,fte_TD] = computeMetrics(E(Ite,:),Ep_TD(Ite,:),ppd,Tl,Th);
+
+%[Cxy,f] = mscohere(E,Ep_TD);
+fprintf('  TD:\n');
+fprintf('   train\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_TD(1),cctr_TD(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_TD(2),cctr_TD(2))
+fprintf('   test\n');
+fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_TD(1),ccte_TD(1))
+fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_TD(2),ccte_TD(2))
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

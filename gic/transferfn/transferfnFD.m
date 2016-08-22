@@ -39,6 +39,7 @@ else
 end
 
 for j = 1:length(Ic)
+
     if strmatch(winfn,'parzen')
         W = parzenwin(2*Ne(j)+1); 
         W = W/sum(W);
@@ -102,7 +103,9 @@ if (method == 2)
     Z(:,4) = Zyy.';
 end
 
-Z(1,:) = 0;
+I = find(isinf(Z(1,:)) == 1 | isnan(Z(1,:)) == 1);
+Z(1,I) = 0;
+
 
 H = Z2H(fe,Z,f);
 H = fftshift(H,1);

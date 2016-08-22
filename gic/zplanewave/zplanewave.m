@@ -36,7 +36,7 @@ function Cs = zplanewave(s,h,f)
 %       C = 1/q, where
 %       q = sqrt(mu_0*s0*2*pi*f0)*(1+i)/sqrt(2)
 %   and
-%   C = Ex/(i*2*pi*f*Bx) = -Ey/(i*2*pi*f*Bx)
+%   C = Ex/(i*2*pi*f*By) = -Ey/(i*2*pi*f*Bx)
 % 
 %   See also
 %       ZPLANEWAVE_TEST - Verify calculations

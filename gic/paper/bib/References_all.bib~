@@ -1,0 +1,4901 @@
+
+
+This file was automatically generated from entries from the ISI (Institute
+for Scientific Information) databases of scientific and other academic
+documents, using isi2bibtex version 0.4, a perl script which converts ISI or
+BIDS format files to BibTeX format files for inclusion in documents typeset
+using the LaTeX document processor.
+
+Try perldoc isi2bibtex for instructions, or read the script.
+
+This file generated on Wednesday 1st October 2002, from file
+'References_all.isi', which has no subject line.
+
+@ARTICLE{SiscoeMJ05,
+   author = {{Siscoe}, G.~L. and {McPherron}, R.~L. and {Jordanova}, V.~K.
+	},
+    title = "{Diminished contribution of ram pressure to Dst during magnetic storms}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Magnetic storms and substorms (7954), Magnetospheric Physics: Magnetosphere/ionosphere interactions (2431), Magnetospheric Physics: Field-aligned currents and current systems (2409), Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Plasma convection (2463)},
+     year = 2005,
+    month = dec,
+   volume = 110,
+   number = A9,
+    pages = {12227-+},
+      doi = {10.1029/2005JA011120},
+   adsurl = {http://adsabs.harvard.edu/abs/2005JGRA..11012227S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{KamideYGTDBM98,
+   author = {{Kamide}, Y. and {Yokoyama}, N. and {Gonzalez}, W. and {Tsurutani}, B.~T. and 
+	{Daglis}, I.~A. and {Brekke}, A. and {Masuda}, S.},
+    title = "{Two-step development of geomagnetic storms}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Ring current, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Storms and substorms},
+     year = 1998,
+    month = apr,
+   volume = 103,
+    pages = {6917-6922},
+      doi = {10.1029/97JA03337},
+   adsurl = {http://adsabs.harvard.edu/abs/1998JGR...103.6917K},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{ThomsenBSS03,
+   author = {{Thomsen}, M.~F. and {Borovsky}, J.~E. and {Skoug}, R.~M. and 
+	{Smith}, C.~W.},
+    title = "{Delivery of cold, dense plasma sheet material into the near-Earth region}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Plasma sheet, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Plasma convection,},
+     year = 2003,
+    month = apr,
+   volume = 108,
+    pages = {1151},
+      doi = {10.1029/2002JA009544},
+   adsurl = {http://adsabs.harvard.edu/abs/2003JGRA..108.1151T},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+
+@ARTICLE{TemerinL2006,
+   author = {{Temerin}, M. and {Li}, X.},
+    title = "{Dst model for 1995-2002}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Ring current, Magnetospheric Physics: Magnetic storms and substorms (7954), Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Magnetosphere: inner, Magnetospheric Physics: Forecasting (7924, 7964)},
+     year = 2006,
+    month = apr,
+   volume = 111,
+   number = A10,
+    pages = {4221},
+      doi = {10.1029/2005JA011257},
+   adsurl = {http://adsabs.harvard.edu/abs/2006JGRA..11104221T},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{WeygandM06,
+   author = {{Weygand}, J.~M. and {McPherron}, R.~L.},
+    title = "{Dependence of ring current asymmetry on storm phase}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Ionosphere: Current systems (2721), Magnetospheric Physics: Magnetosphere: inner, Magnetospheric Physics: Ring current, Magnetospheric Physics: Magnetic storms and substorms (7954)},
+     year = 2006,
+    month = nov,
+   volume = 111,
+   number = A10,
+      doi = {10.1029/2006JA011808},
+   adsurl = {http://adsabs.harvard.edu/abs/2006JGRA..11111221W},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{Zhangetal07,
+   author = {{Zhang}, J. and {Richardson}, I.~G. and {Webb}, D.~F. and {Gopalswamy}, N. and 
+	{Huttunen}, E. and {Kasper}, J.~C. and {Nitta}, N.~V. and {Poomvises}, W. and 
+	{Thompson}, B.~J. and {Wu}, C.-C. and {Yashiro}, S. and {Zhukov}, A.~N.
+	},
+    title = "{Solar and interplanetary sources of major geomagnetic storms (Dst $\le$ -100 nT) during 1996-2005}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Solar Physics, Astrophysics, and Astronomy: Coronal mass ejections (2101), Interplanetary Physics: Corotating streams, Interplanetary Physics: Ejecta, driver gases, and magnetic clouds, Magnetospheric Physics: Magnetic storms and substorms (7954), Solar Physics, Astrophysics, and Astronomy: Corona},
+     year = 2007,
+    month = oct,
+   volume = 112,
+   number = A11,
+    pages = {10102},
+      doi = {10.1029/2007JA012321},
+   adsurl = {http://adsabs.harvard.edu/abs/2007JGRA..11210102Z},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{WuL97,
+   author = {{Wu}, J.-G. and {Lundstedt}, H.},
+    title = "{Geomagnetic storm predictions from solar wind data with the use of dynamic neural networks}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Solar wind/magnetosphere interactions},
+     year = 1997,
+    month = jul,
+   volume = 102,
+    pages = {14255-14268},
+      doi = {10.1029/97JA00975},
+   adsurl = {http://adsabs.harvard.edu/abs/1997JGR...10214255W},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{MacMahonG97,
+   author = {{Mac-Mahon}, R.~M. and {Gonzalez}, W.~D.},
+    title = "{Energetics during the main phase of geomagnetic superstorms}",
+ keywords = {Magnetospheric Physics: Storms and substorms, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Magnetosphere/ionosphere interactions, Magnetospheric Physics: Auroral phenomena},
+     year = 1997,
+    month = jul,
+   volume = 102,
+  journal = {Journal of Geophysical Research (Space Physics)},
+    pages = {14199-14208},
+      doi = {10.1029/97JA01151},
+   adsurl = {http://adsabs.harvard.edu/abs/1997JGR...10214199M},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{OBrienM00,
+   author = {{O'Brien}, T.~P. and {McPherron}, R.~L.},
+    title = "{Evidence against an independent solar wind density driver of the terrestrial ring current}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Magnetospheric Physics: Plasma sheet, Magnetospheric Physics: Ring current, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Storms and substorms},
+     year = 2000,
+    month = dec,
+   volume = 27,
+    pages = {3797-3800},
+      doi = {10.1029/2000GL012125},
+   adsurl = {http://adsabs.harvard.edu/abs/2000GeoRL..27.3797O},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{BurtonMR75,
+   author = {{Burton}, R.~K. and {McPherron}, R.~L. and {Russell}, C.~T.},
+    title = "{An empirical relationship between interplanetary conditions and Dst}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {INTERPLANETARY MAGNETIC FIELDS, MAGNETIC STORMS, MAGNETOSPHERIC INSTABILITY, RING CURRENTS, SOLAR WIND VELOCITY, ALGORITHMS, ASTRONOMICAL MODELS, ELECTRIC FIELDS, GEOPHYSICS, SUDDEN STORM COMMENCEMENTS},
+     year = 1975,
+    month = nov,
+   volume = 80,
+    pages = {4204-4214},
+   adsurl = {http://adsabs.harvard.edu/abs/1975JGR....80.4204B},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{OBrienM02,
+   author = {{O'Brien}, T.~P. and {McPherron}, R.~L.},
+    title = "{Seasonal and diurnal variation of Dst dynamics}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Ring current, Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: General or miscellaneous,},
+     year = 2002,
+    month = nov,
+   volume = 107,
+    pages = {1341},
+      doi = {10.1029/2002JA009435},
+   adsurl = {http://adsabs.harvard.edu/abs/2002JGRA..107.1341O},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Siscoe02,
+   author = {{Siscoe}, G.~L. and {Erickson}, G.~M. and {Sonnerup}, B.~U.~{\"O}. and 
+	{Maynard}, N.~C. and {Schoendorf}, J.~A. and {Siebert}, K.~D. and 
+	{Weimer}, D.~R. and {White}, W.~W. and {Wilson}, G.~R.},
+    title = "{Hill model of transpolar potential saturation: Comparisons with MHD simulations}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Magnetosphere/ionosphere interactions, Magnetospheric Physics: Magnetotail boundary layers, Magnetospheric Physics: Plasma convection, Magnetospheric Physics: Numerical modeling,},
+     year = 2002,
+    month = jun,
+   volume = 107,
+    pages = {1075},
+      doi = {10.1029/2001JA000109},
+   adsurl = {http://adsabs.harvard.edu/abs/2002JGRA..107.1075S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{SiscoeMJ05,
+   author = {{Siscoe}, G.~L. and {McPherron}, R.~L. and {Jordanova}, V.~K.
+	},
+    title = "{Diminished contribution of ram pressure to Dst during magnetic storms}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Magnetic storms and substorms (7954), Magnetospheric Physics: Magnetosphere/ionosphere interactions (2431), Magnetospheric Physics: Field-aligned currents and current systems (2409), Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Plasma convection (2463)},
+     year = 2005,
+    month = dec,
+   volume = 110,
+   number = A9,
+    pages = {12227},
+      doi = {10.1029/2005JA011120},
+   adsurl = {http://adsabs.harvard.edu/abs/2005JGRA..11012227S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{KingP05,
+   author = {{King}, J.~H. and {Papitashvili}, N.~E.},
+    title = "{Solar wind spatial scales in and comparisons of hourly Wind and ACE plasma and magnetic field data}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Interplanetary Physics: Interplanetary magnetic fields, Interplanetary Physics: Solar wind plasma, Interplanetary Physics: Instruments and techniques, Interplanetary Physics: Solar cycle variations (7536)},
+     year = 2005,
+    month = feb,
+   volume = 110,
+   number = A9,
+    pages = {2104},
+      doi = {10.1029/2004JA010649},
+   adsurl = {http://adsabs.harvard.edu/abs/2005JGRA..11002104K},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{LiemohnKTRLBC2001,
+   author = {{Liemohn}, M.~W. and {Kozyra}, J.~U. and {Thomsen}, M.~F. and 
+	{Roeder}, J.~L. and {Lu}, G. and {Borovsky}, J.~E. and {Cayton}, T.~E.
+	},
+    title = "{Dominant role of the asymmetric ring current in producing the stormtime $Dst^{*}$}",
+  journal = {J. Geophys. Res.},
+ keywords = {Magnetospheric Physics: Magnetosphere-inner, Magnetospheric Physics: Numerical modeling, Magnetospheric Physics: Ring current, Magnetospheric Physics: Storms and substorms},
+     year = 2001,
+    month = jun,
+   volume = 106,
+    pages = {10883-10904},
+      doi = {10.1029/2000JA000326},
+   adsurl = {http://adsabs.harvard.edu/abs/2001JGR...10610883L},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{JordanovaKTM2003,
+   author = {{Jordanova}, V.~K. and {Kistler}, L.~M. and {Thomsen}, M.~F. and 
+	{Mouikis}, C.~G.},
+    title = "{Effects of plasma sheet variability on the fast initial ring current decay}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Magnetospheric Physics: Storms and substorms, Magnetospheric Physics: Plasma convection, Magnetospheric Physics: Ring current, Magnetospheric Physics: Forecasting, Magnetospheric Physics: Numerical modeling,},
+     year = 2003,
+    month = mar,
+   volume = 30,
+   number = 6,
+   adsurl = {http://adsabs.harvard.edu/abs/2003GeoRL..30f..44J},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{XieGSY2008,
+   author = {{Xie}, H. and {Gopalswamy}, N. and {St.~Cyr}, O.~C. and {Yashiro}, S.
+	},
+    title = "{Effects of solar wind dynamic pressure and preconditioning on large geomagnetic storms}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Solar Physics, Astrophysics, and Astronomy: Coronal mass ejections (2101), Space Weather: Magnetic storms (2788), Space Weather: Forecasting (2722), Solar Physics, Astrophysics, and Astronomy: Solar activity cycle (2162)},
+     year = 2008,
+    month = mar,
+   volume = 35,
+    pages = {6},
+      doi = {10.1029/2007GL032298},
+   adsurl = {http://adsabs.harvard.edu/abs/2008GeoRL..3506S08X},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{LavraudTBDP2006,
+   author = {{Lavraud}, B. and {Thomsen}, M.~F. and {Borovsky}, J.~E. and 
+	{Denton}, M.~H. and {Pulkkinen}, T.~I.},
+    title = "{Magnetosphere preconditioning under northward IMF: Evidence from the study of coronal mass ejection and corotating interaction region geoeffectiveness}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Magnetic storms and substorms (7954), Magnetospheric Physics: Ring current, Interplanetary Physics: Coronal mass ejections (7513), Interplanetary Physics: Corotating streams},
+     year = 2006,
+    month = sep,
+   volume = 111,
+   number = A10,
+    pages = {9208},
+      doi = {10.1029/2005JA011566},
+   adsurl = {http://adsabs.harvard.edu/abs/2006JGRA..11109208L},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{BorovskyD2006,
+   author = {{Borovsky}, J.~E. and {Denton}, M.~H.},
+    title = "{Differences between CME-driven storms and CIR-driven storms}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Magnetic storms and substorms (7954), Interplanetary Physics: Corotating streams, Interplanetary Physics: Coronal mass ejections (7513), Magnetospheric Physics: Solar wind/magnetosphere interactions, Space Weather: Magnetic storms (2788)},
+     year = 2006,
+    month = jul,
+   volume = 111,
+   number = A10,
+    pages = {7},
+      doi = {10.1029/2005JA011447},
+   adsurl = {http://adsabs.harvard.edu/abs/2006JGRA..11107S08B},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{LopezWHL2004,
+   author = {{Lopez}, R.~E. and {Wiltberger}, M. and {Hernandez}, S. and 
+	{Lyon}, J.~G.},
+    title = "{Solar wind density control of energy transfer to the magnetosphere}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Ionosphere: Ionosphere/magnetosphere interactions (2736), Magnetospheric Physics: Numerical modeling, Magnetospheric Physics: Solar wind/magnetosphere interactions},
+     year = 2004,
+    month = apr,
+   volume = 31,
+    pages = {8804},
+      doi = {10.1029/2003GL018780},
+   adsurl = {http://adsabs.harvard.edu/abs/2004GeoRL..3108804L},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{BorovskyTE1998,
+   author = {{Borovsky}, J.~E. and {Thomsen}, M.~F. and {Elphic}, R.~C.},
+    title = "{The driving of the plasma sheet by the solar wind}",
+  journal = {J. Geophy. Res.},
+ keywords = {Magnetospheric Physics: Magnetopause, cusp, and boundary layers, Magnetospheric Physics: Magnetospheric configuration and dynamics, Magnetospheric Physics: Plasma sheet, Magnetospheric Physics: Solar wind/magnetosphere interactions},
+     year = 1998,
+    month = aug,
+   volume = 103,
+    pages = {17617-17640},
+      doi = {10.1029/97JA02986},
+   adsurl = {http://adsabs.harvard.edu/abs/1998JGR...10317617B},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{AhnKKG92,
+	author	    = {Ahn, B. and Kamide, Y. and Kroehl, H. and Gorney, D.},
+	title	    = {Cross-polar cap potential difference, auroral
+	  electrojet indexes, and solar-wind parameters},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1992},
+	volume	    = {97},
+	pages	    = {1345-1352}
+}
+
+
+@ARTICLE{AkasofuC79,
+	author	    = {Akasofu, S. and Chao, J.},
+	title	    = {Prediction of the occurrence and intensity of
+	  magnetospheric substorms},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1979},
+	volume	    = {6},
+	pages	    = {897-899}
+}
+
+@ARTICLE{AllenK75,
+	author	    = {Allen, J. and Kroehl, H.},
+	title	    = {Spatial and temporal distributions of magnetic effects
+	  of auroral electrojets as derived from ae-indices},
+	journal     = {J Geophys Res},
+	year	    = {1975},
+	volume	    = {80},
+	pages	    = {3667-3677}
+}
+
+@ARTICLE{AhnEKK99,
+	author	    = {Ahn, B. and Emery, B. and Kroehl, H. and Kamide, Y.},
+	title	    = {Climatological characteristics of the auroral
+	  ionosphere in terms of electric field and ionospheric conductance},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {10031-10040}
+}
+
+@ARTICLE{AhnKKK00,
+	author	    = {Ahn, B. and Kroehl, H. and Kamide, Y. and Kihn, E.},
+	title	    = {Universal time variations of the auroral electrojet
+	  indices},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {267-275}
+}
+
+@ARTICLE{AhnKKK00,
+	author	    = {Ahn, B. and Kroehl, H. and Kamide, Y. and Kihn, E.},
+	title	    = {Seasonal and solar cycle variations of the auroral
+	  electrojet indices},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2000},
+	volume	    = {62},
+	pages	    = {1301-1310}
+}
+
+@ARTICLE{AhnRKKEdA98,
+	author	    = {Ahn, B. and Richmond, A. and Kamide, Y. and Kroehl, H.
+	  and Emery, B. and de la Beaujardiere, O. and Akasofu, S.},
+	title	    = {An ionospheric conductance model based on ground
+	  magnetic disturbance data},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {14769-14780}
+}
+
+@ARTICLE{AmmV99,
+	author	    = {Amm, O. and Viljanen, A.},
+	title	    = {Ionospheric disturbance magnetic field continuation
+	  from the ground to the ionosphere using spherical elementary
+	  current systems},
+	journal     = {Earth Planets Space},
+	year	    = {1999},
+	volume	    = {51},
+	pages	    = {431-440}
+}
+
+@ARTICLE{Aoki96,
+	author	    = {Aoki, T.},
+	title	    = {Dependence of Pi2 occurrence probability on solar wind
+	  parameters},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1996},
+	volume	    = {48},
+	pages	    = {371-389}
+}
+
+@ARTICLE{BakerBHKB87,
+	author	    = {Baker, D. and Belian, R. and Higbie, P. and
+	  Klebesadel, R. and Blake, J.},
+	title	    = {Deep dielectric charging effects due to high-energy
+	  electrons in earths outer magnetosphere},
+	journal     = {J. Electrost.},
+	year	    = {1987},
+	volume	    = {20},
+	pages	    = {3-19}
+}
+
+@ARTICLE{BakerBMKBMM01,
+	author	    = {Baker, D. and Barth, C. and Mankoff, K. and Kanekal,
+	  S. and Bailey, S. and Mason, G. and Mazur, J.},
+	title	    = {Relationships between precipitating auroral zone
+	  electrons and lower thermospheric nitric oxide densities:
+	  1998-2000},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {24465-24480}
+}
+
+@ARTICLE{BakerKBP01,
+	author	    = {Baker, D. and Kanekal, S. and Blake, J. and Pulkkinen,
+	  T.},
+	title	    = {The global efficiency of relativistic electron
+	  production in the Earth's magnetosphere},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {19169-19178}
+}
+
+@ARTICLE{BakerKKVP99,
+	author	    = {Baker, D. and Kanekal, S. and Klimas, A. and
+	  Vassiliadis, D. and Pulkkinen, T.},
+	title	    = {Collective phenomena in the inner magnetosphere},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4195-4199}
+}
+
+@ARTICLE{BakerKPB99,
+	author	    = {Baker, D. and Kanekal, S. and Pulkkinen, T. and Blake,
+	  J.},
+	title	    = {Equinoctial and solstitial averages of magnetospheric
+	  relativistic electrons: A strong semiannual modulation},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {3193-3196}
+}
+
+@ARTICLE{BakerKVPM97,
+	author	    = {Baker, D. and Klimas, A. and Vassiliadis, D. and
+	  Pulkkinen, T. and McPherron, R.},
+	title	    = {Reexamination of driven and unloading aspects of
+	  magnetospheric substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {7169-7177}
+}
+
+@ARTICLE{BakerLTABBSSBRKKLOMOSR97,
+	author	    = {Baker, D. and Li, X. and Turner, N. and Allen, J. and
+	  Bargatze, L. and Blake, J. and Sheldon, R. and Spence, H. and
+	  Belian, R. and Reeves, G. and Kanekal, S. and Klecker, B. and
+	  Lepping, R. and Ogilvie, K. and Mewaldt, R. and Onsager, T. and
+	  Singer, H. and Rostoker, G.},
+	title	    = {Recurrent geomagnetic storms and relativistic electron
+	  enhancements in the outer magnetosphere: ISTP coordinated
+	  measurements},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {14141-14148}
+}
+
+@ARTICLE{BakerPLKBSHRSR98,
+	author	    = {Baker, D. and Pulkkinen, T. and Li, X. and Kanekal, S.
+	  and Blake, J. and Selesnick, R. and Henderson, E. and Reeves, G.
+	  and Spence, H. and Rostoker, G.},
+	title	    = {Coronal mass ejections, magnetic clouds, and
+	  relativistic magnetospheric electron events: ISTP},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {17279-17291}
+}
+
+@ARTICLE{BakerPLKOLBCRSR98,
+	author	    = {Baker, D. and Pulkkinen, T. and Li, X. and Kanekal, S.
+	  and Ogilvie, K. and Lepping, R. and Blake, J. and Callis, L. and
+	  Rostoker, G. and Singer, H. and Reeves, G.},
+	title	    = {A strong CME-related magnetic cloud interaction with
+	  the Earth's magnetosphere: ISTP observations of rapid relativistic
+	  electron acceleration on May 15, 1997},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {2975-2978}
+}
+
+@ARTICLE{BotelerP98,
+	author	    = {Boteler, D. and Pirjola, R.},
+	title	    = {The complex-image method for calculating the magnetic
+	  and electric fields produced at the surface of the Earth by the
+	  auroral electrojet},
+	journal     = {Geophys. J. Int.},
+	year	    = {1998},
+	volume	    = {132},
+	pages	    = {31-40}
+}
+
+@ARTICLE{BotelerPT00,
+	author	    = {Boteler, D. and Pirjola, R. and Trichtchenko, L.},
+	title	    = {On calculating the electric and magnetic fields
+	  produced in technological systems at the Earth's surface by a
+	  "wide" electrojet},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2000},
+	volume	    = {62},
+	pages	    = {1311-1315}
+}
+
+@ARTICLE{BreitlingWDT01,
+	author	    = {Breitling, F. and Weigel, R. and Downer, M. and
+	  Tajima, T.},
+	title	    = {Laser pointing stabilization and control in the
+	  submicroradian regime with neural networks},
+	journal     = {Rev. Sci. Instrum.},
+	year	    = {2001},
+	volume	    = {72},
+	pages	    = {1339-1342}
+}
+
+@ARTICLE{BurkeFWHGRG98,
+	author	    = {Burke, W. and Fehringer, T. and Weimer, D. and Huang,
+	  C. and Gussenhoven, M. and Rich, F. and Gentile, L.},
+	title	    = {Observed and predicted potential distributions during
+	  the October 1995 magnetic cloud passage},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {3023-3026}
+}
+
+@ARTICLE{BurkeWM99,
+	author	    = {Burke, W. and Weimer, D. and Maynard, N.},
+	title	    = {Geoeffective interplanetary scale sizes derived from
+	  regression analysis of polar cap potentials},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {9989-9994}
+}
+
+@ARTICLE{ClauerBSJFVWKD84,
+	author	    = {Clauer, C. and Banks, P. and Smith, A. and Jorgensen,
+	  T. and Friis--Christensen, E. and Vennerstr{\o}m, S. and Wickwar, V. and
+	  Kelly, J. and Doupnik, J.},
+	title	    = {Observation of interplanetary magnetic-field and of
+	  ionospheric plasma convection in the vicinity of the dayside polar
+	  cleft},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1984},
+	volume	    = {11},
+	pages	    = {891-894}
+}
+
+@ARTICLE{Chang99,
+	author	    = {Chang, T.},
+	title	    = {Self-organized criticality, multi-fractal spectra,
+	  sporadic localized reconnections and intermittent turbulence in the
+	  magnetotail},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4137-4145}
+}
+
+@ARTICLE{Chang00,
+	author	    = {Chang, T.},
+	title	    = {Forced and/or self-organized criticality in space
+	  plasma processes},
+	journal     = {Phys. Scr.},
+	year	    = {2000},
+	volume	    = {T84},
+	pages	    = {12-13}
+}
+
+@ARTICLE{Chang98,
+	author	    = {Chang, T.},
+	title	    = {Self-organized criticality, multi-fractal spectra, and
+	  intermittent merging of coherent structures in the magnetotail},
+	journal     = {Astrophys. Space Sci.},
+	year	    = {1998},
+	volume	    = {264},
+	pages	    = {303-316}
+}
+
+@ARTICLE{ConsoliniCBBBBCCEEFMP99,
+	author	    = {Consolini, G. and Carbone, V. and Berrilli, F. and
+	  Bruno, R. and Bavassano, B. and Briand, C. and Caccin, B. and
+	  Ceppatelli, G. and Egidi, A. and Ermolli, I. and Florio, A. and
+	  Mainella, G. and Pietropaolo, E.},
+	title	    = {Scaling behavior of the vertical velocity field in the
+	  solar photosphere},
+	journal     = {Astron. Astrophys.},
+	year	    = {1999},
+	volume	    = {344},
+	pages	    = {L33-L36}
+}
+
+@ARTICLE{ConsoliniC02,
+	author	    = {Consolini, G. and Chang, T.},
+	title	    = {Complexity, magnetic field topology, criticality, and
+	  metastability in magnetotail dynamics},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2002},
+	volume	    = {64},
+	pages	    = {541-549}
+}
+
+@ARTICLE{ConsoliniD98,
+	author	    = {Consolini, G. and De Michelis, P.},
+	title	    = {Non-Gaussian distribution function of AE-index
+	  fluctuations: Evidence for time intermittency},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {4087-4090}
+}
+
+@ARTICLE{ConsoliniDM02,
+	author	    = {Consolini, G. and De Michelis, P. and Meloni, A.},
+	title	    = {Fluid motions in the Earth's core inferred from time
+	  spectral features of the geomagnetic field},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {65},
+	pages	    = {art. no.-037303}
+}
+
+@ARTICLE{ConsoliniDM00,
+	author	    = {Consolini, G. and De Michelis, P. and Meloni, A.},
+	title	    = {Multifractality and punctuated equilibrium in the
+	  Earth's magnetic field polarity reversals.},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {293-296}
+}
+
+@ARTICLE{ConsoliniL99,
+	author	    = {Consolini, G. and Lui, A.},
+	title	    = {Sign-singularity analysis of current disruption},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {1673-1676}
+}
+
+@ARTICLE{ConsoliniM97,
+	author	    = {Consolini, G. and Marcucci, M.},
+	title	    = {Multifractal structure and intermittence in the AE
+	  index time series},
+	journal     = {Nuovo Cimento Soc. Ital. Fis. C-Geophys. Space Phys.},
+	year	    = {1997},
+	volume	    = {20},
+	pages	    = {939-949}
+}
+
+@ARTICLE{ConsoliniMC96,
+	author	    = {Consolini, G. and Marcucci, M. and Candidi, H.},
+	title	    = {Multifractal structure of auroral electrojet index
+	  data},
+	journal     = {Phys. Rev. Lett.},
+	year	    = {1996},
+	volume	    = {76},
+	pages	    = {4082-4085}
+}
+
+@ARTICLE{CrowleyH01,
+	author	    = {Crowley, G. and Hackert, C.},
+	title	    = {Quantification of high latitude electric field
+	  variability},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {2783-2786}
+}
+
+@ARTICLE{DaglisBGOSSTV99,
+	author	    = {Daglis, I. and Baumjohann, W. and Gleiss, J. and
+	  Orsini, S. and Sarris, E. and Scholer, M. and Tsurutani, B. and
+	  Vassiliadis, D.},
+	title	    = {Recent advances, open questions and future directions
+	  in solarterrestrial research},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {1999},
+	volume	    = {24},
+	pages	    = {5-28}
+}
+
+@ARTICLE{DemirkolIBKW99,
+	author	    = {Demirkol, M. and Inan, U. and Bell, T. and Kanekal, S.
+	  and Wilkinson, D.},
+	title	    = {Ionospheric effects of relativistic electron
+	  enhancement events},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {3557-3560}
+}
+
+@ARTICLE{DoxasHS99,
+	author	    = {Doxas, I. and Horton, W. and Smith, J.},
+	title	    = {A physics based nonlinear dynamical model for the
+	  solar wind driven magnetosphere-ionosphere system},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {1999},
+	volume	    = {24},
+	pages	    = {67-71}
+}
+
+@ARTICLE{DoxasHW02,
+	author	    = {Doxas, I. and Horton, W. and Weigel, R.},
+	title	    = {Using particle simulations for parameter tuning of
+	  dynamical models of the magnetotail},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2002},
+	volume	    = {64},
+	pages	    = {633-638}
+}
+
+@ARTICLE{ElkingtonHC99,
+	author	    = {Elkington, S. and Hudson, M. and Chan, A.},
+	title	    = {Acceleration of relativistic electrons via
+	  drift-resonant interaction with toroidal-mode Pc5 ULF oscillations},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {3273-3276}
+}
+
+@ARTICLE{FedderSLE95,
+	author	    = {Fedder, J. and Slinker, S. and Lyon, J. and
+	  Elphinstone, R.},
+	title	    = {Global numerical-simulation of the growth-phase and
+	  the expansion onset for a substorm observed by viking},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {19083-19093}
+}
+
+@ARTICLE{Friis--ChristensenMCV88,
+	author	    = {Friis--Christensen, E. and McHenry, M. and Clauer, C.
+	  and Vennerstr{\o}m, S.},
+	title	    = {Ionospheric traveling convection vortices observed
+	  near the polar cleft - a triggered response to sudden changes in
+	  the solar-wind},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1988},
+	volume	    = {15},
+	pages	    = {253-256}
+}
+
+@ARTICLE{FungT99,
+	author	    = {Fung, S. and Tan, L.},
+	title	    = {An alternative drift shell parameter for modeling
+	  trapped particles},
+	journal     = {Radiat. Meas.},
+	year	    = {1999},
+	volume	    = {30},
+	pages	    = {609-615}
+}
+
+@ARTICLE{GiannitrapaniCV91,
+	author	    = {Giannitrapani, D. and Collins, J. and Vassiliadis, D.},
+	title	    = {The eeg spectra of alzheimers-disease},
+	journal     = {Int. J. Psychophysiol.},
+	year	    = {1991},
+	volume	    = {10},
+	pages	    = {259-269}
+}
+
+
+@ARTICLE{GavrishchakaG01,
+	author	    = {Gavrishchaka, V. and Ganguli, S.},
+	title	    = {Optimization of the neural-network geomagnetic model
+	  for forecasting large-amplitude substorm events},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {6247-6257}
+}
+
+@ARTICLE{GleisnerL97,
+	author	    = {Gleisner, H. and Lundstedt, H.},
+	title	    = {Response of the auroral electrojets to the solar wind
+	  modeled with neural networks},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {14269-14278}
+}
+
+@ARTICLE{GleisnerL01,
+	author	    = {Gleisner, H. and Lundstedt, H.},
+	title	    = {Auroral electrojet predictions with dynamic neural
+	  networks},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {24541-24549}
+}
+
+@ARTICLE{GleisnerL99,
+	author	    = {Gleisner, H. and Lundstedt, H.},
+	title	    = {Ring current influence on auroral electrojet
+	  predictions},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1999},
+	volume	    = {17},
+	pages	    = {1268-1275}
+}
+
+@ARTICLE{GleisnerLW96,
+	author	    = {Gleisner, H. and Lundstedt, H. and Wintoft, P.},
+	title	    = {Predicting geomagnetic storms from solar-wind data
+	  using time- delay neural networks},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1996},
+	volume	    = {14},
+	pages	    = {679-686}
+}
+
+@ARTICLE{GoodeCDH01,
+	author	    = {Goode, B. and Cary, J. and Doxas, I. and Horton, W.},
+	title	    = {Differentiating between colored random noise and
+	  deterministic chaos with the root mean squared deviation},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {21277-21288}
+}
+
+@ARTICLE{HernandezTH93,
+	author	    = {Hernandez, J. and Tajima, T. and Horton, W.},
+	title	    = {Neural-net forecasting for geomagnetic-activity},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1993},
+	volume	    = {20},
+	pages	    = {2707-2710}
+}
+
+@ARTICLE{HortonCKT93,
+	author	    = {Horton, W. and Cheung, L. and Kim, J. and Tajima, T.},
+	title	    = {Self-consistent plasma pressure tensors from the
+	  tsyganenko magnetic-field models},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1993},
+	volume	    = {98},
+	pages	    = {17327-17343}
+}
+
+@ARTICLE{HortonLBT91,
+	author	    = {Horton, W. and Liu, C. and Burns, B. and Tajima, T.},
+	title	    = {Collisionless plasma transport across loop
+	  magnetic-fields},
+	journal     = {Phys Fluids B-Plasma Phys},
+	year	    = {1991},
+	volume	    = {3},
+	pages	    = {2192-2199}
+}
+
+@ARTICLE{HortonLHT91,
+	author	    = {Horton, W. and Liu, C. and Hernandez, J. and Tajima,
+	  T.},
+	title	    = {Stochastic mixing of protons from chaotic orbits in
+	  the nightside geomagnetosphere},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1575-1578}
+}
+
+@ARTICLE{HortonT91,
+	author	    = {Horton, W. and Tajima, T.},
+	title	    = {Transport from chaotic orbits in the geomagnetic tail},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1583-1586}
+}
+
+@ARTICLE{HortonT91,
+	author	    = {Horton, W. and Tajima, T.},
+	title	    = {Collisionless conductivity and stochastic heating of
+	  the plasma sheet in the geomagnetic tail},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1991},
+	volume	    = {96},
+	pages	    = {15811-15829}
+}
+
+@ARTICLE{Horton97,
+	author	    = {Horton, W.},
+	title	    = {Chaos and structures in the magnetosphere},
+	journal     = {Phys. Rep.-Rev. Sec. Phys. Lett.},
+	year	    = {1997},
+	volume	    = {283},
+	pages	    = {265-302}
+}
+
+@ARTICLE{HortonCDW02,
+	author	    = {Horton, W. and Crabtree, C. and Doxas, I. and Weigel,
+	  R.},
+	title	    = {Geomagnetic transport in the solar wind driven
+	  nightside magnetosphere-ionosphere system},
+	journal     = {Phys. Plasmas},
+	year	    = {2002},
+	volume	    = {9},
+	pages	    = {3712-3720}
+}
+
+@ARTICLE{HortonD98,
+	author	    = {Horton, W. and Doxas, I.},
+	title	    = {A low-dimensional dynamical model for the solar wind
+	  driven geotail-ionosphere system},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {4561-4572}
+}
+
+@ARTICLE{HortonD96,
+	author	    = {Horton, W. and Doxas, I.},
+	title	    = {A low-dimension energy-conserving state space model
+	  for substorm dynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {27223-27237}
+}
+
+@ARTICLE{HortonPD98,
+	author	    = {Horton, W. and Pekker, M. and Doxas, I.},
+	title	    = {Magnetic energy storage and the nightside
+	  magnetosphere- ionosphere coupling},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {4083-4086}
+}
+
+@ARTICLE{HortonSWCDGC99,
+	author	    = {Horton, W. and Smith, J. and Weigel, R. and Crabtree,
+	  C. and Doxas, I. and Goode, B. and Cary, J.},
+	title	    = {The solar-wind driven magnetosphere-ionosphere as a
+	  complex dynamical system},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4178-4184}
+}
+
+@ARTICLE{HortonWS01,
+	author	    = {Horton, W. and Weigel, R. and Sprott, J.},
+	title	    = {Chaos and the limits of predictability for the
+	  solar-wind- driven magnetosphere-ionosphere system},
+	journal     = {Phys. Plasmas},
+	year	    = {2001},
+	volume	    = {8},
+	pages	    = {2946-2952}
+}
+
+@ARTICLE{HortonWV99,
+	author	    = {Horton, W. and Wong, H. and Van Dam, J.},
+	title	    = {Substorm trigger conditions},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {22745-22757}
+}
+
+@ARTICLE{IslikerAVV98,
+	author	    = {Isliker, H. and Anastasiadis, A. and Vassiliadis, D.
+	  and Vlahos, L.},
+	title	    = {Solar flare cellular automata interpreted as
+	  discretized MHD equations},
+	journal     = {Astron. Astrophys.},
+	year	    = {1998},
+	volume	    = {335},
+	pages	    = {1085-1092}
+}
+
+@ARTICLE{KamideR86,
+	author	    = {Kamide, Y. and Richmond, A.},
+	title	    = {Recent advances in studies of magnetosphere-ionosphere
+	  coupling},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1986},
+	volume	    = {38},
+	pages	    = {653-714}
+}
+
+@ARTICLE{KamideRM81,
+	author	    = {Kamide, Y. and Richmond, A. and Matsushita, S.},
+	title	    = {Estimation of ionospheric electric-fields, ionospheric
+	  currents, and field-aligned currents from ground magnetic records},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1981},
+	volume	    = {86},
+	pages	    = {801-813}
+}
+
+@ARTICLE{KauristiePPJHVOHB95,
+	author	    = {Kauristie, K. and Pulkkinen, T. and Pellinen, R. and
+	  Janhunen, P. and Huuskonen, A. and Viljanen, A. and Opgenoorth, H.
+	  and Heikkila, W. and Baker, D.},
+	title	    = {Analysis of the substorm trigger phase using multiple
+	  ground- based instrumentation},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1995},
+	volume	    = {22},
+	pages	    = {2065-2068}
+}
+
+@ARTICLE{KellyCSRS86,
+	author	    = {Kelly, T. and Crooker, N. and Siscoe, G. and Russell,
+	  C. and Smith, E.},
+	title	    = {On the use of a sunward libration-point-orbiting
+	  spacecraft as an interplanetary magnetic-field monitor for
+	  magnetospheric studies},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1986},
+	volume	    = {91},
+	pages	    = {5629-5636}
+}
+
+
+@ARTICLE{KoonsG91,
+	author	    = {Koons, H. and Gorney, D.},
+	title	    = {Relationship between electrostatic discharges on
+	  spacecraft p78-2 and the electron environment},
+	journal     = {J. Spacecr. Rockets},
+	year	    = {1991},
+	volume	    = {28},
+	pages	    = {683-688}
+}
+
+@ARTICLE{KotikovT86,
+	author	    = {Kotikov, A. and Troshichev, O.},
+	title	    = {The effect of the {IMF} sector structure on the
+	  intensity of auroral electrojets},
+	journal     = {Geomagn. Aeron.},
+	year	    = {1986},
+	volume	    = {26},
+	pages	    = {338-340}
+}
+
+@ARTICLE{KallioPKVSO00,
+	author	    = {Kallio, E. and Pulkkinen, T. and Koskinen, H. and
+	  Viljanen, A. and Slavin, J. and Ogilvie, K.},
+	title	    = {Loading-unloading processes in the nightside
+	  ionosphere},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {1627-1630}
+}
+
+@ARTICLE{KamenskayaUMZT02,
+	author	    = {Kamenskaya, V. and Uritsky, V. and Muzalevskaya, N.
+	  and Zvereva, S. and Tomanov, L.},
+	title	    = {Fractal characteristics of heart rate variability in
+	  adolescents at verbal testing},
+	journal     = {Int. J. Psychophysiol.},
+	year	    = {2002},
+	volume	    = {45},
+	pages	    = {161-161}
+}
+
+@ARTICLE{KanekalBB01,
+	author	    = {Kanekal, S. and Baker, D. and Blake, J.},
+	title	    = {Multisatellite measurements of relativistic electrons:
+	  Global coherence},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {29721-29732}
+}
+
+@ARTICLE{KanekalBBKCMMM98,
+	author	    = {Kanekal, S. and Baker, D. and Blake, J. and Klecker,
+	  B. and Cummings, J. and Mewaldt, R. and Mason, G. and Mazur, J.},
+	title	    = {High-latitude energetic particle boundaries and the
+	  polar cap: A statistical study},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {9367-9372}
+}
+
+@ARTICLE{KanekalBBKMM00,
+	author	    = {Kanekal, S. and Baker, D. and Blake, J. and Klecker,
+	  B. and Mason, G. and Mewaldt, R.},
+	title	    = {Magnetospheric relativistic electron response to
+	  magnetic cloud events of 1997.},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {25},
+	pages	    = {1387-1392}
+}
+
+@ARTICLE{KanekalBBKMM99,
+	author	    = {Kanekal, S. and Baker, D. and Blake, J. and Klecker,
+	  B. and Mewaldt, R. and Mason, G.},
+	title	    = {Magnetospheric response to magnetic cloud (coronal
+	  mass ejection) events: Relativistic electron observations from
+	  SAMPEX and Polar},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {24885-24894}
+}
+
+@ARTICLE{KauristiePAVSJMOCWDPMESDOLDVA01,
+	author	    = {Kauristie, K. and Pulkkinen, T. and Amm, O. and
+	  Viljanen, A. and Syrjasuo, M. and Janhunen, P. and Massetti, S. and
+	  Orsini, S. and Candidi, M. and Watermann, J. and Donovan, E. and
+	  Prikryl, P. and Mann, I. and Eglitis, P. and Smiths, C. and Denig,
+	  W. and Opgenoorth, H. and Lockwood, M. and Dunlop, M. and Vaivads,
+	  A. and Andre, M.},
+	title	    = {Ground-based and satellite observations of
+	  high-latitude auroral activity in the dusk sector of the auroral
+	  oval},
+	journal     = {Ann. Geophys.},
+	year	    = {2001},
+	volume	    = {19},
+	pages	    = {1683-1696}
+}
+
+@ARTICLE{KauristieSAVPO01,
+	author	    = {Kauristie, K. and Syrjasuq, M. and Amm, O. and
+	  Viljanen, A. and Pulkkinen, T. and Opgenoorth, H.},
+	title	    = {A statistical study of evening sector arcs and
+	  electrojets},
+	journal     = {Adv Space Res},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {1605-1610}
+}
+
+@ARTICLE{KlimasVVBHT00,
+	author	    = {Klimas, A. and Valdivia, J. and Vassiliadis, D. and
+	  Baker, D. and Hesse, M. and Takalo, J.},
+	title	    = {Self-organized criticality in the substorm phenomenon
+	  and its relation to localized reconnection in the magnetospheric
+	  plasma sheet},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {18765-18780}
+}
+
+
+@ARTICLE{KlimasVB98,
+	author	    = {Klimas, A. and Vassiliadis, D. and Baker, D.},
+	title	    = {Dst index prediction using data-derived analogues of
+	  the magnetospheric dynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {20435-20447}
+}
+
+@ARTICLE{KlimasVBR96,
+	author	    = {Klimas, A. and Vassiliadis, D. and Baker, D. and
+	  Roberts, D.},
+	title	    = {The organized nonlinear dynamics of the magnetosphere},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {13089-13113}
+}
+
+@ARTICLE{KlimasVBV99,
+	author	    = {Klimas, A. and Vassiliadis, D. and Baker, D. and
+	  Valdivia, J.},
+	title	    = {Data-derived analogues of the solar wind-magnetosphere
+	  interaction},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {1999},
+	volume	    = {24},
+	pages	    = {37-44}
+}
+
+@ARTICLE{LeeO80,
+	author	    = {Lee, L. and Olson, J.},
+	title	    = {Kelvin-Helmholtz instability and the variation of
+	  geomagnetic pulsation activity},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1980},
+	volume	    = {7},
+	pages	    = {777-780}
+}
+
+@ARTICLE{LeppingBSOMVLSFJM97,
+	author	    = {Lepping, R. and Burlaga, L. and Szabo, A. and Ogilvie,
+	  K. and Mish, W. and Vassiliadis, D. and Lazarus, A. and Steinberg,
+	  J. and Farrugia, C. and Janoo, L. and Mariani, F.},
+	title	    = {The Wind magnetic cloud and events of October 18-20,
+	  1995: Interplanetary properties and as triggers for geomagnetic
+	  activity},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {14049-14063}
+}
+
+@ARTICLE{LiBKLT01,
+	author	    = {Li, X. and Baker, D. and Kanekal, S. and Looper, M.
+	  and Temerin, M.},
+	title	    = {Long term measurements of radiation belts by SAMPEX
+	  and their variations},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {3827-3830}
+}
+
+@ARTICLE{LiBTCRCBLNK97,
+	author	    = {Li, X. and Baker, D. and Temerin, M. and Cayton, T.
+	  and Reeves, E. and Christensen, R. and Blake, J. and Looper, M. and
+	  Nakamura, R. and Kanekal, S.},
+	title	    = {Multisatellite observations of the outer zone electron
+	  variation during the November 3-4, 1993, magnetic storm},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {14123-14140}
+}
+
+@ARTICLE{LiBTCRASLLK98,
+	author	    = {Li, X. and Baker, D. and Temerin, M. and Cayton, T.
+	  and Reeves, G. and Araki, T. and Singer, H. and Larson, D. and Lin,
+	  R. and Kanekal, S.},
+	title	    = {Energetic electron injections into the inner
+	  magnetosphere during the Jan. 10-11, 1997 magnetic storm},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {2561-2564}
+}
+
+@ARTICLE{LiBTLLRLKM97,
+	author	    = {Li, X. and Baker, D. and Temerin, M. and Larson, D.
+	  and Lin, R. and Reeves, G. and Looper, M. and Kanekal, S. and
+	  Mewaldt, R.},
+	title	    = {Are energetic electrons in the solar wind the source
+	  of the outer radiation belt?},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1997},
+	volume	    = {24},
+	pages	    = {923-926}
+}
+
+@ARTICLE{LiBTCRSBLKS99,
+	author	    = {Li, X. and Baker, D. and Teremin, M. and Cayton, T.
+	  and Reeves, G. and Selesnick, R. and Blake, J. and Lu, G. and
+	  Kanekal, S. and Singer, H.},
+	title	    = {Rapid enhancements of relativistic electrons deep in
+	  the magnetosphere during the May 15, 1997, magnetic storm},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {4467-4476}
+}
+
+@ARTICLE{LuRRGHRE01,
+	author	    = {Lu, G. and Richmond, A. and Ruohoniemi, J. and
+	  Greenwald, R. and Hairston, M. and Rich, F. and Evans, D.},
+	title	    = {An investigation of the influence of data and model
+	  inputs on assimilative mapping of ionospheric electrodynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {417-433}
+}
+
+@ARTICLE{HnatCRWF02,
+    author = {{Hnat}, B. and {Chapman}, S.~C. and {Rowlands}, G. and {Watkins}, N.~W. and 
+	{Freeman}, M.~P.},
+    title = "{Scaling of solar wind {epsilon} and the AU, AL and AE indices as seen by WIND}",
+    journal = {Geophys. Res. Lett.},
+    year = 2002,
+    month = nov,
+    volume = 29,
+    pages = {35-1},
+    adsurl = {http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2002GeoRL..29v..35H&db_key=AST},
+    adsnote = {Provided by the NASA Astrophysics Data System}
+}
+
+@ARTICLE{FreemanWR00,
+    author = {{Freeman}, M.~P. and {Watkins}, N.~W. and {Riley}, D.~J.},
+    title = "{Evidence for a solar wind origin of the power law burst lifetime distribution of the AE indices}",
+    journal = {Geophys. Res. Lett.},
+    year = 2000,
+    month = apr,
+    volume = 27,
+    pages = {1087},
+    adsurl = {http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2000GeoRL..27.1087F&db_key=AST},
+    adsnote = {Provided by the NASA Astrophysics Data System}
+}
+
+
+
+@ARTICLE{WatkinsFCD01,
+    author = {{Watkins}, N.~W. and {Freeman}, M.~P. and {Chapman}, S.~C. and 
+	{Dendy}, R.~O.},
+    title = "{Testing the SOC hypothesis for the magnetosphere}",
+    journal = {Journal of Atmospheric and Terrestrial Physics},
+    year = 2001,
+    month = sep,
+    volume = 63,
+    pages = {1435-1445},
+    adsurl = {http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=2001JATP...63.1435W&db_key=PHY},
+    adsnote = {Provided by the NASA Astrophysics Data System}
+}
+
+
+
+@ARTICLE{LuhrABPPHZ98,
+	author	    = {Luhr, H. and Aylward, A. and Bucher, S. and Pajunpaa,
+	  A. and Panjunpaa, K. and Holmboe, T. and Zalewski, S.},
+	title	    = {Westward moving dynamic substorm features observed
+	  with the IMAGE magnetometer network and other ground-based
+	  instruments},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1998},
+	volume	    = {16},
+	pages	    = {425-440}
+}
+
+@ARTICLE{MerkurievaT80,
+	author	    = {Merkurieva, A. and Troshichev, O.},
+	title	    = {About the nature of a daily variation of magnetic
+	  activity in high and middle latitudes},
+	journal     = {Geomagn. Aeron.},
+	year	    = {1980},
+	volume	    = {20},
+	pages	    = {161-162}
+}
+
+@ARTICLE{MurayamaANH80,
+	author	    = {Murayama, T. and Aoki, T. and Nakai, H. and Hakamada,
+	  K.},
+	title	    = {Empirical-formula to relate the auroral electrojet
+	  intensity with inter-planetary parameters},
+	journal     = {Planet Space Sci.},
+	year	    = {1980},
+	volume	    = {28},
+	pages	    = {803-813}
+}
+
+@ARTICLE{MannVDDYMWKABBVO02,
+	author	    = {Mann, I. and Voronkov, I. and Dunlop, M. and Donovan,
+	  E. and Yeoman, T. and Milling, D. and Wild, J. and Kauristie, K.
+	  and Amm, O. and Bale, S. and Balogh, A. and Viljanen, A. and
+	  Opgenoorth, H.},
+	title	    = {Coordinated ground-based and Cluster observations of
+	  large amplitude global magnetospheric oscillations during a fast
+	  solar wind speed interval},
+	journal     = {Ann. Geophys.},
+	year	    = {2002},
+	volume	    = {20},
+	pages	    = {405-426}
+}
+
+@ARTICLE{MaynardBPWOWMMMSESLBAFMGCLNHHSv00,
+	author	    = {Maynard, N. and Burke, W. and Pfaff, R. and Weber, E.
+	  and Ober, D. and Weimer, D. and Moen, J. and Milan, S. and Maseide,
+	  K. and Sandholt, P. and Egeland, A. and Soraas, F. and Lepping, R.
+	  and Bounds, S. and Acuna, M. and Freudenreich, H. and Machuzak, J.
+	  and Gentile, L. and Clemmons, J. and Lester, M. and Ning, P. and
+	  Hardy, D. and Holtet, J. and Stadsnes, J. and van Eyken, T.},
+	title	    = {Driving dayside convection with northward IMF:
+	  Observations by a sounding rocket launched from Svalbard},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {5245-5263}
+}
+
+@ARTICLE{MaynardWWMOHE97,
+	author	    = {Maynard, N. and Weber, E. and Weimer, D. and Moen, J.
+	  and Onsager, T. and Heelis, R. and Egeland, A.},
+	title	    = {How wide in magnetic local time is the cusp? An event
+	  study},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {4765-4776}
+}
+
+@ARTICLE{McComasBBFPRG98,
+	author	    = {McComas, D. and Bame, S. and Barker, P. and Feldman,
+	  W. and Phillips, J. and Riley, P. and Griffee, J.},
+	title	    = {Solar Wind Electron Proton Alpha Monitor ({SWEPAM}) for
+	  the Advanced Composition Explorer},
+	journal     = {Space Sci. Rev.},
+	year	    = {1998},
+	volume	    = {86},
+	pages	    = {563-612}
+}
+
+@ARTICLE{Nagai88,
+	author	    = {Nagai, T.},
+	title	    = {Space weather forecast - prediction of relativistic
+	  electron intensity at synchronous orbit},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1988},
+	volume	    = {15},
+	pages	    = {425-428}
+}
+
+@ARTICLE{NevanlinnaKHVI93,
+	author	    = {Nevanlinna, H. and Ketola, A. and Hakkinen, L. and
+	  Viljanen, A. and Ivory, K.},
+	title	    = {Geomagnetic-activity during solar-cycle 9 (1844-1856)},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1993},
+	volume	    = {20},
+	pages	    = {743-746}
+}
+
+@ARTICLE{O'BrienM00b,
+	author	    = {O'Brien, T. and McPherron, R.},
+	title	    = {Forecasting the ring current index Dst in real time},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2000},
+	volume	    = {62},
+	pages	    = {1295-1299}
+}
+
+@ARTICLE{O'BrienM00c,
+	author	    = {O'Brien, T. and McPherron, R.},
+	title	    = {An empirical phase space analysis of ring current
+	  dynamics: Solar wind control of injection and decay},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {7707-7719}
+}
+
+@ARTICLE{O'BrienM00d,
+	author	    = {O'Brien, T. and McPherron, R.},
+	title	    = {A neural network model relating Delta H at a single
+	  station to D-ST},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {26},
+	pages	    = {209-212}
+}
+
+@ARTICLE{O'BrienSM01,
+	author	    = {O'Brien, T. and Sornette, D. and McPherron, R.},
+	title	    = {Statistical asynchronous regression: Determining the
+	  relationship between two quantities that are not measured
+	  simultaneously},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {13247-13259}
+}
+
+@ARTICLE{PapitashviliBFFGGL94,
+	author	    = {Papitashvili, V. and Belov, B. and Faermark, D. and
+	  Feldstein, Y. and Golyshev, S. and Gromova, L. and Levitin, A.},
+	title	    = {Electric-potential patterns in the northern and
+	  southern polarregions parameterized by the interplanetary
+	  magnetic-field},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1994},
+	volume	    = {99},
+	pages	    = {13251-13262}
+}
+
+@ARTICLE{PapitashviliPGBRG92,
+	author	    = {Papitashvili, V. and Papitashvili, N. and Gustafsson,
+	  G. and Baker, K. and Rodger, A. and Gromova, L.},
+	title	    = {A comparison between 2 corrected geomagnetic
+	  coordinate systems at high-latitudes},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1992},
+	volume	    = {44},
+	pages	    = {1215-1224}
+}
+
+@ARTICLE{Pirjola85,
+	author	    = {Pirjola, R.},
+	title	    = {On currents induced in power transmission-systems
+	  during geomagnetic-variations},
+	journal     = {Ieee Trans Power App Syst},
+	year	    = {1985},
+	volume	    = {104},
+	pages	    = {2825-2831}
+}
+
+@ARTICLE{Pirjola79,
+	author	    = {Pirjola, R.},
+	title	    = {Further comments on variation in the surface-charge
+	  density of an excitable nerve membrane exposed to optical
+	  radiation},
+	journal     = {IEEE Trans. Electromagn. Compat.},
+	year	    = {1979},
+	volume	    = {21},
+	pages	    = {65-65}
+}
+
+@ARTICLE{Pirjola76,
+	author	    = {Pirjola, R.},
+	title	    = {Current induced within an infinitely long
+	  circular-cylinder (or wire) by an electromagnetic-wave},
+	journal     = {IEEE Trans. Electromagn. Compat.},
+	year	    = {1976},
+	volume	    = {18},
+	pages	    = {190-197}
+}
+
+@ARTICLE{Pirjola78,
+	author	    = {Pirjola, R.},
+	title	    = {Variation in surface-charge density of an excitable
+	  nerve membrane exposed to optical radiation - comment},
+	journal     = {IEEE Trans. Electromagn. Compat.},
+	year	    = {1978},
+	volume	    = {20},
+	pages	    = {461-463}
+}
+
+@ARTICLE{Pirjola83,
+	author	    = {Pirjola, R.},
+	title	    = {Induction in power transmission-lines during
+	  geomagnetic disturbances},
+	journal     = {Space Sci. Rev.},
+	year	    = {1983},
+	volume	    = {35},
+	pages	    = {185-193}
+}
+
+@ARTICLE{PirjolaL85,
+	author	    = {Pirjola, R. and Lehtinen, M.},
+	title	    = {Currents produced in the finnish 400 kv power
+	  transmission grid and in the finnish natural-gas pipeline by
+	  geomagnetically- induced electric-fields},
+	journal     = {Ann Geophysic},
+	year	    = {1985},
+	volume	    = {3},
+	pages	    = {485-491}
+}
+
+@ARTICLE{PapitashviliCKBGL98,
+	author	    = {Papitashvili, V. and Clauer, C. and Killeen, T. and
+	  Belov, B. and Golyshev, S. and Levitin, A.},
+	title	    = {Linear modeling of ionospheric electrodynamics from
+	  the {IMF} and solar wind data: Application for space weather
+	  forecast},
+	journal     = {Adv Space Res},
+	year	    = {1998},
+	volume	    = {22},
+	pages	    = {113-116}
+}
+
+@ARTICLE{PapitashviliPK97,
+	author	    = {Papitashvili, V. and Papitashvili, N. and King, J.},
+	title	    = {Magnetospheric geomagnetic coordinates for space
+	  physics data presentation and visualization},
+	journal     = {Adv Space Res},
+	year	    = {1997},
+	volume	    = {20},
+	pages	    = {1097-1100}
+}
+
+@ARTICLE{PapitashviliRHH99,
+	author	    = {Papitashvili, V. and Rich, F. and Heinemann, M. and
+	  Hairston, M.},
+	title	    = {Parameterization of the Defense Meteorological
+	  Satellite Program ionospheric electrostatic potentials by the
+	  interplanetary magnetic field strength and direction},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {177-184}
+}
+
+@ARTICLE{PilipenkoWPP01,
+	author	    = {Pilipenko, V. and Watermann, J. and Popov, V. and
+	  Papitashvili, V.},
+	title	    = {Relationship between auroral electrojet and Pc5 ULF
+	  waves},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1545-1557}
+}
+
+@ARTICLE{Pirjola00,
+	author	    = {Pirjola, R.},
+	title	    = {Geomagnetically induced currents during magnetic
+	  storms},
+	journal     = {IEEE Trans. Plasma Sci.},
+	year	    = {2000},
+	volume	    = {28},
+	pages	    = {1867-1873}
+}
+
+@ARTICLE{Pirjola02,
+	author	    = {Pirjola, R.},
+	title	    = {Review on the calculation of surface electric and
+	  magnetic fields and of geomagnetically induced currents in
+	  ground-based technological systems},
+	journal     = {Surv. Geophys.},
+	year	    = {2002},
+	volume	    = {23},
+	pages	    = {71-90}
+}
+
+@ARTICLE{PirjolaBVA00,
+	author	    = {Pirjola, R. and Boteler, D. and Viljanen, A. and Amm,
+	  O.},
+	title	    = {Prediction of geomagnetically induced currents in
+	  power transmission systems},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {26},
+	pages	    = {5-14}
+}
+
+@ARTICLE{PirjolaV98,
+	author	    = {Pirjola, R. and Viljanen, A.},
+	title	    = {Complex image method for calculating electric and
+	  magnetic fields produced by an auroral electrojet of finite length},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1998},
+	volume	    = {16},
+	pages	    = {1434-1444}
+}
+
+@ARTICLE{PirjolaVB99,
+	author	    = {Pirjola, R. and Viljanen, A. and Boteler, D.},
+	title	    = {Series expansions for the electric and magnetic fields
+	  produced by a line or sheet current source above a layered Earth},
+	journal     = {Radio Sci.},
+	year	    = {1999},
+	volume	    = {34},
+	pages	    = {269-280}
+}
+
+@ARTICLE{PirjolaVPA00,
+	author	    = {Pirjola, R. and Viljanen, A. and Pulkkinen, A. and
+	  Amm, O.},
+	title	    = {Space weather risk in power systems and pipelines},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {2000},
+	volume	    = {25},
+	pages	    = {333-337}
+}
+
+@ARTICLE{PulkkinenPBVY01,
+	author	    = {Pulkkinen, A. and Pirjola, R. and Boteler, D. and
+	  Viljanen, A. and Yegorov, I.},
+	title	    = {Modelling of space weather effects on pipelines},
+	journal     = {J. Appl. Geophys.},
+	year	    = {2001},
+	volume	    = {48},
+	pages	    = {233-256}
+}
+
+@ARTICLE{PulkkinenVPP01,
+	author	    = {Pulkkinen, A. and Viljanen, A. and Pajunpaa, K. and
+	  Pirjola, R.},
+	title	    = {Recordings and occurrence of geomagnetically induced
+	  currents in the Finnish natural gas pipeline network},
+	journal     = {J. Appl. Geophys.},
+	year	    = {2001},
+	volume	    = {48},
+	pages	    = {219-231}
+}
+
+@ARTICLE{Richmond89,
+	author	    = {Richmond, A.},
+	title	    = {Modeling the ionosphere wind dynamo - a review},
+	journal     = {Pure Appl. Geophys.},
+	year	    = {1989},
+	volume	    = {131},
+	pages	    = {413-435}
+}
+
+@ARTICLE{Richmond95,
+	author	    = {Richmond, A.},
+	title	    = {Modeling equatorial ionospheric electric-fields},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1995},
+	volume	    = {57},
+	pages	    = {1103-1115}
+}
+
+@ARTICLE{RichmondKAAABDEFFFHKKLPSZ88,
+	author	    = {Richmond, A. and Kamide, Y. and Ahn, B. and Akasofu,
+	  S. and Alcayde, D. and Blanc, M. and Delabeaujardiere, O. and
+	  Evans, D. and Foster, J. and Friis--Christensen, E. and Fullerrowell,
+	  T. and Holt, J. and Knipp, D. and Kroehl, H. and Lepping, R. and
+	  Pellinen, R. and Senior, C. and Zaitzev, A.},
+	title	    = {Mapping electrodynamic features of the high-latitude
+	  ionosphere from localized observations - combined
+	  incoherent-scatter radar and magnetometer measurements for january
+	  18-19, 1984},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {5760-5776}
+}
+
+@ARTICLE{RostokerB76,
+	author	    = {Rostoker, G. and Bostrom, R.},
+	title	    = {Mechanism for driving gross birkeland current
+	  configuration in auroral oval},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1976},
+	volume	    = {81},
+	pages	    = {235-244}
+}
+
+
+@ARTICLE{Richmond02,
+	author	    = {Richmond, A.},
+	title	    = {Modeling the geomagnetic perturbations produced by
+	  ionospheric currents, above and below the ionosphere},
+	journal     = {J. Geodyn.},
+	year	    = {2002},
+	volume	    = {33},
+	pages	    = {143-156}
+}
+
+@ARTICLE{RichmondLEK98,
+	author	    = {Richmond, A. and Lu, G. and Emery, B. and Knipp, D.},
+	title	    = {The AMIE procedure: Prospects for space weather
+	  specification and prediction},
+	journal     = {Adv Space Res},
+	year	    = {1998},
+	volume	    = {22},
+	pages	    = {103-112}
+}
+
+@ARTICLE{RidleyLCP98,
+	author	    = {Ridley, A. and Lu, G. and Clauer, C. and Papitashvili,
+	  V.},
+	title	    = {A statistical study of the ionospheric convection
+	  response to changing interplanetary magnetic field conditions using
+	  the assimilative mapping of ionospheric electrodynamics technique},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {4023-4039}
+}
+
+@ARTICLE{RidleyLCP99,
+	author	    = {Ridley, A. and Lu, G. and Clauer, C. and Papitashvili,
+	  V.},
+	title	    = {Comment on "A statistical study of the ionospheric
+	  convection response to changing interplanetary magnetic field
+	  conditions using the assimilative mapping of ionospheric
+	  electrodynamics technique" - Reply},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {4393-4396}
+}
+
+@ARTICLE{RidleyLCP97,
+	author	    = {Ridley, A. and Lu, G. and Clauer, C. and Papitashvili,
+	  V.},
+	title	    = {Ionospheric convection during nonsteady interplanetary
+	  magnetic field conditions},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {14563-14579}
+}
+
+@ARTICLE{Sharma95,
+	author	    = {Sharma, A.},
+	title	    = {Assessing the magnetospheres nonlinear behavior - its
+	  dimension is low, its predictability},
+	journal     = {Rev. Geophys.},
+	year	    = {1995},
+	volume	    = {33},
+	pages	    = {645-650}
+}
+
+@ARTICLE{SharmaVP93,
+	author	    = {Sharma, A. and Vassiliadis, D. and Papadopoulos, K.},
+	title	    = {Reconstruction of low-dimensional magnetospheric
+	  dynamics by singular spectrum analysis},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1993},
+	volume	    = {20},
+	pages	    = {335-338}
+}
+
+@ARTICLE{ShueW94,
+	author	    = {Shue, J. and Weimer, D.},
+	title	    = {The relationship between ionospheric convection and
+	  magnetic activity},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1994},
+	volume	    = {99},
+	pages	    = {401-415}
+}
+
+@ARTICLE{SharmaSP01,
+	author	    = {Sharma, A. and Sitnov, M. and Papadopoulos, K.},
+	title	    = {Substorms as nonequilibrium transitions of the
+	  magnetosphere},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1399-1406}
+}
+
+@ARTICLE{ShueW96,
+	author	    = {Shue, J. and Weimer, D.},
+	title	    = {The relationship between ionospheric convection and
+	  magnetic activity - Reply},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {11015-11015}
+}
+
+@ARTICLE{SitnovSPV02,
+	author	    = {Sitnov, M. and Sharma, A. and Papadopoulos, K. and
+	  Vassiliadis, D.},
+	title	    = {Modeling substorm dynamics of the magnetosphere: From
+	  selforganization and self-organized criticality to nonequilibrium
+	  phase transitions},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {6501},
+	pages	    = {art. no.-016116}
+}
+
+@ARTICLE{SitnovSPVVKB00,
+	author	    = {Sitnov, M. and Sharma, A. and Papadopoulos, K. and
+	  Vassiliadis, D. and Valdivia, J. and Klimas, A. and Baker, D.},
+	title	    = {Phase transition-like behavior of the magnetosphere
+	  during substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {12955-12974}
+}
+
+@ARTICLE{SmithTBC99,
+   author = {{Smith}, J.~P. and {Thomsen}, M.~F. and {Borovsky}, J.~E. and 
+	{Collier}, M.},
+    title = "{Solar wind density as a driver for the ring current in mild storms}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Magnetospheric Physics: Plasma sheet, Magnetospheric Physics: Ring current, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Storms and substorms},
+     year = 1999,
+    month = jul,
+   volume = 26,
+    pages = {1797-1800},
+      doi = {10.1029/1999GL900341},
+   adsurl = {http://adsabs.harvard.edu/abs/1999GeoRL..26.1797S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{BoudouridisZLAL05,
+   author = {{Boudouridis}, A. and {Zesta}, E. and {Lyons}, L.~R. and {Anderson}, P.~C. and 
+	{Lummerzheim}, D.},
+    title = "{Enhanced solar wind geoeffectiveness after a sudden increase in dynamic pressure during southward IMF orientation}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Plasma convection (2463), Magnetospheric Physics: Electric fields (2411), Magnetospheric Physics: Auroral phenomena (2407), Magnetospheric Physics: Polar cap phenomena},
+     year = 2005,
+    month = may,
+   volume = 110,
+   number = A9,
+    pages = {5214},
+      doi = {10.1029/2004JA010704},
+   adsurl = {http://adsabs.harvard.edu/abs/2005JGRA..11005214B},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{WangCL03,
+   author = {{Wang}, C.~B. and {Chao}, J.~K. and {Lin}, C.-H.},
+    title = "{Influence of the solar wind dynamic pressure on the decay and injection of the ring current}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Ring current, Magnetospheric Physics: Storms and substorms, Magnetospheric Physics: Forecasting, Magnetospheric Physics: Solar wind/magnetosphere interactions},
+     year = 2003,
+    month = sep,
+   volume = 108,
+    pages = {1341},
+      doi = {10.1029/2003JA009851},
+   adsurl = {http://adsabs.harvard.edu/abs/2003JGRA..108.1341W},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{ShiZLB05,
+   author = {{Shi}, Y. and {Zesta}, E. and {Lyons}, L.~R. and {Boudouridis}, A. and 
+	{Yumoto}, K. and {Kitamura}, K.},
+    title = "{Effect of solar wind pressure enhancements on storm time ring current asymmetry}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Ring current, Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Magnetic storms and substorms (7954), Magnetospheric Physics: Magnetosphere: inner},
+     year = 2005,
+    month = oct,
+   volume = 110,
+   number = A9,
+    pages = {10205},
+      doi = {10.1029/2005JA011019},
+   adsurl = {http://adsabs.harvard.edu/abs/2005JGRA..11010205S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{Murayama82,
+   author = {{Murayama}, T.},
+    title = "{Coupling function between solar wind parameters and geomagnetic indices}",
+  journal = {Reviews of Geophysics and Space Physics},
+ keywords = {GEOMAGNETISM, SOLAR TERRESTRIAL INTERACTIONS, SOLAR WIND, CORRELATION COEFFICIENTS, COUPLING, EARTH MAGNETOSPHERE, INDEXES (RATIOS), INTERPLANETARY MAGNETIC FIELDS, TIME LAG},
+     year = 1982,
+    month = aug,
+   volume = 20,
+    pages = {623-629},
+   adsurl = {http://adsabs.harvard.edu/abs/1982RvGSP..20..623M},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{NewellSLR07,
+   author = {{Newell}, P.~T. and {Sotirelis}, T. and {Liou}, K. and {Rich}, F.~J.},
+title = "{A nearly universal solar wind-magnetosphere coupling function inferred from 10 magnetospheric state variables}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Forecasting (7924, 7964), Magnetospheric Physics: Magnetospheric configuration and dynamics, Ionosphere: Modeling and forecasting},
+     year = 2007,
+   volume = 112,
+      doi = {10.1029/2006JA012015}
+}
+
+@ARTICLE{NewellSLR08,
+   author = {{Newell}, P.~T. and {Sotirelis}, T. and {Liou}, K. and {Rich}, F.~J.
+	},
+    title = "{Pairs of solar wind-magnetosphere coupling functions: Combining a merging term with a viscous term works best}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Magnetospheric Physics: Solar wind/magnetosphere interactions, Magnetospheric Physics: Forecasting (7924, 7964), Magnetospheric Physics: Magnetospheric configuration and dynamics, Ionosphere: Modeling and forecasting},
+     year = 2008,
+    month = apr,
+   volume = 113,
+   number = A12,
+    pages = {4218},
+      doi = {10.1029/2007JA012825},
+   adsurl = {http://adsabs.harvard.edu/abs/2008JGRA..11304218N},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{PerreaultA78,
+   author = {{Perreault}, P. and {Akasofu}, S.-I.},
+    title = "{A study of geomagnetic storms}",
+  journal = {Geophysical Journal},
+ keywords = {ENERGY DISSIPATION, GEOMAGNETISM, INTERPLANETARY MAGNETIC FIELDS, MAGNETIC STORMS, SOLAR WIND, CHARTS, EARTH MAGNETOSPHERE, OHMIC DISSIPATION, PARTICLE EMISSION, POYNTING THEOREM, RING CURRENTS},
+     year = 1978,
+    month = sep,
+   volume = 54,
+    pages = {547-573},
+   adsurl = {http://adsabs.harvard.edu/abs/1978GeoJ...54..547P},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+@ARTICLE{ShueK05,
+   author = {{Shue}, J.-H. and {Kamide}, Y. and {Newell}, P.~T.},
+    title = "{A systematic study of effects of solar wind density on auroral electrojets}",
+  journal = {Geophys. Res. Lett.},
+ keywords = {Magnetospheric Physics: Field-aligned currents and current systems (2409), Magnetospheric Physics: Auroral phenomena (2407), Magnetospheric Physics: Forecasting (7924, 7964), Magnetospheric Physics: Magnetosphere/ionosphere interactions (2431), Magnetospheric Physics: Solar wind/magnetosphere interactions},
+     year = 2005,
+    month = jul,
+   volume = 32,
+    pages = {14112},
+      doi = {10.1029/2005GL023197},
+   adsurl = {http://adsabs.harvard.edu/abs/2005GeoRL..3214112S},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{CaneRC02,
+   author = {{Richardson}, I.~G. and {Cane}, H.~V. and {Cliver}, E.~W.},
+    title = "{Sources of geomagnetic activity during nearly three solar cycles (1972-2000)}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Interplanetary Physics: Interplanetary magnetic fields, Interplanetary Physics: Solar cycle variations (7536), Interplanetary Physics: Solar wind plasma, Interplanetary Physics: Ejecta, driver gases, and magnetic clouds, Magnetospheric Physics: Storms and substorms,},
+     year = 2002,
+    month = aug,
+   volume = 107,
+      doi = {10.1029/2001JA000504},
+   adsurl = {http://adsabs.harvard.edu/abs/2002JGRA..107.1187R},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+                  
+
+@ARTICLE{SmithTH00,
+	author	    = {Smith, J. and Thiffeault, J. and Horton, W.},
+	title	    = {Dynamical range of the WINDMI model: An exploration of
+	  possible magnetospheric plasma states},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {12983-12996}
+}
+
+@ARTICLE{SundaramFV98,
+	author	    = {Sundaram, A. and Fairfield, D. and Vassiliadis, D.},
+	title	    = {The excitation of lower hybrid waves driven by the del
+	  B effect in the current sheet},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {4649-4656}
+}
+
+@ARTICLE{TakaloLT95,
+	author	    = {Takalo, J. and Lohikoski, R. and Timonen, J.},
+	title	    = {Structure-function as a tool in {AE} and {$D_st$} time-series
+	  analysis},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1995},
+	volume	    = {22},
+	pages	    = {635-638}
+}
+
+@ARTICLE{TakaloT94,
+	author	    = {Takalo, J. and Timonen, J.},
+	title	    = {Characteristic time-scale of auroral electrojet data},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1994},
+	volume	    = {21},
+	pages	    = {617-620}
+}
+
+@ARTICLE{TakaloTK93,
+	author	    = {Takalo, J. and Timonen, J. and Koskinen, H.},
+	title	    = {Correlation dimension and affinity of {AE} data and
+	  bicolored noise},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1993},
+	volume	    = {20},
+	pages	    = {1527-1530}
+}
+
+@ARTICLE{Troshichev90,
+	author	    = {Troshichev, O.},
+	title	    = {Global dynamics of the magnetosphere for northward imf
+	  conditions},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1990},
+	volume	    = {52},
+	pages	    = {1135-1154}
+}
+
+@ARTICLE{Troshichev88,
+	author	    = {Troshichev, O.},
+	title	    = {The physics and meaning of the existing and proposed
+	  high- latitude geomagnetic indexes},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1988},
+	volume	    = {6},
+	pages	    = {601-609}
+}
+
+@ARTICLE{TroshichevA85,
+	author	    = {Troshichev, O. and Andrezen, V.},
+	title	    = {The relationship between interplanetary quantities and
+	  magnetic activity in the southern polar-cap},
+	journal     = {Planet Space Sci.},
+	year	    = {1985},
+	volume	    = {33},
+	pages	    = {415-419}
+}
+
+@ARTICLE{TroshichevAVF88,
+	author	    = {Troshichev, O. and Andrezen, V. and Vennerstr{\o}m, S.
+	  and Friis--Christensen, E.},
+	title	    = {Magnetic activity in the polar-cap - a new index},
+	journal     = {Planet Space Sci.},
+	year	    = {1988},
+	volume	    = {36},
+	pages	    = {1095-1102}
+}
+
+@ARTICLE{TroshichevBK87,
+	author	    = {Troshichev, O. and Bolotinskaya, B. and Kotikov, A.},
+	title	    = {Effect of the azimuthal {IMF} component on the frequency
+	  of appearance of the magnetic disturbances},
+	journal     = {Geomagn. Aeron.},
+	year	    = {1987},
+	volume	    = {27},
+	pages	    = {334-336}
+}
+
+@ARTICLE{TroshichevBKP88,
+	author	    = {Troshichev, O. and Bolotinskaya, B. and Kotikov, A.
+	  and Papitashvili, V.},
+	title	    = {By dependent currents in the southern polar-region
+	  during positive bz},
+	journal     = {Planet Space Sci.},
+	year	    = {1988},
+	volume	    = {36},
+	pages	    = {523-529}
+}
+
+@ARTICLE{TroshichevDK79,
+	author	    = {Troshichev, O. and Dmitrieva, N. and Kuznetsov, B.},
+	title	    = {Polar-cap magnetic activity as a signature of substorm
+	  development},
+	journal     = {Planet Space Sci.},
+	year	    = {1979},
+	volume	    = {27},
+	pages	    = {217-221}
+}
+
+@ARTICLE{TroshichevG94,
+	author	    = {Troshichev, O. and Gusev, M.},
+	title	    = {{IMF} {$B_x$} and {$B_y$} dependencies of the polar-cap auroral
+	  distribution for northward {IMF} orientation inferred from
+	  observations at Vostok station},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1994},
+	volume	    = {56},
+	pages	    = {237-244}
+}
+
+@ARTICLE{TroshichevKB87,
+	author	    = {Troshichev, O. and Kotikov, A. and Bolotinskaya, B.},
+	title	    = {The effect of the {IMF} azimuthal component on the
+	  dynamics of magnetospheric substorms},
+	journal     = {Geomagn. Aeron.},
+	year	    = {1987},
+	volume	    = {27},
+	pages	    = {863-866}
+}
+
+@ARTICLE{TroshichevKBA86,
+	author	    = {Troshichev, O. and Kotikov, A. and Bolotinskaya, B.
+	  and Andrezen, V.},
+	title	    = {Influence of the {IMF} azimuthal component on
+	  magnetospheric substorm dynamics},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1986},
+	volume	    = {38},
+	pages	    = {1075-1088}
+}
+
+@ARTICLE{TroshichevN79,
+	author	    = {Troshichev, O. and Nazaretz, V.},
+	title	    = {2 types of magnetic substorms - effects in the middle-
+	  latitudinal ionosphere},
+	journal     = {Geomagn. Aeron.},
+	year	    = {1979},
+	volume	    = {19},
+	pages	    = {938-941}
+}
+
+@ARTICLE{TroshichevS93,
+	author	    = {Troshichev, O. and Shishkina, E.},
+	title	    = {Determination of polar-cap boundary and daytime cusp
+	  structure using the characteristics of precipitating ions},
+	journal     = {Radio Sci.},
+	year	    = {1993},
+	volume	    = {28},
+	pages	    = {1143-1160}
+}
+
+@ARTICLE{TroshichevV88,
+	author	    = {Troshichev, O. and Voloshinov, N.},
+	title	    = {Effects of magnetic activity and interplanetary
+	  magnetic-field on the position of radioaurorae in the southern
+	  polar-region},
+	journal     = {Planet Space Sci.},
+	year	    = {1988},
+	volume	    = {36},
+	pages	    = {441-448}
+}
+
+@ARTICLE{TakaloM01,
+	author	    = {Takalo, J. and Mursula, K.},
+	title	    = {A model for the diurnal universal time variation of
+	  the Dst index},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {10905-10914}
+}
+
+@ARTICLE{TakaloMT00,
+	author	    = {Takalo, J. and Mursula, K. and Timonen, J.},
+	title	    = {Role of the driver in the dynamics of a coupled-map
+	  model of the magnetotail: Does the magnetosphere act as a low-pass
+	  filter?},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {27665-27672}
+}
+
+@ARTICLE{TakaloT98,
+	author	    = {Takalo, J. and Timonen, J.},
+	title	    = {Comparison of the dynamics of the AU and PC indices},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1998},
+	volume	    = {25},
+	pages	    = {2101-2104}
+}
+
+@ARTICLE{TakaloT98,
+	author	    = {Takalo, J. and Timonen, J.},
+	title	    = {On the relation of the {AE} and {PC} indices},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {29393-29398}
+}
+
+@ARTICLE{TakaloT99,
+	author	    = {Takalo, J. and Timonen, J.},
+	title	    = {Neural network prediction of the {AE} index from the {PC}
+	  index},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {1999},
+	volume	    = {24},
+	pages	    = {89-92}
+}
+
+@ARTICLE{TakaloT97,
+	author	    = {Takalo, J. and Timonen, J.},
+	title	    = {Neural network prediction of {AE} data},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1997},
+	volume	    = {24},
+	pages	    = {2403-2406}
+}
+
+@ARTICLE{TakaloTKVV99,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. and
+	  Valdivia, J. and Vassiliadis, D.},
+	title	    = {A coupled-map model for the magnetotail current sheet},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {2913-2916}
+}
+
+@ARTICLE{TakaloTKVV01,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. and
+	  Valdivia, J. and Vassiliadis, D.},
+	title	    = {A coupled map as a model of the dynamics of the
+	  magnetotail current sheet},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1407-1414}
+}
+
+@ARTICLE{TakaloTKVV99,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. and
+	  Valdivia, J. and Vassiliadis, D.},
+	title	    = {Nonlinear energy dissipation in a cellular automaton
+	  magnetotail field model},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {1813-1816}
+}
+
+@ARTICLE{TanskanenVPPHPA01,
+	author	    = {Tanskanen, E. and Viljanen, A. and Pulkkinen, T. and
+	  Pirjola, R. and Hakkinen, L. and Pulkkinen, A. and Amm, O.},
+	title	    = {At substorm onset, 40\% of AL comes from underground},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {13119-13134}
+}
+
+@ARTICLE{Thomson00,
+	author	    = {Thomson, A.W.P.},
+	title	    = {Evaluating space weather forecasts of geomagnetic
+	  activity from a user perspective},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {4049-4052}
+}
+
+@ARTICLE{Thomson96,
+	author	    = {Thomson, A.W.P.},
+	title	    = {Non-linear predictions of Ap by activity class and
+	  numerical value},
+	journal     = {Pure Appl. Geophys.},
+	year	    = {1996},
+	volume	    = {146},
+	pages	    = {163-193}
+}
+
+@ARTICLE{Thomson00b,
+	author	    = {Thomson, A.W.P.},
+	title	    = {Improving the modelling of the geomagnetic main-field:
+	  Isolating the average ionospheric field in satellite data},
+	journal     = {Earth Planets Space},
+	year	    = {2000},
+	volume	    = {52},
+	pages	    = {1199-1206}
+}
+
+@ARTICLE{Thomson95,
+	author	    = {Thomson, A.W.P},
+	title	    = {A statistical relationship between coronal hole
+	  central meridian passage and geomagnetic activity},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1995},
+	volume	    = {47},
+	pages	    = {1263-1275}
+}
+
+@ARTICLE{ThomsonMB97,
+	author	    = {Thomson, A. and MacMillan, S. and Barraclough, D.},
+	title	    = {Geomagnetic main-field modelling with POGS satellite
+	  data},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1997},
+	volume	    = {49},
+	pages	    = {417-440}
+}
+
+@ARTICLE{ToivanenBPSTLKSVPKWK01,
+	author	    = {Toivanen, P. and Baker, D. and Peterson, W. and
+	  Singer, H. and Turner, N. and Li, X. and Kauristie, K. and
+	  Syrjasuo, M. and Viljanen, A. and Pulkkinen, T. and Keiling, A. and
+	  Wygant, J. and Kletzing, C.},
+	title	    = {Reconciliation of the substorm onset determined on the
+	  ground and at the Polar spacecraft},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {107-110}
+}
+
+@ARTICLE{TroshichevG98,
+	author	    = {Troshichev, O. and Gabis, I.},
+	title	    = {Variations of solar UV irradiance related to
+	  short-term and medium-term changes of solar activity},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {20659-20667}
+}
+
+@ARTICLE{TroshichevKKMY99,
+	author	    = {Troshichev, O. and Kokubun, S. and Kamide, Y. and
+	  Mukai, T. and Yamamoto, T.},
+	title	    = {Fast earthward plasma flows observed in the
+	  mid/distant tail under quiet conditions: relation to substorms},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {643-646}
+}
+
+@ARTICLE{TroshichevKSBFV96,
+	author	    = {Troshichev, O. and Kotikov, A. and Shishkina, E. and
+	  Bolotinskaya, B. and Friis--Christensen, E. and Vennerstr{\o}m, S.},
+	title	    = {Substorm activity precursors in the dayside magnetic
+	  perturbations},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1996},
+	volume	    = {58},
+	pages	    = {1293-1307}
+}
+
+@ARTICLE{TroshichevKSBFV96,
+	author	    = {Troshichev, O. and Kotikov, A. and Shishkina, E. and
+	  Bolotinskaya, B. and Friis--Christensen, E. and Vennerstr{\o}m, S.},
+	title	    = {Substorm activity precursors in the dayside magnetic
+	  perturbations},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1996},
+	volume	    = {58},
+	pages	    = {1293-1307}
+}
+
+@ARTICLE{TroshichevKSPCF97,
+	author	    = {Troshichev, O. and Kotikov, A. and Shishkina, E. and
+	  Papitashvili, V. and Clauer, C. and Friis--Christensen, E.},
+	title	    = {DPY currents in the cusp/cleft region: A crucial role
+	  of southward interplanetary magnetic field},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {4777-4785}
+}
+
+@ARTICLE{TroshichevL02,
+	author	    = {Troshichev, O. and Lukianova, R.},
+	title	    = {Relation of PC index to the solar wind parameters and
+	  substorm activity in time of magnetic storms},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2002},
+	volume	    = {64},
+	pages	    = {585-591}
+}
+
+@ARTICLE{TroshichevLPRR00,
+	author	    = {Troshichev, O. and Lukianova, R. and Papitashvili, V.
+	  and Rich, F. and Rasmussen, O.},
+	title	    = {Polar cap index (PC) as a proxy for ionospheric
+	  electric field in the near-pole region.},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {3809-3812}
+}
+
+@ARTICLE{TroshichevSLR96,
+	author	    = {Troshichev, O. and Shishkina, E. and Lu, G. and
+	  Richmond, A.},
+	title	    = {Relationship of the ionospheric convection reversal to
+	  the hard auroral precipitation boundary},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {15423-15432}
+}
+
+@ARTICLE{TroshichevSMN96,
+	author	    = {Troshichev, O. and Shishkina, E. and Meng, C. and
+	  Newell, P.},
+	title	    = {Identification of the poleward boundary of the auroral
+	  oval using characteristics of ion precipitation},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {5035-5046}
+}
+
+@ARTICLE{UritskyKVVB01,
+	author	    = {Uritsky, V. and Klimas, A. and Valdivia, J. and
+	  Vassiliadis, D. and Baker, D.},
+	title	    = {Stable critical behavior and fast field annihilation
+	  in a magnetic field reversal model},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1425-1433}
+}
+
+@ARTICLE{UritskyKV02,
+	author	    = {Uritsky, V. and Klimas, A. and Vassiliadis, D.},
+	title	    = {Multiscale dynamics and robust critical scaling in a
+	  continuum current sheet model},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {65},
+	pages	    = {art. no.-046113}
+}
+
+@ARTICLE{UritskyKV01,
+	author	    = {Uritsky, V. and Klimas, A. and Vassiliadis, D.},
+	title	    = {Comparative study of dynamical critical scaling in the
+	  auroral electrojet index versus solar wind fluctuations},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {3809-3812}
+}
+
+@ARTICLE{UritskyP98,
+	author	    = {Uritsky, V. and Pudovkin, M.},
+	title	    = {Low frequency 1/f-like fluctuations of the AE-index as
+	  a possible manifestation of self-organized criticality in the
+	  magnetosphere},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1998},
+	volume	    = {16},
+	pages	    = {1580-1588}
+}
+
+@ARTICLE{UritskyPS01,
+	author	    = {Uritsky, V. and Pudovkin, M. and Steen, A.},
+	title	    = {Geomagnetic substorms as perturbed self-organized
+	  critical dynamics of the magnetosphere},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1415-1424}
+}
+
+@ARTICLE{Vampola87,
+	author	    = {Vampola, A.},
+	title	    = {Thick dielectric charging on high-altitude spacecraft},
+	journal     = {J. Electrost.},
+	year	    = {1987},
+	volume	    = {20},
+	pages	    = {21-30}
+}
+
+@ARTICLE{Vassiliadis94,
+	author	    = {Vassiliadis, D.},
+	title	    = {Parametric adaptive-control and
+	  parameter-identification of low-dimensional chaotic systems},
+	journal     = {Physica D},
+	year	    = {1994},
+	volume	    = {71},
+	pages	    = {319-341}
+}
+
+@ARTICLE{VassiliadisK95,
+	author	    = {Vassiliadis, D. and Klimas, A.},
+	title	    = {On the uniqueness of linear moving-average filters for
+	  the solar wind-auroral geomagnetic-activity coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {5637-5641}
+}
+
+@ARTICLE{VassiliadisKBR95,
+	author	    = {Vassiliadis, D. and Klimas, A. and Baker, D. and
+	  Roberts, D.},
+	title	    = {A description of the solar-wind magnetosphere coupling
+	  based on nonlinear filters},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {3495-3512}
+}
+
+@ARTICLE{VassiliadisSP93,
+	author	    = {Vassiliadis, D. and Sharma, A. and Papadopoulos, K.},
+	title	    = {An empirical-model relating the auroral
+	  geomagnetic-activity to the interplanetary magnetic-field},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1993},
+	volume	    = {20},
+	pages	    = {1731-1734}
+}
+
+@ARTICLE{VassiliadisSP91,
+	author	    = {Vassiliadis, D. and Sharma, A. and Papadopoulos, K.},
+	title	    = {Lyapunov exponent of magnetospheric activity from al
+	  time- series},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1643-1646}
+}
+
+@ARTICLE{VennerstromF87,
+	author	    = {Vennerstr{\o}m, S. and Friis--Christensen, E.},
+	title	    = {On the role of {IMF} by in generating the electric-field
+	  responsible for the flow across the polar-cap},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1987},
+	volume	    = {92},
+	pages	    = {195-202}
+}
+
+@ARTICLE{VennerstromFJRCW84,
+	author	    = {Vennerstr{\o}m, S. and Friis--Christensen, E. and
+	  Jorgensen, T. and Rasmussen, O. and Clauer, C. and Wickwar, V.},
+	title	    = {Ionospheric currents and f-region plasma boundaries
+	  near the dayside cusp},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1984},
+	volume	    = {11},
+	pages	    = {903-906}
+}
+
+@ARTICLE{VennerstromFTA91,
+	author	    = {Vennerstr{\o}m, S. and Friis-Christensen, E. and
+	  Troshichev, O. and Andresen, V.},
+	title	    = {Comparison between the polar-cap index, pc, and the
+	  auroral electrojet indexes ae, al, and au},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1991},
+	volume	    = {96},
+	pages	    = {101-113}
+}
+
+@ARTICLE{ViljanenKP95,
+	author	    = {Viljanen, A. and Kauristie, K. and Pajunpaa, K.},
+	title	    = {On induction effects at eiscat and image magnetometer
+	  stations},
+	journal     = {Geophys. J. Int.},
+	year	    = {1995},
+	volume	    = {121},
+	pages	    = {893-906}
+}
+
+@ARTICLE{ViljanenP94,
+	author	    = {Viljanen, A. and Pirjola, R.},
+	title	    = {Geomagnetically induced currents in the finnish
+	  high-voltage power-system - a geophysical review},
+	journal     = {Surv. Geophys.},
+	year	    = {1994},
+	volume	    = {15},
+	pages	    = {383-408}
+}
+
+@ARTICLE{ViljanenP89,
+	author	    = {Viljanen, A. and Pirjola, R.},
+	title	    = {Statistics on geomagnetically-induced currents in the
+	  finnish 400-kv power-system based on recordings of geomagnetic-
+	  variations},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1989},
+	volume	    = {41},
+	pages	    = {411-420}
+}
+
+@ARTICLE{ViljanenP94,
+	author	    = {Viljanen, A. and Pirjola, R.},
+	title	    = {On the possibility of performing studies on the
+	  geoelectric field and ionospheric currents using induction in
+	  power-systems},
+	journal     = {J. Atmos. Terr. Phys.},
+	year	    = {1994},
+	volume	    = {56},
+	pages	    = {1483-1491}
+}
+
+@ARTICLE{ViljanenPH93,
+	author	    = {Viljanen, A. and Pirjola, R. and Hakkinen, L.},
+	title	    = {An attempt to reduce induction source effects at
+	  high-latitudes},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1993},
+	volume	    = {45},
+	pages	    = {817-831}
+}
+
+@ARTICLE{ViljanenPM94,
+	author	    = {Viljanen, A. and Pirjola, R. and Makinen, T.},
+	title	    = {Geomagnetically induced currents - present knowledge
+	  and future-research - discussion},
+	journal     = {IEEE Trans. Power Deliv.},
+	year	    = {1994},
+	volume	    = {9},
+	pages	    = {57-58}
+}
+
+@ARTICLE{ViljanenS95,
+	author	    = {Viljanen, A. and Szarka, L.},
+	title	    = {Analog model studies of induction effects at auroral
+	  latitudes},
+	journal     = {Ann. Geophys.-Atmos. Hydrospheres Space Sci.},
+	year	    = {1995},
+	volume	    = {13},
+	pages	    = {1187-1196}
+}
+
+@ARTICLE{ValdiviaVKS99,
+	author	    = {Valdivia, J. and Vassiliadis, D. and Klimas, A. and
+	  Sharma, A.},
+	title	    = {Modeling the spatial structure of the high latitude
+	  magnetic perturbations and the related current systems},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4185-4194}
+}
+
+@ARTICLE{ValdiviaVKSP99,
+	author	    = {Valdivia, J. and Vassiliadis, D. and Klimas, A. and
+	  Sharma, A. and Papadopoulos, K.},
+	title	    = {Spatiotemporal activity of magnetic storms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {12239-12250}
+}
+
+@ARTICLE{Vassiliadis00,
+	author	    = {Vassiliadis, D.},
+	title	    = {System identification, modeling, and prediction for
+	  space weather environments},
+	journal     = {IEEE Trans. Plasma Sci.},
+	year	    = {2000},
+	volume	    = {28},
+	pages	    = {1944-1955}
+}
+
+@ARTICLE{VassiliadisAGV98,
+	author	    = {Vassiliadis, D. and Anastasiadis, A. and Georgoulis,
+	  M. and Vlahos, L.},
+	title	    = {Derivation of solar flare cellular automata models
+	  from a subset of the magnetohydrodynamic equations},
+	journal     = {Astrophys. J.},
+	year	    = {1998},
+	volume	    = {509},
+	pages	    = {L53-L56}
+}
+
+@ARTICLE{VassiliadisABK96,
+	author	    = {Vassiliadis, D. and Angelopoulos, V. and Baker, D. and
+	  Klimas, A.},
+	title	    = {The relation between the northern polar cap and
+	  auroral electrojet geomagnetic indices in the wintertime},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {2781-2784}
+}
+
+@ARTICLE{VassiliadisBLD99,
+	author	    = {Vassiliadis, D. and Baker, D. and Lundstedt, H. and
+	  Davidson, R.},
+	title	    = {Special topic: Nonlinear Methods in Space Plasma
+	  Physics Papers Presented at the 1998 Fall Meeting of the American
+	  Geophysical Union - Foreword},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {III-IV}
+}
+
+@ARTICLE{VassiliadisCCD02,
+	author	    = {Vassiliadis, D. and Chang, T. and Chapman, S. and
+	  Davidson, R.},
+	title	    = {Special topics section: Modes of transport in geospace
+	  - Foreword},
+	journal     = {Phys. Plasmas},
+	year	    = {2002},
+	volume	    = {9},
+	pages	    = {3664-3664}
+}
+
+
+@ARTICLE{VassiliadisKBR96,
+	author	    = {Vassiliadis, D. and Klimas, A. and Baker, D. and
+	  Roberts, D.},
+	title	    = {The nonlinearity of models of the vB(south)-AL
+	  coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {19779-19787}
+}
+
+@ARTICLE{VassiliadisKVB99,
+	author	    = {Vassiliadis, D. and Klimas, A. and Valdivia, J. and
+	  Baker, D.},
+	title	    = {The D-st geomagnetic response as a function of storm
+	  phase and amplitude and the solar wind electric field},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {24957-24976}
+}
+
+@ARTICLE{VassiliadisKVB00,
+	author	    = {Vassiliadis, D. and Klimas, A. and Valdivia, J. and
+	  Baker, D.},
+	title	    = {The nonlinear dynamics of space weather},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {26},
+	pages	    = {197-207}
+}
+
+@ARTICLE{VassiliadisKP98,
+	author	    = {Vassiliadis, D. and Kourtidis, K. and Poulida, G.},
+	title	    = {The potential of statistical state space models in
+	  urban ozone forecasting},
+	journal     = {Environ. Sci. Pollut. Res.},
+	year	    = {1998},
+	volume	    = {5},
+	pages	    = {7-11}
+}
+
+@ARTICLE{Vennerstrom99,
+	author	    = {Vennerstr{\o}m, S.},
+	title	    = {Dayside magnetic ULF power at high latitudes: A
+	  possible long- term proxy for the solar wind velocity?},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {10145-10157}
+}
+
+@ARTICLE{VennerstromF96,
+	author	    = {Vennerstr{\o}m, S. and Friss--Christensen, E.},
+	title	    = {Long-term and solar cycle variation of the ring
+	  current},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {24727-24735}
+}
+
+@ARTICLE{Viljanen98,
+	author	    = {Viljanen, A.},
+	title	    = {Relation of geomagnetically induced currents and local
+	  geomagnetic variations},
+	journal     = {IEEE Trans. Power Deliv.},
+	year	    = {1998},
+	volume	    = {13},
+	pages	    = {1285-1290}
+}
+
+@ARTICLE{Viljanen96,
+	author	    = {Viljanen, A.},
+	title	    = {Source effect on geomagnetic induction vectors in the
+	  Fennoscandian auroral region},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1996},
+	volume	    = {48},
+	pages	    = {1001-1009}
+}
+
+@ARTICLE{Viljanen97,
+	author	    = {Viljanen, A.},
+	title	    = {The relation between geomagnetic variations and their
+	  time derivatives and implications for estimation of induction
+	  risks},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1997},
+	volume	    = {24},
+	pages	    = {631-634}
+}
+
+@ARTICLE{ViljanenAP99,
+	author	    = {Viljanen, A. and Amm, O. and Pirjola, R.},
+	title	    = {Modeling geomagnetically induced currents during
+	  different ionospheric situations},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {28059-28071}
+}
+
+@ARTICLE{ViljanenNPP01,
+	author	    = {Viljanen, A. and Nevanlinna, H. and Pajunpaa, K. and
+	  Pulkkinen, A.},
+	title	    = {Time derivative of the horizontal geomagnetic field as
+	  an activity indicator},
+	journal     = {Ann. Geophys.},
+	year	    = {2001},
+	volume	    = {19},
+	pages	    = {1107-1118}
+}
+
+@ARTICLE{ViljanenPA99,
+	author	    = {Viljanen, A. and Pirjola, R. and Amm, O.},
+	title	    = {Magnetotelluric source effect due to 3D ionospheric
+	  current systems using the complex image method for 1D conductivity
+	  structures},
+	journal     = {Earth Planets Space},
+	year	    = {1999},
+	volume	    = {51},
+	pages	    = {933-945}
+}
+
+
+@ARTICLE{Weimer95,
+	author	    = {Weimer, D.},
+	title	    = {Models of high-latitude electric potentials derived
+	  with a least error fit of spherical harmonic coefficients},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {19595-19607}
+}
+
+@ARTICLE{Weimer94,
+	author	    = {Weimer, D.},
+	title	    = {Substorm time constants},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1994},
+	volume	    = {99},
+	pages	    = {11005-11015}
+}
+
+@ARTICLE{WeimerCFHMHS94,
+	author	    = {Weimer, D. and Craven, J. and Frank, L. and Hanson, W.
+	  and Maynard, N. and Hoffman, R. and Slavin, J.},
+	title	    = {Satellite measurements through the center of a
+	  substorm surge},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1994},
+	volume	    = {99},
+	pages	    = {23639-23649}
+}
+
+@ARTICLE{WeimerG93,
+	author	    = {Weimer, D. and Gurnett, D.},
+	title	    = {Large-amplitude auroral electric-fields measured with
+	  de-1},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1993},
+	volume	    = {98},
+	pages	    = {13557-13564}
+}
+
+@ARTICLE{WeimerKA92,
+	author	    = {Weimer, D. and Kan, J. and Akasofu, S.},
+	title	    = {Variations of the polar-cap potential measured during
+	  magnetospheric substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1992},
+	volume	    = {97},
+	pages	    = {3945-3951}
+}
+
+@ARTICLE{WeimerMBL90,
+	author	    = {Weimer, D. and Maynard, N. and Burke, W. and
+	  Liebrecht, C.},
+	title	    = {Polar-cap potentials and the auroral electrojet
+	  indexes},
+	journal     = {Planet Space Sci.},
+	year	    = {1990},
+	volume	    = {38},
+	pages	    = {1207-1222}
+}
+
+@ARTICLE{WeimerRKA90,
+	author	    = {Weimer, D. and Reinleitner, L. and Kan, J. and
+	  Akasofu, S.},
+	title	    = {Saturation of the auroral electrojet current and the
+	  polar-cap potential},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {18981-18987}
+}
+
+@ARTICLE{White90,
+	author	    = {White, H.},
+	title	    = {Connectionist nonparametric regression - multilayer
+	  feedforward networks can learn arbitrary mappings},
+	journal     = {Neural Netw.},
+	year	    = {1990},
+	volume	    = {3},
+	pages	    = {535-549}
+}
+
+@ARTICLE{Weigel07,
+   author = {{Weigel}, R.~S.},
+    title = "{Solar wind time history contribution to the day-of-year variation in geomagnetic activity}",
+  journal = {Journal of Geophysical Research (Space Physics)},
+ keywords = {Space Plasma Physics: Mathematical and numerical techniques (0500, 3200), Space Plasma Physics: General or miscellaneous, Ionosphere: Current systems (2721), Ionosphere: Ionospheric disturbances, Ionosphere: General or miscellaneous},
+     year = 2007,
+    month = oct,
+   volume = 112,
+   number = A11,
+    pages = {10207-+},
+      doi = {10.1029/2007JA012324},
+   adsurl = {http://adsabs.harvard.edu/abs/2007JGRA..11210207W},
+  adsnote = {Provided by the SAO/NASA Astrophysics Data System}
+}
+
+
+@ARTICLE{WeigelHTD99,
+	author	    = {Weigel, R. and Horton, W. and Tajima, T. and Detman,
+	  T.},
+	title	    = {Forecasting auroral electrojet activity from solar
+	  wind input with neural networks},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {1353-1356}
+}
+
+@ARTICLE{WeigelJ98,
+	author	    = {Weigel, R. and Jackson, E.},
+	title	    = {Experimental implementation of migrations in
+	  multiple-attractor systems},
+	journal     = {Int. J. Bifurcation Chaos},
+	year	    = {1998},
+	volume	    = {8},
+	pages	    = {173-178}
+}
+
+@ARTICLE{Weimer96,
+	author	    = {Weimer, D.},
+	title	    = {A flexible, {IMF} dependent model of high-latitude
+	  electric potentials having ''space weather'' applications},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {2549-2552}
+}
+
+@ARTICLE{Weimer01,
+	author	    = {Weimer, D.},
+	title	    = {Maps of ionospheric field-aligned currents as a
+	  function of the interplanetary magnetic field derived from Dynamics
+	  Explorer 2 data},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {12889-12902}
+}
+
+@ARTICLE{Weimer99,
+	author	    = {Weimer, D.},
+	title	    = {Substorm influence on the ionospheric electric
+	  potentials and currents},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {185-197}
+}
+
+@ARTICLE{Weimer01,
+	author	    = {Weimer, D.},
+	title	    = {An improved model of ionospheric electric potentials
+	  including substorm perturbations and application to the Geospace
+	  Environment Modeling November 24, 1996, event},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {407-416}
+}
+
+@ARTICLE{WingleeKLL98,
+	author	    = {Winglee, R. and Kokubun, S. and Lin, R. and Lepping,
+	  R.},
+	title	    = {Flux rope structures in the magnetotail: Comparison
+	  between Wind/Geotail observations and global simulations},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {135-150}
+}
+
+@ARTICLE{WingleeM98,
+	author	    = {Winglee, R. and Menietti, J.},
+	title	    = {Auroral activity associated with pressure pulses and
+	  substorms: A comparison between global fluid modeling and Viking UV
+	  imaging},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {9189-9205}
+}
+
+@ARTICLE{WingleePW97,
+	author	    = {Winglee, R. and Papitashvili, V. and Weimer, D.},
+	title	    = {Comparison of the high-latitude ionospheric
+	  electrodynamics inferred from global simulations and semiempirical
+	  models for the January 1992 {GEM} campaign},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {26961-26977}
+}
+
+@ARTICLE{WingleeSEWLLMKRA97,
+	author	    = {Winglee, R. and Skoug, R. and Elsen, R. and Wilber, M.
+	  and Lin, R. and Lepping, R. and Mukai, T. and Kokubun, S. and Reme,
+	  H. and Anderson, T.},
+	title	    = {{IMF} induced changes to the nightside magnetotail: A
+	  comparison between WIND/Geotail/IMP 8 observations and modeling},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1997},
+	volume	    = {24},
+	pages	    = {947-950}
+}
+
+@ARTICLE{BakerS76,
+	author	    = {Baker, D. N. and Stone, E. C.},
+	title	    = {High-energy electrons (e greater-than-or-equal-to 200
+	  kev) observed in magnetotail boundary-layer},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {995-995}
+}
+
+
+
+@ARTICLE{O'BrienMSRFS01,
+	author	    = {O'Brien, T. P. and McPherron, R. L. and Sornette, D.
+	  and Reeves, G. D. and Friedel, R. and Singer, H. J.},
+	title	    = {Which magnetic storms produce relativistic electrons
+	  at geosynchronous orbit?},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {15533-15544}
+}
+
+@ARTICLE{LiTBRL01,
+	author	    = {Li, X. L. and Temerin, M. and Baker, D. N. and Reeves,
+	  G. D. and Larson, D.},
+	title	    = {Quantitative prediction of radiation belt electrons at
+	  geostationary orbit based on solar wind measurements},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {1887-1890}
+}
+
+@ARTICLE{TsutaiMN99,
+	author	    = {Tsutai, A. and Mitsui, C. and Nagai, T.},
+	title	    = {Prediction of a geosynchronous electron environment
+	  with in situ magnetic field measurements},
+	journal     = {Earth Planets Space},
+	year	    = {1999},
+	volume	    = {51},
+	pages	    = {219-223}
+}
+
+@ARTICLE{BakerLBK98,
+	author	    = {Baker, D. N. and Li, X. and Blake, J. B. and Kanekal,
+	  S.},
+	title	    = {Strong electron acceleration in the Earth's
+	  magnetosphere},
+	journal     = {Adv Space Res},
+	year	    = {1998},
+	volume	    = {21},
+	pages	    = {609-613}
+}
+
+@ARTICLE{BakerMCK90,
+	author	    = {Baker, D. N. and McPherron, R. L. and Cayton, T. E.
+	  and Klebesadel, R. W.},
+	title	    = {Linear prediction filter analysis of relativistic
+	  electron properties at 6.6 $R_e$},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {15133-15140}
+}
+
+@ARTICLE{BakerS76,
+	author	    = {Baker, D. N. and Stone, E. C.},
+	title	    = {High-energy electrons (e greater-than-or-equal-to 200
+	  kev) observed in magnetotail boundary-layer},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {995-995}
+}
+
+@ARTICLE{BakerSVAF75,
+	author	    = {Baker, D. N. and Stone, E. C. and Vogt, R. E. and
+	  Ackerson, K. L. and Frank, L. A.},
+	title	    = {Correlation of electrons ee greater than 0.24 mev with
+	  lowenergy electrons (50 ev equal to or less than ee equal to or
+	  less than 45 kev) in earths magnetotail},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1975},
+	volume	    = {56},
+	pages	    = {1046-1046}
+}
+
+This file was automatically generated from entries from the ISI (Institute
+for Scientific Information) databases of scientific and other academic
+documents, using isi2bibtex version 0.4, a perl script which converts ISI or
+BIDS format files to BibTeX format files for inclusion in documents typeset
+using the LaTeX document processor.
+
+Try perldoc isi2bibtex for instructions, or read the script.
+
+This file generated on Tuesday 4th November 2002, from file 'new.isi', which
+has no subject line.
+
+@ARTICLE{UritskyKV02,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Multiscale dynamics and robust critical scaling in a
+	  continuum current sheet model (vol 65, art no 046113, 2002)},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {66},
+	pages	    = {art. no.-019901}
+}
+
+@ARTICLE{UritskyKV02,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Multiscale dynamics and robust critical scaling in a
+	  continuum current sheet model},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {65},
+	pages	    = {art. no.-046113}
+}
+
+@ARTICLE{UritskyKV01,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Comparative study of dynamical critical scaling in the
+	  auroral electrojet index versus solar wind fluctuations},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {3809-3812}
+}
+
+@ARTICLE{TsurutaniGSIG90,
+    author = {{Tsurutani}, B.~T. and {Goldstein}, B.~E. and {Sugiura}, M. and 
+	{Iyemori}, T. and {Gonzalez}, W.~D.},
+    title = {The nonlinear response of AE to the IMF Bs driver - A spectral break at 5 hours},
+    journal = {Geophys. Res. Lett.},
+    year = 1990,
+    volume = 17,
+    pages = {279-282}
+}
+
+@ARTICLE{TakaloTKVV01,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. J. and
+	  Valdivia, J. A. and Vassiliadis, D.},
+	title	    = {A coupled map as a model of the dynamics of the
+	  magnetotail current sheet},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1407-1414}
+}
+
+@ARTICLE{UritskyKVVB01,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Valdivia, J. A.
+	  and Vassiliadis, D. and Baker, D. N.},
+	title	    = {Stable critical behavior and fast field annihilation
+	  in a magnetic field reversal model},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1425-1433}
+}
+
+@ARTICLE{Castaing90b,
+    author = {{Castaing}, B.},
+    title = {Scaling of turbulent spectra},
+    journal = {Physical Review Letters},
+    year = 1990,
+    month = dec,
+    volume = 65,
+    pages = {3209},
+    adsurl = {http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1990PhRvL..65.3209C&db_key=PHY},
+    adsnote = {Provided by the NASA Astrophysics Data System}
+}
+
+@ARTICLE{Castaing90,
+    author = {{Castaing}, B. and Gange, Y. and Hopfinger, E.J.},
+    title = {Velocity probability density functions of high Reynolds number turbulence},
+    journal = {Physica D},
+    year = 1990,
+    volume = 46,
+    pages = {177-200},
+    adsurl = {http://adsabs.harvard.edu/cgi-bin/nph-bib_query?bibcode=1990PhRvL..65.3209C&db_key=PHY},
+    adsnote = {Provided by the NASA Astrophysics Data System}
+}
+
+
+
+@ARTICLE{KlimasVVBHT00,
+	author	    = {Klimas, A. J. and Valdivia, J. A. and Vassiliadis, D.
+	  and Baker, D. N. and Hesse, M. and Takalo, J.},
+	title	    = {Self-organized criticality in the substorm phenomenon
+	  and its relation to localized reconnection in the magnetospheric
+	  plasma sheet},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {18765-18780}
+}
+
+@ARTICLE{SitnovSPVVKB00,
+	author	    = {Sitnov, M. I. and Sharma, A. S. and Papadopoulos, K.
+	  and Vassiliadis, D. and Valdivia, J. A. and Klimas, A. J. and
+	  Baker, D. N.},
+	title	    = {Phase transition-like behavior of the magnetosphere
+	  during substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {12955-12974}
+}
+
+@ARTICLE{VassiliadisKVB00,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Valdivia, J. A.
+	  and Baker, D. N.},
+	title	    = {The nonlinear dynamics of space weather},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {26},
+	pages	    = {197-207}
+}
+
+@ARTICLE{VinasWK00,
+	author	    = {Vinas, A. F. and Wong, H. K. and Klimas, A. J.},
+	title	    = {Generation of electron suprathermal tails in the upper
+	  solar atmosphere: Implications for coronal heating},
+	journal     = {Astrophys. J.},
+	year	    = {2000},
+	volume	    = {528},
+	pages	    = {509-523}
+}
+
+@ARTICLE{VassiliadisKVB99,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Valdivia, J. A.
+	  and Baker, D. N.},
+	title	    = {The D-st geomagnetic response as a function of storm
+	  phase and amplitude and the solar wind electric field},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {24957-24976}
+}
+
+@ARTICLE{BakerKKVP99,
+	author	    = {Baker, D. N. and Kanekal, S. G. and Klimas, A. J. and
+	  Vassiliadis, D. and Pulkkinen, T. I.},
+	title	    = {Collective phenomena in the inner magnetosphere},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4195-4199}
+}
+
+@ARTICLE{TakaloTKVV99,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. J. and
+	  Valdivia, J. A. and Vassiliadis, D.},
+	title	    = {A coupled-map model for the magnetotail current sheet},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {2913-2916}
+}
+
+
+
+@ARTICLE{BargatzeOMW99,
+	author	    = {Bargatze, L. F. and Ogino, T. and McPherron, R. L. and
+	  Walker, R. J.},
+	title	    = {Solar wind magnetic field control of magnetospheric
+	  response delay and expansion phase onset timing},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {14583-14599}
+}
+
+@ARTICLE{BakerPBK99,
+	author	    = {Baker, D. N. and Pulkkinen, T. I. and Buchner, J. and
+	  Klimas, A. J.},
+	title	    = {Substorms: A global instability of the
+	  magnetosphere-ionosphere system},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {14601-14611}
+}
+
+@ARTICLE{KlimasVB98,
+	author	    = {Klimas, A. J. and Vassiliadis, D. and Baker, D. N.},
+	title	    = {Dst index prediction using data-derived analogues of
+	  the magnetospheric dynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {20435-20447}
+}
+
+@ARTICLE{KlimasVB97,
+	author	    = {Klimas, A. J. and Vassiliadis, D. and Baker, D. N.},
+	title	    = {Data-derived analogues of the magnetospheric dynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {26993-27009}
+}
+
+@ARTICLE{BakerKVPM97,
+	author	    = {Baker, D. N. and Klimas, A. J. and Vassiliadis, D. and
+	  Pulkkinen, T. I. and McPherron, R. L.},
+	title	    = {Reexamination of driven and unloading aspects of
+	  magnetospheric substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {7169-7177}
+}
+
+@ARTICLE{VassiliadisABK96,
+	author	    = {Vassiliadis, D. and Angelopoulos, V. and Baker, D. N.
+	  and Klimas, A. J.},
+	title	    = {The relation between the northern polar cap and
+	  auroral electrojet geomagnetic indices in the wintertime},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {2781-2784}
+}
+
+@ARTICLE{VassiliadisKBR96,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Baker, D. N. and
+	  Roberts, D. A.},
+	title	    = {The nonlinearity of models of the vB(south)-AL
+	  coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {19779-19787}
+}
+
+
+@ARTICLE{FitzenreiterVKLKO96,
+	author	    = {Fitzenreiter, R. J. and Vinas, A. F. and Klimas, A. J.
+	  and Lepping, R. P. and Kaiser, M. L. and Onsager, T. G.},
+	title	    = {Wind observations of the electron foreshock},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {1235-1238}
+}
+
+@ARTICLE{BakerKV95,
+	author	    = {Baker, D. N. and Klimas, A. J. and Vassiliadis, D. V.},
+	title	    = {Energy transfer between the solar wind and the
+	  magnetosphereionosphere system},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1995},
+	volume	    = {47},
+	pages	    = {1171-1182}
+}
+
+@ARTICLE{KlimasBVR95,
+	author	    = {Klimas, A. J. and Baker, D. N. and Vassiliadis, D. and
+	  Roberts, D. A.},
+	title	    = {Substorm recurrence during steady and variable
+	  solar-wind driving - evidence for a normal-mode in the unloading
+	  dynamics of the magnetosphere - reply},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {22003-22005}
+}
+
+@ARTICLE{VassiliadisK95,
+	author	    = {Vassiliadis, D. and Klimas, A. J.},
+	title	    = {On the uniqueness of linear moving-average filters for
+	  the solar wind-auroral geomagnetic-activity coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {5637-5641}
+}
+
+
+@ARTICLE{KlimasBVR94,
+	author	    = {Klimas, A. J. and Baker, D. N. and Vassiliadis, D. and
+	  Roberts, D. A.},
+	title	    = {Substorm recurrence during steady and variable
+	  solar-wind driving - evidence for a normal-mode in the unloading
+	  dynamics of the magnetosphere},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1994},
+	volume	    = {99},
+	pages	    = {14855-14861}
+}
+
+@ARTICLE{KlimasF94,
+	author	    = {Klimas, A. J. and Farrell, W. M.},
+	title	    = {A splitting algorithm for vlasov simulation with
+	  filamentation filtration},
+	journal     = {J. Comput. Phys.},
+	year	    = {1994},
+	volume	    = {110},
+	pages	    = {150-163}
+}
+
+@ARTICLE{BakerKPM93,
+	author	    = {Baker, D. N. and Klimas, A. J. and Pulkkinen, T. I.
+	  and McPherron, R. L.},
+	title	    = {Reexamination of driven and unloading aspects of
+	  magnetospheric substorms},
+	journal     = {Adv. Space Res.},
+	year	    = {1993},
+	volume	    = {13},
+	pages	    = {75-83}
+}
+
+
+@ARTICLE{BakerKR91,
+	author	    = {Baker, D. N. and Klimas, A. J. and Roberts, D. A.},
+	title	    = {Examination of time-variable input effects in a
+	  nonlinear analog magnetosphere model},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1631-1634}
+}
+
+@ARTICLE{KlimasBR91,
+	author	    = {Klimas, A. J. and Baker, D. N. and Roberts, D. A.},
+	title	    = {Linear prediction filters for linear and nonlinear
+	  modeled geomagnetic-activity},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1635-1638}
+}
+
+@ARTICLE{RobertsBKB91,
+	author	    = {Roberts, D. A. and Baker, D. N. and Klimas, A. J. and
+	  Bargatze, L. F.},
+	title	    = {Indications of low dimensionality in magnetospheric
+	  dynamics},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {151-154}
+}
+
+@ARTICLE{Klimas90,
+	author	    = {Klimas, A. J.},
+	title	    = {Trapping saturation of the bump-on-tail instability
+	  and electrostatic harmonic excitation in earths foreshock},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {14905-14924}
+}
+
+@ARTICLE{FitzenreiterSK90,
+	author	    = {Fitzenreiter, R. J. and Scudder, J. D. and Klimas, A.
+	  J.},
+	title	    = {3-dimensional analytical model for the spatial
+	  variation of the foreshock electron-distribution function -
+	  systematics and comparisons with isee observations},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {4155-4173}
+}
+
+@ARTICLE{BakerKMB90,
+	author	    = {Baker, D. N. and Klimas, A. J. and McPherron, R. L.
+	  and Buchner, J.},
+	title	    = {The evolution from weak to strong geomagnetic-activity
+	  - an interpretation in terms of deterministic chaos},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1990},
+	volume	    = {17},
+	pages	    = {41-44}
+}
+
+@ARTICLE{KlimasF88,
+	author	    = {Klimas, A. J. and Fitzenreiter, R. J.},
+	title	    = {On the persistence of unstable bump-on-tail electron
+	  velocity distributions in the earths foreshock},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {9628-9648}
+}
+
+@ARTICLE{Klimas87,
+	author	    = {Klimas, A. J.},
+	title	    = {A method for overcoming the velocity space
+	  filamentation problem in collisionless plasma model solutions},
+	journal     = {J. Comput. Phys.},
+	year	    = {1987},
+	volume	    = {68},
+	pages	    = {202-226}
+}
+
+@ARTICLE{BargatzeBMH85,
+	author	    = {Bargatze, L. F. and Baker, D. N. and McPherron, R. L.
+	  and Hones, E. W.},
+	title	    = {Magnetospheric impulse-response for many levels of
+	  geomagnetic activity},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1985},
+	volume	    = {90},
+	pages	    = {6387-6394}
+}
+
+@ARTICLE{FitzenreiterKS84,
+	author	    = {Fitzenreiter, R. J. and Klimas, A. J. and Scudder, J.
+	  D.},
+	title	    = {Detection of bump-on-tail reduced electron velocity
+	  distributions at the electron foreshock boundary},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1984},
+	volume	    = {11},
+	pages	    = {496-499}
+}
+
+@ARTICLE{Klimas83,
+	author	    = {Klimas, A. J.},
+	title	    = {A mechanism for plasma-waves at the harmonics of the
+	  plasma frequency in the electron foreshock boundary},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1983},
+	volume	    = {88},
+	pages	    = {9081-9091}
+}
+
+@ARTICLE{Klimas83,
+	author	    = {Klimas, A. J.},
+	title	    = {A numerical-method based on the fourier-fourier
+	  transform approach for modeling 1-d electron-plasma evolution},
+	journal     = {J. Comput. Phys.},
+	year	    = {1983},
+	volume	    = {50},
+	pages	    = {270-306}
+}
+
+@ARTICLE{KlimasC83,
+	author	    = {Klimas, A. J. and Cooper, J.},
+	title	    = {Vlasov-maxwell and vlasov-poisson equations as models
+	  of a onedimensional electron-plasma},
+	journal     = {Phys. Fluids},
+	year	    = {1983},
+	volume	    = {26},
+	pages	    = {478-479}
+}
+
+@ARTICLE{DolcourtFCKM81,
+	author	    = {Dolcourt, J. L. and Finch, C. and Coleman, G. D. and
+	  Klimas, A. J. and Milar, C. R.},
+	title	    = {Hazard of lead-exposure in the home from recycled
+	  automobile storage batteries},
+	journal     = {Pediatrics},
+	year	    = {1981},
+	volume	    = {68},
+	pages	    = {225-230}
+}
+
+@ARTICLE{Klimas79,
+	author	    = {Klimas, A. J.},
+	title	    = {Approximation method for electrostatic vlasov
+	  turbulence},
+	journal     = {J. Math. Phys.},
+	year	    = {1979},
+	volume	    = {20},
+	pages	    = {2131-2138}
+}
+
+@ARTICLE{KlimasK79,
+	author	    = {Klimas, A. J. and Klein, L. W.},
+	title	    = {Approximation method for electrostatic vlasov
+	  turbulence},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1979},
+	volume	    = {24},
+	pages	    = {645-645}
+}
+
+@ARTICLE{Klimas77,
+	author	    = {Klimas, A. J.},
+	title	    = {Initial progress in analysis of a collisionless 1-d
+	  electrostatic plasma},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {1073-1073}
+}
+
+@ARTICLE{KlimasK77,
+	author	    = {Klimas, A. J. and Kimmer, E.},
+	title	    = {Start toward a strong plasma turbulence theory},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1977},
+	volume	    = {58},
+	pages	    = {486-486}
+}
+
+@ARTICLE{KimmerK77,
+	author	    = {Kimmer, E. and Klimas, A. J.},
+	title	    = {Solutions of quasilinear diabatic equation and its 1st
+	  local approximation},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1977},
+	volume	    = {58},
+	pages	    = {486-486}
+}
+
+@ARTICLE{KlimasK77,
+	author	    = {Klimas, A. J. and Kimmer, E.},
+	title	    = {Spatial transport in magnetostatic turbulence of
+	  charged test particles},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {602-602}
+}
+
+@ARTICLE{KimmerK77,
+	author	    = {Kimmer, E. and Klimas, A. J.},
+	title	    = {Spatial transport in magnetostatic turbulence of
+	  charged test particles - zero-gradient limit},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {602-602}
+}
+
+@ARTICLE{SandriKS76,
+	author	    = {Sandri, G. and Klimas, A. J. and Scudder, J. D.},
+	title	    = {Approximations to volterra equations in an infinite
+	  time interval},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {641-641}
+}
+
+@ARTICLE{ScudderKS76,
+	author	    = {Scudder, J. D. and Klimas, A. J. and Sandri, G.},
+	title	    = {Quasilinear, diabatic solutions and various
+	  approximations for cosmic-ray transport including 1st local
+	  approximation},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {641-642}
+}
+
+@ARTICLE{KlimasSS76,
+	author	    = {Klimas, A. J. and Sandri, G. and Scudder, J. D.},
+	title	    = {Final-states of quasilinear, diabatic solutions and
+	  their various approximations for cosmic-ray transport},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {642-642}
+}
+
+@ARTICLE{ScudderK76,
+	author	    = {Scudder, J. D. and Klimas, A. J.},
+	title	    = {Quasilinear, diabatic solutions and various
+	  approximations for cosmic-ray transport including new local
+	  approximation},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {304-304}
+}
+
+@ARTICLE{KlimasS76,
+	author	    = {Klimas, A. J. and Scudder, J. D.},
+	title	    = {Final-states of quasilinear, diabatic solutions and
+	  their various approximations for cosmic-ray transport},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {304-304}
+}
+
+@ARTICLE{SandriKS76,
+	author	    = {Sandri, G. and Klimas, A. J. and Scudder, J. D.},
+	title	    = {Quasilinear diabatic equations for cosmic-ray
+	  transport and their approximations},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {77-77}
+}
+
+@ARTICLE{ScudderKS76,
+	author	    = {Scudder, J. D. and Klimas, A. J. and Sandri, G.},
+	title	    = {Comparison of solutions of quasilinear diabatic
+	  equations and their related approximations},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {77-78}
+}
+
+@ARTICLE{KlimasSS76,
+	author	    = {Klimas, A. J. and Sandri, G. and Scudder, J. D.},
+	title	    = {Analysis of slow evolution method (sem)},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {78-78}
+}
+
+@ARTICLE{GoldsteinKS75,
+	author	    = {Goldstein, M. L. and Klimas, A. J. and Sandri, G.},
+	title	    = {Mirroring in fokker-planck coefficient for cosmic-ray
+	  pitchangle scattering in homogeneous magnetic turbulence},
+	journal     = {Astrophys. J.},
+	year	    = {1975},
+	volume	    = {195},
+	pages	    = {787-799}
+}
+
+@ARTICLE{FiskGKS74,
+	author	    = {Fisk, L. A. and Goldstei.Ml, u. n. k. n. o. w. n. and
+	  Klimas, A. J. and Sandri, G.},
+	title	    = {Fokker-planck coefficient for pitch-angle scattering
+	  of cosmicrays},
+	journal     = {Astrophys. J.},
+	year	    = {1974},
+	volume	    = {190},
+	pages	    = {417-428}
+}
+
+@ARTICLE{Goldstei.MlBK74,
+	author	    = {Goldstei.Ml, u. n. k. n. o. w. n. and Barish, F. D.
+	  and Klimas, A. J.},
+	title	    = {Some properties of finite-amplitude alfven waves},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1974},
+	volume	    = {55},
+	pages	    = {414-414}
+}
+
+@ARTICLE{Goldstei.MlKS74,
+	author	    = {Goldstei.Ml, u. n. k. n. o. w. n. and Klimas, A. J.
+	  and Sandri, G.},
+	title	    = {Fokker-planck theory of particles mirroring in
+	  homogeneous magnetic turbulence},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1974},
+	volume	    = {19},
+	pages	    = {434-434}
+}
+
+@ARTICLE{KlimasS73,
+	author	    = {Klimas, A. J. and Sandri, G.},
+	title	    = {Rigorous cosmic-ray transport-equation with no
+	  restrictions on particle energy},
+	journal     = {Astrophys. J.},
+	year	    = {1973},
+	volume	    = {180},
+	pages	    = {937-954}
+}
+
+@ARTICLE{KlimasS71,
+	author	    = {Klimas, A. J. and Sandri, G.},
+	title	    = {Foundation of theory of cosmic-ray transport in random
+	  magnetic fields},
+	journal     = {Astrophys. J.},
+	year	    = {1971},
+	volume	    = {169},
+	pages	    = {41-\&}
+}
+
+@ARTICLE{UritskyKV02,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Multiscale dynamics and robust critical scaling in a
+	  continuum current sheet model (vol 65, art no 046113, 2002)},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {66},
+	pages	    = {art. no.-019901}
+}
+
+@ARTICLE{UritskyKV02,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Multiscale dynamics and robust critical scaling in a
+	  continuum current sheet model},
+	journal     = {Phys. Rev. E},
+	year	    = {2002},
+	volume	    = {65},
+	pages	    = {art. no.-046113}
+}
+
+@ARTICLE{UritskyKV01,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Vassiliadis, D.},
+	title	    = {Comparative study of dynamical critical scaling in the
+	  auroral electrojet index versus solar wind fluctuations},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {3809-3812}
+}
+
+@ARTICLE{TakaloTKVV01,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. J. and
+	  Valdivia, J. A. and Vassiliadis, D.},
+	title	    = {A coupled map as a model of the dynamics of the
+	  magnetotail current sheet},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1407-1414}
+}
+
+@ARTICLE{UritskyKVVB01,
+	author	    = {Uritsky, V. M. and Klimas, A. J. and Valdivia, J. A.
+	  and Vassiliadis, D. and Baker, D. N.},
+	title	    = {Stable critical behavior and fast field annihilation
+	  in a magnetic field reversal model},
+	journal     = {J. Atmos. Sol.-Terr. Phys.},
+	year	    = {2001},
+	volume	    = {63},
+	pages	    = {1425-1433}
+}
+
+@ARTICLE{KlimasVVBHT00,
+	author	    = {Klimas, A. J. and Valdivia, J. A. and Vassiliadis, D.
+	  and Baker, D. N. and Hesse, M. and Takalo, J.},
+	title	    = {Self-organized criticality in the substorm phenomenon
+	  and its relation to localized reconnection in the magnetospheric
+	  plasma sheet},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {18765-18780}
+}
+
+@ARTICLE{SitnovSPVVKB00,
+	author	    = {Sitnov, M. I. and Sharma, A. S. and Papadopoulos, K.
+	  and Vassiliadis, D. and Valdivia, J. A. and Klimas, A. J. and
+	  Baker, D. N.},
+	title	    = {Phase transition-like behavior of the magnetosphere
+	  during substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2000},
+	volume	    = {105},
+	pages	    = {12955-12974}
+}
+
+@ARTICLE{VassiliadisKVB00,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Valdivia, J. A.
+	  and Baker, D. N.},
+	title	    = {The nonlinear dynamics of space weather},
+	journal     = {Adv Space Res},
+	year	    = {2000},
+	volume	    = {26},
+	pages	    = {197-207}
+}
+
+@ARTICLE{VinasWK00,
+	author	    = {Vinas, A. F. and Wong, H. K. and Klimas, A. J.},
+	title	    = {Generation of electron suprathermal tails in the upper
+	  solar atmosphere: Implications for coronal heating},
+	journal     = {Astrophys. J.},
+	year	    = {2000},
+	volume	    = {528},
+	pages	    = {509-523}
+}
+
+@ARTICLE{VassiliadisKVB99,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Valdivia, J. A.
+	  and Baker, D. N.},
+	title	    = {The D-st geomagnetic response as a function of storm
+	  phase and amplitude and the solar wind electric field},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {24957-24976}
+}
+
+@ARTICLE{BakerKKVP99,
+	author	    = {Baker, D. N. and Kanekal, S. G. and Klimas, A. J. and
+	  Vassiliadis, D. and Pulkkinen, T. I.},
+	title	    = {Collective phenomena in the inner magnetosphere},
+	journal     = {Phys. Plasmas},
+	year	    = {1999},
+	volume	    = {6},
+	pages	    = {4195-4199}
+}
+
+@ARTICLE{TakaloTKVV99,
+	author	    = {Takalo, J. and Timonen, J. and Klimas, A. J. and
+	  Valdivia, J. A. and Vassiliadis, D.},
+	title	    = {A coupled-map model for the magnetotail current sheet},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1999},
+	volume	    = {26},
+	pages	    = {2913-2916}
+}
+
+
+@ARTICLE{VassiliadisKB99,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Baker, D. N.},
+	title	    = {Models of D-st geomagnetic activity and of its
+	  coupling to solar wind parameters},
+	journal     = {Phys. Chem. Earth Pt. C-Solar-Terr. Planet. Sci.},
+	year	    = {1999},
+	volume	    = {24},
+	pages	    = {107-112}
+}
+
+@ARTICLE{BargatzeOMW99,
+	author	    = {Bargatze, L. F. and Ogino, T. and McPherron, R. L. and
+	  Walker, R. J.},
+	title	    = {Solar wind magnetic field control of magnetospheric
+	  response delay and expansion phase onset timing},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {14583-14599}
+}
+
+@ARTICLE{BakerPBK99,
+	author	    = {Baker, D. N. and Pulkkinen, T. I. and Buchner, J. and
+	  Klimas, A. J.},
+	title	    = {Substorms: A global instability of the
+	  magnetosphere-ionosphere system},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1999},
+	volume	    = {104},
+	pages	    = {14601-14611}
+}
+
+@ARTICLE{KlimasVB98,
+	author	    = {Klimas, A. J. and Vassiliadis, D. and Baker, D. N.},
+	title	    = {Dst index prediction using data-derived analogues of
+	  the magnetospheric dynamics},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1998},
+	volume	    = {103},
+	pages	    = {20435-20447}
+}
+
+
+@ARTICLE{BakerKVPM97,
+	author	    = {Baker, D. N. and Klimas, A. J. and Vassiliadis, D. and
+	  Pulkkinen, T. I. and McPherron, R. L.},
+	title	    = {Reexamination of driven and unloading aspects of
+	  magnetospheric substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1997},
+	volume	    = {102},
+	pages	    = {7169-7177}
+}
+
+@ARTICLE{VassiliadisABK96,
+	author	    = {Vassiliadis, D. and Angelopoulos, V. and Baker, D. N.
+	  and Klimas, A. J.},
+	title	    = {The relation between the northern polar cap and
+	  auroral electrojet geomagnetic indices in the wintertime},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {2781-2784}
+}
+
+@ARTICLE{VassiliadisKBR96,
+	author	    = {Vassiliadis, D. and Klimas, A. J. and Baker, D. N. and
+	  Roberts, D. A.},
+	title	    = {The nonlinearity of models of the vB(south)-AL
+	  coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {19779-19787}
+}
+
+
+@ARTICLE{FitzenreiterVKLKO96,
+	author	    = {Fitzenreiter, R. J. and Vinas, A. F. and Klimas, A. J.
+	  and Lepping, R. P. and Kaiser, M. L. and Onsager, T. G.},
+	title	    = {Wind observations of the electron foreshock},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1996},
+	volume	    = {23},
+	pages	    = {1235-1238}
+}
+
+@ARTICLE{BakerKV95,
+	author	    = {Baker, D. N. and Klimas, A. J. and Vassiliadis, D. V.},
+	title	    = {Energy transfer between the solar wind and the
+	  magnetosphereionosphere system},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1995},
+	volume	    = {47},
+	pages	    = {1171-1182}
+}
+
+@ARTICLE{KlimasBVR95,
+	author	    = {Klimas, A. J. and Baker, D. N. and Vassiliadis, D. and
+	  Roberts, D. A.},
+	title	    = {Substorm recurrence during steady and variable
+	  solar-wind driving - evidence for a normal-mode in the unloading
+	  dynamics of the magnetosphere - reply},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {22003-22005}
+}
+
+@ARTICLE{VassiliadisK95,
+	author	    = {Vassiliadis, D. and Klimas, A. J.},
+	title	    = {On the uniqueness of linear moving-average filters for
+	  the solar wind-auroral geomagnetic-activity coupling},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1995},
+	volume	    = {100},
+	pages	    = {5637-5641}
+}
+
+
+
+@ARTICLE{KlimasF94,
+	author	    = {Klimas, A. J. and Farrell, W. M.},
+	title	    = {A splitting algorithm for vlasov simulation with
+	  filamentation filtration},
+	journal     = {J. Comput. Phys.},
+	year	    = {1994},
+	volume	    = {110},
+	pages	    = {150-163}
+}
+
+@ARTICLE{BakerKPM93,
+	author	    = {Baker, D. N. and Klimas, A. J. and Pulkkinen, T. I.
+	  and McPherron, R. L.},
+	title	    = {Reexamination of driven and unloading aspects of
+	  magnetospheric substorms},
+	journal     = {Adv. Space Res.},
+	year	    = {1993},
+	volume	    = {13},
+	pages	    = {75-83}
+}
+
+@ARTICLE{KlimasBRFB92,
+	author	    = {Klimas, A. J. and Baker, D. N. and Roberts, D. A. and
+	  Fairfield, D. H. and Buchner, J.},
+	title	    = {A nonlinear dynamic analog model of
+	  geomagnetic-activity},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1992},
+	volume	    = {97},
+	pages	    = {12253-12266}
+}
+
+@ARTICLE{BakerKR91,
+	author	    = {Baker, D. N. and Klimas, A. J. and Roberts, D. A.},
+	title	    = {Examination of time-variable input effects in a
+	  nonlinear analog magnetosphere model},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1631-1634}
+}
+
+@ARTICLE{KlimasBR91,
+	author	    = {Klimas, A. J. and Baker, D. N. and Roberts, D. A.},
+	title	    = {Linear prediction filters for linear and nonlinear
+	  modeled geomagnetic-activity},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {1635-1638}
+}
+
+@ARTICLE{RobertsBKB91,
+	author	    = {Roberts, D. A. and Baker, D. N. and Klimas, A. J. and
+	  Bargatze, L. F.},
+	title	    = {Indications of low dimensionality in magnetospheric
+	  dynamics},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1991},
+	volume	    = {18},
+	pages	    = {151-154}
+}
+
+@ARTICLE{Klimas90,
+	author	    = {Klimas, A. J.},
+	title	    = {Trapping saturation of the bump-on-tail instability
+	  and electrostatic harmonic excitation in earths foreshock},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {14905-14924}
+}
+
+@ARTICLE{FitzenreiterSK90,
+	author	    = {Fitzenreiter, R. J. and Scudder, J. D. and Klimas, A.
+	  J.},
+	title	    = {3-dimensional analytical model for the spatial
+	  variation of the foreshock electron-distribution function -
+	  systematics and comparisons with isee observations},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1990},
+	volume	    = {95},
+	pages	    = {4155-4173}
+}
+
+@ARTICLE{BakerKMB90,
+	author	    = {Baker, D. N. and Klimas, A. J. and McPherron, R. L.
+	  and Buchner, J.},
+	title	    = {The evolution from weak to strong geomagnetic-activity
+	  - an interpretation in terms of deterministic chaos},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1990},
+	volume	    = {17},
+	pages	    = {41-44}
+}
+
+@ARTICLE{KlimasF88,
+	author	    = {Klimas, A. J. and Fitzenreiter, R. J.},
+	title	    = {On the persistence of unstable bump-on-tail electron
+	  velocity distributions in the earths foreshock},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {9628-9648}
+}
+
+@ARTICLE{Klimas87,
+	author	    = {Klimas, A. J.},
+	title	    = {A method for overcoming the velocity space
+	  filamentation problem in collisionless plasma model solutions},
+	journal     = {J. Comput. Phys.},
+	year	    = {1987},
+	volume	    = {68},
+	pages	    = {202-226}
+}
+
+
+@ARTICLE{FitzenreiterKS84,
+	author	    = {Fitzenreiter, R. J. and Klimas, A. J. and Scudder, J.
+	  D.},
+	title	    = {Detection of bump-on-tail reduced electron velocity
+	  distributions at the electron foreshock boundary},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1984},
+	volume	    = {11},
+	pages	    = {496-499}
+}
+
+@ARTICLE{Klimas83,
+	author	    = {Klimas, A. J.},
+	title	    = {A mechanism for plasma-waves at the harmonics of the
+	  plasma frequency in the electron foreshock boundary},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1983},
+	volume	    = {88},
+	pages	    = {9081-9091}
+}
+
+@ARTICLE{Klimas83,
+	author	    = {Klimas, A. J.},
+	title	    = {A numerical-method based on the fourier-fourier
+	  transform approach for modeling 1-d electron-plasma evolution},
+	journal     = {J. Comput. Phys.},
+	year	    = {1983},
+	volume	    = {50},
+	pages	    = {270-306}
+}
+
+@ARTICLE{KlimasC83,
+	author	    = {Klimas, A. J. and Cooper, J.},
+	title	    = {Vlasov-maxwell and vlasov-poisson equations as models
+	  of a onedimensional electron-plasma},
+	journal     = {Phys. Fluids},
+	year	    = {1983},
+	volume	    = {26},
+	pages	    = {478-479}
+}
+
+@ARTICLE{DolcourtFCKM81,
+	author	    = {Dolcourt, J. L. and Finch, C. and Coleman, G. D. and
+	  Klimas, A. J. and Milar, C. R.},
+	title	    = {Hazard of lead-exposure in the home from recycled
+	  automobile storage batteries},
+	journal     = {Pediatrics},
+	year	    = {1981},
+	volume	    = {68},
+	pages	    = {225-230}
+}
+
+@ARTICLE{Klimas79,
+	author	    = {Klimas, A. J.},
+	title	    = {Approximation method for electrostatic vlasov
+	  turbulence},
+	journal     = {J. Math. Phys.},
+	year	    = {1979},
+	volume	    = {20},
+	pages	    = {2131-2138}
+}
+
+@ARTICLE{KlimasK79,
+	author	    = {Klimas, A. J. and Klein, L. W.},
+	title	    = {Approximation method for electrostatic vlasov
+	  turbulence},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1979},
+	volume	    = {24},
+	pages	    = {645-645}
+}
+
+@ARTICLE{Klimas77,
+	author	    = {Klimas, A. J.},
+	title	    = {Initial progress in analysis of a collisionless 1-d
+	  electrostatic plasma},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {1073-1073}
+}
+
+@ARTICLE{KlimasK77,
+	author	    = {Klimas, A. J. and Kimmer, E.},
+	title	    = {Start toward a strong plasma turbulence theory},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1977},
+	volume	    = {58},
+	pages	    = {486-486}
+}
+
+@ARTICLE{KimmerK77,
+	author	    = {Kimmer, E. and Klimas, A. J.},
+	title	    = {Solutions of quasilinear diabatic equation and its 1st
+	  local approximation},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1977},
+	volume	    = {58},
+	pages	    = {486-486}
+}
+
+@ARTICLE{KlimasK77,
+	author	    = {Klimas, A. J. and Kimmer, E.},
+	title	    = {Spatial transport in magnetostatic turbulence of
+	  charged test particles},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {602-602}
+}
+
+@ARTICLE{KimmerK77,
+	author	    = {Kimmer, E. and Klimas, A. J.},
+	title	    = {Spatial transport in magnetostatic turbulence of
+	  charged test particles - zero-gradient limit},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1977},
+	volume	    = {22},
+	pages	    = {602-602}
+}
+
+@ARTICLE{SandriKS76,
+	author	    = {Sandri, G. and Klimas, A. J. and Scudder, J. D.},
+	title	    = {Approximations to volterra equations in an infinite
+	  time interval},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {641-641}
+}
+
+@ARTICLE{ScudderKS76,
+	author	    = {Scudder, J. D. and Klimas, A. J. and Sandri, G.},
+	title	    = {Quasilinear, diabatic solutions and various
+	  approximations for cosmic-ray transport including 1st local
+	  approximation},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {641-642}
+}
+
+@ARTICLE{KlimasSS76,
+	author	    = {Klimas, A. J. and Sandri, G. and Scudder, J. D.},
+	title	    = {Final-states of quasilinear, diabatic solutions and
+	  their various approximations for cosmic-ray transport},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {642-642}
+}
+
+@ARTICLE{ScudderK76,
+	author	    = {Scudder, J. D. and Klimas, A. J.},
+	title	    = {Quasilinear, diabatic solutions and various
+	  approximations for cosmic-ray transport including new local
+	  approximation},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {304-304}
+}
+
+@ARTICLE{KlimasS76,
+	author	    = {Klimas, A. J. and Scudder, J. D.},
+	title	    = {Final-states of quasilinear, diabatic solutions and
+	  their various approximations for cosmic-ray transport},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1976},
+	volume	    = {57},
+	pages	    = {304-304}
+}
+
+@ARTICLE{SandriKS76,
+	author	    = {Sandri, G. and Klimas, A. J. and Scudder, J. D.},
+	title	    = {Quasilinear diabatic equations for cosmic-ray
+	  transport and their approximations},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {77-77}
+}
+
+@ARTICLE{ScudderKS76,
+	author	    = {Scudder, J. D. and Klimas, A. J. and Sandri, G.},
+	title	    = {Comparison of solutions of quasilinear diabatic
+	  equations and their related approximations},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {77-78}
+}
+
+@ARTICLE{KlimasSS76,
+	author	    = {Klimas, A. J. and Sandri, G. and Scudder, J. D.},
+	title	    = {Analysis of slow evolution method (sem)},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1976},
+	volume	    = {21},
+	pages	    = {78-78}
+}
+
+@ARTICLE{GoldsteinKS75,
+	author	    = {Goldstein, M. L. and Klimas, A. J. and Sandri, G.},
+	title	    = {Mirroring in fokker-planck coefficient for cosmic-ray
+	  pitchangle scattering in homogeneous magnetic turbulence},
+	journal     = {Astrophys. J.},
+	year	    = {1975},
+	volume	    = {195},
+	pages	    = {787-799}
+}
+
+@ARTICLE{FiskGKS74,
+	author	    = {Fisk, L. A. and Goldstei.Ml, u. n. k. n. o. w. n. and
+	  Klimas, A. J. and Sandri, G.},
+	title	    = {Fokker-planck coefficient for pitch-angle scattering
+	  of cosmicrays},
+	journal     = {Astrophys. J.},
+	year	    = {1974},
+	volume	    = {190},
+	pages	    = {417-428}
+}
+
+@ARTICLE{Goldstei.MlBK74,
+	author	    = {Goldstei.Ml, u. n. k. n. o. w. n. and Barish, F. D.
+	  and Klimas, A. J.},
+	title	    = {Some properties of finite-amplitude alfven waves},
+	journal     = {Trans Amer Geophys Union},
+	year	    = {1974},
+	volume	    = {55},
+	pages	    = {414-414}
+}
+
+@ARTICLE{Goldstei.MlKS74,
+	author	    = {Goldstei.Ml, u. n. k. n. o. w. n. and Klimas, A. J.
+	  and Sandri, G.},
+	title	    = {Fokker-planck theory of particles mirroring in
+	  homogeneous magnetic turbulence},
+	journal     = {Bull Amer Phys Soc},
+	year	    = {1974},
+	volume	    = {19},
+	pages	    = {434-434}
+}
+
+@ARTICLE{KlimasS73,
+	author	    = {Klimas, A. J. and Sandri, G.},
+	title	    = {Rigorous cosmic-ray transport-equation with no
+	  restrictions on particle energy},
+	journal     = {Astrophys. J.},
+	year	    = {1973},
+	volume	    = {180},
+	pages	    = {937-954}
+}
+
+@ARTICLE{KlimasS71,
+	author	    = {Klimas, A. J. and Sandri, G.},
+	title	    = {Foundation of theory of cosmic-ray transport in random
+	  magnetic fields},
+	journal     = {Astrophys. J.},
+	year	    = {1971},
+	volume	    = {169},
+	pages	    = {41-\&}
+}
+
+@ARTICLE{RidleyDGP01,
+	author	    = {Ridley, A. J. and De Zeeuw, D. L. and Gombosi, T. I.
+	  and Powell, K. G.},
+	title	    = {Using steady state MHD results to predict the global
+	  state of the magnetosphere-ionosphere system},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {30067-30076}
+}
+
+
+@ARTICLE{RichmondK88,
+	author	    = {Richmond, A. D. and Kamide, Y.},
+	title	    = {Mapping electrodynamic features of the high-latitude
+	  ionosphere from localized observations - technique},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {5741-5759}
+}
+
+@ARTICLE{RichmondKAAABDEFFFHKKLPSZ88,
+	author	    = {Richmond, A. D. and Kamide, Y. and Ahn, B. H. and
+	  Akasofu, S. I. and Alcayde, D. and Blanc, M. and Delabeaujardiere,
+	  O. and Evans, D. S. and Foster, J. C. and Friischristensen, E. and
+	  Fullerrowell, T. J. and Holt, J. M. and Knipp, D. and Kroehl, H. W.
+	  and Lepping, R. P. and Pellinen, R. J. and Senior, C. and Zaitzev,
+	  A. N.},
+	title	    = {Mapping electrodynamic features of the high-latitude
+	  ionosphere from localized observations - combined
+	  incoherent-scatter radar and magnetometer measurements for January
+	  18-19, 1984},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {5760-5776}
+}
+
+@ARTICLE{Kamide88,
+	author	    = {Kamide, Y.},
+	title	    = {Recent issues in studies of magnetosphere-ionosphere
+	  coupling},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1988},
+	volume	    = {40},
+	pages	    = {131-155}
+}
+
+@ARTICLE{HeppnerM87,
+	author	    = {Heppner, J. P. and Maynard, N. C.},
+	title	    = {Empirical high-latitude electric-field models},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1987},
+	volume	    = {92},
+	pages	    = {4467-4489}
+}
+
+@ARTICLE{ClauerK85,
+	author	    = {Clauer, C. R. and Kamide, Y.},
+	title	    = {Dp-1 and Dp-2 current systems for the March 22, 1979
+	  substorms},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1985},
+	volume	    = {90},
+	pages	    = {1343-1354}
+}
+
+@ARTICLE{ClauerMSK81,
+	author	    = {Clauer, C. R. and McPherron, R. L. and Searls, C. and
+	  Kivelson, M. G.},
+	title	    = {Solar-wind control of auroral-zone
+	  geomagnetic-activity},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {1981},
+	volume	    = {8},
+	pages	    = {915-918}
+}
+
+@ARTICLE{Akasofu79,
+	author	    = {Akasofu, S. I.},
+	title	    = {Inter-planetary energy flux associated with
+	  magnetospheric substorms},
+	journal     = {Planet Space Sci.},
+	year	    = {1979},
+	volume	    = {27},
+	pages	    = {425-431}
+}
+
+@ARTICLE{Aoki77,
+	author	    = {Aoki, T.},
+	title	    = {Influence of dipole tilt angle on development of
+	  auroral electrojets},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1977},
+	volume	    = {29},
+	pages	    = {441-453}
+}
+
+@ARTICLE{RidleyDGP01,
+	author	    = {Ridley, A. J. and De Zeeuw, D. L. and Gombosi, T. I.
+	  and Powell, K. G.},
+	title	    = {Using steady state MHD results to predict the global
+	  state of the magnetosphere-ionosphere system},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {30067-30076}
+}
+
+
+@ARTICLE{RostokerP90,
+	author	    = {Rostoker, G. and Pascal, F.},
+	title	    = {Dependence of the response of the magnetosphere
+	  ionosphere current systems on the preconditioning of the auroral
+	  oval and on the level of the solar terrestrial interaction},
+	journal     = {Can. J. Phys.},
+	year	    = {1990},
+	volume	    = {68},
+	pages	    = {74-80}
+}
+
+
+@ARTICLE{RichmondKAAABDEFFFHKKLPSZ88,
+	author	    = {Richmond, A. D. and Kamide, Y. and Ahn, B. H. and
+	  Akasofu, S. I. and Alcayde, D. and Blanc, M. and Delabeaujardiere,
+	  O. and Evans, D. S. and Foster, J. C. and Friischristensen, E. and
+	  Fullerrowell, T. J. and Holt, J. M. and Knipp, D. and Kroehl, H. W.
+	  and Lepping, R. P. and Pellinen, R. J. and Senior, C. and Zaitzev,
+	  A. N.},
+	title	    = {Mapping electrodynamic features of the high-latitude
+	  ionosphere from localized observations - combined
+	  incoherent-scatter radar and magnetometer measurements for January
+	  18-19, 1984},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1988},
+	volume	    = {93},
+	pages	    = {5760-5776}
+}
+
+@ARTICLE{Kamide88,
+	author	    = {Kamide, Y.},
+	title	    = {Recent issues in studies of magnetosphere-ionosphere
+	  coupling},
+	journal     = {J. Geomagn. Geoelectr.},
+	year	    = {1988},
+	volume	    = {40},
+	pages	    = {131-155}
+}
+
+
+@ARTICLE{O'BrienSM01,
+	author	    = {O'Brien, T. P. and Sornette, D. and McPherron, R. L.},
+	title	    = {Statistical asynchronous regression: Determining the
+	  relationship between two quantities that are not measured
+	  simultaneously},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {13247-13259}
+}
+
+@ARTICLE{ShueK01,
+	author	    = {Shue, J. H. and Kamide, Y.},
+	title	    = {Effects of solar wind density on auroral electrojets},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2001},
+	volume	    = {28},
+	pages	    = {2181-2184}
+}
+
+@ARTICLE{ShueNLM01,
+	author	    = {Shue, J. H. and Newell, P. T. and Liou, K. and Meng,
+	  C. I.},
+	title	    = {Influence of interplanetary magnetic field on global
+	  auroral patterns},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {2001},
+	volume	    = {106},
+	pages	    = {5913-5926}
+}
+
+@ARTICLE{O'BrienM00a,
+	author	    = {O'Brien, T. P. and McPherron, R. L.},
+	title	    = {Evidence against an independent solar wind density
+	  driver of the terrestrial ring current},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {3797-3799}
+}
+
+
+@ARTICLE{SunKA96,
+	author	    = {Sun, W. and Kamide, Y. and Akasofu, S. I.},
+	title	    = {Substorm current in the equatorial plane of the
+	  magnetosphere deduced from ground-based magnetometer chain records},
+	journal     = {J. Geophys. Res-Space Phys.},
+	year	    = {1996},
+	volume	    = {101},
+	pages	    = {24655-24659}
+}
+
+@ARTICLE{Southwood95,
+	author	    = {Southwood, D.J},
+	title	    = {Death of british space science},
+	journal     = {Nature},
+	year	    = {1995},
+	volume	    = {375},
+	pages	    = {10-10}
+}
+@ARTICLE{Southwood68,
+	author	    = {Southwood, D.J.},
+	title	    = {Hydromagnetic stability of magnetospheric boundary},
+	journal     = {Planet Space Sci.},
+	year	    = {1968},
+	volume	    = {16},
+	pages	    = {587}
+}
+
+
+@ARTICLE{SmithLNABS98,
+        author      = {Smith, C.W. and J. L'Heureux and N.F. Ness and M.H. Acuna and
+                       L.F. Burlaga and J. Scheifele},
+        title       = {The {ACE} magnetic fields experiment},
+        journal     = {Space Science Reviews},
+        year        = {1988},
+        volume      = {86},
+        pages       = {613--632}
+}
+
+@ARTICLE{Cybenko89,
+	author	    = {Cybenko, G.},
+	title	    = {Approximation by superpositions of sigmoidal function},
+	journal     = {Math. Control Signals and Syst.},
+	year	    = {1989},
+	volume	    = {2},
+	pages	    = {303--314}
+}
+
+@INPROCEEDINGS{Baker86,
+	author	    = {Baker, D.N.},
+	title	    = {Statistical analyses in the study of solar wind--magnetosphere 
+                       coupling},
+        booktitle   = {Solar Wind--Magnetosphere Coupling},
+        editor      = {Kamide, Y. and Slavin, J.A.},
+	year	    = {1986},
+	pages	    = {17--38}
+}
+
+@INPROCEEDINGS{DetmanV97,
+	author	    = {Detman, T. and D. Vassiliadis},
+	title	    = {Review of Techniques for Magnetic Storm Forecasting},
+        booktitle   = {Geophysical Monograph},
+	year	    = {1997},
+        volume      = {98},
+        organization = {American Geophysical Union}
+}
+
+
+@BOOK{BoxJ76,
+	author	    = {Box, G.E.P. and G.M Jenkins},
+	title	    = {Time series analysis: forecasting and control},
+        publisher   = {Holden-Day, San Francisco},
+	year	    = {1976}
+}
+
+@BOOK{Bishop95,
+	author	    = {Bishop, C.M.},
+	title	    = {Neural networks for pattern recognition},
+        publisher   = {Oxford University Press},
+	year	    = {1995}
+}
+
+@BOOK{Bury99,
+	author	    = {Bury, K.},
+	title	    = {Statistical Distributions in Engineering},
+        publisher   = {Cambridge University Press},
+	year	    = {1999}
+}
+
+@BOOK{Frisch95,
+	author	    = {Frisch, U.},
+	title	    = {Turbulence. The legacy of A.N. Kolmogorov},
+        publisher   = {Cambridge University Press},
+	year	    = {1995}
+}
+
+@BOOK{KamideB93,
+	author	    = {Kamide, Y. and W. Baumjohann},
+	title	    = {Magnetosphere--Ionosphere Coupling},
+        publisher   = {Physics and Chemistry in Space},
+        volume      = {23},
+	year	    = {1993}
+}
+
+@ARTICLE{RidleyCF00,
+	author	    = {Ridley, A. J. and Crowley, G. and Freitas, C.},
+	title	    = {An empirical model of the ionospheric electric
+	  potential},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2000},
+	volume	    = {27},
+	pages	    = {3675-3678}
+}
+
+@ARTICLE{VasyliunasKSA82,
+	author	    = {Vasyliunas, V. M. and Kan, J. R. and Siscoe, G. L. and
+	  Akasofu, S. I.},
+	title	    = {Scaling relations governing magnetospheric
+	  energy-transfer},
+	journal     = {Planet Space Sci.},
+	year	    = {1982},
+	volume	    = {30},
+	pages	    = {359-365}
+}
+
+@ARTICLE{WeigelVK02,
+	author	    = {Weigel, R.S. and D. Vassiliadis and A.J. Klimas},
+	title	    = {Coupling of the Solar Wind to Temporal Fluctuations
+                       in Ground Magnetic Fields},
+	journal     = {Geophys. Res. Lett.},
+	year	    = {2002},
+        volume      = {29},
+        number      = {19},
+        doi         = {10.1029/2002GL014740} 
+}
+
+@ARTICLE{GonzalezG84,
+	author	    = {Gonzalez, W. D. and Gonzalez, A. L. C.},
+	title	    = {Energy-transfer by magnetopause reconnection and the
+	  substorm parameter-epsilon},
+	journal     = {Planet Space Sci.},
+	year	    = {1984},
+	volume	    = {32},
+	pages	    = {1007-1012}
+}
+
+@ARTICLE{WeimerOMBCMNS02,
+	author	    = {Weimer, D.R. and Ober, D.M. and Maynard, N.C. and Burke, W.J. 
+                       and Collier, M.R. and McComas, D.J. and Ness, N.F. 
+                       and Smith, C.W.},
+	title	    = {Variable time delays in the propagation of the interplanetary 
+                       magnetic field},
+	journal     = {J. Geophys. Res.},
+	year	    = {2002},
+        doi         = {10.1029/2001JA009102}, 
+	volume	    = {107(A8)}
+}
+
+@ARTICLE{VassiliadisKKBW02,
+         author  = {Vassiliadis,  D. and  Klimas, A.J. and Kanekal, S.G. and Baker, D.N.
+                   and Weigel, R.S.},
+         title   = {Long-Term Solar-Cycle,  and  Seasonal  Response  of Magnetospheric
+                   Energetic Electrons to the Solar Wind Speed},
+         journal = {J. Geophys. Res}, 
+         volume  = {107},
+         year    = {2002},
+         pages   = {10.1029/2001JA000506} 
+}
+
+@ARTICLE{VassiliadisWKKM02,
+         author  = {Vassiliadis,  D. and Weigel, R.S. and Klimas, A.J. and Kanekal,
+                    S.G. and Mewaldt, R.A. },
+         title   = {Modes of Energy Transfer Between the Solar Wind and the Inner
+                    Magnetosphere},
+         journal = {In Press, Phys. Plasmas},
+         year    = {2002}
+}
+
+
+@BOOK{Silverman86,
+	author	    = {Silverman, B.W.},
+	title	    = {Density Estimation for Statistics and Data Analysis},
+        publisher   = {Chapman and Hall},
+	year	    = {1986}
+}
+
+
+
+

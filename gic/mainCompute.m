@@ -12,8 +12,10 @@ end
 % Raw periodograms
 ftX = fft(X);
 pX  = abs(ftX);
-N   = size(pX,1);
+N   = size(X,1);
 f   = [0:N/2]'/N;
+pX  = 2*pX(2:N/2+1,:)/N;
+f   = f(2:end);
 
 % Averaged periodograms
 for i = 1:size(X,2)
@@ -32,5 +34,3 @@ end
 NA = size(pA,1);
 fA = [1:NA/2]'/NA;
 pA = pA(2:NA/2+1,:);
-pX = pX(2:N/2+1,:);
-f  = f(2:N/2+1);

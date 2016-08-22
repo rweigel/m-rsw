@@ -45,7 +45,6 @@ if strmatch(sta,'ORF09','exact')
     %D(2041000:end,:) = NaN;
     %D(1101000:1109000,:) = NaN;
     %D(618000:1101000,4) = NaN;
-    t = [0:size(D,1)-1]/1000;
 end
 
 if strmatch(sta,'ORF10','exact')
@@ -57,14 +56,40 @@ if strmatch(sta,'ORF10','exact')
     D(330645,4) = NaN;
     D(381192,4) = NaN;    
     D(382076,4) = NaN;    
-    t = [1:size(D,1)]/1000;
 end
 
+if strmatch(sta,'GAA54','exact')
+    D(243980:243984,:) = NaN;
+end
+
+if strmatch(sta,'COO20','exact')
+    D(518223,:) = NaN;
+end
+
+if strmatch(sta,'MNG35','exact')
+    D(1:86400*2,:) = NaN;
+    D(168631:168632,4) = NaN;
+    D(168638:168639,4) = NaN;
+    D(191201:191202,4) = NaN;
+    D(191221:191222,4) = NaN;    
+    D(191260:191262,4) = NaN;    
+    D(191666:191668,4) = NaN;    
+    D(203625:203640,4) = NaN;    
+    D(203678:203680,4) = NaN;    
+    D(203734:203744,4) = NaN;    
+    D(203683:203689,4) = NaN;        
+end
+
+if strmatch(sta,'WII41','exact')
+    D(749700:749000,:) = NaN;        
+end
+
+t = [1:size(D,1)]/1000;
 for i = 1:size(D,2)
     figure(i);clf
     plot(t,D(:,i)/1e6);
     drawnow;
-    title(sprintf('%s %s [counts]',sta,chas{i}));
+    title(sprintf('%s %s [counts/1e6]',sta,chas{i}));
     xlabel('(measurement #)/1000')
     grid on;
     grid minor;

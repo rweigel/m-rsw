@@ -13,9 +13,9 @@ N     = m;
 dlef  = 0.07;        % Space on left
 drig  = 0.03;        % Space on right
 w     = 1-dlef-drig; % Width of plot area
-gap   = 0.002;       % Gap between plot areas
+gap   = 0.02;       % Gap between plot areas
 dtop  = 0.02;        % Space on bottom
-dbot  = 0.06;        % Space on bottom
+dbot  = 0.08;        % Space on bottom
 He    = 1 - ( gap*(N-1)+dtop+dbot ); 
 h     = He/N;
 

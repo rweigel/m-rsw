@@ -29,9 +29,24 @@ end
 
 for k = 1:size(Z,2)
     % Interpolate onto frequency grid
-    %Zio(:,k) = interp1(fe(2:end),Z(2:end,k),fg(2:end));
-    Zio(:,k) = interp1(fe,Z(:,k),fg);
-    Zi(:,k) = Zio(:,k);
+
+    if (0)
+	% Linearly interpolate in log space.
+	logZio(:,k) = interp1(log(fe(2:end)),log(Z(2:end,k)),log(fg(2:end)));
+	Zio(:,k) = exp(logZio(:,k));
+	Zi(:,k) = [Z(1,k);Zio(:,k)];
+    end
+    
+    if (1)
+	Zio(:,k) = interp1(fe,Z(:,k),fg,'linear');
+	Zi(:,k) = Zio(:,k);
+    end
+
+    if (0)
+	Zio(:,k) = interp1(fe,Z(:,k),fg,'cubic');
+	Zi(:,k) = Zio(:,k);
+    end
+
     % Set NaN values to zero
     I = find(isnan(Zi(:,k)));
     if (length(I) > 0)

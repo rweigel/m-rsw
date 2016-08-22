@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: text.aux
+The style file: ./style/agufull.bst
+Database file #1: bib/References_all.bib
+Warning--empty journal in Fernberg2012
+Warning--empty title in Kelbert2011
+Warning--empty journal in McKay2003
+Warning--empty journal in NERC2015
+Warning--empty title in Schultz2016
+You've used 25 entries,
+            2720 wiz_defined-function locations,
+            1149 strings with 13113 characters,
+and the built_in function-call counts, 17947 in all, are:
+= -- 2112
+> -- 753
+< -- 14
++ -- 323
+- -- 213
+* -- 1364
+:= -- 1996
+add.period$ -- 25
+call.type$ -- 25
+change.case$ -- 142
+chr.to.int$ -- 25
+cite$ -- 80
+duplicate$ -- 1535
+empty$ -- 908
+format.name$ -- 288
+if$ -- 3510
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 27
+newline$ -- 79
+num.names$ -- 100
+pop$ -- 579
+preamble$ -- 1
+purify$ -- 121
+quote$ -- 0
+skip$ -- 1116
+stack$ -- 0
+substring$ -- 760
+swap$ -- 1247
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 219
+warning$ -- 5
+while$ -- 112
+width$ -- 0
+write$ -- 266
+(There were 5 warnings)

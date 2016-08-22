@@ -1,0 +1,134 @@
+\begin{thebibliography}{25}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{{\it {Bedrosian} and {Love}\/}(2015)}]{Bedrosian2015}
+{Bedrosian}, P.~A., and J.~J. {Love}, {Mapping geoelectric fields during
+  magnetic storms: Synthetic analysis of empirical United States impedances},
+  {\it Geophys. Res. Lett.\/}, {\it 42\/}, 10, 2015.
+
+\bibitem[{{\it Boteler\/}(2015)}]{Boteler2015}
+Boteler, D.~H., The evolution of {Q}uebec earth models used to model
+  geomagnetically induced currents, {\it {IEEE} Transactions on Power
+  Delivery\/}, {\it 30\/}, 2171--2178, 2015.
+
+\bibitem[{{\it Chave and Jones\/}(2012)}]{Chave2012}
+Chave, A.~D., and A.~G. Jones, {\it The Magnetotelluric Method: Theory and
+  Practice\/}, Cambridge University Press, 2012.
+
+\bibitem[{{\it Egbert\/}(1992)}]{Egbert1992}
+Egbert, G.~D., Noncausality of the discrete-time magnetotelluric impulse
+  response, {\it {GEOPHYSICS}\/}, {\it 57\/}, 1354--1358, 1992.
+
+\bibitem[{{\it Fernberg\/}(2012)}]{Fernberg2012}
+Fernberg, P., One-dimensional earth resistivity models for selected areas of
+  the continental {U}nited {S}tates and {A}laska, 2012.
+
+\bibitem[{{\it Fujii et~al.\/}(2015){\it Fujii, Ookawa, Nagamachi, and
+  Owada\/}}]{Fujii2015}
+Fujii, I., T.~Ookawa, S.~Nagamachi, and T.~Owada, The characteristics of
+  geoelectric fields at {K}akioka, {K}anoya, and {M}emambetsu inferred from
+  voltage measurements during 2000 to 2011, {\it Earth, Planets and Space\/},
+  {\it 67\/}, 2015.
+
+\bibitem[{{\it Jones et~al.\/}(1989){\it Jones, Chave, Egbert, Auld, and
+  Bahr\/}}]{Jones1989}
+Jones, A.~G., A.~D. Chave, G.~Egbert, D.~Auld, and K.~Bahr, A comparison of
+  techniques for magnetotelluric response function estimation, {\it J. Geophys.
+  Res.\/}, {\it 94\/}, 14,201--14,213, 1989.
+
+\bibitem[{{\it Kelbert et~al.\/}(2011){\it Kelbert, Egbert, and
+  Schultz\/}}]{Kelbert2011}
+Kelbert, A., G.~Egbert, and A.~Schultz, {\it doi:10.17611/DP/EMTF.1\/}, 2011.
+
+\bibitem[{{\it Lehtinen and Pirjola\/}({1985})}]{Lehtinen1985}
+Lehtinen, M., and R.~Pirjola, Currents produced in earthed conductor networks
+  by geomagnetically-induced electric fields, {\it {Annales Geophysicae}\/},
+  {\it {3}\/}, {479--484}, {1985}.
+
+\bibitem[{{\it Love and Swidinsky\/}(2014)}]{Love2014}
+Love, J.~J., and A.~Swidinsky, Time causal operational estimation of electric
+  fields induced in the earth's lithosphere during magnetic storms, {\it
+  Geophys. Res. Lett.\/}, {\it 41\/}, 2266--2274, 2014.
+
+\bibitem[{{\it McKay\/}(2003)}]{McKay2003}
+McKay, A.~J., Geoelectric fields and geomagnetically induced currents in the
+  {U}nited {K}ingdom, 2003.
+
+\bibitem[{{\it McMechan and Barrodale\/}(1985)}]{McMechan1985}
+McMechan, G.~A., and I.~Barrodale, Processing electromagnetic data in the time
+  domain, {\it Geophysical Journal International\/}, {\it 81\/}, 277--293,
+  1985.
+
+\bibitem[{{\it Meltzer\/}(2003)}]{Meltzer2003}
+Meltzer, A., Earthscope: Opportunities and challenges for earth-science
+  research and education, {\it The Leading Edge\/}, {\it 22\/}, 2003.
+
+\bibitem[{{\it NERC\/}(2015)}]{NERC2015}
+NERC, {NERC} {P}roject 2013-03 - benchmark geomagnetic disturbance event
+  description, 2015.
+
+\bibitem[{{\it Pulkkinen et~al.\/}(2007){\it Pulkkinen, Pirjola, and
+  Viljanen\/}}]{Pulkkinen2007}
+Pulkkinen, A., R.~Pirjola, and A.~Viljanen, Determination of ground
+  conductivity and system parameters for optimal modeling of geomagnetically
+  induced current flow in technological systems, {\it Earth, Planets and
+  Space\/}, {\it 59\/}, 999--1006, 2007.
+
+\bibitem[{{\it Pulkkinen et~al.\/}(2010){\it Pulkkinen, Kataoka, Watari, and
+  Ichiki\/}}]{Pulkkinen2010}
+Pulkkinen, A., R.~Kataoka, S.~Watari, and M.~Ichiki, Modeling geomagnetically
+  induced currents in hokkaido, japan, {\it Advances in Space Research\/}, {\it
+  46\/}, 1087 -- 1093, 2010.
+
+\bibitem[{{\it Pulkkinen et~al.\/}(2012){\it Pulkkinen, Bernabeu, Eichner,
+  Beggan, and Thomson\/}}]{Pulkkinen2012}
+Pulkkinen, A., E.~Bernabeu, J.~Eichner, C.~Beggan, and A.~W.~P. Thomson,
+  Generation of 100-year geomagnetically induced current scenarios, {\it Space
+  Weather\/}, {\it 10\/}, 2012.
+
+\bibitem[{{\it Schultz\/}(2009)}]{Schultz2009}
+Schultz, A., {EMScope}: A continental scale magnetotelluric observatory and
+  data discovery resource, {\it Data Science Journal\/}, {\it 8\/}, 2009.
+
+\bibitem[{{\it Schultz et~al.\/}(2016){\it Schultz, Egbert, Kelbert, Peery,
+  Clote, Fry, Erofeeva, and staff of the National Geoelectromagnetic Facility
+  {and} their~contractors (2006-2018)\/}}]{Schultz2016}
+Schultz, A., G.~D. Egbert, A.~Kelbert, T.~Peery, V.~Clote, B.~Fry, S.~Erofeeva,
+  and staff of the National Geoelectromagnetic Facility {and} their~contractors
+  (2006-2018), {\it doi:10.17611/DP/EMTF/USARRAY/TA\/}, 2016.
+
+\bibitem[{{\it {Simpson} and {Bahr}\/}(2005)}]{Simpson2005}
+{Simpson}, F., and K.~{Bahr}, {\it {Practical Magnetotellurics}\/}, Cambridge
+  University Press, 2005.
+
+\bibitem[{{\it Sims et~al.\/}(1971){\it Sims, Bostick, and Smith\/}}]{Sims1971}
+Sims, W.~E., F.~X. Bostick, and H.~W. Smith, The estimation of magnetotelluric
+  impedance tensor elements from measured data, {\it Geophysics\/}, {\it 36\/},
+  938--942, 1971.
+
+\bibitem[{{\it Tzschoppe and Huber\/}(2009)}]{Tzschoppe2009}
+Tzschoppe, R., and J.~B. Huber, Causal discrete-time system approximation of
+  non-bandlimited continuous-time systems by means of discrete prolate
+  spheroidal wave functions, {\it Eur. Trans. Telecomm.\/}, {\it 20\/},
+  604--616, 2009.
+
+\bibitem[{{\it {Viljanen} et~al.\/}(2012){\it {Viljanen}, {Pirjola}, {Wik},
+  {{\'A}d{\'a}m}, {Pr{\'a}cser}, {Sakharov}, and {Katkalov}\/}}]{Viljanen2012}
+{Viljanen}, A., R.~{Pirjola}, M.~{Wik}, A.~{{\'A}d{\'a}m}, E.~{Pr{\'a}cser},
+  Y.~{Sakharov}, and J.~{Katkalov}, {Continental scale modelling of
+  geomagnetically induced currents}, {\it Journal of Space Weather and Space
+  Climate\/}, {\it 2\/}, A17, 2012.
+
+\bibitem[{{\it {Viljanen} et~al.\/}(2014){\it {Viljanen}, {Pirjola},
+  {Pr{\'a}cser}, {Katkalov}, and {Wik}\/}}]{Viljanen2014}
+{Viljanen}, A., R.~{Pirjola}, E.~{Pr{\'a}cser}, J.~{Katkalov}, and M.~{Wik},
+  {Geomagnetically induced currents in Europe. Modelled occurrence in a
+  continent-wide power grid}, {\it Journal of Space Weather and Space
+  Climate\/}, {\it 4\/}, A09, 2014.
+
+\bibitem[{{\it Wei et~al.\/}(2013){\it Wei, Homeier, and Gannon\/}}]{Wei2013}
+Wei, L.~H., N.~Homeier, and J.~L. Gannon, Surface electric fields for north
+  america during historical geomagnetic storms, {\it Space Weather\/}, {\it
+  11\/}, 451--462, 2013.
+
+\end{thebibliography}

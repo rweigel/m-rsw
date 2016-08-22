@@ -12,7 +12,7 @@ figurex(fn);clf;hold on;grid on;box on;grid minor;
     xlabel(xlab)
     ylabel('[nT]','Rotation',0,'HorizontalAlignment','right');
     legend('B_x','B_y','B_z')
-    fignames{fn} = [short,'_B_timeseries'];
+    fignames{fn} = [Info.short,'_B_timeseries'];
 
 fn = fn + 1;
 figurex(fn);clf;hold on;grid on;hold on;grid on;box on;grid minor;
@@ -35,7 +35,7 @@ figurex(fn);clf;hold on;grid on;hold on;grid on;box on;grid minor;
 	sprintf('dB_x/dt+%.1f',shift)',...
 	'dB_y/dt',...
 	sprintf('dB_x/dt-%.1f',shift)');
-    fignames{fn} = [short,'_dBdt_timeseries'];
+    fignames{fn} = [Info.short,'_dBdt_timeseries'];
 
 fn = fn + 1;
 figurex(fn);clf;hold on;grid on;box on;grid minor;
@@ -47,14 +47,14 @@ figurex(fn);clf;hold on;grid on;box on;grid minor;
     end
     title(titlestrs)
     xlabel(xlab)
-    if strcmp('grassridge',short')
+    if strcmp('grassridge',Info.short')
 	ylabel('[Amp]');
 	legend('GIC')
     else
 	ylabel('[mV/km]');
 	legend('E_x','E_y')
     end
-    fignames{fn} = [short,'_E_timeseries'];
+    fignames{fn} = [Info.short,'_E_timeseries'];
 
 Ip = [1,2,7,8]; % Elements to plot
 % Elements 1 and 2 are Bx, By.
@@ -73,7 +73,7 @@ figurex(fn);clf;box on;
 	   'Rotation',0,...
 	   'Interpreter','Latex',...
 	   'HorizontalAlignment','Right');
-    fignames{fn} = [short,'_All_periodogram_ave'];
+    fignames{fn} = [Info.short,'_All_periodogram_ave'];
 
 
 if (0)
@@ -87,7 +87,7 @@ figurex(fn);clf;
     legend(labels(Ip));
     title(titlestrs);
     ylabel('Average periodogram magnitude');
-    fignames{fn} = [short,'_All_periodogram_ave2'];
+    fignames{fn} = [Info.short,'_All_periodogram_ave2'];
 end
     
 fn = fn + 1;
@@ -103,7 +103,7 @@ figurex(fn);clf;box on;
 	   'Rotation',0,...
 	   'Interpreter','Latex',...
 	   'HorizontalAlignment','Right');
-    fignames{fn} = [short,'_All_periodogram_ave_vs_T'];
+    fignames{fn} = [Info.short,'_All_periodogram_ave_vs_T'];
 
 if (0)
 fn = fn + 1;
@@ -137,7 +137,7 @@ figurex(fn);clf;
 	   'Rotation',0,...
 	   'Interpreter','Latex',...
 	   'HorizontalAlignment','Right');
-    fignames{fn} = [short,'_All_periodogram'];
+    fignames{fn} = [Info.short,'_All_periodogram'];
 
 fn = fn + 1;
 figurex(fn);clf;
@@ -156,7 +156,7 @@ figurex(fn);clf;
 	   'Rotation',0,...
 	   'Interpreter','Latex',...
 	   'HorizontalAlignment','Right');
-    fignames{fn} = [short,'_All_periodogram_vs_T'];
+    fignames{fn} = [Info.short,'_All_periodogram_vs_T'];
 
 
 if (0) % Need to figure out why these won't save
@@ -193,7 +193,7 @@ if (writeimgs)
   for i = [1:fn]
     figurex(i);
     fname = sprintf('%s/%s/%s/figures/mainPlot_%s',...
-		    datadir,lower(agent),short,fignames{i});
+		    datadir,lower(agent),Info.short,fignames{i});
     fprintf('mainPlot: Writing %s.{pdf,png}\n',fname);
     print([fname,'.png'],'-dpng');
     print([fname,'.pdf'],'-dpdf');

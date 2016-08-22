@@ -41,10 +41,11 @@ for alpha = [-1/2]
 
     % Time domain estimate of transfer function
     Nl    = 800;
-    [T,X] = time_delay(Ey,Bx,Nl,0,Nl);
-    LIN   = basic_linear(X,T)
-
-    tbl   = [-Nl+1:1:Nl];
+    Na    = 800;
+    %[T,X] = time_delay(Ey,Bx,Nl,0,Nl);
+    [T,X] = time_delay(Ey,Bx,Nl,0,Na);
+    LIN   = basic_linear(X,T);
+    tbl   = [-Na+1:1:Nl];
     hbl   = LIN.Weights(1:end-1);    
     Rbl   = fft(hbl);
     phibl = (180/pi)*atan2(imag(Rbl),real(Rbl));

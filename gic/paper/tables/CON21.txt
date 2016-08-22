@@ -1,0 +1,13 @@
+& \multicolumn{3}{c}{Training set}\\
+& cc$_x$ & PE$_x$ & cc$_y$ & PE$_y$\\
+\hline
+Method 1 & 0.64 & -24.13 & 0.94 & -5.02\\
+Method 2 & 0.99 & 0.99 & 1.00 & 0.99\\
+Method 3 & 0.98 & 0.92 & 0.98 & 0.96\\
+\\
+& \multicolumn{3}{c}{Testing set}\\
+& cc$_x$ & PE$_x$ & cc$_y$ & PE$_y$\\
+\hline
+Method 1 & 0.73 & -17.70 & 0.89 & -5.21\\
+Method 2 & 0.98 & 0.95 & 0.96 & 0.91\\
+Method 3 & 0.96 & 0.89 & 0.93 & 0.81\\
