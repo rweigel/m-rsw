@@ -7,11 +7,21 @@ REPL=find_replace.pl
 ARGS="-halt-on-error"
 
 all: text.tex
-	TEXINPUTS=:.:./style/agutex latex $(ARGS) text.tex
+#	TEXINPUTS=:.:./style/agutex latex $(ARGS) text.tex
+	TEXINPUTS=:.:./agu-template latex $(ARGS) text.tex
 	bibtex text
-	TEXINPUTS=:.:./style/agutex latex $(ARGS) text.tex
+#	TEXINPUTS=:.:./style/agutex latex $(ARGS) text.tex
+	TEXINPUTS=:.:./agu-template latex $(ARGS) text.tex
 	bibtex text
 	dvipdf text.dvi
+
+diff:
+	latexdiff text1.tex text.tex > paper.diff.tex
+	TEXINPUTS=:.:./style/agutex latex $(ARGS) paper.diff.tex
+	bibtex paper.diff
+	TEXINPUTS=:.:./style/agutex latex $(ARGS) paper.diff.tex
+	bibtex paper.diff
+	dvipdf paper.diff.dvi
 
 reply:
 	latex reply.tex

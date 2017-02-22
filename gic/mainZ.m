@@ -29,25 +29,22 @@ N = size(B,1);
 f = [0:N/2]'/N;
 fstr = 'measured';
 if (0)
-if (hpNf > 0)
-    tx      = exp(-[0:hpNf]/hpNf);
-    Ef(:,1) = filter([0,tx/sum(tx)],1,E(:,1));
-    Ef(:,2) = filter([0,tx/sum(tx)],1,E(:,2));
-    tit     = 'Using filtered E to derive TF';
-    fstr    = 'filtered';
-else
-    Ef    = 0*E;
-    tit   = 'Using measured E to derive TF';
+    if (hpNf > 0)
+        tx      = exp(-[0:hpNf]/hpNf);
+        Ef(:,1) = filter([0,tx/sum(tx)],1,E(:,1));
+        Ef(:,2) = filter([0,tx/sum(tx)],1,E(:,2));
+        tit     = 'Using filtered E to derive TF';
+        fstr    = 'filtered';
+    else
+        Ef    = 0*E;
+        tit   = 'Using measured E to derive TF';
+    end
+    E = E-Ef;
 end
-E = E-Ef;
-end
+
+% Filter out frequencies below Tl and above Th
 Eo = E;
 E = filterE(Eo,Tl,Th);
-Ef = Eo-E;
-
-%figure(1);clf;
-%plot(f,abs(fft(Ef(:,1))),'LineWidth',2);hold on;grid on;
-%plot(f,abs(fft(E(:,1))))
 
 cut = floor(size(IN,1)/2);
 
@@ -131,14 +128,30 @@ E_FDP  = E-Ep_FDP;
 [cctr_FDP,petr_FDP,EPtr_FDP,ftr_FDP] = computeMetrics(E(Itr,:),Ep_FDP(Itr,:),ppd,Tl,Th);
 [ccte_FDP,pete_FDP,EPte_FDP,fte_FDP] = computeMetrics(E(Ite,:),Ep_FDP(Ite,:),ppd,Tl,Th);
 
-[Cxy_FDP,f_Cxy] = mscohere(E,Ep_FDP);
-
 fprintf('   train\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',petr_FDP(1),cctr_FDP(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',petr_FDP(2),cctr_FDP(2))
 fprintf('   test\n');
 fprintf('    Ex: pe = %0.2f; cc = %.2f\n',pete_FDP(1),ccte_FDP(1))
 fprintf('    Ey: pe = %0.2f; cc = %.2f\n',pete_FDP(2),ccte_FDP(2))
+
+[Cxy_FDP,f_Cxy] = mscohere(E,Ep_FDP,ones(size(E,1),1),0,size(E,1));
+[Pxx_FDP,fxx_FDP] = pwelch(E(:,1),ones(size(E,1),1),1,size(E,1));
+[Pyy_FDP,fyy_FDP] = pwelch(Ep_FDP(:,1),ones(size(E,1),1),1,size(E,1));
+[Pxy_FDP,fxy_FDP] = cpsd(E(:,1),Ep_FDP(:,1),ones(size(E,1),1),1,size(E,1));
+
+Cxy2_FDP = (abs(Pxy_FDP).^2)./(Pxx_FDP.*Pyy_FDP);
+clf;
+loglog(2*pi./f_Cxy(2:end),Cxy_FDP(2:end,1))
+hold on;
+loglog(2*pi./f_Cxy(2:end),Cxy2_FDP(2:end,1))
+loglog(2*pi./fyy_FDP(2:end),Pyy_FDP(2:end,1).*Pxx_FDP(2:end,1))
+loglog(2*pi./fxy_FDP(2:end),abs(Pxy_FDP(2:end,1)).^2)
+legend('Cxy','Cxy2','Pxx.*Pyy','|Pxy|');
+
+break
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if strcmp(Info.agent,'IRIS')

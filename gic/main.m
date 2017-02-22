@@ -6,22 +6,24 @@ addpath('../time');
 addpath('./transferfn');
 addpath('./misc');
 
-%Sites = {'RET54'};
-
 Sites= {'UTP17','GAA54','ORF03','RET54'};
 %Sites = {'UTP17'};
+%Sites = {'RET54'};
 if (0)
-for idx = 1:length(Sites)
-    load(sprintf('tmp/%s',Sites{idx}))
-%    mainZPlot
-    mainZPlotPaper
-    mainZTablePaper
-end
-break
+    for idx = 1:length(Sites)
+        load(sprintf('tmp/%s',Sites{idx}))
+    %    mainZPlot
+        mainZPlotPaper
+        mainZTablePaper
+    end
+    break
 end
 
 Tl = 9.1;
 Th = 18725;
+
+%Tl = 0;
+%Th = Inf;
 
 Sites= {'UTP17','GAA54','ORF03','RET54'};
 %Sites = {'GAA54'};
@@ -54,19 +56,19 @@ for idx = 1:length(Sites)
     [B,dB,E,dn] = mainPrepare(Info.short, Info.agent);
     
     if ~isempty(Info.Ikeep)
-	B  = B(Info.Ikeep,:);
-	dB = dB(Info.Ikeep,:);
-	E  = E(Info.Ikeep,:);
-	dn = dn(Info.Ikeep);
+        B  = B(Info.Ikeep,:);
+        dB = dB(Info.Ikeep,:);
+        E  = E(Info.Ikeep,:);
+        dn = dn(Info.Ikeep);
     end
 
     % Scale data
     for i = 1:size(B,2)
-	B(:,i)  = B(:,i)*Info.sfB(i);
-	dB(:,i) = dB(:,i)*Info.sfB(i);
+        B(:,i)  = B(:,i)*Info.sfB(i);
+        dB(:,i) = dB(:,i)*Info.sfB(i);
     end
     for i = 1:size(E,2)
-	E(:,i) = E(:,i)*Info.sfE(i); 
+    	E(:,i) = E(:,i)*Info.sfE(i); 
     end
 
     [B,dB,E,dn] = mainInterpolate(B,dB,E,dn);
@@ -83,8 +85,8 @@ for idx = 1:length(Sites)
     mainZ
     Sites_ = Sites;clear Sites;
     idx_ = idx;clear idx;
-    %save(sprintf('tmp/%s',Sites{idx}),'-regexp','!Sites'); % Negation does
-    %not work.
+    %save(sprintf('tmp/%s',Sites{idx}),'-regexp','!Sites'); 
+    % Negation does not work with regexp in save.
     save(sprintf('tmp/%s',Sites_{idx_}))
     Sites = Sites_;
     idx = idx_;

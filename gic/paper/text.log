@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.9.1)  14 AUG 2016 11:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.9.1)  3 FEB 2017 10:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -188,18 +188,18 @@ Package: setspace 2011/12/19 v6.7a set line spacing
 ) (./text.aux)
 \openout1 = `text.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
@@ -213,11 +213,28 @@ Package Fancyhdr Warning: \headheight is too small (7.22743pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] (./text.bbl [12
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11]
+Overfull \hbox (1.13321pt too wide) in paragraph at lines 185--186
+\OT1/cmr/m/n/12 http://ds.iris.edu/ds/nodes/dmc/earthscope/usarray/ and the $\O
+ML/cmm/m/it/12 Kp$ \OT1/cmr/m/n/12 val-ues were ob-tained from
+ []
 
-] [13]) [14]
-(./tables/UTP17.txt) (./tables/GAA54.txt) (./tables/ORF03.txt)
-(./tables/RET54.txt) [15]
+[12] (./text.bbl [13
+
+] [14]
+Underfull \hbox (badness 1067) in paragraph at lines 121--126
+[]\OT1/cmr/m/n/12 Schultz, A., G. D. Eg-bert, A. Kel-bert, T. Peery, V. Clote, 
+B. Fry, S. Ero-feeva,
+ []
+
+
+Underfull \hbox (badness 2512) in paragraph at lines 121--126
+\OT1/cmr/m/n/12 2018) (2016. Re-trieved from the IRIS database on May 3rd, 2016
+), US-Ar-ray
+ []
+
+[15]) [16] (./tables/UTP17.txt) (./tables/GAA54.txt) (./tables/ORF03.txt)
+(./tables/RET54.txt) [17]
 File: ../data/iris/UTP17/figures/mainPlot_UTP17_Error_Spectrum_All_Paper_Ex_inp
 ut-dB_dim-2_hp-10000_2011-06-09-2011-06-12.eps Graphic file (type eps)
 
@@ -237,19 +254,19 @@ File: ../data/iris/RET54/figures/mainPlot_RET54_Error_Spectrum_All_Paper_Ex_inp
 ut-dB_dim-2_hp-10000_2015-12-09-2015-12-12.eps Graphic file (type eps)
 
 <../data/iris/RET54/figures/mainPlot_RET54_Error_Spectrum_All_Paper_Ex_input-dB
-_dim-2_hp-10000_2015-12-09-2015-12-12.eps> [16]
+_dim-2_hp-10000_2015-12-09-2015-12-12.eps> [18]
 File: ../data/iris/UTP17/figures/mainPlot_UTP17_input-dB_dim-2_hp-10000_Ex_pred
 icted_Combined_Paper_2011-06-09-2011-06-12.eps Graphic file (type eps)
 
 <../data/iris/UTP17/figures/mainPlot_UTP17_input-dB_dim-2_hp-10000_Ex_predicted
 _Combined_Paper_2011-06-09-2011-06-12.eps>
 
-LaTeX Warning: Float too large for page by 4.21571pt on input line 232.
+LaTeX Warning: Float too large for page by 4.21571pt on input line 244.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[17]
+[19]
 File: ../data/iris/GAA54/figures/mainPlot_GAA54_input-dB_dim-2_hp-10000_Ex_pred
 icted_Combined_Paper_2015-09-13-2015-09-16.eps Graphic file (type eps)
 
@@ -258,7 +275,7 @@ _Combined_Paper_2015-09-13-2015-09-16.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18]
+[20]
 File: ../data/iris/ORF03/figures/mainPlot_ORF03_input-dB_dim-2_hp-10000_Ex_pred
 icted_Combined_Paper_2007-08-31-2007-09-03.eps Graphic file (type eps)
 
@@ -267,7 +284,7 @@ _Combined_Paper_2007-08-31-2007-09-03.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[19]
+[21]
 File: ../data/iris/RET54/figures/mainPlot_RET54_input-dB_dim-2_hp-10000_Ex_pred
 icted_Combined_Paper_2015-12-09-2015-12-12.eps Graphic file (type eps)
 
@@ -276,14 +293,14 @@ _Combined_Paper_2015-12-09-2015-12-12.eps>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[20] (./text.aux) ) 
+[22] (./text.aux) ) 
 Here is how much of TeX's memory you used:
- 3195 strings out of 495029
- 47448 string characters out of 6181524
- 113740 words of memory out of 5000000
- 6381 multiletter control sequences out of 15000+600000
- 11809 words of font info for 42 fonts, out of 8000000 for 9000
+ 3210 strings out of 495029
+ 47684 string characters out of 6181524
+ 113749 words of memory out of 5000000
+ 6396 multiletter control sequences out of 15000+600000
+ 12649 words of font info for 45 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,15n,47p,1343b,361s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,15n,47p,1375b,364s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on text.dvi (20 pages, 49004 bytes).
+Output written on text.dvi (22 pages, 55076 bytes).

@@ -1,52 +1,51 @@
 This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: text.aux
-The style file: ./style/agufull.bst
+The style file: ./agu-template/agufull08.bst
 Database file #1: bib/References_all.bib
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Warning--empty journal in Fernberg2012
-Warning--empty title in Kelbert2011
 Warning--empty journal in McKay2003
 Warning--empty journal in NERC2015
-Warning--empty title in Schultz2016
-You've used 25 entries,
-            2720 wiz_defined-function locations,
-            1149 strings with 13113 characters,
-and the built_in function-call counts, 17947 in all, are:
-= -- 2112
-> -- 753
-< -- 14
-+ -- 323
-- -- 213
-* -- 1364
-:= -- 1996
-add.period$ -- 25
-call.type$ -- 25
-change.case$ -- 142
-chr.to.int$ -- 25
-cite$ -- 80
-duplicate$ -- 1535
-empty$ -- 908
-format.name$ -- 288
-if$ -- 3510
+You've used 28 entries,
+            3076 wiz_defined-function locations,
+            1285 strings with 15169 characters,
+and the built_in function-call counts, 22480 in all, are:
+= -- 2393
+> -- 724
+< -- 17
++ -- 325
+- -- 201
+* -- 1491
+:= -- 2248
+add.period$ -- 28
+call.type$ -- 28
+change.case$ -- 119
+chr.to.int$ -- 29
+cite$ -- 31
+duplicate$ -- 2447
+empty$ -- 1389
+format.name$ -- 286
+if$ -- 4473
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 27
-newline$ -- 79
-num.names$ -- 100
-pop$ -- 579
+missing$ -- 256
+newline$ -- 91
+num.names$ -- 112
+pop$ -- 850
 preamble$ -- 1
-purify$ -- 121
+purify$ -- 93
 quote$ -- 0
-skip$ -- 1116
+skip$ -- 1290
 stack$ -- 0
-substring$ -- 760
-swap$ -- 1247
+substring$ -- 868
+swap$ -- 1985
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 219
-warning$ -- 5
-while$ -- 112
+type$ -- 246
+warning$ -- 3
+while$ -- 126
 width$ -- 0
-write$ -- 266
-(There were 5 warnings)
+write$ -- 328
+(There were 3 warnings)

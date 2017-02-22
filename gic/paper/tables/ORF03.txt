@@ -1,7 +1,7 @@
 & \multicolumn{3}{c}{Training set}\\
 & cc$_x$ & PE$_x$ & cc$_y$ & PE$_y$\\
 \hline
-Method 1 & 0.68 & 0.72 & 0.85 & 0.72\\
+Method 1 & 0.68 & 0.37 & 0.85 & 0.72\\
 Method 2 & 0.92 & 0.84 & 0.96 & 0.92\\
 Method 3 & 0.85 & 0.61 & 0.91 & 0.81\\
 \\
