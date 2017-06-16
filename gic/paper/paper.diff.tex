@@ -1,0 +1,324 @@
+%\documentclass[draft,jgrga]{agu2001}
+%DIF LATEXDIFF DIFFERENCE FILE
+%DIF DEL text1.tex   Wed Jan 18 11:52:33 2017
+%DIF ADD text.tex    Wed Feb  1 12:40:56 2017
+%\usepackage{lineno}
+%\linenumbers*[1]
+%\usepackage{epsfig}
+%\usepackage{./style/aas_macros}
+
+\documentclass[12pt]{article}
+%DIF 8c8-9
+%DIF < \bibliographystyle{./style/agufull}
+%DIF -------
+%\bibliographystyle{./style/agufull} %DIF > 
+\bibliographystyle{./agu-template/agufull08} %DIF > 
+%DIF -------
+\usepackage[square,comma,authoryear]{natbib}
+\usepackage{epsfig}
+\usepackage{style/lineno}
+\usepackage{amsmath}
+%\usepackage{booktabs}
+\linenumbers*[1]
+\usepackage{subfig}
+
+\usepackage{setspace}  
+\usepackage{fancyhdr}
+
+\newcommand{\citeay}[1]{%
+\citeauthor{#1}, \citeyear{#1}%
+}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[R]{X - \thepage}
+\fancyhead[L]{WEIGEL: ESTIMATING GEOELECTRIC FIELDS}
+\fancyfoot[L]{D R A F T}
+\fancyfoot[C]{\today}
+\fancyfoot[R]{D R A F T}
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\oddsidemargin 0.0in
+\evensidemargin 1.0in
+\textwidth 6.5in
+\headheight 0.1in
+\topmargin -0.5in
+\textheight 9.0in
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
+
+\begin{document}
+\title{A Comparison of Methods for Estimating the Geoelectric Field}
+\author{R.S. Weigel}
+\doublespacing
+\maketitle
+
+\begin{abstract}
+The geoelectric field is the primary input used for estimation of geomagnetically induced currents (GICs) in conducting systems.  We compare three methods for estimating the geoelectric field given the measured geomagnetic field at four locations in the U.S. during time intervals \DIFdelbegin \DIFdel{where }\DIFdelend \DIFaddbegin \DIFadd{with average $K_p$ in the range of 2--3 and when }\DIFaddend the measurements had few data spikes and no base-line jumps.  The methods include using: (1) a pre--existing 1-D conductivity model, (2) a conventional 3-D frequency domain method, and (3) a robust and remote reference 3-D frequency domain method.  The quality of the estimates is determined using the power spectrum (in the period range 9.1 to 18,725 seconds) of estimation errors along with the prediction efficiency summary statistic. It is shown that with respect to these quality metrics, Method 1 produces average out-of-sample electric field estimation errors \DIFaddbegin \DIFadd{with a variance }\DIFaddend that can be equal to or larger than \DIFdelbegin \DIFdel{that measured }\DIFdelend \DIFaddbegin \DIFadd{the average measured variance }\DIFaddend (due to under- or \DIFdelbegin \DIFdel{over-estimation}\DIFdelend \DIFaddbegin \DIFadd{overestimation}\DIFaddend , respectively) and Method 3 produces \DIFdelbegin \DIFdel{in general }\DIFdelend reliable but slightly lower quality estimates than Method 2 for the time intervals and locations considered. 
+\end{abstract}
+
+\section{Introduction}
+
+Historically, estimation of geoelectric field magnitudes used in GIC studies have often been made with 1-D conductivity models as they were the only models available over large physiographic regions in the U.S. or because their historical use made them useful for comparison (e.g., \citeay{Pulkkinen2012}; \citeay{Wei2013}; \citeay{Viljanen2014}; \citeay{Boteler2015}; \citeay{NERC2015}).  1-D conductivity models are developed based on local geology and magnetotelluric and seismic surveys and are intended as either a first-order or effective approximation of 2- or 3-D conductivity structures that may exist (\citeay{Fernberg2012}) or an \DIFdelbegin \DIFdel{effective }\DIFdelend approximation that may not reflect \DIFaddbegin \DIFadd{detailed }\DIFaddend conductivity structures but produces reasonable GIC estimates (\citeay{Boteler2015}). 
+
+Over the past decade, the EMScope (\cite{Schultz2009}) component of the EarthScope project (\citeay{Meltzer2003}) has developed transfer functions at location over a large span of the U.S. and made them publicly available (\cite{Kelbert2011}; \cite{Schultz2016}).  These transfer functions were developed to model conductivity structures but can be used for the estimation of the geoelectric field given the geomagnetic field on Earth's surface (\citeay{Bedrosian2015}).
+
+There is a large body of literature in the magnetotelluric (MT) community on computing surface impedance tensors, $\mathcal{Z}(\omega)$, that connect the geomagnetic field, $\mathbf{B}$, to the geoelectric field, $\mathbf{E}$, on Earth's surface using $\mathbf{E}(\omega) = \mathcal{Z}(\omega)\mathbf{B}(\omega)/\mu_0$, where $\mathbf{B}(\omega) = [B_x(\omega),B_y(\omega)]^T$ and $\mathbf{E}(\omega) = [E_x(\omega),E_y(\omega)]^T$ (\cite{Chave2012} and references therein).  The primary objective of such estimates is for an impedance tensor that can be used to compute 2- or 3-D models of conductivity. These impedance tensors are derived using statistical methods that are customized to reduce bias and increase robustness for such conductivity model estimates.  The quantity minimized in developing the impedance tensors is a weighted residual, where the weights and data intervals used are based on an iterative process and the residual is either a $L_1$ or $L_2$ norm that depends on the magnitude of the residual (\cite{Simpson2005} chapter 4; \cite{Chave2012} chapter 5).  In general, the quality of the computed transfer function is assessed by their error bars, visual characteristics, and consistency of the computed transfer function when different data segments are used in their computation (e.g., \cite{Jones1989}; \cite{Fujii2015}).
+
+In contrast, for estimating GICs, which are \DIFdelbegin \DIFdel{computed using }\DIFdelend \DIFaddbegin \DIFadd{typically computed using a linear relationship to }\DIFaddend the estimated $\mathbf{E}(t)$ (\citeay{Lehtinen1985}; \citeay{Pulkkinen2010}; \citeay{Viljanen2012}; \citeay{NERC2015}), the primary objective is to estimate $\mathbf{E}(t)$ given $\mathbf{B}(t)$ with a high degree of accuracy.  The primary assessment of the quality of the estimation is generally based on the overall match between the predicted and measured $\mathbf{E}$.  The most common metric for assessing quality is either a visual inspection of the predicted $\mathbf{E}(t)$ or $GIC(t)$ versus that measured, the histogram of error, and/or a sum-of-squares error-based statistic  (\citeay{McKay2003}; \citeay{Pulkkinen2010}; \citeay{Love2014}).  In this work, we also consider the frequency dependence of the error in order to identify situations where, for example, one method may better estimate high frequency variations than low frequency variations.
+
+This difference in assessment of the quality of estimates between the MT and GIC community motivated the use of a conventional method (\citeay{Sims1971}) for the estimation of $\mathcal{Z}$.  In addition, the statistical methods used in the GIC literature for estimating the transfer function that connects $\mathbf{B}(t)$ to $GIC(t)$ are similar to those for estimating $\mathcal{Z}$ (\cite{McKay2003}; \cite{Pulkkinen2007})\DIFdelbegin \DIFdel{, and it is an open question as to the optimal statistical procedure that should be used for the prediction of GICs}\DIFdelend . MT researchers often cite the results of \cite{Jones1989}, which showed that complex robust and remote reference methods were superior to conventional spectral processing methods in estimating impedance tensors for the purpose of estimating ground conductivity structures.  However, to date, no comparison has been made to determine the influence of the additional layers of processing, computation, and assumptions involved for robust and remote reference processing on the quality of the electric field estimates from the perspective of the GIC community.  That is, Method 2 has been used in the past for purposes of GIC estimation \DIFaddbegin \DIFadd{(\mbox{%DIFAUXCMD
+\cite{McKay2003}
+}%DIFAUXCMD
+; \mbox{%DIFAUXCMD
+\cite{Pulkkinen2007}
+}%DIFAUXCMD
+) }\DIFaddend and Method 3 has been used in the past for estimating ground conductivity structures \DIFaddbegin \DIFadd{(\mbox{%DIFAUXCMD
+\cite{Chave2012}
+}%DIFAUXCMD
+and references therein)}\DIFaddend ; in this work we compare both methods with respect to electric field estimation (which is used for GIC estimation).
+
+\section{Methods}
+
+The three methods considered for estimating the surface geoelectric field given measurements of the surface geomagnetic field are given below.  Method 1 is referred to as a 1-D method because the impedance tensor depends only on depth.  Methods 2 and 3 are referred to as 3-D methods because their impedance tensors depend on depth and horizontal directions.
+
+\subsection{Method 1}
+
+A surface impedance, $Z_n$, is computed from a pre-existing 1-D model of conductivity, $\sigma$, versus depth, $d$, using
+
+\begin{equation}
+Z_{n}(\omega) = F\big(\sigma(d),d,\omega\big)
+\end{equation}
+
+\noindent where the function $F$ provides the surface impedance from the use of Wait's recursion formula (\DIFdelbegin \DIFdel{Wait }%DIFDELCMD < [%%%
+\DIFdel{1954}%DIFDELCMD < ]%%%
+\DIFdel{; Simpson and Bahr 2005}\DIFdelend \DIFaddbegin \DIFadd{\mbox{%DIFAUXCMD
+\citeay{Wait1954}
+}%DIFAUXCMD
+; \mbox{%DIFAUXCMD
+\citeay{Simpson2005}
+}%DIFAUXCMD
+}\DIFaddend ). $E_x(\omega)$ and $E_y(\omega)$ are computed using
+
+\begin{equation}
+\begin{split}
+E_x(\omega) & = Z_n(\omega)B_y(\omega)/\mu_0\\
+E_y(\omega) & = -Z_n(\omega)B_x(\omega)\DIFaddbegin \DIFadd{/}\DIFaddend \mu_0
+\end{split}
+\end{equation}
+
+\noindent and then $E_x(t)$ and $E_y(t)$ are computed from the inverse fourier transforms of $E_x(\omega)$ and $E_y(\omega)$, respectively.
+
+\subsection{Method 2}
+
+$\mathbf{E}(t)$ and $\mathbf{B}(t)$ measurements are used to solve for $\mathcal{Z}$ in
+
+\begin{equation}
+\mathbf{E(\omega)} = \mathcal{Z(\omega)}\mathbf{B(\omega)}/\mu_0
+\end{equation}
+\noindent where
+\begin{equation}
+\mathcal{Z} = 
+\begin{bmatrix}
+Z_{xx}(\omega) & Z_{xy}(\omega)\\
+Z_{yx}(\omega) & Z_{yy}(\omega)
+\end{bmatrix}
+\end{equation}
+
+\noindent using a linear least squares method (\citeay{Sims1971}; \citeay{Simpson2005}).  In this work, the evaluation frequencies were selected to be logarithmically spaced (as described below) and the auto-- and cross-spectral values required for computing the elements of $\mathcal{Z}$ (Equation 4.17 of \citeay{Simpson2005}) at each evaluation frequency are determined using a Parzen averaging window on the raw spectra. 
+
+The highest evaluation base frequency was set at 0.25 Hz and the ratio of consecutive frequencies is $\sqrt{2}$; the actual evaluation frequencies were chosen to be the frequency from the fast fourier transformed measurements nearest to the evaluation base frequency. The ratio of actual evaluation frequencies varied between 1.25 and 1.5.  $E_x(t)$ and $E_y(t)$ are computed from the inverse fourier transforms of $E_x(\omega)$ and $E_y(\omega)$, respectively, after linear interpolation of the components of $\mathcal{Z}$ on to a uniform frequency grid with frequency spacing of $1/N$ Hz, where $N$ is the length of the 1-second-cadence prediction segment.  The spectra of $B_x(\omega)$ and $B_y(\omega)$ used in the inverse fourier transform was not pre-conditioned.  The results were insensitive to the method used for interpolation of $\mathcal{Z}$ (i.e., cubic interpolation or interpolation in log space).
+
+We have considered using linearly spaced evaluation frequencies and a rectangular window of various widths along with a Bartlett averaging window.  The most important factor was the use of logarithmically spaced evaluation frequencies.  With this, the use of a Parzen averaging window provided slight improvements ($\sim$2\%) in the prediction performance over that for a rectangular or Bartlett averaging window.  Linearly spaced evaluation frequencies with any window resulted in higher errors at periods above $10^3$~s but similar errors below.  
+
+Note that this method was included because of the relative ease of implementation, because of its historical use in the GIC literature, and as a base-line for comparison, but that this method has potential pitfalls that have been discussed in the MT literature (\cite{Egbert1986}; \cite{Eisel2001}).
+
+\subsection{Method 3}
+
+For Method 3, $\mathcal{Z}$ is estimated using a robust regression method and auxiliary remote reference measurements (\cite{Egbert1986}; \cite{Eisel2001}).  We have not implemented this algorithm but rather have used pre-computed impedance tensors (\cite{Kelbert2011}; \cite{Schultz2016}) from MTScope to compute estimates of $E_x(t)$ and $E_y(t)$ in the same way as Method 2.  The provided impedance tensors considered have frequencies that are approximately logarithmically spaced in the period range of 9.1-18,725~s, with ratios of evaluation frequencies in the range of 1.25--1.64.  To compute a predicted electric field, linear interpolation was used on the real and imaginary parts of $\mathcal{Z}$ to obtain impedances on a uniform frequency grid.  All of the transfer functions used in this work had the highest provider-assessed quality score (5 on a scale of 1-5).
+
+\section{Data}
+
+The four stations listed in Table~\ref{table:SiteLocations} were selected because they fell into one of the physiographic regions for which the 1-D conductivity models of (\cite{Fernberg2012}) is available and also had four-day time intervals of $\mathbf{E}(t)$ and $\mathbf{B}(t)$ measurements with few spikes and no baseline offsets; the first four-day interval that had these characteristics was selected for each site.  The time intervals and average geomagnetic disturbance levels are given in the figures shown in the following section.  The raw instrument count measurements were used after conversion to physical units with a constant scale factor.  Data spikes in $\mathbf{E}(t)$ and $\mathbf{B}(t)$ were manually identified and replaced with linearly interpolated values and the $\mathbf{E}(t)$ measurements were filtered by zeroing frequencies outside of the range of 9.1-18,725 s, corresponding to the range of available impedances for Method 3.  The motivation for the zeroing of frequencies outside of this range is to allow for a comparison the prediction performance of all three methods with impedance tensors that span the same period range.
+
+%For purposes of estimation, this zeroing should be avoided because we have found that the zeroed frequency components of the signal are still predictable in the sense that the spectrum of the prediction error for Method 2 is less than the spectrum of the predictand (as discussed in the following section).
+
+The four-day intervals of 1-second-cadence measurements were split into two-day segments.  To determine out-of-sample estimation errors for Method 2, the first two-day interval was used for computing the impedance tensor and the second interval was used for testing. We have also computed results for when the second interval was used for computing the impedance tensor and the first interval was used for testing, and the overall trends and the results are similar; for brevity, these results are not presented.
+
+Because the exact intervals used for determining the models for Method 3 are not known, all results for it should be considered as in-sample. However, because the impedance tensors for all methods have a small number of free parameters relative to the number of measurements used to derive the parameters, overfitting is not expected to be a concern for any of the methods.
+
+The coordinate system used to display the data is one for which $x$ is northward and $y$ is eastward.
+
+\begin{table}
+\centering
+\begin{tabular}{ l | l | c }
+  ID    & Location & 1-D model \\
+  \hline
+  UTP17 & The Cove, UT & CL-1 \\
+  GAA54 & Gator Slide, GA & CP-2 \\
+  ORF03 & Jewell, OR & PB-2 \\
+  RET54 & Buffalo Cove, NC & PT-1
+\end{tabular}
+\caption{Site locations and applicable 1-D conductivity models considered.}
+\label{table:SiteLocations}
+\end{table}
+
+\section{Results}
+
+The summary statistic of the prediction efficiency was used as an overall measure of estimation quality along with the spectrum of prediction errors.  The prediction efficiency, $PE = 1-ARV$, where the average relative variance $ARV = \langle(p-t)^2\rangle/\sigma_{t}^2$ and $p$ is the prediction\DIFdelbegin \DIFdel{and }\DIFdelend \DIFaddbegin \DIFadd{, }\DIFaddend $t$ is the target time series \DIFaddbegin \DIFadd{and $\sigma_{t}$ is the standard deviation of the target time series}\DIFaddend ; a prediction efficiency of 1 corresponds to a perfect prediction, and a prediction efficiency of 0 corresponds to a prediction that is no better than using the average of $t$ as a predictor. \DIFaddbegin \DIFadd{A negative prediction efficiency indicates that the variance in the prediction error is larger than the variance in the predicted time series. }\DIFaddend The advantage of the prediction efficiency over the correlation coefficient is in this interpretation and due to the fact that high correlations that occur when the prediction signal is a scaled version of the measured signal will result in low prediction efficiencies.
+
+Table~\ref{table:SummaryStatistics} shows the results for these summary statistics for both in-sample and out-of-sample segments \DIFaddbegin \DIFadd{and includes the correlation coefficients $cc_x$ and $cc_y$}\DIFaddend . The primary feature is the ordering of the out-of-sample prediction efficiencies.  In all cases, 
+$PE$(Method 2) $> PE$(Method 3) $> PE$(Method 1) and the separation between Method 3 and Method 1 is greater than that for Method 2 and Method 3. 
+
+The difference between Method 2 and Method 3 can be dependent on the zeroing of periods outside of the range of $9.1-18,725$ s, with the separation sometimes becoming larger when this constraint is removed.  As an example, for RET54, the training/testing prediction efficiencies for $E_x$ for Method 2 slightly \DIFdelbegin \DIFdel{increase }\DIFdelend \DIFaddbegin \DIFadd{decrease }\DIFaddend from 0.96/0.93 to \DIFdelbegin \DIFdel{0.97/}\DIFdelend 0.94\DIFaddbegin \DIFadd{/0.90 }\DIFaddend and for Method 3 they decrease from 0.89/0.92 to \DIFdelbegin \DIFdel{0.81}\DIFdelend \DIFaddbegin \DIFadd{0.79}\DIFaddend /\DIFdelbegin \DIFdel{0.78.  This small improvement for Method 2 is explained by the fact that periods outside of the range of $9.1-18,725$~s are slightly predictable for this site.  Because Method 3 does not produce predictions outside of this period range, its overall prediction performance decreases because of the increased variance in the measurements, which increases the denominator in the $ARV$}\DIFdelend \DIFaddbegin \DIFadd{0.77}\DIFaddend . 
+
+The smoothed error spectra (described below) are shown in Figure~\ref{figure:EySpectra} and the data used for their computation are shown in Figures~\ref{figure:UTP17}-\ref{figure:RET54}.  All of the time series displayed in Figures~\ref{figure:UTP17}-\ref{figure:RET54} were filtered to have zero spectral amplitudes outside of the range of $9.1-18,725$ s, and the first and last 18,725~s were omitted in the computation of correlations and prediction efficiencies \DIFaddbegin \DIFadd{to exclude edge effects from the fourier inversion}\DIFaddend .  In Figures~\ref{figure:UTP17}, \ref{figure:GAA54}, and \ref{figure:RET54}, the intermittent spikes in the error time series are due to spikes in the measured magnetic field that remained after the four-day time series of $E_x$ and $E_y$ \DIFaddbegin \DIFadd{(not shown) }\DIFaddend was de-spiked based on visual detection.  \DIFaddbegin \DIFadd{Note that for the ``$a$'' network parameter (\mbox{%DIFAUXCMD
+\citeay{Lehtinen1985}
+}%DIFAUXCMD
+; \mbox{%DIFAUXCMD
+\citeay{Pulkkinen2010}
+}%DIFAUXCMD
+) in the range of 10--100 A$\cdot$km/V, and error of 10 mV/km corresponds to a GIC error of in the range of 0.1-1 A.
+}\DIFaddend 
+
+The smoothed error spectra in Figure~\ref{figure:EySpectra} for the time series shown in Figures~\ref{figure:UTP17}-\ref{figure:RET54} were computed using the same approach for the spectral components of the transfer function for Method 2; logarithmically spaced evaluation frequencies were used along averages weighted with a Parzen window.
+
+%The spectral errors are not flat, indicating that the residuals are frequency dependent.  As noted by \cite{Egbert1986}, many of the assumptions required for estimating error bars and bias in $\mathcal{Z}$ for least-squares-based methods are not applicable.
+
+Consistent with the prediction efficiency results, in Figure~\ref{figure:EySpectra} in most cases the error spectra is lowest at all periods for Method 2, and Method 1 has the largest error amplitudes. The error spectra and time series for $E_y$ are not shown, but the results and conclusions are similar to that for $E_x$. 
+
+For UTP17, the predictions efficiencies are very high for Methods 2 and 3, while Method 1 has a negative prediction efficiencies.  Figure~\ref{figure:EySpectra} shows that the error spectra for Method 3 is higher than that for Method 2 at all periods shown.  The error spectrum for both Methods 2 and 3 have a period range where it is nearly flat; for Method 2 this range extends from $\sim$20--400~s and in Method 3 it extends over a shorter range, from $\sim$60--120~s.  Because of the very high correlations obtained using Method 2, this interval may make a good test case for the impact of adding additional layers of statistical assumptions to account for robustness and bias.
+
+For GAA54, the shape and amplitude of the error profile for Methods 2 and 3 are similar whereas Method 1 has errors that are less than the measured amplitudes above 200~s; below 200~s, the amplitudes are larger and due to \DIFdelbegin \DIFdel{over--estimation.  The over-estimation }\DIFdelend \DIFaddbegin \DIFadd{overestimation of the magnitude of the variations.  The magnitude overestimation }\DIFaddend is visible in Figure~\ref{figure:GAA54}.  The largest difference between Method 2 and 3 occurs below 20~s.
+
+For ORF03, the error spectrum for Method 2 is lower than that for Method 3 at all periods and Method 2 exhibits a region where the error spectrum is nearly flat over the range of $\sim$40--100~s whereas the range of flatness for Method 3 is $\sim$60-90~s.  Although the prediction efficiencies for Method 1 are the lowest, as shown in Figure~\ref{figure:ORF03}, the amplitude of its predicted fluctuations are similar to that measured.
+
+For RET54, the amplitude of the variations of the measured geoelectric field are the largest and prediction efficiencies for Method 2 and 3 are comparable to those for UTP17.  In Figure~\ref{figure:RET54}, under-prediction from Method 1 is clearly visible.  Because of the both the large amplitude of variation and the high prediction efficiencies for Method 2, we suggest that data from this site for this time interval may also be useful for studying the impact of using methods that are more complex than the method used for estimation in Method 2.
+
+\section{Summary and Conclusions}
+
+We have shown that Method 1 produces geoelectric field estimates that are inferior to Method 2 and Method 3.  The primary reasons are that for Method 1, (a) the applicable transfer functions cover a very large geographic region over which the transfer function can change -- the transfer functions computed for Method 3 show that within the physiographic regions defined by \cite{Fernberg2012}, significant differences in the transfer function exist (\citeay{Bedrosian2015}); and (b) the assumption that $\mathcal{Z}_{xy}=-\mathcal{Z}_{yx}$ and $\mathcal{Z}_{xx}=-\mathcal{Z}_{yy} = 0$ (a part of the 1-D assumption) -- for all of the sites considered and over the frequency range considered, the ratio of these impedances range from $\sim$1 to 50.
+
+It was shown that for data sets without many defects (spikes and baseline jumps), a straightforward algorithm (Method 2) for computing a transfer function yields near equal or better estimates of the geoelectric field than a method that uses a remote reference and attempts to reduce bias (Method 3) in the estimate of the transfer function used to compute the geoelectric field.
+
+In the MT literature, the frequency domain method is most often used and many works advocate the use of robust methods along with remote reference measurements.  These methods have been argued to be important when making unbiased estimates of the characteristics of transfer functions for the purposes of conductivity estimation and in reducing their error bars (\cite{Chave2012}).  However, from a GIC perspective, in practice, remote reference data may not be available, and the most straightforward statistical method should be used to simplify interpretation.  We have shown that a conventional least squares frequency domain method can give reliable and accurate out-of-sample estimates of the geoelectric field \DIFaddbegin \DIFadd{for data of the type considered in this work}\DIFaddend .  Although the conventional least squares method has been shown to be flawed with respect to transfer function estimation for the purpose of ground conductivity estimation (\cite{Egbert1986}), we have shown here that it can produce equal or improved out-of-sample predictions of the electric field on data segments without many defects \DIFaddbegin \DIFadd{and when the prediction transfer function is used to predict data near in time to the interval used to derive the transfer function}\DIFaddend .
+
+%It is an open question as to whether Method 2 produces reliable estimates of the actual transfer function; although the computed transfer functions from Method 2 differ from those of Method 3, without a ground truth for comparison, it is not possible to make firm conclusions in this regard.
+
+From the GIC perspective, the method to use for estimating the geoelectric field given geomagnetic field measurements depends on a number of factors and the results indicate that when possible both Methods 2 and 3 are viable options.  It is an open question as to how much revised estimates of historical geoelectric field estimates made with Method 1 (e.g., \citeay{Pulkkinen2012}; \citeay{Wei2013}) will change when Methods 2 or 3 are used.  For the sites considered, Method 1 produced both over- and under-estimates and estimates that had the correct scale (but poor detailed resolution).
+
+The pre-computed transfer functions for Method 3 do not include values for periods below 9 s; this may result in estimates of $GIC(t)$ that are less than that possible if a transfer function was computed that included lower periods. 
+
+There are additional GIC perspectives that have not been considered here.  First, all of the methods used for estimating the geoelectric field have acausal terms in the impulse response that is computed from their corresponding transfer function (\cite{Egbert1992}).  The magnitude and time extent of these acausal constrains the lead time on forward prediction.  Determining the optimal method for prediction of GICs would require evaluation of the effect of truncation of acausal terms in the impulse response, and in this case it may be useful to also consider a time domain method (e.g., \cite{McMechan1985}) that possibly includes acausal corrections (\cite{Tzschoppe2009}).  Second, the time intervals considered did not correspond to strong geomagnetic activity - the average $K_p$ values were in the range of 2--3.  Finally, the observed GIC is based on an integral of the geo-electric field over scales on the order of $\sim$100 km whereas the estimates here are only at a single point.
+
+\section{Acknowledgments}
+
+The MT data used in this paper are accessible using the web services described at \\http://ds.iris.edu/ds/nodes/dmc/earthscope/usarray/ and the $Kp$ values were obtained from the OMNI dataset at http://cdaweb.sci.gsfc.nasa.gov/index.html/.
+
+We acknowledge Anna Kelbert, Gary Egbert, and Adam Schultz for assistance clarifications on the calibration of measurements from the USArray MT measurements.
+
+The USArray MT TA project was led by PI Adam Schultz and the MT transfer functions calculations and associated data processing were performed by Gary Egbert, Anna Kelbert, and Lana Erofeeva.  They would like to thank the Oregon State University MT team and their contractors, lab and field personnel over the years for assistance with data collection, quality control, processing and archiving. They also thank numerous districts of the U.S. Forest Service, Bureau of Land Management, the U.S. National Parks, the collected State land offices, and the many private landowners who permitted access to acquire the MT TA data. USArray TA was funded through NSF grants EAR-0323311, IRIS Subaward 478 and 489 under NSF Cooperative Agreement EAR-0350030 and EAR-0323309, IRIS Subaward 75-MT under NSF Cooperative Agreement EAR-0733069 under CFDA No. 47.050, and IRIS Subaward 05-OSU-SAGE under NSF Cooperative Agreement EAR-1261681.
+
+\clearpage
+
+%\bibliographystyle{plain}
+\bibliography{bib/References_all}
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdelend \clearpage
+
+\begin{table}
+\subfloat[UTP17 summary statistics based on data displayed in Figure~\ref{figure:UTP17}.]{
+  \begin{tabular}{ l r r r r }
+    \input{tables/UTP17.txt}
+  \end{tabular}
+}\hfill
+\subfloat[GAA54 summary statistics based on data displayed in Figure~\ref{figure:GAA54}.]{
+  \begin{tabular}{ l r r r r }
+    \input{tables/GAA54.txt}
+  \end{tabular}
+}
+\vspace{1em}
+\subfloat[ORF03 summary statistics based on data displayed in Figure~\ref{figure:ORF03}.]{
+  \begin{tabular}{ l r r r r }
+    \input{tables/ORF03.txt}
+  \end{tabular}
+}\hfill
+\subfloat[RET54 summary statistics based on data displayed in Figure~\ref{figure:RET54}.]{
+  \begin{tabular}{ l r r r r }
+    \input{tables/RET54.txt}
+  \end{tabular}
+}
+\vspace{1em}
+  \caption{Summary error statistics based on time series shown in Figures~\ref{figure:UTP17}--\ref{figure:RET54}\DIFdelbeginFL \DIFdelFL{.  The first and last 18,725~s of the four-day segments were omitted from the calculations}\DIFdelendFL .}
+\label{table:SummaryStatistics}
+\end{table}
+
+\clearpage
+
+\begin{figure}[htb]
+\centering
+  \subfloat[UTP17 error spectrum based on data displayed in Figure~\ref{figure:UTP17}.]{\includegraphics[width=.41\linewidth]{../data/iris/UTP17/figures/mainPlot_UTP17_Error_Spectrum_All_Paper_Ex_input-dB_dim-2_hp-10000_2011-06-09-2011-06-12.eps}}\hfill%
+  \subfloat[GAA54 error spectrum based on data displayed in Figure~\ref{figure:GAA54}.]{\includegraphics[width=.41\linewidth]{../data/iris/GAA54/figures/mainPlot_GAA54_Error_Spectrum_All_Paper_Ex_input-dB_dim-2_hp-10000_2015-09-13-2015-09-16.eps}}
+\vspace{1em}
+  \subfloat[ORF03 error spectrum based on data displayed in Figure~\ref{figure:ORF03}.]{\includegraphics[width=.41\linewidth]{../data/iris/ORF03/figures/mainPlot_ORF03_Error_Spectrum_All_Paper_Ex_input-dB_dim-2_hp-10000_2007-08-31-2007-09-03.eps}}\hfill%
+  \subfloat[RET54 error spectrum based on data displayed in Figure~\ref{figure:RET54}.]{\includegraphics[width=.41\linewidth]{../data/iris/RET54/figures/mainPlot_RET54_Error_Spectrum_All_Paper_Ex_input-dB_dim-2_hp-10000_2015-12-09-2015-12-12.eps}}
+\vspace{1em}
+  \caption{Spectra of test interval errors.}
+\label{figure:EySpectra}
+\end{figure}
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{../data/iris/UTP17/figures/mainPlot_UTP17_input-dB_dim-2_hp-10000_Ex_predicted_Combined_Paper_2011-06-09-2011-06-12.eps}
+\caption{Measured, predicted, and error time series for $E_x$ at UTP17. The average value of the $K_p$ index in this time range was 2.  The two prediction efficiencies are for the training/testing intervals, which correspond to the first and last half of the four-day interval.}
+\label{figure:UTP17}
+\end{figure}
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{../data/iris/GAA54/figures/mainPlot_GAA54_input-dB_dim-2_hp-10000_Ex_predicted_Combined_Paper_2015-09-13-2015-09-16.eps}
+\caption{Measured, predicted, and error time series for $E_x$ at GAA54.  The average value of the $K_p$ index in this time interval was 3$^-$.}
+\label{figure:GAA54}
+\end{figure}
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{../data/iris/ORF03/figures/mainPlot_ORF03_input-dB_dim-2_hp-10000_Ex_predicted_Combined_Paper_2007-08-31-2007-09-03.eps}
+\caption{Measured, predicted, and error time series for $E_x$ at ORF03. The average value of the $K_p$ index in this time interval was 3$^-$.}
+\label{figure:ORF03}
+\end{figure}
+
+
+\clearpage
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{../data/iris/RET54/figures/mainPlot_RET54_input-dB_dim-2_hp-10000_Ex_predicted_Combined_Paper_2015-12-09-2015-12-12.eps}
+\caption{Measured, predicted, and error time series for $E_x$ at RET54. The average value of the $K_p$ index in this time interval was 3.}
+\label{figure:RET54}
+\end{figure}
+%\end{article}
+\end{document}

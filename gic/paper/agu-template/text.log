@@ -1,0 +1,653 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=latex 2015.9.1)  3 FEB 2017 10:42
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**text.tex
+(./text.tex
+LaTeX2e <2011/06/27>
+Babel <3.9h> and hyphenation patterns for 2 languages loaded.
+(./agujournal.cls
+Document Class: agujournal 08/06/2016
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/newtxtext.sty
+Package: newtxtext 2014/02/12 v1.221
+
+`newtxtext' v1.221, 2014/02/12 Text macros based on txfonts (msharpe)
+(/usr/share/texlive/texmf-dist/tex/latex/fontaxes/fontaxes.sty
+Package: fontaxes 2011/12/16 v1.0c Font selection axes
+LaTeX Info: Redefining \upshape on input line 29.
+LaTeX Info: Redefining \itshape on input line 31.
+LaTeX Info: Redefining \slshape on input line 33.
+LaTeX Info: Redefining \scshape on input line 37.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+\XKV@depth=\count79
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+
+(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/keyval.tex)))
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)))
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/newtxmath.sty
+Package: newtxmath 2014/02/12 v1.221
+
+`newtxmath' v1.221, 2014/02/12 Math macros based on txfonts (msharpe)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip41
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks16
+\ex@=\dimen102
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen103
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count80
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count81
+\leftroot@=\count82
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count83
+\DOTSCASE@=\count84
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen104
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count85
+\c@MaxMatrixCols=\count86
+\dotsspace@=\muskip10
+\c@parentequation=\count87
+\dspbrk@lvl=\count88
+\tag@help=\toks17
+\row@=\count89
+\column@=\count90
+\maxfields@=\count91
+\andhelp@=\toks18
+\eqnshift@=\dimen105
+\alignsep@=\dimen106
+\tagshift@=\dimen107
+\tagwidth@=\dimen108
+\totwidth@=\dimen109
+\lineht@=\dimen110
+\@envbody=\toks19
+\multlinegap=\skip42
+\multlinetaggap=\skip43
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texlive/texmf-dist/tex/generic/kastrup/binhex.tex)
+\tx@Isdigit=\count92
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 91.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 91.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> T1/ntxrx/m/n on input line 91.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 91.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> T1/ntxrx/m/n on input line 91.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  T1/ntxrx/m/n --> T1/ntxrx/b/n on input line 92.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> T1/qhv/m/n on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> T1/qhv/m/n on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 99.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> T1/ntxrx/m/it on input line 99.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> T1/ntxrx/m/it on input line 99.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 100.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 100.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> T1/ntxtt/m/n on input line 100.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 102.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> T1/ntxrx/b/n on input line 102.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> T1/ntxrx/b/n on input line 102.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  T1/ntxrx/m/it --> T1/ntxrx/b/it on input line 103.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  T1/qhv/m/n --> T1/qhv/b/n on input line 104.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  T1/ntxtt/m/n --> T1/ntxtt/b/n on input line 105.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 125.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ntxmi/m/it on input line 125.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ntxmi/m/it on input line 125.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/ntxmi/m/it --> OML/ntxmi/b/it on input line 126.
+\symlettersA=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/ntxmia/m/it --> U/ntxmia/b/it on input line 137.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 145.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ntxsy/m/n on input line 145.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ntxsy/m/n on input line 145.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/ntxsy/m/n --> OMS/ntxsy/b/n on input line 146.
+\symAMSa=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
+(Font)                  U/ntxsya/m/n --> U/ntxsya/b/n on input line 162.
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
+(Font)                  U/ntxsyb/m/n --> U/ntxsyb/b/n on input line 171.
+\symsymbolsC=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/ntxsyc/m/n --> U/ntxsyc/b/n on input line 182.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 195.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+95.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 195.
+LaTeX Font Info:    Encoding `OMX' has changed to `LMX' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 195
+.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LMX/ntxexx/m/n on input line 195.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LMX/ntxexx/m/n --> LMX/ntxexx/b/n on input line 196.
+\symlargesymbolsTXA=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `largesymbolsTXA' in version `bold'
+
+(Font)                  U/ntxexa/m/n --> U/ntxexa/b/n on input line 210.
+LaTeX Info: Redefining \not on input line 1513.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvips.def on input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen111
+\Gin@req@width=\dimen112
+)
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: dvips.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+) (./lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count93
+\output=\toks21
+\linenoprevgraf=\count94
+\linenumbersep=\dimen113
+\linenumberwidth=\dimen114
+\c@linenumber=\count95
+\c@pagewiselinenumber=\count96
+\c@LN@truepage=\count97
+\c@internallinenumber=\count98
+\c@internallinenumbers=\count99
+\quotelinenumbersep=\dimen115
+\bframerule=\dimen116
+\bframesep=\dimen117
+\bframebox=\box28
+LaTeX Info: Redefining \\ on input line 3056.
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/ms/ragged2e.sty
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+
+(/usr/share/texlive/texmf-dist/tex/latex/ms/everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip44
+\RaggedLeftLeftskip=\skip45
+\RaggedRightLeftskip=\skip46
+\CenteringRightskip=\skip47
+\RaggedLeftRightskip=\skip48
+\RaggedRightRightskip=\skip49
+\CenteringParfillskip=\skip50
+\RaggedLeftParfillskip=\skip51
+\RaggedRightParfillskip=\skip52
+\JustifyingParfillskip=\skip53
+\CenteringParindent=\skip54
+\RaggedLeftParindent=\skip55
+\RaggedRightParindent=\skip56
+\JustifyingParindent=\skip57
+)
+(/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count100
+\rotFPtop=\skip58
+\rotFPbot=\skip59
+\rot@float@box=\box29
+\rot@mess@toks=\toks22
+)
+(/usr/share/texlive/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box30
+\UL@hyphenbox=\box31
+\UL@skip=\skip60
+\UL@hook=\toks23
+\UL@height=\dimen118
+\UL@pe=\count101
+\UL@pixel=\dimen119
+\ULC@box=\box32
+Package: ulem 2012/05/18
+\ULdepth=\dimen120
+)
+\draftskip=\count102
+\c@section=\count103
+\c@subsection=\count104
+\c@subsubsection=\count105
+\c@paragraph=\count106
+\c@subparagraph=\count107
+\c@figure=\count108
+\c@table=\count109
+\abovecaptionskip=\skip61
+\belowcaptionskip=\skip62
+\c@appendnum=\count110
+\bibindent=\dimen121
+
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip63
+\bibsep=\skip64
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count111
+)
+\refchangenumber=\count112
+\listchangenum=\count113
+)
+(/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen122
+\captionmargin@=\dimen123
+\captionwidth=\dimen124
+\caption@tempdima=\dimen125
+\caption@indent=\dimen126
+\caption@parindent=\dimen127
+\caption@hangindent=\dimen128
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+)
+
+Package caption Warning: Unsupported document class (or package) detected,
+(caption)                usage of the caption package is not recommended.
+See the caption package documentation for explanation.
+
+Package caption Info: \@makecaption = \long macro:#1#2->{\small \ifx \@captype 
+\xfigure \vskip \abovecaptionskip \fi {\ifturnofflinenums \else \ifnumlines \in
+ternallinenumbers \fi \fi \sbox \@tempboxa {\bf #1.\quad \rm #2}\ifdim \wd \@te
+mpboxa >.9\hsize \bf #1.\quad \rm \relax #2\par \else {\centering \bf #1.\rm \q
+uad #2 \vskip 1sp} \fi } \ifx \@captype \xfigure \else \vskip \belowcaptionskip
+ \fi }.
+\c@ContinuedFloat=\count114
+Package caption Info: rotating package is loaded.
+)
+\c@KVtest=\count115
+\sf@farskip=\skip65
+\sf@captopadj=\dimen129
+\sf@capskip=\skip66
+\sf@nearskip=\skip67
+\c@subfigure=\count116
+\c@subfigure@save=\count117
+\c@lofdepth=\count118
+\c@subtable=\count119
+\c@subtable@save=\count120
+\c@lotdepth=\count121
+\sf@top=\skip68
+\sf@bottom=\skip69
+) (./text.aux)
+\openout1 = `text.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/ntxmi/m/it on input line 11.
+LaTeX Font Info:    Try loading font information for OML+ntxmi on input line 11
+.
+ (/usr/share/texlive/texmf-dist/tex/latex/newtx/omlntxmi.fd
+File: omlntxmi.fd 2012/03/22 Fontinst v1.933 font definitions for OML/ntxmi.
+)
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/ntxsy/m/n on input line 11.
+LaTeX Font Info:    Try loading font information for OMS+ntxsy on input line 11
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/omsntxsy.fd
+File: omsntxsy.fd 2012/11/14 Fontinst v1.933 font definitions for OMS/ntxsy.
+)
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/ntxexa/m/n on input line 11.
+LaTeX Font Info:    Try loading font information for U+ntxexa on input line 11.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxexa.fd
+File: untxexa.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxexa.
+)
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for LMX/ntxexx/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for T1+ntxrx on input line 11.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxrx.fd
+File: t1ntxrx.fd 2012/12/25 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 10.0pt on input line 11.
+\c@mv@tabular=\count122
+\c@mv@boldtabular=\count123
+
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 11.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 14.4pt on input line 13.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 14.4pt on input line 13.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 5.0pt on input line 13.
+LaTeX Font Info:    Try loading font information for T1+qhv on input line 13.
+
+(/usr/share/texmf/tex/latex/tex-gyre/t1qhv.fd
+File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
+)
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 4.49997pt on input line 13.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 7.3pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 5.5pt on input line 15.
+LaTeX Font Info:    Try loading font information for U+ntxmia on input line 15.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxmia.fd
+File: untxmia.fd 2012/04/16 Fontinst v1.933 font definitions for U/ntxmia.
+)
+LaTeX Font Info:    Try loading font information for U+ntxsya on input line 15.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsya.fd
+File: untxsya.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsya.
+)
+LaTeX Font Info:    Try loading font information for U+ntxsyb on input line 15.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyb.fd
+File: untxsyb.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyb.
+)
+LaTeX Font Info:    Try loading font information for U+ntxsyc on input line 15.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/untxsyc.fd
+File: untxsyc.fd 2012/04/12 Fontinst v1.933 font definitions for U/ntxsyc.
+)
+LaTeX Font Info:    Calculating math sizes for size <7.3> on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 5.32896pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 4.01501pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 8.0pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 6.2pt on input line 15.
+LaTeX Font Info:    Calculating math sizes for size <6.2> on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 4.52597pt on input line 15.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 3.41pt on input line 15.
+LaTeX Font Info:    Try loading font information for T1+ntxr1 on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxr1.fd
+File: t1ntxr1.fd 2012/07/29 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxr1/m/n' will be
+(Font)              scaled to size 8.0pt on input line 19.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 9.0pt on input line 19.
+LaTeX Font Info:    Try loading font information for T1+ntxtt on input line 19.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/newtx/t1ntxtt.fd
+File: t1ntxtt.fd 2012/04/20 v3.1
+)
+LaTeX Font Info:    Font shape `T1/ntxtt/m/n' will be
+(Font)              scaled to size 9.0pt on input line 19.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/it' will be
+(Font)              scaled to size 9.0pt on input line 31.
+ [1]
+LaTeX Font Info:    Font shape `T1/ntxrx/m/n' will be
+(Font)              scaled to size 10.5pt on input line 35.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 10.5pt on input line 35.
+LaTeX Font Info:    Font shape `T1/ntxrx/m/it' will be
+(Font)              scaled to size 10.0pt on input line 37.
+LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <10> not available
+(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 10.0pt on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <7.3> not available
+(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 7.3pt on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxrx/b/n' in size <5.5> not available
+(Font)              Font shape `T1/ntxrx/bx/n' tried instead on input line 41.
+LaTeX Font Info:    Font shape `T1/ntxrx/bx/n' will be
+(Font)              scaled to size 5.5pt on input line 41.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [2]
+Overfull \hbox (3.22522pt too wide) in paragraph at lines 43--44
+[]\T1/ntxrx/m/n/10 In con-trast, for es-ti-mat-ing GICs, which are com-puted us
+-ing the es-ti-mated $\T1/ntxrx/bx/n/10 E\U/ntxmia/m/it/10 }\OML/ntxmi/m/it/10 
+t\U/ntxmia/m/it/10 ~$ \T1/ntxrx/m/n/10 (\T1/ntxrx/m/it/10 Lehti- 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+[4]
+Underfull \vbox (badness 1215) has occurred while \output is active []
+
+ [5]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+Overfull \hbox (8.22778pt too wide) in paragraph at lines 106--107
+\T1/ntxrx/m/n/10 known, all re-sults for it should be con-sid-ered as in-sample
+. How-ever, be-cause the impedance 
+ []
+
+[7]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8]
+Overfull \hbox (13.40024pt too wide) in paragraph at lines 143--144
+\T1/ntxrx/m/n/10 200 s; be-low 200 s, the am-pli-tudes are larger and due to ov
+er--estimation. The over-estimation 
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [10]
+[11]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [12
+
+]
+Underfull \hbox (badness 1184) in paragraph at lines 297--300
+[]\T1/ntxrx/m/n/10 Sims, W. E., F. X. Bo-stick, and H. W. Smith, The es-ti-ma-t
+ion of mag-ne-totel-luric 
+ []
+
+[13] [14]
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
+[]\T1/ntxrx/m/n/10 Table 2: |Sum-mary er-ror statis-tics based on time se-ries 
+shown in Fig-ures 2[]--5[]. The first and last
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
+\T1/ntxrx/m/n/10 18,725 s of the four-day seg-ments were omit-ted from the cal-
+cu-la-tions. (a) UTP17 sum-mary statis-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
+\T1/ntxrx/m/n/10 tics based on data dis-played in Fig-ure 2[]; (b) GAA54 sum-ma
+ry statis-tics based on data dis-played
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 412--412
+\T1/ntxrx/m/n/10 in Fig-ure 3[]; (c) ORF03 sum-mary statis-tics based on data d
+is-played in Fig-ure 4[]; and (d) RET54
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
+[]\T1/ntxrx/m/n/10 Figure  1: |Spec-tra of test in-ter-val er-rors. (a) UTP17 e
+r-ror spec-trum based on data dis-played in Fig-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
+\T1/ntxrx/m/n/10 ure 2[]; (b) GAA54 er-ror spec-trum based on data dis-played i
+n Fig-ure 3[]; (c) ORF03 er-ror spec-trum
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 430--430
+\T1/ntxrx/m/n/10 based on data dis-played in Fig-ure 4[]; and (d) RET54 er-ror 
+spec-trum based on data dis-played in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
+[]\T1/ntxrx/m/n/10 Figure  2: |Mea-sured, pre-dicted, and er-ror time se-ries f
+or $\OML/ntxmi/m/it/10 E[]$ \T1/ntxrx/m/n/10 at UTP17. The av-er-age value of t
+he
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 439--439
+\OML/ntxmi/m/it/10 K[]$ \T1/ntxrx/m/n/10 in-dex in this time range was 2. The t
+wo pre-dic-tion ef-fi-cien-cies are for the train-ing/testing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+[]\T1/ntxrx/m/n/10 Figure  3: |Mea-sured, pre-dicted, and er-ror time se-ries f
+or $\OML/ntxmi/m/it/10 E[]$ \T1/ntxrx/m/n/10 at GAA54. The av-er-age value of t
+he
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 457--457
+[]\T1/ntxrx/m/n/10 Figure  4: |Mea-sured, pre-dicted, and er-ror time se-ries f
+or $\OML/ntxmi/m/it/10 E[]$ \T1/ntxrx/m/n/10 at ORF03. The av-er-age value of t
+he
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 464--464
+[]\T1/ntxrx/m/n/10 Figure  5: |Mea-sured, pre-dicted, and er-ror time se-ries f
+or $\OML/ntxmi/m/it/10 E[]$ \T1/ntxrx/m/n/10 at RET54. The av-er-age value of t
+he
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16
+
+
+
+] [17] (./text.aux) ) 
+Here is how much of TeX's memory you used:
+ 5495 strings out of 495029
+ 75643 string characters out of 6181524
+ 133910 words of memory out of 5000000
+ 8620 multiletter control sequences out of 15000+600000
+ 66369 words of font info for 111 fonts, out of 8000000 for 9000
+ 20 hyphenation exceptions out of 8191
+ 61i,15n,96p,1419b,358s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on text.dvi (17 pages, 64220 bytes).

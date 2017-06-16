@@ -1,0 +1,75 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: text.aux
+The style file: agufull08.bst
+I found no \bibdata command---while reading file text.aux
+Warning--I didn't find a database entry for "Pulkkinen2012"
+Warning--I didn't find a database entry for "Wei2013"
+Warning--I didn't find a database entry for "Viljanen2014"
+Warning--I didn't find a database entry for "Boteler2015"
+Warning--I didn't find a database entry for "NERC2015"
+Warning--I didn't find a database entry for "Fernberg2012"
+Warning--I didn't find a database entry for "Schultz2009"
+Warning--I didn't find a database entry for "Meltzer2003"
+Warning--I didn't find a database entry for "Kelbert2011"
+Warning--I didn't find a database entry for "Schultz2016"
+Warning--I didn't find a database entry for "Bedrosian2015"
+Warning--I didn't find a database entry for "Chave2012"
+Warning--I didn't find a database entry for "Simpson2005"
+Warning--I didn't find a database entry for "Jones1989"
+Warning--I didn't find a database entry for "Fujii2015"
+Warning--I didn't find a database entry for "Lehtinen1985"
+Warning--I didn't find a database entry for "Pulkkinen2010"
+Warning--I didn't find a database entry for "Viljanen2012"
+Warning--I didn't find a database entry for "McKay2003"
+Warning--I didn't find a database entry for "Love2014"
+Warning--I didn't find a database entry for "Sims1971"
+Warning--I didn't find a database entry for "Pulkkinen2007"
+Warning--I didn't find a database entry for "Egbert1986"
+Warning--I didn't find a database entry for "Eisel2001"
+Warning--I didn't find a database entry for "Egbert1992"
+Warning--I didn't find a database entry for "McMechan1985"
+Warning--I didn't find a database entry for "Tzschoppe2009"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+You've used 0 entries,
+            3076 wiz_defined-function locations,
+            1120 strings with 9874 characters,
+and the built_in function-call counts, 33 in all, are:
+= -- 0
+> -- 0
+< -- 0
++ -- 0
+- -- 1
+* -- 2
+:= -- 10
+add.period$ -- 0
+call.type$ -- 0
+change.case$ -- 0
+chr.to.int$ -- 1
+cite$ -- 0
+duplicate$ -- 0
+empty$ -- 1
+format.name$ -- 0
+if$ -- 1
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 0
+newline$ -- 7
+num.names$ -- 0
+pop$ -- 0
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 1
+stack$ -- 0
+substring$ -- 0
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 0
+width$ -- 0
+write$ -- 6
+(There was 1 error message)
