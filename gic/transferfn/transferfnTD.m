@@ -37,7 +37,7 @@ end
 if length(Nc) > 1
     t = [0,Nc]';
 else
-    t = [0:Nc]';
+    t = [-Na:Nc]';
 end
 
 hxy = LINxy.Weights(1:end-1);

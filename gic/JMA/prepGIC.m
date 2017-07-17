@@ -1,7 +1,7 @@
 function [tGIC,GIC] = prepGIC()
 
-if exist('prepWatari.mat','file')
-    load prepWatari
+if exist('prepGIC.mat','file')
+    load prepGIC
     return;
 end
 
@@ -17,6 +17,7 @@ end
 % GIC files do not have time.  Rows are seconds since 2006-12-13 JST.
 % JST is UT + 9 hours. 
 tGIC = 3600*(24-9) + [0:size(GIC,1)-1]'; % Seconds since 2006-12-13:00:00:00Z
+tGIC = tGIC + 66; % IRFs have peaks at t = -66 s.  Clearly a clock shift issue.
 tGIC = tGIC/86400;
 
-save prepWatari.mat tGIC GIC
+save prepGIC.mat tGIC GIC

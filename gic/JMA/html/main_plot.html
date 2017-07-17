@@ -1,0 +1,541 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>main_plot</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-07-17"><meta name="DC.source" content="main_plot.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Load output of main.mat if found; create output if not.</a></li><li><a href="#2">1-second magnetic field measurements</a></li><li><a href="#3">1-second electric field measurements</a></li><li><a href="#4">1-second GIC measurements</a></li><li><a href="#5">Prediction of Ex using B as driver</a></li><li><a href="#6">Prediction of Ey using B as driver</a></li><li><a href="#7">Prediction of GIC using B as driver</a></li><li><a href="#8">Prediction of GIC using E as driver</a></li><li><a href="#9">Response of Ex to impulse in By</a></li><li><a href="#10">Response of Ey to impulse in Bx</a></li><li><a href="#11">Response of GIC to impulse in Ex</a></li><li><a href="#12">Response of GIC to impulse in Ey</a></li><li><a href="#13">Response of GIC to impulse in Ey - Zoom</a></li><li><a href="#14">Response of GIC to impulse in Bx</a></li><li><a href="#15">Response of GIC to impulse in By</a></li></ul></div><h2>Load output of main.mat if found; create output if not.<a name="1"></a></h2><pre class="codeinput"><span class="keyword">if</span> ~exist(<span class="string">'Z_TD'</span>,<span class="string">'var'</span>) <span class="comment">% Z_TD will exist if main.m run previously.</span>
+    <span class="keyword">if</span> exist(<span class="string">'main.mat'</span>,<span class="string">'file'</span>)
+        load(<span class="string">'main.mat'</span>); <span class="comment">% Load output of main.m</span>
+    <span class="keyword">else</span>
+        main <span class="comment">% Run main.m</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+addpath(<span class="string">'~/git/m-rsw/stats'</span>); <span class="comment">% For PE calculation (PE_NONFLAG).</span>
+<span class="keyword">if</span> exist(<span class="string">'nodock'</span>,<span class="string">'var'</span>)
+    set(0,<span class="string">'DefaultFigureWindowStyle'</span>,<span class="string">'normal'</span>);
+<span class="keyword">else</span>
+    set(0,<span class="string">'DefaultFigureWindowStyle'</span>,<span class="string">'docked'</span>); <span class="comment">% Dock figure windows.</span>
+<span class="keyword">end</span>
+png = 0; <span class="comment">% Save images</span>
+</pre><h2>1-second magnetic field measurements<a name="2"></a></h2><p>From <a href="http://www.kakioka-jma.go.jp/obsdata/metadata/en">http://www.kakioka-jma.go.jp/obsdata/metadata/en</a> on 07/01/2017</p><pre class="codeinput">figure(1);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tB,B);
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'[nT]'</span>)
+    legend(<span class="string">'B_x'</span>,<span class="string">'B_y'</span>,<span class="string">'B_z'</span>,<span class="string">'Location'</span>,<span class="string">'NorthWest'</span>);
+    title(<span class="string">'Memambetsu Magnetic Observatory (MMB)'</span>);
+    figconfig;
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_1_B.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_01.png" alt=""> <h2>1-second electric field measurements<a name="3"></a></h2><p>From <a href="http://www.kakioka-jma.go.jp/obsdata/metadata/en">http://www.kakioka-jma.go.jp/obsdata/metadata/en</a> on 07/01/2017</p><pre class="codeinput">figure(2);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tE,E);
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'[mV/km]'</span>)
+    legend(<span class="string">'E_x'</span>,<span class="string">'E_y'</span>,<span class="string">'Location'</span>,<span class="string">'NorthWest'</span>);
+    title(<span class="string">'Memambetsu Magnetic Observatory (MMB)'</span>);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_2_E.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_02.png" alt=""> <h2>1-second GIC measurements<a name="4"></a></h2><p>From S. Watari via email.  Data file has two columns, one is 1-second data and the other is 1-second data low-pass-filtered at @ 1 Hz (no additional details are given for filter).  Results are not dependent on which column was used.</p><p>This is the original data after converting from JST to UT.  Note that there appears to be a ~66-second shift in this data that clearly appears when the IRF is computed.  The computed GIC response to an impulse in E or B at time zero has a peak at -66 seconds.  This shift was made before all transfer function calculations.</p><pre class="codeinput">figure(3);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tGIC,GIC(:,1));
+    plot(tGIC,GIC(:,2));
+    set(gca,<span class="string">'XLim'</span>,[0 3])
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'[A]'</span>);
+    legend(<span class="string">'GIC @ 1 Hz'</span>,<span class="string">'GIC @ 1 Hz; LPF @ 1 Hz'</span>,<span class="string">'Location'</span>,<span class="string">'SouthWest'</span>);
+    title(<span class="string">'Memambetsu 187 kV substation'</span>);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_3_GIC.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_03.png" alt=""> <h2>Prediction of Ex using B as driver<a name="5"></a></h2><p>Using Time Domain (TD) and Frequency Domain (FD) method.</p><p>Time domain method uses 60*5 causal and 60*5 acausal lag values.</p><pre class="codeinput">figure(4);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tE,E(:,1));
+    plot(tE,Ep_TD(:,1));
+    plot(tE,Ep_FD(:,1));
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'E_x [mV/km]'</span>);
+    legend(<span class="string">'Measured'</span>,<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'Location'</span>,<span class="string">'NorthWest'</span>);
+    title(<span class="string">'B driver'</span>);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_4_Expredicted_w_B.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_04.png" alt=""> <h2>Prediction of Ey using B as driver<a name="6"></a></h2><p>Time domain method uses 60*5 causal and 60*5 acausal lag values.</p><pre class="codeinput">figure(5);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tE,E(:,2));
+    plot(tE,Ep_TD(:,2));
+    plot(tE,Ep_FD(:,2));
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'E_y [mV/km]'</span>);
+    title(<span class="string">'B driver'</span>);
+    legend(<span class="string">'Measured'</span>,<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'Location'</span>,<span class="string">'SouthWest'</span>);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_5_Eypredicted_w_B.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_05.png" alt=""> <h2>Prediction of GIC using B as driver<a name="7"></a></h2><p>Time domain method uses 60*5 causal and 60*5 acausal lag values. Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data. The <i>Const</i> lines correspond to the models</p><p><img src="main_plot_eq13774048327200520292.png" alt="$$ GIC(t) = aBx(t) + bBy(t) $$"></p><p>and</p><p><img src="main_plot_eq05975858417465062349.png" alt="$$ GIC(t) = aBx(t) + bBy(t) + cBz(t) $$"></p><p>where the constants are determined using ordinary least squares regression.  It is curious that addition of the Bz compontent to the model improves the predictions significantly.  It is also unexpected that predictions of GIC given <b>B</b> are so much better than predictions of GIC given <b>E</b> (next figure) because <b>E</b> is more directly related to GIC. That is, in terms of transfer fucntions, and <img src="main_plot_eq08589834809570054062.png" alt="$\omega$"> = angular frequency,</p><p><img src="main_plot_eq04608600577339768112.png" alt="$$GIC(\omega) = Z_{GE}(\omega)E(\omega)$$"></p><p>and</p><p><img src="main_plot_eq01616645107466926226.png" alt="$$ E(\omega) = Z_{EB}(\omega)B(\omega) $$"></p><p>so</p><p><img src="main_plot_eq14147549482911901738.png" alt="$$GIC(\omega) = Z_{GE}(\omega)Z_{EB}(\omega)B(\omega)$$"></p><pre class="codeinput">figure(6);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tGIC,GIC(:,2));
+    plot(tGIC,GICp3_TD(:,2));
+    plot(tGIC,GICp3_FD(:,2));
+    plot(tGIC,GICp3_TD0(:,2));
+    plot(tGIC,GICp3_TD03(:,2));
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'Measured'</span>,<span class="keyword">...</span>
+        sprintf(<span class="string">'TD; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp3_TD(:,2))),<span class="keyword">...</span>
+        sprintf(<span class="string">'FD; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp3_FD(:,2))),<span class="keyword">...</span>
+        sprintf(<span class="string">'Const x,y input; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp3_TD0(:,2))),<span class="keyword">...</span>
+        sprintf(<span class="string">'Const x,y,z input; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp3_TD03(:,2))),<span class="keyword">...</span>
+        <span class="string">'Location'</span>,<span class="string">'SouthWest'</span>);
+    title(<span class="string">'B driver'</span>);
+    legend <span class="string">boxoff</span>
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_6_GICpredicted_w_B'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_06.png" alt=""> <h2>Prediction of GIC using E as driver<a name="8"></a></h2><p>Time domain method uses 60*5 causal and 60*5 acausal lag values. Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data. The "Const" line correspond to the model GIC(t) = a*Ex(t) + b*Ey(t) where a and b were determined by ordinary least squares regression.  Note that the computed values of a and b were a = 0.45 and b = -0.63.  The negative sign on b is unexpected given that when the model GIC(w) = A(w)*Ex(w) + B(w)*Ey(w) is used, the impulse response associated with A(w) and B(w) are generally positive.  The impulse responses are shown later.</p><pre class="codeinput">figure(7);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tGIC,GIC(:,2));
+    plot(tGIC,GICp2_TD(:,2));
+    plot(tGIC,GICp2_FD(:,2));
+    plot(tGIC,GICp2_TD0(:,2));
+    xlabel(<span class="string">'Days since 2006-12-13'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'Measured'</span>,<span class="keyword">...</span>
+        sprintf(<span class="string">'TD; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp2_TD(:,2))),<span class="keyword">...</span>
+        sprintf(<span class="string">'FD; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp2_FD(:,2))),<span class="keyword">...</span>
+        sprintf(<span class="string">'Const; PE = %.2f'</span>,pe_nonflag(GIC(:,2),GICp2_TD0(:,2))),<span class="keyword">...</span>
+        <span class="string">'Location'</span>,<span class="string">'SouthWest'</span>);
+    title(<span class="string">'E driver'</span>);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_7_GICpredicted_w_E'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_07.png" alt=""> <h2>Response of Ex to impulse in By<a name="9"></a></h2><pre class="codeinput">figure(8);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t_TD,H_TD(:,2));
+    plot(t_FD,H_FD(:,2));
+    xlabel(<span class="string">'Time [s] since 1 nT impulse in B_y'</span>);
+    ylabel(<span class="string">'E_x [mV/km]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-60,60]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_8_E_IRF_to_By.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_08.png" alt=""> <h2>Response of Ey to impulse in Bx<a name="10"></a></h2><pre class="codeinput">figure(9);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t_TD,H_TD(:,3));
+    plot(t_FD,H_FD(:,3));
+    xlabel(<span class="string">'Time [s] since 1 nT impulse in B_x'</span>);
+    ylabel(<span class="string">'E_y [mV/km]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-60,60]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_9_E_IRF_to_Bx.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_09.png" alt=""> <h2>Response of GIC to impulse in Ex<a name="11"></a></h2><p>The red dot for a is the value computed using ordinary linear least squares regression on GIC(t) = aEx(t) + bEy(t). The value plotted is <i>a</i>/4 so the features of the IRFs are easier to see. The sign of <i>a</i> is positive and consistent with the IRF, and the magnitude of <i>a</i> relative to the peak of the IRF can be expained by the fact that <i>a</i> represents an integral of the IRF.</p><pre class="codeinput">figure(10);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t2_TD,H2_TD(:,3));
+    plot(t2_FD,H2_FD(:,3));
+    plot(0,aE/4,<span class="string">'r.'</span>,<span class="string">'MarkerSize'</span>,30);
+    xlabel(<span class="string">'Time [s] since 1 mV/km impulse in E_x'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'a/4'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-120,120]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_10_GIC_IRF_to_Ex.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_10.png" alt=""> <h2>Response of GIC to impulse in Ey<a name="12"></a></h2><p>The red dot for b is the value computed using ordinary linear least squares regression on GIC(t) = aEx(t) + bEy(t). <i>b</i>/2 is shown so the features of the IRFs are easier to see. Note that this IRF has the feature that it overshoots the zero line. This feature cannot be produced by (first-order) LR or RC circuit model alone.  This is a second-order effect.  Also note that the sign of <i>b</i> is not consistent with the sign of the peak of the IRF.</p><pre class="codeinput">figure(11);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t2_TD,H2_TD(:,2));
+    plot(t2_FD,H2_FD(:,2));
+    plot(0,bE/2,<span class="string">'r.'</span>,<span class="string">'MarkerSize'</span>,30);
+    xlabel(<span class="string">'Time [s] since 1 mV/km impulse in E_y'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'b/2'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-120,120]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_11_GIC_IRF_to_Ey.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_11.png" alt=""> <h2>Response of GIC to impulse in Ey - Zoom<a name="13"></a></h2><p>Same as previous plot with with <i>b</i> not shown to reveal undershoot detail in IRF.</p><pre class="codeinput">figure(11);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t2_TD,H2_TD(:,2));
+    plot(t2_FD,H2_FD(:,2));
+    <span class="comment">%plot(0,bE/2,'r.','MarkerSize',30);</span>
+    xlabel(<span class="string">'Time [s] since 1 mV/km impulse in E_y'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-120,120]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_11_GIC_IRF_to_Ey_2.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_12.png" alt=""> <h2>Response of GIC to impulse in Bx<a name="14"></a></h2><p>The red dot for a is the value computed using ordinary linear least squares regression on GIC(t) = aBx(t) + bBy(t).</p><pre class="codeinput">figure(12);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t3_TD,H3_TD(:,3));
+    plot(t3_FD,H3_FD(:,3));
+    plot(0,aB,<span class="string">'r.'</span>,<span class="string">'MarkerSize'</span>,30);
+    xlabel(<span class="string">'Time [s] since 1 nT impulse in B_x'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'a'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-120,120]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_12_GIC_IRF_to_Bx.png'</span>);<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_13.png" alt=""> <h2>Response of GIC to impulse in By<a name="15"></a></h2><p>The red dot for b is the value computed using ordinary linear least squares regression on GIC(t) = aBx(t) + bBy(t).</p><pre class="codeinput">figure(13);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(t3_TD,H3_TD(:,2));
+    plot(t3_FD,H3_FD(:,2));
+    plot(0,bE,<span class="string">'r.'</span>,<span class="string">'MarkerSize'</span>,30);
+    xlabel(<span class="string">'Time [s] since nT impulse in B_y'</span>);
+    ylabel(<span class="string">'GIC [A]'</span>);
+    legend(<span class="string">'TD'</span>,<span class="string">'FD'</span>,<span class="string">'b'</span>);
+    set(gca,<span class="string">'XLim'</span>,[-120,120]);
+    figconfig
+    <span class="keyword">if</span> png,print(<span class="string">'-dpng'</span>,<span class="string">'./figures/main_plot_13_GIC_IRF_to_By.png'</span>);<span class="keyword">end</span>
+
+<span class="keyword">if</span> (0)
+tl = [-100:100];
+<span class="keyword">for</span> i = tl
+    j = i-tl(1)+1;
+    [T,X] = time_delay(GIC(:,2),E,1,i);
+    LIN = basic_linear(X,T);
+    xarv(j) = LIN.ARVtrain;
+    a(j) = LIN.Weights(1);
+    b(j) = LIN.Weights(2);
+<span class="keyword">end</span>
+
+figure(14);clf;hold <span class="string">on</span>;box <span class="string">on</span>;grid <span class="string">on</span>;
+    plot(tl,a,<span class="string">'LineWidth'</span>,2);
+    plot(tl,b,<span class="string">'LineWidth'</span>,2);
+    plot(tl,(1-xarv)/10,<span class="string">'LineWidth'</span>,2);
+    xlabel(<span class="string">'Lag'</span>);
+    ylabel(<span class="string">'[A km/mV]'</span>);
+    legend(<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'pe/10'</span>);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="main_plot_14.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Load output of main.mat if found; create output if not.
+% 
+if ~exist('Z_TD','var') % Z_TD will exist if main.m run previously.
+    if exist('main.mat','file')
+        load('main.mat'); % Load output of main.m
+    else
+        main % Run main.m
+    end
+end
+addpath('~/git/m-rsw/stats'); % For PE calculation (PE_NONFLAG).
+if exist('nodock','var')
+    set(0,'DefaultFigureWindowStyle','normal');
+else
+    set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
+end
+png = 0; % Save images
+
+%% 1-second magnetic field measurements
+% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
+figure(1);clf;hold on;box on;grid on;
+    plot(tB,B);
+    xlabel('Days since 2006-12-13');
+    ylabel('[nT]')
+    legend('B_x','B_y','B_z','Location','NorthWest');
+    title('Memambetsu Magnetic Observatory (MMB)');
+    figconfig;
+    if png,print('-dpng','./figures/main_plot_1_B.png');end
+
+%% 1-second electric field measurements
+% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
+figure(2);clf;hold on;box on;grid on;
+    plot(tE,E);
+    xlabel('Days since 2006-12-13');
+    ylabel('[mV/km]')
+    legend('E_x','E_y','Location','NorthWest');
+    title('Memambetsu Magnetic Observatory (MMB)');
+    figconfig
+    if png,print('-dpng','./figures/main_plot_2_E.png');end
+
+%% 1-second GIC measurements
+% From S. Watari via email.  Data file has two columns, one is 1-second
+% data and the other is 1-second data low-pass-filtered at @ 1 Hz (no
+% additional details are given for filter).  Results are not dependent on
+% which column was used.
+%
+% This is the original data after converting from JST to UT.  Note that
+% there appears to be a ~66-second shift in this data that clearly appears
+% when the IRF is computed.  The computed GIC response to an impulse in E
+% or B at time zero has a peak at -66 seconds.  This shift was made before
+% all transfer function calculations.
+figure(3);clf;hold on;box on;grid on;
+    plot(tGIC,GIC(:,1));
+    plot(tGIC,GIC(:,2));
+    set(gca,'XLim',[0 3])
+    xlabel('Days since 2006-12-13');
+    ylabel('[A]');
+    legend('GIC @ 1 Hz','GIC @ 1 Hz; LPF @ 1 Hz','Location','SouthWest');
+    title('Memambetsu 187 kV substation');    
+    figconfig
+    if png,print('-dpng','./figures/main_plot_3_GIC.png');end
+
+%% Prediction of Ex using B as driver
+% Using Time Domain (TD) and Frequency Domain (FD) method.
+%
+% Time domain method uses 60*5 causal and 60*5 acausal lag values.
+figure(4);clf;hold on;box on;grid on;
+    plot(tE,E(:,1));
+    plot(tE,Ep_TD(:,1));
+    plot(tE,Ep_FD(:,1));
+    xlabel('Days since 2006-12-13');
+    ylabel('E_x [mV/km]');
+    legend('Measured','TD','FD','Location','NorthWest');
+    title('B driver');
+    figconfig
+    if png,print('-dpng','./figures/main_plot_4_Expredicted_w_B.png');end
+
+%% Prediction of Ey using B as driver
+% Time domain method uses 60*5 causal and 60*5 acausal lag values.
+figure(5);clf;hold on;box on;grid on;
+    plot(tE,E(:,2));
+    plot(tE,Ep_TD(:,2));
+    plot(tE,Ep_FD(:,2));
+    xlabel('Days since 2006-12-13');
+    ylabel('E_y [mV/km]');
+    title('B driver');
+    legend('Measured','TD','FD','Location','SouthWest');
+    figconfig
+    if png,print('-dpng','./figures/main_plot_5_Eypredicted_w_B.png');end
+
+%% Prediction of GIC using B as driver
+% Time domain method uses 60*5 causal and 60*5 acausal lag values.
+% Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data. The
+% _Const_ lines correspond to the models
+%
+% $$ GIC(t) = aBx(t) + bBy(t) $$
+%
+% and
+%
+% $$ GIC(t) = aBx(t) + bBy(t) + cBz(t) $$
+%
+% where the constants are determined using ordinary least squares
+% regression.  It is curious that addition of the Bz compontent to the
+% model improves the predictions significantly.  It is also unexpected that
+% predictions of GIC given *B* are so much better than predictions of GIC
+% given *E* (next figure) because *E* is more directly related to GIC.
+% That is, in terms of transfer fucntions, and $\omega$ = angular
+% frequency,
+%
+% $$GIC(\omega) = Z_{GE}(\omega)E(\omega)$$
+%
+% and 
+%
+% $$ E(\omega) = Z_{EB}(\omega)B(\omega) $$
+%
+% so
+%
+% $$GIC(\omega) = Z_{GE}(\omega)Z_{EB}(\omega)B(\omega)$$
+figure(6);clf;hold on;box on;grid on;
+    plot(tGIC,GIC(:,2));
+    plot(tGIC,GICp3_TD(:,2));
+    plot(tGIC,GICp3_FD(:,2));
+    plot(tGIC,GICp3_TD0(:,2));
+    plot(tGIC,GICp3_TD03(:,2));
+    xlabel('Days since 2006-12-13');
+    ylabel('GIC [A]');    
+    legend('Measured',...
+        sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD(:,2))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_FD(:,2))),...
+        sprintf('Const x,y input; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD0(:,2))),...
+        sprintf('Const x,y,z input; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD03(:,2))),...
+        'Location','SouthWest');
+    title('B driver');
+    legend boxoff
+    figconfig
+    if png,print('-dpng','./figures/main_plot_6_GICpredicted_w_B');end
+
+    
+%% Prediction of GIC using E as driver
+% Time domain method uses 60*5 causal and 60*5 acausal lag values.
+% Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data.
+% The "Const" line correspond to the model
+% GIC(t) = a*Ex(t) + b*Ey(t)
+% where a and b were determined by ordinary least squares regression.  Note
+% that the computed values of a and b were a = 0.45 and b = -0.63.  The
+% negative sign on b is unexpected given that when the model
+% GIC(w) = A(w)*Ex(w) + B(w)*Ey(w) is used, the impulse response
+% associated with A(w) and B(w) are generally positive.  The impulse
+% responses are shown later.
+figure(7);clf;hold on;box on;grid on;
+    plot(tGIC,GIC(:,2));
+    plot(tGIC,GICp2_TD(:,2));
+    plot(tGIC,GICp2_FD(:,2));
+    plot(tGIC,GICp2_TD0(:,2));
+    xlabel('Days since 2006-12-13');
+    ylabel('GIC [A]');
+    legend('Measured',...
+        sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_TD(:,2))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_FD(:,2))),...
+        sprintf('Const; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_TD0(:,2))),...
+        'Location','SouthWest');
+    title('E driver');
+    figconfig
+    if png,print('-dpng','./figures/main_plot_7_GICpredicted_w_E');end
+
+%% Response of Ex to impulse in By
+figure(8);clf;hold on;box on;grid on;
+    plot(t_TD,H_TD(:,2));
+    plot(t_FD,H_FD(:,2));
+    xlabel('Time [s] since 1 nT impulse in B_y');
+    ylabel('E_x [mV/km]');
+    legend('TD','FD');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_8_E_IRF_to_By.png');end
+    
+%% Response of Ey to impulse in Bx
+figure(9);clf;hold on;box on;grid on;
+    plot(t_TD,H_TD(:,3));
+    plot(t_FD,H_FD(:,3));    
+    xlabel('Time [s] since 1 nT impulse in B_x');
+    ylabel('E_y [mV/km]');
+    legend('TD','FD');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_9_E_IRF_to_Bx.png');end
+
+%% Response of GIC to impulse in Ex
+% The red dot for a is the value computed using ordinary linear least
+% squares regression on GIC(t) = aEx(t) + bEy(t).
+% The value plotted is _a_/4 so the features of the IRFs are easier to see.
+% The sign of _a_ is positive and consistent with the IRF, and the
+% magnitude of _a_ relative to the peak of the IRF can be expained by the
+% fact that _a_ represents an integral of the IRF.
+figure(10);clf;hold on;box on;grid on;
+    plot(t2_TD,H2_TD(:,3));
+    plot(t2_FD,H2_FD(:,3));
+    plot(0,aE/4,'r.','MarkerSize',30);
+    xlabel('Time [s] since 1 mV/km impulse in E_x');
+    ylabel('GIC [A]');
+    legend('TD','FD','a/4');
+    set(gca,'XLim',[-120,120]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_10_GIC_IRF_to_Ex.png');end
+
+%% Response of GIC to impulse in Ey
+% The red dot for b is the value computed using ordinary linear least
+% squares regression on GIC(t) = aEx(t) + bEy(t).
+% _b_/2 is shown so the features of the IRFs are easier to see.
+% Note that this IRF has the feature that it overshoots the zero line.
+% This feature cannot be produced by (first-order) LR or RC circuit model
+% alone.  This is a second-order effect.  Also note that the sign of _b_ is
+% not consistent with the sign of the peak of the IRF.
+figure(11);clf;hold on;box on;grid on;
+    plot(t2_TD,H2_TD(:,2));
+    plot(t2_FD,H2_FD(:,2));
+    plot(0,bE/2,'r.','MarkerSize',30);
+    xlabel('Time [s] since 1 mV/km impulse in E_y');
+    ylabel('GIC [A]');
+    legend('TD','FD');
+    legend('TD','FD','b/2');
+    set(gca,'XLim',[-120,120]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey.png');end
+
+%% Response of GIC to impulse in Ey - Zoom
+% Same as previous plot with with _b_ not shown to reveal undershoot detail
+% in IRF.
+figure(11);clf;hold on;box on;grid on;
+    plot(t2_TD,H2_TD(:,2));
+    plot(t2_FD,H2_FD(:,2));
+    %plot(0,bE/2,'r.','MarkerSize',30);
+    xlabel('Time [s] since 1 mV/km impulse in E_y');
+    ylabel('GIC [A]');
+    legend('TD','FD');
+    legend('TD','FD');
+    set(gca,'XLim',[-120,120]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey_2.png');end
+    
+%% Response of GIC to impulse in Bx
+% The red dot for a is the value computed using ordinary linear least
+% squares regression on GIC(t) = aBx(t) + bBy(t).
+figure(12);clf;hold on;box on;grid on;
+    plot(t3_TD,H3_TD(:,3));
+    plot(t3_FD,H3_FD(:,3));
+    plot(0,aB,'r.','MarkerSize',30);
+    xlabel('Time [s] since 1 nT impulse in B_x');
+    ylabel('GIC [A]');
+    legend('TD','FD','a');
+    set(gca,'XLim',[-120,120]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_12_GIC_IRF_to_Bx.png');end
+
+%% Response of GIC to impulse in By
+% The red dot for b is the value computed using ordinary linear least
+% squares regression on GIC(t) = aBx(t) + bBy(t).
+figure(13);clf;hold on;box on;grid on;
+    plot(t3_TD,H3_TD(:,2));
+    plot(t3_FD,H3_FD(:,2));
+    plot(0,bE,'r.','MarkerSize',30);
+    xlabel('Time [s] since nT impulse in B_y');
+    ylabel('GIC [A]');
+    legend('TD','FD','b');
+    set(gca,'XLim',[-120,120]);
+    figconfig
+    if png,print('-dpng','./figures/main_plot_13_GIC_IRF_to_By.png');end
+
+if (0)
+tl = [-100:100];
+for i = tl
+    j = i-tl(1)+1;
+    [T,X] = time_delay(GIC(:,2),E,1,i);
+    LIN = basic_linear(X,T);
+    xarv(j) = LIN.ARVtrain;
+    a(j) = LIN.Weights(1);
+    b(j) = LIN.Weights(2);
+end
+
+figure(14);clf;hold on;box on;grid on;
+    plot(tl,a,'LineWidth',2);
+    plot(tl,b,'LineWidth',2);
+    plot(tl,(1-xarv)/10,'LineWidth',2);
+    xlabel('Lag');
+    ylabel('[A km/mV]');
+    legend('a','b','pe/10');
+end
+##### SOURCE END #####
+--></body></html>
