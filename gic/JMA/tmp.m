@@ -37,10 +37,11 @@ title('Filtered time series');
 axis(v);
 
 %% Impulse response h(t) of filter
-h=x;
+%h=x;
+h(1) = 0;
 f1=zeros(1,N);
 f1(1)=1;
-for ip=2:N-1
+for ip=1:N-1
    h(ip+1)=h(ip)-h(ip)*dt/tau + dt*f1(ip);
 end
 figure(1)
@@ -50,3 +51,8 @@ xlim([1 5*tau]);
 xlabel('Time [s]');
 ylabel('h(t)');
 title('Impulse response of filter');
+
+h2 = ifft(fft(y1)./fft(f));
+hold on;
+plot(h2);
+legend('Used','Recovered');
