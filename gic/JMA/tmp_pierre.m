@@ -44,9 +44,9 @@ f1(1)=1;
 for ip=1:N-1
    h(ip+1)=h(ip)-h(ip)*dt/tau + dt*f1(ip);
 end
-figure(1);
+figure(1)
 subplot(3,1,3);
-plot(t,h,'LineWidth',2);
+plot(t,h);
 xlim([1 5*tau]);
 xlabel('Time [s]');
 ylabel('h(t)');
