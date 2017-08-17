@@ -126,7 +126,7 @@ figure(6);clf;hold on;box on;grid on;
     plot(tGIC,GICp3_TD0(:,2));
     plot(tGIC,GICp3_TD03(:,2));
     xlabel('Days since 2006-12-13');
-    ylabel('GIC [A]');    
+    ylabel('GIC [A]');
     legend('Measured',...
         sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD(:,2))),...
         sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_FD(:,2))),...
@@ -229,6 +229,7 @@ figure(11);clf;hold on;box on;grid on;
 %% Response of GIC to impulse in Ey - Zoom
 % Same as previous plot with with _b_ not shown to reveal undershoot detail
 % in IRF.
+if (0)
 figure(11);clf;hold on;box on;grid on;
     plot(t2_TD,H2_TD(:,2));
     plot(t2_FD,H2_FD(:,2));
@@ -240,7 +241,8 @@ figure(11);clf;hold on;box on;grid on;
     set(gca,'XLim',[-120,120]);
     figconfig
     if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey_2.png');end
-    
+end
+
 %% Response of GIC to impulse in Bx
 % The red dot for a is the value computed using ordinary linear least
 % squares regression on GIC(t) = aBx(t) + bBy(t).

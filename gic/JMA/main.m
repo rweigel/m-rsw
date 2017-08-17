@@ -1,6 +1,6 @@
-addpath('~/git/m-rsw/time');
-addpath('~/git/m-rsw/stats');
-addpath('~/git/m-rsw/gic/transferfn');
+addpath('../../time');
+addpath('../../stats');
+addpath('../../gic/transferfn');
 
 clear
 
@@ -10,16 +10,17 @@ clear
 
 % GIC spans shorter time range than E and B.  This pads out GIC
 % with NaNs and interpolates over gaps (but there were no gaps).
-GIC = interp1(tGIC,GIC,tE); 
+GIC = interp1(tGIC,GIC,tE);
 tGIC = tE;
 
-Nc = 60*5; % Number of causal coefficients
-Na = 60*5; % Number of acausal coefficients
+% Used for paper.  Requires ~32 GB RAM
+%Nc = 60*5; % Number of causal coefficients
+%Na = 60*5; % Number of acausal coefficients
 
-%Nc = 10; % Number of causal coefficients
-%Na = 10; % Number of acausal coefficients
+Nc = 10; % Number of causal coefficients
+Na = 10; % Number of acausal coefficients
 
-Ig = ~isnan(GIC(:,1)); % Good GIC points.
+Ig = ~isnan(GIC(:,1)); % Good GIC points
 
 % Compute transfer function with B driving E using TD method
 % transferfnTD handles NaNs internally.
