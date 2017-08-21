@@ -12,9 +12,9 @@ addpath('../../stats'); % For PE calculation (PE_NONFLAG).
 if exist('nodock','var')
     set(0,'DefaultFigureWindowStyle','normal');
 else
-    set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
+    %set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
 end
-png = 0; % Save images
+png = 1; % Save images
 
 fn = 0;
 
@@ -37,7 +37,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('B_x','B_y','B_z','Location','NorthWest');
     title('Memambetsu Magnetic Observatory (MMB)');
     figconfig;
-    if png,print('-dpng','./figures/main_plot_1_B.png');end
+    if png,print('-dpng','./figures/main_plot_B.png');end
 
 %% 1-second electric field measurements
 % From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
@@ -49,7 +49,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('E_x','E_y','Location','NorthWest');
     title('Memambetsu Magnetic Observatory (MMB)');
     figconfig
-    if png,print('-dpng','./figures/main_plot_2_E.png');end
+    if png,print('-dpng','./figures/main_plot_E.png');end
 
 %% 1-second GIC measurements
 % From S. Watari via email.  Data file has two columns, one is 1-second
@@ -72,7 +72,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('GIC @ 1 Hz','GIC @ 1 Hz; LPF @ 1 Hz','Location','SouthWest');
     title('Memambetsu 187 kV substation');    
     figconfig
-    if png,print('-dpng','./figures/main_plot_3_GIC.png');end
+    if png,print('-dpng','./figures/main_plot_GIC.png');end
 
 fn=fn+1;
 figure(fn);
@@ -80,13 +80,16 @@ figure(fn);
     xlabel('a_o [A km/V]');
     ylabel('# in bin');
     title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
+    if png,print('-dpng','./figures/main_plot_ao_hist.png');end
 
+    
 fn=fn+1;
 figure(fn);
     hist(1000*boboot)
     xlabel('b_o [A km/V]');
     ylabel('# in bin');
     title(sprintf('b_o = %0.2f +/- %.2f [A km/V]',1000*bo,1000*bobootstd));
+    if png,print('-dpng','./figures/main_plot_bo_hist.png');end
 
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
@@ -96,8 +99,8 @@ figure(fn);clf;hold on;box on;grid on;
     xlabel('Lag');
     ylabel('[A km/mV]');
     legend('a_o','b_o','pe/10');    
-
-load main.mat    
+    if png,print('-dpng','./figures/main_plot_ao_bo_pe_vs_lag.png');end
+    
 %% Prediction of Ex using B as driver
 % Using Time Domain (TD) and Frequency Domain (FD) method.
 %
@@ -112,7 +115,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('Measured','TD','FD','Location','NorthWest');
     title('B driver');
     figconfig
-    if png,print('-dpng','./figures/main_plot_4_Expredicted_w_B.png');end
+    if png,print('-dpng','./figures/main_plot_Expredicted_w_B.png');end
 
 %% Prediction of Ey using B as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
@@ -126,7 +129,7 @@ figure(fn);clf;hold on;box on;grid on;
     title('B driver');
     legend('Measured','TD','FD','Location','SouthWest');
     figconfig
-    if png,print('-dpng','./figures/main_plot_5_Eypredicted_w_B.png');end
+    if png,print('-dpng','./figures/main_plot_Eypredicted_w_B.png');end
 
 %% Prediction of GIC using B as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
@@ -178,7 +181,7 @@ figure(fn);clf;hold on;box on;grid on;
     title('B driver');
     legend boxoff
     figconfig
-    if png,print('-dpng','./figures/main_plot_6_GICpredicted_w_B');end
+    if png,print('-dpng','./figures/main_plot_GICpredicted_w_B');end
 
     
 %% Prediction of GIC using E as driver
@@ -207,7 +210,7 @@ figure(fn);clf;hold on;box on;grid on;
         'Location','SouthWest');
     title('E driver');
     figconfig
-    if png,print('-dpng','./figures/main_plot_7_GICpredicted_w_E');end
+    if png,print('-dpng','./figures/main_plot_GICpredicted_w_E');end
 
 %% Response of Ex to impulse in By
 fn=fn+1;
@@ -220,7 +223,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD H_{xy}(\tau)','FD H_{xy}(\tau)');
     set(gca,'XLim',[-60,60]);
      figconfig
-    if png,print('-dpng','./figures/main_plot_8_Ex_IRF_to_By.png');end
+    if png,print('-dpng','./figures/main_plot_Ex_IRF_to_By.png');end
     
 %% Response of Ey to impulse in Bx
 fn=fn+1;
@@ -233,7 +236,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD H_{yx}(\tau)','FD H_{yx}(\tau)');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_9_Ey_IRF_to_Bx.png');end
+    if png,print('-dpng','./figures/main_plot_Ey_IRF_to_Bx.png');end
 
 %% Response of GIC to impulse in Ex
 % The red dot for a is the value computed using ordinary linear least
@@ -253,7 +256,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD a(\tau)','FD a(\tau)','(10^3/5)\cdot (a_o\cdot 1 mV/km)');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_10_GIC_IRF_to_Ex.png');end
+    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ex.png');end
 
 %% Response of GIC to impulse in Ey
 % The red dot for b is the value computed using ordinary linear least
@@ -274,7 +277,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD b(\tau)','FD b(\tau)','(10^3/3)\cdot (b_o\cdot 1 mV/km)');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey.png');end
+    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ey.png');end
 
 %% Response of GIC to impulse in Ey - Zoom
 % Same as previous plot with with _b_ not shown to reveal undershoot detail
@@ -289,7 +292,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD b(\tau)','FD b(\tau)');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey_2.png');end
+    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ey_2.png');end
     
 %% Response of GIC to impulse in Bx
 % The red dot for a is the value computed using ordinary linear least
@@ -304,7 +307,7 @@ figure(fn);clf;hold on;box on;grid on;
     legend('TD','FD','ao');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_12_GIC_IRF_to_Bx.png');end
+    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Bx.png');end
 
 %% Response of GIC to impulse in By
 % The red dot for b is the value computed using ordinary linear least
@@ -317,6 +320,6 @@ figure(fn);clf;hold on;box on;grid on;
     xlabel('Time [s] since nT impulse in B_y');
     ylabel('GIC [A]');
     legend('TD','FD','bo');
-    set(gca,'XLim',[-60,-60]);
+    set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_13_GIC_IRF_to_By.png');end
+    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_By.png');end

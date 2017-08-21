@@ -1,6 +1,6 @@
 addpath('../../time');
 addpath('../../stats');
-addpath('../../gic/transferfn');
+addpath('../transferfn');
 
 clear
 
@@ -13,25 +13,31 @@ clear
 GIC = interp1(tGIC,GIC,tE); 
 tGIC = tE;
 
-Nc = 60*5; % Number of causal coefficients
-Na = 60*5; % Number of acausal coefficients
+% Used for paper.  Requires ~32 GB RAM
+Nc = 60*10; % Number of causal coefficients
+Na = 60*3; % Number of acausal coefficients
 
 %Nc = 10; % Number of causal coefficients
 %Na = 10; % Number of acausal coefficients
 
 TI = [0:1:size(E,1)]';
 
+% Remove mean
 GIC = GIC - repmat(mean_nonflag(GIC),size(GIC,1),1);
 E = E - repmat(mean_nonflag(E),size(E,1),1);
 
+% GIC(:,1) = aoE(:,1) + boE(:,2);
 LIN = basic_linear(E,GIC(:,1));
 GICp2_TD0(:,1) = basic_linear(E,LIN.Weights,'predict');
 
+% GIC(:,2) = aoE(:,1) + boE(:,2);
 LIN = basic_linear(E,GIC(:,2));
 GICp2_TD0(:,2) = basic_linear(E,LIN.Weights,'predict');
+% Linear regression coefficients
 ao = LIN.Weights(1)
 bo = LIN.Weights(2)
 
+% Compute 1000 bootstrap ao bo values to get standard deviation.
 for i = 1:1000
     LIN = basic_linear(E,GIC(:,2),60*60);
     aoboot(i) = LIN.Weights(1);
@@ -40,13 +46,17 @@ end
 aobootstd = std(aoboot);
 bobootstd = std(boboot);
 
+% Attempt to reproduce Watari by averaging to 1 minute
 E1m = block_mean(E,60);
 GIC1m = block_mean(GIC,60);
 
+% GIC(:,2) = aoE(:,1) + boE(:,2); for 1-minute data.
+% Shift by one minute to see if it matters.
 LIN = basic_linear(E1m(1:end-1,:),GIC1m(2:end,2));
 ao1m = LIN.Weights(1)
 bo1m = LIN.Weights(2)
 
+% See how ao and bo depend on shift of 1-second data.
 tl = [-100:100];
 for i = tl
     j = i-tl(1)+1;
@@ -60,15 +70,18 @@ end
 I = sum(isnan(GIC) + isnan(E),2) == 0;
 
 % Pulkkinen et al. 2007 method.
+% Compute ao and bo using 2007 method
 d = (mean_nonflag(E(I,1).*E(I,2)))^2-mean_nonflag(E(I,1).*E(I,1))*mean_nonflag(E(I,2).*E(I,2));
 an = mean_nonflag(GIC(I,2).*E(I,2))*mean_nonflag(E(I,1).*E(I,2)) - mean_nonflag(GIC(I,2).*E(I,1))*mean_nonflag(E(I,2).*E(I,2));
 aoP = an/d
 bn = mean_nonflag(GIC(I,2).*E(I,1))*mean_nonflag(E(I,1).*E(I,2)) - mean_nonflag(GIC(I,2).*E(I,2))*mean_nonflag(E(I,1).*E(I,1));
 boP = bn/d
 
+% Compute cross correlation between E and GIC
 [xc,lags] = xcorr(GIC(I,2),E(I,1));
 [yc,lags] = xcorr(GIC(I,2),E(I,2));
 [gc,lags] = xcorr(GIC(I,2),GIC(I,2));
+
 
 LIN = basic_linear(B(:,1:2),GIC(:,1));
 GICp3_TD0(:,1) = basic_linear(B(:,1:2),LIN.Weights,'predict');
