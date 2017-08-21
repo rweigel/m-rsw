@@ -2,12 +2,13 @@
 % 
 if ~exist('Z_TD','var') % Z_TD will exist if main.m run previously.
     if exist('main.mat','file')
-        load('main.mat'); % Load output of main.m
+        %load('main.mat'); % Load output of main.m
     else
-        main % Run main.m
+        %main % Run main.m
     end
 end
-addpath('~/git/m-rsw/stats'); % For PE calculation (PE_NONFLAG).
+
+addpath('../../stats'); % For PE calculation (PE_NONFLAG).
 if exist('nodock','var')
     set(0,'DefaultFigureWindowStyle','normal');
 else
@@ -15,9 +16,21 @@ else
 end
 png = 0; % Save images
 
+fn = 0;
+
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(lags,xc,'LineWidth',2);
+    hold on;grid on;
+    plot(lags,yc,'LineWidth',2);
+    plot(lags,gc,'LineWidth',2);
+    legend('xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)');
+    xlabel('Lag [s]');
+    
 %% 1-second magnetic field measurements
 % From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
-figure(1);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tB,B);
     xlabel('Days since 2006-12-13');
     ylabel('[nT]')
@@ -28,7 +41,8 @@ figure(1);clf;hold on;box on;grid on;
 
 %% 1-second electric field measurements
 % From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
-figure(2);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tE,E);
     xlabel('Days since 2006-12-13');
     ylabel('[mV/km]')
@@ -48,7 +62,8 @@ figure(2);clf;hold on;box on;grid on;
 % when the IRF is computed.  The computed GIC response to an impulse in E
 % or B at time zero has a peak at -66 seconds.  This shift was made before
 % all transfer function calculations.
-figure(3);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tGIC,GIC(:,1));
     plot(tGIC,GIC(:,2));
     set(gca,'XLim',[0 3])
@@ -59,11 +74,36 @@ figure(3);clf;hold on;box on;grid on;
     figconfig
     if png,print('-dpng','./figures/main_plot_3_GIC.png');end
 
+fn=fn+1;
+figure(fn);
+    hist(1000*aoboot)
+    xlabel('a_o [A km/V]');
+    ylabel('# in bin');
+    title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
+
+fn=fn+1;
+figure(fn);
+    hist(1000*boboot)
+    xlabel('b_o [A km/V]');
+    ylabel('# in bin');
+    title(sprintf('b_o = %0.2f +/- %.2f [A km/V]',1000*bo,1000*bobootstd));
+
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(tl,aolag,'LineWidth',2);
+    plot(tl,bolag,'LineWidth',2);
+    plot(tl,(1-arvlag)/10,'LineWidth',2);
+    xlabel('Lag');
+    ylabel('[A km/mV]');
+    legend('a_o','b_o','pe/10');    
+
+load main.mat    
 %% Prediction of Ex using B as driver
 % Using Time Domain (TD) and Frequency Domain (FD) method.
 %
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
-figure(4);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tE,E(:,1));
     plot(tE,Ep_TD(:,1));
     plot(tE,Ep_FD(:,1));
@@ -76,7 +116,8 @@ figure(4);clf;hold on;box on;grid on;
 
 %% Prediction of Ey using B as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
-figure(5);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tE,E(:,2));
     plot(tE,Ep_TD(:,2));
     plot(tE,Ep_FD(:,2));
@@ -119,14 +160,15 @@ figure(5);clf;hold on;box on;grid on;
 % Node that the PE for the FD method is poor.  It could be improved if
 % dB/dt was used as an input instead of B.  The FD method is better for the
 % next plot because E has less power at long periods (as would dB/dt).
-figure(6);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tGIC,GIC(:,2));
     plot(tGIC,GICp3_TD(:,2));
     plot(tGIC,GICp3_FD(:,2));
     plot(tGIC,GICp3_TD0(:,2));
     plot(tGIC,GICp3_TD03(:,2));
     xlabel('Days since 2006-12-13');
-    ylabel('GIC [A]');
+    ylabel('GIC [A]');    
     legend('Measured',...
         sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD(:,2))),...
         sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_FD(:,2))),...
@@ -150,7 +192,8 @@ figure(6);clf;hold on;box on;grid on;
 % GIC(w) = A(w)*Ex(w) + B(w)*Ey(w) is used, the impulse response
 % associated with A(w) and B(w) are generally positive.  The impulse
 % responses are shown later.
-figure(7);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(tGIC,GIC(:,2));
     plot(tGIC,GICp2_TD(:,2));
     plot(tGIC,GICp2_FD(:,2));
@@ -167,26 +210,30 @@ figure(7);clf;hold on;box on;grid on;
     if png,print('-dpng','./figures/main_plot_7_GICpredicted_w_E');end
 
 %% Response of Ex to impulse in By
-figure(8);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(t_TD,H_TD(:,2));
     plot(t_FD,H_FD(:,2));
-    xlabel('Time [s] since 1 nT impulse in B_y');
+    xlabel('\tau [s]');
     ylabel('E_x [mV/km]');
-    legend('TD','FD');
+    title('E_x response to 1 nT impulse in B_y at \tau = 0');
+    legend('TD H_{xy}(\tau)','FD H_{xy}(\tau)');
     set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_8_E_IRF_to_By.png');end
+     figconfig
+    if png,print('-dpng','./figures/main_plot_8_Ex_IRF_to_By.png');end
     
 %% Response of Ey to impulse in Bx
-figure(9);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(t_TD,H_TD(:,3));
-    plot(t_FD,H_FD(:,3));    
-    xlabel('Time [s] since 1 nT impulse in B_x');
+    plot(t_FD,H_FD(:,3));
+    xlabel('\tau [s]');
     ylabel('E_y [mV/km]');
-    legend('TD','FD');
+    title('E_y response to 1 nT impulse in B_x at \tau = 0');
+    legend('TD H_{yx}(\tau)','FD H_{yx}(\tau)');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_9_E_IRF_to_Bx.png');end
+    if png,print('-dpng','./figures/main_plot_9_Ey_IRF_to_Bx.png');end
 
 %% Response of GIC to impulse in Ex
 % The red dot for a is the value computed using ordinary linear least
@@ -195,14 +242,16 @@ figure(9);clf;hold on;box on;grid on;
 % The sign of _a_ is positive and consistent with the IRF, and the
 % magnitude of _a_ relative to the peak of the IRF can be expained by the
 % fact that _a_ represents an integral of the IRF.
-figure(10);clf;hold on;box on;grid on;
-    plot(t2_TD,H2_TD(:,3));
-    plot(t2_FD,H2_FD(:,3));
-    plot(0,aE/4,'r.','MarkerSize',30);
-    xlabel('Time [s] since 1 mV/km impulse in E_x');
-    ylabel('GIC [A]');
-    legend('TD','FD','a/4');
-    set(gca,'XLim',[-120,120]);
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t2_TD,1000*H2_TD(:,3));
+    plot(t2_FD,1000*H2_FD(:,3));
+    plot(0,1000*ao/5,'r.','MarkerSize',30);
+    xlabel('\tau [s]');
+    ylabel('GIC [mA]');
+    title('GIC response to 1 mV/km impulse in E_x at \tau = 0');
+    legend('TD a(\tau)','FD a(\tau)','(10^3/5)\cdot (a_o\cdot 1 mV/km)');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_10_GIC_IRF_to_Ex.png');end
 
@@ -214,79 +263,60 @@ figure(10);clf;hold on;box on;grid on;
 % This feature cannot be produced by (first-order) LR or RC circuit model
 % alone.  This is a second-order effect.  Also note that the sign of _b_ is
 % not consistent with the sign of the peak of the IRF.
-figure(11);clf;hold on;box on;grid on;
-    plot(t2_TD,H2_TD(:,2));
-    plot(t2_FD,H2_FD(:,2));
-    plot(0,bE/2,'r.','MarkerSize',30);
-    xlabel('Time [s] since 1 mV/km impulse in E_y');
-    ylabel('GIC [A]');
-    legend('TD','FD');
-    legend('TD','FD','b/2');
-    set(gca,'XLim',[-120,120]);
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t2_TD,1000*H2_TD(:,2));
+    plot(t2_FD,1000*H2_FD(:,2));
+    plot(0,1000*bo/3,'r.','MarkerSize',30);
+    xlabel('\tau [s]');
+    ylabel('GIC [mA]');
+    title('GIC response to 1 mV/km impulse in E_y at \tau = 0');
+    legend('TD b(\tau)','FD b(\tau)','(10^3/3)\cdot (b_o\cdot 1 mV/km)');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey.png');end
 
 %% Response of GIC to impulse in Ey - Zoom
 % Same as previous plot with with _b_ not shown to reveal undershoot detail
 % in IRF.
-if (0)
-figure(11);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(t2_TD,H2_TD(:,2));
     plot(t2_FD,H2_FD(:,2));
-    %plot(0,bE/2,'r.','MarkerSize',30);
-    xlabel('Time [s] since 1 mV/km impulse in E_y');
+    xlabel('\tau [s]');
     ylabel('GIC [A]');
-    legend('TD','FD');
-    legend('TD','FD');
-    set(gca,'XLim',[-120,120]);
+    title('GIC response to 1 mV/km impulse in E_y at \tau = 0');
+    legend('TD b(\tau)','FD b(\tau)');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey_2.png');end
-end
-
+    
 %% Response of GIC to impulse in Bx
 % The red dot for a is the value computed using ordinary linear least
 % squares regression on GIC(t) = aBx(t) + bBy(t).
-figure(12);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(t3_TD,H3_TD(:,3));
     plot(t3_FD,H3_FD(:,3));
-    plot(0,aB,'r.','MarkerSize',30);
+    plot(0,aoB,'r.','MarkerSize',30);
     xlabel('Time [s] since 1 nT impulse in B_x');
     ylabel('GIC [A]');
-    legend('TD','FD','a');
-    set(gca,'XLim',[-120,120]);
+    legend('TD','FD','ao');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_12_GIC_IRF_to_Bx.png');end
 
 %% Response of GIC to impulse in By
 % The red dot for b is the value computed using ordinary linear least
 % squares regression on GIC(t) = aBx(t) + bBy(t).
-figure(13);clf;hold on;box on;grid on;
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
     plot(t3_TD,H3_TD(:,2));
     plot(t3_FD,H3_FD(:,2));
-    plot(0,bE,'r.','MarkerSize',30);
+    plot(0,boB,'r.','MarkerSize',30);
     xlabel('Time [s] since nT impulse in B_y');
     ylabel('GIC [A]');
-    legend('TD','FD','b');
-    set(gca,'XLim',[-120,120]);
+    legend('TD','FD','bo');
+    set(gca,'XLim',[-60,-60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_13_GIC_IRF_to_By.png');end
-
-if (0)
-tl = [-100:100];
-for i = tl
-    j = i-tl(1)+1;
-    [T,X] = time_delay(GIC(:,2),E,1,i);
-    LIN = basic_linear(X,T);
-    xarv(j) = LIN.ARVtrain;
-    a(j) = LIN.Weights(1);
-    b(j) = LIN.Weights(2);
-end
-
-figure(14);clf;hold on;box on;grid on;
-    plot(tl,a,'LineWidth',2);
-    plot(tl,b,'LineWidth',2);
-    plot(tl,(1-xarv)/10,'LineWidth',2);
-    xlabel('Lag');
-    ylabel('[A km/mV]');
-    legend('a','b','pe/10');
-end
