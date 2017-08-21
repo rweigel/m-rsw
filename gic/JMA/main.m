@@ -14,11 +14,11 @@ GIC = interp1(tGIC,GIC,tE);
 tGIC = tE;
 
 % Used for paper.  Requires ~32 GB RAM
-%Nc = 60*5; % Number of causal coefficients
-%Na = 60*5; % Number of acausal coefficients
+Nc = 60*10; % Number of causal coefficients
+Na = 60*3; % Number of acausal coefficients
 
-Nc = 10; % Number of causal coefficients
-Na = 10; % Number of acausal coefficients
+%Nc = 10; % Number of causal coefficients
+%Na = 10; % Number of acausal coefficients
 
 Ig = ~isnan(GIC(:,1)); % Good GIC points
 

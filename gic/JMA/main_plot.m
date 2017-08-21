@@ -11,9 +11,10 @@ addpath('~/git/m-rsw/stats'); % For PE calculation (PE_NONFLAG).
 if exist('nodock','var')
     set(0,'DefaultFigureWindowStyle','normal');
 else
-    set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
+    %set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
 end
 png = 0; % Save images
+set(0,'DefaultFigureWindowStyle','normal');
 
 %% 1-second magnetic field measurements
 % From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
@@ -170,9 +171,10 @@ figure(7);clf;hold on;box on;grid on;
 figure(8);clf;hold on;box on;grid on;
     plot(t_TD,H_TD(:,2));
     plot(t_FD,H_FD(:,2));
-    xlabel('Time [s] since 1 nT impulse in B_y');
+    xlabel('\tau [s]');
     ylabel('E_x [mV/km]');
-    legend('TD','FD');
+    title('E_x response to 1 nT impulse in B_y at \tau=0');
+    legend('TD H_{xy}(\tau)','FD H_{xy}(\tau)');
     set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_8_E_IRF_to_By.png');end
@@ -181,9 +183,9 @@ figure(8);clf;hold on;box on;grid on;
 figure(9);clf;hold on;box on;grid on;
     plot(t_TD,H_TD(:,3));
     plot(t_FD,H_FD(:,3));    
-    xlabel('Time [s] since 1 nT impulse in B_x');
     ylabel('E_y [mV/km]');
-    legend('TD','FD');
+    title('Ey response to 1 nT impulse in B_yx at \tau=0');
+    legend('TD H_{yx}(\tau)','FD H_{yx}(\tau)');
     set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_9_E_IRF_to_Bx.png');end
@@ -199,10 +201,11 @@ figure(10);clf;hold on;box on;grid on;
     plot(t2_TD,H2_TD(:,3));
     plot(t2_FD,H2_FD(:,3));
     plot(0,aE/4,'r.','MarkerSize',30);
-    xlabel('Time [s] since 1 mV/km impulse in E_x');
+    xlabel('\tau [s]');
     ylabel('GIC [A]');
-    legend('TD','FD','a/4');
-    set(gca,'XLim',[-120,120]);
+    title('GIC response to 1 mV/km impulse in E_x at \tau=0');
+    legend('TD a(\tau)','FD a(\tau)','a_o/4');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_10_GIC_IRF_to_Ex.png');end
 
@@ -218,11 +221,11 @@ figure(11);clf;hold on;box on;grid on;
     plot(t2_TD,H2_TD(:,2));
     plot(t2_FD,H2_FD(:,2));
     plot(0,bE/2,'r.','MarkerSize',30);
-    xlabel('Time [s] since 1 mV/km impulse in E_y');
+    xlabel('\tau [s]');
     ylabel('GIC [A]');
-    legend('TD','FD');
-    legend('TD','FD','b/2');
-    set(gca,'XLim',[-120,120]);
+    title('GIC response to 1 mV/km impulse in E_y at \tau=0');
+    legend('TD b(\tau)','FD b(\tau)','b_o/2');
+    set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_11_GIC_IRF_to_Ey.png');end
 
