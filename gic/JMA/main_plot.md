@@ -55,7 +55,6 @@ figure(1);clf;hold on;box on;grid on;
 
 ![](html/main_plot_01.png)
 
-
 1-second electric field measurements
 ------------------------------------
 
@@ -73,7 +72,6 @@ figure(2);clf;hold on;box on;grid on;
 ~~~~
 
 ![](html/main_plot_02.png)
-
 
 1-second GIC measurements
 -------------------------
@@ -97,7 +95,6 @@ figure(3);clf;hold on;box on;grid on;
 
 ![](html/main_plot_03.png)
 
-
 Prediction of Ex using B as driver
 ----------------------------------
 
@@ -120,7 +117,6 @@ figure(4);clf;hold on;box on;grid on;
 
 ![](html/main_plot_04.png)
 
-
 Prediction of Ey using B as driver
 ----------------------------------
 
@@ -141,7 +137,6 @@ figure(5);clf;hold on;box on;grid on;
 
 ![](html/main_plot_05.png)
 
-
 Prediction of GIC using B as driver
 -----------------------------------
 
@@ -149,27 +144,21 @@ Time domain method uses 60\*5 causal and 60\*5 acausal lag values. Prediction is
 
 ![\$\$ GIC(t) = aBx(t) + bBy(t) \$\$](html/main_plot_eq13774048327200520292.png)
 
-
 and
 
 ![\$\$ GIC(t) = aBx(t) + bBy(t) + cBz(t) \$\$](html/main_plot_eq05975858417465062349.png)
 
-
-where the constants are determined using ordinary least squares regression. It is curious that addition of the Bz compontent to the model improves the predictions significantly. It is also unexpected that predictions of GIC given **B** are so much better than predictions of GIC given **E** (next figure) because **E** is more directly related to GIC. That is, in terms of transfer fucntions, and ![\$\\omega\$](html/main_plot_eq08589834809570054062.png)
- = angular frequency,
+where the constants are determined using ordinary least squares regression. It is curious that addition of the Bz compontent to the model improves the predictions significantly. It is also unexpected that predictions of GIC given **B** are so much better than predictions of GIC given **E** (next figure) because **E** is more directly related to GIC. That is, in terms of transfer fucntions, and ![\$\\omega\$](html/main_plot_eq08589834809570054062.png) = angular frequency,
 
 ![\$\$GIC(\\omega) = Z\_{GE}(\\omega)E(\\omega)\$\$](html/main_plot_eq04608600577339768112.png)
-
 
 and
 
 ![\$\$ E(\\omega) = Z\_{EB}(\\omega)B(\\omega) \$\$](html/main_plot_eq01616645107466926226.png)
 
-
 so
 
 ![\$\$GIC(\\omega) = Z\_{GE}(\\omega)Z\_{EB}(\\omega)B(\\omega)\$\$](html/main_plot_eq14147549482911901738.png)
-
 
 ~~~~ {.codeinput}
 figure(6);clf;hold on;box on;grid on;
@@ -193,7 +182,6 @@ figure(6);clf;hold on;box on;grid on;
 ~~~~
 
 ![](html/main_plot_06.png)
-
 
 Prediction of GIC using E as driver
 -----------------------------------
@@ -220,7 +208,6 @@ figure(7);clf;hold on;box on;grid on;
 
 ![](html/main_plot_07.png)
 
-
 Response of Ex to impulse in By
 -------------------------------
 
@@ -238,7 +225,6 @@ figure(8);clf;hold on;box on;grid on;
 
 ![](html/main_plot_08.png)
 
-
 Response of Ey to impulse in Bx
 -------------------------------
 
@@ -255,7 +241,6 @@ figure(9);clf;hold on;box on;grid on;
 ~~~~
 
 ![](html/main_plot_09.png)
-
 
 Response of GIC to impulse in Ex
 --------------------------------
@@ -276,7 +261,6 @@ figure(10);clf;hold on;box on;grid on;
 ~~~~
 
 ![](html/main_plot_10.png)
-
 
 Response of GIC to impulse in Ey
 --------------------------------
@@ -299,7 +283,6 @@ figure(11);clf;hold on;box on;grid on;
 
 ![](html/main_plot_11.png)
 
-
 Response of GIC to impulse in Ey - Zoom
 ---------------------------------------
 
@@ -321,7 +304,6 @@ figure(11);clf;hold on;box on;grid on;
 
 ![](html/main_plot_12.png)
 
-
 Response of GIC to impulse in Bx
 --------------------------------
 
@@ -341,7 +323,6 @@ figure(12);clf;hold on;box on;grid on;
 ~~~~
 
 ![](html/main_plot_13.png)
-
 
 Response of GIC to impulse in By
 --------------------------------
@@ -382,6 +363,5 @@ end
 ~~~~
 
 ![](html/main_plot_14.png)
-
 
 [Published with MATLAB® R2015a](http://www.mathworks.com/products/matlab/)
