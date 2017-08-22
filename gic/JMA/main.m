@@ -95,6 +95,27 @@ GICp3_TD03(:,1) = basic_linear(B(:,1:3),LIN.Weights,'predict');
 LIN = basic_linear(B(:,1:3),GIC(:,2));
 GICp3_TD03(:,2) = basic_linear(B(:,1:3),LIN.Weights,'predict');
 
+LIN = basic_linear(E,GIC(:,1));
+GICp2_TD0(:,1) = basic_linear(E,LIN.Weights,'predict');
+LIN = basic_linear(E,GIC(:,2));
+GICp2_TD0(:,2) = basic_linear(E,LIN.Weights,'predict');
+aE = LIN.Weights(1);
+bE = LIN.Weights(2);
+cE = LIN.Weights(end)
+
+LIN = basic_linear(B(:,1:2),GIC(:,1));
+GICp3_TD0(:,1) = basic_linear(B(:,1:2),LIN.Weights,'predict');
+LIN = basic_linear(B(:,1:2),GIC(:,2));
+GICp3_TD0(:,2) = basic_linear(B(:,1:2),LIN.Weights,'predict');
+aB = LIN.Weights(1);
+bB = LIN.Weights(2);
+cB = LIN.Weights(end)
+
+LIN = basic_linear(B(:,1:3),GIC(:,1));
+GICp3_TD03(:,1) = basic_linear(B(:,1:3),LIN.Weights,'predict');
+LIN = basic_linear(B(:,1:3),GIC(:,2));
+GICp3_TD03(:,2) = basic_linear(B(:,1:3),LIN.Weights,'predict');
+
 break
 
 % Compute transfer function with B driving E using TD method
@@ -105,8 +126,10 @@ break
 [Z_FD,fe_FD,H_FD,t_FD] = transferfnFD(B,E,2,'rectangular');
 Ep_FD = real(Zpredict(fe_FD,Z_FD,B));
 
+% Use first half of data
+Ix = [1:floor(size(E,1)/2)];
 % Compute transfer function with E driving GIC using TD method
-[Z2_TD,f2_TD,H2_TD,t2_TD,GICp2_TD] = transferfnTD(E,GIC,Nc,Na);
+[Z2_TD,f2_TD,H2_TD,t2_TD,GICp2_TD] = transferfnTD(E(Ix,:),GIC(Ix,:),Nc,Na);
 
 % Compute transfer function with E driving GIC using FD method
 [Z2_FD,fe2_FD,H2_FD,t2_FD] = transferfnFD(E(Ig,:),GIC(Ig,:),1,'rectangular');
