@@ -159,14 +159,14 @@ figure(fn);clf;hold on;box on;grid on;
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     plot(tGIC(Ix),GIC(Ix,2));
-    plot(tGIC(Ix),GICp3_TD(:,1));
+    plot(tGIC(Ix),GICp3_TD(:,2));
     plot(tGIC(Ix),GICp3_FD(:,2));
     plot(tGIC(Ix),GICp3_TD0(:,2));
     plot(tGIC(Ix),GICp3_TD03(:,2));
     xlabel('Days since 2006-12-13');
     ylabel('GIC [A]');    
     legend('Measured',...
-        sprintf('TD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD(:,1))),...
+        sprintf('TD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD(:,2))),...
         sprintf('FD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_FD(:,2))),...
         sprintf('Const x,y input; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD0(:,2))),...
         sprintf('Const x,y,z input; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD03(:,2))),...
@@ -190,7 +190,7 @@ figure(fn);clf;hold on;box on;grid on;
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     plot(tGIC(Ix),GIC(Ix,2));
-    plot(tGIC(Ix),GICp2_TD(:,1));
+    plot(tGIC(Ix),GICp2_TD(:,2));
     plot(tGIC(Ix),GICp2_FD(:,2));
     plot(tGIC(Ix),GICp2_TD0(:,2));
     xlabel('Days since 2006-12-13');
@@ -270,21 +270,6 @@ figure(fn);clf;hold on;box on;grid on;
     set(gca,'XLim',[-60,60]);
     figconfig
     if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ey.png');end
-
-%% Response of GIC to impulse in Ey - Zoom
-% Same as previous plot with with _b_ not shown to reveal undershoot detail
-% in IRF.
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(t2_TD,H2_TD(:,2),'LineWidth',2);
-    plot(t2_FD,H2_FD(:,2),'LineWidth',2);
-    xlabel('\tau [s]');
-    ylabel('GIC [A]');
-    title('GIC response to 1 mV/km impulse in E_y at \tau = 0');
-    legend('TD b(\tau)','FD b(\tau)');
-    set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ey_2.png');end
     
 %% Response of GIC to impulse in Bx
 % The red dot for a is the value computed using ordinary linear least

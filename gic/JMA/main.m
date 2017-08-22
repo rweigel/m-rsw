@@ -27,11 +27,12 @@ GIC = GIC - repmat(mean_nonflag(GIC),size(GIC,1),1);
 E = E - repmat(mean_nonflag(E),size(E,1),1);
 B = B - repmat(mean_nonflag(B),size(B,1),1);
 
-% Use first half of data
-Ix = [1:floor(size(E,1)/2)];
+% Use about first half of data (before disturbance)
+Ix = [1:floor(size(E,1)/2)-3600];
+
+% Use about last half of data
+Ix = [floor(size(E,1)/2)-3600:size(E,1)];
 
 mainCompute1
 mainCompute2
 main_plot
-
-

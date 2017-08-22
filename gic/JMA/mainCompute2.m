@@ -21,7 +21,8 @@ Na = 60*10; % Number of acausal coefficients
 
 % Compute transfer function with E driving GIC using TD method
 [Z2_TD,f2_TD,H2_TD,t2_TD,GICp2_TD] = transferfnTD(E(Ix,:),GIC(Ix,2),Nc,Na);
-% FD functions are computing using both columns of GIC.
+% FD functions are computing using both columns of GIC.  Make TD output
+% look same.
 GICp2_TD(:,2) = GICp2_TD(:,1);
 GICp2_TD(:,1) = NaN*GICp2_TD(:,1);
 
