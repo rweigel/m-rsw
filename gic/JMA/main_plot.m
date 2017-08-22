@@ -1,20 +1,15 @@
-%% Load output of main.mat if found; create output if not.
-% 
-if ~exist('Z_TD','var') % Z_TD will exist if main.m run previously.
-    if exist('main.mat','file')
-        %load('main.mat'); % Load output of main.m
-    else
-        %main % Run main.m
-    end
-end
+%% Load output of main.mat
 
+png = 1; % Save images
+load('mainCompute1.mat'); % Load output of main.m
+load('mainCompute2.mat'); % Load output of main.m
 addpath('../../stats'); % For PE calculation (PE_NONFLAG).
+
 if exist('nodock','var')
     set(0,'DefaultFigureWindowStyle','normal');
 else
-    %set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
+    set(0,'DefaultFigureWindowStyle','docked'); % Dock figure windows.
 end
-png = 1; % Save images
 
 fn = 0;
 
@@ -81,7 +76,6 @@ figure(fn);
     ylabel('# in bin');
     title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
     if png,print('-dpng','./figures/main_plot_ao_hist.png');end
-
     
 fn=fn+1;
 figure(fn);
@@ -104,12 +98,11 @@ figure(fn);clf;hold on;box on;grid on;
 %% Prediction of Ex using B as driver
 % Using Time Domain (TD) and Frequency Domain (FD) method.
 %
-% Time domain method uses 60*5 causal and 60*5 acausal lag values.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(tE,E(:,1));
-    plot(tE,Ep_TD(:,1));
-    plot(tE,Ep_FD(:,1));
+    plot(tE(Ix),E(Ix,1));
+    plot(tE(Ix),Ep_TD(Ix,1));
+    plot(tE(Ix),Ep_FD(Ix,1));
     xlabel('Days since 2006-12-13');
     ylabel('E_x [mV/km]');
     legend('Measured','TD','FD','Location','NorthWest');
@@ -121,9 +114,9 @@ figure(fn);clf;hold on;box on;grid on;
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(tE,E(:,2));
-    plot(tE,Ep_TD(:,2));
-    plot(tE,Ep_FD(:,2));
+    plot(tE(Ix),E(Ix,2));
+    plot(tE(Ix),Ep_TD(:,2));
+    plot(tE(Ix),Ep_FD(:,2));
     xlabel('Days since 2006-12-13');
     ylabel('E_y [mV/km]');
     title('B driver');
@@ -165,25 +158,24 @@ figure(fn);clf;hold on;box on;grid on;
 % next plot because E has less power at long periods (as would dB/dt).
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(tGIC,GIC(:,2));
-    plot(tGIC,GICp3_TD(:,2));
-    plot(tGIC,GICp3_FD(:,2));
-    plot(tGIC,GICp3_TD0(:,2));
-    plot(tGIC,GICp3_TD03(:,2));
+    plot(tGIC(Ix),GIC(Ix,2));
+    plot(tGIC(Ix),GICp3_TD(:,1));
+    plot(tGIC(Ix),GICp3_FD(:,2));
+    plot(tGIC(Ix),GICp3_TD0(:,2));
+    plot(tGIC(Ix),GICp3_TD03(:,2));
     xlabel('Days since 2006-12-13');
     ylabel('GIC [A]');    
     legend('Measured',...
-        sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD(:,2))),...
-        sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_FD(:,2))),...
-        sprintf('Const x,y input; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD0(:,2))),...
-        sprintf('Const x,y,z input; PE = %.2f',pe_nonflag(GIC(:,2),GICp3_TD03(:,2))),...
+        sprintf('TD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD(:,1))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_FD(:,2))),...
+        sprintf('Const x,y input; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD0(:,2))),...
+        sprintf('Const x,y,z input; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp3_TD03(:,2))),...
         'Location','SouthWest');
     title('B driver');
     legend boxoff
     figconfig
     if png,print('-dpng','./figures/main_plot_GICpredicted_w_B');end
-
-    
+  
 %% Prediction of GIC using E as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
 % Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data.
@@ -197,16 +189,16 @@ figure(fn);clf;hold on;box on;grid on;
 % responses are shown later.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(tGIC,GIC(:,2));
-    plot(tGIC,GICp2_TD(:,2));
-    plot(tGIC,GICp2_FD(:,2));
-    plot(tGIC,GICp2_TD0(:,2));
+    plot(tGIC(Ix),GIC(Ix,2));
+    plot(tGIC(Ix),GICp2_TD(:,1));
+    plot(tGIC(Ix),GICp2_FD(:,2));
+    plot(tGIC(Ix),GICp2_TD0(:,2));
     xlabel('Days since 2006-12-13');
     ylabel('GIC [A]');
     legend('Measured',...
-        sprintf('TD; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_TD(:,2))),...
-        sprintf('FD; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_FD(:,2))),...
-        sprintf('Const; PE = %.2f',pe_nonflag(GIC(:,2),GICp2_TD0(:,2))),...
+        sprintf('TD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp2_TD(:,1))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp2_FD(:,1))),...
+        sprintf('Const; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp2_TD0(:,2))),...
         'Location','SouthWest');
     title('E driver');
     figconfig
@@ -247,7 +239,7 @@ figure(fn);clf;hold on;box on;grid on;
 % fact that _a_ represents an integral of the IRF.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t2_TD,1000*H2_TD(:,3),'LineWidth',2);
+    plot(t2_TD,1000*H2_TD(:,1),'LineWidth',2);
     plot(t2_FD,1000*H2_FD(:,3),'LineWidth',2);
     plot(0,1000*ao/5,'r.','MarkerSize',30);
     xlabel('\tau [s]');
@@ -299,7 +291,7 @@ figure(fn);clf;hold on;box on;grid on;
 % squares regression on GIC(t) = aBx(t) + bBy(t).
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t3_TD,H3_TD(:,3),'LineWidth',2);
+    plot(t3_TD,H3_TD(:,1),'LineWidth',2);
     plot(t3_FD,H3_FD(:,3),'LineWidth',2);
     plot(0,aoB,'r.','MarkerSize',30);
     xlabel('Time [s] since 1 nT impulse in B_x');
