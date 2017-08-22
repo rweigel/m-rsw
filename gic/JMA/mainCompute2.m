@@ -2,8 +2,8 @@
 Nc = 60*10; % Number of causal coefficients
 Na = 60*10; % Number of acausal coefficients
 
-Nc = 10; % Number of causal coefficients
-Na = 10; % Number of acausal coefficients
+%Nc = 10; % Number of causal coefficients
+%Na = 10; % Number of acausal coefficients
 
 % Compute transfer function with B driving E using FD method
 [Z_FD,fe_FD,H_FD,t_FD,Ep_FD] = transferfnFD(B(Ix,:),E(Ix,:),2,'rectangular');
