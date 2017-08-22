@@ -1,4 +1,4 @@
-function [Z,fe,H,t] = transferfnFD(B,E,method,winfn,winopts)
+function [Z,fe,H,t,Ep] = transferfnFD(B,E,method,winfn,winopts)
 
 if nargin < 6
     verbose = 0;
@@ -57,8 +57,8 @@ for j = 1:length(Ic)
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
     if verbose
-    fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
-            fe(j),length(r),fa,fb)
+        fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+                fe(j),length(r),fa,fb)
     end
     
     Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
@@ -106,8 +106,9 @@ end
 I = find(isinf(Z(1,:)) == 1 | isnan(Z(1,:)) == 1);
 Z(1,I) = 0;
 
-
 H = Z2H(fe,Z,f);
 H = fftshift(H,1);
 N = (size(H,1)-1)/2;
 t = [-N:N]';
+
+Ep = real(Zpredict(fe,Z,B));

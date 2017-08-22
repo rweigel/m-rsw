@@ -215,8 +215,8 @@ figure(fn);clf;hold on;box on;grid on;
 %% Response of Ex to impulse in By
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t_TD,H_TD(:,2));
-    plot(t_FD,H_FD(:,2));
+    plot(t_TD,H_TD(:,2),'LineWidth',2);
+    plot(t_FD,H_FD(:,2),'LineWidth',2);
     xlabel('\tau [s]');
     ylabel('E_x [mV/km]');
     title('E_x response to 1 nT impulse in B_y at \tau = 0');
@@ -228,8 +228,8 @@ figure(fn);clf;hold on;box on;grid on;
 %% Response of Ey to impulse in Bx
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t_TD,H_TD(:,3));
-    plot(t_FD,H_FD(:,3));
+    plot(t_TD,H_TD(:,3),'LineWidth',2);
+    plot(t_FD,H_FD(:,3),'LineWidth',2);
     xlabel('\tau [s]');
     ylabel('E_y [mV/km]');
     title('E_y response to 1 nT impulse in B_x at \tau = 0');
@@ -241,14 +241,14 @@ figure(fn);clf;hold on;box on;grid on;
 %% Response of GIC to impulse in Ex
 % The red dot for a is the value computed using ordinary linear least
 % squares regression on GIC(t) = aEx(t) + bEy(t).
-% The value plotted is _a_/4 so the features of the IRFs are easier to see.
+% The value plotted is _a_/5 so the features of the IRFs are easier to see.
 % The sign of _a_ is positive and consistent with the IRF, and the
 % magnitude of _a_ relative to the peak of the IRF can be expained by the
 % fact that _a_ represents an integral of the IRF.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t2_TD,1000*H2_TD(:,3));
-    plot(t2_FD,1000*H2_FD(:,3));
+    plot(t2_TD,1000*H2_TD(:,3),'LineWidth',2);
+    plot(t2_FD,1000*H2_FD(:,3),'LineWidth',2);
     plot(0,1000*ao/5,'r.','MarkerSize',30);
     xlabel('\tau [s]');
     ylabel('GIC [mA]');
@@ -268,8 +268,8 @@ figure(fn);clf;hold on;box on;grid on;
 % not consistent with the sign of the peak of the IRF.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t2_TD,1000*H2_TD(:,2));
-    plot(t2_FD,1000*H2_FD(:,2));
+    plot(t2_TD,1000*H2_TD(:,2),'LineWidth',2);
+    plot(t2_FD,1000*H2_FD(:,2),'LineWidth',2);
     plot(0,1000*bo/3,'r.','MarkerSize',30);
     xlabel('\tau [s]');
     ylabel('GIC [mA]');
@@ -284,8 +284,8 @@ figure(fn);clf;hold on;box on;grid on;
 % in IRF.
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t2_TD,H2_TD(:,2));
-    plot(t2_FD,H2_FD(:,2));
+    plot(t2_TD,H2_TD(:,2),'LineWidth',2);
+    plot(t2_FD,H2_FD(:,2),'LineWidth',2);
     xlabel('\tau [s]');
     ylabel('GIC [A]');
     title('GIC response to 1 mV/km impulse in E_y at \tau = 0');
@@ -299,8 +299,8 @@ figure(fn);clf;hold on;box on;grid on;
 % squares regression on GIC(t) = aBx(t) + bBy(t).
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t3_TD,H3_TD(:,3));
-    plot(t3_FD,H3_FD(:,3));
+    plot(t3_TD,H3_TD(:,3),'LineWidth',2);
+    plot(t3_FD,H3_FD(:,3),'LineWidth',2);
     plot(0,aoB,'r.','MarkerSize',30);
     xlabel('Time [s] since 1 nT impulse in B_x');
     ylabel('GIC [A]');
@@ -314,8 +314,8 @@ figure(fn);clf;hold on;box on;grid on;
 % squares regression on GIC(t) = aBx(t) + bBy(t).
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(t3_TD,H3_TD(:,2));
-    plot(t3_FD,H3_FD(:,2));
+    plot(t3_TD,H3_TD(:,2),'LineWidth',2);
+    plot(t3_FD,H3_FD(:,2),'LineWidth',2);
     plot(0,boB,'r.','MarkerSize',30);
     xlabel('Time [s] since nT impulse in B_y');
     ylabel('GIC [A]');
