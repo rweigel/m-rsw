@@ -26,6 +26,12 @@ Na = 60*10; % Number of acausal coefficients
 GICp2_TD(:,2) = GICp2_TD(:,1);
 GICp2_TD(:,1) = NaN*GICp2_TD(:,1);
 
+% Compute transfer function with Ex driving GIC using TD method
+[Z2a_TD,f2a_TD,H2a_TD,t2a_TD,GICp2a_TD] = transferfnTD(E(Ix,1),GIC(Ix,2),Nc,Na);
+
+% Compute transfer function with Ey driving GIC using TD method
+[Z2b_TD,f2b_TD,H2b_TD,t2b_TD,GICp2b_TD] = transferfnTD(E(Ix,2),GIC(Ix,2),Nc,Na);
+
 % Compute transfer function with B driving GIC using TD method
 [Z3_TD,f3_TD,H3_TD,t3_TD,GICp3_TD] = transferfnTD(B(Ix,:),GIC(Ix,2),Nc,Na);
 GICp3_TD(:,2) = GICp3_TD(:,1);

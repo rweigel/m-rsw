@@ -1,8 +1,8 @@
-set(0,'DefaultFigureWindowStyle','normal')
+% To run, set png = 1 in main_plot then execute this script.
+% Open main_plot.md in Github or html/main_plot.html in a browser.
 sname = 'main_plot'; % Script name
 opts.figureSnapMethod = 'print';
 opts.maxWidth = 800;
-nodock = 1;
 fname = publish(sname,opts); % Create html page
 web(fname); % View html page
 % Create and modify Markdown page for viewing on GitHub
