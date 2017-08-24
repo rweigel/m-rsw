@@ -27,7 +27,7 @@ if ~isempty(winopts)
     Ic = [df+1:df:length(f)-df]; % Indicies of center points
     for j = 1:length(Ic)
         fe(j) = f(Ic(j)); % Evaluation frequency
-        Ne(j) = df;        % Number of points to right and left used in window.
+        Ne(j) = df;       % Number of points to right and left used in window.
     end
 
     % Add zero frequency.
