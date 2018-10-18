@@ -1,82 +1,14 @@
 %% Setup
 % Save images (requires each figure to open in new window for proper figure
 % sizing; see figconfig.m)
-png = 0; 
 addpath('../../stats'); % For PE calculation (PE_NONFLAG).
 
-if png == 1
-    % Open each figure in new window
-    set(0,'DefaultFigureWindowStyle','normal');
-else
-    % Dock figure windows
-    set(0,'DefaultFigureWindowStyle','docked');
-end
-
 %% Load output of main.mat
-load('mainCompute1.mat'); % Load output of main.m
-load('mainCompute2.mat'); % Load output of main.m
+load(sprintf('%s/mainCompute1_%s.mat',dirmat,dateo)); % Load output of main.m
+load(sprintf('%s/mainCompute2_%s.mat',dirmat,dateo)); % Load output of main.m
 
-fn = 0;
 
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(lags,xc,'LineWidth',2);
-    plot(lags,yc,'LineWidth',2);
-    plot(lags,gc,'LineWidth',2);
-    xlabel('Lag [s]');
-    [lh,lo] = legend('xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)');
-    figconfig
-    if png,print('-dpng','./figures/main_plot_xcorrelations.png');end
-    %if png,print('-dpdf','./figures/main_plot_xcorrelations.pdf');end
-
-%% 1-second magnetic field measurements
-% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(tB,B);
-    xlabel('Days since 2006-12-13');
-    ylabel('[nT]')
-    th = title('Memambetsu Magnetic Observatory (MMB)');
-    [lh,lo] = legend('B_x','B_y','B_z','Location','NorthWest');
-    figconfig;
-    if png,print('-dpng','./figures/main_plot_B.png');end
-    %if png,print('-dpdf','./figures/main_plot_B.pdf');end
-
-%% 1-second electric field measurements
-% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(tE,E);
-    xlabel('Days since 2006-12-13');
-    ylabel('[mV/km]')
-    [lh,lo] = legend('E_x','E_y','Location','NorthWest');
-    th = title('Memambetsu Magnetic Observatory (MMB)');
-    figconfig
-    if png,print('-dpng','./figures/main_plot_E.png');end
-
-%% 1-second GIC measurements
-% From S. Watari via email.  Data file has two columns, one is 1-second
-% data and the other is 1-second data low-pass-filtered at @ 1 Hz (no
-% additional details are given for filter).  Results are not dependent on
-% which column was used.
-%
-% This is the original data after converting from JST to UT.  Note that
-% there appears to be a ~66-second shift in this data that clearly appears
-% when the IRF is computed.  The computed GIC response to an impulse in E
-% or B at time zero has a peak at -66 seconds.  This shift was made before
-% all transfer function calculations.
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(tGIC,GIC(:,1));
-    plot(tGIC,GIC(:,2));
-    set(gca,'XLim',[0 3])
-    xlabel('Days since 2006-12-13');
-    ylabel('[A]');
-    th = title('Memambetsu 187 kV substation');    
-    [lh,lo] = legend('GIC @ 1 Hz','GIC @ 1 Hz; LPF @ 1 Hz','Location','SouthWest');
-    figconfig
-    if png,print('-dpng','./figures/main_plot_GIC.png');end
-
+if (0)
 %% Histograms of a_o and b_o values 
 % Computed using 3600 values to compute instead of using all data.
 fn=fn+1;
@@ -86,7 +18,7 @@ figure(fn);
     ylabel('# in bin');
     th = title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
     figconfig
-    if png,print('-dpng','./figures/main_plot_ao_hist.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_ao_hist_%s.png',dirfig,dateo));end
     
 fn=fn+1;
 figure(fn);
@@ -95,7 +27,7 @@ figure(fn);
     ylabel('# in bin');
     th = title(sprintf('b_o = %0.2f +/- %.2f [A km/V]',1000*bo,1000*bobootstd));
     figconfig
-    if png,print('-dpng','./figures/main_plot_bo_hist.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_bo_hist_%s.png',dirfig,dateo));end
 
 %% Effect of time shift on a_o and b_o
 fn=fn+1;
@@ -107,22 +39,26 @@ figure(fn);clf;hold on;box on;grid on;
     ylabel('[A km/mV]');
     [lh,lo] = legend('a_o','b_o','pe/10');
     figconfig
-    if png,print('-dpng','./figures/main_plot_ao_bo_pe_vs_lag.png');end
-    
+    if png,print('-dpng',sprintf('%s/main_plot_ao_bo_pe_vs_lag_%s.png',dirfig,dateo));end
+end
+
 %% Prediction of Ex using B as driver
 % Using Time Domain (TD) and Frequency Domain (FD) method.
-%
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     plot(tE(Ix),E(Ix,1));
     plot(tE(Ix),Ep_TD(:,1));
     plot(tE(Ix),Ep_FD(:,1));
-    xlabel('Days since 2006-12-13');
+    xlabel(sprintf('Days since %s',dateo));
     ylabel('E_x [mV/km]');
     th = title('B driver');
-    [lh,lo] = legend('Measured','TD','FD','Location','NorthWest');
+    [lh,lo] = legend('Measured',...
+        sprintf('TD; PE = %.2f',pe_nonflag(E(Ix,1),Ep_TD(:,1))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(E(Ix,1),Ep_FD(:,1))),...
+        'Location','SouthWest');
+    %[lh,lo] = legend('Measured','TD','FD','Location','NorthWest');
     figconfig
-    if png,print('-dpng','./figures/main_plot_Expredicted_w_B.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_Expredicted_w_B_%s.png',dirfig,dateo));end
 
 %% Prediction of Ey using B as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
@@ -131,23 +67,53 @@ figure(fn);clf;hold on;box on;grid on;
     plot(tE(Ix),E(Ix,2));
     plot(tE(Ix),Ep_TD(:,2));
     plot(tE(Ix),Ep_FD(:,2));
-    xlabel('Days since 2006-12-13');
+    xlabel(sprintf('Days since %s',dateo));
     ylabel('E_y [mV/km]');
     th = title('B driver');
-    [lh,lo] = legend('Measured','TD','FD','Location','SouthWest');
+    [lh,lo] = legend('Measured',...
+        sprintf('TD; PE = %.2f',pe_nonflag(E(Ix,2),Ep_TD(:,2))),...
+        sprintf('FD; PE = %.2f',pe_nonflag(E(Ix,2),Ep_FD(:,2))),...
+        'Location','SouthWest');
+    %[lh,lo] = legend('Measured','TD','FD','Location','SouthWest');
     figconfig
-    if png,print('-dpng','./figures/main_plot_Eypredicted_w_B.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_Eypredicted_w_B_%s.png',dirfig,dateo));end
+
+%% Response of Ex to impulse in By
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t_TD,H_TD(:,2),'LineWidth',2);
+    plot(t_FD,H_FD(:,2),'LineWidth',2);
+    xlabel('\tau [s]');
+    ylabel('E_x [mV/km]');
+    th = title('E_x response to 1 nT impulse in B_y at \tau = 0');
+    [lh,lo] = legend('TD H_{xy}(\tau)','FD H_{xy}(\tau)');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_Ex_IRF_to_By_%s.png',dirfig,dateo));end
+    
+%% Response of Ey to impulse in Bx
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t_TD,H_TD(:,3),'LineWidth',2);
+    plot(t_FD,H_FD(:,3),'LineWidth',2);
+    xlabel('\tau [s]');
+    ylabel('E_y [mV/km]');
+    th = title('E_y response to 1 nT impulse in B_x at \tau = 0');
+    [lh,lo] = legend('TD H_{yx}(\tau)','FD H_{yx}(\tau)');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_Ey_IRF_to_Bx_%s.png',dirfig,dateo));end
 
 %% Prediction of GIC using B as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
 % Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data. The
 % _Const_ lines correspond to the models
 %
-% $$ GIC(t) = aBx(t) + bBy(t) $$
+% $$ GIC(t) = aoBx(t) + boBy(t) $$
 %
 % and
 %
-% $$ GIC(t) = aBx(t) + bBy(t) + cBz(t) $$
+% $$ GIC(t) = aoBx(t) + boBy(t) + coBz(t) $$
 %
 % where the constants are determined using ordinary least squares
 % regression.  It is curious that addition of the Bz compontent to the
@@ -177,7 +143,7 @@ figure(fn);clf;hold on;box on;grid on;
     plot(tGIC(Ix),GICp3_FD(:,2));
     plot(tGIC(Ix),GICp3_TD0(:,2));
     plot(tGIC(Ix),GICp3_TD03(:,2));
-    xlabel('Days since 2006-12-13');
+    xlabel(sprintf('Days since %s',dateo));
     ylabel('GIC [A]');    
     th = title('B driver');
     [lh,lo] = legend('Measured',...
@@ -188,39 +154,40 @@ figure(fn);clf;hold on;box on;grid on;
         'Location','SouthWest');
     legend boxoff
     figconfig
-    if png,print('-dpng','./figures/main_plot_GICpredicted_w_B');end
+    if png,print('-dpng',sprintf('%s/main_plot_GICpredicted_w_B_%s.png',dirfig,dateo));end
 
-if (0) % For Pierre's IAGA presentation
-    fn=fn+1;
-    figure(fn);clf;hold on;box on;grid on;
-        plot(tGIC(Ix),GIC(Ix,2),'LineWidth',2);
-        plot(tGIC(Ix),GICp3_TD(:,2),'LineWidth',2);
-        xlabel('Days since 2006-12-13');
-        ylabel('GIC [A]');    
-        [lh,oh] = legend('Measured','Predicted using B','Location','SouthWest');
-        th = title('Magnetic Field and GIC Measurements in Memambetsu Japan');
-        legend boxoff
-        set(0,'DefaultAxesFontSize',16);
-        set(th,'FontSize',14)
-        set(lh,'fontsize',16);
-        set(oh,'linewidth',2);
-        if png,print('-dpng','./figures/main_plot_GICpredicted_w_B_Pierre');end
-    fn=fn+1;
-    figure(fn);clf;hold on;box on;grid on;
-        plot(tGIC(Ix),GIC(Ix,2),'LineWidth',2);
-        plot(tGIC(Ix),GICp2_FD(:,2),'LineWidth',2);
-        xlabel('Days since 2006-12-13');
-        ylabel('GIC [A]');
-        [lh,oh] = legend('Measured','Predicted using E','Location','SouthWest');
-        th = title('Electric Field and GIC Measurements in Memambetsu Japan');
-        legend boxoff
-        set(0,'DefaultAxesFontSize',16);
-        set(th,'FontSize',14)
-        set(lh,'fontsize',16);
-        set(oh,'linewidth',2);
-        if png,print('-dpng','./figures/main_plot_GICpredicted_w_E_Pierre');end
-end
+%% Response of GIC to impulse in Bx
+% The red dot for a is the value computed using ordinary linear least
+% squares regression on GIC(t) = aBx(t) + bBy(t).
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t3_TD,H3_TD(:,1),'LineWidth',2);
+    plot(t3_FD,H3_FD(:,4),'LineWidth',2);
+    plot(0,aoB,'r.','MarkerSize',30);
+    xlabel('\tau [s]');
+    ylabel('GIC [A]');
+    th = title('GIC response to 1 nT impulse in B_x at \tau = 0');
+    [lh,lo] = legend('TD a(\tau)','FD a(\tau)','a_o');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_GIC_IRF_to_B_x_%s.png',dirfig,dateo));end
 
+%% Response of GIC to impulse in By
+% The red dot for b is the value computed using ordinary linear least
+% squares regression on GIC(t) = aBx(t) + bBy(t).
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(t3_TD,H3_TD(:,2),'LineWidth',2);
+    plot(t3_FD,H3_FD(:,2),'LineWidth',2);
+    plot(0,boB,'r.','MarkerSize',30);
+    xlabel('Time [s] since nT impulse in B_y');
+    ylabel('GIC [A]');
+    th = title('GIC response to 1 nT impulse in B_y at \tau = 0');
+    [lh,lo] = legend('TD','FD','bo');
+    set(gca,'XLim',[-60,60]);
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_GIC_IRF_to_By_%s.png',dirfig,dateo));end
+    
 %% Prediction of GIC using E as driver
 % Time domain method uses 60*5 causal and 60*5 acausal lag values.
 % Prediction is for GIC LPF @ 1 Hz.  Very similar results for raw data.
@@ -238,7 +205,7 @@ figure(fn);clf;hold on;box on;grid on;
     plot(tGIC(Ix),GICp2_TD(:,2));
     plot(tGIC(Ix),GICp2_FD(:,2));
     plot(tGIC(Ix),GICp2_TD0(:,2));
-    xlabel('Days since 2006-12-13');
+    xlabel(sprintf('Days since %s',dateo));
     ylabel('GIC [A]');
     th = title('E driver');
     [lh,lo] = legend('Measured',...
@@ -247,33 +214,8 @@ figure(fn);clf;hold on;box on;grid on;
         sprintf('Const; PE = %.2f',pe_nonflag(GIC(Ix,2),GICp2_TD0(:,2))),...
         'Location','SouthWest');
     figconfig
-    if png,print('-dpng','./figures/main_plot_GICpredicted_w_E');end
+    if png,print('-dpng',sprintf('%s/main_plot_GICpredicted_w_E_%s.png',dirfig,dateo));end
 
-%% Response of Ex to impulse in By
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(t_TD,H_TD(:,2),'LineWidth',2);
-    plot(t_FD,H_FD(:,2),'LineWidth',2);
-    xlabel('\tau [s]');
-    ylabel('E_x [mV/km]');
-    th = title('E_x response to 1 nT impulse in B_y at \tau = 0');
-    [lh,lo] = legend('TD H_{xy}(\tau)','FD H_{xy}(\tau)');
-    set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_Ex_IRF_to_By.png');end
-    
-%% Response of Ey to impulse in Bx
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(t_TD,H_TD(:,3),'LineWidth',2);
-    plot(t_FD,H_FD(:,3),'LineWidth',2);
-    xlabel('\tau [s]');
-    ylabel('E_y [mV/km]');
-    th = title('E_y response to 1 nT impulse in B_x at \tau = 0');
-    [lh,lo] = legend('TD H_{yx}(\tau)','FD H_{yx}(\tau)');
-    set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_Ey_IRF_to_Bx.png');end
 
 %% Response of GIC to impulse in Ex
 % The red dot for a is the value computed using ordinary linear least
@@ -290,10 +232,10 @@ figure(fn);clf;hold on;box on;grid on;
     xlabel('\tau [s]');
     ylabel('GIC [mA]');
     th = title('GIC response to 1 mV/km impulse in E_x at \tau = 0');
-    [lh,lo] = legend('TD a(\tau)','FD a(\tau)','(10^3/5)\cdot (a_o\cdot 1 mV/km)');
+    [lh,lo] = legend('TD a(\tau)','FD a(\tau)','a_o/5');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ex.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_GIC_IRF_to_Ex_%s.png',dirfig,dateo));end
 
 %% Response of GIC to impulse in Ey
 % The red dot for b is the value computed using ordinary linear least
@@ -311,38 +253,38 @@ figure(fn);clf;hold on;box on;grid on;
     xlabel('\tau [s]');
     ylabel('GIC [mA]');
     th = title('GIC response to 1 mV/km impulse in E_y at \tau = 0');
-    [lh,lo] = legend('TD b(\tau)','FD b(\tau)','(10^3/3)\cdot (b_o\cdot 1 mV/km)');
+    [lh,lo] = legend('TD b(\tau)','FD b(\tau)','b_o/3');
     set(gca,'XLim',[-60,60]);
     figconfig
-    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Ey.png');end
-    
-%% Response of GIC to impulse in Bx
-% The red dot for a is the value computed using ordinary linear least
-% squares regression on GIC(t) = aBx(t) + bBy(t).
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(t3_TD,H3_TD(:,1),'LineWidth',2);
-    plot(t3_FD,H3_FD(:,3),'LineWidth',2);
-    plot(0,aoB,'r.','MarkerSize',30);
-    xlabel('\tau [s]');
-    ylabel('GIC [A]');
-    th = title('GIC response to 1 nT impulse in B_x at \tau = 0');
-    [lh,lo] = legend('TD a(\tau)','FD a(\tau)','(10^3/3)\cdot (b_o\cdot 1 mV/km)');
-    set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_Bx.png');end
+    if png,print('-dpng',sprintf('%s/main_plot_GIC_IRF_to_Ey_%s.png',dirfig,dateo));end
 
-%% Response of GIC to impulse in By
-% The red dot for b is the value computed using ordinary linear least
-% squares regression on GIC(t) = aBx(t) + bBy(t).
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(t3_TD,H3_TD(:,2),'LineWidth',2);
-    plot(t3_FD,H3_FD(:,2),'LineWidth',2);
-    plot(0,boB,'r.','MarkerSize',30);
-    xlabel('Time [s] since nT impulse in B_y');
-    ylabel('GIC [A]');
-    [lh,lo] = legend('TD','FD','bo');
-    set(gca,'XLim',[-60,60]);
-    figconfig
-    if png,print('-dpng','./figures/main_plot_GIC_IRF_to_By.png');end
+if (0) % For Pierre's IAGA presentation
+    fn=fn+1;
+    figure(fn);clf;hold on;box on;grid on;
+        plot(tGIC(Ix),GIC(Ix,2),'LineWidth',2);
+        plot(tGIC(Ix),GICp3_TD(:,2),'LineWidth',2);
+        xlabel(sprintf('Days since %s',dateo));
+        ylabel('GIC [A]');    
+        [lh,oh] = legend('Measured','Predicted using B','Location','SouthWest');
+        th = title('Magnetic Field and GIC Measurements in Memambetsu Japan');
+        legend boxoff
+        set(0,'DefaultAxesFontSize',16);
+        set(th,'FontSize',14)
+        set(lh,'fontsize',16);
+        set(oh,'linewidth',2);
+        if png,print('-dpng','%s/main_plot_GICpredicted_w_B_Pierre');end
+    fn=fn+1;
+    figure(fn);clf;hold on;box on;grid on;
+        plot(tGIC(Ix),GIC(Ix,2),'LineWidth',2);
+        plot(tGIC(Ix),GICp2_FD(:,2),'LineWidth',2);
+        xlabel(sprintf('Days since %s',dateo));
+        ylabel('GIC [A]');
+        [lh,oh] = legend('Measured','Predicted using E','Location','SouthWest');
+        th = title('Electric Field and GIC Measurements in Memambetsu Japan');
+        legend boxoff
+        set(0,'DefaultAxesFontSize',16);
+        set(th,'FontSize',14)
+        set(lh,'fontsize',16);
+        set(oh,'linewidth',2);
+        if png,print('-dpng','%s/main_plot_GICpredicted_w_E_Pierre');end
+end

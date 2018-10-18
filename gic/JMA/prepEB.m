@@ -1,7 +1,9 @@
-function [tE,E,tB,B] = prepEB(res)
+function [tE,E,tB,B] = prepEB(res,dateo,datef,regenfiles)
 
-fnamemat = sprintf('prepEB_%s.mat',res);
-if exist(fnamemat,'file')
+dirmat = sprintf('mat/%s',dateo);
+
+fnamemat = sprintf('%s/prepEB_%s.mat',dirmat,dateo);
+if ~regenfiles && exist(fnamemat,'file')
     load(fnamemat);
     return;
 end
@@ -19,17 +21,20 @@ end
 % Replaces - and - with blank and keeps lines that start with 0 through 9.
 GREP = 'grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt';
 
+do = datenum(dateo,'yyyymmdd');
+df = datenum(datef,'yyyymmdd');
+
 B = [];
-for i = 13:15
-    fname = sprintf('data/jma/mmb/B/mmb200612%02d%s',i,extB);
+for i = do:df
+    ds = datestr(i,'yyyymmdd');
+    fname = sprintf('data/jma/mmb/B/mmb%s%s',ds,extB);
     com = sprintf(GREP,fname);
     system(com);
     load tmp.txt
     B = [B;tmp];
 end
 
-zerotime = datenum(2006,12,13);
-tB = datenum(B(:,1:6)) - zerotime;	 % Seconds since 2006-12-13:00:00:00Z
+tB = datenum(B(:,1:6)) - do; % Seconds since dateo
 B  = B(:,8:10);
 
 fill = 88888;
@@ -53,22 +58,24 @@ for i = 1:3
 end
 
 E = [];
-for i = 13:15
-    fname = sprintf('data/jma/mmb/E/mmb200612%02d%s',i,extE);
+for i = do:df
+    ds = datestr(i,'yyyymmdd');
+    fname = sprintf('data/jma/mmb/E/mmb%s%s',ds,extE);
     com = sprintf(GREP,fname);
     system(com);
     load tmp.txt
     E = [E;tmp];
 end
 
-zerotime = datenum(2006,12,13);
-tE = datenum(E(:,1:6)) - zerotime;	 % Seconds since 2006-12-13:00:00:00Z
+tE = datenum(E(:,1:6)) - do; % Seconds since dateo
 E  = E(:,8:9);
 
-fill = 88888;
+fill1 = 88888;
+fill2 = 99999;
+
 for i = 1:2
-    Ig = find(E(:,i) ~= fill);
-    Ib = find(E(:,i) == fill);
+    Ig = find(E(:,i) ~= fill1 & E(:,i) ~= fill2);
+    Ib = find(E(:,i) == fill1 | E(:,i) == fill2);
     E(:,i) = E(:,i)-mean(E(Ig,i));
     E(Ib,i) = NaN;
 end
@@ -85,6 +92,11 @@ for i = 1:2
     fprintf('Interpolated over %d of %d points in E_%d\n',Nb,N,i)
 end
 
+% Remove spike
+if strcmp(dateo,'20060402')
+    %fprintf('Removing spike in Ey at index 882230\n');
+    %E(882230,2) = E(882229,2);
+end
 delete('tmp.txt');
 
 save(fnamemat,'tE','E','tB','B');

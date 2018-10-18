@@ -1,0 +1,88 @@
+fn = 0;
+
+if png == 1
+    % Open each figure in new window
+    close all
+    set(0,'DefaultFigureWindowStyle','normal');
+else
+    % Dock figure windows
+    set(0,'DefaultFigureWindowStyle','docked');
+end
+
+%Use this to find spikes
+%plot(E)
+%Click on spikes using data cursor in figure window
+%dcm1 = datacursormode(gcf());
+%set(dcm1, 'UpdateFcn', @(obj,event) get(event, 'Position'), 'Enable', 'on');
+
+%% 1-second magnetic field measurements
+% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(tB,B);
+    %plot(tGIC,40*GIC(:,2),'k')
+    xlabel(sprintf('Days since %s',dateo));
+    ylabel('[nT]')
+    th = title('Memambetsu Magnetic Observatory (MMB)');
+    [lh,lo] = legend('B_x','B_y','B_z','Location','NorthWest');
+    figconfig;
+    if png,print('-dpng',sprintf('%s/main_plot_B_%s.png',dirfig,dateo));end
+    %if png,print('-dpdf','./figures/main_plot_B.pdf');end
+
+%% 1-second electric field measurements
+% From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(tE,E);
+    xlabel(sprintf('Days since %s',dateo));
+    ylabel('[mV/km]')
+    [lh,lo] = legend('E_x','E_y','Location','NorthWest');
+    th = title('Memambetsu Magnetic Observatory (MMB)');
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_E_%s.png',dirfig,dateo));end
+
+%% 1-second GIC measurements
+% From S. Watari via email.  Data file has two columns, one is 1-second
+% data and the other is 1-second data low-pass-filtered at @ 1 Hz (no
+% additional details are given for filter).  Results are not dependent on
+% which column was used.
+%
+% This is the original data after converting from JST to UT.  Note that
+% there appears to be a ~66-second shift in this data that clearly appears
+% when the IRF is computed.  The computed GIC response to an impulse in E
+% or B at time zero has a peak at -66 seconds.  This shift was made before
+% all transfer function calculations.
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(tGIC,GIC(:,1));
+    plot(tGIC,GIC(:,2));
+    plot(tGIC,GIC(:,3));
+    %set(gca,'XLim',[0 3])
+    xlabel(sprintf('Days since %s',dateo));
+    ylabel('[A]');
+    th = title('Memambetsu 187 kV substation');    
+    [lh,lo] = legend('GIC @ 1 Hz','GIC @ 1 Hz; LPF @ 1 Hz','Despiked','Location','SouthWest');
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_GIC_%s.png',dirfig,dateo));end
+
+% Compute cross correlation between E and GIC
+[xc,lags] = xcorr(GIC(:,2),E(:,1),60*60,'coeff');
+[~,ix] = max(xc);
+fprintf('xcorr(GIC,Ex) max at %d s lag\n',lags(ix));
+
+[yc,lags] = xcorr(GIC(:,2),E(:,2),60*60,'coeff');
+[~,iy] = max(yc);
+fprintf('xcorr(GIC,Ey) max at %d s lag\n',lags(iy));
+
+[gc,lags] = xcorr(GIC(:,2),GIC(:,2),60*60,'coeff');
+
+fn=fn+1;
+figure(fn);clf;hold on;box on;grid on;
+    plot(lags/3600,xc,'LineWidth',2);
+    plot(lags/3600,yc,'LineWidth',2);
+    plot(lags/3600,gc,'LineWidth',2);
+    xlabel('Lag [hrs]');
+    [lh,lo] = legend('xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)');
+    figconfig
+    if png,print('-dpng',sprintf('%s/main_plot_xcorrelations_%s.png',dirfig,dateo));end
+    %if png,print('-dpdf','./figures/main_plot_xcorrelations.pdf');end
