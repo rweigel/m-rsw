@@ -9,37 +9,37 @@ load(sprintf('%s/mainCompute2_%s.mat',dirmat,dateo)); % Load output of main.m
 
 
 if (0)
-%% Histograms of a_o and b_o values 
-% Computed using 3600 values to compute instead of using all data.
-fn=fn+1;
-figure(fn);
-    hist(1000*aoboot)
-    xlabel('a_o [A km/V]');
-    ylabel('# in bin');
-    th = title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
-    figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_ao_hist_%s.png',dirfig,dateo));end
-    
-fn=fn+1;
-figure(fn);
-    hist(1000*boboot)
-    xlabel('b_o [A km/V]');
-    ylabel('# in bin');
-    th = title(sprintf('b_o = %0.2f +/- %.2f [A km/V]',1000*bo,1000*bobootstd));
-    figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_bo_hist_%s.png',dirfig,dateo));end
+    %% Histograms of a_o and b_o values 
+    % Computed using 3600 values to compute instead of using all data.
+    fn=fn+1;
+    figure(fn);
+        hist(1000*aoboot)
+        xlabel('a_o [A km/V]');
+        ylabel('# in bin');
+        th = title(sprintf('a_o = %0.2f +/- %.2f [A km/V]',1000*ao,1000*aobootstd));
+        figconfig
+        if png,print('-dpng',sprintf('%s/main_plot_ao_hist_%s.png',dirfig,dateo));end
 
-%% Effect of time shift on a_o and b_o
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    plot(tl,aolag,'LineWidth',2);
-    plot(tl,bolag,'LineWidth',2);
-    plot(tl,(1-arvlag)/10,'LineWidth',2);
-    xlabel('Lag');
-    ylabel('[A km/mV]');
-    [lh,lo] = legend('a_o','b_o','pe/10');
-    figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_ao_bo_pe_vs_lag_%s.png',dirfig,dateo));end
+    fn=fn+1;
+    figure(fn);
+        hist(1000*boboot)
+        xlabel('b_o [A km/V]');
+        ylabel('# in bin');
+        th = title(sprintf('b_o = %0.2f +/- %.2f [A km/V]',1000*bo,1000*bobootstd));
+        figconfig
+        if png,print('-dpng',sprintf('%s/main_plot_bo_hist_%s.png',dirfig,dateo));end
+
+    %% Effect of time shift on a_o and b_o
+    fn=fn+1;
+    figure(fn);clf;hold on;box on;grid on;
+        plot(tl,aolag,'LineWidth',2);
+        plot(tl,bolag,'LineWidth',2);
+        plot(tl,(1-arvlag)/10,'LineWidth',2);
+        xlabel('Lag');
+        ylabel('[A km/mV]');
+        [lh,lo] = legend('a_o','b_o','pe/10');
+        figconfig
+        if png,print('-dpng',sprintf('%s/main_plot_ao_bo_pe_vs_lag_%s.png',dirfig,dateo));end
 end
 
 %% Prediction of Ex using B as driver

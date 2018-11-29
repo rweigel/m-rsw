@@ -1,4 +1,4 @@
-function [Z,fe,H,t,Ep] = transferfnFD(B,E,method,winfn,winopts)
+function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 
 if nargin < 6
     verbose = 0;
@@ -12,6 +12,9 @@ end
 if (nargin < 5)
     winopts = [];
 end
+if (nargin < 6)
+    sigma = 1;
+end
 
 N = size(B,1);
 f = [0:N/2]'/N;
@@ -23,8 +26,8 @@ ftE = ftE(1:N/2+1,:);
 
 if ~isempty(winopts)
     df = winopts;
-    % Smooth in frequency domain with rectangular window.
-    Ic = [df+1:df:length(f)-df]; % Indicies of center points
+    % Linearly spaced center frequencies
+    Ic = [df+1:df:length(f)-df]; % Indices of center points
     for j = 1:length(Ic)
         fe(j) = f(Ic(j)); % Evaluation frequency
         Ne(j) = df;       % Number of points to right and left used in window.
@@ -54,6 +57,7 @@ for j = 1:length(Ic)
     end
     r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
 
+    
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
     if verbose
@@ -61,30 +65,33 @@ for j = 1:length(Ic)
                 fe(j),length(r),fa,fb)
     end
     
-    Zxy1(j) = sum(W.*ftE(r,1).*conj(ftB(r,2)))/sum(W.*ftB(r,2).*conj(ftB(r,2)));
-    Zyx1(j) = sum(W.*ftE(r,2).*conj(ftB(r,1)))/sum(W.*ftB(r,1).*conj(ftB(r,1)));
+    Zxy1(j) = sum(W.*(ftE(r,1).*conj(ftB(r,2))))/sum(W.*(ftB(r,2).*conj(ftB(r,2))));
+    Zyx1(j) = sum(W.*(ftE(r,2).*conj(ftB(r,1))))/sum(W.*(ftB(r,1).*conj(ftB(r,1))));
 
-    BxBx(j) = sum(W.*ftB(r,1).*conj(ftB(r,1))); 
-    ByBx(j) = sum(W.*ftB(r,2).*conj(ftB(r,1))); 
-    ExBx(j) = sum(W.*ftE(r,1).*conj(ftB(r,1))); 
-    EyBx(j) = sum(W.*ftE(r,2).*conj(ftB(r,1))); 
+    BxBx(j) = sum(W.*(ftB(r,1).*conj(ftB(r,1)))); 
+    ByBx(j) = sum(W.*(ftB(r,2).*conj(ftB(r,1)))); 
+    ExBx(j) = sum(W.*(ftE(r,1).*conj(ftB(r,1)))); 
+    EyBx(j) = sum(W.*(ftE(r,2).*conj(ftB(r,1)))); 
 
-    ByBy(j) = sum(W.*ftB(r,2).*conj(ftB(r,2)));
-    ExBy(j) = sum(W.*ftE(r,1).*conj(ftB(r,2))); 
-    EyBy(j) = sum(W.*ftE(r,2).*conj(ftB(r,2))); 
+    ByBy(j) = sum(W.*(ftB(r,2).*conj(ftB(r,2))));
+    ExBy(j) = sum(W.*(ftE(r,1).*conj(ftB(r,2)))); 
+    EyBy(j) = sum(W.*(ftE(r,2).*conj(ftB(r,2)))); 
 
-    ExEx(j) = sum(W.*ftE(r,1).*conj(ftE(r,1)));
-    EyEx(j) = sum(W.*ftE(r,2).*conj(ftE(r,1)));
+    ExEx(j) = sum(W.*(ftE(r,1).*conj(ftE(r,1))));
+    EyEx(j) = sum(W.*(ftE(r,2).*conj(ftE(r,1))));
 
-    EyEy(j) = sum(W.*ftE(r,2).*conj(ftE(r,2)));
+    EyEy(j) = sum(W.*(ftE(r,2).*conj(ftE(r,2))));
 
-    BxBy(j) = sum(W.*ftB(r,1).*conj(ftB(r,2)));
+    BxBy(j) = sum(W.*(ftB(r,1).*conj(ftB(r,2))));
 
     DET(j) =  BxBx(j)*ByBy(j) - BxBy(j)*ByBx(j);
     Zxx(j) = (ExBx(j)*ByBy(j) - ExBy(j)*ByBx(j))/DET(j);
     Zxy(j) = (ExBy(j)*BxBx(j) - ExBx(j)*BxBy(j))/DET(j);
     Zyx(j) = (EyBx(j)*ByBy(j) - EyBy(j)*ByBx(j))/DET(j);
     Zyy(j) = (EyBy(j)*BxBx(j) - EyBx(j)*BxBy(j))/DET(j);
+
+    SB(j,1:2) = [BxBx(j),ByBy(j)];
+    SE(j,1:2) = [ExEx(j),EyEy(j)];
 end
 
 % .' is non-conjugate transpose
@@ -108,7 +115,39 @@ Z(1,I) = 0;
 
 H = Z2H(fe,Z,f);
 H = fftshift(H,1);
-N = (size(H,1)-1)/2;
-t = [-N:N]';
+n = (size(H,1)-1)/2;
+t = [-n:n]';
 
 Ep = real(Zpredict(fe,Z,B));
+
+E_error = Ep-E;
+ftE_error = fft(E_error);
+ftE_error = ftE_error(1:N/2+1,:);
+Pe = ftE_error.*conj(ftE_error); % Power in error as a function of f
+
+for j = 1:length(Ic)
+
+    if strmatch(winfn,'parzen')
+        W = parzenwin(2*Ne(j)+1); 
+        W = W/sum(W);
+    end
+    if strmatch(winfn,'bartlett')
+        W = bartlett(2*Ne(j)+1); 
+        W = W/sum(W);
+    end
+    if strmatch(winfn,'rectangular')
+       W = ones(2*Ne(j)+1,1);  
+       W = W/sum(W);
+    end
+    r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
+
+    fa = f(Ic(j)-Ne(j));    
+    fb = f(Ic(j)+Ne(j));
+    if verbose
+        fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+                fe(j),length(r),fa,fb)
+    end
+    SEerr(j,1) = sum(W.*Pe(r,1));
+    SEerr(j,2) = sum(W.*Pe(r,2));
+end
+

@@ -25,17 +25,21 @@ do = datenum(dateo,'yyyymmdd');
 df = datenum(datef,'yyyymmdd');
 
 B = [];
-for i = do:df
+% -1 due to shift in GIC data by 9 hours
+for i = do-1:df
     ds = datestr(i,'yyyymmdd');
     fname = sprintf('data/jma/mmb/B/mmb%s%s',ds,extB);
+    fprintf('Reading %s\n',fname);
     com = sprintf(GREP,fname);
     system(com);
     load tmp.txt
     B = [B;tmp];
 end
 
-tB = datenum(B(:,1:6)) - do; % Seconds since dateo
-B  = B(:,8:10);
+
+tB = datenum(B(:,1:3)) - do;
+tB = 86400*tB + 60*60*B(:,4) + 60*B(:,5) + B(:,6); 
+B = B(:,8:10);
 
 fill = 88888;
 for i = 1:3
@@ -43,6 +47,12 @@ for i = 1:3
     Ib = find(B(:,i) == fill);
     B(Ig,i) = B(Ig,i)-mean(B(Ig,i));
     B(Ib,i) = NaN;
+end
+
+I = find(B > 5.7e4);
+if ~isempty(I)
+    fprintf('Removing %d values of B > 5.7e4 as likey missed spikes\n',length(I));
+    B(I) = NaN;
 end
 
 fprintf('Interpolating over fill values in B.\n');
@@ -56,18 +66,23 @@ for i = 1:3
     Bi(:,i) = interp1(tg,Bg,ti);
     fprintf('Interpolated over %d of %d points in B_%d\n',Nb,N,i)
 end
+B = Bi;
 
 E = [];
-for i = do:df
+% -1 due to shift in GIC data by 9 hours
+for i = -1+do:df
     ds = datestr(i,'yyyymmdd');
     fname = sprintf('data/jma/mmb/E/mmb%s%s',ds,extE);
+    fprintf('Reading %s\n',fname);
     com = sprintf(GREP,fname);
     system(com);
     load tmp.txt
     E = [E;tmp];
 end
 
-tE = datenum(E(:,1:6)) - do; % Seconds since dateo
+% Compute seconds since dateo
+tE = datenum(E(:,1:3)) - do;
+tE = 86400*tE + 60*60*E(:,4) + 60*E(:,5) + E(:,6); 
 E  = E(:,8:9);
 
 fill1 = 88888;
@@ -91,6 +106,7 @@ for i = 1:2
     Ei(:,i) = interp1(tg,Eg,ti);
     fprintf('Interpolated over %d of %d points in E_%d\n',Nb,N,i)
 end
+E = Ei;
 
 % Remove spike
 if strcmp(dateo,'20060402')
