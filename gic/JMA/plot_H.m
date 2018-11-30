@@ -1,11 +1,9 @@
-function main_plot_H(dateo,intervalno,png)
+function plot_H(dateo,intervalno,png)
 
 dirmat = sprintf('mat/%s',dateo);
 dirfig = sprintf('figures/%s',dateo);
 
-%load(sprintf('%s/main_%s.mat',dirmat,dateo));
-load(sprintf('%s/mainCompute1_%s-%d.mat',dirmat,dateo,intervalno));
-load(sprintf('%s/mainCompute2_FD_%s-%d.mat',dirmat,dateo,intervalno));
+load(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno));
 
 fhs = findobj('Type', 'figure');
 fn = length(fhs);
@@ -25,7 +23,7 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' GIC/E IR
     [lh,lo] = legend('FD a(\tau)','FD b(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_H_GIC_IRF_to_E_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/H_GIC_IRF_to_E_%s-%d.png',dirfig,dateo,intervalno));end
     
 %% Response of GIC to impulse in B
 % The red dot for a is the value computed using ordinary linear least
@@ -42,7 +40,7 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' GIC/B IR
     [lh,lo] = legend('FD a(\tau)','FD b(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_H_GIC_IRF_to_B_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/H_GIC_IRF_to_B_%s-%d.png',dirfig,dateo,intervalno));end
 
 return
 

@@ -1,4 +1,4 @@
-function mainCompute1(tsub,GIC,E,B,dateo,intervalno)
+function compute_ab(tsub,GIC,E,B,dateo,intervalno)
 
 dirmat = sprintf('mat/%s',dateo);
 
@@ -95,4 +95,4 @@ GICp3_TD03(:,1) = basic_linear(B(:,1:3),LIN.Weights,'predict');
 LIN = basic_linear(B(:,1:3),GIC(:,2));
 GICp3_TD03(:,2) = basic_linear(B(:,1:3),LIN.Weights,'predict');
 
-save(sprintf('%s/mainCompute1_%s-%d.mat',dirmat,dateo,intervalno))
+save(sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno))

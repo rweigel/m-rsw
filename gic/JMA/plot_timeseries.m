@@ -1,4 +1,4 @@
-function main_plot_timeseries(dateo,intervalno,png)
+function plot_timeseries(dateo,intervalno,png)
 
 dirfig = sprintf('figures/%s',dateo);
 dirmat = sprintf('mat/%s',dateo);

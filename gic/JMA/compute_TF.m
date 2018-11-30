@@ -1,4 +1,4 @@
-function mainCompute2(t,GIC,E,B,dateo,intervalno)
+function compute_TF(t,GIC,E,B,dateo,intervalno)
 
 dirmat = sprintf('mat/%s',dateo);
 
@@ -34,8 +34,9 @@ fprintf('PE of nondespiked GIC using B = %.2f\n',PE_GBx);
 PE_GB = pe_nonflag(GIC(:,2),GICp_GB(:,2));
 fprintf('PE of despiked GIC using B = %.2f\n',PE_GB); 
 
-%sprintf('%s/mainCompute2_FD_%s-%d.mat',dirmat,dateo,intervalno)
-save(sprintf('%s/mainCompute2_FD_%s-%d.mat',dirmat,dateo,intervalno))
+fname = sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno);
+save(fname);
+fprintf('compute_TF.m: Wrote %s\n',fname);
 
 FD_only = 1;
 
@@ -70,5 +71,5 @@ if (FD_only == 0)
     GICp3_TD(:,2) = GICp3_TD(:,1);
     GICp3_TD(:,1) = NaN*GICp3_TD(:,1);
 
-    save(sprintf('%s/mainCompute2_TD_%s-%d.mat',dirmat,dateo,intervalno))
+    save(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno))
 end

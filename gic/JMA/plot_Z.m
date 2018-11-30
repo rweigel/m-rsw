@@ -1,10 +1,9 @@
-function main_plot_Z(dateo,intervalno,png)
+function plot_Z(dateo,intervalno,png)
 
 dirmat = sprintf('mat/%s',dateo);
 dirfig = sprintf('figures/%s',dateo);
 
-load(sprintf('%s/mainCompute1_%s-%d.mat',dirmat,dateo,intervalno));
-load(sprintf('%s/mainCompute2_FD_%s-%d.mat',dirmat,dateo,intervalno));
+load(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno));
 
 fhs = findobj('Type', 'figure');
 fn = length(fhs);
@@ -21,7 +20,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Z_{xx_yy} GIC/{E,B}']);clf;hold on;
     set(gca, 'YScale', 'log');
     [lh,lo] = legend('Z_{xx} GIC/E','Z_{xy} GIC/E','Z_{xx} GIC/B','Z_{xy} GIC/B','Location','Best');
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_Z_Z_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/Z_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
 
 for j = 1:4
     Phi_GB(:,j) = (180/pi)*atan2(imag(Z_GB(:,j)),real(Z_GB(:,j)));
@@ -38,7 +37,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Phi_{xx,xy} GIC/{E,B}']);clf;hold o
     set(gca, 'XScale', 'log');
     [lh,lo] = legend('\phi_{xx} GIC/E','\phi_{xy} GIC/E','\phi_{xx} GIC/B','\phi_{xy} GIC/B','Location','Best');
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_Z_Phi_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/Z_Phi_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
 
 return    
 %% Plot Z for E/B
@@ -53,7 +52,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Z E/B']);clf;hold on;box on;grid on
     set(gca, 'YScale', 'log');
     [lh,lo] = legend('Z_{xx} E/B','Z_{xy} E/B','Z_{yx} E/B','Z_{yy} E/B','Location','Best');
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_Z_Z_EB_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/Z_EB_%s-%d.png',dirfig,dateo,intervalno));end
 
 %% Plot phi for E/B
 fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Phi E/B']);clf;hold on;box on;grid on;
@@ -64,4 +63,4 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Phi E/B']);clf;hold on;box on;grid 
     ;set(gca, 'XScale', 'log');
     [lh,lo] = legend('\phi_{xx} E/B','\phi_{xy} E/B','\phi_{xx} E/B','\phi_{xy} E/B','Location','Best');
     figconfig
-    if png,print('-dpng',sprintf('%s/main_plot_Z_Phi_EB_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/Phi_EB_%s-%d.png',dirfig,dateo,intervalno));end

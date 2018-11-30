@@ -1,4 +1,4 @@
-function main_plot_raw(tGIC,GIC,tE,E,tB,B,dateo)
+function plot_raw(tGIC,GIC,tE,E,tB,B,dateo)
 
 dirfig = sprintf('figures/%s',dateo);
 

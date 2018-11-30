@@ -1,9 +1,9 @@
-function main_plot_spectra(dateo,intervalno,png)
+function plot_spectra(dateo,intervalno,png)
 
 dirfig = sprintf('figures/%s',dateo);
 dirmat = sprintf('mat/%s',dateo);
 
-load(sprintf('%s/mainCompute2_FD_%s-%d.mat',dirmat,dateo,intervalno));
+load(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno));
 
 if png == 1
     % Open each figure in new window
@@ -28,7 +28,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' PSD']);clf;
     [lh,lo] = legend('GIC','E_x','E_y','B_x','B_y','Location','Best');
     ylabel('Power')
     figconfig;
-    if png,print('-dpng',sprintf('%s/main_plot_summary_spectra_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/All_spectra_%s-%d.png',dirfig,dateo,intervalno));end
 
 fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' GIC PSD errors']);clf;
     loglog(1./fe(2:end),sqrt(SG(2:end,2)),'b','LineWidth',2)
@@ -38,7 +38,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' GIC PSD errors']);clf;
     [lh,lo] = legend('Measured','G/E Error','G/B Error','Location','Best');
     ylabel('Power')
     figconfig;
-    if png,print('-dpng',sprintf('%s/main_plot_summary_GIC_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/GIC_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
 
 fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' E PSD errors']);clf;
     loglog(1./fe(2:end),sqrt(SE(2:end,1)),'r-','LineWidth',2)
@@ -49,7 +49,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' E PSD errors']);clf;
     [lh,lo] = legend('E_x','E_y','E_x error','E_y error','Location','Best');
     ylabel('Power')
     figconfig;
-    if png,print('-dpng',sprintf('%s/main_plot_summary_E_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+    if png,print('-dpng',sprintf('%s/E_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
 
 return
 
@@ -76,6 +76,6 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' coherence']);clf;
     [lh,lo] = legend('G/E','G/B','G/B-G/E','Location','South');
     ylabel('Coherence')
     figconfig;
-    if png,print('-dpng',sprintf('%s/main_plot_summary_FD_coherence_%s.png',dirfig,dateo));end
+    if png,print('-dpng',sprintf('%s/GE_GB_coherence_%s.png',dirfig,dateo));end
 
       

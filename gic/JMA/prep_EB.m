@@ -1,22 +1,15 @@
-function [tE,E,tB,B] = prepEB(res,dateo,datef,regenfiles)
+function [tE,E,tB,B] = prep_EB(dateo,datef,regenfiles)
 
 dirmat = sprintf('mat/%s',dateo);
 
-fnamemat = sprintf('%s/prepEB_%s.mat',dirmat,dateo);
+fnamemat = sprintf('%s/prepEB_%s-%s.mat',dirmat,dateo,datef);
 if ~regenfiles && exist(fnamemat,'file')
     load(fnamemat);
     return;
 end
 
-diary([fnamemat(1:end-3),'log']);
-
-if strcmp(res,'decisecond')
-    extE = 'dgef.dsc';
-    extB = 'vdsc.dsc';
-else
-    extE = 'dgef.sec';
-    extB = 'dsec.sec';
-end    
+extE = 'dgef.sec';
+extB = 'dsec.sec';
 
 % Replaces - and - with blank and keeps lines that start with 0 through 9.
 GREP = 'grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt';
@@ -116,4 +109,3 @@ end
 delete('tmp.txt');
 
 save(fnamemat,'tE','E','tB','B');
-diary off

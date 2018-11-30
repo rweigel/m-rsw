@@ -1,4 +1,4 @@
-function [tGIC,GIC] = prepGIC(dateo,datef,regenfiles)
+function [tGIC,GIC] = prep_GIC(dateo,datef,regenfiles)
 
 dirmat = sprintf('mat/%s',dateo);
 dirtxt = 'data/jma/mmb/GICall';
