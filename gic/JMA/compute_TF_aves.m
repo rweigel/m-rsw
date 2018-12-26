@@ -1,115 +1,97 @@
-function mainCompute3(dateso)
+function compute_TF_aves()
 
-% Get list of all files in mat/DATE. Loop over these files.
+fnamemat = sprintf('mat/aggregate_TFs.mat');
 
+fprintf('compute_TF_aves.m: Loading %s\n',fnamemat);
+load(fnamemat);
+fprintf('compute_TF_aves.m: Loaded %s\n',fnamemat);
 
-for j = 1:length(dateso)
-    dateo = dateso(j);
+fields = {'Z_Mean','Z_Median','Z_Huber','Z_Std',...
+          'Zabs_Mean','Zabs_Median','Zabs_Huber','Zabs_Std',...
+          'Phi_Mean','Phi_Median','Phi_Huber','Phi_Std'};
 
-    dirmat = sprintf('mat/%s',dateo);
-    dirfig = sprintf('figures/%s',dateo);
-
-    fprintf('main_calc_TF_aves.m: Working on %s\n',dateo);
-    i = 1;
-    while 1
-        fnamemat = sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,i);
-        fprintf('main_calc_TF_aves.m: Reading on %s\n',fnamemat); 
-        if ~exist(fnamemat,'file')
-            break;
-        end
-        load(fnamemat);
-
-        SE_All(:,:,i) = SE;
-        SB_All(:,:,i) = SB;
-        SG_All(:,:,i) = SG;
-        Serr_EB_All(:,:,i) = Serr_EB;
-        Serr_GE_All(:,:,i) = Serr_GE;
-        Serr_GB_All(:,:,i) = Serr_GB;
-        
-        Z_EB_All(:,:,i) = Z_EB;
-        Z_GE_All(:,:,i) = Z_GE;
-        Z_GB_All(:,:,i) = Z_GB;
-        H_EB_All(:,:,i) = H_EB;
-        H_GE_All(:,:,i) = H_GE;
-        H_GB_All(:,:,i) = H_GB;
-        
-        % GIC(w) = (a(w)*Zxx(w) + b(w)*Zyx(w))*Bx(w) + (a(w)*Zxy(w) + b(w)*Zyy(w))*By(w)
-        % Bx term                  a(w)         Zxx              b(w)         Zyx
-        Z_GB_Alt_All(:,1,i) = Z_GE(:,1).*Z_EB(:,1) + Z_GE(:,2).*Z_EB(:,3);
-        % By term                  a(w)         Zxy              b(w)         Zyy
-        Z_GB_Alt_All(:,2,i) = Z_GE(:,1).*Z_EB(:,2) + Z_GE(:,2).*Z_EB(:,4);
-
-        % Bx term                  a(w)         Zxx              b(w)         Zyx
-        Z_GB_Alt_All(:,3,i) = Z_GE(:,3).*Z_EB(:,1) + Z_GE(:,4).*Z_EB(:,3);
-        % By term                  a(w)         Zxy              b(w)         Zyy
-        Z_GB_Alt_All(:,4,i) = Z_GE(:,3).*Z_EB(:,2) + Z_GE(:,4).*Z_EB(:,4);
-
-        i = i + 1;
-    end
-
-    % Compute averages of each segment
-    % TODO: Determine variance based on bootstrap instead of 1/sqrt(N), which
-    % is not correct because spectral estimates are not independent.
-    N = size(Z_EB_All,3);
-    for i = 1:2
-        SE_Ave(:,i) = mean(squeeze(SE_All(:,i,:)) ,2);
-        SE_Std(:,i) = std(squeeze( abs(SE_All(:,i,:)) ) ,0, 2);
-        SB_Ave(:,i) = mean(squeeze(SB_All(:,i,:)) ,2);
-        SB_Std(:,i) = std(squeeze( abs(SB_All(:,i,:)) ) ,0, 2);
-        SG_Ave(:,i) = mean(squeeze(SG_All(:,i,:)) ,2);
-        SG_Std(:,i) = std(squeeze( abs(SG_All(:,i,:)) ) ,0, 2);
-
-        Serr_EB_Ave(:,i) = mean(squeeze(Serr_EB_All(:,i,:)) ,2);
-        Serr_EB_Std(:,i) = std(squeeze( abs(Serr_EB_All(:,i,:)) ) ,0, 2);
-        Serr_GE_Ave(:,i) = mean(squeeze(Serr_GE_All(:,i,:)) ,2);
-        Serr_GE_Std(:,i) = std(squeeze( abs(Serr_GE_All(:,i,:)) ) ,0, 2);
-        Serr_GB_Ave(:,i) = mean(squeeze(Serr_GB_All(:,i,:)) ,2);
-        Serr_GB_Std(:,i) = std(squeeze( abs(Serr_GB_All(:,i,:)) ) ,0, 2);
-    end
-
-    for i = 1:4
-            
-        Z_EB_Ave(:,i) = mean(squeeze(Z_EB_All(:,i,:)) ,2);
-        Z_EB_Std(:,i) = std(squeeze( abs(Z_EB_All(:,i,:)) ) ,0, 2);
-        P_EB_Ave(:,i) = (180/pi)*atan2(imag(Z_EB_Ave(:,i)),real(Z_EB_Ave(:,i)));
-        H_EB_Ave(:,i) = mean(squeeze(H_EB_All(:,i,:)) ,2);
-
-        Z_GE_Ave(:,i) = mean(squeeze(Z_GE_All(:,i,:)) ,2);
-        Z_GE_Std(:,i) = std(squeeze( abs(Z_GE_All(:,i,:)) ) ,0, 2);
-        P_GE_Ave(:,i) = (180/pi)*atan2(imag(Z_GE_Ave(:,i)),real(Z_GE_Ave(:,i)));
-        H_GE_Ave(:,i) = mean(squeeze(H_GE_All(:,i,:)) ,2);
-        
-        Z_GB_Ave(:,i) = mean(squeeze(Z_GB_All(:,i,:)) ,2);
-        Z_GB_Std(:,i) = std(squeeze( abs(Z_GB_All(:,i,:)) ) ,0, 2);
-        P_GB_Ave(:,i) = (180/pi)*atan2(imag(Z_GB_Ave(:,i)),real(Z_GB_Ave(:,i)));
-        H_GB_Ave(:,i) = mean(squeeze(H_GB_All(:,i,:)) ,2);
-
-        Z_GB_Alt_Ave(:,i) = mean(squeeze(Z_GB_Alt_All(:,i,:)) ,2);
-        Z_GB_Alt_Std(:,i) = std(squeeze( abs(Z_GB_Alt_All(:,i,:)) ) ,0, 2);
-        P_GB_Alt_Ave(:,i) = (180/pi)*atan2(imag(Z_GB_Alt_Ave(:,i)),real(Z_GB_Alt_Ave(:,i)));
-        
-    end
-
-    %plot(1./fe_EB(2:end),Z_EB_Ave(2:end,i));
-    %U = Z_EB_Std(2:end,i)/sqrt(N);
-    %L = Z_EB_Std(2:end,i)/sqrt(N);
-    %errorbar(1./fe_EB(2:end),Z_EB_Ave(2:end,i),L,U);
-
-    %% Plot predictions using average transfer function
-    All = load(sprintf('%s/main_%s.mat',dirmat,dateo));
-
-    GICp_GB_Ave = Zpredict(fe_GB,Z_GB_Ave,All.B(:,1:2));
-    peB = pe(All.GIC(:,3),GICp_GB_Ave(:,2));
-    errorB = All.GIC(:,3)-GICp_GB_Ave(:,2);
-
-    GICp_GE_Ave = Zpredict(fe_GE,Z_GE_Ave,All.E(:,1:2));
-    peE = pe(All.GIC(:,3),GICp_GE_Ave(:,2));
-    errorE = All.GIC(:,3)-GICp_GE_Ave(:,2);
-
-    fprintf('PE of GIC using GIC/E average = %.2f\n',peE);
-    fprintf('PE of GIC using GIC/B average = %.2f\n',peB);
+for f = 1:length(fields)
+    EB = setfield(EB,fields{f},[]);
+    GE = setfield(GE,fields{f},[]);
+    GB = setfield(GB,fields{f},[]);
 end
 
-fnamemat = sprintf('mat/compute_TF_Aves.mat',dirmat);
-save(fnamemat);
+fprintf('-----------------------------\n')
+fprintf('PEs for Input = E, Output = GIC\n')
+fprintf('-----------------------------\n')
+GE = compute(GE);
+
+fprintf('-----------------------------\n')
+fprintf('PEs for Input = B, Output = GIC\n')
+fprintf('-----------------------------\n')
+GB = compute(GB);
+
+fprintf('-----------------------------\n')
+fprintf('PEs for Input = B, Output = E\n')
+fprintf('-----------------------------\n')
+EB = compute(EB);
+
+fnamemat = sprintf('mat/compute_TF_aves.mat');
+fprintf('compute_TF_aves.m: Saving %s\n',fnamemat);
+save(fnamemat,'EB','GE','GB');
 fprintf('compute_TF_aves.m: Saved %s\n',fnamemat);
+
+
+function S = compute(S)
+
+    for i = 1:4
+
+        h = squeeze(S.H(:,i,:));
+        S.H_Mean(:,i)   = mean(h,2);
+        S.H_Median(:,i) = median(h,2);
+        S.H_Standard_Error(:,i) = std(h,0,2)/sqrt(size(h,2));
+
+        % Very slow. TODO: Consider only a restricted range of h.
+        %V = sort(bootstrp(1000,@mean,abs(h).').',2);
+        %S.H_Mean_Standard_Error_Upper(:,i) = V(:,150); 
+        %S.H_Mean_Standard_Error_Lower(:,i) = V(:,1000-150);        
+        %S.H_Huber(:,i)  = ( mlochuber(h') )';
+        % transposes b/c mlochuber only averages across rows.
+        
+        z = squeeze(S.Z(:,i,:));
+        
+        S.Z_Mean(:,i)   = mean(z,2);
+        S.Z_Median(:,i) = median(z,2);
+        S.Z_Huber(:,i)  = ( mlochuber(real(z.')) + sqrt(-1)*mlochuber(imag(z.')) ).';
+        % transposes in above b/c mlochuber only averages across rows.
+        S.Z_Standard_Error(:,i) = std(z,0,2)/sqrt(size(z,2));
+
+        
+        S.Zabs_Mean(:,i)   = mean(abs(z),2);
+        S.Zabs_Median(:,i) = median(abs(z),2);
+        S.Zabs_Huber(:,i)  = mlochuber(abs(z)')';
+        S.Zabs_Standard_Error(:,i) = std(abs(z),0,2)/sqrt(size(abs(z),2));
+
+        V = sort(bootstrp(1000,@mean,abs(z).').',2);
+        S.Zabs_Mean_Standard_Error_Upper(:,i) = V(:,1000-50)-S.Zabs_Mean(:,i); 
+        S.Zabs_Mean_Standard_Error_Lower(:,i) = S.Zabs_Mean(:,i)-V(:,50);
+        
+        S.Phi_Mean(:,i)   = (180/pi)*atan2(imag(S.Z_Mean(:,i)),real(S.Z_Mean(:,i)));
+        S.Phi_Median(:,i) = (180/pi)*atan2(imag(S.Z_Median(:,i)),real(S.Z_Median(:,i)));
+        S.Phi_Huber(:,i)  = (180/pi)*atan2(imag(S.Z_Huber(:,i)),real(S.Z_Huber(:,i)));
+
+    end
+
+    for k = 1:size(S.Input,3)
+        S.Prediction_Mean(:,:,k) = Zpredict(S.fe,S.Z_Mean,S.Input(:,:,k));
+        S.PE_Mean(k,:)           = pe(S.Output(:,:,k),S.Prediction_Mean(:,:,k));
+
+        S.Prediction_Median(:,:,k) = Zpredict(S.fe,S.Z_Median,S.Input(:,:,k));
+        S.PE_Median(k,:)           = pe(S.Output(:,:,k),S.Prediction_Median(:,:,k));
+
+        S.Prediction_Huber(:,:,k)  = Zpredict(S.fe,S.Z_Huber,S.Input(:,:,k));
+        S.PE_Huber(k,:)            = pe(S.Output(:,:,k),S.Prediction_Huber(:,:,k));
+
+        fprintf('Interval %02d: in-sample: %5.2f; mean = %5.2f; median = %5.2f; huber = %5.2f;\n',...
+                k,S.PE(k,2),S.PE_Mean(k,2),S.PE_Median(k,2),S.PE_Huber(k,2));
+    end
+    
+    fprintf('___________________________________________________________________________\n')
+    fprintf('Averages:    in-sample: %5.2f; mean = %5.2f; median = %5.2f; huber = %5.2f;\n',...
+            mean(S.PE(:,2)),mean(S.PE_Mean(:,2)),mean(S.PE_Median(:,2)),mean(S.PE_Huber(:,2)));
+    fprintf('___________________________________________________________________________\n')

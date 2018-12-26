@@ -1,7 +1,42 @@
-function [feP,NeP,IcP] = evalfreq(f,verbose)
+function [fe,Ne,Ic] = evalfreq(f,method,N,verbose)
 
-if (nargin < 2)
+% TODO: Return Il and Iu in addition to Ic
+% Allow N to be interpreted as spacing by N^2 for method = 'logarithmic'
+
+if nargin < 4
     verbose = 0;
+end
+if nargin < 3
+    N = 1;
+end
+if nargin < 2
+    method = 'logarithmic';
+end
+
+if strmatch(method,'linear','exact')
+    % Linearly spaced center frequencies
+    Ic = [N+2:2*N+1:length(f)-N]; % Indices of center points
+    % e.g., if N = 3, first window center at 5 and
+    % window will extend from 2 through 8.
+    % second window center at 12 and window from 9 through 15.
+    for j = 1:length(Ic)
+        fe(j) = f(Ic(j)); % Evaluation frequency
+        Ne(j) = N;        % Number of points to right and left used in window.
+    end
+
+    % Add zero frequency. Ne (# to include to left and right) will always
+    % be 0 at fe=0 so that we never average f=0 with f ~= 0 values.
+    if f(1) == 0
+        fe = [0,fe]';
+        Ne = [0,Ne]';
+        Ic = [1,Ic]';
+    end
+    if size(f,1) > 0
+        fe = fe';
+        Ne = Ne';
+        Ic = Ic';
+    end
+    return;
 end
 
 if (f(1) == 0)
@@ -12,24 +47,23 @@ else
     N = 2*(length(f));
 end
 
-
 % Evaluation frequencies for frequency domain smoothing
 if verbose
     fprintf('--\nComputing evaluation frequencies.\n--\n')
 end
 k = 1;
-feP(k) = f(end)/2;
-NeP(k) = floor(feP(k)/(2*(1/N)));
-IcP(k) = find(f-feP(1) > 0,1);
+fe(k) = f(end)/2;
+Ne(k) = floor(fe(k)/(2*(1/N)));
+Ic(k) = find(f-fe(1) > 0,1);
 if verbose
-    fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
-    fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
-    fprintf('Nearest larger period available:    %.1f\n',1./f(IcP(k))); 
+    fprintf('Computed evaluation frequency:      %.8f\n',fe(k));
+    fprintf('Nearest larger frequency available: %.8f\n',f(Ic(k))); 
+    fprintf('Nearest larger period available:    %.1f\n',1./f(Ic(k))); 
     
-    fl = f(IcP(k)-NeP(k));    
-    fr = f(IcP(k)+NeP(k));
+    fl = f(Ic(k)-Ne(k));    
+    fr = f(Ic(k)+Ne(k));
 
-    r = [IcP(k)-NeP(k):IcP(k)+NeP(k)];  
+    r = [Ic(k)-Ne(k):Ic(k)+Ne(k)];  
     if verbose
 	fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
 		length(r),fl,fr)
@@ -38,24 +72,24 @@ if verbose
     end
 end
 
-while feP(k) > fmin
+while fe(k) > fmin
     k = k+1;
-    tmp = feP(1)/sqrt(2^(k-1));
-    %tmp = feP(1)/(1.1^(k-1));
+    tmp = fe(1)/sqrt(2^(k-1));
+    %tmp = fe(1)/(1.1^(k-1));
     if (tmp < fmin),break,end
-    feP(k) = tmp;
-    IcP(k) = find(f-feP(k) > 0,1);
+    fe(k) = tmp;
+    Ic(k) = find(f-fe(k) > 0,1);
     if verbose
-	fprintf('Computed evaluation frequency:      %.8f\n',feP(k));
-	fprintf('Nearest larger frequency available: %.8f\n',f(IcP(k))); 
-    fprintf('Nearest larger period available:        %.1f\n',1./f(IcP(k)));     
+        fprintf('Computed evaluation frequency:      %.8f\n',fe(k));
+        fprintf('Nearest larger frequency available: %.8f\n',f(Ic(k))); 
+        fprintf('Nearest larger period available:        %.1f\n',1./f(Ic(k)));     
     end
-    feP(k) = f(IcP(k));
+    fe(k) = f(Ic(k));
     % Number of points to left and right of fe to apply window to.
-    NeP(k) = floor(feP(k)/(2*(1/N)));
-    fl = f(IcP(k)-NeP(k));    
-    fr = f(IcP(k)+NeP(k));
-    r = [IcP(k)-NeP(k):IcP(k)+NeP(k)];  
+    Ne(k) = floor(fe(k)/(2*(1/N)));
+    fl = f(Ic(k)-Ne(k));    
+    fr = f(Ic(k)+Ne(k));
+    r = [Ic(k)-Ne(k):Ic(k)+Ne(k)];  
     if verbose
 	fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
 		length(r),fl,fr)
@@ -66,30 +100,30 @@ while feP(k) > fmin
 end
 
 if (verbose)
-    fprintf('Created %d evaluation frequencies.\n',length(feP));
+    fprintf('Created %d evaluation frequencies.\n',length(fe));
 end
-feP = fliplr(feP);
-NeP = fliplr(NeP);
-IcP = fliplr(IcP);
+fe = fliplr(fe);
+Ne = fliplr(Ne);
+Ic = fliplr(Ic);
 
-lo = length(feP);
-[feP,Iu] = unique(feP);
-NeP = NeP(Iu);
-IcP = IcP(Iu);
-if (lo > length(feP))
+lo = length(fe);
+[fe,Iu] = unique(fe);
+Ne = Ne(Iu);
+Ic = Ic(Iu);
+if (lo > length(fe))
     if (verbose)
-	fprintf('Removed %d duplicate frequencies.\n',lo-length(feP));
+	fprintf('Removed %d duplicate frequencies.\n',lo-length(fe));
     end
 end
 
 % Add zero frequency and have outputs match dimension of input f.
 
 if (size(f,1) > 0)
-    feP = [0,feP]';
-    NeP = [0,NeP]';
-    IcP = [1,IcP]';
+    fe = [0,fe]';
+    Ne = [0,Ne]';
+    Ic = [1,Ic]';
 else
-    feP = [0,feP];
-    NeP = [0,NeP];
-    IcP = [1,IcP];
+    fe = [0,fe];
+    Ne = [0,Ne];
+    Ic = [1,Ic];
 end	

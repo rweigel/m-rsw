@@ -1,0 +1,1094 @@
+main.m: Removed 308 possible spikes in E(:,1).
+main.m: Removed 31 possible spikes in E(:,2).
+main.m: Removed 457 possible spikes in GIC.
+PE of Ex using B = 0.80
+PE of Ey using B = 0.92
+PE of nondespiked GIC using E = 0.78
+PE of despiked GIC using E    = 0.78
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.98
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20061214/compute_TF_20061214-0.mat
+xcorr(GIC,Ex) max at 8 s lag
+xcorr(GIC,Ey) max at -1 s lag
+-------
+Interval 1 of 2 for 20061214
+PE of Ex using B = 0.61
+PE of Ey using B = 0.74
+PE of nondespiked GIC using E = 0.79
+PE of despiked GIC using E    = 0.79
+PE of nondespiked GIC using B = 0.86
+PE of despiked GIC using B = 0.86
+compute_TF.m: Wrote mat/20061214/compute_TF_20061214-1.mat
+xcorr(GIC,Ex) max at -2782 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 2 of 2 for 20061214
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.78
+PE of Ey using B = 0.89
+PE of nondespiked GIC using E = 0.71
+PE of despiked GIC using E    = 0.71
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20061214/compute_TF_20061214-2.mat
+xcorr(GIC,Ex) max at 10 s lag
+xcorr(GIC,Ey) max at -1 s lag
+main.m: Removed 42 possible spikes in E(:,1).
+main.m: Removed 1 possible spikes in E(:,2).
+main.m: Removed 131 possible spikes in GIC.
+PE of Ex using B = 0.97
+PE of Ey using B = 0.93
+PE of nondespiked GIC using E = 0.86
+PE of despiked GIC using E    = 0.85
+PE of nondespiked GIC using B = 0.97
+PE of despiked GIC using B = 0.97
+compute_TF.m: Wrote mat/20060819/compute_TF_20060819-0.mat
+xcorr(GIC,Ex) max at 12 s lag
+xcorr(GIC,Ey) max at -19 s lag
+-------
+Interval 1 of 3 for 20060819
+PE of Ex using B = 0.86
+PE of Ey using B = 0.68
+PE of nondespiked GIC using E = 0.88
+PE of despiked GIC using E    = 0.88
+PE of nondespiked GIC using B = 0.84
+PE of despiked GIC using B = 0.84
+compute_TF.m: Wrote mat/20060819/compute_TF_20060819-1.mat
+xcorr(GIC,Ex) max at 29 s lag
+xcorr(GIC,Ey) max at -2 s lag
+-------
+Interval 2 of 3 for 20060819
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.92
+PE of Ey using B = 0.88
+PE of nondespiked GIC using E = 0.91
+PE of despiked GIC using E    = 0.91
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.83
+PE of despiked GIC using B = 0.82
+compute_TF.m: Wrote mat/20060819/compute_TF_20060819-2.mat
+xcorr(GIC,Ex) max at 5 s lag
+xcorr(GIC,Ey) max at -71 s lag
+-------
+Interval 3 of 3 for 20060819
+PE of Ex using B = 0.88
+PE of Ey using B = 0.70
+PE of nondespiked GIC using E = 0.94
+PE of despiked GIC using E    = 0.93
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.94
+compute_TF.m: Wrote mat/20060819/compute_TF_20060819-3.mat
+xcorr(GIC,Ex) max at 5 s lag
+xcorr(GIC,Ey) max at -12 s lag
+main.m: Removed 126 possible spikes in E(:,1).
+main.m: Removed 53 possible spikes in E(:,2).
+main.m: Removed 402 possible spikes in GIC.
+PE of Ex using B = 0.92
+PE of Ey using B = 0.93
+PE of nondespiked GIC using E = 0.88
+PE of despiked GIC using E    = 0.88
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.99
+PE of despiked GIC using B = 0.99
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-0.mat
+xcorr(GIC,Ex) max at 57 s lag
+xcorr(GIC,Ey) max at -1 s lag
+-------
+Interval 1 of 6 for 20061107
+PE of Ex using B = 0.33
+PE of Ey using B = 0.75
+PE of nondespiked GIC using E = 0.87
+PE of despiked GIC using E    = 0.87
+PE of nondespiked GIC using B = 0.81
+PE of despiked GIC using B = 0.81
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-1.mat
+xcorr(GIC,Ex) max at -819 s lag
+xcorr(GIC,Ey) max at 0 s lag
+-------
+Interval 2 of 6 for 20061107
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.80
+PE of Ey using B = 0.57
+PE of nondespiked GIC using E = 0.73
+PE of despiked GIC using E    = 0.74
+PE of nondespiked GIC using B = 0.65
+PE of despiked GIC using B = 0.66
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-2.mat
+xcorr(GIC,Ex) max at -1180 s lag
+xcorr(GIC,Ey) max at -833 s lag
+-------
+Interval 3 of 6 for 20061107
+PE of Ex using B = 0.94
+PE of Ey using B = 0.81
+PE of nondespiked GIC using E = 0.81
+PE of despiked GIC using E    = 0.81
+PE of nondespiked GIC using B = 0.83
+PE of despiked GIC using B = 0.83
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-3.mat
+xcorr(GIC,Ex) max at -804 s lag
+xcorr(GIC,Ey) max at -1760 s lag
+-------
+Interval 4 of 6 for 20061107
+PE of Ex using B = 0.82
+PE of Ey using B = 0.88
+PE of nondespiked GIC using E = 0.88
+PE of despiked GIC using E    = 0.88
+PE of nondespiked GIC using B = 0.96
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-4.mat
+xcorr(GIC,Ex) max at 190 s lag
+xcorr(GIC,Ey) max at 128 s lag
+-------
+Interval 5 of 6 for 20061107
+PE of Ex using B = 0.87
+PE of Ey using B = 0.83
+PE of nondespiked GIC using E = 0.74
+PE of despiked GIC using E    = 0.73
+PE of nondespiked GIC using B = 0.94
+PE of despiked GIC using B = 0.94
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-5.mat
+xcorr(GIC,Ex) max at 0 s lag
+xcorr(GIC,Ey) max at -2 s lag
+-------
+Interval 6 of 6 for 20061107
+PE of Ex using B = 0.92
+PE of Ey using B = 0.83
+PE of nondespiked GIC using E = 0.92
+PE of despiked GIC using E    = 0.92
+PE of nondespiked GIC using B = 0.97
+PE of despiked GIC using B = 0.97
+compute_TF.m: Wrote mat/20061107/compute_TF_20061107-6.mat
+xcorr(GIC,Ex) max at 0 s lag
+xcorr(GIC,Ey) max at -7 s lag
+main.m: Removed 21 possible spikes in E(:,1).
+main.m: Removed 0 possible spikes in E(:,2).
+main.m: Removed 493 possible spikes in GIC.
+PE of Ex using B = 0.95
+PE of Ey using B = 0.93
+PE of nondespiked GIC using E = 0.70
+PE of despiked GIC using E    = 0.70
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.92
+PE of despiked GIC using B = 0.92
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-0.mat
+xcorr(GIC,Ex) max at 5 s lag
+xcorr(GIC,Ey) max at -3 s lag
+-------
+Interval 1 of 9 for 20060402
+PE of Ex using B = 0.85
+PE of Ey using B = 0.93
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.71
+PE of despiked GIC using E    = 0.71
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.55
+PE of despiked GIC using B = 0.55
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-1.mat
+xcorr(GIC,Ex) max at -2053 s lag
+xcorr(GIC,Ey) max at -2989 s lag
+-------
+Interval 2 of 9 for 20060402
+PE of Ex using B = 0.84
+PE of Ey using B = 0.80
+PE of nondespiked GIC using E = 0.89
+PE of despiked GIC using E    = 0.90
+PE of nondespiked GIC using B = 0.92
+PE of despiked GIC using B = 0.93
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-2.mat
+xcorr(GIC,Ex) max at -2347 s lag
+xcorr(GIC,Ey) max at -3583 s lag
+-------
+Interval 3 of 9 for 20060402
+PE of Ex using B = 0.94
+PE of Ey using B = 0.80
+PE of nondespiked GIC using E = 0.94
+PE of despiked GIC using E    = 0.94
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-3.mat
+xcorr(GIC,Ex) max at -2301 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 4 of 9 for 20060402
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.96
+PE of Ey using B = 0.89
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.92
+PE of despiked GIC using E    = 0.92
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-4.mat
+xcorr(GIC,Ex) max at 196 s lag
+xcorr(GIC,Ey) max at 276 s lag
+-------
+Interval 5 of 9 for 20060402
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.77
+PE of Ey using B = 0.63
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+PE of nondespiked GIC using B = 0.96
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-5.mat
+xcorr(GIC,Ex) max at 77 s lag
+xcorr(GIC,Ey) max at 81 s lag
+-------
+Interval 6 of 9 for 20060402
+PE of Ex using B = 0.85
+PE of Ey using B = 0.59
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.87
+PE of despiked GIC using E    = 0.87
+PE of nondespiked GIC using B = 0.91
+PE of despiked GIC using B = 0.91
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-6.mat
+xcorr(GIC,Ex) max at -3 s lag
+xcorr(GIC,Ey) max at -63 s lag
+-------
+Interval 7 of 9 for 20060402
+PE of Ex using B = 0.96
+PE of Ey using B = 0.84
+PE of nondespiked GIC using E = 0.93
+PE of despiked GIC using E    = 0.93
+PE of nondespiked GIC using B = 0.94
+PE of despiked GIC using B = 0.94
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-7.mat
+xcorr(GIC,Ex) max at -3564 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 8 of 9 for 20060402
+PE of Ex using B = 0.94
+PE of Ey using B = 0.97
+PE of nondespiked GIC using E = 0.82
+PE of despiked GIC using E    = 0.82
+PE of nondespiked GIC using B = 0.90
+PE of despiked GIC using B = 0.91
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-8.mat
+xcorr(GIC,Ex) max at 5 s lag
+xcorr(GIC,Ey) max at -9 s lag
+-------
+Interval 9 of 9 for 20060402
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.95
+PE of Ey using B = 0.97
+PE of nondespiked GIC using E = 0.92
+PE of despiked GIC using E    = 0.92
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20060402/compute_TF_20060402-9.mat
+xcorr(GIC,Ex) max at -1 s lag
+xcorr(GIC,Ey) max at -5 s lag
+main.m: Removed 135 possible spikes in E(:,1).
+main.m: Removed 117 possible spikes in E(:,2).
+main.m: Removed 201 possible spikes in GIC.
+PE of Ex using B = 0.97
+PE of Ey using B = 0.95
+PE of nondespiked GIC using E = 0.90
+PE of despiked GIC using E    = 0.90
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.98
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20060805/compute_TF_20060805-0.mat
+xcorr(GIC,Ex) max at 6 s lag
+xcorr(GIC,Ey) max at -4 s lag
+-------
+Interval 1 of 4 for 20060805
+PE of Ex using B = 0.96
+PE of Ey using B = 0.73
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.96
+PE of nondespiked GIC using B = 0.96
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20060805/compute_TF_20060805-1.mat
+xcorr(GIC,Ex) max at -2362 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 2 of 4 for 20060805
+PE of Ex using B = 0.94
+PE of Ey using B = 0.62
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.90
+PE of despiked GIC using E    = 0.91
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.87
+PE of despiked GIC using B = 0.87
+compute_TF.m: Wrote mat/20060805/compute_TF_20060805-2.mat
+xcorr(GIC,Ex) max at -3291 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 3 of 4 for 20060805
+PE of Ex using B = 0.95
+PE of Ey using B = 0.87
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+PE of nondespiked GIC using B = 0.96
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20060805/compute_TF_20060805-3.mat
+xcorr(GIC,Ex) max at 119 s lag
+xcorr(GIC,Ey) max at 148 s lag
+-------
+Interval 4 of 4 for 20060805
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.89
+PE of Ey using B = 0.77
+PE of nondespiked GIC using E = 0.98
+PE of despiked GIC using E    = 0.98
+PE of nondespiked GIC using B = 0.93
+PE of despiked GIC using B = 0.93
+compute_TF.m: Wrote mat/20060805/compute_TF_20060805-4.mat
+xcorr(GIC,Ex) max at 3 s lag
+xcorr(GIC,Ey) max at -2 s lag
+main.m: Removed 57 possible spikes in E(:,1).
+main.m: Removed 18 possible spikes in E(:,2).
+main.m: Removed 209 possible spikes in GIC.
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of Ex using B = 0.93
+PE of Ey using B = 0.96
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.96
+PE of nondespiked GIC using B = 0.97
+PE of despiked GIC using B = 0.97
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-0.mat
+xcorr(GIC,Ex) max at -1 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 1 of 5 for 20060725
+PE of Ex using B = 0.94
+PE of Ey using B = 0.69
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.94
+PE of despiked GIC using E    = 0.94
+PE of nondespiked GIC using B = 0.98
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-1.mat
+xcorr(GIC,Ex) max at -1 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 2 of 5 for 20060725
+PE of Ex using B = 0.93
+PE of Ey using B = 0.67
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.96
+PE of nondespiked GIC using B = 0.97
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-2.mat
+xcorr(GIC,Ex) max at -1 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 3 of 5 for 20060725
+PE of Ex using B = 0.95
+PE of Ey using B = 0.83
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.95
+PE of nondespiked GIC using B = 0.97
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-3.mat
+xcorr(GIC,Ex) max at -2719 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 4 of 5 for 20060725
+PE of Ex using B = 0.94
+PE of Ey using B = 0.82
+PE of nondespiked GIC using E = 0.93
+PE of despiked GIC using E    = 0.93
+PE of nondespiked GIC using B = 0.93
+PE of despiked GIC using B = 0.93
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-4.mat
+xcorr(GIC,Ex) max at 0 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 5 of 5 for 20060725
+PE of Ex using B = 0.96
+PE of Ey using B = 0.78
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.96
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20060725/compute_TF_20060725-5.mat
+xcorr(GIC,Ex) max at -2 s lag
+xcorr(GIC,Ey) max at -3588 s lag
+main.m: Removed 65 possible spikes in E(:,1).
+main.m: Removed 4 possible spikes in E(:,2).
+main.m: Removed 222 possible spikes in GIC.
+PE of Ex using B = 0.93
+PE of Ey using B = 0.92
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.98
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20071118/compute_TF_20071118-0.mat
+xcorr(GIC,Ex) max at 155 s lag
+xcorr(GIC,Ey) max at 329 s lag
+-------
+Interval 1 of 3 for 20071118
+PE of Ex using B = 0.70
+PE of Ey using B = 0.48
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.90
+PE of despiked GIC using E    = 0.89
+PE of nondespiked GIC using B = 0.86
+PE of despiked GIC using B = 0.86
+compute_TF.m: Wrote mat/20071118/compute_TF_20071118-1.mat
+xcorr(GIC,Ex) max at -4 s lag
+xcorr(GIC,Ey) max at -2480 s lag
+-------
+Interval 2 of 3 for 20071118
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.78
+PE of Ey using B = 0.67
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20071118/compute_TF_20071118-2.mat
+xcorr(GIC,Ex) max at -1588 s lag
+xcorr(GIC,Ey) max at -3596 s lag
+-------
+Interval 3 of 3 for 20071118
+PE of Ex using B = 0.94
+PE of Ey using B = 0.90
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.95
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.96
+PE of despiked GIC using B = 0.96
+compute_TF.m: Wrote mat/20071118/compute_TF_20071118-3.mat
+xcorr(GIC,Ex) max at 172 s lag
+xcorr(GIC,Ey) max at 391 s lag
+main.m: Removed 15 possible spikes in E(:,1).
+main.m: Removed 0 possible spikes in E(:,2).
+main.m: Removed 95 possible spikes in GIC.
+PE of Ex using B = 0.95
+PE of Ey using B = 0.86
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 82)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',82,0)">line 82</a>)] 
+PE of nondespiked GIC using B = 0.93
+PE of despiked GIC using B = 0.93
+compute_TF.m: Wrote mat/20071122/compute_TF_20071122-0.mat
+xcorr(GIC,Ex) max at -2 s lag
+xcorr(GIC,Ey) max at -6 s lag
+-------
+Interval 1 of 1 for 20071122
+PE of Ex using B = 0.95
+PE of Ey using B = 0.86
+PE of nondespiked GIC using E = 0.95
+PE of despiked GIC using E    = 0.95
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 30)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',30,0)">line 30</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using B = 0.93
+PE of despiked GIC using B = 0.93
+compute_TF.m: Wrote mat/20071122/compute_TF_20071122-1.mat
+xcorr(GIC,Ex) max at -2 s lag
+xcorr(GIC,Ey) max at -6 s lag
+main.m: Removed 33 possible spikes in E(:,1).
+main.m: Removed 0 possible spikes in E(:,2).
+main.m: Removed 114 possible spikes in GIC.
+PE of Ex using B = 0.94
+PE of Ey using B = 0.93
+PE of nondespiked GIC using E = 0.96
+PE of despiked GIC using E    = 0.96
+PE of nondespiked GIC using B = 0.98
+PE of despiked GIC using B = 0.98
+compute_TF.m: Wrote mat/20061128/compute_TF_20061128-0.mat
+xcorr(GIC,Ex) max at -48 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+-------
+Interval 1 of 2 for 20061128
+PE of Ex using B = 0.94
+PE of Ey using B = 0.79
+PE of nondespiked GIC using E = 0.91
+PE of despiked GIC using E    = 0.91
+PE of nondespiked GIC using B = 0.91
+PE of despiked GIC using B = 0.91
+compute_TF.m: Wrote mat/20061128/compute_TF_20061128-1.mat
+xcorr(GIC,Ex) max at -47 s lag
+xcorr(GIC,Ey) max at -54 s lag
+-------
+Interval 2 of 2 for 20061128
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 90)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',90,0)">line 90</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 9)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',9,0)">line 9</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of Ex using B = 0.88
+PE of Ey using B = 0.70
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 106)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',106,0)">line 106</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 188)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',188,0)">line 188</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m', 89)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/transferfn/transferfnFD.m',89,0)">line 89</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('compute_TF', '/home/weigel/git/m-rsw/gic/JMA/compute_TF.m', 21)" style="font-weight:bold">compute_TF</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/compute_TF.m',21,0)">line 21</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 106)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',106,0)">line 106</a>)] 
+PE of nondespiked GIC using E = 0.92
+PE of despiked GIC using E    = 0.92
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20061128/compute_TF_20061128-2.mat
+xcorr(GIC,Ex) max at -49 s lag
+xcorr(GIC,Ey) max at -3600 s lag
+main.m: Removed 19 possible spikes in E(:,1).
+main.m: Removed 0 possible spikes in E(:,2).
+main.m: Removed 59 possible spikes in GIC.
+PE of Ex using B = 0.87
+PE of Ey using B = 0.92
+PE of nondespiked GIC using E = 0.84
+PE of despiked GIC using E    = 0.84
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20061201/compute_TF_20061201-0.mat
+xcorr(GIC,Ex) max at 0 s lag
+xcorr(GIC,Ey) max at -115 s lag
+-------
+Interval 1 of 1 for 20061201
+PE of Ex using B = 0.87
+PE of Ey using B = 0.92
+PE of nondespiked GIC using E = 0.84
+PE of despiked GIC using E    = 0.84
+PE of nondespiked GIC using B = 0.95
+PE of despiked GIC using B = 0.95
+compute_TF.m: Wrote mat/20061201/compute_TF_20061201-1.mat
+xcorr(GIC,Ex) max at 0 s lag
+xcorr(GIC,Ey) max at -115 s lag
+aggregate_TFs.m: Working on 20061214
+  Read mat/20061214/compute_TF_20061214-1.mat
+  Read mat/20061214/compute_TF_20061214-2.mat
+aggregate_TFs.m: Working on 20060819
+  Read mat/20060819/compute_TF_20060819-1.mat
+  Read mat/20060819/compute_TF_20060819-2.mat
+  Read mat/20060819/compute_TF_20060819-3.mat
+aggregate_TFs.m: Working on 20061107
+  Read mat/20061107/compute_TF_20061107-1.mat
+  Read mat/20061107/compute_TF_20061107-2.mat
+  Read mat/20061107/compute_TF_20061107-3.mat
+  Read mat/20061107/compute_TF_20061107-4.mat
+  Read mat/20061107/compute_TF_20061107-5.mat
+  Read mat/20061107/compute_TF_20061107-6.mat
+aggregate_TFs.m: Working on 20060402
+  Read mat/20060402/compute_TF_20060402-1.mat
+  Read mat/20060402/compute_TF_20060402-2.mat
+  Read mat/20060402/compute_TF_20060402-3.mat
+  Read mat/20060402/compute_TF_20060402-4.mat
+  Read mat/20060402/compute_TF_20060402-5.mat
+  Read mat/20060402/compute_TF_20060402-6.mat
+  Read mat/20060402/compute_TF_20060402-7.mat
+  Read mat/20060402/compute_TF_20060402-8.mat
+  Read mat/20060402/compute_TF_20060402-9.mat
+aggregate_TFs.m: Working on 20060805
+  Read mat/20060805/compute_TF_20060805-1.mat
+  Read mat/20060805/compute_TF_20060805-2.mat
+  Read mat/20060805/compute_TF_20060805-3.mat
+  Read mat/20060805/compute_TF_20060805-4.mat
+aggregate_TFs.m: Working on 20060725
+  Read mat/20060725/compute_TF_20060725-1.mat
+  Read mat/20060725/compute_TF_20060725-2.mat
+  Read mat/20060725/compute_TF_20060725-3.mat
+  Read mat/20060725/compute_TF_20060725-4.mat
+  Read mat/20060725/compute_TF_20060725-5.mat
+aggregate_TFs.m: Working on 20071118
+  Read mat/20071118/compute_TF_20071118-1.mat
+  Read mat/20071118/compute_TF_20071118-2.mat
+  Read mat/20071118/compute_TF_20071118-3.mat
+aggregate_TFs.m: Working on 20071122
+  Read mat/20071122/compute_TF_20071122-1.mat
+aggregate_TFs.m: Working on 20061128
+  Read mat/20061128/compute_TF_20061128-1.mat
+  Read mat/20061128/compute_TF_20061128-2.mat
+aggregate_TFs.m: Working on 20061201
+  Read mat/20061201/compute_TF_20061201-1.mat
+aggregate_TFs.m: Saving mat/aggregate_TFs.mat
+aggregate_TFs.m: Saved mat/aggregate_TFs.mat
+compute_TF_aves.m: Loading mat/aggregate_TFs.mat
+compute_TF_aves.m: Loaded mat/aggregate_TFs.mat
+-----------------------------
+PEs for Input = E, Output = GIC
+-----------------------------
+Interval 01: in-sample:  0.79; mean =  0.24; median = -0.66; huber =  0.25;
+Interval 02: in-sample:  0.71; mean =  0.17; median = -0.37; huber =  0.14;
+Interval 03: in-sample:  0.88; mean =  0.47; median =  0.59; huber =  0.46;
+Interval 04: in-sample:  0.91; mean =  0.63; median = -0.06; huber =  0.64;
+Interval 05: in-sample:  0.93; mean =  0.77; median =  0.13; huber =  0.81;
+Interval 06: in-sample:  0.87; mean =  0.53; median = -0.67; huber =  0.52;
+Interval 07: in-sample:  0.74; mean =  0.13; median = -0.62; huber =  0.09;
+Interval 08: in-sample:  0.81; mean =  0.37; median =  0.22; huber =  0.38;
+Interval 09: in-sample:  0.88; mean =  0.62; median =  0.40; huber =  0.60;
+Interval 10: in-sample:  0.73; mean =  0.66; median =  0.23; huber =  0.64;
+Interval 11: in-sample:  0.92; mean =  0.42; median =  0.36; huber =  0.40;
+Interval 12: in-sample:  0.71; mean =  0.21; median =  0.21; huber =  0.14;
+Interval 13: in-sample:  0.90; mean =  0.59; median = -0.13; huber =  0.66;
+Interval 14: in-sample:  0.94; mean =  0.75; median = -0.41; huber =  0.82;
+Interval 15: in-sample:  0.92; mean =  0.65; median =  0.41; huber =  0.63;
+Interval 16: in-sample:  0.95; mean =  0.62; median =  0.40; huber =  0.60;
+Interval 17: in-sample:  0.87; mean =  0.66; median = -0.08; huber =  0.67;
+Interval 18: in-sample:  0.93; mean =  0.62; median =  0.13; huber =  0.67;
+Interval 19: in-sample:  0.82; mean =  0.48; median = -0.64; huber =  0.44;
+Interval 20: in-sample:  0.92; mean =  0.68; median =  0.43; huber =  0.72;
+Interval 21: in-sample:  0.96; mean =  0.64; median =  0.62; huber =  0.69;
+Interval 22: in-sample:  0.91; mean =  0.50; median = -0.49; huber =  0.52;
+Interval 23: in-sample:  0.95; mean =  0.69; median =  0.37; huber =  0.68;
+Interval 24: in-sample:  0.98; mean =  0.82; median = -0.07; huber =  0.87;
+Interval 25: in-sample:  0.94; mean =  0.73; median =  0.06; huber =  0.77;
+Interval 26: in-sample:  0.96; mean =  0.74; median =  0.08; huber =  0.80;
+Interval 27: in-sample:  0.95; mean =  0.77; median = -0.27; huber =  0.80;
+Interval 28: in-sample:  0.93; mean =  0.49; median = -0.37; huber =  0.54;
+Interval 29: in-sample:  0.96; mean =  0.74; median =  0.18; huber =  0.71;
+Interval 30: in-sample:  0.89; mean =  0.35; median =  0.10; huber =  0.36;
+Interval 31: in-sample:  0.95; mean =  0.80; median = -0.03; huber =  0.83;
+Interval 32: in-sample:  0.95; mean =  0.79; median =  0.20; huber =  0.79;
+Interval 33: in-sample:  0.95; mean =  0.90; median =  0.38; huber =  0.90;
+Interval 34: in-sample:  0.91; mean =  0.55; median =  0.70; huber =  0.55;
+Interval 35: in-sample:  0.92; mean =  0.69; median =  0.46; huber =  0.71;
+Interval 36: in-sample:  0.84; mean =  0.76; median =  0.60; huber =  0.73;
+___________________________________________________________________________
+Averages:    in-sample:  0.89; mean =  0.59; median =  0.07; huber =  0.60;
+___________________________________________________________________________
+-----------------------------
+PEs for Input = B, Output = GIC
+-----------------------------
+Interval 01: in-sample:  0.86; mean =  0.68; median =  0.36; huber =  0.69;
+Interval 02: in-sample:  0.95; mean =  0.96; median =  0.75; huber =  0.95;
+Interval 03: in-sample:  0.84; mean =  0.57; median =  0.44; huber =  0.55;
+Interval 04: in-sample:  0.82; mean =  0.68; median =  0.40; huber =  0.67;
+Interval 05: in-sample:  0.94; mean =  0.84; median =  0.55; huber =  0.84;
+Interval 06: in-sample:  0.81; mean =  0.71; median =  0.64; huber =  0.70;
+Interval 07: in-sample:  0.66; mean =  0.57; median = -0.11; huber =  0.58;
+Interval 08: in-sample:  0.83; mean =  0.54; median =  0.07; huber =  0.57;
+Interval 09: in-sample:  0.96; mean =  0.93; median =  0.71; huber =  0.93;
+Interval 10: in-sample:  0.94; mean =  0.85; median =  0.62; huber =  0.86;
+Interval 11: in-sample:  0.97; mean =  0.84; median =  0.68; huber =  0.85;
+Interval 12: in-sample:  0.55; mean =  0.16; median = -0.15; huber =  0.16;
+Interval 13: in-sample:  0.93; mean =  0.75; median = -0.75; huber =  0.75;
+Interval 14: in-sample:  0.96; mean =  0.81; median = -0.81; huber =  0.84;
+Interval 15: in-sample:  0.95; mean =  0.92; median =  0.77; huber =  0.92;
+Interval 16: in-sample:  0.96; mean =  0.90; median =  0.72; huber =  0.90;
+Interval 17: in-sample:  0.91; mean =  0.87; median =  0.38; huber =  0.87;
+Interval 18: in-sample:  0.94; mean =  0.88; median = -0.00; huber =  0.90;
+Interval 19: in-sample:  0.91; mean =  0.93; median =  0.51; huber =  0.92;
+Interval 20: in-sample:  0.95; mean =  0.91; median =  0.61; huber =  0.91;
+Interval 21: in-sample:  0.96; mean =  0.95; median =  0.54; huber =  0.95;
+Interval 22: in-sample:  0.87; mean =  0.85; median =  0.54; huber =  0.84;
+Interval 23: in-sample:  0.96; mean =  0.90; median =  0.58; huber =  0.93;
+Interval 24: in-sample:  0.93; mean =  0.77; median =  0.60; huber =  0.76;
+Interval 25: in-sample:  0.98; mean =  0.70; median = -0.04; huber =  0.66;
+Interval 26: in-sample:  0.98; mean =  0.95; median =  0.08; huber =  0.94;
+Interval 27: in-sample:  0.96; mean =  0.89; median = -0.49; huber =  0.89;
+Interval 28: in-sample:  0.93; mean =  0.98; median =  0.27; huber =  0.97;
+Interval 29: in-sample:  0.95; mean =  0.90; median =  0.02; huber =  0.90;
+Interval 30: in-sample:  0.86; mean =  0.76; median =  0.47; huber =  0.76;
+Interval 31: in-sample:  0.95; mean =  0.83; median =  0.58; huber =  0.84;
+Interval 32: in-sample:  0.96; mean =  0.88; median =  0.39; huber =  0.89;
+Interval 33: in-sample:  0.93; mean =  0.73; median =  0.37; huber =  0.75;
+Interval 34: in-sample:  0.91; mean =  0.69; median =  0.36; huber =  0.70;
+Interval 35: in-sample:  0.95; mean =  0.82; median =  0.13; huber =  0.85;
+Interval 36: in-sample:  0.95; mean =  0.87; median =  0.65; huber =  0.87;
+___________________________________________________________________________
+Averages:    in-sample:  0.91; mean =  0.80; median =  0.32; huber =  0.80;
+___________________________________________________________________________
+-----------------------------
+PEs for Input = B, Output = E
+-----------------------------
+Interval 01: in-sample:  0.74; mean =  0.50; median =  0.32; huber =  0.49;
+Interval 02: in-sample:  0.89; mean =  0.74; median =  0.58; huber =  0.75;
+Interval 03: in-sample:  0.68; mean =  0.45; median =  0.41; huber =  0.44;
+Interval 04: in-sample:  0.88; mean =  0.61; median =  0.58; huber =  0.63;
+Interval 05: in-sample:  0.70; mean =  0.32; median =  0.30; huber =  0.33;
+Interval 06: in-sample:  0.75; mean =  0.22; median =  0.04; huber =  0.22;
+Interval 07: in-sample:  0.57; mean =  0.20; median =  0.17; huber =  0.23;
+Interval 08: in-sample:  0.81; mean =  0.42; median =  0.45; huber =  0.46;
+Interval 09: in-sample:  0.88; mean =  0.74; median =  0.61; huber =  0.75;
+Interval 10: in-sample:  0.83; mean =  0.60; median =  0.51; huber =  0.59;
+Interval 11: in-sample:  0.83; mean =  0.31; median =  0.37; huber =  0.34;
+Interval 12: in-sample:  0.93; mean =  0.78; median =  0.25; huber =  0.79;
+Interval 13: in-sample:  0.80; mean =  0.60; median =  0.18; huber =  0.64;
+Interval 14: in-sample:  0.80; mean =  0.31; median = -0.27; huber =  0.38;
+Interval 15: in-sample:  0.89; mean =  0.77; median =  0.65; huber =  0.78;
+Interval 16: in-sample:  0.63; mean = -0.16; median = -0.10; huber = -0.10;
+Interval 17: in-sample:  0.59; mean =  0.46; median =  0.37; huber =  0.48;
+Interval 18: in-sample:  0.84; mean =  0.71; median =  0.40; huber =  0.74;
+Interval 19: in-sample:  0.97; mean =  0.95; median =  0.50; huber =  0.94;
+Interval 20: in-sample:  0.97; mean =  0.92; median =  0.71; huber =  0.90;
+Interval 21: in-sample:  0.73; mean =  0.46; median =  0.40; huber =  0.44;
+Interval 22: in-sample:  0.62; mean =  0.49; median =  0.28; huber =  0.45;
+Interval 23: in-sample:  0.87; mean =  0.51; median =  0.56; huber =  0.56;
+Interval 24: in-sample:  0.77; mean =  0.44; median =  0.41; huber =  0.45;
+Interval 25: in-sample:  0.69; mean =  0.30; median =  0.00; huber =  0.29;
+Interval 26: in-sample:  0.67; mean =  0.36; median =  0.06; huber =  0.36;
+Interval 27: in-sample:  0.83; mean =  0.56; median =  0.08; huber =  0.57;
+Interval 28: in-sample:  0.82; mean =  0.59; median =  0.43; huber =  0.62;
+Interval 29: in-sample:  0.78; mean =  0.51; median =  0.21; huber =  0.54;
+Interval 30: in-sample:  0.48; mean =  0.27; median =  0.25; huber =  0.27;
+Interval 31: in-sample:  0.67; mean =  0.43; median =  0.37; huber =  0.43;
+Interval 32: in-sample:  0.90; mean =  0.75; median =  0.49; huber =  0.74;
+Interval 33: in-sample:  0.86; mean =  0.65; median =  0.56; huber =  0.64;
+Interval 34: in-sample:  0.79; mean =  0.38; median =  0.44; huber =  0.41;
+Interval 35: in-sample:  0.70; mean =  0.45; median =  0.39; huber =  0.48;
+Interval 36: in-sample:  0.92; mean =  0.33; median =  0.39; huber =  0.38;
+___________________________________________________________________________
+Averages:    in-sample:  0.78; mean =  0.50; median =  0.34; huber =  0.51;
+___________________________________________________________________________
+compute_TF_aves.m: Saving mat/compute_TF_aves.mat
+compute_TF_aves.m: Saved mat/compute_TF_aves.mat
+plot_TF_aves: Loading from mat/compute_TF_aves.mat

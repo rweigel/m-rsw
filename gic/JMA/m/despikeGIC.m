@@ -1,4 +1,4 @@
-function GIC = despike(tGIC,GIC)
+function GIC = despikeGIC(tGIC,GIC)
 
 % Remove spikes in GIC
 GIC(:,3) = GIC(:,2);

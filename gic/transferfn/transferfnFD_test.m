@@ -10,7 +10,7 @@ tau  = 10;  % Filter decay constant
 Ntau = 10;  % Number of filter coefficients = Ntau*tau + 1
 N    = 2e4; % Simulation length
 Nc   = 101;  
-df   = 1;   % Width of rectangualar window
+nR   = 2;   % Width of rectangualar window is 2*nR+1
 Nss  = 4;   % Will remove Nss*Ntau*tau from start of all time series 
 nb   = 0.0; % Noise in B
 ne   = 0.0; % Noise in E
@@ -41,12 +41,55 @@ NE  = [ne*randn(N,1),ne*randn(N,1)];
 NB  = [nb*randn(N,1),nb*randn(N,1)];
 NdB = [ndb*randn(N,1),ndb*randn(N,1)];
 
-% Create signals
-B(:,1) = randn(N,1);
-B(:,2) = randn(N,1);
+dim = 2;
 
-E(:,2) = filter(h,1,B(:,1)+NB(:,1)) + NE(:,2);
-E(:,1) = filter(h,1,B(:,2)+NB(:,2)) + NE(:,1);
+tn = 1;
+
+% Create signals
+if (dim == 1)
+    H(:,1) = h;
+    B(:,1) = randn(N,1);
+    E(:,1) = NE(:,1) + filter(H(:,1),1,B(:,1) + NB(:,1));
+else
+    H = zeros(length(h),4);
+    if tn == 1 % Doing all equal will lead to rank deficient issues.
+        H(:,1) = 0.1*h;
+        H(:,2) = 0.2*h;
+        H(:,3) = 0.3*h;
+        H(:,4) = 0.4*h;
+    end
+    if tn == 2
+        H(:,1) = 0*h; % Need to explain why Zxx and Zyy are not zero for this case.
+        H(:,2) = h;
+        H(:,3) = h;
+        H(:,4) = 0*h;
+    end
+    if tn == 3
+        % Check that one gets same result as above when shifting locations.
+        H(:,1) = h;
+        H(:,2) = 0*h; % Need to explain why Zxx and Zyx are not zero for this case.
+        H(:,3) = 0*h;
+        H(:,4) = h;
+    end
+    if tn == 4 % Doing all equal will lead to rank deficient issues.
+        H(:,1) = 0.1*h;
+        H(:,2) = h;
+        H(:,3) = h;
+        H(:,4) = 0.1*h;
+    end
+    if tn == 5 % Doing all equal will lead to rank deficient issues.
+        H(:,1) = h;
+        H(:,2) = 0.1*h;
+        H(:,3) = 0.1*h;
+        H(:,4) = h;
+    end
+
+    B(:,1) = randn(N,1);
+    B(:,2) = randn(N,1);
+
+    E(:,1) = NE(:,1) + filter(H(:,1),1,B(:,1) + NB(:,1)) + filter(H(:,2),1,B(:,2) + NB(:,2));
+    E(:,2) = NE(:,2) + filter(H(:,3),1,B(:,1) + NB(:,1)) + filter(H(:,4),1,B(:,2) + NB(:,2));
+end
 
 % Remove non-steady-state part of signals
 B  = B(Nss*length(h)+1:end,:);
@@ -66,7 +109,7 @@ end
 N = size(B,1);
 
 %% Window in time domain.
-if (1)
+if (0)
     % TODO: Train on windowed data and re-scale predictions by window
     % W = parzenwin(length(B))
     % Bp(2:end-1) = Bp(2:end-1)./W
@@ -80,11 +123,12 @@ end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Compute exact transfer function and phase
-Z(:,2) = fft(h);
+Z = fft(H);
+Z(Z==0) = eps; % So points show up on loglog plot.
+
 Nh     = size(Z,1);
 Z      = Z(1:floor(Nh/2)+1,:);
 fh     = [0:floor(Nh/2)]'/Nh;
-P(:,2) = (180/pi)*atan2(imag(Z(:,2)),real(Z(:,2)));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -104,23 +148,59 @@ ftNE  = ftNE(1:N/2+1,:);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Time domain
 [Z_TD,fe_TD,H_TD,t_TD,E_TD] = transferfnTD(B,E,Nc);
-P_TD = (180/pi)*atan2(imag(Z_TD),real(Z_TD));
-E_TD_wZ = Zpredict(fe_TD,Z_TD,B); % Prediction of E using convolving B with Z and IFT.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Frequency Domain Rectangular
-[Z_FDR,fe_FDR,H_FDR,t_FDR,E_FDR] = transferfnFD(B,E,1,'rectangular',df);
-P_FDR  = (180/pi)*atan2(imag(Z_FDR),real(Z_FDR));
-E_FDR_wH = Hpredict(t_FDR,H_FDR,B);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+if (0)
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %% Frequency Domain Rectangular
+    for i = 1:6
+        windowfn = sprintf('retangular(%d)',2*nR+1);
+        [Z_FDR(:,:,i),fe_FDR,H_FDR(:,:,i),t_FDR,Ep_FDR(:,:,i)] = transferfnFD(B,E,i,'rectangular',nR);
+        Z_FDR(Z_FDR == 0) = eps;
+    end
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Frequency Domain Parzen
-[Z_FDP,fe_FDP,H_FDP,t_FDP,E_FDP] = transferfnFD(B,E,1,'parzen');
-P_FDP  = (180/pi)*atan2(imag(Z_FDP),real(Z_FDP));
-E_FDP_wH = Hpredict(t_FDP,H_FDP,B);
+for i = 1:6
+    windowfn = sprintf('Parzen',2*nR+1);
+    [Z_FDR(:,:,i),fe_FDR,H_FDR(:,:,i),t_FDR,Ep_FDR(:,:,i)] = transferfnFD(B,E,i,'parzen');
+    Z_FDR(Z_FDR == 0) = eps;
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if size(Z_FDR,2) == 4
+    Zstrs = {'Z_{xx}','Z_{xy}','Z_{yx}','Z_{yy}'};
+end
+if size(Z_FDR,2) == 1
+    Zstrs = {'Z'};
+end
+
+for j = 1:size(Z_FDR,2)
+    figure(j);clf;
+        loglog(fh,abs(Z(:,j)),'k','Marker','+','MarkerSize',10,'LineWidth',5)
+        hold on;grid on;
+        loglog(fe_TD,abs(Z_TD(:,j)),'m','Marker','.','MarkerSize',25,'LineWidth',3);
+        for i = 1:size(Z_FDR,3)
+            loglog(fe_FDR,abs(Z_FDR(:,j,i)),'Marker','.','MarkerSize',15,'LineWidth',2);
+         end
+        xlabel('f')
+        title(sprintf('%s',Zstrs{j}));
+        legend(...
+                'Exact',...
+                sprintf('TD; n_T = %d',length(H_TD)),...
+                sprintf('FD; %s; OLS; min E',windowfn),...
+                sprintf('FD; %s; OLS; min E using regress()',windowfn),...
+                sprintf('FD; %s; Robust; min E using robustfit()',windowfn),...
+                sprintf('FD; %s; OLS; min B',windowfn),...
+                sprintf('FD; %s; OLS; min B using regress()',windowfn),...
+                sprintf('FD; %s; Robust; min B using robustfit()',windowfn),...
+                'Location','Best')
+       plotcmds(['transfer_functions',paramstring],writeimgs)
+end
+
+break
 
 set(0,'DefaultFigureWindowStyle','docked')
 %set(0,'DefaultFigureWindowStyle','normal')

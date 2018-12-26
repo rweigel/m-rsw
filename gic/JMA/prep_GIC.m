@@ -4,7 +4,7 @@ dirmat = sprintf('mat/%s',dateo);
 dirtxt = 'data/jma/mmb/GICall';
 
 fnamemat = sprintf('%s/prepGIC_%s.mat',dirmat,dateo);
-if ~regenfiles && exist(fnamemat,'file')
+if regenfiles == 0 && exist(fnamemat,'file')
     load(fnamemat)
     return;
 end

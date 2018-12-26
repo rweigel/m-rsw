@@ -3,7 +3,7 @@ function [tE,E,tB,B] = prep_EB(dateo,datef,regenfiles)
 dirmat = sprintf('mat/%s',dateo);
 
 fnamemat = sprintf('%s/prepEB_%s-%s.mat',dirmat,dateo,datef);
-if ~regenfiles && exist(fnamemat,'file')
+if regenfiles == 0 && exist(fnamemat,'file')
     load(fnamemat);
     return;
 end
@@ -101,11 +101,6 @@ for i = 1:2
 end
 E = Ei;
 
-% Remove spike
-if strcmp(dateo,'20060402')
-    %fprintf('Removing spike in Ey at index 882230\n');
-    %E(882230,2) = E(882229,2);
-end
 delete('tmp.txt');
 
 save(fnamemat,'tE','E','tB','B');

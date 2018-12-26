@@ -1,11 +1,12 @@
-function compute_TF(t,GIC,E,B,dateo,intervalno)
+function compute_TF(t,GIC,E,B,dateo,intervalno,opts)
 
 dirmat = sprintf('mat/%s',dateo);
 
-window = 'parzen';
+window = opts.window.functionstr; % TODO: Pass function handle.
+method = opts.regression.method; 
 
 % Compute transfer function with B driving E using FD method
-[Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E(:,:),2,window);
+[Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E(:,:),method,window);
 
 PE_EB(1) = pe_nonflag(E(:,1),Ep_EB(:,1));
 fprintf('PE of Ex using B = %.2f\n',PE_EB(1));
@@ -17,22 +18,22 @@ fprintf('PE of Ey using B = %.2f\n',PE_EB(2));
 % case
 % GIC(:,2) is LPF
 % GIC(:,3) is LPF despiked
-[Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E(:,:),[GIC(:,2:3)],2,window);
+[Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E(:,:),[GIC(:,2:3)],method,window);
 
-PE_GEx = pe_nonflag(GIC(:,1),GICp_GE(:,1));
-fprintf('PE of nondespiked GIC using E = %.2f\n',PE_GEx);
+PE_GE(1) = pe_nonflag(GIC(:,1),GICp_GE(:,1));
+fprintf('PE of nondespiked GIC using E = %.2f\n',PE_GE(1));
 
-PE_GE = pe_nonflag(GIC(:,2),GICp_GE(:,2));
-fprintf('PE of despiked GIC using E    = %.2f\n',PE_GE);
+PE_GE(2) = pe_nonflag(GIC(:,2),GICp_GE(:,2));
+fprintf('PE of despiked GIC using E    = %.2f\n',PE_GE(2));
 
 % Compute transfer function with B driving GIC using FD method
-[Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),[GIC(:,2:3)],2,window);
+[Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),[GIC(:,2:3)],method,window);
 
-PE_GBx = pe_nonflag(GIC(:,1),GICp_GB(:,1));
-fprintf('PE of nondespiked GIC using B = %.2f\n',PE_GBx); 
+PE_GB(1) = pe_nonflag(GIC(:,1),GICp_GB(:,1));
+fprintf('PE of nondespiked GIC using B = %.2f\n',PE_GB(1)); 
 
-PE_GB = pe_nonflag(GIC(:,2),GICp_GB(:,2));
-fprintf('PE of despiked GIC using B = %.2f\n',PE_GB); 
+PE_GB(2) = pe_nonflag(GIC(:,2),GICp_GB(:,2));
+fprintf('PE of despiked GIC using B = %.2f\n',PE_GB(2)); 
 
 fname = sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno);
 save(fname);

@@ -1,8 +1,41 @@
 function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
+%TRANSFERFNFD
+%
+%  [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
+%
+%  Methods:
+%
+%  Compute Z in E = BZ
+%    method 1: Uses closed-form equations
+%    method 2: Uses regress()
+%    method 3: Uses robustfit()
+%
+%  Compute Z = C^{-1} in B = CZ
+%    method 1: Uses closed-form equations to compute 
+%    method 2: Uses regress() ...
+%    method 3: Uses robustfit() ...
+%
+%  For method = 1,2,3, solves one of (depending on # cols in E and B)
+%
+%  Ex = ZxxBx
+%
+%  Ex = ZxxBx + ZxyBy
+%
+%  Ex = ZxxBx + ZxyBy
+%  Ey = ZyxBx + ZyyBy
+% 
+%  For methods 4,5,6, solves for Z by computing Z = C^{-1} with C computed
+%  using one of (depending on # cols in E and B)
+%
+%  Bx = CxxEx
+%
+%  Bx = CxxEx + CxyEy (can't be done!)
+%
+%  Bx = CxxEx + CxyEy
+%  By = CyxEx + CyyEy
 
-if nargin < 6
-    verbose = 0;
-end
+
+verbose = 0;
 if (nargin < 3)
     method = 1;
 end
@@ -19,135 +52,196 @@ end
 N = size(B,1);
 f = [0:N/2]'/N;
 
+if ~isempty(winopts)
+    [fe,Ne,Ic] = evalfreq(f,'linear',winopts);
+else
+    [fe,Ne,Ic] = evalfreq(f);
+end
+
+if size(B,2) == 1 && size(E,2) == 1
+    if method <= 3
+        % Case is handled by default.
+    else
+        % Bx = CxxEx
+        method = method - 3;
+        [C,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(E,B,method,winfn,winopts);        
+        Z = 1./C;
+        H = Z2H(fe,Z,f);
+        H = fftshift(H,1);
+        [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
+        return;
+    end
+end
+
+if size(B,2) == 2 && size(E,2) == 1
+    if method <= 3
+        % Case is handled by default.
+    else
+        % Bx = CxxEx + CxyEy does not make sense to request
+        error('This case does not make sense')
+    end
+end
+
+if size(B,2) == 2 && size(E,2) == 2
+    if method <= 3
+        % Ex = ZxxBx + ZxyBy
+        % Ey = ZyxBx + ZyyBy
+        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1),SB,SE(:,1),SEerr(:,1)] = transferfnFD(B,E(:,1),method,winfn,winopts);
+        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2),SB,SE(:,2),SEerr(:,2)] = transferfnFD(B,E(:,2),method,winfn,winopts);
+        return
+    else
+        % Bx = CxxEx + CxyEy
+        % By = CyxEy + CyyEy
+        method = method - 3;
+        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1),SE,SB(:,1),SBerr(:,1)] = transferfnFD(E,B(:,1),method,winfn,winopts);
+        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2),SE,SB(:,2),SBerr(:,2)] = transferfnFD(E,B(:,2),method,winfn,winopts);
+        
+        % Compute Z = C^{-1}
+        DET = C(:,1).*C(:,4)-C(:,2).*C(:,3);
+        Z   = [C(:,4),-C(:,2),-C(:,3),C(:,1)]./repmat(DET,1,4);
+        H = Z2H(fe,Z,f);
+        H = fftshift(H,1);
+        [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),winfn,winopts);
+        [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),winfn,winopts);
+        return;
+    end
+end
+
+
 ftB = fft(B);
 ftE = fft(E);
 ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
-if ~isempty(winopts)
-    df = winopts;
-    % Linearly spaced center frequencies
-    Ic = [df+1:df:length(f)-df]; % Indices of center points
-    for j = 1:length(Ic)
-        fe(j) = f(Ic(j)); % Evaluation frequency
-        Ne(j) = df;       % Number of points to right and left used in window.
-    end
+for j = 2:length(Ic)
 
-    % Add zero frequency.
-    fe = [0,fe]';
-    Ne = [0,Ne]';
-    Ic = [1,Ic]';
-else
-    [fe,Ne,Ic] = evalfreq(f);
-end
-
-for j = 1:length(Ic)
-
-    if strmatch(winfn,'parzen')
+    if strmatch(winfn,'parzen','exact')
         W = parzenwin(2*Ne(j)+1); 
         W = W/sum(W);
     end
-    if strmatch(winfn,'bartlett')
+    if strmatch(winfn,'bartlett','exact')
         W = bartlett(2*Ne(j)+1); 
         W = W/sum(W);
     end
-    if strmatch(winfn,'rectangular')
+    if strmatch(winfn,'rectangular','exact')
        W = ones(2*Ne(j)+1,1);  
        W = W/sum(W);
     end
-    r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
-
+    
+    r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];
     
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
+
     if verbose
         fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                 fe(j),length(r),fa,fb)
     end
-    
-    Zxy1(j) = sum(W.*(ftE(r,1).*conj(ftB(r,2))))/sum(W.*(ftB(r,2).*conj(ftB(r,2))));
-    Zyx1(j) = sum(W.*(ftE(r,2).*conj(ftB(r,1))))/sum(W.*(ftB(r,1).*conj(ftB(r,1))));
 
     BxBx(j) = sum(W.*(ftB(r,1).*conj(ftB(r,1)))); 
-    ByBx(j) = sum(W.*(ftB(r,2).*conj(ftB(r,1)))); 
-    ExBx(j) = sum(W.*(ftE(r,1).*conj(ftB(r,1)))); 
-    EyBx(j) = sum(W.*(ftE(r,2).*conj(ftB(r,1)))); 
-
-    ByBy(j) = sum(W.*(ftB(r,2).*conj(ftB(r,2))));
-    ExBy(j) = sum(W.*(ftE(r,1).*conj(ftB(r,2)))); 
-    EyBy(j) = sum(W.*(ftE(r,2).*conj(ftB(r,2)))); 
-
     ExEx(j) = sum(W.*(ftE(r,1).*conj(ftE(r,1))));
-    EyEx(j) = sum(W.*(ftE(r,2).*conj(ftE(r,1))));
 
-    EyEy(j) = sum(W.*(ftE(r,2).*conj(ftE(r,2))));
+    SE(j,1) = ExEx(j);
+    if size(B,2) == 1
+        SB(j,1) = BxBx(j);
+    else
+        ByBy(j) = sum(W.*(ftB(r,2).*conj(ftB(r,2))));    
+        SB(j,1:2) = [BxBx(j),ByBy(j)];
+    end
+    
+    if method == 1
+        if size(B,2) == 1
+            % Ex = ZxxBx
+            Z(j,1) = sum(W.*(ftE(r,1).*conj(ftB(r,1))))/sum(W.*(ftB(r,1).*conj(ftB(r,1))));
+        else
+            % Ex = ZxxBx + ZxyBy
+            % OLS solution to above. Minimizes errors in Ex.
+            BxBy(j) = sum(W.*(ftB(r,1).*conj(ftB(r,2))));
+            ByBx(j) = sum(W.*(ftB(r,2).*conj(ftB(r,1))));
 
-    BxBy(j) = sum(W.*(ftB(r,1).*conj(ftB(r,2))));
+            ExBx(j) = sum(W.*(ftE(r,1).*conj(ftB(r,1)))); 
+            ExBy(j) = sum(W.*(ftE(r,1).*conj(ftB(r,2)))); 
 
-    DET(j) =  BxBx(j)*ByBy(j) - BxBy(j)*ByBx(j);
-    Zxx(j) = (ExBx(j)*ByBy(j) - ExBy(j)*ByBx(j))/DET(j);
-    Zxy(j) = (ExBy(j)*BxBx(j) - ExBx(j)*BxBy(j))/DET(j);
-    Zyx(j) = (EyBx(j)*ByBy(j) - EyBy(j)*ByBx(j))/DET(j);
-    Zyy(j) = (EyBy(j)*BxBx(j) - EyBx(j)*BxBy(j))/DET(j);
+            BxEx(j) = sum(W.*(ftB(r,1).*conj(ftE(r,1)))); 
 
-    SB(j,1:2) = [BxBx(j),ByBy(j)];
-    SE(j,1:2) = [ExEx(j),EyEy(j)];
+            DET =  BxBy(j)*ByBx(j) - BxBx(j)*ByBy(j);
+            Zxx = (ExBy(j)*ByBx(j) - ExBx(j)*ByBy(j))/DET;
+            Zxy = (ExBx(j)*BxBy(j) - ExBy(j)*BxBx(j))/DET;
+            Z(j,:) = [Zxx,Zxy];
+        end
+    end
+
+    if method == 2
+        % Same as method 1 except using regress function.
+        W = sqrt(W);
+        Wr = repmat(W,1,size(B,2));        
+        Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
+    end
+
+    if method == 3
+        % Same as method 1 except using robustfit function.
+        W = sqrt(W);
+        Wr = repmat(W,1,size(B,2));
+        if size(W,1) < 5
+            Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
+        else
+            Z(j,:) = robustfit(Wr.*ftB(r,:),W.*ftE(r,1),[],[],'off');
+        end
+    end
+
 end
-
-% .' is non-conjugate transpose
-
-if (method == 1)
-    Z(:,1) = zeros(length(Zxy1),1);
-    Z(:,2) = Zxy1.';
-    Z(:,3) = Zyx1.';
-    Z(:,4) = zeros(length(Zxy1),1);
-end
-
-if (method == 2)
-    Z(:,1) = Zxx.';
-    Z(:,2) = Zxy.';
-    Z(:,3) = Zyx.';
-    Z(:,4) = Zyy.';
-end
-
-I = find(isinf(Z(1,:)) == 1 | isnan(Z(1,:)) == 1);
-Z(1,I) = 0;
 
 H = Z2H(fe,Z,f);
 H = fftshift(H,1);
 n = (size(H,1)-1)/2;
 t = [-n:n]';
 
-Ep = real(Zpredict(fe,Z,B));
+[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
 
-E_error = Ep-E;
-ftE_error = fft(E_error);
-ftE_error = ftE_error(1:N/2+1,:);
-Pe = ftE_error.*conj(ftE_error); % Power in error as a function of f
+function [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts)
 
-for j = 1:length(Ic)
+    N = size(B,1);
+    f = [0:N/2]'/N;
 
-    if strmatch(winfn,'parzen')
-        W = parzenwin(2*Ne(j)+1); 
-        W = W/sum(W);
+    if ~isempty(winopts)
+        [fe,Ne,Ic] = evalfreq(f,'linear',winopts);
+    else
+        [fe,Ne,Ic] = evalfreq(f);
     end
-    if strmatch(winfn,'bartlett')
-        W = bartlett(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'rectangular')
-       W = ones(2*Ne(j)+1,1);  
-       W = W/sum(W);
-    end
-    r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
+    
 
-    fa = f(Ic(j)-Ne(j));    
-    fb = f(Ic(j)+Ne(j));
-    if verbose
-        fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
-                fe(j),length(r),fa,fb)
+    Ep = real(Zpredict(fe,Z,B));
+
+    E_error = Ep-E;
+    ftE_error = fft(E_error);
+    ftE_error = ftE_error(1:N/2+1,:);
+    Pe = ftE_error.*conj(ftE_error); % Power in error as a function of f
+
+    for j = 1:length(Ic)
+
+        if strmatch(winfn,'parzen','exact')
+            W = parzenwin(2*Ne(j)+1); 
+            W = W/sum(W);
+        end
+        if strmatch(winfn,'bartlett','exact')
+            W = bartlett(2*Ne(j)+1); 
+            W = W/sum(W);
+        end
+        if strmatch(winfn,'rectangular','exact')
+           W = ones(2*Ne(j)+1,1);  
+           W = W/sum(W);
+        end
+        r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];  
+
+        fa = f(Ic(j)-Ne(j));    
+        fb = f(Ic(j)+Ne(j));
+        if verbose
+            fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
+                    fe(j),length(r),fa,fb)
+        end
+        SEerr(j,1) = sum(W.*Pe(r,1));
+        %SEerr(j,2) = sum(W.*Pe(r,2));
     end
-    SEerr(j,1) = sum(W.*Pe(r,1));
-    SEerr(j,2) = sum(W.*Pe(r,2));
 end
 
+end

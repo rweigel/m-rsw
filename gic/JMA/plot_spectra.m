@@ -60,7 +60,7 @@ w = 2*pi*fe_EB;
 
 err = GICp_GB_Ave(:,2)-GICp_GE_Ave(:,2);
 [Perr_between,ferr] = pwelch(err,window,noverlap,w);
-[C_between,fc] = mscohere(GICp_GB_Ave(:,2),GICp_GE_Ave(:,),window,noverlap,w);
+[C_between,fc] = mscohere(GICp_GB_Ave(:,2),GICp_GE_Ave(:,2),window,noverlap,w);
 
 [Perr_GE,ferr] = pwelch(errorE,window,noverlap,w);
 [C_GE,fc] = mscohere(All.GIC(:,3),GICp_GE_Ave(:,2),window,noverlap,w);
