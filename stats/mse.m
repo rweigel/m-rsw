@@ -1,11 +1,7 @@
 function MSE = mse(y,f)
 %MSE Mean square error between actual and predicted vector.
 % 
-%   MSE(A,P) returns (1/N)*sum( (A-P).^2 )./(std(A,1))^2;
-%
-%   MSE is the mean square error scaled to the variance of the actual
-%   vector, A.  It can be interpreted as the fraction of the variance of A
-%   that is not predicted by P.
+%   MSE(A,P) returns (1/N)*sum( (A-P).^2 )
 %
 %   For matrices, MSE(A,P) returns a column vector with elements containing
 %   the MSE between the respective columns of A and P.
@@ -15,7 +11,7 @@ function MSE = mse(y,f)
 % R.S. Weigel, 04/02/2004.
   
 if (prod(size(y)) ~= prod(size(f)))
-  error('Inputs must be the same size');
+    error('Inputs must be the same size');
 end
   
 if (size(y,1) == 1)
@@ -26,6 +22,6 @@ if (size(y,1) == 1)
   end
 end
 
-MSE = sum((y - f).^2,1)/size(y,1);
+MSE = (sum((y - f).^2,1))/size(y,1);
 
 

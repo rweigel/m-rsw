@@ -40,8 +40,8 @@ for i = 1:size(y,2)
   If = is_flag(f(:,i),FLAG,COND);
   I  = find((Iy == 0) & (If == 0));
   if (length(I) > 1)
-	MSE(1,i) = mse(y(I,i),f(I,i));
+      MSE(1,i) = mse(y(I,i),f(I,i));
   else
-    MSE(1,i) = FLAG;      
+      MSE(1,i) = FLAG;      
   end
 end

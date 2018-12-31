@@ -1,9 +1,9 @@
-function plot_timeseries(dateo,intervalno,png)
+function plot_timeseries(dateo,intervalno,filestr,png)
 
 dirfig = sprintf('figures/%s',dateo);
 dirmat = sprintf('mat/%s',dateo);
 
-load(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno));
+load(sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,intervalno));
 
 fn = 0;
 

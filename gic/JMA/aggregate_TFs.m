@@ -1,9 +1,9 @@
-function aggregate_TFs(dateos)
+function aggregate_TFs(dateos,filestr)
 
-k = 1;
 
-fields = {'PE','fe','S_Error','Z','H','Z_Alt','Input','Output','Input_PSD','Output_PSD'};
+fields = {'PE','PEo','aobo','fe','S_Error','Z','H','Z_Alt','Input_PSD','Output_PSD'};
 
+IO = struct('GIC',[],'E',[],'B',[]);
 EB = struct();
 EG = struct();
 BG = struct();
@@ -14,6 +14,7 @@ for f = 1:length(fields)
     BG = setfield(BG,fields{f},[]);
 end
 
+k = 1;
 for j = 1:length(dateos)
     dateo = dateos{j};
 
@@ -22,24 +23,50 @@ for j = 1:length(dateos)
     f = 1;
     fprintf('aggregate_TFs.m: Working on %s\n',dateo);
     while 1
-        fnamemat = sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,f);
+        fnamemat = sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,f);
+        if ~exist(fnamemat,'file')
+            break;
+        end
+        load(fnamemat);
+        GE.PEo(k,1) = PE_GE;
+        GB.PEo(k,1) = PE_GB;
+
+        GE.CCo(k,1) = CC_GE;
+        GB.CCo(k,1) = CC_GB;
+        
+        GE.MSEo(k,1) = MSE_GE;
+        GB.MSEo(k,1) = MSE_GB;
+        
+        GE.aobo(k,:) = [ao,bo];
+        GB.aobo(k,:) = [hox,hoy];
+        f = f + 1;
+        k = k + 1;
+    end
+end
+
+k = 1;
+for j = 1:length(dateos)
+    dateo = dateos{j};
+
+    dirmat = sprintf('mat/%s',dateo);
+    
+    f = 1;
+    fprintf('aggregate_TFs.m: Working on %s\n',dateo);
+    while 1
+        fnamemat = sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,f);
         if ~exist(fnamemat,'file')
             break;
         end
         load(fnamemat);
         fprintf('  Read %s\n',fnamemat); 
 
-        EB.Input(:,:,k) = B(:,1:2);
-        GE.Input(:,:,k) = E;
-        GB.Input(:,:,k) = B(:,1:2);
+        IO.B(:,:,k) = B(:,1:2);
+        IO.E(:,:,k) = E;
+        IO.GIC(:,:,k) = GIC(:,2:3);
 
         EB.Input_PSD(:,:,k) = SB;
         GE.Input_PSD(:,:,k) = SE;
         GB.Input_PSD(:,:,k) = SB;
-
-        EB.Output(:,:,k) = E;
-        GE.Output(:,:,k) = GIC(:,2:3);
-        GB.Output(:,:,k) = GIC(:,2:3);
 
         EB.Output_PSD(:,:,k) = SE;
         GE.Output_PSD(:,:,k) = SG;
@@ -52,6 +79,14 @@ for j = 1:length(dateos)
         EB.PE(k,:) = PE_EB;
         GE.PE(k,:) = PE_GE;
         GB.PE(k,:) = PE_GB;
+
+        EB.CC(k,:) = CC_EB;
+        GE.CC(k,:) = CC_GE;
+        GB.CC(k,:) = CC_GB;
+
+        EB.MSE(k,:) = MSE_EB;
+        GE.MSE(k,:) = MSE_GE;
+        GB.MSE(k,:) = MSE_GB;
                 
         EB.S_Error(:,:,k) = Serr_EB;
         GE.S_Error(:,:,k) = Serr_GE;
@@ -82,8 +117,8 @@ for j = 1:length(dateos)
 
 end
 
-fnamemat = sprintf('mat/aggregate_TFs.mat');
+fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
 
 fprintf('aggregate_TFs.m: Saving %s\n',fnamemat);
-save(fnamemat,'EB','GE','GB');
+save(fnamemat,'EB','GE','GB','IO');
 fprintf('aggregate_TFs.m: Saved %s\n',fnamemat);

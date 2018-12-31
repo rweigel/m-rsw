@@ -1,0 +1,215 @@
+compute_TF_aves.m: Loading mat/aggregate_TFs-rectangular-parzen-robust_on_Z.mat
+compute_TF_aves.m: Loaded mat/aggregate_TFs-rectangular-parzen-robust_on_Z.mat
+-----------------------------
+PEs for Input = E, Output = GIC
+-----------------------------
+Model 1, Interval 01: PE in-sample:  0.254; PE using mean: = -0.982;
+Model 1, Interval 02: PE in-sample:  0.212; PE using mean: =  0.102;
+Model 1, Interval 03: PE in-sample:  0.638; PE using mean: = -0.046;
+Model 1, Interval 04: PE in-sample:  0.788; PE using mean: =  0.663;
+Model 1, Interval 05: PE in-sample:  0.664; PE using mean: =  0.273;
+Model 1, Interval 06: PE in-sample:  0.651; PE using mean: = -0.467;
+Model 1, Interval 07: PE in-sample:  0.521; PE using mean: = -0.153;
+Model 1, Interval 08: PE in-sample:  0.733; PE using mean: =  0.360;
+Model 1, Interval 09: PE in-sample:  0.590; PE using mean: =  0.397;
+Model 1, Interval 10: PE in-sample:  0.516; PE using mean: =  0.261;
+Model 1, Interval 11: PE in-sample:  0.711; PE using mean: =  0.122;
+Model 1, Interval 12: PE in-sample:  0.163; PE using mean: =  0.087;
+Model 1, Interval 13: PE in-sample:  0.710; PE using mean: =  0.537;
+Model 1, Interval 14: PE in-sample:  0.618; PE using mean: =  0.568;
+Model 1, Interval 15: PE in-sample:  0.714; PE using mean: =  0.679;
+Model 1, Interval 16: PE in-sample:  0.813; PE using mean: =  0.601;
+Model 1, Interval 17: PE in-sample:  0.664; PE using mean: =  0.603;
+Model 1, Interval 18: PE in-sample:  0.580; PE using mean: =  0.469;
+Model 1, Interval 19: PE in-sample:  0.686; PE using mean: =  0.421;
+Model 1, Interval 20: PE in-sample:  0.655; PE using mean: =  0.567;
+Model 1, Interval 21: PE in-sample:  0.641; PE using mean: =  0.517;
+Model 1, Interval 22: PE in-sample:  0.585; PE using mean: =  0.294;
+Model 1, Interval 23: PE in-sample:  0.556; PE using mean: =  0.446;
+Model 1, Interval 24: PE in-sample:  0.663; PE using mean: =  0.486;
+Model 1, Interval 25: PE in-sample:  0.678; PE using mean: =  0.610;
+Model 1, Interval 26: PE in-sample:  0.764; PE using mean: =  0.619;
+Model 1, Interval 27: PE in-sample:  0.735; PE using mean: =  0.623;
+Model 1, Interval 28: PE in-sample:  0.720; PE using mean: =  0.261;
+Model 1, Interval 29: PE in-sample:  0.743; PE using mean: =  0.604;
+Model 1, Interval 30: PE in-sample:  0.701; PE using mean: =  0.114;
+Model 1, Interval 31: PE in-sample:  0.606; PE using mean: =  0.159;
+Model 1, Interval 32: PE in-sample:  0.683; PE using mean: =  0.532;
+Model 1, Interval 33: PE in-sample:  0.720; PE using mean: =  0.711;
+Model 1, Interval 34: PE in-sample:  0.603; PE using mean: =  0.247;
+Model 1, Interval 35: PE in-sample:  0.515; PE using mean: =  0.496;
+Model 1, Interval 36: PE in-sample:  0.750; PE using mean: =  0.739;
+___________________________________________________________________________
+Model 1  Ave PE:         in-sample:  0.626;     using mean:  0.348;
+Model 1  PE Err:         in-sample:  0.025;     using mean:  0.059;
+Model 1 Ave MSE:         in-sample:  0.018;     using mean:  0.026;
+___________________________________________________________________________
+Model 2, Interval 01: PE in-sample:  0.795;    using: mean:  0.241; median = -0.658; huber =  0.249;
+Model 2, Interval 02: PE in-sample:  0.707;    using: mean:  0.174; median = -0.370; huber =  0.139;
+Model 2, Interval 03: PE in-sample:  0.880;    using: mean:  0.469; median =  0.587; huber =  0.455;
+Model 2, Interval 04: PE in-sample:  0.913;    using: mean:  0.633; median = -0.062; huber =  0.645;
+Model 2, Interval 05: PE in-sample:  0.933;    using: mean:  0.767; median =  0.125; huber =  0.812;
+Model 2, Interval 06: PE in-sample:  0.874;    using: mean:  0.532; median = -0.669; huber =  0.524;
+Model 2, Interval 07: PE in-sample:  0.738;    using: mean:  0.129; median = -0.625; huber =  0.086;
+Model 2, Interval 08: PE in-sample:  0.813;    using: mean:  0.374; median =  0.220; huber =  0.384;
+Model 2, Interval 09: PE in-sample:  0.884;    using: mean:  0.616; median =  0.397; huber =  0.595;
+Model 2, Interval 10: PE in-sample:  0.734;    using: mean:  0.658; median =  0.234; huber =  0.645;
+Model 2, Interval 11: PE in-sample:  0.920;    using: mean:  0.423; median =  0.361; huber =  0.396;
+Model 2, Interval 12: PE in-sample:  0.714;    using: mean:  0.208; median =  0.214; huber =  0.137;
+Model 2, Interval 13: PE in-sample:  0.898;    using: mean:  0.594; median = -0.132; huber =  0.658;
+Model 2, Interval 14: PE in-sample:  0.941;    using: mean:  0.748; median = -0.408; huber =  0.824;
+Model 2, Interval 15: PE in-sample:  0.922;    using: mean:  0.650; median =  0.409; huber =  0.626;
+Model 2, Interval 16: PE in-sample:  0.948;    using: mean:  0.620; median =  0.403; huber =  0.599;
+Model 2, Interval 17: PE in-sample:  0.871;    using: mean:  0.657; median = -0.084; huber =  0.669;
+Model 2, Interval 18: PE in-sample:  0.928;    using: mean:  0.617; median =  0.132; huber =  0.670;
+Model 2, Interval 19: PE in-sample:  0.821;    using: mean:  0.478; median = -0.643; huber =  0.436;
+Model 2, Interval 20: PE in-sample:  0.917;    using: mean:  0.677; median =  0.432; huber =  0.723;
+Model 2, Interval 21: PE in-sample:  0.961;    using: mean:  0.638; median =  0.624; huber =  0.685;
+Model 2, Interval 22: PE in-sample:  0.910;    using: mean:  0.500; median = -0.493; huber =  0.519;
+Model 2, Interval 23: PE in-sample:  0.953;    using: mean:  0.688; median =  0.366; huber =  0.680;
+Model 2, Interval 24: PE in-sample:  0.977;    using: mean:  0.816; median = -0.069; huber =  0.875;
+Model 2, Interval 25: PE in-sample:  0.937;    using: mean:  0.725; median =  0.064; huber =  0.771;
+Model 2, Interval 26: PE in-sample:  0.964;    using: mean:  0.742; median =  0.077; huber =  0.804;
+Model 2, Interval 27: PE in-sample:  0.954;    using: mean:  0.770; median = -0.273; huber =  0.801;
+Model 2, Interval 28: PE in-sample:  0.930;    using: mean:  0.492; median = -0.365; huber =  0.542;
+Model 2, Interval 29: PE in-sample:  0.956;    using: mean:  0.744; median =  0.175; huber =  0.714;
+Model 2, Interval 30: PE in-sample:  0.894;    using: mean:  0.355; median =  0.099; huber =  0.355;
+Model 2, Interval 31: PE in-sample:  0.953;    using: mean:  0.798; median = -0.028; huber =  0.827;
+Model 2, Interval 32: PE in-sample:  0.955;    using: mean:  0.786; median =  0.197; huber =  0.786;
+Model 2, Interval 33: PE in-sample:  0.952;    using: mean:  0.902; median =  0.384; huber =  0.901;
+Model 2, Interval 34: PE in-sample:  0.913;    using: mean:  0.551; median =  0.696; huber =  0.547;
+Model 2, Interval 35: PE in-sample:  0.923;    using: mean:  0.692; median =  0.461; huber =  0.708;
+Model 2, Interval 36: PE in-sample:  0.838;    using: mean:  0.756; median =  0.596; huber =  0.732;
+___________________________________________________________________________
+Model 2 Ave PE:          in-sample:  0.892;     using mean:  0.589; median  0.066; huber =  0.598;
+Model 2 PE Err:          in-sample:  0.012;     using mean:  0.032;
+___________________________________________________________________________
+-----------------------------
+PEs for Input = B, Output = GIC
+-----------------------------
+Model 1, Interval 01: PE in-sample:  0.759; PE using mean: = -0.996;
+Model 1, Interval 02: PE in-sample:  0.600; PE using mean: =  0.024;
+Model 1, Interval 03: PE in-sample:  0.636; PE using mean: =  0.504;
+Model 1, Interval 04: PE in-sample:  0.141; PE using mean: = -0.416;
+Model 1, Interval 05: PE in-sample:  0.280; PE using mean: = -0.583;
+Model 1, Interval 06: PE in-sample:  0.697; PE using mean: =  0.316;
+Model 1, Interval 07: PE in-sample:  0.725; PE using mean: =  0.294;
+Model 1, Interval 08: PE in-sample:  0.810; PE using mean: =  0.298;
+Model 1, Interval 09: PE in-sample:  0.472; PE using mean: =  0.213;
+Model 1, Interval 10: PE in-sample:  0.341; PE using mean: =  0.203;
+Model 1, Interval 11: PE in-sample:  0.439; PE using mean: =  0.209;
+Model 1, Interval 12: PE in-sample:  0.189; PE using mean: = -0.826;
+Model 1, Interval 13: PE in-sample:  0.455; PE using mean: = -2.197;
+Model 1, Interval 14: PE in-sample:  0.226; PE using mean: = -1.563;
+Model 1, Interval 15: PE in-sample:  0.522; PE using mean: = -0.892;
+Model 1, Interval 16: PE in-sample:  0.202; PE using mean: = -0.221;
+Model 1, Interval 17: PE in-sample:  0.414; PE using mean: =  0.240;
+Model 1, Interval 18: PE in-sample:  0.828; PE using mean: =  0.448;
+Model 1, Interval 19: PE in-sample:  0.361; PE using mean: = -0.244;
+Model 1, Interval 20: PE in-sample:  0.417; PE using mean: =  0.257;
+Model 1, Interval 21: PE in-sample:  0.702; PE using mean: =  0.444;
+Model 1, Interval 22: PE in-sample:  0.622; PE using mean: =  0.245;
+Model 1, Interval 23: PE in-sample:  0.531; PE using mean: =  0.145;
+Model 1, Interval 24: PE in-sample:  0.197; PE using mean: = -1.132;
+Model 1, Interval 25: PE in-sample:  0.579; PE using mean: = -0.243;
+Model 1, Interval 26: PE in-sample:  0.588; PE using mean: = -0.248;
+Model 1, Interval 27: PE in-sample:  0.580; PE using mean: = -0.103;
+Model 1, Interval 28: PE in-sample:  0.318; PE using mean: = -0.387;
+Model 1, Interval 29: PE in-sample:  0.379; PE using mean: = -0.719;
+Model 1, Interval 30: PE in-sample:  0.865; PE using mean: =  0.658;
+Model 1, Interval 31: PE in-sample:  0.885; PE using mean: =  0.650;
+Model 1, Interval 32: PE in-sample:  0.619; PE using mean: =  0.325;
+Model 1, Interval 33: PE in-sample:  0.613; PE using mean: =  0.569;
+Model 1, Interval 34: PE in-sample:  0.647; PE using mean: =  0.497;
+Model 1, Interval 35: PE in-sample:  0.622; PE using mean: =  0.544;
+Model 1, Interval 36: PE in-sample:  0.593; PE using mean: =  0.510;
+___________________________________________________________________________
+Model 1  Ave PE:         in-sample:  0.524;     using mean: -0.088;
+Model 1  PE Err:         in-sample:  0.034;     using mean:  0.111;
+Model 1 Ave MSE:         in-sample:  0.020;     using mean:  0.042;
+___________________________________________________________________________
+Model 2, Interval 01: PE in-sample:  0.857;    using: mean:  0.684; median =  0.362; huber =  0.694;
+Model 2, Interval 02: PE in-sample:  0.945;    using: mean:  0.957; median =  0.755; huber =  0.954;
+Model 2, Interval 03: PE in-sample:  0.839;    using: mean:  0.574; median =  0.438; huber =  0.547;
+Model 2, Interval 04: PE in-sample:  0.825;    using: mean:  0.683; median =  0.400; huber =  0.671;
+Model 2, Interval 05: PE in-sample:  0.940;    using: mean:  0.842; median =  0.549; huber =  0.844;
+Model 2, Interval 06: PE in-sample:  0.810;    using: mean:  0.710; median =  0.637; huber =  0.697;
+Model 2, Interval 07: PE in-sample:  0.659;    using: mean:  0.569; median = -0.106; huber =  0.583;
+Model 2, Interval 08: PE in-sample:  0.832;    using: mean:  0.542; median =  0.066; huber =  0.572;
+Model 2, Interval 09: PE in-sample:  0.965;    using: mean:  0.932; median =  0.707; huber =  0.932;
+Model 2, Interval 10: PE in-sample:  0.943;    using: mean:  0.846; median =  0.624; huber =  0.857;
+Model 2, Interval 11: PE in-sample:  0.972;    using: mean:  0.839; median =  0.676; huber =  0.852;
+Model 2, Interval 12: PE in-sample:  0.549;    using: mean:  0.155; median = -0.152; huber =  0.157;
+Model 2, Interval 13: PE in-sample:  0.926;    using: mean:  0.750; median = -0.749; huber =  0.752;
+Model 2, Interval 14: PE in-sample:  0.955;    using: mean:  0.808; median = -0.810; huber =  0.840;
+Model 2, Interval 15: PE in-sample:  0.947;    using: mean:  0.922; median =  0.773; huber =  0.921;
+Model 2, Interval 16: PE in-sample:  0.962;    using: mean:  0.904; median =  0.716; huber =  0.903;
+Model 2, Interval 17: PE in-sample:  0.908;    using: mean:  0.865; median =  0.384; huber =  0.867;
+Model 2, Interval 18: PE in-sample:  0.938;    using: mean:  0.880; median = -0.002; huber =  0.897;
+Model 2, Interval 19: PE in-sample:  0.905;    using: mean:  0.930; median =  0.508; huber =  0.918;
+Model 2, Interval 20: PE in-sample:  0.953;    using: mean:  0.910; median =  0.611; huber =  0.915;
+Model 2, Interval 21: PE in-sample:  0.965;    using: mean:  0.946; median =  0.536; huber =  0.951;
+Model 2, Interval 22: PE in-sample:  0.871;    using: mean:  0.853; median =  0.539; huber =  0.840;
+Model 2, Interval 23: PE in-sample:  0.963;    using: mean:  0.900; median =  0.582; huber =  0.931;
+Model 2, Interval 24: PE in-sample:  0.932;    using: mean:  0.771; median =  0.595; huber =  0.762;
+Model 2, Interval 25: PE in-sample:  0.983;    using: mean:  0.697; median = -0.038; huber =  0.657;
+Model 2, Interval 26: PE in-sample:  0.975;    using: mean:  0.949; median =  0.076; huber =  0.940;
+Model 2, Interval 27: PE in-sample:  0.964;    using: mean:  0.888; median = -0.489; huber =  0.889;
+Model 2, Interval 28: PE in-sample:  0.934;    using: mean:  0.978; median =  0.267; huber =  0.971;
+Model 2, Interval 29: PE in-sample:  0.953;    using: mean:  0.900; median =  0.019; huber =  0.902;
+Model 2, Interval 30: PE in-sample:  0.863;    using: mean:  0.755; median =  0.470; huber =  0.764;
+Model 2, Interval 31: PE in-sample:  0.953;    using: mean:  0.829; median =  0.584; huber =  0.837;
+Model 2, Interval 32: PE in-sample:  0.964;    using: mean:  0.880; median =  0.393; huber =  0.886;
+Model 2, Interval 33: PE in-sample:  0.926;    using: mean:  0.731; median =  0.374; huber =  0.747;
+Model 2, Interval 34: PE in-sample:  0.908;    using: mean:  0.691; median =  0.356; huber =  0.696;
+Model 2, Interval 35: PE in-sample:  0.947;    using: mean:  0.825; median =  0.129; huber =  0.846;
+Model 2, Interval 36: PE in-sample:  0.952;    using: mean:  0.867; median =  0.650; huber =  0.874;
+___________________________________________________________________________
+Model 2 Ave PE:          in-sample:  0.908;     using mean:  0.799; median  0.318; huber =  0.802;
+Model 2 PE Err:          in-sample:  0.015;     using mean:  0.027;
+___________________________________________________________________________
+-----------------------------
+PEs for Input = B, Output = E
+-----------------------------
+Model 2, Interval 01: PE in-sample:  0.745;    using: mean:  0.502; median =  0.316; huber =  0.491;
+Model 2, Interval 02: PE in-sample:  0.889;    using: mean:  0.741; median =  0.584; huber =  0.754;
+Model 2, Interval 03: PE in-sample:  0.680;    using: mean:  0.452; median =  0.408; huber =  0.437;
+Model 2, Interval 04: PE in-sample:  0.876;    using: mean:  0.611; median =  0.581; huber =  0.632;
+Model 2, Interval 05: PE in-sample:  0.703;    using: mean:  0.315; median =  0.297; huber =  0.333;
+Model 2, Interval 06: PE in-sample:  0.752;    using: mean:  0.219; median =  0.045; huber =  0.223;
+Model 2, Interval 07: PE in-sample:  0.570;    using: mean:  0.203; median =  0.168; huber =  0.225;
+Model 2, Interval 08: PE in-sample:  0.813;    using: mean:  0.423; median =  0.447; huber =  0.457;
+Model 2, Interval 09: PE in-sample:  0.877;    using: mean:  0.743; median =  0.612; huber =  0.747;
+Model 2, Interval 10: PE in-sample:  0.833;    using: mean:  0.599; median =  0.514; huber =  0.590;
+Model 2, Interval 11: PE in-sample:  0.833;    using: mean:  0.309; median =  0.371; huber =  0.339;
+Model 2, Interval 12: PE in-sample:  0.929;    using: mean:  0.784; median =  0.251; huber =  0.791;
+Model 2, Interval 13: PE in-sample:  0.800;    using: mean:  0.598; median =  0.182; huber =  0.636;
+Model 2, Interval 14: PE in-sample:  0.804;    using: mean:  0.313; median = -0.270; huber =  0.379;
+Model 2, Interval 15: PE in-sample:  0.885;    using: mean:  0.769; median =  0.646; huber =  0.783;
+Model 2, Interval 16: PE in-sample:  0.632;    using: mean: -0.160; median = -0.102; huber = -0.104;
+Model 2, Interval 17: PE in-sample:  0.593;    using: mean:  0.459; median =  0.373; huber =  0.480;
+Model 2, Interval 18: PE in-sample:  0.844;    using: mean:  0.708; median =  0.401; huber =  0.740;
+Model 2, Interval 19: PE in-sample:  0.967;    using: mean:  0.948; median =  0.504; huber =  0.937;
+Model 2, Interval 20: PE in-sample:  0.974;    using: mean:  0.915; median =  0.711; huber =  0.896;
+Model 2, Interval 21: PE in-sample:  0.726;    using: mean:  0.456; median =  0.405; huber =  0.436;
+Model 2, Interval 22: PE in-sample:  0.621;    using: mean:  0.485; median =  0.285; huber =  0.449;
+Model 2, Interval 23: PE in-sample:  0.870;    using: mean:  0.507; median =  0.560; huber =  0.561;
+Model 2, Interval 24: PE in-sample:  0.774;    using: mean:  0.437; median =  0.415; huber =  0.453;
+Model 2, Interval 25: PE in-sample:  0.692;    using: mean:  0.300; median =  0.003; huber =  0.290;
+Model 2, Interval 26: PE in-sample:  0.674;    using: mean:  0.359; median =  0.057; huber =  0.363;
+Model 2, Interval 27: PE in-sample:  0.832;    using: mean:  0.560; median =  0.076; huber =  0.571;
+Model 2, Interval 28: PE in-sample:  0.818;    using: mean:  0.594; median =  0.432; huber =  0.620;
+Model 2, Interval 29: PE in-sample:  0.777;    using: mean:  0.507; median =  0.215; huber =  0.537;
+Model 2, Interval 30: PE in-sample:  0.485;    using: mean:  0.271; median =  0.254; huber =  0.272;
+Model 2, Interval 31: PE in-sample:  0.670;    using: mean:  0.430; median =  0.368; huber =  0.430;
+Model 2, Interval 32: PE in-sample:  0.903;    using: mean:  0.754; median =  0.494; huber =  0.738;
+Model 2, Interval 33: PE in-sample:  0.856;    using: mean:  0.646; median =  0.560; huber =  0.636;
+Model 2, Interval 34: PE in-sample:  0.791;    using: mean:  0.378; median =  0.441; huber =  0.410;
+Model 2, Interval 35: PE in-sample:  0.700;    using: mean:  0.452; median =  0.391; huber =  0.478;
+Model 2, Interval 36: PE in-sample:  0.919;    using: mean:  0.326; median =  0.386; huber =  0.377;
+___________________________________________________________________________
+Model 2 Ave PE:          in-sample:  0.781;     using mean:  0.498; median  0.344; huber =  0.511;
+Model 2 PE Err:          in-sample:  0.019;     using mean:  0.037;
+___________________________________________________________________________
+compute_TF_aves.m: Saving mat/compute_TF_aves-rectangular-parzen-robust_on_Z.mat
+compute_TF_aves.m: Saved mat/compute_TF_aves-rectangular-parzen-robust_on_Z.mat

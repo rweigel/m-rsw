@@ -1,9 +1,9 @@
-function plot_H(dateo,intervalno,png)
+function plot_H(dateo,intervalno,filestr,png)
 
 dirmat = sprintf('mat/%s',dateo);
 dirfig = sprintf('figures/%s',dateo);
 
-load(sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno));
+load(sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,intervalno));
 
 fhs = findobj('Type', 'figure');
 fn = length(fhs);

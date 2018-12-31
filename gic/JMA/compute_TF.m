@@ -1,4 +1,4 @@
-function compute_TF(t,GIC,E,B,dateo,intervalno,opts)
+function compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts)
 
 dirmat = sprintf('mat/%s',dateo);
 
@@ -9,9 +9,16 @@ method = opts.regression.method;
 [Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E(:,:),method,window);
 
 PE_EB(1) = pe_nonflag(E(:,1),Ep_EB(:,1));
-fprintf('PE of Ex using B = %.2f\n',PE_EB(1));
 PE_EB(2) = pe_nonflag(E(:,2),Ep_EB(:,2));
-fprintf('PE of Ey using B = %.2f\n',PE_EB(2));
+
+MSE_EB(1) = mse_nonflag(E(:,1),Ep_EB(:,1));
+MSE_EB(2) = mse_nonflag(E(:,2),Ep_EB(:,2));
+
+CC_EB(1) = corr(E(:,1),Ep_EB(:,1),'rows','complete');
+CC_EB(2) = corr(E(:,2),Ep_EB(:,2),'rows','complete');
+
+fprintf('PE/CC/MSE of Ex using B = %.2f/%.2f/%.3f\n',PE_EB(1),CC_EB(1),MSE_EB(1));
+fprintf('PE/CC/MSE of Ey using B = %.2f/%.2f/%.3f\n',PE_EB(2),CC_EB(2),MSE_EB(2));
 
 % Compute transfer function with E driving GIC using FD method
 % Note - should be using GIC(:,2), but transferfnFD does not handle that
@@ -21,21 +28,34 @@ fprintf('PE of Ey using B = %.2f\n',PE_EB(2));
 [Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E(:,:),[GIC(:,2:3)],method,window);
 
 PE_GE(1) = pe_nonflag(GIC(:,1),GICp_GE(:,1));
-fprintf('PE of nondespiked GIC using E = %.2f\n',PE_GE(1));
-
 PE_GE(2) = pe_nonflag(GIC(:,2),GICp_GE(:,2));
-fprintf('PE of despiked GIC using E    = %.2f\n',PE_GE(2));
+
+MSE_GE(1) = mse_nonflag(GIC(:,1),GICp_GE(:,1));
+MSE_GE(2) = mse_nonflag(GIC(:,2),GICp_GE(:,2));
+
+CC_GE(1) = corr(GIC(:,1),GICp_GE(:,1),'rows','complete');
+CC_GE(2) = corr(GIC(:,2),GICp_GE(:,2),'rows','complete');
+
+fprintf('PE/CC/MSE of nondespiked GIC using E = %.2f/%.2f/%.3f\n',PE_GE(1),CC_GE(1),MSE_GE(1));
+fprintf('PE/CC/MSE of despiked GIC using E    = %.2f/%.2f/%.3f\n',PE_GE(2),CC_GE(2),MSE_GE(2));
 
 % Compute transfer function with B driving GIC using FD method
 [Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),[GIC(:,2:3)],method,window);
 
+
 PE_GB(1) = pe_nonflag(GIC(:,1),GICp_GB(:,1));
-fprintf('PE of nondespiked GIC using B = %.2f\n',PE_GB(1)); 
-
 PE_GB(2) = pe_nonflag(GIC(:,2),GICp_GB(:,2));
-fprintf('PE of despiked GIC using B = %.2f\n',PE_GB(2)); 
 
-fname = sprintf('%s/compute_TF_%s-%d.mat',dirmat,dateo,intervalno);
+MSE_GB(1) = mse_nonflag(GIC(:,1),GICp_GB(:,1));
+MSE_GB(2) = mse_nonflag(GIC(:,2),GICp_GB(:,2));
+
+CC_GB(1) = corr(GIC(:,1),GICp_GB(:,1),'rows','complete');
+CC_GB(2) = corr(GIC(:,2),GICp_GB(:,2),'rows','complete');
+
+fprintf('PE/CC/MSE of nondespiked GIC using B = %.2f/%.2f/%.3f\n',PE_GB(1),CC_GB(1),MSE_GB(1)); 
+fprintf('PE/CC/MSE of despiked GIC using B    = %.2f/%.2f/%.3f\n',PE_GB(2),CC_GB(2),MSE_GB(2)); 
+
+fname = sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,intervalno);
 save(fname);
 fprintf('compute_TF.m: Wrote %s\n',fname);
 
