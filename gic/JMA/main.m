@@ -24,8 +24,8 @@ opts.fd.window.options = struct();
 opts.fd.regression = struct();
 opts.fd.regression.method = 2; % 1-6
 opts.fd.regression.methodstr = 'ols_on_Z';
-opts.fd.regression.method = 3; 
-opts.fd.regression.methodstr = 'robust_on_Z';
+%opts.fd.regression.method = 3; 
+%opts.fd.regression.methodstr = 'robust_on_Z';
 
 %opts.fd.stackave = struct();
 %opts.fd.stackave.method = 'mean'; % mean, median, mode, mlochuber, trimmean

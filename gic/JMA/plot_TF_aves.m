@@ -328,10 +328,12 @@ function compareZplots(GE,GB,pn)
     loglog(1./GB.fe(2:end),sf*GB.Zabs_Mean(2:end,3),'b--','LineWidth',2);
     loglog(1./GB.fe(2:end),sf*GB.Zabs_Mean(2:end,4),'b','LineWidth',2);
 
-    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_Standard_Error(2:end,3),'loglog');
-    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,4),sf*GE.Zabs_Standard_Error(2:end,4),'loglog');
-    %errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_Mean_Standard_Error_Lower(2:end,3),sf*GE.Zabs_Mean_Standard_Error_Upper(2:end,3),'loglog');
+    %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,3),'k--','LineWidth',2);
+    %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,4),'k','LineWidth',2);
     
+    keyboard
+    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_Standard_Error(2:end,3),'loglog');
+    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,4),sf*GE.Zabs_Standard_Error(2:end,4),'loglog');    
     errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_Standard_Error(2:end,3),'loglog');
     errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,4),sf*GB.Zabs_Standard_Error(2:end,4),'loglog');
 

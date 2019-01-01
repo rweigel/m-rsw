@@ -1,18 +1,9 @@
 function aggregate_TFs(dateos,filestr)
 
-
-fields = {'PE','PEo','aobo','fe','S_Error','Z','H','Z_Alt','Input_PSD','Output_PSD'};
-
-IO = struct('GIC',[],'E',[],'B',[]);
+IO = struct();
 EB = struct();
 EG = struct();
 BG = struct();
-
-for f = 1:length(fields)
-    EB = setfield(EB,fields{f},[]);
-    EG = setfield(EG,fields{f},[]);
-    BG = setfield(BG,fields{f},[]);
-end
 
 k = 1;
 for j = 1:length(dateos)
@@ -101,14 +92,14 @@ for j = 1:length(dateos)
         GB.H(:,:,k) = H_GB;
         
         % GIC(w) = (a(w)*Zxx(w) + b(w)*Zyx(w))*Bx(w) + (a(w)*Zxy(w) + b(w)*Zyy(w))*By(w)
-        % Bx term                  a(w)         Zxx              b(w)         Zyx
+        % Bx term          a(w)        Zxx           b(w)      Zyx
         GB.Z_Alt(:,1,k) = Z_GE(:,1).*Z_EB(:,1) + Z_GE(:,2).*Z_EB(:,3);
-        % By term                  a(w)         Zxy              b(w)         Zyy
+        % By term           a(w)        Zxy       b(w)         Zyy
         GB.Z_Alt(:,2,k) = Z_GE(:,1).*Z_EB(:,2) + Z_GE(:,2).*Z_EB(:,4);
 
-        % Bx term                  a(w)         Zxx              b(w)         Zyx
+        % Bx term            a(w)     Zxx           b(w)       Zyx
         GB.Z_Alt(:,3,k) = Z_GE(:,3).*Z_EB(:,1) + Z_GE(:,4).*Z_EB(:,3);
-        % By term                  a(w)         Zxy              b(w)         Zyy
+        % By term            a(w)     Zxy           b(w)       Zyy
         GB.Z_Alt(:,4,k) = Z_GE(:,3).*Z_EB(:,2) + Z_GE(:,4).*Z_EB(:,4);
 
         f = f + 1;
@@ -118,7 +109,6 @@ for j = 1:length(dateos)
 end
 
 fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
-
 fprintf('aggregate_TFs.m: Saving %s\n',fnamemat);
 save(fnamemat,'EB','GE','GB','IO');
 fprintf('aggregate_TFs.m: Saved %s\n',fnamemat);
