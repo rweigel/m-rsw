@@ -1,10 +1,12 @@
+function figconfig(lh,lo)
+
 set(0,'DefaultAxesFontSize',12);
 legend boxoff
 
-hLegend = findobj(gcf, 'Type', 'Legend');
+set(lh,'FontSize',10); % Legend
 
-if ~isempty(hLegend)
-    set(lh,'FontSize',16); % Legend
+if nargin == 2
+    %set(lh,'FontSize',12); % Legend
     
     all1 = 1;
     for i = 1:length(lo)
@@ -19,8 +21,18 @@ if ~isempty(hLegend)
     end
 end
 
+set(gcf, 'PaperSize', [6.25 3.5]);
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperPosition', [0 0 6.25 3.5]);
 
-if png %|| exist('nodock','var')
+set(gcf, 'PaperUnits', 'inches');
+set(gcf, 'PaperSize', [6.25 3.5]);
+set(gcf, 'PaperPositionMode', 'manual');
+set(gcf, 'PaperPosition', [0 0 6.25 3.5]);
+
+%set(gcf, 'renderer', 'painters');
+
+if 0 && png %|| exist('nodock','var')
     pbaspect([3,1,1]);
     set(0,'DefaultAxesFontSize',16);
     set(gcf,'position',[0 0 1200 400]);

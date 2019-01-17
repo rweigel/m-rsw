@@ -18,6 +18,7 @@ for j = 1:length(dateos)
         if ~exist(fnamemat,'file')
             break;
         end
+        fprintf('  Read %s\n',fnamemat); 
         load(fnamemat);
         GE.PEo(k,1) = PE_GE;
         GB.PEo(k,1) = PE_GB;
@@ -34,6 +35,8 @@ for j = 1:length(dateos)
         k = k + 1;
     end
 end
+
+fprintf('------\n');
 
 k = 1;
 for j = 1:length(dateos)
@@ -53,7 +56,15 @@ for j = 1:length(dateos)
 
         IO.B(:,:,k) = B(:,1:2);
         IO.E(:,:,k) = E;
-        IO.GIC(:,:,k) = GIC(:,2:3);
+        IO.GIC(:,:,k) = GIC;
+
+        EB.Prediction(:,:,k) = Ep_EB;
+        GE.Prediction(:,:,k) = GICp_GE;
+        GB.Prediction(:,:,k) = GICp_GB;
+
+        EB.Prediction_Error(:,:,k) = E - Ep_EB;
+        GE.Prediction_Error(:,:,k) = GIC - GICp_GE;
+        GB.Prediction_Error(:,:,k) = GIC - GICp_GB;
 
         EB.Input_PSD(:,:,k) = SB;
         GE.Input_PSD(:,:,k) = SE;
@@ -79,10 +90,10 @@ for j = 1:length(dateos)
         GE.MSE(k,:) = MSE_GE;
         GB.MSE(k,:) = MSE_GB;
                 
-        EB.S_Error(:,:,k) = Serr_EB;
-        GE.S_Error(:,:,k) = Serr_GE;
-        GB.S_Error(:,:,k) = Serr_GB;
-        
+        EB.Error_PSD(:,:,k) = Serr_EB;
+        GE.Error_PSD(:,:,k) = Serr_GE;
+        GB.Error_PSD(:,:,k) = Serr_GB;
+
         EB.Z(:,:,k) = Z_EB;
         GE.Z(:,:,k) = Z_GE;
         GB.Z(:,:,k) = Z_GB;
@@ -92,6 +103,7 @@ for j = 1:length(dateos)
         GB.H(:,:,k) = H_GB;
         
         % GIC(w) = (a(w)*Zxx(w) + b(w)*Zyx(w))*Bx(w) + (a(w)*Zxy(w) + b(w)*Zyy(w))*By(w)
+
         % Bx term          a(w)        Zxx           b(w)      Zyx
         GB.Z_Alt(:,1,k) = Z_GE(:,1).*Z_EB(:,1) + Z_GE(:,2).*Z_EB(:,3);
         % By term           a(w)        Zxy       b(w)         Zyy
@@ -101,6 +113,20 @@ for j = 1:length(dateos)
         GB.Z_Alt(:,3,k) = Z_GE(:,3).*Z_EB(:,1) + Z_GE(:,4).*Z_EB(:,3);
         % By term            a(w)     Zxy           b(w)       Zyy
         GB.Z_Alt(:,4,k) = Z_GE(:,3).*Z_EB(:,2) + Z_GE(:,4).*Z_EB(:,4);
+
+        GB.Prediction_Alt(:,:,k) = Zpredict(GB.fe,GB.Z_Alt(:,:,k),IO.B(:,:,k));
+        GB.Prediction_Alt_Error(:,:,k) = GIC - GB.Prediction_Alt(:,:,k);
+
+        GB.Error_Alt_PSD(:,:,k) = smoothSpectra(GB.Prediction_Alt_Error(:,:,k),'parzen');
+
+        GB.PE_Alt(k,1) = pe_nonflag(GIC(:,1),GB.Prediction_Alt(:,1,k));
+        GB.PE_Alt(k,2) = pe_nonflag(GIC(:,2),GB.Prediction_Alt(:,2,k));
+
+        GB.MSE_Alt(k,1) = mse_nonflag(GIC(:,1),GB.Prediction_Alt(:,1,k));
+        GB.MSE_Alt(k,2) = mse_nonflag(GIC(:,2),GB.Prediction_Alt(:,2,k));
+
+        GB.CC_Alt(k,1) = mse_nonflag(GIC(:,1),GB.Prediction_Alt(:,1,k),'rows','complete');
+        GB.CC_Alt(k,2) = mse_nonflag(GIC(:,2),GB.Prediction_Alt(:,2,k),'rows','complete');
 
         f = f + 1;
         k = k + 1;

@@ -72,9 +72,9 @@ NdB = NdB(2*length(h)+1:end,:);
 
 N = size(B,1);
 
-Nc = [1:10,11:5:20,100,200];
-[Z1,fe1,H1,t1,Ep1] = transferfnTD(B,E,Nc);
-Ep1 = Hpredict(t1,H1,B);
+%Nc = [1:10,11:5:20,100,200];
+%[Z1,fe1,H1,t1,Ep1] = transferfnTD(B,E,Nc);
+%Ep1 = Hpredict(t1,H1,B);
 
 Nc = 101;
 [Z2,fe2,H2,t2,Ep2] = transferfnTD(B,E,Nc);

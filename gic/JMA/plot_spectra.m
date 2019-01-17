@@ -27,7 +27,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' PSD']);clf;
     loglog(1./fe(2:end),sqrt(SB(2:end,2)),'m','LineWidth',2)
     [lh,lo] = legend('GIC','E_x','E_y','B_x','B_y','Location','Best');
     ylabel('Power')
-    figconfig;
+    %figconfig;
     if png,print('-dpng',sprintf('%s/All_spectra_%s-%d.png',dirfig,dateo,intervalno));end
 
 fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' GIC PSD errors']);clf;
@@ -37,7 +37,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' GIC PSD errors']);clf;
     loglog(1./fe(2:end),sqrt(Serr_GB(2:end,2)),'g-.','LineWidth',2)
     [lh,lo] = legend('Measured','G/E Error','G/B Error','Location','Best');
     ylabel('Power')
-    figconfig;
+    %figconfig;
     if png,print('-dpng',sprintf('%s/GIC_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
 
 fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' E PSD errors']);clf;
@@ -48,7 +48,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' E PSD errors']);clf;
     loglog(1./fe(2:end),sqrt(Serr_EB(2:end,2)),'g-.','LineWidth',2)
     [lh,lo] = legend('E_x','E_y','E_x error','E_y error','Location','Best');
     ylabel('Power')
-    figconfig;
+    %figconfig;
     if png,print('-dpng',sprintf('%s/E_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
 
 return

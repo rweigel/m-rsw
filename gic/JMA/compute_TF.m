@@ -2,11 +2,18 @@ function compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts)
 
 dirmat = sprintf('mat/%s',dateo);
 
-window = opts.window.functionstr; % TODO: Pass function handle.
-method = opts.regression.method; 
+window = opts.fd.window.functionstr; % TODO: Pass function handle.
+method = opts.fd.regression.method; 
+
+[GIC,E,B] = taper(GIC,E,B,opts.td.window.function);
 
 % Compute transfer function with B driving E using FD method
-[Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E(:,:),method,window);
+if strmatch('diff',opts.td.prewhiten.methodstr)
+    [Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(prewhiten(B(:,1:2)),prewhiten(E),method,window);
+    Ep_EB = Zpredict(fe_EB,Z_EB,B(:,1:2));
+else
+    [Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E,method,window);
+end
 
 PE_EB(1) = pe_nonflag(E(:,1),Ep_EB(:,1));
 PE_EB(2) = pe_nonflag(E(:,2),Ep_EB(:,2));
@@ -20,12 +27,18 @@ CC_EB(2) = corr(E(:,2),Ep_EB(:,2),'rows','complete');
 fprintf('PE/CC/MSE of Ex using B = %.2f/%.2f/%.3f\n',PE_EB(1),CC_EB(1),MSE_EB(1));
 fprintf('PE/CC/MSE of Ey using B = %.2f/%.2f/%.3f\n',PE_EB(2),CC_EB(2),MSE_EB(2));
 
+
 % Compute transfer function with E driving GIC using FD method
 % Note - should be using GIC(:,2), but transferfnFD does not handle that
 % case
 % GIC(:,2) is LPF
 % GIC(:,3) is LPF despiked
-[Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E(:,:),[GIC(:,2:3)],method,window);
+if strmatch('diff',opts.td.prewhiten.methodstr)
+    [Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(prewhiten(E),prewhiten(GIC),method,window);
+    GICp_GE = Zpredict(fe_GE,Z_GE,E);
+else
+    [Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E,GIC,method,window);
+end
 
 PE_GE(1) = pe_nonflag(GIC(:,1),GICp_GE(:,1));
 PE_GE(2) = pe_nonflag(GIC(:,2),GICp_GE(:,2));
@@ -40,8 +53,12 @@ fprintf('PE/CC/MSE of nondespiked GIC using E = %.2f/%.2f/%.3f\n',PE_GE(1),CC_GE
 fprintf('PE/CC/MSE of despiked GIC using E    = %.2f/%.2f/%.3f\n',PE_GE(2),CC_GE(2),MSE_GE(2));
 
 % Compute transfer function with B driving GIC using FD method
-[Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),[GIC(:,2:3)],method,window);
-
+if strmatch('diff',opts.td.prewhiten.methodstr)
+    [Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(prewhiten(B(:,1:2)),prewhiten(GIC),method,window);
+    GICp_GB = Zpredict(fe_GB,Z_GB,B(:,1:2));    
+else
+    [Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),GIC,method,window);
+end
 
 PE_GB(1) = pe_nonflag(GIC(:,1),GICp_GB(:,1));
 PE_GB(2) = pe_nonflag(GIC(:,2),GICp_GB(:,2));

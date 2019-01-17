@@ -6,8 +6,16 @@ addpath('../misc/')
 
 writeimgs = 0;
 
+if writeimgs == 1
+    % Open each figure in new window
+    set(0,'DefaultFigureWindowStyle','normal');
+else
+    % Dock figure windows
+    set(0,'DefaultFigureWindowStyle','docked');
+end
+
 tau  = 10;  % Filter decay constant
-Ntau = 10;  % Number of filter coefficients = Ntau*tau + 1
+Ntau = 100; % Number of filter coefficients = Ntau*tau + 1
 N    = 2e4; % Simulation length
 Nc   = 101;  
 nR   = 2;   % Width of rectangualar window is 2*nR+1
@@ -42,7 +50,6 @@ NB  = [nb*randn(N,1),nb*randn(N,1)];
 NdB = [ndb*randn(N,1),ndb*randn(N,1)];
 
 dim = 2;
-
 tn = 1;
 
 % Create signals
@@ -108,19 +115,6 @@ end
 
 N = size(B,1);
 
-%% Window in time domain.
-if (0)
-    % TODO: Train on windowed data and re-scale predictions by window
-    % W = parzenwin(length(B))
-    % Bp(2:end-1) = Bp(2:end-1)./W
-    for i = 1:size(B,2)
-        B(:,i) = B(:,i).*parzenwin(length(B));
-    end
-    for i = 1:size(E,2)
-    	E(:,i) = E(:,i).*parzenwin(length(E));
-    end
-end
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Compute exact transfer function and phase
 Z = fft(H);
@@ -177,8 +171,9 @@ if size(Z_FDR,2) == 1
     Zstrs = {'Z'};
 end
 
+fn = 0;
 for j = 1:size(Z_FDR,2)
-    figure(j);clf;
+    fn = fn+1;figure(fn);clf;
         loglog(fh,abs(Z(:,j)),'k','Marker','+','MarkerSize',10,'LineWidth',5)
         hold on;grid on;
         loglog(fe_TD,abs(Z_TD(:,j)),'m','Marker','.','MarkerSize',25,'LineWidth',3);
@@ -202,15 +197,7 @@ end
 
 break
 
-set(0,'DefaultFigureWindowStyle','docked')
-%set(0,'DefaultFigureWindowStyle','normal')
-
-figure(1);clf;hold on; grid on;
-    plot(NaN*B(1:2,1),'r','LineWidth',3)
-    plot(NaN*E(1:2,2),'Color',[1,0.5,0],'LineWidth',3)
-    plot(NaN*E(1:2,2),'k','LineWidth',3)
-    plot(NaN*E(1:2,2),'Color',[0.5,0.5,0.5],'LineWidth',3)
-
+fn = fn+1;figure(fn);clf;hold on; grid on;
     ts = sprintf('E_y = filter(h_{xy},1,B_x+\\deltaBx) + \\deltaE_y; \\deltaE_y = \\eta(0,%.2f); \\deltaB_x = \\eta(0,%.2f)',ne,nb);
     title(ts);
     plot(B(:,1)+15,'r')
@@ -219,17 +206,10 @@ figure(1);clf;hold on; grid on;
     plot(NE(:,2)-15,'Color',[0.5,0.5,0.5])
     xlabel('t (sample number-1)')
     set(gca,'YLim',[-30 30])
-    legend('B_x+15 (input)','\deltaB_x+5 (noise)','E_y-5 (output)','\deltaE_y-15 (noise)')
+    legend('B_x+15 (input)','\deltaB_x+5 (noise)','E_y-5 (output)','\deltaE_y-15 (noise)')        
     plotcmds(['timeseries',paramstring],writeimgs)
 
-figure(2);clf;
-    % Set line thicknesses in legend to be larger
-    loglog(NaN*ftB(1:2,1),'r','LineWidth',3)
-    hold on;grid on;
-    loglog(NaN*ftE(1:2,2),'Color',[1,0.5,0],'LineWidth',3)
-    loglog(NaN*ftNB(1:2,1),'k','LineWidth',3)
-    loglog(NaN*ftNE(1:2,2),'Color',[0.5,0.5,0.5],'LineWidth',3)
-
+fn = fn+1;figure(fn);clf;hold on; grid on;
     title('Raw Periodograms')
     loglog(f(2:end),abs(ftB(2:end,1)),'r')
     loglog(f(2:end),abs(ftNB(2:end,1)),'Color',[1,0.5,0])
@@ -239,7 +219,7 @@ figure(2);clf;
     legend('B_x (input)','\deltaB_x (noise)','E_y (output)','\deltaE_y (noise)')
     plotcmds(['rawperiodograms',paramstring],writeimgs)
 
-figure(3);clf;grid on;
+fn = fn+1;figure(fn);clf;hold on; grid on;    
     me = mean(E(:,2));
     mb = mean(B(:,1));
     xc = xcorr(E(:,2)-me,B(:,1)-mb,'unbiased');
@@ -252,7 +232,7 @@ figure(3);clf;grid on;
     legend('E_y,B_x')
     plotcmds(['crosscorrelation',paramstring],writeimgs)
 
-figure(4);clf;
+fn = fn+1;figure(fn);clf;hold on; grid on;    
     hold on;grid on;
     plot(th,h,'k','Marker','+','MarkerSize',5,'LineWidth',5)
     plot(t_TD,H_TD(:,2),'m','LineWidth',4)
@@ -268,6 +248,7 @@ figure(4);clf;
            )
    plotcmds(['impulse_responses',paramstring],writeimgs)
 
+break
 if (0)
 figure(5);clf;
     % Create padded impulse responses.

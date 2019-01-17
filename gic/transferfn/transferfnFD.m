@@ -11,9 +11,9 @@ function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 %    method 3: Uses robustfit()
 %
 %  Compute Z = C^{-1} in B = CZ
-%    method 1: Uses closed-form equations to compute 
-%    method 2: Uses regress() ...
-%    method 3: Uses robustfit() ...
+%    method 4: Uses closed-form equations to compute 
+%    method 5: Uses regress()
+%    method 6: Uses robustfit()
 %
 %  For method = 1,2,3, solves one of (depending on # cols in E and B)
 %
@@ -29,7 +29,7 @@ function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 %
 %  Bx = CxxEx
 %
-%  Bx = CxxEx + CxyEy (can't be done!)
+%  Bx = CxxEx + CxyEy can't be done and an error is thrown.
 %
 %  Bx = CxxEx + CxyEy
 %  By = CyxEx + CyyEy
@@ -49,6 +49,8 @@ if (nargin < 6)
     sigma = 1;
 end
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Caution - code below is duplicated in smoothSpectra()
 N = size(B,1);
 f = [0:N/2]'/N;
 
@@ -57,6 +59,8 @@ if ~isempty(winopts)
 else
     [fe,Ne,Ic] = evalfreq(f);
 end
+% End duplicated code
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if size(B,2) == 1 && size(E,2) == 1
     if method <= 3
@@ -91,7 +95,7 @@ if size(B,2) == 2 && size(E,2) == 2
         return
     else
         % Bx = CxxEx + CxyEy
-        % By = CyxEy + CyyEy
+        % By = CyxEx + CyyEy
         method = method - 3;
         [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1),SE,SB(:,1),SBerr(:,1)] = transferfnFD(E,B(:,1),method,winfn,winopts);
         [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2),SE,SB(:,2),SBerr(:,2)] = transferfnFD(E,B(:,2),method,winfn,winopts);
@@ -108,6 +112,8 @@ if size(B,2) == 2 && size(E,2) == 2
 end
 
 
+%ftB = fft([diff(B);zeros(size(B,2))]);
+%ftE = fft([diff(E);zeros(size(E,2))]);
 ftB = fft(B);
 ftE = fft(E);
 ftB = ftB(1:N/2+1,:);
@@ -115,6 +121,8 @@ ftE = ftE(1:N/2+1,:);
 
 for j = 2:length(Ic)
 
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Caution - code below is duplicated in smoothSpectra()
     if strmatch(winfn,'parzen','exact')
         W = parzenwin(2*Ne(j)+1); 
         W = W/sum(W);
@@ -132,6 +140,8 @@ for j = 2:length(Ic)
     
     fa = f(Ic(j)-Ne(j));    
     fb = f(Ic(j)+Ne(j));
+    % End duplicated code
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     if verbose
         fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...

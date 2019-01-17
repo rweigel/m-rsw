@@ -22,7 +22,7 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' GIC/E IR
     %[lh,lo] = legend('FD a(\tau)','a_o/5','FD b(\tau)','b_o/5');
     [lh,lo] = legend('FD a(\tau)','FD b(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/H_GIC_IRF_to_E_%s-%d.png',dirfig,dateo,intervalno));end
     
 %% Response of GIC to impulse in B
@@ -39,7 +39,7 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' GIC/B IR
     %[lh,lo] = legend('FD a(\tau)','a_o','FD b(\tau)','b_o');
     [lh,lo] = legend('FD a(\tau)','FD b(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/H_GIC_IRF_to_B_%s-%d.png',dirfig,dateo,intervalno));end
 
 return
@@ -53,7 +53,7 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' Ex/B IRF
     th = title('E_x response to 1 nT impulse in B_x and B_y at \tau = 0');
     [lh,lo] = legend('H_{xx}(\tau)','H_{xy}(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/main_plot_Ex_IRF_to_B_%s-%d.png',dirfig,dateo,intervalno));end
     
 %% Response of Ey to impulse in B
@@ -65,5 +65,5 @@ fn=fn+1;fh=figure(fn);clf;hold on;box on;grid on;set(fh,'Name',[dateo,' Ey/B IRF
     th = title('E_y response to 1 nT impulse in B_x and B_y at \tau = 0');
     [lh,lo] = legend('H_{yx}(\tau)','H_{yy}(\tau)','Location','Best');
     set(gca,'XLim',[-20,60]);
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/main_plot_Ey_IRF_to_B_%s-%d.png',dirfig,dateo,intervalno));end

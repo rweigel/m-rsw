@@ -28,12 +28,11 @@ end
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     plot(t/86400,B);
-    %plot(t,40*GIC(:,2),'k')
     xlabel(sprintf('Days since %s',dateo));
     ylabel('[nT]')
     th = title('Memambetsu Magnetic Observatory (MMB)');
     [lh,lo] = legend('B_x','B_y','B_z','Location','Best');
-    figconfig;
+    %figconfig;
     if png,print('-dpng',sprintf('%s/timeseries_B_%s-%d.png',dirfig,dateo,intervalno));end
 
 %% 1-second electric field measurements
@@ -58,7 +57,7 @@ figure(fn);clf;hold on;box on;grid on;
         plot(t/86400,E(:,2),'k','LineWidth',1);       
         [lh,lo] = legend('E_x','E_y','Location','NorthWest');
     end
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/timeseries_E_%s-%d.png',dirfig,dateo,intervalno));end
 
 %% 1-second GIC measurements
@@ -75,14 +74,14 @@ figure(fn);clf;hold on;box on;grid on;
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     if showpred
-        plot(t/86400,GIC(:,3),'b');
+        plot(t/86400,GIC(:,2),'b');
         plot(t/86400,GICp_GE(:,2),'r');
         plot(t/86400,GICp_GB(:,2),'g');
-        plot(t/86400,GICp_GE(:,2)-GIC(:,3)+3,'r');
-        plot(t/86400,GICp_GB(:,2)-GIC(:,3)+3,'g');
+        plot(t/86400,GICp_GE(:,2)-GIC(:,2)+3,'r');
+        plot(t/86400,GICp_GB(:,2)-GIC(:,2)+3,'g');
         PE_GE = pe_nonflag(GIC(:,2),GICp_GE(:,2));
         PE_GB = pe_nonflag(GIC(:,2),GICp_GB(:,2));
-        [lh,lo] = legend('GIC Despiked',...
+        [lh,lo] = legend('GIC',...
             sprintf('GIC G/E predicted PE = %.2f',PE_GE),...
             sprintf('GIC G/B predicted PE = %.2f',PE_GB),...
             sprintf('GIC G/E error (shifted +3)'),...
@@ -91,13 +90,12 @@ figure(fn);clf;hold on;box on;grid on;
     else
         plot(t/86400,GIC(:,1));
         plot(t/86400,GIC(:,2));
-        plot(t/86400,GIC(:,3));      
-        [lh,lo] = legend('GIC @ 1 Hz','GIC @ 1 Hz; LPF @ 1 Hz','Despiked','Location','Best');
+        [lh,lo] = legend('GIC','Despiked','Location','Best');
     end
     xlabel(sprintf('Days since %s',dateo));
     ylabel('[A]');
     th = title('Memambetsu 187 kV substation');    
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/timeseries_GIC_%s-%d.png',dirfig,dateo,intervalno));end
 
 % Compute cross correlation between E and GIC
@@ -111,6 +109,8 @@ fprintf('xcorr(GIC,Ey) max at %d s lag\n',lags(iy));
 
 [gc,lags] = xcorr(GIC(:,2),GIC(:,2),60*60,'coeff');
 
+return
+
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     plot(lags/3600,xc,'LineWidth',2);
@@ -118,5 +118,5 @@ figure(fn);clf;hold on;box on;grid on;
     plot(lags/3600,gc,'LineWidth',2);
     xlabel('Lag [hrs]');
     [lh,lo] = legend('xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)');
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/timeseries_xcorrelations_%s.png',dirfig,dateo));end

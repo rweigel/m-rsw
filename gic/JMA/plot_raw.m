@@ -1,8 +1,6 @@
-function plot_raw(tGIC,GIC,tE,E,tB,B,dateo)
+function plot_raw(tGIC,GIC,tE,E,tB,B,dateo,png)
 
 dirfig = sprintf('figures/%s',dateo);
-
-png = 0;
 
 if png == 1
     % Open each figure in new window
@@ -15,6 +13,56 @@ end
 fhs = findobj('Type', 'figure');
 fn = length(fhs);
 
+clf
+orient tall
+
+ha = tight_subplot(3,1,[0.01,0.01],[0.1,0.02],[0.1,0.02]);
+tB = tB + 86400;
+tE = tE + 86400;
+tGIC = tGIC + 86400;
+
+dateox = datestr(-1 + datenum(dateo,'yyyymmdd'),'yyyy-mm-dd');
+axes(ha(1));
+    plot(tB/86400,B);
+    grid on;box on;
+    %xlabel(sprintf('Days since %s',dateo));
+    ylabel('[nT]')
+    ytl = get(gca,'YTickLabel');
+    ytl{1} = ' ';
+    set(gca,'YTickLabel',ytl);
+    set(gca,'XTickLabel',[])
+    xlim([tB(1)/86400,tB(end)/86400])
+    %th = title('Memambetsu Magnetic Observatory (MMB)');
+    [lh,lo] = legend('B_x','B_y','B_z','Location','SouthWest');
+axes(ha(2));%
+    plot(tE/86400,E);
+    grid on;box on;
+    %xlabel(sprintf('Days since %s',dateo));
+    ylabel('[mV/km]')
+    ytl = get(gca,'YTickLabel');
+    ytl{1} = ' ';
+    set(gca,'YTickLabel',ytl);
+    set(gca,'XTickLabel',[])
+    xlim([tB(1)/86400,tB(end)/86400])
+    %th = title('Memambetsu Magnetic Observatory (MMB)');
+    [lh,lo] = legend('E_x','E_y','Location','NorthWest');
+axes(ha(3));%grid on;box on;hold on;
+    plot(tGIC/86400,GIC(:,2));
+    %datetick('x','yyyy-mm-dd')
+    grid on;box on;
+    [lh,lo] = legend('GIC','Location','SouthWest');
+    %xlabel(sprintf('Days since %s',dateo));
+    ylabel('[A]');
+    %th = title('Memambetsu 187 kV substation');    
+    xlabel(sprintf('Days since %s',dateox));
+    xlim([tB(1)/86400,tB(end)/86400])
+
+if png,print('-dpng',sprintf('%s/plot_raw_All_%s.png',dirfig,dateo));end
+if png,print('-dpdf',sprintf('%s/plot_raw_All_%s.pdf',dirfig,dateo));end
+
+return
+
+png = 1
 %% 1-second magnetic field measurements
 % From http://www.kakioka-jma.go.jp/obsdata/metadata/en on 07/01/2017
 fn=fn+1;figure(fn);clf;hold on;box on;grid on;

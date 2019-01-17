@@ -1,11 +1,11 @@
-function prepdirs(dateo,clean)
+function prepdirs(dateo,filestr,clean)
 
 dirmat = sprintf('mat/%s',dateo);
 if ~exist(dirmat,'dir')
     mkdir(dirmat);
 else
     if clean
-        system(sprintf('rm -f %s/compute_*',dirmat));
+        system(sprintf('rm -f %s/*%s*',dirmat,filestr));
     end
 end
 
@@ -14,6 +14,6 @@ if ~exist(dirfig,'dir')
     mkdir(dirfig);
 else
     if clean
-        system(sprintf('rm -f %s/compute_*',dirfig));
+        system(sprintf('rm -f %s/*%s*',dirfig,filestr));
     end
 end

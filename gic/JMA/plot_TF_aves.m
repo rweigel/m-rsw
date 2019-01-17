@@ -5,8 +5,11 @@ if ~exist(dirfig,'dir')
     mkdir(dirfig);
 end
 
-set(0,'DefaultFigureWindowStyle','docked');
-figure();
+orient portrait;
+
+if png == 0
+    set(0,'DefaultFigureWindowStyle','docked');
+end
 
 file = sprintf('mat/compute_TF_aves-%s.mat',filestr);
 fprintf('plot_TF_aves: Loading from %s\n',file);
@@ -30,12 +33,36 @@ if png
     %set(0,'DefaultAxesFontSize',10);
 end
 
+signaltonoise(File.GE,File.GB);
+return
+mtZplots(File.EB);
+mtrhoplots(File.EB);
+mtphiplots(File.EB);
+
 %errorhistograms(File.GE);
+genZplots(File.EB);
 
 parameterhistograms(File.GE);
 compareHplots(File.GE,File.GB);
 compareZplots(File.GE,File.GB);
 comparePhiplots(File.GE,File.GB);    
+
+function signaltonoise(GE,GB)
+    fn=fn+1;figure(fn);clf;
+        loglog(1./GE.fe,squeeze(GE.Output_PSD_Mean(:,1,:)./GE.Erroro_PSD_Mean(:,1,:)),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        hold on;
+        loglog(1./GE.fe,squeeze(GE.Output_PSD_Mean(:,2,:)./GE.Error_PSD_Mean(:,2,:)),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,squeeze(GB.Output_PSD_Mean(:,2,:)./GB.Error_PSD_Mean(:,2,:)),...
+                'Marker','.','MarkerSize',20,'LineWidth',2)
+        loglog(1./GB.fe,squeeze(GB.Output_PSD_Mean(:,2,:)./GB.Error_Alt_PSD_Mean(:,2,:)),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        grid on;
+        title('Signal to noise');
+        legend('Model 1','Model 2','Model 3','Model 4','Location','Best');
+        xlabel('Period [s]');
+end
 
 function errorhistograms(GE)
 
@@ -73,7 +100,8 @@ function parameterhistograms(GE)
     fn=fn+1;figure(fn);clf;box on;grid on;hold on;
 
         edgesao = [0:20:180];
-        edgesbo = [-300:50:100];
+        %edgesao = [-300:50:300];
+        edgesbo = [-300:50:300];
 
         [nao,xao] = histc(1e3*GE.aobo(:,1),edgesao);
         [nbo,xbo] = histc(1e3*GE.aobo(:,2),edgesbo);
@@ -97,8 +125,11 @@ function parameterhistograms(GE)
 
         ylabel('Count');
         xlabel('A/(V/km)');
-        legend('a_o','b_o');
-        if png,print('-dpng','-r300',sprintf('%s/plot_TF_aves_aobo_histograms-%s.png',dirfig,filestr));end
+        [lh,lo] = legend('a_o','b_o');
+        if png
+            set(gcf, 'Position', [0 0 1000 500])
+            export_fig(sprintf('%s/plot_TF_aves_aobo_histograms-%s.pdf',dirfig,filestr),'-transparent');
+        end
 
 end
 
@@ -108,8 +139,9 @@ function errorbars(x,y,yl,yu,scale)
         scale = 'linear';
     end
     if nargin == 4 && isa(yu,'char')
+        % errorbars(x,y,yl,scale)
         scale = yu;
-        yu = yl;
+        yu = yl; % Set yu = yl
     end
     if nargin == 3
         yu = yl;
@@ -190,7 +222,10 @@ function comparePhiplots(GE,GB,pn)
 
     xlabel('Period [s]');
     ylabel('[degrees]');
-    if png,print('-dpng','-r300',sprintf('%s/plot_TF_aves_GE_Phi-%s.png',dirfig,filestr));end
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_GE_Phi-%s.pdf',dirfig,filestr),'-transparent')
+    end
 
 end
 
@@ -251,7 +286,7 @@ function compareHplots(GE,GB,pn)
     
     if (1)
     lh = legend(...
-            sprintf('($a_o$ [A/(V/km)])/10'),...
+            '($a_o$ [A/(V/km)])/10',...
             sprintf('($b_o$ [A/(V/km)])/10'),...    
             sprintf('$a(\\tau) = IFT(A(\\omega))$ [A/(V/km)]'),...
             sprintf('$b(\\tau) = IFT(B(\\omega))$ [A/(V/km)]'),...    
@@ -263,7 +298,10 @@ function compareHplots(GE,GB,pn)
 
     %th = title(sprintf('%s $\\qquad\\quad$ %s',GE.title,GB.title));
     %set(th,'interpreter','latex','fontweight','normal')
-    if png,print('-dpng','-r300',sprintf('%s/plot_TF_aves_GE_H-%s.png',dirfig,filestr));end
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_GE_H-%s.pdf',dirfig,filestr),'-transparent')
+    end
 
     return
 
@@ -331,7 +369,6 @@ function compareZplots(GE,GB,pn)
     %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,3),'k--','LineWidth',2);
     %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,4),'k','LineWidth',2);
     
-    keyboard
     errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_Standard_Error(2:end,3),'loglog');
     errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,4),sf*GE.Zabs_Standard_Error(2:end,4),'loglog');    
     errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_Standard_Error(2:end,3),'loglog');
@@ -366,14 +403,14 @@ function compareZplots(GE,GB,pn)
     %th = title(sprintf('%s and %s',GE.title,GB.title));
     %set(th,'interpreter','latex','fontweight','normal')
     xlabel('Period [s]');
-    if png,print('-dpng','-r300',sprintf('%s/plot_TF_aves_GE_Z-%s.png',dirfig,filestr));end
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_GE_Z-%s.pdf',dirfig,filestr),'-transparent')
+    end        
 
 end
 
-
-function genZplots(S,titlestr)
-    
-    fn = 0;
+function genZplots(S)
 
     components = {'xx','xy','yx','yy'};
         
@@ -398,8 +435,15 @@ function genZplots(S,titlestr)
                     'Location','Best');
             xlabel('Period [s]');
             ylabel('V/A');
-            title(titlestr,'interpreter','latex')
+            %title(titlestr,'interpreter','latex')
     end
+
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_EB_Z-%s.pdf',dirfig,filestr),'-transparent')
+    end        
+    
+%    keyboard
     
     for i = 1:size(S.Z,2)
         fn=fn+1;figure(fn);clf;box on;grid on;
@@ -414,25 +458,91 @@ function genZplots(S,titlestr)
                     'Location','Best')
             xlabel('Period [s]');
             ylabel('[degrees]');
-            title(titlestr,'interpreter','latex')
+            %title(titlestr,'interpreter','latex')
 
     end
 
-    for i = 1:size(S.Z,2)
-        fn=fn+1;figure(fn);clf;box on;grid on;    
-            loglog(1./S.fe(2:end),4*pi*S.Zabs_Mean(2:end,i),'k','LineWidth',2);
-            hold on;
-            loglog(1./S.fe(2:end),4*pi*squeeze(abs(S.Z(2:end,i,:))))
-            loglog(1./S.fe(2:end),4*pi*S.Zabs_Mean(2:end,i),'k','LineWidth',2);
-            
-            legend(sprintf('median(|Z_{%s}|)',components{i}));
-            xlabel('Period [s]');
-            ylabel('V/A');
-            title(titlestr,'interpreter','latex')
-    end
     
 end
 
+function mtZplots(S)    
+    
+    sf = 1e3;
+    components = {'$Z_{xx}$','$Z_{xy}$','$Z_{yx}$','$Z_{yy}$'};
+    c = ['k','r','b','g'];
+    fn=fn+1;figure(fn);clf;
+    for i = 1:size(S.Z,2)
+        loglog(1./S.fe(2:end),sf*S.Zabs_Mean(2:end,i),c(i),...
+            'LineStyle','-','LineWidth',2,'Marker','.','MarkerSize',20);
+        hold on;
+    end
+
+    for i = 1:size(S.Z,2)
+        errorbars(1./S.fe(2:end),sf*S.Zabs_Mean(2:end,i),sf*S.Zabs_Standard_Error(2:end,i),'loglog');
+        hold on;
+    end
+
+    grid on;
+    xlabel('Period [s]');
+    ylabel('A/(V/km)');
+    lh = legend(components,'Location','best');
+    set(lh,'interpreter','latex')
+    %title(titlestr,'interpreter','latex')
+
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_EB_Z-%s.pdf',dirfig,filestr),'-transparent')
+    end        
+
+end
+
+function mtrhoplots(S)    
+    
+    sf = 0.2;
+    components = {'$\rho_{xx}$','$\rho_{xy}$','$\rho_{yx}$','$\rho_{yy}$'};
+    c = ['k','r','b','g'];
+    fn=fn+1;figure(fn);clf;
+    for i = 1:size(S.Z,2)
+        loglog(1./S.fe(2:end),(sf./S.fe(2:end)).*S.Zabs_Mean(2:end,i).^2,c(i),...
+            'LineStyle','-','LineWidth',2,'Marker','.','MarkerSize',20);
+        hold on;
+    end
+    lh = legend(components,'Location','Best');
+    set(lh,'interpreter','latex');
+    xlabel('Period [s]');
+    ylabel('V/A');
+    grid on;
+    %title(titlestr,'interpreter','latex')
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_EB_rho-%s.pdf',dirfig,filestr),'-transparent')
+    end        
+    
+end
+
+function mtphiplots(S)
+    
+    c = {'k.','r.','b.','g.'};
+    components = {'$\phi_{xx}$','$\phi_{xy}$','$\phi_{yx}$','$\phi_{yy}$'};
+    fn=fn+1;figure(fn);clf;
+    for i = 1:size(S.Z,2)
+        semilogx(1./S.fe(2:end),S.Phi_Mean(2:end,i),c{i},...
+            'Marker','.','MarkerSize',20);
+        hold on;
+    end
+    lh = legend(components,'Location','Best');
+    set(lh,'interpreter','latex');    
+    xlabel('Period [s]');
+    ylabel('[degrees]');
+    grid on;
+    %title(titlestr,'interpreter','latex')
+    if png
+        set(gcf, 'Position', [0 0 1000 500])
+        export_fig(sprintf('%s/plot_TF_aves_EB_phi-%s.pdf',dirfig,filestr),'-transparent')
+    end        
+    
+end
+    
 function genRhoplots(S,titlestr)
     
     fn = 0;
@@ -477,9 +587,10 @@ function genRhoplots(S,titlestr)
             xlabel('Period [s]');
             ylabel('[degrees]');
             title(titlestr,'interpreter','latex')
-
     end
 
+    return;
+    
     for i = 1:size(S.Z,2)
         fn=fn+1;figure(fn);clf;box on;grid on;    
             loglog(1./S.fe(2:end),(sf./S.fe(2:end)).*S.Zabs_Mean(2:end,i).^2,'k','LineWidth',2);

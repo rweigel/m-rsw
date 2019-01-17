@@ -19,7 +19,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Z_{xx_yy} GIC/{E,B}']);clf;hold on;
     set(gca, 'XScale', 'log');
     set(gca, 'YScale', 'log');
     [lh,lo] = legend('Z_{xx} GIC/E','Z_{xy} GIC/E','Z_{xx} GIC/B','Z_{xy} GIC/B','Location','Best');
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/Z_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
 
 for j = 1:4
@@ -36,7 +36,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Phi_{xx,xy} GIC/{E,B}']);clf;hold o
     plot(1./fe_GB(2:end),abs(Phi_GB(2:end,4)),'k','MarkerSize',10);
     set(gca, 'XScale', 'log');
     [lh,lo] = legend('\phi_{xx} GIC/E','\phi_{xy} GIC/E','\phi_{xx} GIC/B','\phi_{xy} GIC/B','Location','Best');
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/Z_Phi_GE_GB_%s-%d.png',dirfig,dateo,intervalno));end
 
 return    
@@ -51,7 +51,7 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Z E/B']);clf;hold on;box on;grid on
     set(gca, 'XScale', 'log');
     set(gca, 'YScale', 'log');
     [lh,lo] = legend('Z_{xx} E/B','Z_{xy} E/B','Z_{yx} E/B','Z_{yy} E/B','Location','Best');
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/Z_EB_%s-%d.png',dirfig,dateo,intervalno));end
 
 %% Plot phi for E/B
@@ -62,5 +62,5 @@ fn=fn+1;fh=figure(fn);set(fh,'Name',[dateo,' Phi E/B']);clf;hold on;box on;grid 
     plot(1./fe_EB(2:end),abs(Phi_EB(2:end,4)),'k','MarkerSize',10);
     ;set(gca, 'XScale', 'log');
     [lh,lo] = legend('\phi_{xx} E/B','\phi_{xy} E/B','\phi_{xx} E/B','\phi_{xy} E/B','Location','Best');
-    figconfig
+    %figconfig
     if png,print('-dpng',sprintf('%s/Phi_EB_%s-%d.png',dirfig,dateo,intervalno));end
