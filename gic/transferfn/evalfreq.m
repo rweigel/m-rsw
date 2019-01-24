@@ -39,6 +39,9 @@ if strmatch(method,'linear','exact')
     return;
 end
 
+% Note that Simpson and Bahr Figure 4.2 sets fmin to the second
+% lowest non-zero frequency. Here we set fmin to the lowest non-zero
+% frequency.
 if (f(1) == 0)
     fmin = f(2);
     N = 2*(length(f)-1);
@@ -54,11 +57,11 @@ end
 k = 1;
 fe(k) = f(end)/2;
 Ne(k) = floor(fe(k)/(2*(1/N)));
-Ic(k) = find(f-fe(1) > 0,1);
+Ic(k) = find(f-fe(1) >= 0,1);
 if verbose
     fprintf('Computed evaluation frequency:      %.8f\n',fe(k));
-    fprintf('Nearest larger frequency available: %.8f\n',f(Ic(k))); 
-    fprintf('Nearest larger period available:    %.1f\n',1./f(Ic(k))); 
+    fprintf('Nearest equal or larger frequency available: %.8f\n',f(Ic(k))); 
+    fprintf('Nearest equal or larger period available:    %.1f\n',1./f(Ic(k))); 
     
     fl = f(Ic(k)-Ne(k));    
     fr = f(Ic(k)+Ne(k));
@@ -73,28 +76,34 @@ if verbose
 end
 
 while fe(k) > fmin
+    
     k = k+1;
+
     tmp = fe(1)/sqrt(2^(k-1));
     %tmp = fe(1)/(1.1^(k-1));
     if (tmp < fmin),break,end
     fe(k) = tmp;
-    Ic(k) = find(f-fe(k) > 0,1);
+    Ic(k) = find(f-fe(k) >= 0,1);
     if verbose
         fprintf('Computed evaluation frequency:      %.8f\n',fe(k));
         fprintf('Nearest larger frequency available: %.8f\n',f(Ic(k))); 
         fprintf('Nearest larger period available:        %.1f\n',1./f(Ic(k)));     
     end
     fe(k) = f(Ic(k));
+
     % Number of points to left and right of fe to apply window to.
+    % This formula was used to get a match to Figure 4.2 of Simpson and
+    % Bahr. Another option is to use Ne = [0;diff(Ic)];
     Ne(k) = floor(fe(k)/(2*(1/N)));
-    fl = f(Ic(k)-Ne(k));    
-    fr = f(Ic(k)+Ne(k));
-    r = [Ic(k)-Ne(k):Ic(k)+Ne(k)];  
+
     if verbose
-	fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
-		length(r),fl,fr)
-	fprintf('Window has %d points; Tl = %.1f Tr = %.1f\n',...
-		length(r),1/fl,1/fr)
+        fl = f(Ic(k)-Ne(k));    
+        fr = f(Ic(k)+Ne(k));
+        %r = [Ic(k)-Ne(k):Ic(k)+Ne(k)];  
+        fprintf('Window has %d points; fl = %.8f fr = %.8f\n',...
+        		2*Ne(k)+1,fl,fr)
+    	fprintf('Window has %d points; Tl = %.1f Tr = %.1f\n',...
+                2*Ne(k)+1,1/fl,1/fr)
     end
 
 end
@@ -127,3 +136,6 @@ else
     Ne = [0,Ne];
     Ic = [1,Ic];
 end	
+
+
+

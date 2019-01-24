@@ -1,17 +1,28 @@
-function GIC = despikeGIC(tGIC,GIC)
+function [GIC,N,f] = despikeGIC(GIC)
+% DESPIKEGIC Remove spikes in GIC
+%
+%   [GIC,N,f] = despikeGIC(GIC)
+%
+%   GIC is a Nx1 or 1xN matrix
+%   N is the number of spikes found
+%   f is the fraction of data modified
 
-% Remove spikes in GIC
-GIC(:,3) = GIC(:,2);
-I = find(abs(diff(GIC(:,2))) >= 0.04);
-%I = [I;find( abs(GIC(3:end,2)-GIC(1:end-2,2)) >= 0.03)];
+a = 2;
+b = 100;
+
+I = find(abs(diff(GIC)) >= 0.05);
 for i = 1:length(I)
-    a = 2;b = 100;
-    if (I(i) - a < 1),a = 0;end
-    if (I(i) + b >= size(GIC,1)),b = 0;end
-    GIC(I(i)-a:I(i)+b,3) = NaN;
+    if (I(i) - a < 1)
+        a = 0;
+    end
+    if (I(i) + b >= length(GIC))
+        b = 0;
+    end
+    GIC(I(i)-a:I(i)+b) = NaN;
 end
-Ig = ~isnan(GIC(:,3));
-x = tGIC(Ig);
-y = GIC(Ig,3);
-GIC(:,3) = interp1(x,y,tGIC);
-fprintf('main.m: Removed %d possible spikes in GIC.\n',length(I));
+Ig = ~isnan(GIC);
+N = length(I);
+f = (length(GIC)-length(find(Ig==1)))/length(GIC);
+t = [1:length(GIC)]';
+GIC = interp1(t(Ig),GIC(Ig),t);
+fprintf('despikeGIC.m: Removed %d possible spikes in GIC. %.2f%% of data modified.\n',N,100*f);

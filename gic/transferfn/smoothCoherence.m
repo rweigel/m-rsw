@@ -1,12 +1,12 @@
-function [S,fe] = smoothSpectra(B,winfn,winopts)
+function [Cxy,fe] = smoothCoherence(x,y,winfn,winopts)
 
-if nargin < 3
+if nargin < 4
     winopts = [];
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Caution - code below is duplicated in transferfnFD()
-N = size(B,1);
+N = size(x,1);
 f = [0:N/2]'/N;
 
 if ~isempty(winopts)
@@ -17,8 +17,10 @@ end
 % End duplicated code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-ftB = fft(B);
-ftB = ftB(1:N/2+1,:);
+ftx = fft(x);
+ftx = ftx(1:N/2+1,:);
+fty = fft(y);
+fty = fty(1:N/2+1,:);
 
 for j = 2:length(Ic)
 
@@ -44,8 +46,11 @@ for j = 2:length(Ic)
     % End duplicated code
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    for v = 1:size(ftB,2)
-        S(j,v) = sum(W.*(ftB(r,1).*conj(ftB(r,1))));
+    for k = 1:size(x,2)
+        sxx(k) = sum(W.*(ftx(r,k).*conj(ftx(r,k))));
+        syy(k) = sum(W.*(fty(r,k).*conj(fty(r,k))));
+        sxy(k) = sum(abs(W.*(ftx(r,k).*conj(fty(r,k)))));
+        Cxy(j,k) = sxy(k).^2./(sxx(k)*syy(k));
     end
 
 end

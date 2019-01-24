@@ -131,17 +131,23 @@ function S = compute(S,In,Out)
     end
 
 
-    a = 60*300;
-    b = 86400-a+1;
-
+    %a = 60*300;
+    %b = 86400-a+1;
+    %a = 60*300/2;
+    %b = 86400/2-a+1;
+    a = 1;
+    b = size(In,1);
+    
     if isfield(S,'aobo')
         for k = 1:size(In,3) % Loop over days
 
             tmp = S.aobo_Mean(1)*In(:,1,k) + S.aobo_Mean(2)*In(:,2,k);
+
             S.PEo_Mean(k,1)           = pe(Out(a:b,2,k),tmp(a:b,1));
             S.CCo_Mean(k,1)           = corr(Out(a:b,2,k),tmp(a:b,1),'rows','complete');
 
-            Erroro_PSD_Mean(:,:,k) = smoothSpectra(Out(:,2,k)-tmp,'parzen');            
+            S.Erroro_PSD_Mean(:,:,k) = smoothSpectra(Out(:,2,k)-tmp,'parzen');            
+            S.Coherenceo_Mean(:,:,k) = smoothCoherence(Out(:,2,k),tmp,'parzen');        
 
             fprintf('Model 1, Interval %02d: PE in-sample: %6.3f; PE using mean: %6.3f;\n',...
                     k,S.PEo(k,1),S.PEo_Mean(k,1));
@@ -163,7 +169,6 @@ function S = compute(S,In,Out)
 
         fprintf('___________________________________________________________________________\n')
 
-        S.Erroro_PSD_Mean = mean(squeeze(Erroro_PSD_Mean(:,1,:)),2);
     end
 
 
@@ -174,7 +179,13 @@ function S = compute(S,In,Out)
         S.CC_Mean(k,1)           = corr(Out(a:b,1,k),tmp(a:b,1),'rows','complete');
         S.CC_Mean(k,2)           = corr(Out(a:b,2,k),tmp(a:b,2),'rows','complete');
 
-        Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,'parzen');
+        tmp1 = zeros(size(Out(:,:,k)));
+        tmp1(a:b,:) = Out(a:b,:,k);
+        tmp2 = zeros(size(tmp));
+        tmp2(a:b,:) = tmp(a:b,:);
+        S.Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,'parzen');
+        S.Coherence_Mean(:,:,k) = smoothCoherence(Out(:,:,k),tmp,'parzen');        
+%        S.Coherence_Mean(:,:,k) = smoothCoherence(tmp1,tmp2,'parzen');
 
         if isfield(S,'Z_Alt_Mean')
             tmp = Zpredict(S.fe,S.Z_Alt_Mean,In(:,:,k));
@@ -203,10 +214,6 @@ function S = compute(S,In,Out)
                 k,S.PE(k,2),S.PE_Mean(k,2),S.PE_Alt_Mean(k,2),S.PE_Median(k,2),S.PE_Huber(k,2));
     end
 
-    for i = 1:2
-        S.Error_PSD_Mean(:,i) = mean(squeeze(Error_PSD_Mean(:,i,:)),2);
-    end
-
     fprintf('___________________________________________________________________________\n')
     fprintf('Model 2 Ave PE              : in-sample: %6.3f;     using mean: %6.3f; alt (mean): %6.3f; median %6.3f; huber = %6.3f;\n',...
         mean(S.PE(:,2)),mean(S.PE_Mean(:,2)),mean(S.PE_Alt_Mean(:,2)),mean(S.PE_Median(:,2)),mean(S.PE_Huber(:,2)));
@@ -232,7 +239,8 @@ function S = compute(S,In,Out)
             S.CC_Alt_Mean(k,2)           = corr(Out(a:b,2,k),tmp(a:b,2),'rows','complete');
 
             tmp = Zpredict(S.fe,S.Z_Alt_Mean,In(:,:,k));
-            Error_Alt_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,'parzen');        
+            S.Error_Alt_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,'parzen');        
+            S.Coherence_Alt_Mean(:,:,k) = smoothCoherence(Out(:,:,k),tmp,'parzen');        
 
             fprintf('Model 3, Interval %02d: PE in-sample: %6.3f; using: mean: %6.3f;\n',...
                     k,S.PE_Alt(k,2),S.PE_Alt_Mean(k,2));
@@ -253,10 +261,6 @@ function S = compute(S,In,Out)
                 boot95(S.CC_Alt(:,2)),boot95(S.CC_Alt_Mean(:,2)));
         fprintf('___________________________________________________________________________\n')
 
-        for i = 1:2
-            S.Error_Alt_PSD_Mean(:,i) = mean(squeeze(Error_Alt_PSD_Mean(:,i,:)),2);
-        end
-    
     end
 
 

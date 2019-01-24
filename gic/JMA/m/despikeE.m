@@ -12,5 +12,6 @@ for c = 1:size(E,2) % Columns
     x = t(Ig);
     y = E(Ig,c);
     E(:,c) = interp1(x,y,t);
-    fprintf('main.m: Removed %d possible spikes in E(:,%d).\n',length(I),c);
+    f = (size(E,1)-length(find(Ig == 0)))/size(E,1);
+    fprintf('despikeE.m: Removed %d possible spikes in E(:,%d). %.2f%% of data modified\n',length(I),c,f);
 end

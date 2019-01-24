@@ -48,7 +48,7 @@ filestr = sprintf('%s-%s-%s-%s-%s',...
 clean = 1;
 writepng = 0;
 regenfiles = 0;
-intplot = 0;
+intplot = 1;
 
 % removed 20060818 due to large segment of bad E
 % removed 20060411 and 20060412 due to baseline shift in E
@@ -75,10 +75,12 @@ if (0)
     end
 end
 
-for i = 1:length(dateos)
-%for i = 4:4
+fn = 1;
+%for i = 1:length(dateos)
+for i = 4:4
 %for i = 1:1
-    
+    fprintf('--------------\n')
+    fprintf('--------------\n')
     dateo = dateos{i};
     datef = datefs{i};
     dt    = dts(i);
@@ -97,18 +99,17 @@ for i = 1:length(dateos)
 
     if intplot
         close all
-        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng);
+        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC raw','GIC 1 Hz filtered'});
     end
     
-    E = despikeE(tE,E);
-    GIC = despikeGIC(tGIC,GIC); % Third column is despiked GIC.
+    E    = despikeE(tE,E);
+    GICd = despikeGIC(GIC(:,2)); % Despike 1 Hz filtered column
+    GIC  = [GIC(:,2),GICd];            % Keep 1 Hz filtered column and despiked column
 
-    GIC = GIC(:,2:3); % Keep 1 Hz filtered column and despiked column
-        
     if intplot
-        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng);
+        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered','GIC 1 Hz filtered then despiked'});
     end
-        
+
     if strmatch('pca',opts.td.transform)
         if i == 1
             [V,D] = eig(cov(E));
@@ -118,15 +119,17 @@ for i = 1:length(dateos)
     end
     
     [t,E,B] = timealign(tGIC,tE,E,B);
+
     [GIC,E,B] = removemean(GIC,E,B);
 
-    intervalno = 0; % Full timse span from dateo to datef labeled as interval 0
+    intervalno = 0; % Full time span from dateo to datef labeled as interval 0
     
-    compute_ab(GIC,E,B,dateo,intervalno)
+    compute_ab(GIC,E,B,dateo,intervalno);
     compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts);
+
     if intplot
-        close all;
         plot_timeseries(dateo,intervalno,filestr,writepng);
+        keyboard
         plot_spectra(dateo,intervalno,filestr,writepng);
         plot_H(dateo,intervalno,filestr,writepng);
         plot_Z(dateo,intervalno,filestr,writepng);
@@ -138,10 +141,7 @@ for i = 1:length(dateos)
     Ts = 3600*24; % Shift 
     Io = [1:Ts:length(t)-Tw+1];
     for io = Io(1:end)
-        fn = 0;
-        intervalno = k;
         fprintf('-------\nInterval %d of %d for %s\n',k,length(Io),dateo);
-        k = k+1;
         Ix = [io:io+Tw-1];
 
         tr = t(Ix); % Time values for segment.
@@ -150,21 +150,21 @@ for i = 1:length(dateos)
         GICr = GIC(Ix,:);
         [GICr,Er,Br] = taper(GICr,Er,Br,opts.td.window.function);
 
-        %compute_ab(GICr,Er,Br,dateo,intervalno)
-        
-        compute_TF(tr,GICr,Er,Br,dateo,intervalno,filestr,opts);
+        fnameab{fn} = compute_ab(GICr,Er,Br,dateo,k);
+        fnametf{fn} = compute_TF(tr,GICr,Er,Br,dateo,k,filestr,opts);
         if intplot
             close all
-            plot_timeseries(dateo,intervalno,filestr,writepng);
-            plot_spectra(dateo,intervalno,filestr,writepng);
-            plot_H(dateo,intervalno,filestr,writepng);
-            plot_Z(dateo,intervalno,filestr,writepng);
+            plot_timeseries(dateo,k,filestr,writepng);
+            plot_spectra(dateo,k,filestr,writepng);
+            plot_H(dateo,k,filestr,writepng);
+            plot_Z(dateo,k,filestr,writepng);
         end
         %input('Continue?')
     end
+    fn = fn+1;
 end
 
-aggregate_TFs(dateos,filestr);
+aggregate_TFs(fnameab,fnametf,filestr);
 
 diary off
 delete(sprintf('log/compute_TF_aves_%s.txt',filestr));

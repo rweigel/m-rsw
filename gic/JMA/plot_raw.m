@@ -1,4 +1,4 @@
-function plot_raw(tGIC,GIC,tE,E,tB,B,dateo,png)
+function plot_raw(tGIC,GIC,tE,E,tB,B,dateo,png,giclabels)
 
 dirfig = sprintf('figures/%s',dateo);
 
@@ -10,11 +10,7 @@ else
     set(0,'DefaultFigureWindowStyle','docked');
 end
 
-fhs = findobj('Type', 'figure');
-fn = length(fhs);
-
-clf
-orient tall
+figure;clf;orient tall
 
 ha = tight_subplot(3,1,[0.01,0.01],[0.1,0.02],[0.1,0.02]);
 tB = tB + 86400;
@@ -47,10 +43,10 @@ axes(ha(2));%
     %th = title('Memambetsu Magnetic Observatory (MMB)');
     [lh,lo] = legend('E_x','E_y','Location','NorthWest');
 axes(ha(3));%grid on;box on;hold on;
-    plot(tGIC/86400,GIC(:,2));
+    plot(tGIC/86400,GIC);
     %datetick('x','yyyy-mm-dd')
     grid on;box on;
-    [lh,lo] = legend('GIC','Location','SouthWest');
+    [lh,lo] = legend(giclabels,'Location','SouthWest');
     %xlabel(sprintf('Days since %s',dateo));
     ylabel('[A]');
     %th = title('Memambetsu 187 kV substation');    

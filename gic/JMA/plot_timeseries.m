@@ -4,6 +4,7 @@ dirfig = sprintf('figures/%s',dateo);
 dirmat = sprintf('mat/%s',dateo);
 
 load(sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,intervalno));
+load(sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno));
 
 fn = 0;
 
@@ -44,14 +45,12 @@ figure(fn);clf;hold on;box on;grid on;
     th = title('Memambetsu Magnetic Observatory (MMB)');
     if showpred
         plot(t/86400,E(:,1),'b','LineWidth',1);
-        plot(t/86400,E(:,2),'k','LineWidth',1);
-        plot(t/86400,Ep_EB(:,1),'b--','LineWidth',1)
-        plot(t/86400,Ep_EB(:,2),'k--','LineWidth',1)
-        PE_EB(1) = pe_nonflag(E(:,1),Ep_EB(:,1));
-        PE_EB(2) = pe_nonflag(E(:,2),Ep_EB(:,2));
-        [lh,lo] = legend('E_x','E_y',...
+        plot(t/86400,E(:,2)+20,'b','LineWidth',1);
+        plot(t/86400,Ep_EB(:,1),'k--','LineWidth',1)
+        plot(t/86400,Ep_EB(:,2)+20,'k--','LineWidth',1)
+        [lh,lo] = legend('E_x','E_y + 10',...
             sprintf('E_x predicted PE = %.2f',PE_EB(1)),...
-            sprintf('E_y predicted PE = %.2f',PE_EB(2)),'Location','Best');
+            sprintf('E_y + 10 predicted PE = %.2f',PE_EB(2)),'Location','Best');
     else
         plot(t/86400,E(:,1),'b','LineWidth',1);
         plot(t/86400,E(:,2),'k','LineWidth',1);       
@@ -75,15 +74,16 @@ fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
     if showpred
         plot(t/86400,GIC(:,2),'b');
+        plot(t/86400,GICp_GEo(:,2),'k');
         plot(t/86400,GICp_GE(:,2),'r');
         plot(t/86400,GICp_GB(:,2),'g');
+        plot(t/86400,GICp_GEo(:,2)-GIC(:,2)+3,'k');
         plot(t/86400,GICp_GE(:,2)-GIC(:,2)+3,'r');
         plot(t/86400,GICp_GB(:,2)-GIC(:,2)+3,'g');
-        PE_GE = pe_nonflag(GIC(:,2),GICp_GE(:,2));
-        PE_GB = pe_nonflag(GIC(:,2),GICp_GB(:,2));
         [lh,lo] = legend('GIC',...
-            sprintf('GIC G/E predicted PE = %.2f',PE_GE),...
-            sprintf('GIC G/B predicted PE = %.2f',PE_GB),...
+            sprintf('GIC G/Eo predicted PE = %.2f',PE_GEo(2)),...
+            sprintf('GIC G/E predicted PE = %.2f',PE_GE(2)),...
+            sprintf('GIC G/B predicted PE = %.2f',PE_GB(2)),...
             sprintf('GIC G/E error (shifted +3)'),...
             sprintf('GIC G/B error (shifted +3)'),...
             'Location','SouthWest');
@@ -98,25 +98,39 @@ figure(fn);clf;hold on;box on;grid on;
     %figconfig
     if png,print('-dpng',sprintf('%s/timeseries_GIC_%s-%d.png',dirfig,dateo,intervalno));end
 
+
+M = 3600*24;
 % Compute cross correlation between E and GIC
-[xc,lags] = xcorr(GIC(:,2),E(:,1),60*60,'coeff');
+[xc,lags] = xcorr(GIC(:,2),E(:,1),M,'coeff');
 [~,ix] = max(xc);
 fprintf('xcorr(GIC,Ex) max at %d s lag\n',lags(ix));
 
-[yc,lags] = xcorr(GIC(:,2),E(:,2),60*60,'coeff');
+[yc,lags] = xcorr(GIC(:,2),E(:,2),M,'coeff');
 [~,iy] = max(yc);
 fprintf('xcorr(GIC,Ey) max at %d s lag\n',lags(iy));
 
-[gc,lags] = xcorr(GIC(:,2),GIC(:,2),60*60,'coeff');
+[AC_GIC,lags] = xcorr(GIC(:,2),GIC(:,2),M,'coeff');
 
-return
+Er_GEo = GICp_GEo(:,2)-GIC(:,2);
+[AC_GEo,lags] = xcorr(Er_GEo,M,'coeff');
+
+Er_GE = GICp_GE(:,2)-GIC(:,2);
+[AC_GE,lags] = xcorr(Er_GE,M,'coeff');
+
+Er_GB = GICp_GB(:,2)-GIC(:,2);
+[AC_GB,lags] = xcorr(Er_GB,M,'coeff');
 
 fn=fn+1;
 figure(fn);clf;hold on;box on;grid on;
-    plot(lags/3600,xc,'LineWidth',2);
-    plot(lags/3600,yc,'LineWidth',2);
-    plot(lags/3600,gc,'LineWidth',2);
+    %plot(lags/3600,xc,'LineWidth',2);
+    %plot(lags/3600,yc,'LineWidth',2);
+    %plot(lags/3600,AC_GIC,'LineWidth',2);
+    plot(lags/3600,AC_GEo,'LineWidth',2);
+    plot(lags/3600,AC_GE,'LineWidth',2);    
+    plot(lags/3600,AC_GB,'LineWidth',2);    
     xlabel('Lag [hrs]');
-    [lh,lo] = legend('xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)');
+    [lh,lo] = legend('acorr(G/Eo Error)','acorr(G/E Error)','acorr(G/B Error)');
+    %'xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)',...
+
     %figconfig
-    if png,print('-dpng',sprintf('%s/timeseries_xcorrelations_%s.png',dirfig,dateo));end
+    if png,print('-dpng',sprintf('%s/timeseries_xcorrelations_%s-%d.png',dirfig,dateo,intervalno));end
