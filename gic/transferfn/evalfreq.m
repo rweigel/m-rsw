@@ -1,7 +1,28 @@
 function [fe,Ne,Ic] = evalfreq(f,method,N,verbose)
+%EVALFREQ Select logarithmically spaced freqs from uniform freq. array.
+%
+%  [fe,Ne,Ic] = EVALFREQ(f)
+%
+%  If fo = f(end)/2 returns frequencies fe near
+%
+%   f(1) (if f(1) = 0, then f(2))
+%   ...
+%   fo/sqrt(2^k)
+%   fo/sqrt(2^3)
+%   fo/sqrt(2^2)
+%   fo/sqrt(2)
+%   fo/2
+%
+%   Result is approximately 8 frequencies per decade. The elements
+%   of fe are all 
+%
+%   f(Ic) = fe.
+%
+%   Ne = floor(fe(k)/(2*(1/N))) is a number of points
+%   to right an left of fe that can be used for averaging.
 
-% TODO: Return Il and Iu in addition to Ic
-% Allow N to be interpreted as spacing by N^2 for method = 'logarithmic'
+% TODO: Allow N to be interpreted as spacing by N^2 for
+% method = 'logarithmic'
 
 if nargin < 4
     verbose = 0;
@@ -54,6 +75,7 @@ end
 if verbose
     fprintf('--\nComputing evaluation frequencies.\n--\n')
 end
+
 k = 1;
 fe(k) = f(end)/2;
 Ne(k) = floor(fe(k)/(2*(1/N)));

@@ -1,4 +1,4 @@
-L = 64;
+L = 32;
 f = [0:L/2]'/L;
 
 [fe,Ne,Ic] = evalfreq(f,'logarithmic',0,1);
@@ -9,16 +9,17 @@ f
 figure();
 clf;
     plot(log2(fe),0*fe,'ko');hold on;
-    plot(log2(f),0*f,'g.');
+    plot(log2(f),0*f,'b.','MarkerSize',20);
     xlabel('Frequency');
     title(sprintf('L = %d',L))
 
     for i = 1:length(fe)
         plot(log2(f(Ic(i)-Ne(i):Ic(i)+Ne(i))),parzenwin(2*Ne(i)+1),'k-','Marker','.','MarkerSize',5);
     end
-    legend('Evaluation Frequencies','Actual Frequencies','Weight');
+    legend('Evaluation Frequencies','Actual Frequencies','Parzen Weight');
     plot(log2(fe),ones(length(fe),1),'ko');hold on;
-
+set(gca,'XTick',log2([fe(2:end);f(end)]))
+set(gca,'XTickLabel',[fe(2:end);f(end)])
 break
 
 figure();
