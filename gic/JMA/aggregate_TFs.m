@@ -7,23 +7,23 @@ BG = struct();
 
 k = 1;
 for k = 1:length(fnameab)
-    fprintf('Reading %s\n',fnameab{k}); 
+    fprintf('aggregate_TFs.m: Reading %s\n',fnameab{k}); 
     load(fnameab{k});
 
-    GE.Predictiono = ao*E(:,1) + bo*E(:,2);
-    GB.Predictiono = hox*B(:,1) + hoy*B(:,2);
+    GE.Predictiono(:,:,k) = ao*E(:,1) + bo*E(:,2);
+    GB.Predictiono(:,:,k) = hox*B(:,1) + hoy*B(:,2);
 
-    GE.Erroro_PSD(:,:,k) = smoothSpectra(GE.Predictiono-GIC(:,2),'parzen');
-    GB.Erroro_PSD(:,:,k) = smoothSpectra(GB.Predictiono-GIC(:,2),'parzen');
+    GE.Erroro_PSD(:,:,k) = smoothSpectra(GE.Predictiono(:,1,k)-GIC(:,2),'parzen');
+    GB.Erroro_PSD(:,:,k) = smoothSpectra(GB.Predictiono(:,1,k)-GIC(:,2),'parzen');
 
-    GE.PEo(k,1) = PE_GE;
-    GB.PEo(k,1) = PE_GB;
+    GE.PEo(k,:) = PE_GEo;
+    GB.PEo(k,:) = PE_GBo;
 
-    GE.CCo(k,1) = CC_GE;
-    GB.CCo(k,1) = CC_GB;
+    GE.CCo(k,:) = CC_GEo;
+    GB.CCo(k,:) = CC_GBo;
 
-    GE.MSEo(k,1) = MSE_GE;
-    GB.MSEo(k,1) = MSE_GB;
+    GE.MSEo(k,:) = MSE_GEo;
+    GB.MSEo(k,:) = MSE_GBo;
 
     GE.aobo(k,:) = [ao,bo];
     GB.aobo(k,:) = [hox,hoy];
@@ -34,7 +34,7 @@ fprintf('------\n');
 for k = 1:length(fnametf)
 
     load(fnametf{k});
-    fprintf('Reading %s\n',fnametf{k}); 
+    fprintf('aggregate_TFs.m: Reading %s\n',fnametf{k}); 
 
     IO.B(:,:,k) = B(:,1:2);
     IO.E(:,:,k) = E;

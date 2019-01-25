@@ -1,28 +1,31 @@
 function [fe,Ne,Ic] = evalfreq(f,method,N,verbose)
-%EVALFREQ Select logarithmically spaced freqs from uniform freq. array.
+%EVALFREQ Select linear or logarithmically spaced freqs from uniform freq. array.
 %
 %  [fe,Ne,Ic] = EVALFREQ(f)
 %
-%  If fo = f(end)/2 returns frequencies fe near
+%  Defining fo = f(end)/2, the elements are approximately
+% 
+%    f(1) (if f(1) = 0, then f(2))
+%    ...
+%    fo/sqrt(2^k)
+%    fo/sqrt(2^3)
+%    fo/sqrt(2^2)
+%    fo/sqrt(2)
+%    fo/2
 %
-%   f(1) (if f(1) = 0, then f(2))
-%   ...
-%   fo/sqrt(2^k)
-%   fo/sqrt(2^3)
-%   fo/sqrt(2^2)
-%   fo/sqrt(2)
-%   fo/2
+%  The actual elements of fe are chosen such that they are in f; f(Ic) = fe
 %
-%   Result is approximately 8 frequencies per decade. The elements
-%   of fe are all 
+%  fe will have approximately 8 frequencies per decade.
 %
-%   f(Ic) = fe.
+%  Ne is a number of points to right an left of fe that can be used for
+%  averaging. In general it is = floor(length(f)*fe(k)), but adjustments
+%  are made so that Ic-Ne > 1 and Ic+Ne <= length(f). 
 %
-%   Ne = floor(fe(k)/(2*(1/N))) is a number of points
-%   to right an left of fe that can be used for averaging.
+% This code reproduces Figure 4.2 of Simpson and Bahr 2005 (with execption
+% noted below).
 
-% TODO: Allow N to be interpreted as spacing by N^2 for
-% method = 'logarithmic'
+% TODO: Allow N to be interpreted power for method = 'logarithmic'
+% Now it is N = 2 and frequencies are sqrt(N^k).
 
 if nargin < 4
     verbose = 0;
@@ -44,7 +47,6 @@ if strmatch(method,'linear','exact')
         fe(j) = f(Ic(j)); % Evaluation frequency
         Ne(j) = N;        % Number of points to right and left used in window.
     end
-
     % Add zero frequency. Ne (# to include to left and right) will always
     % be 0 at fe=0 so that we never average f=0 with f ~= 0 values.
     if f(1) == 0
@@ -52,7 +54,7 @@ if strmatch(method,'linear','exact')
         Ne = [0,Ne]';
         Ic = [1,Ic]';
     end
-    if size(f,1) > 0
+    if size(f,2) > 1
         fe = fe';
         Ne = Ne';
         Ic = Ic';
@@ -148,8 +150,7 @@ if (lo > length(fe))
 end
 
 % Add zero frequency and have outputs match dimension of input f.
-
-if (size(f,1) > 0)
+if (size(f,1) > 1)
     fe = [0,fe]';
     Ne = [0,Ne]';
     Ic = [1,Ic]';
@@ -159,5 +160,12 @@ else
     Ic = [1,Ic];
 end	
 
-
+if 0 
+    % Another option for choosing Ne. In this case end points of windows
+    % are on fe values.
+    Ne = [0;diff(Ic)];
+    if fe(1) == 0 && Ne(2) > 0
+        Ne(2) = 0;
+    end
+end
 

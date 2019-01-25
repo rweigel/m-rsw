@@ -7,7 +7,7 @@ dirmat = sprintf('mat/%s',dateo);
 % Matrix method to compute ao and bo
 % GIC(:,i) = aoE(:,1) + boE(:,2);
 for i = 1:2
-    LIN = basic_linear(E(:,:),GIC(:,2));
+    LIN = basic_linear(E,GIC(:,i));
     GICp_GEo(:,i) = basic_linear(E(:,:),LIN.Weights,'predict');
     ao = LIN.Weights(1);
     bo = LIN.Weights(2);

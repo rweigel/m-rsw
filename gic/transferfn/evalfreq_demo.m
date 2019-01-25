@@ -1,7 +1,8 @@
 L = 32;
 f = [0:L/2]'/L;
 
-[fe,Ne,Ic] = evalfreq(f,'logarithmic',0,1);
+%[fe,Ne,Ic] = evalfreq(f,'linear',1);
+[fe,Ne,Ic] = evalfreq(f,'logarithmic');
 
 f
 [fe,Ne,f(Ic)]
@@ -20,6 +21,7 @@ clf;
     plot(log2(fe),ones(length(fe),1),'ko');hold on;
 set(gca,'XTick',log2([fe(2:end);f(end)]))
 set(gca,'XTickLabel',[fe(2:end);f(end)])
+
 break
 
 figure();

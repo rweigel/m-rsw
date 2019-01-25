@@ -3,30 +3,34 @@ function compute_TF_aves(filestr)
 fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
 
 fprintf('compute_TF_aves.m: Loading %s\n',fnamemat);
-load(fnamemat);
+File = load(fnamemat);
 fprintf('compute_TF_aves.m: Loaded %s\n',fnamemat);
 
 fprintf('-----------------------------\n')
 fprintf('PEs for Input = E, Output = GIC\n')
 fprintf('-----------------------------\n')
-GE = compute(GE,IO.E,IO.GIC);
+GE = compute(File.GE,File.IO.E,File.IO.GIC,'G/E');
 
 fprintf('-----------------------------\n')
 fprintf('PEs for Input = B, Output = GIC\n')
 fprintf('-----------------------------\n')
-GB = compute(GB,IO.B,IO.GIC);
+GB = compute(File.GB,File.IO.B,File.IO.GIC,'G/B');
 
 fprintf('-----------------------------\n')
 fprintf('PEs for Input = B, Output = E\n')
 fprintf('-----------------------------\n')
-EB = compute(EB,IO.B,IO.E);
+EB = compute(File.EB,File.IO.B,File.IO.E,'E/B');
+
+summary(GE,'G/E');
+summary(GB,'G/B');
+summary(EB,'E/B');
 
 fnamemat = sprintf('mat/compute_TF_aves-%s.mat',filestr);
 fprintf('compute_TF_aves.m: Saving %s\n',fnamemat);
 save(fnamemat,'EB','GE','GB');
 fprintf('compute_TF_aves.m: Saved %s\n',fnamemat);
 
-function S = compute(S,In,Out)
+function S = compute(S,In,Out,ts)
 
     if isfield(S,'aobo')
         S.aobo_Mean = mean(S.aobo,1);
@@ -54,7 +58,7 @@ function S = compute(S,In,Out)
         
         z = squeeze(S.Z(:,i,:));
 
-        if (1)
+        if (0)
             W = squeeze(1./(sqrt(S.Input_PSD(:,1,:).^2 + S.Input_PSD(:,2,:).^2)));
             % Gives no change in PE of GE and decrease in PE of GB.
             %W = squeeze(sqrt(S.Output_PSD(:,2,:).^2));        
@@ -86,7 +90,7 @@ function S = compute(S,In,Out)
             W = W./repmat(Ws,1,size(W,2));
         end
 
-        if (0)
+        if (1)
             W = ones(size(z));
         end
         
@@ -131,44 +135,28 @@ function S = compute(S,In,Out)
     end
 
 
-    %a = 60*300;
-    %b = 86400-a+1;
+    a = 60*10;
+    b = 86400-a+1;
     %a = 60*300/2;
     %b = 86400/2-a+1;
-    a = 1;
-    b = size(In,1);
+    %a = 1;
+    %b = size(In,1);
     
     if isfield(S,'aobo')
         for k = 1:size(In,3) % Loop over days
 
             tmp = S.aobo_Mean(1)*In(:,1,k) + S.aobo_Mean(2)*In(:,2,k);
 
-            S.PEo_Mean(k,1)           = pe(Out(a:b,2,k),tmp(a:b,1));
-            S.CCo_Mean(k,1)           = corr(Out(a:b,2,k),tmp(a:b,1),'rows','complete');
+            S.PEo_Mean(k,1) = pe(Out(a:b,2,k),tmp(a:b,1));
+            S.CCo_Mean(k,1) = corr(Out(a:b,2,k),tmp(a:b,1),'rows','complete');
 
             S.Erroro_PSD_Mean(:,:,k) = smoothSpectra(Out(:,2,k)-tmp,'parzen');            
             S.Coherenceo_Mean(:,:,k) = smoothCoherence(Out(:,2,k),tmp,'parzen');        
 
-            fprintf('Model 1, Interval %02d: PE in-sample: %6.3f; PE using mean: %6.3f;\n',...
-                    k,S.PEo(k,1),S.PEo_Mean(k,1));
+            fprintf('%so, Interval %02d: PE in-sample: %6.3f; PE using mean: %6.3f;\n',...
+                    ts,k,S.PEo(k,1),S.PEo_Mean(k,1));
         end
-        fprintf('___________________________________________________________________________\n')
-        fprintf('Model 1  Ave PE            :  in-sample: %6.3f;     using mean: %6.3f;\n',...
-                mean(S.PEo(:,1)),mean(S.PEo_Mean(:,1)));
-        fprintf('Model 1  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                norm95(S.PEo(:,1)),norm95(S.PEo_Mean(:,1)));
-        fprintf('Model 1  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                boot95(S.PEo(:,1)),boot95(S.PEo_Mean(:,1)));
-
-        fprintf('Model 1  Ave CC            :  in-sample: %6.3f;     using mean: %6.3f;\n',...
-                mean(S.CCo(:,1)),mean(S.CCo_Mean(:,1)));
-        fprintf('Model 1  CC 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                norm95(S.CCo(:,1)),norm95(S.CCo_Mean(:,1)));
-        fprintf('Model 1  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                boot95(S.CCo(:,1)),boot95(S.CCo_Mean(:,1)));
-
-        fprintf('___________________________________________________________________________\n')
-
+        summary(S,ts,1);
     end
 
 
@@ -210,27 +198,13 @@ function S = compute(S,In,Out)
             S.CC_Huber(k,:) = [NaN,NaN];
         end
         
-        fprintf('Model 2, Interval %02d: PE in-sample: %6.3f; using: mean: %6.3f; alt (mean): %6.3f; median = %6.3f; huber = %6.3f;\n',...
-                k,S.PE(k,2),S.PE_Mean(k,2),S.PE_Alt_Mean(k,2),S.PE_Median(k,2),S.PE_Huber(k,2));
+        fprintf('%s, Interval %02d: PE in-sample: %6.3f; using: mean: %6.3f; median = %6.3f; huber = %6.3f;\n',...
+                ts,k,S.PE(k,2),S.PE_Mean(k,2),S.PE_Median(k,2),S.PE_Huber(k,2));
     end
-
-    fprintf('___________________________________________________________________________\n')
-    fprintf('Model 2 Ave PE              : in-sample: %6.3f;     using mean: %6.3f; alt (mean): %6.3f; median %6.3f; huber = %6.3f;\n',...
-        mean(S.PE(:,2)),mean(S.PE_Mean(:,2)),mean(S.PE_Alt_Mean(:,2)),mean(S.PE_Median(:,2)),mean(S.PE_Huber(:,2)));
-    fprintf('Model 2  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-            norm95(S.PE(:,2)),norm95(S.PE_Mean(:,2)));
-    fprintf('Model 2  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-            boot95(S.PE(:,2)),boot95(S.PE_Mean(:,2)));
-        
-    fprintf('Model 2 Ave CC              : in-sample: %6.3f;     using mean: %6.3f\n',...
-        mean(S.CC(:,2)),mean(S.CC_Mean(:,2)));
-    fprintf('Model 2  PE CC%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-            norm95(S.CC(:,2)),norm95(S.CC_Mean(:,2)));
-    fprintf('Model 2  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-            boot95(S.CC(:,2)),boot95(S.CC_Mean(:,2)));
-    fprintf('___________________________________________________________________________\n');
+    summary(S,ts,2);
     
     if isfield(S,'Z_Alt_Mean')
+        ts = 'G/E';
         for k = 1:size(In,3)
         
             tmp = Zpredict(S.fe,S.Z_Alt_Mean,In(:,:,k));
@@ -242,25 +216,77 @@ function S = compute(S,In,Out)
             S.Error_Alt_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,'parzen');        
             S.Coherence_Alt_Mean(:,:,k) = smoothCoherence(Out(:,:,k),tmp,'parzen');        
 
-            fprintf('Model 3, Interval %02d: PE in-sample: %6.3f; using: mean: %6.3f;\n',...
-                    k,S.PE_Alt(k,2),S.PE_Alt_Mean(k,2));
+            fprintf('%s'', Interval %02d: PE in-sample: %6.3f; using: mean: %6.3f;\n',...
+                    ts,k,S.PE_Alt(k,2),S.PE_Alt_Mean(k,2));
         end
-        fprintf('___________________________________________________________________________\n')
-        fprintf('Model 3 Ave PE              : in-sample: %6.3f;     using mean: %6.3f;\n',...
-            mean(S.PE_Alt(:,2)),mean(S.PE_Alt_Mean(:,2)));
-        fprintf('Model 3  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                norm95(S.PE_Alt(:,2)),norm95(S.PE_Alt_Mean(:,2)));
-        fprintf('Model 3  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                boot95(S.PE_Alt(:,2)),boot95(S.PE_Alt_Mean(:,2)));
-
-        fprintf('Model 3 Ave CC              : in-sample: %6.3f;     using mean: %6.3f\n',...
-            mean(S.CC_Alt(:,2)),mean(S.CC_Alt_Mean(:,2)));
-        fprintf('Model 3  PE CC%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                norm95(S.CC_Alt(:,2)),norm95(S.CC_Alt_Mean(:,2)));
-        fprintf('Model 3  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-                boot95(S.CC_Alt(:,2)),boot95(S.CC_Alt_Mean(:,2)));
-        fprintf('___________________________________________________________________________\n')
-
+        summary(S,ts,3);    
     end
 
+    fprintf('---------------------------------------------------------------------\n');
+end
 
+function summary(S,ts,m)
+
+    if nargin == 2
+        m = 0;
+    end
+    
+    if (m == 0 || m == 1) && isfield(S,'aobo')
+        fprintf('___________________________________________________________________________\n')
+        fprintf('%so  Ave PE            :  in-sample: %6.3f;     using mean: %6.3f;\n',...
+                ts,mean(S.PEo(:,1)),mean(S.PEo_Mean(:,1)));
+        fprintf('%so  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.PEo(:,1)),norm95(S.PEo_Mean(:,1)));
+        fprintf('%so  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.PEo(:,1)),boot95(S.PEo_Mean(:,1)));
+
+        fprintf('%so  Ave CC            :  in-sample: %6.3f;     using mean: %6.3f;\n',...
+                ts,mean(S.CCo(:,1)),mean(S.CCo_Mean(:,1)));
+        fprintf('%so  CC 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.CCo(:,1)),norm95(S.CCo_Mean(:,1)));
+        fprintf('%so  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.CCo(:,1)),boot95(S.CCo_Mean(:,1)));
+
+        fprintf('___________________________________________________________________________\n')
+    end
+    
+    if m == 0 || m == 2
+        fprintf('___________________________________________________________________________\n')
+        fprintf('%s Ave PE              : in-sample: %6.3f;     using mean: %6.3f; median %6.3f; huber = %6.3f;\n',...
+                ts,mean(S.PE(:,2)),mean(S.PE_Mean(:,2)),mean(S.PE_Median(:,2)),mean(S.PE_Huber(:,2)));
+        fprintf('%s  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.PE(:,2)),norm95(S.PE_Mean(:,2)));
+        fprintf('%s  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.PE(:,2)),boot95(S.PE_Mean(:,2)));
+
+        fprintf('%s Ave CC              : in-sample: %6.3f;     using mean: %6.3f\n',...
+                ts,mean(S.CC(:,2)),mean(S.CC_Mean(:,2)));
+        fprintf('%s  PE CC%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.CC(:,2)),norm95(S.CC_Mean(:,2)));
+        fprintf('%s  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.CC(:,2)),boot95(S.CC_Mean(:,2)));
+        fprintf('___________________________________________________________________________\n');
+    end
+    
+    if (m == 0 || m == 3) && isfield(S,'Z_Alt_Mean')
+        ts = 'G/E';
+        fprintf('___________________________________________________________________________\n')
+        fprintf('%s'' Ave PE              : in-sample: %6.3f;     using mean: %6.3f;\n',...
+                ts,mean(S.PE_Alt(:,2)),mean(S.PE_Alt_Mean(:,2)));
+        fprintf('%s''  PE 95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.PE_Alt(:,2)),norm95(S.PE_Alt_Mean(:,2)));
+        fprintf('%s''  PE 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.PE_Alt(:,2)),boot95(S.PE_Alt_Mean(:,2)));
+
+        fprintf('%s'' Ave CC              : in-sample: %6.3f;     using mean: %6.3f\n',...
+                ts,mean(S.CC_Alt(:,2)),mean(S.CC_Alt_Mean(:,2)));
+        fprintf('%s''  PE CC%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.CC_Alt(:,2)),norm95(S.CC_Alt_Mean(:,2)));
+        fprintf('%s''  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.CC_Alt(:,2)),boot95(S.CC_Alt_Mean(:,2)));
+        fprintf('___________________________________________________________________________\n')
+    end
+    
+end
+
+end

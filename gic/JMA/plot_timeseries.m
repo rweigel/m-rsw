@@ -18,7 +18,7 @@ else
     set(0,'DefaultFigureWindowStyle','docked');
 end
 
-%Use this to find spikes
+%Use this to find spikes:
 %plot(E)
 %Click on spikes using data cursor in figure window
 %dcm1 = datacursormode(gcf());
@@ -84,9 +84,10 @@ figure(fn);clf;hold on;box on;grid on;
             sprintf('GIC G/Eo predicted PE = %.2f',PE_GEo(2)),...
             sprintf('GIC G/E predicted PE = %.2f',PE_GE(2)),...
             sprintf('GIC G/B predicted PE = %.2f',PE_GB(2)),...
+            sprintf('GIC G/Eo error (shifted +3)'),...
             sprintf('GIC G/E error (shifted +3)'),...
             sprintf('GIC G/B error (shifted +3)'),...
-            'Location','SouthWest');
+            'Location','Best');
     else
         plot(t/86400,GIC(:,1));
         plot(t/86400,GIC(:,2));
@@ -97,40 +98,3 @@ figure(fn);clf;hold on;box on;grid on;
     th = title('Memambetsu 187 kV substation');    
     %figconfig
     if png,print('-dpng',sprintf('%s/timeseries_GIC_%s-%d.png',dirfig,dateo,intervalno));end
-
-
-M = 3600*24;
-% Compute cross correlation between E and GIC
-[xc,lags] = xcorr(GIC(:,2),E(:,1),M,'coeff');
-[~,ix] = max(xc);
-fprintf('xcorr(GIC,Ex) max at %d s lag\n',lags(ix));
-
-[yc,lags] = xcorr(GIC(:,2),E(:,2),M,'coeff');
-[~,iy] = max(yc);
-fprintf('xcorr(GIC,Ey) max at %d s lag\n',lags(iy));
-
-[AC_GIC,lags] = xcorr(GIC(:,2),GIC(:,2),M,'coeff');
-
-Er_GEo = GICp_GEo(:,2)-GIC(:,2);
-[AC_GEo,lags] = xcorr(Er_GEo,M,'coeff');
-
-Er_GE = GICp_GE(:,2)-GIC(:,2);
-[AC_GE,lags] = xcorr(Er_GE,M,'coeff');
-
-Er_GB = GICp_GB(:,2)-GIC(:,2);
-[AC_GB,lags] = xcorr(Er_GB,M,'coeff');
-
-fn=fn+1;
-figure(fn);clf;hold on;box on;grid on;
-    %plot(lags/3600,xc,'LineWidth',2);
-    %plot(lags/3600,yc,'LineWidth',2);
-    %plot(lags/3600,AC_GIC,'LineWidth',2);
-    plot(lags/3600,AC_GEo,'LineWidth',2);
-    plot(lags/3600,AC_GE,'LineWidth',2);    
-    plot(lags/3600,AC_GB,'LineWidth',2);    
-    xlabel('Lag [hrs]');
-    [lh,lo] = legend('acorr(G/Eo Error)','acorr(G/E Error)','acorr(G/B Error)');
-    %'xcorr(GIC,E_x)','xcorr(GIC,E_y)','acorr(GIC)',...
-
-    %figconfig
-    if png,print('-dpng',sprintf('%s/timeseries_xcorrelations_%s-%d.png',dirfig,dateo,intervalno));end

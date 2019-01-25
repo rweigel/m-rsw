@@ -33,12 +33,13 @@ if png
     %set(0,'DefaultAxesFontSize',10);
 end
 
-%signaltonoiseInSample(File.GE,File.GB);
+signaltonoiseInSample1(File.GE,File.GB);
+signaltonoiseInSample2(File.GE,File.GB);
+
 signaltonoiseOutofSample1(File.GE,File.GB);
 signaltonoiseOutofSample2(File.GE,File.GB);
 coherenceOutofSample(File.GE,File.GB);
 
-keyboard
 mtZplots(File.EB);
 mtrhoplots(File.EB);
 mtphiplots(File.EB);
@@ -50,6 +51,45 @@ parameterhistograms(File.GE);
 compareHplots(File.GE,File.GB);
 compareZplots(File.GE,File.GB);
 comparePhiplots(File.GE,File.GB);    
+
+function adjustlabels(ax,dir)
+
+    if nargin == 1
+        adjustlabels(ax,'x');
+        adjustlabels(ax,'y');
+        return;
+    end
+    
+    if strcmp(dir,'x')
+        l = get(ax,'XTickLabel');
+    elseif strcmp(dir,'y')
+        l = get(ax,'YTickLabel');
+    else
+        error('dir must be x or y');
+    end
+    
+    for i = 1:length(l)
+        if strcmp(l{i},'10^{-1}')
+            l{i} = '0.1';
+        end
+        if strcmp(l{i},'10^{0}')
+            l{i} = '1';
+        end
+        if strcmp(l{i},'10^{1}')
+            l{i} = '10';
+        end
+        if strcmp(l{i},'10^{2}')
+            l{i} = '100';
+        end
+    end
+    
+    if strcmp(dir,'x')
+        set(ax,'XTickLabel',l);
+    else
+        set(ax,'YTickLabel',l);
+    end
+    
+end
 
 function coherenceOutofSample(GE,GB)
     fn=fn+1;figure(fn);clf;
@@ -63,16 +103,53 @@ function coherenceOutofSample(GE,GB)
         loglog(1./GB.fe,mean(squeeze(GB.Coherence_Alt_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Coherence - out-of-sample sample');
+        title('Coherence - Out-of-Sample sample');
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
+        adjustlabels(gca,'y');        
 end
 
-function signaltonoiseOutofSample1(GE,GB)
+function signaltonoiseInSample1(GE,GB)
     fn=fn+1;figure(fn);clf;
         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,1,:)),2)./mean(squeeze(GE.Erroro_PSD(:,1,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
        hold on;
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2)
+        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        grid on;
+        title('Signal to noise - In-Sample method 1');
+        legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
+        xlabel('Period [s]');
+        adjustlabels(gca,'y');
+end
+
+function signaltonoiseInSample2(GE,GB)
+    fn=fn+1;figure(fn);clf;
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,1,:))./squeeze(GE.Erroro_PSD(:,1,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+       hold on;
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2)
+        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        grid on;
+        title('Signal to noise - In-Sample method 2');
+        legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
+        xlabel('Period [s]');
+        adjustlabels(gca,'y');
+end
+
+function signaltonoiseOutofSample1(GE,GB)
+    fn=fn+1;figure(fn);clf;
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,1,:)),2)./mean(squeeze(GE.Erroro_PSD_Mean(:,1,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        hold on;
         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD_Mean(:,2,:)),2),...
@@ -80,9 +157,10 @@ function signaltonoiseOutofSample1(GE,GB)
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise- Out-of-Sample v1');
+        title('Signal to noise- Out-of-Sample method 1');
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
+        adjustlabels(gca,'y');
 end
 
 function signaltonoiseOutofSample2(GE,GB)
@@ -97,9 +175,10 @@ function signaltonoiseOutofSample2(GE,GB)
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)./GB.Error_Alt_PSD_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise - Out-of-Sample v2');
+        title('Signal to noise - Out-of-Sample method 2');
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
+        adjustlabels(gca,'y');
 end
 
 function errorhistograms(GE)

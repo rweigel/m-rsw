@@ -48,12 +48,13 @@ filestr = sprintf('%s-%s-%s-%s-%s',...
 clean = 1;
 writepng = 0;
 regenfiles = 0;
-intplot = 1;
+intplot = 0;
 
 % removed 20060818 due to large segment of bad E
 % removed 20060411 and 20060412 due to baseline shift in E
+% removed 20060402 due to baseline shift in GIC
 
-dateos = {'20061214','20060819','20061107','20060402','20060805','20060725','20071118','20071122','20061128','20061201'};
+dateos = {'20061214','20060819','20061107','20060403','20060805','20060725','20071118','20071122','20061128','20061201'};
 %dateos = {'20061214','20060819'};
 datefs = {'20061215','20060821','20061112','20060410','20060808','20060729','20071120','20071122','20061129','20061201'};
 dts    = [    66    ,    17    ,    32    ,    0     ,    0     ,    0     ,    0     ,    0     ,    0     ,    0     ];
@@ -76,8 +77,8 @@ if (0)
 end
 
 fn = 1;
-%for i = 1:length(dateos)
-for i = 4:4
+for i = 1:length(dateos)
+%for i = 4:4
 %for i = 1:1
     fprintf('--------------\n')
     fprintf('--------------\n')
@@ -107,7 +108,7 @@ for i = 4:4
     GIC  = [GIC(:,2),GICd];            % Keep 1 Hz filtered column and despiked column
 
     if intplot
-        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered','GIC 1 Hz filtered then despiked'});
+        plot_raw(tGIC,GIC(:,2),tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered then despiked'});
     end
 
     if strmatch('pca',opts.td.transform)
@@ -129,7 +130,6 @@ for i = 4:4
 
     if intplot
         plot_timeseries(dateo,intervalno,filestr,writepng);
-        keyboard
         plot_spectra(dateo,intervalno,filestr,writepng);
         plot_H(dateo,intervalno,filestr,writepng);
         plot_Z(dateo,intervalno,filestr,writepng);
@@ -150,8 +150,8 @@ for i = 4:4
         GICr = GIC(Ix,:);
         [GICr,Er,Br] = taper(GICr,Er,Br,opts.td.window.function);
 
-        fnameab{fn} = compute_ab(GICr,Er,Br,dateo,k);
-        fnametf{fn} = compute_TF(tr,GICr,Er,Br,dateo,k,filestr,opts);
+        fnamesab{fn} = compute_ab(GICr,Er,Br,dateo,k);
+        fnamestf{fn} = compute_TF(tr,GICr,Er,Br,dateo,k,filestr,opts);
         if intplot
             close all
             plot_timeseries(dateo,k,filestr,writepng);
@@ -160,11 +160,12 @@ for i = 4:4
             plot_Z(dateo,k,filestr,writepng);
         end
         %input('Continue?')
+        k = k + 1;
+        fn = fn + 1;
     end
-    fn = fn+1;
 end
 
-aggregate_TFs(fnameab,fnametf,filestr);
+aggregate_TFs(fnamesab,fnamestf,filestr);
 
 diary off
 delete(sprintf('log/compute_TF_aves_%s.txt',filestr));

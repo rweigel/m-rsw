@@ -2,6 +2,8 @@ N = 1024;
 window = ones(N/4,1);
 noverlap = 0;
 
+sf = size(B,1)/2;
+
 err = sin(8*2*pi*[0:N-1]'/N);
 
 [Perr,ferr] = pwelch(err,window,noverlap);
