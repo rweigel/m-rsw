@@ -119,6 +119,12 @@ ftE = fft(E);
 ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
 
+PB = smoothSpectra(B,'parzen');
+PE = smoothSpectra(E,'parzen');
+
+PB = interp1(fe,PB,f);
+PE = interp1(fe,PE,f);
+
 for j = 2:length(Ic)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,6 +149,12 @@ for j = 2:length(Ic)
     % End duplicated code
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+    if 0
+        % Give higher weight to low freq (which has lower noise)
+        W = W.*mean(PB(r,:),2);
+        W = W/sum(W);
+    end
+    
     if verbose
         fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                 fe(j),length(r),fa,fb)
@@ -184,10 +196,41 @@ for j = 2:length(Ic)
     if method == 2
         % Same as method 1 except using regress function.
         W = sqrt(W);
-        Wr = repmat(W,1,size(B,2));        
+        Wr = repmat(W,1,size(B,2));
         Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
     end
 
+    if 0%j > 15
+        W = sqrt(W);
+        Wr = repmat(W,1,size(B,2));
+        Er_act = real(W.*ftE(r,1));
+        Ei_act = real(W.*ftE(r,1));
+
+        Z_rob(j,:) = robustfit(Wr.*ftB(r,:),W.*ftE(r,1),'cauchy',[],'off');        
+        Er_rob = real(Wr.*ftB(r,:))*real(Z_rob(j,:))';        
+        Ei_rob = imag(Wr.*ftB(r,:))*imag(Z_rob(j,:))';        
+
+        Z_ols(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
+        Er_ols = real(Wr.*ftB(r,:))*real(Z_ols(j,:))';
+        Ei_ols = imag(Wr.*ftB(r,:))*imag(Z_ols(j,:))';
+
+        clf;
+        plot(Er_act,Er_rob,'r.','MarkerSize',20);
+        hold on;
+        plot(Er_act,Er_ols,'b.','MarkerSize',10);
+
+        err = Er_act-Er_rob;
+        % Remove "outlier" errors.
+        I = find(err/std(err) <= 1.5);
+
+        Z_ols(j,:) = regress(W(I,:).*ftE(r(I),1),Wr(I,:).*ftB(r(I),:));
+        Er_ols = real(Wr(I,:).*ftB(r(I),:))*real(Z_ols(j,:))';
+        Ei_ols = imag(Wr(I,:).*ftB(r(I),:))*imag(Z_ols(j,:))';
+        plot(Er_act(I),Er_ols,'g.','MarkerSize',5);        
+        legend('Re(FT(E)) OLS','Re(FT(E)) Robust','Re(FT(E) OLS Trimmed');
+        keyboard
+    end
+    
     if method == 3
         % Same as method 1 except using robustfit function.
         W = sqrt(W);

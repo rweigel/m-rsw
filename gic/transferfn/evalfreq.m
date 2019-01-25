@@ -23,6 +23,10 @@ function [fe,Ne,Ic] = evalfreq(f,method,N,verbose)
 %
 % This code reproduces Figure 4.2 of Simpson and Bahr 2005 (with execption
 % noted below).
+%
+%  [fe,Ne,Ic] = EVALFREQ(f,'linear',Ne)
+%
+%
 
 % TODO: Allow N to be interpreted power for method = 'logarithmic'
 % Now it is N = 2 and frequencies are sqrt(N^k).

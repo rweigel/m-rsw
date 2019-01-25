@@ -21,8 +21,10 @@ opts.td.prewhiten.methodstr = 'none'; % diff
 opts.td.prewhiten.options = '';
 
 opts.fd.window = struct();
-opts.fd.window.function = @parzenwin;
+opts.fd.window.function = @parzenwin; 
 opts.fd.window.functionstr = 'parzen';
+%opts.fd.window.function = @rectwin; 
+%opts.fd.window.functionstr = 'rectangular';
 opts.fd.window.options = struct();
 
 opts.fd.regression = struct();
@@ -130,6 +132,7 @@ for i = 1:length(dateos)
 
     if intplot
         plot_timeseries(dateo,intervalno,filestr,writepng);
+        plot_correlations(dateo,intervalno,filestr,png)        
         plot_spectra(dateo,intervalno,filestr,writepng);
         plot_H(dateo,intervalno,filestr,writepng);
         plot_Z(dateo,intervalno,filestr,writepng);
@@ -173,4 +176,5 @@ diary(sprintf('log/compute_TF_aves_%s.txt',filestr));
 compute_TF_aves(filestr);
 diary off
 
+close all;
 plot_TF_aves(0,filestr);

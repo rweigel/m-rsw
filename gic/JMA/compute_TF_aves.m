@@ -1,29 +1,33 @@
 function compute_TF_aves(filestr)
 
 fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
-
 fprintf('compute_TF_aves.m: Loading %s\n',fnamemat);
 File = load(fnamemat);
 fprintf('compute_TF_aves.m: Loaded %s\n',fnamemat);
 
-fprintf('-----------------------------\n')
-fprintf('PEs for Input = E, Output = GIC\n')
-fprintf('-----------------------------\n')
 GE = compute(File.GE,File.IO.E,File.IO.GIC,'G/E');
-
-fprintf('-----------------------------\n')
-fprintf('PEs for Input = B, Output = GIC\n')
-fprintf('-----------------------------\n')
 GB = compute(File.GB,File.IO.B,File.IO.GIC,'G/B');
-
-fprintf('-----------------------------\n')
-fprintf('PEs for Input = B, Output = E\n')
-fprintf('-----------------------------\n')
 EB = compute(File.EB,File.IO.B,File.IO.E,'E/B');
 
 summary(GE,'G/E');
 summary(GB,'G/B');
 summary(EB,'E/B');
+
+keyboard
+r = mean(GE.MSEo_Mean(:,1))/mean(GE.MSE_Mean(:,2));
+r = mean(GE.MSEo_Mean(:,1)./GE.MSE_Mean(:,2));
+rb = boot95(GE.MSEo_Mean(:,1)./GE.MSE_Mean(:,2));
+fprintf('<Model 1 (Eo) MSE>/<Model 2 (E) MSE>   = %4.2f +\- %4.2f\n',r,rb);
+
+r = mean(GE.MSEo_Mean(:,1))/mean(GB.MSE_Alt_Mean(:,2));
+r = mean(GE.MSEo_Mean(:,1)./GB.MSE_Alt_Mean(:,2));
+rb = boot95(GE.MSEo_Mean(:,1)./GB.MSE_Alt_Mean(:,2));
+fprintf('<Model 1 (Eo) MSE>/<Model 3 (E'') MSE>  = %4.2f +\- %4.2f\n',r,rb);
+
+r = mean(GE.MSEo_Mean(:,1))/mean(GB.MSE_Mean(:,2));
+r = mean(GE.MSEo_Mean(:,1)./GB.MSE_Mean(:,2));
+rb = boot95(GE.MSEo_Mean(:,1)./GB.MSE_Mean(:,2));
+fprintf('<Model 1 (Eo) MSE>/<Model 4 (B) MSE>   = %4.2f +\- %4.2f\n',r,rb);
 
 fnamemat = sprintf('mat/compute_TF_aves-%s.mat',filestr);
 fprintf('compute_TF_aves.m: Saving %s\n',fnamemat);
@@ -148,6 +152,7 @@ function S = compute(S,In,Out,ts)
             tmp = S.aobo_Mean(1)*In(:,1,k) + S.aobo_Mean(2)*In(:,2,k);
 
             S.PEo_Mean(k,1) = pe(Out(a:b,2,k),tmp(a:b,1));
+            S.MSEo_Mean(k,1) = mse(Out(a:b,2,k),tmp(a:b,1));
             S.CCo_Mean(k,1) = corr(Out(a:b,2,k),tmp(a:b,1),'rows','complete');
 
             S.Erroro_PSD_Mean(:,:,k) = smoothSpectra(Out(:,2,k)-tmp,'parzen');            
@@ -164,6 +169,7 @@ function S = compute(S,In,Out,ts)
 
         tmp = Zpredict(S.fe,S.Z_Mean,In(:,:,k));
         S.PE_Mean(k,:)           = pe(Out(a:b,:,k),tmp(a:b,:));
+        S.MSE_Mean(k,:)          = mse(Out(a:b,:,k),tmp(a:b,:));
         S.CC_Mean(k,1)           = corr(Out(a:b,1,k),tmp(a:b,1),'rows','complete');
         S.CC_Mean(k,2)           = corr(Out(a:b,2,k),tmp(a:b,2),'rows','complete');
 
@@ -209,6 +215,7 @@ function S = compute(S,In,Out,ts)
         
             tmp = Zpredict(S.fe,S.Z_Alt_Mean,In(:,:,k));
             S.PE_Alt_Mean(k,:)           = pe(Out(a:b,:,k),tmp(a:b,:));
+            S.MSE_Alt_Mean(k,:)          = mse(Out(a:b,:,k),tmp(a:b,:));
             S.CC_Alt_Mean(k,1)           = corr(Out(a:b,1,k),tmp(a:b,1),'rows','complete');
             S.CC_Alt_Mean(k,2)           = corr(Out(a:b,2,k),tmp(a:b,2),'rows','complete');
 
@@ -247,6 +254,20 @@ function summary(S,ts,m)
         fprintf('%so  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
                 ts,boot95(S.CCo(:,1)),boot95(S.CCo_Mean(:,1)));
 
+        fprintf('%so  Ave MSE           :  in-sample: %6.3f;     using mean: %6.3f;\n',...
+                ts,mean(S.MSEo(:,1)),mean(S.MSEo_Mean(:,1)));
+        fprintf('%so  MSE 95%% Lims (norm):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.MSEo(:,1)),norm95(S.MSEo_Mean(:,1)));
+        fprintf('%so  MSE 95%% Lims (boot):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.MSEo(:,1)),boot95(S.MSEo_Mean(:,1)));
+            
+        unit = '[A/(V/km)]';
+        if strmatch(ts,'G/B')
+            unit = '[mA/nT]';
+        end
+        fprintf('ao average = %6.1f [%6.3f,%6.3f] %s (boot)\n',1e3*S.aobo_Mean(1),1e3*boot95(S.aobo(:,1)),unit);
+        fprintf('bo average = %6.1f [%6.3f,%6.3f] %s (boot)\n',1e3*S.aobo_Mean(2),1e3*boot95(S.aobo(:,2)),unit);
+
         fprintf('___________________________________________________________________________\n')
     end
     
@@ -266,6 +287,15 @@ function summary(S,ts,m)
         fprintf('%s  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
                 ts,boot95(S.CC(:,2)),boot95(S.CC_Mean(:,2)));
         fprintf('___________________________________________________________________________\n');
+
+        fprintf('%s Ave MSE             : in-sample: %6.3f;     using mean: %6.3f\n',...
+                ts,mean(S.MSE(:,2)),mean(S.MSE_Mean(:,2)));
+        fprintf('%s  MSE CC%% Lims (norm):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.MSE(:,2)),norm95(S.MSE_Mean(:,2)));
+        fprintf('%s  MSE 95%% Lims (boot):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.MSE(:,2)),boot95(S.MSE_Mean(:,2)));
+        fprintf('___________________________________________________________________________\n');
+        
     end
     
     if (m == 0 || m == 3) && isfield(S,'Z_Alt_Mean')
@@ -285,8 +315,17 @@ function summary(S,ts,m)
         fprintf('%s''  CC 95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
                 ts,boot95(S.CC_Alt(:,2)),boot95(S.CC_Alt_Mean(:,2)));
         fprintf('___________________________________________________________________________\n')
+
+        fprintf('%s'' Ave MSE             : in-sample: %6.3f;     using mean: %6.3f\n',...
+                ts,mean(S.MSE_Alt(:,2)),mean(S.MSE_Alt_Mean(:,2)));
+        fprintf('%s''  MSE CC%% Lims (norm):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,norm95(S.MSE_Alt(:,2)),norm95(S.MSE_Alt_Mean(:,2)));
+        fprintf('%s''  MSE 95%% Lims (boot):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+                ts,boot95(S.MSE_Alt(:,2)),boot95(S.MSE_Alt_Mean(:,2)));
+        fprintf('___________________________________________________________________________\n')
+        
     end
-    
+        
 end
 
 end
