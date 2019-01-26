@@ -1,16 +1,23 @@
 function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
-%TRANSFERFNFD
+%TRANSFERFNFD Estimates transfer function
+%
+%  Estimates complex transfer function Z(f) in models
+%
+%  E(f) = Z(f)B(f)
+%  E(f) = Zx(f)Bx(f) + Zy(f)By(f)
+%
+%  where w is frequency.
 %
 %  [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 %
 %  Methods:
 %
-%  Compute Z in E = BZ
+%  Compute Z in E = ZB
 %    method 1: Uses closed-form equations
 %    method 2: Uses regress()
 %    method 3: Uses robustfit()
 %
-%  Compute Z = C^{-1} in B = CZ
+%  Compute Z = C^{-1} in B = CE
 %    method 4: Uses closed-form equations to compute 
 %    method 5: Uses regress()
 %    method 6: Uses robustfit()
@@ -64,6 +71,7 @@ end
 
 if size(B,2) == 1 && size(E,2) == 1
     if method <= 3
+        % Ex = ZxBx
         % Case is handled by default.
     else
         % Bx = CxxEx
@@ -79,10 +87,11 @@ end
 
 if size(B,2) == 2 && size(E,2) == 1
     if method <= 3
+        % Ex = ZxBx + ZyBy
         % Case is handled by default.
     else
         % Bx = CxxEx + CxyEy does not make sense to request
-        error('This case does not make sense')
+        error('Method cannot be used give input dimensions.')
     end
 end
 
@@ -200,7 +209,7 @@ for j = 2:length(Ic)
         Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
     end
 
-    if 0%j > 15
+    if 0 && j > 15
         W = sqrt(W);
         Wr = repmat(W,1,size(B,2));
         Er_act = real(W.*ftE(r,1));

@@ -18,8 +18,8 @@
 % domain for both methods is the same.
 
 clear;
-addpath('../time');
-addpath('../stats');
+addpath('../../time');
+addpath('../../stats');
 base = './figures/transfer_function_demo_';
 
 

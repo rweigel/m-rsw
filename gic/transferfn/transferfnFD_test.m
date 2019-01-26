@@ -26,8 +26,8 @@ ndb  = 0.0; % Noise in dB
 
 paramstring = sprintf('_ne_%.1f',ne);
 
-% IRF for dx/dt + x/tau = delta(0), and ICs
-% x_0 = 0 dx_0/dt = 0 approximated using forward Euler.
+% IRF for dx/dt + x/\tau = delta(0), and ICs x(t=0) = 0; dx/dt|_{t=0} = 0
+% approximated using forward Euler.
 dt = 1;
 gamma = (1-dt/tau);
 for i = 1:Ntau*tau
@@ -35,13 +35,13 @@ for i = 1:Ntau*tau
     t(i,1) = dt*(i-1);
 end
 hstr = sprintf('(1-1/%d)^{t}; t=1 ... %d; h_{xy}(0)=0;', tau, length(h));
-% Add a zero because MATLAB filter function requires it.  Also,
-% not having it causes non-physical phase drift with frequency.
+% Add a zero because MATLAB filter function requires it.
+% (Not having it also causes phase drift with frequency.)
 h  = [0;h];            % Exact IRF
 th = [0:length(h)-1]'; % Exact IRF time lags
 
-% Add extra values to get nice length
-% (because we cut off non-steady state).
+% Add extra values so length is same after cutting off non-steady state
+% part of E and B.
 N = N + Nss*length(h);
 
 % Noise
@@ -120,9 +120,9 @@ N = size(B,1);
 Z = fft(H);
 Z(Z==0) = eps; % So points show up on loglog plot.
 
-Nh     = size(Z,1);
-Z      = Z(1:floor(Nh/2)+1,:);
-fh     = [0:floor(Nh/2)]'/Nh;
+Nh  = size(Z,1);
+Z   = Z(1:floor(Nh/2)+1,:);
+fh  = [0:floor(Nh/2)]'/Nh;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -170,32 +170,6 @@ end
 if size(Z_FDR,2) == 1
     Zstrs = {'Z'};
 end
-
-fn = 0;
-for j = 1:size(Z_FDR,2)
-    fn = fn+1;figure(fn);clf;
-        loglog(fh,abs(Z(:,j)),'k','Marker','+','MarkerSize',10,'LineWidth',5)
-        hold on;grid on;
-        loglog(fe_TD,abs(Z_TD(:,j)),'m','Marker','.','MarkerSize',25,'LineWidth',3);
-        for i = 1:size(Z_FDR,3)
-            loglog(fe_FDR,abs(Z_FDR(:,j,i)),'Marker','.','MarkerSize',15,'LineWidth',2);
-         end
-        xlabel('f')
-        title(sprintf('%s',Zstrs{j}));
-        legend(...
-                'Exact',...
-                sprintf('TD; n_T = %d',length(H_TD)),...
-                sprintf('FD; %s; OLS; min E',windowfn),...
-                sprintf('FD; %s; OLS; min E using regress()',windowfn),...
-                sprintf('FD; %s; Robust; min E using robustfit()',windowfn),...
-                sprintf('FD; %s; OLS; min B',windowfn),...
-                sprintf('FD; %s; OLS; min B using regress()',windowfn),...
-                sprintf('FD; %s; Robust; min B using robustfit()',windowfn),...
-                'Location','Best')
-       plotcmds(['transfer_functions',paramstring],writeimgs)
-end
-
-break
 
 fn = fn+1;figure(fn);clf;hold on; grid on;
     ts = sprintf('E_y = filter(h_{xy},1,B_x+\\deltaBx) + \\deltaE_y; \\deltaE_y = \\eta(0,%.2f); \\deltaB_x = \\eta(0,%.2f)',ne,nb);
@@ -248,6 +222,30 @@ fn = fn+1;figure(fn);clf;hold on; grid on;
            )
    plotcmds(['impulse_responses',paramstring],writeimgs)
 
+fn = 0;
+for j = 1:size(Z_FDR,2)
+    fn = fn+1;figure(fn);clf;
+        loglog(fh,abs(Z(:,j)),'k','Marker','+','MarkerSize',10,'LineWidth',5)
+        hold on;grid on;box on;
+        loglog(fe_TD,abs(Z_TD(:,j)),'m','Marker','.','MarkerSize',25,'LineWidth',3);
+        for i = 1:size(Z_FDR,3)
+            loglog(fe_FDR,abs(Z_FDR(:,j,i)),'Marker','.','MarkerSize',15,'LineWidth',2);
+         end
+        xlabel('f')
+        title(sprintf('%s',Zstrs{j}));
+        legend(...
+                'Exact',...
+                sprintf('TD; n_T = %d',length(H_TD)),...
+                sprintf('FD; %s; OLS; min E',windowfn),...
+                sprintf('FD; %s; OLS; min E using regress()',windowfn),...
+                sprintf('FD; %s; Robust; min E using robustfit()',windowfn),...
+                sprintf('FD; %s; OLS; min B',windowfn),...
+                sprintf('FD; %s; OLS; min B using regress()',windowfn),...
+                sprintf('FD; %s; Robust; min B using robustfit()',windowfn),...
+                'Location','Best')
+       plotcmds(['transfer_functions',paramstring],writeimgs)
+end
+   
 break
 if (0)
 figure(5);clf;
