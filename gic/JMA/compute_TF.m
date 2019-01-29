@@ -2,69 +2,87 @@ function fname = compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts)
 
 dirmat = sprintf('mat/%s',dateo);
 
-window = opts.fd.window.functionstr; % TODO: Pass function handle.
-method = opts.fd.regression.method; 
-
-[GIC,E,B] = taper(GIC,E,B,opts.td.window.function);
-
 % Compute transfer function with B driving E using FD method
-[Z_EB,fe_EB,H_EB,t_EB,Ep_EB,SB,SE,Serr_EB] = transferfnFD(B(:,1:2),E,method,window);
+[Z_EB,fe_EB,H_EB,t_EB,Ep_EB] = transferfnFD(B(:,1:2),E,opts);
 
-PE_EB(1) = pe_nonflag(E(:,1),Ep_EB(:,1));
-PE_EB(2) = pe_nonflag(E(:,2),Ep_EB(:,2));
+for k = 1:2
+    PE_EB(k)  = pe_nonflag(E(:,k),Ep_EB(:,k));
+    MSE_EB(k) = mse_nonflag(E(:,k),Ep_EB(:,k));
+    CC_EB(k)  = cc_nonflag(E(:,k),Ep_EB(:,k));
+end
 
-MSE_EB(1) = mse_nonflag(E(:,1),Ep_EB(:,1));
-MSE_EB(2) = mse_nonflag(E(:,2),Ep_EB(:,2));
-
-CC_EB(1) = corr(E(:,1),Ep_EB(:,1),'rows','complete');
-CC_EB(2) = corr(E(:,2),Ep_EB(:,2),'rows','complete');
-
-fprintf('compute_TF.m: PE/CC/MSE of Ex using B = %.2f/%.2f/%.3f\n',PE_EB(1),CC_EB(1),MSE_EB(1));
-fprintf('compute_TF.m: PE/CC/MSE of Ey using B = %.2f/%.2f/%.3f\n',PE_EB(2),CC_EB(2),MSE_EB(2));
+fprintf('compute_TF.m: PE/CC/MSE of Ex using B                       = %.2f/%.2f/%.3f\n',PE_EB(1),CC_EB(1),MSE_EB(1));
+fprintf('compute_TF.m: PE/CC/MSE of Ey using B                       = %.2f/%.2f/%.3f\n',PE_EB(2),CC_EB(2),MSE_EB(2));
 
 % Compute transfer function with E driving GIC using FD method
 % GIC(:,1) is LPF
 % GIC(:,2) is LPF despiked
-[Z_GE,fe_GE,H_GE,t_GE,GICp_GE,SE,SG,Serr_GE] = transferfnFD(E,GIC,method,window);
+[Z_GE,fe_GE,H_GE,t_GE,GICp_GE] = transferfnFD(E,GIC,opts);
 
-PE_GE(1) = pe_nonflag(GIC(:,1),GICp_GE(:,1));
-PE_GE(2) = pe_nonflag(GIC(:,2),GICp_GE(:,2));
+for k = 1:2
+    PE_GE(k)  = pe_nonflag(GIC(:,k),GICp_GE(:,k));
+    MSE_GE(k) = mse_nonflag(GIC(:,k),GICp_GE(:,k));
+    CC_GE(k)  = cc_nonflag(GIC(:,k),GICp_GE(:,k));
+end
 
-MSE_GE(1) = mse_nonflag(GIC(:,1),GICp_GE(:,1));
-MSE_GE(2) = mse_nonflag(GIC(:,2),GICp_GE(:,2));
-
-CC_GE(1) = corr(GIC(:,1),GICp_GE(:,1),'rows','complete');
-CC_GE(2) = corr(GIC(:,2),GICp_GE(:,2),'rows','complete');
-
-fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E = %.2f/%.2f/%.3f\n',PE_GE(1),CC_GE(1),MSE_GE(1));
-fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E    = %.2f/%.2f/%.3f\n',PE_GE(2),CC_GE(2),MSE_GE(2));
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E          = %.2f/%.2f/%.3f\n',PE_GE(1),CC_GE(1),MSE_GE(1));
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E             = %.2f/%.2f/%.3f\n',PE_GE(2),CC_GE(2),MSE_GE(2));
 
 % Compute transfer function with B driving GIC using FD method
-[Z_GB,fe_GB,H_GB,t_GB,GICp_GB,SB,SG,Serr_GB] = transferfnFD(B(:,1:2),GIC,method,window);
+[Z_GB,fe_GB,H_GB,t_GB,GICp_GB] = transferfnFD(B(:,1:2),GIC,opts);
 
-PE_GB(1) = pe_nonflag(GIC(:,1),GICp_GB(:,1));
-PE_GB(2) = pe_nonflag(GIC(:,2),GICp_GB(:,2));
+for k = 1:2
+    PE_GB(k)  = pe_nonflag(GIC(:,k),GICp_GB(:,k));
+    MSE_GB(k) = mse_nonflag(GIC(:,k),GICp_GB(:,k));
+    CC_GB(k)  = cc_nonflag(GIC(:,k),GICp_GB(:,k));
+end
 
-MSE_GB(1) = mse_nonflag(GIC(:,1),GICp_GB(:,1));
-MSE_GB(2) = mse_nonflag(GIC(:,2),GICp_GB(:,2));
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using B          = %.2f/%.2f/%.3f\n',PE_GB(1),CC_GB(1),MSE_GB(1)); 
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using B             = %.2f/%.2f/%.3f\n',PE_GB(2),CC_GB(2),MSE_GB(2)); 
 
-CC_GB(1) = corr(GIC(:,1),GICp_GB(:,1),'rows','complete');
-CC_GB(2) = corr(GIC(:,2),GICp_GB(:,2),'rows','complete');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GIC(w) = (a(w)*Zxx(w) + b(w)*Zyx(w))*Bx(w) + (a(w)*Zxy(w) + b(w)*Zyy(w))*By(w)
+%
+% Bx term      a(w)        Zxx           b(w)      Zyx
+Z_GBa(:,1) = Z_GE(:,1).*Z_EB(:,1) + Z_GE(:,2).*Z_EB(:,3);
+% By term      a(w)        Zxy       b(w)         Zyy
+Z_GBa(:,2) = Z_GE(:,1).*Z_EB(:,2) + Z_GE(:,2).*Z_EB(:,4);
 
-fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using B = %.2f/%.2f/%.3f\n',PE_GB(1),CC_GB(1),MSE_GB(1)); 
-fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using B    = %.2f/%.2f/%.3f\n',PE_GB(2),CC_GB(2),MSE_GB(2)); 
+% Bx term      a(w)     Zxx           b(w)       Zyx
+Z_GBa(:,3) = Z_GE(:,3).*Z_EB(:,1) + Z_GE(:,4).*Z_EB(:,3);
+% By term      a(w)     Zxy           b(w)       Zyy
+Z_GBa(:,4) = Z_GE(:,3).*Z_EB(:,2) + Z_GE(:,4).*Z_EB(:,4);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+N = size(B,1);
+f = [0:N/2]'/N; % Assumes N is even.
+H_GBa = Z2H(fe_GB,Z_GBa,f);
+
+GICp_GBa = Zpredict(fe_GB,Z_GBa,B(:,1:2));
+
+for k = 1:2
+    PE_GBa(k)  = pe_nonflag(GIC(:,k),GICp_GBa(:,k));
+    MSE_GBa(k) = mse_nonflag(GIC(:,k),GICp_GBa(:,k));
+    CC_GBa(k)  = cc_nonflag(GIC(:,k),GICp_GBa(:,k));
+end
+
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E''         = %.2f/%.2f/%.3f\n',PE_GBa(1),CC_GBa(1),MSE_GBa(1)); 
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E''            = %.2f/%.2f/%.3f\n',PE_GBa(2),CC_GBa(2),MSE_GBa(2)); 
+
+clear k N f
 
 fname = sprintf('%s/compute_TF_%s-%s-%d.mat',dirmat,dateo,filestr,intervalno);
 save(fname);
 fprintf('compute_TF.m: Wrote %s\n',fname);
 
+
 FD_only = 1;
-
-% Used for paper.  Requires ~32 GB RAM
-Nc = 60*10; % Number of causal coefficients
-Na = 60*10; % Number of acausal coefficients
-
 if (FD_only == 0)
+
+    % Used for paper.  Requires ~32 GB RAM
+    Nc = 60*10; % Number of causal coefficients
+    Na = 60*10; % Number of acausal coefficients
+
     fprintf('Computing TD model 1/5\n');
     % Compute transfer function with B driving E using TD method
     [Z_TD,f_TD,H_TD,t_TD,Ep_TD] = transferfnTD(B(:,1:2),E(:,:),Nc,Na);

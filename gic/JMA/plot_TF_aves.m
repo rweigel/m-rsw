@@ -5,10 +5,6 @@ if ~exist(dirfig,'dir')
     mkdir(dirfig);
 end
 
-file = sprintf('mat/compute_TF_aves-%s.mat',filestr);
-fprintf('plot_TF_aves: Loading from %s\n',file);
-File = load(file);
-
 fn = 0;
 orient portrait;
 if png == 1
@@ -19,68 +15,177 @@ else
     set(0,'DefaultFigureWindowStyle','docked');
 end
 
-File.EB.title = '$\mathbf{E} = \mathcal{Z}\mathbf{B}$; E in mV/m, B in nT';
-File.GE.title = '$G_B(\omega) = A(\omega)E_{x}(\omega) + B(\omega)E_{y}$';
-File.GB.title = '$G_E(\omega) = Z_x(\omega)B_{x}(\omega) + Z_y(\omega)B_{y}$';
+file = sprintf('mat/compute_TF_aves-%s.mat',filestr);
+fprintf('plot_TF_aves: Loading from %s\n',file);
+F = load(file);
 
-compareSpectra(File.GE,File.GB,File.EB);
+F.EB.title = '$\mathbf{E} = \mathcal{Z}\mathbf{B}$; E in mV/m, B in nT';
+F.GE.title = '$G_B(\omega) = A(\omega)E_{x}(\omega) + B(\omega)E_{y}$';
+F.GB.title = '$G_E(\omega) = Z_x(\omega)B_{x}(\omega) + Z_y(\omega)B_{y}$';
 
-signaltonoiseInSample1(File.GE,File.GB);
-signaltonoiseInSample2(File.GE,File.GB);
+parameterhistograms(F.GEo);
 
-signaltonoiseOutofSample1(File.GE,File.GB);
-signaltonoiseOutofSample2(File.GE,File.GB);
+compareHplots(F.GE,F.GEo,F.GB);
+compareZplots(F.GE,F.GEo,F.GB);
+comparePhiplots(F.GE,F.GB);    
+
+spectraAverages(F.GE,F.GB);
+
+errorSpectraInSample(F.GE,F.GEo,F.GB,F.GBa,F.EB);
+errorSpectraMean(F.GE,F.GEo,F.GB,F.GBa,F.EB);
+errorSpectraMedian(F.GE,F.GEo,F.GB,F.GBa,F.EB);
+
+%signaltoNoiseInSample1(F.GE,F.GEo,F.GB,F.GBa);
+signaltoNoiseInSample2(F.GE,F.GEo,F.GB,F.GBa);
+
+%signaltoNoiseMean1(F.GE,F.GEo,F.GB,F.GBa);
+signaltoNoiseMean2(F.GE,F.GEo,F.GB,F.GBa);
+
+%coherenceInSample(F.GE,F.GEo,F.GB,F.GBa);
+%coherenceMean(F.GE,F.GEo,F.GB,F.GBa);
+
+%genZplots(F.EB);
+%genRhoplots(F.EB);
+%genPhiplots(F.EB);
 
 return
 
-coherenceOutofSample(File.GE,File.GB);
+mtZplots(F.EB);
+mtrhoplots(F.EB);
+mtphiplots(F.EB);
 
-mtZplots(File.EB);
-mtrhoplots(File.EB);
-mtphiplots(File.EB);
+return
 
-%genZplots(File.EB);
-%genRhoplots(File.EB);
-%genPhiplots(File.EB);
+%errorhistograms(F.GE);
 
-parameterhistograms(File.GE);
-compareHplots(File.GE,File.GB);
-compareZplots(File.GE,File.GB);
-comparePhiplots(File.GE,File.GB);    
+function spectraAverages(GE,GB)
 
-%errorhistograms(File.GE);
-
-function compareSpectra(GE,GB,EB)
-
-    sf = size(File.GE.Prediction,1)/2;
-    fe = File.GE.fe;
+    sf = size(F.GE.Prediction,1)/2;
+    fe = F.GE.fe;
     
-    %set(fh,'Name',[dateo,' PSD'])
     fn=fn+1;figure(fn);clf;
-        loglog(1./fe(2:end),mean(squeeze(GE.Output_PSD(2:end,2,:)),2)/sf,'b','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GE.Output_PSD_Mean(2:end,2,:)),2)/sf,'b','LineWidth',2,'Marker','.','MarkerSize',15)
         hold on;box on;grid on;
-        loglog(1./fe(2:end),mean(squeeze(GE.Input_PSD(2:end,1,:)),2)/sf,'r','LineWidth',2,'Marker','.','MarkerSize',15)
-        loglog(1./fe(2:end),mean(squeeze(GE.Input_PSD(2:end,2,:)),2)/sf,'g','LineWidth',2,'Marker','.','MarkerSize',15)
-        loglog(1./fe(2:end),mean(squeeze(GB.Input_PSD(2:end,1,:)),2)/sf,'k','LineWidth',2,'Marker','.','MarkerSize',15)
-        loglog(1./fe(2:end),mean(squeeze(GB.Input_PSD(2:end,2,:)),2)/sf,'m','LineWidth',2,'Marker','.','MarkerSize',15)
-        vlines(1/fe(end))
+        loglog(1./fe(2:end),mean(squeeze(GE.Input_PSD_Mean(2:end,1,:)),2)/sf,'r','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GE.Input_PSD_Mean(2:end,2,:)),2)/sf,'g','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GB.Input_PSD_Mean(2:end,1,:)),2)/sf,'k','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GB.Input_PSD_Mean(2:end,2,:)),2)/sf,'m','LineWidth',2,'Marker','.','MarkerSize',15)
+        vlines(1/fe(2))
         %[lh,lo] = legend('GIC [A]','E_x [mV/km]','E_y [mV/km]','B_x [nT]','B_y [nT]','Location','Best');
         [lh,lo] = legend('GIC','E_x','E_y','B_x','B_y','Location','Best');
+        title('Out-of-Sample')
         ylabel('PSD')
         xlabel('Period [s]')
         %figconfig;
         %if png,print('-dpng',sprintf('%s/All_spectra_%s-%d.png',dirfig,dateo,intervalno));end
+end
 
+function errorSpectraMean(GE,GEo,GB,GBa,EB)
+    
+    sf = size(F.GE.Prediction,1)/2;
+    fe = F.GE.fe;
+
+    % Relative contribution to variance
+    [~,Ne] = evalfreq(size(GE.Prediction,1));
+
+    
+    fn=fn+1;figure(fn);clf;
+        loglog(1./fe(2:end),mean(squeeze(GE.Output_PSD_Mean(2:end,2,:)),2)/sf,'b','LineWidth',2,'Marker','.','MarkerSize',15)
+        hold on;box on;grid on;
+        loglog(1./fe(2:end),mean(squeeze(GEo.Error_PSD_Mean(2:end,2,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GE.Error_PSD_Mean(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GBa.Error_PSD_Mean(2:end,2,:)),2)/sf,'k-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GB.Error_PSD_Mean(2:end,2,:)),2)/sf,'m-.','LineWidth',2,'Marker','.','MarkerSize',15)
+
+        rc = Ne(2:end).*mean(squeeze(GEo.Error_PSD_Mean(2:end,2,:)),2)/sf;rc = rc/sum(rc);        
+        loglog(1./fe(2:end),rc,'r-.','LineWidth',1,'Marker','.','MarkerSize',5)
+        
+        rc = Ne(2:end).*mean(squeeze(GE.Error_PSD_Mean(2:end,2,:)),2)/sf;rc = rc/sum(rc);        
+        loglog(1./fe(2:end),rc,'r-.','LineWidth',1,'Marker','.','MarkerSize',5)
+        
+        rc = Ne(2:end).*mean(squeeze(GBa.Error_PSD_Mean(2:end,2,:)),2)/sf;rc = rc/sum(rc);        
+        loglog(1./fe(2:end),rc,'k-.','LineWidth',1,'Marker','.','MarkerSize',5)
+        
+        rc = Ne(2:end).*mean(squeeze(GB.Error_PSD_Mean(2:end,2,:)),2)/sf;rc = rc/sum(rc);        
+        loglog(1./fe(2:end),rc,'m-.','LineWidth',1,'Marker','.','MarkerSize',5)
+
+        
+        vlines(1/fe(2))
+        legend('GIC','Model 1 (G_o) Error','Model 2 (G_E) Error','Model 3 (G_{E''}) Error','Model 4 (G_B) Error','Location','Best');
+        title('Average of Error Spectra - Mean Model Predictions');
+        ylabel('PSD');
+        xlabel('Period [s]')
+        %figconfig;
+        %if png,print('-dpng',sprintf('%s/GIC_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+
+    fn=fn+1;figure(fn);clf;
+        loglog(1./fe(2:end),mean(squeeze(EB.Output_PSD_Mean(2:end,1,:)),2)/sf,'r-','LineWidth',2,'Marker','.','MarkerSize',15)
+        hold on;box on;grid on;
+        loglog(1./fe(2:end),mean(squeeze(EB.Output_PSD_Mean(2:end,2,:)),2)/sf,'g-','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD_Mean(2:end,1,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD_Mean(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        vlines(1/fe(2))
+        [lh,lo] = legend('E_x','E_y','E_x error','E_y error','Location','Best');
+        title('Average of Error Spectra - Mean Model Predictions');
+        ylabel('PSD')
+        xlabel('Period [s]')
+        %figconfig;
+        %if png,print('-dpng',sprintf('%s/E_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+
+end
+
+function errorSpectraMedian(GE,GEo,GB,GBa,EB)
+
+    sf = size(F.GE.Prediction,1)/2;
+    fe = F.GE.fe;
+    
+    fn=fn+1;figure(fn);clf;
+        loglog(1./fe(2:end),mean(squeeze(GE.Output_PSD_Median(2:end,2,:)),2)/sf,'b','LineWidth',2,'Marker','.','MarkerSize',15)
+        hold on;box on;grid on;
+        loglog(1./fe(2:end),mean(squeeze(GEo.Error_PSD_Median(2:end,2,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GE.Error_PSD_Median(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GBa.Error_PSD_Median(2:end,2,:)),2)/sf,'k-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GB.Error_PSD_Median(2:end,2,:)),2)/sf,'m-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        
+        vlines(1/fe(2))
+        legend('GIC','Model 1 (G_o) Error','Model 2 (G_E) Error','Model 3 (G_{E''}) Error','Model 4 (G_B) Error','Location','Best');
+        title('Average of Error Spectra - Median Model Predictions');
+        ylabel('PSD');
+        xlabel('Period [s]')
+        %figconfig;
+        %if png,print('-dpng',sprintf('%s/GIC_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+
+    fn=fn+1;figure(fn);clf;
+        loglog(1./fe(2:end),mean(squeeze(EB.Output_PSD_Median(2:end,1,:)),2)/sf,'r-','LineWidth',2,'Marker','.','MarkerSize',15)
+        hold on;box on;grid on;
+        loglog(1./fe(2:end),mean(squeeze(EB.Output_PSD_Median(2:end,2,:)),2)/sf,'g-','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD_Median(2:end,1,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD_Median(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        vlines(1/fe(2))
+        [lh,lo] = legend('E_x','E_y','E_x error','E_y error','Location','Best');
+        title('Average of Error Spectra - Median Model Predictions');
+        ylabel('PSD')
+        xlabel('Period [s]')
+        %figconfig;
+        %if png,print('-dpng',sprintf('%s/E_spectra_errors_%s-%d.png',dirfig,dateo,intervalno));end
+
+end
+
+function errorSpectraInSample(GE,GEo,GB,GBa,EB)
+
+    sf = size(F.GE.Prediction,1)/2;
+    fe = F.GE.fe;
+    
     fn=fn+1;figure(fn);clf;
         loglog(1./fe(2:end),mean(squeeze(GE.Output_PSD(2:end,2,:)),2)/sf,'b','LineWidth',2,'Marker','.','MarkerSize',15)
         hold on;box on;grid on;
-        loglog(1./fe(2:end),mean(squeeze(GE.Erroro_PSD(2:end,1,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GEo.Error_PSD(2:end,2,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
         loglog(1./fe(2:end),mean(squeeze(GE.Error_PSD(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
-        loglog(1./fe(2:end),mean(squeeze(GB.Error_Alt_PSD(2:end,2,:)),2)/sf,'k-.','LineWidth',2,'Marker','.','MarkerSize',15)
+        loglog(1./fe(2:end),mean(squeeze(GBa.Error_PSD(2:end,2,:)),2)/sf,'k-.','LineWidth',2,'Marker','.','MarkerSize',15)
         loglog(1./fe(2:end),mean(squeeze(GB.Error_PSD(2:end,2,:)),2)/sf,'m-.','LineWidth',2,'Marker','.','MarkerSize',15)
-        
-        vlines(1/fe(end))
+        vlines(1/fe(2))
         legend('GIC','Model 1 (G_o) Error','Model 2 (G_E) Error','Model 3 (G_{E''}) Error','Model 4 (G_B) Error','Location','Best');
+        title('Average of Error Spectra - In-Sample Model Predictions');
         ylabel('PSD');
         xlabel('Period [s]')
         %figconfig;
@@ -92,8 +197,9 @@ function compareSpectra(GE,GB,EB)
         loglog(1./fe(2:end),mean(squeeze(EB.Output_PSD(2:end,2,:)),2)/sf,'g-','LineWidth',2,'Marker','.','MarkerSize',15)
         loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD(2:end,1,:)),2)/sf,'r-.','LineWidth',2,'Marker','.','MarkerSize',15)
         loglog(1./fe(2:end),mean(squeeze(EB.Error_PSD(2:end,2,:)),2)/sf,'g-.','LineWidth',2,'Marker','.','MarkerSize',15)
-        vlines(1/fe(end))
+        vlines(1/fe(2))
         [lh,lo] = legend('E_x','E_y','E_x error','E_y error','Location','Best');
+        title('Average of Error Spectra - In-Sample Model Predictions');
         ylabel('PSD')
         xlabel('Period [s]')
         %figconfig;
@@ -101,96 +207,116 @@ function compareSpectra(GE,GB,EB)
 
 end
 
-function coherenceOutofSample(GE,GB)
+function coherenceMean(GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GE.Coherenceo_Mean(:,1,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GEo.Coherence_Mean(:,1,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
         hold on;
         loglog(1./GE.fe,mean(squeeze(GE.Coherence_Mean(:,1,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,mean(squeeze(GBa.Coherence_Mean(:,2,:)),2),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
         loglog(1./GB.fe,mean(squeeze(GB.Coherence_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2)
-        loglog(1./GB.fe,mean(squeeze(GB.Coherence_Alt_Mean(:,2,:)),2),...
-                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Coherence - Out-of-Sample sample');
-        vlines(1/fe(end));
+        title('Coherence - Out-of-Sample');
+        vlines(1/F.GE.fe(2));
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');        
 end
 
-function signaltonoiseInSample1(GE,GB)
+function coherenceInSample(GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Erroro_PSD(:,1,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GEo.Coherence(:,1,:)),2),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        hold on;
+        loglog(1./GE.fe,mean(squeeze(GE.Coherence(:,1,:)),2),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,mean(squeeze(GBa.Coherence(:,2,:)),2),...
+                'Marker','.','MarkerSize',20,'LineWidth',2);
+        loglog(1./GB.fe,mean(squeeze(GB.Coherence(:,2,:)),2),...
+                'Marker','.','MarkerSize',20,'LineWidth',2)
+        grid on;
+        title('Coherence - In-Sample');
+        vlines(1/F.GE.fe(2));
+        legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
+        xlabel('Period [s]');
+        exponent_relabel(gca,'y');        
+end
+
+function signaltoNoiseInSample1(GE,GEo,GB,GBa)
+    fn=fn+1;figure(fn);clf;
+        loglog(1./GE.fe,mean(squeeze(GEo.Output_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-       hold on;
+        hold on;
         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2)
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise - In-Sample method 1');
-        vlines(1/fe(end));
+        title('Signal to noise - In-Sample Predictions (method 1)');
+        vlines(1/F.GE.fe(2));
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end
 
-function signaltonoiseInSample2(GE,GB)
+function signaltoNoiseInSample2(GE,GEo,GB,GBa)
+    
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:))./squeeze(GE.Erroro_PSD(:,1,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GEo.Output_PSD(:,2,:))./squeeze(GEo.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
        hold on;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:))./squeeze(GE.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:))./squeeze(GBa.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2)
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:))./squeeze(GB.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise - In-Sample method 2');
-        vlines(1/fe(end))
+        title('Signal to noise - In-Sample Predictions (method 2)');
+        vlines(1/F.GE.fe(2))
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end
 
-function signaltonoiseOutofSample1(GE,GB)
+function signaltoNoiseMean1(GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Erroro_PSD_Mean(:,1,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         hold on;
         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_Alt_PSD_Mean(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2)
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD_Mean(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise- Out-of-Sample method 1');
-        vlines(1/fe(end))
+        title('Signal to noise - Mean Model Predictions (method 1)');
+        vlines(1/F.GE.fe(2))
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end
 
-function signaltonoiseOutofSample2(GE,GB)
+function signaltoNoiseMean2(GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)./GE.Erroro_PSD_Mean(:,1,:)),2),...
-                'Marker','.','MarkerSize',20,'LineWidth',2);
-       hold on;
+        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)./GEo.Error_PSD_Mean(:,2,:)),2),...
+               'Marker','.','MarkerSize',20,'LineWidth',2);
+        hold on;
         loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)./GE.Error_PSD_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)./GB.Error_Alt_PSD_Mean(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:)./GBa.Error_PSD_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2)
         loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)./GB.Error_PSD_Mean(:,2,:)),2),...
                 'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
-        title('Signal to noise - Out-of-Sample method 2');
-        vlines(1/fe(end))
+        title('Signal to noise - Mean Model Predictions (method 2)');
+        vlines(1/F.GE.fe(2))
         legend('Model 1 G_o','Model 2 G_E','Model 3 G_{E''}','Model 4 G_B','Location','Best');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
@@ -235,8 +361,8 @@ function parameterhistograms(GE)
         %edgesao = [-300:50:300];
         edgesbo = [-300:50:300];
 
-        [nao,xao] = histc(1e3*GE.aobo(:,1),edgesao);
-        [nbo,xbo] = histc(1e3*GE.aobo(:,2),edgesbo);
+        [nao,xao] = histc(1e3*GE.ao(:,2),edgesao);
+        [nbo,xbo] = histc(1e3*GE.bo(:,2),edgesbo);
 
         edgesao = [edgesao(1),edgesao];
         nao = [0,nao'];
@@ -246,8 +372,8 @@ function parameterhistograms(GE)
         stairs(edgesao,nao,'r','LineWidth',2)
         stairs(edgesbo,nbo,'r--','LineWidth',2)
 
-        plot(mean(1e3*GE.aobo(:,1)),0,'r.','MarkerSize',30);
-        plot(mean(1e3*GE.aobo(:,2)),0,'ro','MarkerSize',10);
+        plot(mean(1e3*GE.ao(:,2)),0,'r.','MarkerSize',30);
+        plot(mean(1e3*GE.bo(:,2)),0,'ro','MarkerSize',10);
 
         %cc = corrcoef(GE.aobo(:,1),GE.aobo(:,2));
         %fprintf('corr(ao,bo) = %.2f\n',cc(2));
@@ -295,9 +421,10 @@ function comparePhiplots(GE,GB,pn)
     
     %set(gca,'ytick',[-60:30:210])
     %ylim([-60,210])        
-
-    set(gca,'ytick',[-210:30:210])
-    ylim([-210,210])
+    exponent_relabel(gca,'x');
+    set(gca,'ytick',[-180:30:180])
+    ylim([-180,180])
+    vlines(1./GE.fe(2));
     %errorbars(1./GE.fe(2:end),sf*GE.Phi_Mean(2:end,3),sf*GE.Phi_Standard_Error(2:end,3),'linear');
     %errorbars(1./GE.fe(2:end),sf*GE.Phi_Mean(2:end,4),sf*GE.Phi_Standard_Error(2:end,4),'linear');
     %errorbars(1./GE.fe(2:end),sf*GB.Phi_Mean(2:end,3),sf*GB.Phi_Standard_Error(2:end,3),'linear');
@@ -334,9 +461,9 @@ function comparePhiplots(GE,GB,pn)
 
 end
 
-function compareHplots(GE,GB,pn)
+function compareHplots(GE,GEo,GB,pn)
 
-    if nargin == 3
+    if nargin == 4
         subplot(3,1,pn)
     else
         fn=fn+1;figure(fn);clf;    
@@ -351,8 +478,8 @@ function compareHplots(GE,GB,pn)
     I = find(t >= tlims(1) & t <= tlims(2));
 
 
-    plot(0,sf*GE.aobo_Mean(1)/10,'r.','MarkerSize',20);
-    plot(0,sf*GE.aobo_Mean(2)/10,'ro','MarkerSize',5);
+    plot(0,sf*GEo.ao_Mean(2)/10,'r.','MarkerSize',20);
+    plot(0,sf*GEo.bo_Mean(2)/10,'ro','MarkerSize',5);
 
     plot(t(I),sf*GE.H_Mean(I,3),'r','LineWidth',2);
     plot(t(I),sf*GE.H_Mean(I,4),'r--','LineWidth',2);
@@ -366,15 +493,15 @@ function compareHplots(GE,GB,pn)
     %errorbars(0,sf*GE.aobo_Mean(1)/10,sf*GE.aobo_Standard_Error(1)/10)
     %errorbars(0,sf*GE.aobo_Mean(2)/10,sf*GE.aobo_Standard_Error(2)/10)
 
-    errorbars(t(I),sf*GE.H_Mean(I,3),sf*GE.H_Standard_Error(I,3));
+    errorbars(t(I),sf*GE.H_Mean(I,3),sf*GE.H_StdErr(I,3));
     %errorbars(t(I),sf*GE.H_Mean(I,3),sf*GE.H_Mean_Standard_Error_Lower(I,3),sf*GE.H_Mean_Standard_Error_Upper(I,3));
-    errorbars(t(I),sf*GE.H_Mean(I,4),sf*GE.H_Standard_Error(I,4));
+    errorbars(t(I),sf*GE.H_Mean(I,4),sf*GE.H_StdErr(I,4));
 
     %errorbars(0,sf*GB.aobo_Mean(1),sf*GE.aobo_Standard_Error(1))
     %errorbars(0,sf*GB.aobo_Mean(2),sf*GE.aobo_Standard_Error(2))
 
-    errorbars(t(I),sf*GB.H_Mean(I,3),sf*GB.H_Standard_Error(I,3));
-    errorbars(t(I),sf*GB.H_Mean(I,4),sf*GB.H_Standard_Error(I,4));
+    errorbars(t(I),sf*GB.H_Mean(I,3),sf*GB.H_StdErr(I,3));
+    errorbars(t(I),sf*GB.H_Mean(I,4),sf*GB.H_StdErr(I,4));
 
     xlabel('Time [s]');
     %lim(tlims);
@@ -444,20 +571,16 @@ function compareHplots(GE,GB,pn)
 
 end
 
-function compareZplots(GE,GB,pn)
+function compareZplots(GE,GEo,GB,GBa,pn)
     
-    if nargin == 3
-        subplot(3,1,pn)
-    else
-        fn=fn+1;figure(fn);clf;    
-    end
+    fn=fn+1;figure(fn);clf;    
 
     box on;          
     sf = 1e3;
     %sf = 1;
-    loglog(1./GE.fe(2:end),sf*repmat(abs(GE.aobo_Mean(1)),length(GE.fe(2:end)),1),'r');
+    loglog(1./GE.fe(2:end),sf*repmat(abs(GEo.ao_Mean(2)),length(GE.fe(2:end)),1),'r');
     hold on;grid on;
-    loglog(1./GE.fe(2:end),sf*repmat(abs(GE.aobo_Mean(2)),length(GE.fe(2:end)),1),'r--');        
+    loglog(1./GE.fe(2:end),sf*repmat(abs(GEo.bo_Mean(2)),length(GE.fe(2:end)),1),'r--');        
 
     loglog(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),'r','LineWidth',2);
     
@@ -469,11 +592,12 @@ function compareZplots(GE,GB,pn)
     %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,3),'k--','LineWidth',2);
     %loglog(1./GB.fe(2:end),sf*GB.Zabs_Alt_Mean(2:end,4),'k','LineWidth',2);
     
-    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_Standard_Error(2:end,3),'loglog');
-    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,4),sf*GE.Zabs_Standard_Error(2:end,4),'loglog');    
-    errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_Standard_Error(2:end,3),'loglog');
-    errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,4),sf*GB.Zabs_Standard_Error(2:end,4),'loglog');
-
+    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,3),sf*GE.Zabs_StdErr(2:end,3),'loglog');
+    errorbars(1./GE.fe(2:end),sf*GE.Zabs_Mean(2:end,4),sf*GE.Zabs_StdErr(2:end,4),'loglog');    
+    errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_StdErr(2:end,3),'loglog');
+    errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,4),sf*GB.Zabs_StdErr(2:end,4),'loglog');
+    vlines(1./GE.fe(2));
+    exponent_relabel(gca,'x');    
     lh = legend(...
             sprintf('$|A_o|$ [A/(V/km)]'),...
             sprintf('$|B_o|$ [A/(V/km)]'),...    
@@ -488,8 +612,8 @@ function compareZplots(GE,GB,pn)
         loglog(1./GB.fe(2:end),sf*GB.Zabs_Mean(2:end,3),'b--','LineWidth',2);
         loglog(1./GB.fe(2:end),sf*GB.Zabs_Mean(2:end,4),'b','LineWidth',2);
 
-        errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_Standard_Error(2:end,3),'loglog');
-        errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,4),sf*GB.Zabs_Standard_Error(2:end,4),'loglog');
+        errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,3),sf*GB.Zabs_StdErr(2:end,3),'loglog');
+        errorbars(1./GE.fe(2:end),sf*GB.Zabs_Mean(2:end,4),sf*GB.Zabs_StdErr(2:end,4),'loglog');
 
         lh = legend(...
                 sprintf('$|A(\\omega)|$ [A/(V/km)]'),...
@@ -523,7 +647,7 @@ function mtZplots(S)
     end
 
     for i = 1:size(S.Z,2)
-        errorbars(1./S.fe(2:end),sf*S.Zabs_Mean(2:end,i),sf*S.Zabs_Standard_Error(2:end,i),'loglog');
+        %errorbars(1./S.fe(2:end),sf*S.Zabs_Mean(2:end,i),sf*S.Zabs_Standard_Error(2:end,i),'loglog');
         hold on;
     end
 

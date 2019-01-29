@@ -3,6 +3,8 @@ function [fe,Ne,Ic] = evalfreq(f,method,N,verbose)
 %
 %  [fe,Ne,Ic] = EVALFREQ(f)
 %
+%  [fe,Ne,Ic] = EVALFREQ(N) uses f = [0:f/N]'/N
+%
 %  Defining fo = f(end)/2, the elements are approximately
 % 
 %    f(1) (if f(1) = 0, then f(2))
@@ -39,6 +41,11 @@ if nargin < 3
 end
 if nargin < 2
     method = 'logarithmic';
+end
+
+if length(f) == 1
+    % Given number of points.
+    f = [0:f/2]'/f; % Assumes N is even.
 end
 
 if strmatch(method,'linear','exact')

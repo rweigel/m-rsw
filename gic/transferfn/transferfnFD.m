@@ -1,12 +1,13 @@
-function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
+function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,opts)
 %TRANSFERFNFD Estimates transfer function
 %
-%  Estimates complex transfer function Z(f) in models
+%  Estimates complex transfer function Z(f) in one of
 %
 %  E(f) = Z(f)B(f)
+%
 %  E(f) = Zx(f)Bx(f) + Zy(f)By(f)
 %
-%  where w is frequency.
+%  where f is frequency.
 %
 %  [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 %
@@ -41,33 +42,35 @@ function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
 %  Bx = CxxEx + CxyEy
 %  By = CyxEx + CyyEy
 
-
 verbose = 0;
-if (nargin < 3)
-    method = 1;
-end
-if (nargin < 4)
-    winfn = 'rectangular';
-end
-if (nargin < 5)
-    winopts = [];
-end
-if (nargin < 6)
-    sigma = 1;
-end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Caution - code below is duplicated in smoothSpectra()
 N = size(B,1);
-f = [0:N/2]'/N;
+f = [0:N/2]'/N; % Assumes N is even.
 
-if ~isempty(winopts)
-    [fe,Ne,Ic] = evalfreq(f,'linear',winopts);
-else
-    [fe,Ne,Ic] = evalfreq(f);
+if nargin > 2
+    if strmatch(opts.fd.evalfreq.method,'linear','exact')
+        [fe,Ne,Ic] = evalfreq(f,'linear',opts.fd.evalfreq.options);
+    elseif strmatch(opts.fd.evalfreq.method,'logarithmic','exact')
+        [fe,Ne,Ic] = evalfreq(f);
+    else
+        [fe,Ne,Ic] = evalfreq(f);
+    end
 end
 % End duplicated code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+if nargin > 2
+    method = opts.fd.regression.method;
+else
+    method = 2;
+end
+if nargin > 2
+    winfn = opts.fd.window.function;
+else
+    winfn = @parzenwin;
+end
 
 if size(B,2) == 1 && size(E,2) == 1
     if method <= 3
@@ -76,7 +79,7 @@ if size(B,2) == 1 && size(E,2) == 1
     else
         % Bx = CxxEx
         method = method - 3;
-        [C,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(E,B,method,winfn,winopts);        
+        [C,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(E,B,opts);        
         Z = 1./C;
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
@@ -99,57 +102,47 @@ if size(B,2) == 2 && size(E,2) == 2
     if method <= 3
         % Ex = ZxxBx + ZxyBy
         % Ey = ZyxBx + ZyyBy
-        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1),SB,SE(:,1),SEerr(:,1)] = transferfnFD(B,E(:,1),method,winfn,winopts);
-        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2),SB,SE(:,2),SEerr(:,2)] = transferfnFD(B,E(:,2),method,winfn,winopts);
+        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1),SB,SE(:,1),SEerr(:,1)] = transferfnFD(B,E(:,1),opts);
+        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2),SB,SE(:,2),SEerr(:,2)] = transferfnFD(B,E(:,2),opts);
         return
     else
         % Bx = CxxEx + CxyEy
         % By = CyxEx + CyyEy
         method = method - 3;
-        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1),SE,SB(:,1),SBerr(:,1)] = transferfnFD(E,B(:,1),method,winfn,winopts);
-        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2),SE,SB(:,2),SBerr(:,2)] = transferfnFD(E,B(:,2),method,winfn,winopts);
+        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1),SE,SB(:,1),SBerr(:,1)] = transferfnFD(E,B(:,1),opts);
+        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2),SE,SB(:,2),SBerr(:,2)] = transferfnFD(E,B(:,2),opts);
         
         % Compute Z = C^{-1}
         DET = C(:,1).*C(:,4)-C(:,2).*C(:,3);
         Z   = [C(:,4),-C(:,2),-C(:,3),C(:,1)]./repmat(DET,1,4);
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
-        [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),winfn,winopts);
-        [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),winfn,winopts);
+        [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),opts);
+        [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);
         return;
     end
 end
 
+if nargin > 2 & strmatch(opts.td.prewhiten.method,'yulewalker','exact')
+    [~,a,b] = prewhiten(B(:,1),opts.td.prewhiten.options);
+    Ew = filter(b,a,E);
+    Bw = filter(b,a,B);
+else
+    Bw = B;
+    Ew = E;
+end
 
-%ftB = fft([diff(B);zeros(size(B,2))]);
-%ftE = fft([diff(E);zeros(size(E,2))]);
-ftB = fft(B);
-ftE = fft(E);
+ftB = fft(Bw);
+ftE = fft(Ew);
 ftB = ftB(1:N/2+1,:);
 ftE = ftE(1:N/2+1,:);
-
-PB = smoothSpectra(B,'parzen');
-PE = smoothSpectra(E,'parzen');
-
-PB = interp1(fe,PB,f);
-PE = interp1(fe,PE,f);
 
 for j = 2:length(Ic)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Caution - code below is duplicated in smoothSpectra()
-    if strmatch(winfn,'parzen','exact')
-        W = parzenwin(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'bartlett','exact')
-        W = bartlett(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'rectangular','exact')
-       W = ones(2*Ne(j)+1,1);  
-       W = W/sum(W);
-    end
+    W = winfn(2*Ne(j)+1);
+    W = W/sum(W);
     
     r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];
     
@@ -258,7 +251,10 @@ H = fftshift(H,1);
 n = (size(H,1)-1)/2;
 t = [-n:n]';
 
-[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
+Ep = real(Zpredict(fe,Z,B));
+
+%[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
+SEerr = smoothSpectra(E,opts);
 
 function [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts)
 

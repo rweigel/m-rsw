@@ -9,9 +9,9 @@ dirmat = sprintf('mat/%s',dateo);
 for i = 1:2
     LIN = basic_linear(E,GIC(:,i));
     GICp_GEo(:,i) = basic_linear(E(:,:),LIN.Weights,'predict');
-    ao = LIN.Weights(1);
-    bo = LIN.Weights(2);
-    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',ao,bo);
+    ao(i) = LIN.Weights(1);
+    bo(i) = LIN.Weights(2);
+    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',ao(i),bo(i));
 
     PE_GEo(i) = pe_nonflag(GIC(:,i),GICp_GEo(:,i));
     MSE_GEo(i) = mse_nonflag(GIC(:,i),GICp_GEo(:,i));
@@ -49,17 +49,18 @@ ao1h = LIN.Weights(1);
 bo1h = LIN.Weights(2);
 fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-hr aves)\n',ao1h,bo1h);
 
-% GIC(:,2) = hxoB(:,1) + hyoB(:,2); % (LPF version is second column)
-LIN = basic_linear(B(:,1:2),GIC(:,2));
-GICp_GBo(:,1) = basic_linear(B(:,1:2),LIN.Weights,'predict');
-hox = LIN.Weights(1);
-hoy = LIN.Weights(2);
-fprintf('compute_ab.m: hxo = %7.4f; hyo = %7.4f (Using magnetic field)\n',hox,hoy);
+for i = 1:2
+    LIN = basic_linear(B(:,1:2),GIC(:,i));
+    GICp_GBo(:,i) = basic_linear(B(:,1:2),LIN.Weights,'predict');
+    hxo(i) = LIN.Weights(1);
+    hyo(i) = LIN.Weights(2);
+    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',hxo(i),hyo(i));
 
-PE_GBo = pe_nonflag(GIC(:,2),GICp_GBo);
-MSE_GBo = mse_nonflag(GIC(:,2),GICp_GBo);
-CC_GBo = corr(GIC(:,2),GICp_GBo,'rows','complete');
-fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',PE_GBo,CC_GBo,MSE_GBo);
+    PE_GBo(i) = pe_nonflag(GIC(:,i),GICp_GBo(:,i));
+    MSE_GBo(i) = mse_nonflag(GIC(:,i),GICp_GBo(:,i));
+    CC_GBo(i) = corr(GIC(:,2),GICp_GBo(:,i),'rows','complete');
+    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,PE_GBo(i),CC_GBo(i),MSE_GBo(i));
+end
 
 % GIC(:,2) = hxodB(:,1) + hyodB(:,2); % (LPF version is second column)
 dB = [diff(B(:,1:2));0,0];
@@ -88,8 +89,12 @@ MSE_GBo3 = mse_nonflag(GIC(:,2),GIC_GBo3);
 CC_GBo3 = corr(GIC(:,2),GIC_GBo3,'rows','complete');
 fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',PE_GBo3,CC_GBo3,MSE_GBo3);
 
-fname = sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno);
-save(fname,'ao','bo','hox','hoy','GICp_GEo','GICp_GBo','PE_GEo','PE_GBo','CC_GEo','CC_GBo','MSE_GEo','MSE_GBo','E','B','GIC');
+for i = 1:2
+    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2)   = %.2f/%.2f/%.3f\n',i,PE_GEo(i),CC_GEo(i),MSE_GEo(i));
+    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,PE_GBo(i),CC_GBo(i),MSE_GBo(i));
+end
 
+fname = sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno);
+save(fname,'ao','bo','hxo','hyo','GICp_GEo','GICp_GBo','PE_GEo','PE_GBo','CC_GEo','CC_GBo','MSE_GEo','MSE_GBo','E','B','GIC');
 fprintf('compute_ab.m: Wrote %s\n',fname);
 

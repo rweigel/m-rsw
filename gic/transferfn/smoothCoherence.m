@@ -1,7 +1,9 @@
-function [Cxy,fe] = smoothCoherence(x,y,winfn,winopts)
+function [Cxy,fe] = smoothCoherence(x,y,opts)
 
-if nargin < 4
-    winopts = [];
+if nargin > 2
+    winfn = opts.fd.window.function;
+else
+    winfn = @parzenwin;
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,10 +11,13 @@ end
 N = size(x,1);
 f = [0:N/2]'/N;
 
-if ~isempty(winopts)
-    [fe,Ne,Ic] = evalfreq(f,'linear',winopts);
-else
-    [fe,Ne,Ic] = evalfreq(f);
+[fe,Ne,Ic] = evalfreq(f);
+if nargin > 1
+    if strmatch(opts.fd.evalfreq.method,'linear','exact')
+        [fe,Ne,Ic] = evalfreq(f,'linear',opts.fd.evalfreq.options);
+    elseif strmatch(opts.fd.evalfreq.method,'logarithmic','exact')
+        [fe,Ne,Ic] = evalfreq(f);
+    end
 end
 % End duplicated code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -26,31 +31,17 @@ for j = 2:length(Ic)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Caution - code below is duplicated in transferfnFD()
-    if strmatch(winfn,'parzen','exact')
-        W = parzenwin(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'bartlett','exact')
-        W = bartlett(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'rectangular','exact')
-       W = ones(2*Ne(j)+1,1);  
-       W = W/sum(W);
-    end
-
+    W = winfn(2*Ne(j)+1);
+    W = W/sum(W);
     r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];
-
-    fa = f(Ic(j)-Ne(j));    
-    fb = f(Ic(j)+Ne(j));
     % End duplicated code
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     for k = 1:size(x,2)
-        sxx(k) = sum(W.*(ftx(r,k).*conj(ftx(r,k))));
-        syy(k) = sum(W.*(fty(r,k).*conj(fty(r,k))));
-        sxy(k) = sum(abs(W.*(ftx(r,k).*conj(fty(r,k)))));
-        Cxy(j,k) = sxy(k).^2./(sxx(k)*syy(k));
+        sxx = sum(W.*(ftx(r,k).*conj(ftx(r,k))));
+        syy = sum(W.*(fty(r,k).*conj(fty(r,k))));
+        sxy = sum(abs(W.*(ftx(r,k).*conj(fty(r,k)))));
+        Cxy(j,k) = sxy.^2./(sxx*syy);
     end
 
 end

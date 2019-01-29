@@ -1,7 +1,9 @@
-function [S,fe] = smoothSpectra(B,winfn,winopts)
+function [S,fe] = smoothSpectra(B,opts)
 
-if nargin < 3
-    winopts = [];
+if nargin > 2
+    winfn = opts.fd.window.function;
+else
+    winfn = @parzenwin;
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,10 +11,13 @@ end
 N = size(B,1);
 f = [0:N/2]'/N;
 
-if ~isempty(winopts)
-    [fe,Ne,Ic] = evalfreq(f,'linear',winopts);
-else
-    [fe,Ne,Ic] = evalfreq(f);
+[fe,Ne,Ic] = evalfreq(f);
+if nargin > 1
+    if strmatch(opts.fd.evalfreq.method,'linear','exact')
+        [fe,Ne,Ic] = evalfreq(f,'linear',opts.fd.evalfreq.options);
+    elseif strmatch(opts.fd.evalfreq.method,'logarithmic','exact')
+        [fe,Ne,Ic] = evalfreq(f);
+    end
 end
 % End duplicated code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,28 +29,14 @@ for j = 2:length(Ic)
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Caution - code below is duplicated in transferfnFD()
-    if strmatch(winfn,'parzen','exact')
-        W = parzenwin(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'bartlett','exact')
-        W = bartlett(2*Ne(j)+1); 
-        W = W/sum(W);
-    end
-    if strmatch(winfn,'rectangular','exact')
-       W = ones(2*Ne(j)+1,1);  
-       W = W/sum(W);
-    end
-
+    W = winfn(2*Ne(j)+1);
+    W = W/sum(W);
     r = [Ic(j)-Ne(j):Ic(j)+Ne(j)];
-
-    fa = f(Ic(j)-Ne(j));    
-    fb = f(Ic(j)+Ne(j));
     % End duplicated code
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-    for v = 1:size(ftB,2)
-        S(j,v) = sum(W.*(ftB(r,1).*conj(ftB(r,1))));
+    for k = 1:size(ftB,2)
+        S(j,k) = sum(W.*(ftB(r,k).*conj(ftB(r,k))));
     end
 
 end

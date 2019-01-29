@@ -1,5 +1,9 @@
 function prepdirs(dateo,filestr,clean)
 
+if nargin < 3
+    clean = 1;
+end
+
 dirmat = sprintf('mat/%s',dateo);
 if ~exist(dirmat,'dir')
     mkdir(dirmat);
