@@ -3,71 +3,107 @@ function fname = compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts)
 dirmat = sprintf('mat/%s',dateo);
 
 % Compute transfer function with B driving E using FD method
-[Z_EB,fe_EB,H_EB,t_EB,Ep_EB] = transferfnFD(B(:,1:2),E,opts);
+[EB_Z,EB_fe,EB_H,EB_t,EB_Prediction] = transferfnFD(B(:,1:2),E,opts);
 
 for k = 1:2
-    PE_EB(k)  = pe_nonflag(E(:,k),Ep_EB(:,k));
-    MSE_EB(k) = mse_nonflag(E(:,k),Ep_EB(:,k));
-    CC_EB(k)  = cc_nonflag(E(:,k),Ep_EB(:,k));
+    EB_PE(k)  = pe_nonflag(E(:,k),EB_Prediction(:,k));
+    EB_MSE(k) = mse_nonflag(E(:,k),EB_Prediction(:,k));
+    EB_CC(k)  = cc_nonflag(E(:,k),EB_Prediction(:,k));
 end
 
-fprintf('compute_TF.m: PE/CC/MSE of Ex using B                       = %.2f/%.2f/%.3f\n',PE_EB(1),CC_EB(1),MSE_EB(1));
-fprintf('compute_TF.m: PE/CC/MSE of Ey using B                       = %.2f/%.2f/%.3f\n',PE_EB(2),CC_EB(2),MSE_EB(2));
+EB_Dateo   = dateo;
+EB_Seconds = [t(1),t(end)];
 
+EB_Input_PSD  = smoothSpectra(B(:,1:2),opts);
+EB_Output_PSD = smoothSpectra(E,opts);
+EB_Error_PSD  = smoothSpectra(E-EB_Prediction,opts);
+EB_Coherence  = smoothCoherence(E,EB_Prediction,opts);
+EB_Phi        = atan2(imag(EB_Z),real(EB_Z));
+
+fprintf('compute_TF.m: PE/CC/MSE of Ex using B                       = %.2f/%.2f/%.3f\n',EB_PE(1),EB_CC(1),EB_MSE(1));
+fprintf('compute_TF.m: PE/CC/MSE of Ey using B                       = %.2f/%.2f/%.3f\n',EB_PE(2),EB_CC(2),EB_MSE(2));
+    
 % Compute transfer function with E driving GIC using FD method
 % GIC(:,1) is LPF
 % GIC(:,2) is LPF despiked
-[Z_GE,fe_GE,H_GE,t_GE,GICp_GE] = transferfnFD(E,GIC,opts);
+[GE_Z,GE_fe,GE_H,GE_t,GE_Prediction] = transferfnFD(E,GIC,opts);
 
 for k = 1:2
-    PE_GE(k)  = pe_nonflag(GIC(:,k),GICp_GE(:,k));
-    MSE_GE(k) = mse_nonflag(GIC(:,k),GICp_GE(:,k));
-    CC_GE(k)  = cc_nonflag(GIC(:,k),GICp_GE(:,k));
+    GE_PE(k)  = pe_nonflag(GIC(:,k),GE_Prediction(:,k));
+    GE_MSE(k) = mse_nonflag(GIC(:,k),GE_Prediction(:,k));
+    GE_CC(k)  = cc_nonflag(GIC(:,k),GE_Prediction(:,k));
 end
 
-fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E          = %.2f/%.2f/%.3f\n',PE_GE(1),CC_GE(1),MSE_GE(1));
-fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E             = %.2f/%.2f/%.3f\n',PE_GE(2),CC_GE(2),MSE_GE(2));
+GE_Dateo   = dateo;
+GE_Seconds = [t(1),t(end)];
+
+GE_Input_PSD   = smoothSpectra(E,opts);
+GE_Prediction  = GE_Prediction;
+GE_Output_PSD  = smoothSpectra(GIC,opts);
+GE_Error_PSD   = smoothSpectra(GIC - GE_Prediction,opts);
+GE_Coherence   = smoothCoherence(GIC,GE_Prediction,opts);
+GE_Phi         = atan2(imag(GE_Z),real(GE_Z));
+
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E          = %.2f/%.2f/%.3f\n',GE_PE(1),GE_CC(1),GE_MSE(1));
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E             = %.2f/%.2f/%.3f\n',GE_PE(2),GE_CC(2),GE_MSE(2));
 
 % Compute transfer function with B driving GIC using FD method
-[Z_GB,fe_GB,H_GB,t_GB,GICp_GB] = transferfnFD(B(:,1:2),GIC,opts);
+[GB_Z,GB_fe,GB_H,GB_t,GB_Prediction] = transferfnFD(B(:,1:2),GIC,opts);
 
 for k = 1:2
-    PE_GB(k)  = pe_nonflag(GIC(:,k),GICp_GB(:,k));
-    MSE_GB(k) = mse_nonflag(GIC(:,k),GICp_GB(:,k));
-    CC_GB(k)  = cc_nonflag(GIC(:,k),GICp_GB(:,k));
+    GB_PE(k)  = pe_nonflag(GIC(:,k),GB_Prediction(:,k));
+    GB_MSE(k) = mse_nonflag(GIC(:,k),GB_Prediction(:,k));
+    GB_CC(k)  = cc_nonflag(GIC(:,k),GB_Prediction(:,k));
 end
 
-fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using B          = %.2f/%.2f/%.3f\n',PE_GB(1),CC_GB(1),MSE_GB(1)); 
-fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using B             = %.2f/%.2f/%.3f\n',PE_GB(2),CC_GB(2),MSE_GB(2)); 
+GB_Dateo   = dateo;
+GB_Seconds = [t(1),t(end)];
+
+GB_Input_PSD  = smoothSpectra(B(:,1:2),opts);
+GB_Output_PSD = smoothSpectra(GIC,opts);
+GB_Error_PSD  = smoothSpectra(GIC - GB_Prediction,opts);
+GB_Coherence  = smoothCoherence(GIC,GB_Prediction,opts);
+GB_Phi        = atan2(imag(GB_Z),real(GB_Z));
+
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using B          = %.2f/%.2f/%.3f\n',GB_PE(1),GB_CC(1),GB_MSE(1)); 
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using B             = %.2f/%.2f/%.3f\n',GB_PE(2),GB_CC(2),GB_MSE(2)); 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % GIC(w) = (a(w)*Zxx(w) + b(w)*Zyx(w))*Bx(w) + (a(w)*Zxy(w) + b(w)*Zyy(w))*By(w)
 %
 % Bx term      a(w)        Zxx           b(w)      Zyx
-Z_GBa(:,1) = Z_GE(:,1).*Z_EB(:,1) + Z_GE(:,2).*Z_EB(:,3);
+GBa_Z(:,1) = GE_Z(:,1).*EB_Z(:,1) + GE_Z(:,2).*EB_Z(:,3);
 % By term      a(w)        Zxy       b(w)         Zyy
-Z_GBa(:,2) = Z_GE(:,1).*Z_EB(:,2) + Z_GE(:,2).*Z_EB(:,4);
+GBa_Z(:,2) = GE_Z(:,1).*EB_Z(:,2) + GE_Z(:,2).*EB_Z(:,4);
 
 % Bx term      a(w)     Zxx           b(w)       Zyx
-Z_GBa(:,3) = Z_GE(:,3).*Z_EB(:,1) + Z_GE(:,4).*Z_EB(:,3);
+GBa_Z(:,3) = GE_Z(:,3).*EB_Z(:,1) + GE_Z(:,4).*EB_Z(:,3);
 % By term      a(w)     Zxy           b(w)       Zyy
-Z_GBa(:,4) = Z_GE(:,3).*Z_EB(:,2) + Z_GE(:,4).*Z_EB(:,4);
+GBa_Z(:,4) = GE_Z(:,3).*EB_Z(:,2) + GE_Z(:,4).*EB_Z(:,4);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 N = size(B,1);
 f = [0:N/2]'/N; % Assumes N is even.
-H_GBa = Z2H(fe_GB,Z_GBa,f);
+GBa_H = Z2H(GB_fe,GBa_Z,f);
 
-GICp_GBa = Zpredict(fe_GB,Z_GBa,B(:,1:2));
+GBa_Prediction = Zpredict(GB_fe,GBa_Z,B(:,1:2));
 
 for k = 1:2
-    PE_GBa(k)  = pe_nonflag(GIC(:,k),GICp_GBa(:,k));
-    MSE_GBa(k) = mse_nonflag(GIC(:,k),GICp_GBa(:,k));
-    CC_GBa(k)  = cc_nonflag(GIC(:,k),GICp_GBa(:,k));
+    GBa_PE(k)  = pe_nonflag(GIC(:,k),GBa_Prediction(:,k));
+    GBa_MSE(k) = mse_nonflag(GIC(:,k),GBa_Prediction(:,k));
+    GBa_CC(k)  = cc_nonflag(GIC(:,k),GBa_Prediction(:,k));
 end
 
-fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E''         = %.2f/%.2f/%.3f\n',PE_GBa(1),CC_GBa(1),MSE_GBa(1)); 
-fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E''            = %.2f/%.2f/%.3f\n',PE_GBa(2),CC_GBa(2),MSE_GBa(2)); 
+GBa_Dateo   = dateo;
+GBa_Seconds = [t(1),t(end)];
+
+GBa_Input_PSD  = smoothSpectra(E,opts);
+GBa_Output_PSD = smoothSpectra(GIC,opts);
+GBa_Error_PSD  = smoothSpectra(GIC - GBa_Prediction,opts);
+GBa_Coherence  = smoothCoherence(GIC,GBa_Prediction,opts);
+
+fprintf('compute_TF.m: PE/CC/MSE of nondespiked GIC using E''         = %.2f/%.2f/%.3f\n',GBa_PE(1),GBa_CC(1),GBa_MSE(1)); 
+fprintf('compute_TF.m: PE/CC/MSE of despiked GIC using E''            = %.2f/%.2f/%.3f\n',GBa_PE(2),GBa_CC(2),GBa_MSE(2)); 
 
 clear k N f
 

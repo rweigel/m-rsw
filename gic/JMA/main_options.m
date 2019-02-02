@@ -2,6 +2,8 @@ function opts = main_options(rn)
 
 opts = struct();
 
+opts.filestr = sprintf('options-%d',rn);
+
 opts.td.transform = 'none'; % pca
 
 opts.td.window.function = @rectwin;
@@ -18,7 +20,7 @@ opts.fd.evalfreq.method = 'logarithmic';
 opts.fd.evalfreq.methodstr = 'logarithmic';
 opts.fd.evalfreq.options = [];
 
-% Very poor results
+% Very poor results (as expected)
 %opts.fd.evalfreq.method = 'linear';
 %opts.fd.evalfreq.methodstr = 'linear';
 %opts.fd.evalfreq.options = 100;

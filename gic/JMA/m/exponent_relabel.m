@@ -5,6 +5,8 @@ function exponent_relabel(ax,dir)
         exponent_relabel(ax,'y');
         return;
     end
+
+    drawnow;
     
     if strcmp(dir,'x')
         l = get(ax,'XTickLabel');
@@ -13,22 +15,34 @@ function exponent_relabel(ax,dir)
     else
         error('dir must be x or y');
     end
-    
+
     for i = 1:length(l)
         if strcmp(l{i},'10^{-1}')
             l{i} = '0.1';
         end
+        if strcmp(l{i},'$10^{-1}$')
+            l{i} = '$0.1$';
+        end
         if strcmp(l{i},'10^{0}')
             l{i} = '1';
+        end
+        if strcmp(l{i},'$10^{0}$')
+            l{i} = '$1$';
         end
         if strcmp(l{i},'10^{1}')
             l{i} = '10';
         end
+        if strcmp(l{i},'$10^{1}$')
+            l{i} = '$10$';
+        end
         if strcmp(l{i},'10^{2}')
             l{i} = '100';
         end
+        if strcmp(l{i},'$10^{2}$')
+            l{i} = '$100$';
+        end
     end
-    
+
     if strcmp(dir,'x')
         set(ax,'XTickLabel',l);
     else

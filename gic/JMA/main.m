@@ -1,6 +1,6 @@
 function main(rn)
 
-close all;plot_TF_aves(0,filestr);
+% close all;plot_TF_aves(0,filestr);
 
 addpath('./m');
 addpath('./m/export_fig');
@@ -9,7 +9,11 @@ addpath('../../time');
 addpath('../../stats');
 addpath('../transferfn');
 
-writepng = 0;   % Write png and pdf files
+set(0,'DefaultTextInterpreter','latex')
+set(0,'DefaultLegendInterpreter','latex')
+set(0,'DefaultAxesTickLabelInterpreter','latex');
+
+writepng = 1;   % Write png and pdf files
 intmplot = 0;   % Intermediate plots
 regenfiles = 0; % If 0, used cached E,B,GIC mat files
 
@@ -21,25 +25,25 @@ if nargin == 0
 end
 
 opts = main_options(rn);
-filestr = sprintf('options-%d',rn);
+filestr = opts.filestr;
 
 % removed 20060818 due to large segment of bad E
 % removed 20060411 and 20060412 due to baseline shift in E
 % removed 20060402 due to baseline shift in GIC
-dateos = {'20061214','20060819','20061107','20060403','20060805','20060725','20071118','20071122','20061128','20061201'};
-datefs = {'20061215','20060821','20061112','20060410','20060808','20060729','20071120','20071122','20061129','20061201'};
-dts    = [    66    ,    17    ,    32    ,    0     ,    0     ,    0     ,    0     ,    0     ,    0     ,    0     ];
+dateos = {'20060403','20060819','20061107','20061214','20060805','20060725','20071118','20071122','20061128','20061201'};
+datefs = {'20060410','20060821','20061112','20061215','20060808','20060729','20071120','20071122','20061129','20061201'};
+dts    = [    0    ,    17    ,    32    ,    66     ,    0     ,    0     ,    0     ,    0     ,    0     ,    0     ];
 
 fprintf('--------------\n')
 fprintf('Options set #%d\n',rn);
 fprintf('--------------\n')
 
+fn = 1; % File number
 for i = 1:length(dateos)
-%for i = 1:1
-%for i = 4:4 % Sample interval in paper
+%for i = 5:5
 
     fprintf('--------------\n')
-    fprintf('Continuous data interval %d of %d\n',i,length(dateos));
+    fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
     fprintf('--------------\n')
 
     dateo = dateos{i};
@@ -68,9 +72,9 @@ for i = 1:length(dateos)
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
     if intmplot
-        plot_raw(tGIC,GIC(:,2),tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered then despiked'});
+        plot_raw(tGIC,GIC(:,2),tE,E,tB,B,dateo,writepng,{'GIC'});
     end
-
+    
     if strmatch('pca',opts.td.transform)
         if i == 1
             [V,D] = eig(cov(E));
@@ -80,23 +84,21 @@ for i = 1:length(dateos)
     end
     
     [t,E,B] = timealign(tGIC,tE,E,B);
-
     [GIC,E,B] = removemean(GIC,E,B);
     
     intervalno = 0; % Full time span from dateo to datef labeled as interval 0
-    
-    compute_ab(GIC,E,B,dateo,intervalno);
+
+    compute_ab(t,GIC,E,B,dateo,intervalno,opts);
     compute_TF(t,GIC,E,B,dateo,intervalno,filestr,opts);
 
     if intmplot
         plot_timeseries(dateo,intervalno,filestr,writepng);
-        plot_correlations(dateo,intervalno,filestr,png)        
+        plot_correlations(dateo,intervalno,filestr,writepng);
         plot_spectra(dateo,intervalno,filestr,writepng);
         plot_H(dateo,intervalno,filestr,writepng);
         plot_Z(dateo,intervalno,filestr,writepng);
     end
 
-    
     % Loop over blocks.
     %Tw = opts.td.window.width;
     %Ts = opts.td.window.shift;
@@ -104,7 +106,6 @@ for i = 1:length(dateos)
     Ts = 3600*24; % Shift 
     Io = [1:Ts:length(t)-Tw+1];
     k = 1;  % Time window # within datao/datef
-    fn = 1; % File number
     for io = Io(1:end)
         fprintf('-------\nInterval %d of %d for %s\n',k,length(Io),dateo);
         Ix = [io:io+Tw-1];
@@ -115,7 +116,7 @@ for i = 1:length(dateos)
         GICr = GIC(Ix,:);
         [GICr,Er,Br] = taper(GICr,Er,Br,opts.td.window.function);
 
-        fnamesab{fn} = compute_ab(GICr,Er,Br,dateo,k);
+        fnamesab{fn} = compute_ab(tr,GICr,Er,Br,dateo,k,opts);
         fnamestf{fn} = compute_TF(tr,GICr,Er,Br,dateo,k,filestr,opts);
         if intmplot
             close all
@@ -125,18 +126,13 @@ for i = 1:length(dateos)
             plot_Z(dateo,k,filestr,writepng);
         end
         %input('Continue?')
-        k = k + 1;
         fn = fn + 1;
+        k = k + 1;
     end
 end
 
-aggregate_TFs(fnamesab,fnamestf,filestr,opts);
+aggregate_TFs(fnamesab,fnamestf,filestr);
 
-diary off
-delete(sprintf('log/compute_TF_aves_%s.txt',filestr));
-diary(sprintf('log/compute_TF_aves_%s.txt',filestr));
-compute_TF_aves(filestr,opts);
-diary off
+compute_TF_aves(opts);
 
-close all;
-plot_TF_aves(0,filestr);
+plot_TF_aves(filestr,writepng,intmplot);

@@ -1,4 +1,4 @@
-function fname = compute_ab(GIC,E,B,dateo,intervalno)
+function fname = compute_ab(t,GIC,E,B,dateo,intervalno,opts)
 
 dirmat = sprintf('mat/%s',dateo);
 
@@ -8,16 +8,24 @@ dirmat = sprintf('mat/%s',dateo);
 % GIC(:,i) = aoE(:,1) + boE(:,2);
 for i = 1:2
     LIN = basic_linear(E,GIC(:,i));
-    GICp_GEo(:,i) = basic_linear(E(:,:),LIN.Weights,'predict');
-    ao(i) = LIN.Weights(1);
-    bo(i) = LIN.Weights(2);
-    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',ao(i),bo(i));
+    GEo_Prediction(:,i) = basic_linear(E(:,:),LIN.Weights,'predict');
+    GEo_ao(i) = LIN.Weights(1);
+    GEo_bo(i) = LIN.Weights(2);
+    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',GEo_ao(i),GEo_bo(i));
 
-    PE_GEo(i) = pe_nonflag(GIC(:,i),GICp_GEo(:,i));
-    MSE_GEo(i) = mse_nonflag(GIC(:,i),GICp_GEo(:,i));
-    CC_GEo(i) = corr(GIC(:,2),GICp_GEo(:,i),'rows','complete');
-    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,PE_GEo(i),CC_GEo(i),MSE_GEo(i));
+    GEo_PE(i) = pe_nonflag(GIC(:,i),GEo_Prediction(:,i));
+    GEo_MSE(i) = mse_nonflag(GIC(:,i),GEo_Prediction(:,i));
+    GEo_CC(i) = cc_nonflag(GIC(:,2),GEo_Prediction(:,i));
+    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
 end
+
+GEo_Dateo   = dateo;
+GEo_Seconds = [t(1),t(end)];
+
+GEo_Input_PSD  = smoothSpectra(E(:,1:2),opts);
+GEo_Output_PSD = smoothSpectra(GIC,opts);
+GEo_Error_PSD  = smoothSpectra(GIC - GEo_Prediction,opts);
+GEo_Coherence  = smoothCoherence(GIC,GEo_Prediction,opts);
 
 % Pulkkinen et al. 2007 method.
 d = (mean_nonflag(E(:,1).*E(:,2)))^2-mean_nonflag(E(:,1).*E(:,1))*mean_nonflag(E(:,2).*E(:,2));
@@ -51,16 +59,24 @@ fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-hr aves)\n',ao
 
 for i = 1:2
     LIN = basic_linear(B(:,1:2),GIC(:,i));
-    GICp_GBo(:,i) = basic_linear(B(:,1:2),LIN.Weights,'predict');
-    hxo(i) = LIN.Weights(1);
-    hyo(i) = LIN.Weights(2);
-    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',hxo(i),hyo(i));
+    GBo_Prediction(:,i) = basic_linear(B(:,1:2),LIN.Weights,'predict');
+    GBo_ao(i) = LIN.Weights(1);
+    GBo_bo(i) = LIN.Weights(2);
+    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',GBo_ao(i),GBo_bo(i));
 
-    PE_GBo(i) = pe_nonflag(GIC(:,i),GICp_GBo(:,i));
-    MSE_GBo(i) = mse_nonflag(GIC(:,i),GICp_GBo(:,i));
-    CC_GBo(i) = corr(GIC(:,2),GICp_GBo(:,i),'rows','complete');
-    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,PE_GBo(i),CC_GBo(i),MSE_GBo(i));
+    GBo_PE(i) = pe_nonflag(GIC(:,i),GBo_Prediction(:,i));
+    GBo_MSE(i) = mse_nonflag(GIC(:,i),GBo_Prediction(:,i));
+    GBo_CC(i) = cc_nonflag(GIC(:,2),GBo_Prediction(:,i));
+    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
 end
+
+GBo_Dateo   = dateo;
+GBo_Seconds = [t(1),t(end)];
+
+GBo_Input_PSD  = smoothSpectra(B(:,1:2),opts);
+GBo_Output_PSD = smoothSpectra(GIC,opts);
+GBo_Error_PSD  = smoothSpectra(GIC - GBo_Prediction,opts);
+GBo_Coherence  = smoothCoherence(GIC,GBo_Prediction,opts);
 
 % GIC(:,2) = hxodB(:,1) + hyodB(:,2); % (LPF version is second column)
 dB = [diff(B(:,1:2));0,0];
@@ -72,7 +88,7 @@ fprintf('compute_ab.m: hxo = %7.4f; hyo = %7.4f (Using diff(magnetic field))\n',
 
 PE_GdB = pe_nonflag(GIC(:,2),GIC_GdB);
 MSE_GdB = mse_nonflag(GIC(:,2),GIC_GdB);
-CC_GdB = corr(GIC(:,2),GIC_GdB,'rows','complete');
+CC_GdB = corr(GIC(:,2),GIC_GdB);
 fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxo dB(:,1) + hyo dB(:,2) = %.2f/%.2f/%.3f\n',PE_GdB,CC_GdB,MSE_GdB);
 
 % GIC(:,2) = hxoB(:,1) + hyoB(:,2) + hzoB(:,3);
@@ -90,11 +106,11 @@ CC_GBo3 = corr(GIC(:,2),GIC_GBo3,'rows','complete');
 fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',PE_GBo3,CC_GBo3,MSE_GBo3);
 
 for i = 1:2
-    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2)   = %.2f/%.2f/%.3f\n',i,PE_GEo(i),CC_GEo(i),MSE_GEo(i));
-    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,PE_GBo(i),CC_GBo(i),MSE_GBo(i));
+    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2)   = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
+    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
 end
 
 fname = sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno);
-save(fname,'ao','bo','hxo','hyo','GICp_GEo','GICp_GBo','PE_GEo','PE_GBo','CC_GEo','CC_GBo','MSE_GEo','MSE_GBo','E','B','GIC');
+save(fname,'-regexp','GEo_','-regexp','GBo_');
 fprintf('compute_ab.m: Wrote %s\n',fname);
 

@@ -9,35 +9,41 @@ for k = 1:length(fnameab)
     fprintf('aggregate_TFs.m: Reading %s\n',fnameab{k}); 
     load(fnameab{k});
 
-    GEo.Prediction(:,:,k) = GICp_GEo;
-    GBo.Prediction(:,:,k) = GICp_GBo;
+    GEo.Dateo{k,1} = GEo_Dateo;
+    GBo.Dateo{k,1} = GBo_Dateo;
 
-    GEo.Input_PSD(:,:,k) = smoothSpectra(E,opts);
-    GBo.Input_PSD(:,:,k) = smoothSpectra(B,opts);
+    GEo.Seconds(k,:) = GEo_Seconds;
+    GBo.Seconds(k,:) = GBo_Seconds;
 
-    GEo.Output_PSD(:,:,k) = smoothSpectra(GIC,opts);
-    GBo.Output_PSD(:,:,k) = smoothSpectra(GIC,opts);
+    GEo.Prediction(:,:,k) = GEo_Prediction;
+    GBo.Prediction(:,:,k) = GBo_Prediction;
 
-    GEo.Error_PSD(:,:,k) = smoothSpectra(GIC - GICp_GEo,opts);
-    GBo.Error_PSD(:,:,k) = smoothSpectra(GIC - GICp_GBo,opts);
+    GEo.Input_PSD(:,:,k) = GEo_Input_PSD;
+    GBo.Input_PSD(:,:,k) = GBo_Input_PSD;
 
-    GEo.Coherence(:,:,k) = smoothCoherence(GIC,GICp_GEo,opts);
-    GBo.Coherence(:,:,k) = smoothCoherence(GIC,GICp_GBo,opts);
+    GEo.Output_PSD(:,:,k) = GEo_Output_PSD;
+    GBo.Output_PSD(:,:,k) = GBo_Output_PSD;
+
+    GEo.Error_PSD(:,:,k) = GEo_Error_PSD;
+    GBo.Error_PSD(:,:,k) = GBo_Error_PSD;
+
+    GEo.Coherence(:,:,k) = GEo_Coherence;
+    GBo.Coherence(:,:,k) = GBo_Coherence;
     
-    GEo.PE(k,:) = PE_GEo;
-    GBo.PE(k,:) = PE_GBo;
+    GEo.PE(k,:) = GEo_PE;
+    GBo.PE(k,:) = GBo_PE;
 
-    GEo.CC(k,:) = CC_GEo;
-    GBo.CC(k,:) = CC_GBo;
+    GEo.CC(k,:) = GEo_PE;
+    GBo.CC(k,:) = GBo_PE;
 
-    GEo.MSE(k,:) = MSE_GEo;
-    GBo.MSE(k,:) = MSE_GBo;
+    GEo.MSE(k,:) = GEo_MSE;
+    GBo.MSE(k,:) = GBo_MSE;
 
-    GEo.ao(k,:) = ao;
-    GEo.bo(k,:) = bo;
+    GEo.ao(:,k) = GEo_ao;
+    GBo.ao(:,k) = GBo_ao;
 
-    GBo.ao(k,:) = hxo;
-    GBo.bo(k,:) = hyo;
+    GEo.bo(:,k) = GEo_bo;
+    GBo.bo(:,k) = GBo_bo;
 end
 
 fprintf('------\n');
@@ -51,60 +57,70 @@ for k = 1:length(fnametf)
     IO.E(:,:,k) = E;
     IO.GIC(:,:,k) = GIC;
 
-    EB.Prediction(:,:,k)  = Ep_EB;
-    GE.Prediction(:,:,k)  = GICp_GE;
-    GB.Prediction(:,:,k)  = GICp_GB;
-    GBa.Prediction(:,:,k) = GICp_GBa;
-    
-    EB.Input_PSD(:,:,k)  = smoothSpectra(B(:,1:2),opts);
-    GE.Input_PSD(:,:,k)  = smoothSpectra(E,opts);
-    GB.Input_PSD(:,:,k)  = smoothSpectra(B(:,1:2),opts);
-    GBa.Input_PSD(:,:,k) = smoothSpectra(E,opts);
-    
-    EB.Output_PSD(:,:,k)  = smoothSpectra(E,opts);
-    GE.Output_PSD(:,:,k)  = smoothSpectra(GIC,opts);
-    GB.Output_PSD(:,:,k)  = smoothSpectra(GIC,opts);
-    GBa.Output_PSD(:,:,k) = smoothSpectra(GIC,opts);
-    
-    EB.Error_PSD(:,:,k)  = smoothSpectra(E   - Ep_EB,opts);
-    GE.Error_PSD(:,:,k)  = smoothSpectra(GIC - GICp_GE,opts);
-    GB.Error_PSD(:,:,k)  = smoothSpectra(GIC - GICp_GB,opts);
-    GBa.Error_PSD(:,:,k) = smoothSpectra(GIC - GICp_GBa,opts);
+    EB.Dateo{k,1} = EB_Dateo;
+    GE.Dateo{k,1} = GE_Dateo;
+    GB.Dateo{k,1} = GB_Dateo;
+    GBa.Dateo{k,1} = GBa_Dateo;
 
-    EB.Coherence(:,:,k)  = smoothCoherence(E,Ep_EB,opts);
-    GE.Coherence(:,:,k)  = smoothCoherence(GIC,GICp_GE,opts);
-    GB.Coherence(:,:,k)  = smoothCoherence(GIC,GICp_GB,opts);
-    GBa.Coherence(:,:,k) = smoothCoherence(GIC,GICp_GBa,opts);
+    EB.Seconds(k,:)  = EB_Seconds;
+    GE.Seconds(k,:)  = GE_Seconds;
+    GB.Seconds(k,:)  = GB_Seconds;
+    GBa.Seconds(k,:) = GBa_Seconds;
     
-    EB.fe = fe_EB;
-    GE.fe = fe_GE;
-    GB.fe = fe_GB;
-    GBa.fe = fe_GB;
+    EB.Prediction(:,:,k)  = EB_Prediction;
+    GE.Prediction(:,:,k)  = GE_Prediction;
+    GB.Prediction(:,:,k)  = GB_Prediction;
+    GBa.Prediction(:,:,k) = GBa_Prediction;
     
-    EB.PE(k,:) = PE_EB;
-    GE.PE(k,:) = PE_GE;
-    GB.PE(k,:) = PE_GB;
-    GBa.PE(k,:) = PE_GBa;
+    EB.Input_PSD(:,:,k)  = EB_Input_PSD;
+    GE.Input_PSD(:,:,k)  = GE_Input_PSD;
+    GB.Input_PSD(:,:,k)  = GB_Input_PSD;
+    GBa.Input_PSD(:,:,k) = GBa_Input_PSD;
     
-    EB.CC(k,:) = CC_EB;
-    GE.CC(k,:) = CC_GE;
-    GB.CC(k,:) = CC_GB;
-    GBa.CC(k,:) = CC_GBa;
+    EB.Output_PSD(:,:,k)  = EB_Output_PSD;
+    GE.Output_PSD(:,:,k)  = GE_Output_PSD;
+    GB.Output_PSD(:,:,k)  = GB_Output_PSD;
+    GBa.Output_PSD(:,:,k) = GBa_Output_PSD;
     
-    EB.MSE(k,:) = MSE_EB;
-    GE.MSE(k,:) = MSE_GE;
-    GB.MSE(k,:) = MSE_GB;
-    GBa.MSE(k,:) = MSE_GBa;
+    EB.Error_PSD(:,:,k)  = EB_Error_PSD;
+    GE.Error_PSD(:,:,k)  = GE_Error_PSD;
+    GB.Error_PSD(:,:,k)  = GB_Error_PSD;
+    GBa.Error_PSD(:,:,k) = GBa_Error_PSD;
 
-    EB.Z(:,:,k) = Z_EB;
-    GE.Z(:,:,k) = Z_GE;
-    GB.Z(:,:,k) = Z_GB;
-    GBa.Z(:,:,k) = Z_GBa;
+    EB.Coherence(:,:,k)  = EB_Coherence;
+    GE.Coherence(:,:,k)  = GE_Coherence;
+    GB.Coherence(:,:,k)  = GB_Coherence;
+    GBa.Coherence(:,:,k) = GBa_Coherence;
     
-    EB.H(:,:,k) = H_EB;
-    GE.H(:,:,k) = H_GE;
-    GB.H(:,:,k) = H_GB;
-    GBa.H(:,:,k) = H_GBa;
+    EB.fe  = EB_fe;
+    GE.fe  = GE_fe;
+    GB.fe  = GB_fe;
+    GBa.fe = GB_fe;
+    
+    EB.PE(k,:)  = EB_PE;
+    GE.PE(k,:)  = GE_PE;
+    GB.PE(k,:)  = GB_PE;
+    GBa.PE(k,:) = GBa_PE;
+    
+    EB.CC(k,:)  = EB_CC;
+    GE.CC(k,:)  = GE_CC;
+    GB.CC(k,:)  = GB_CC;
+    GBa.CC(k,:) = GBa_CC;
+    
+    EB.MSE(k,:)  = EB_MSE;
+    GE.MSE(k,:)  = GE_MSE;
+    GB.MSE(k,:)  = GB_MSE;
+    GBa.MSE(k,:) = GBa_MSE;
+
+    EB.Z(:,:,k)  = EB_Z;
+    GE.Z(:,:,k)  = GE_Z;
+    GB.Z(:,:,k)  = GB_Z;
+    GBa.Z(:,:,k) = GBa_Z;
+    
+    EB.H(:,:,k)  = EB_H;
+    GE.H(:,:,k)  = GE_H;
+    GB.H(:,:,k)  = GB_H;
+    GBa.H(:,:,k) = GBa_H;
     
 end
 

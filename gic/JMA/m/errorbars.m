@@ -1,29 +1,42 @@
-function errorbars(x,y,yl,yu,scale)
+function errorbars(x,y,yl,yu,dir,linestyle)
 
-    if nargin < 5
-        scale = 'linear';
-    end
-    if nargin == 4 && isa(yu,'char')
-        % errorbars(x,y,yl,scale)
-        scale = yu;
-        yu = yl; % Set yu = yl
-    end
-    if nargin == 3
+    if nargin < 4
         yu = yl;
     end
-    if strmatch(scale,'linear','exact')
+    if nargin < 5
+        dir = 'y';
+    end    
+    if nargin < 6
+        linestyle = 'k';
+    end
+
+    scalex = get(gca,'XScale');
+    scaley = get(gca,'YScale');
+
+    scale = scaley;
+    if strcmp(dir,'x')
+        scale = scalex;
+    end
+    
+    if strmatch(scalex,'linear','exact') & strmatch(scaley,'linear','exact')
         for i = 1:length(x)
-            plot([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],'k-');
+            plot([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],linestyle);
         end
     end
-    if strmatch(scale,'loglog','exact')    
+    if strmatch(scalex,'log','exact') & strmatch(scaley,'log','exact')
         for i = 1:length(x)
-            loglog([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],'k-');
+            loglog([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],linestyle);
         end
     end
-    if strmatch(scale,'semilogx','exact')    
+    if strmatch(scalex,'log','exact') & strmatch(scaley,'linear','exact')
         for i = 1:length(x)
-            semilogx([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],'k-');
+            semilogx([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],linestyle);
+        end
+    end
+    if strmatch(scalex,'linear','exact') & strmatch(scaley,'log','exact')
+        for i = 1:length(x)
+            semilogy([x(i),x(i)],[y(i)+yu(i),y(i)-yl(i)],linestyle);
         end
     end    
+
 end

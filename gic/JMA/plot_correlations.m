@@ -30,13 +30,13 @@ fprintf('xcorr(GIC,Ey) max at %d s lag\n',lags(iy));
 
 [AC_GIC,lags] = xcorr(GIC(:,2),GIC(:,2),M,'coeff');
 
-Er_GEo = GICp_GEo(:,2)-GIC(:,2);
+Er_GEo = GEo_Prediction(:,2)-GIC(:,2);
 [AC_GEo,lags] = xcorr(Er_GEo,M,'coeff');
 
-Er_GE = GICp_GE(:,2)-GIC(:,2);
+Er_GE = GE_Prediction(:,2)-GIC(:,2);
 [AC_GE,lags] = xcorr(Er_GE,M,'coeff');
 
-Er_GB = GICp_GB(:,2)-GIC(:,2);
+Er_GB = GB_Prediction(:,2)-GIC(:,2);
 [AC_GB,lags] = xcorr(Er_GB,M,'coeff');
 
 fn=fn+1;

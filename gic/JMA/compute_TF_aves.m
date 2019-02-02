@@ -1,4 +1,10 @@
-function compute_TF_aves(filestr,opts)
+function compute_TF_aves(opts)
+
+filestr = opts.filestr;
+
+diary off;
+delete(sprintf('log/compute_TF_aves_%s.txt',filestr));
+diary(sprintf('log/compute_TF_aves_%s.txt',filestr));
 
 fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
 fprintf('compute_TF_aves.m: Loading %s\n',fnamemat);
@@ -23,7 +29,6 @@ summary(GE,'G/E');
 summary(GBa,'G/Ba');
 summary(GB,'G/B');
 
-
 r = mean(GEo.MSE_Mean(:,2))/mean(GE.MSE_Mean(:,2));
 r = mean(GEo.MSE_Mean(:,2)./GE.MSE_Mean(:,2));
 rb = boot95(GEo.MSE_Mean(:,2)./GE.MSE_Mean(:,2));
@@ -36,13 +41,21 @@ fprintf('<Model 1 (Eo) MSE>/<Model 3 (E'') MSE>  = %4.2f +/- [%4.2f,%4.2f]\n',r,
 
 r = mean(GEo.MSE_Mean(:,2))/mean(GB.MSE_Mean(:,2));
 r = mean(GEo.MSE_Mean(:,2)./GB.MSE_Mean(:,2));
-rb = boot95(GEo.MSE_Mean(:,1)./GB.MSE_Mean(:,2));
+rb = boot95(GEo.MSE_Mean(:,2)./GB.MSE_Mean(:,2));
 fprintf('<Model 1 (Eo) MSE>/<Model 4 (B) MSE>   = %4.2f +/- [%4.2f,%4.2f]\n',r,rb);
 
 fnamemat = sprintf('mat/compute_TF_aves-%s.mat',filestr);
 fprintf('compute_TF_aves.m: Saving %s\n',fnamemat);
 save(fnamemat,'GEo','GE','GB','GBo','GBa','EB');
+
+
+eex = squeeze(File.IO.E(:,1,:));
+eey = squeeze(File.IO.E(:,2,:));
+fprintf('var(Ex)/var(Ey) = %.2f\n',var(eex(:)),var(eey(:)));
+
 fprintf('compute_TF_aves.m: Saved %s\n',fnamemat);
+
+diary off;
 
 function W = weight(Z,In,Out,method)
 
@@ -112,7 +125,7 @@ function S = compute(S,In,Out,ts)
                 S.Z_Huber(:,i) = NaN;
             end
 
-            S.Zabs_StdErr(:,i) = std(abs(z),0,2)/sqrt(size(abs(z),2));            
+            S.Zabs_StdErr(:,i) = std(abs(z),0,2)/sqrt(size(z,2));            
             S.Zabs_Mean(:,i)   = mean(abs(z),2);
             S.Zabs_Median(:,i) = median(abs(z),2);
 
@@ -122,10 +135,15 @@ function S = compute(S,In,Out,ts)
                 S.Zabs_Huber(:,i) = NaN;
             end
 
-            S.Phi_Mean(:,i)   = (180/pi)*atan2(imag(S.Z_Mean(:,i)),real(S.Z_Mean(:,i)));
-            S.Phi_Median(:,i) = (180/pi)*atan2(imag(S.Z_Median(:,i)),real(S.Z_Median(:,i)));
+            phi = atan2(imag(z),real(z));
+            phi = unwrap(phi,[],2);
+            S.Phi_Mean(:,i)   = mean(phi,2);
+            S.Phi_StdErr(:,i) = std(phi,0,2)/sqrt(size(z,2));            
+
+            S.Phi_Mean2(:,i)  = atan2(imag(S.Z_Mean(:,i)),real(S.Z_Mean(:,i)));
+            S.Phi_Median(:,i) = atan2(imag(S.Z_Median(:,i)),real(S.Z_Median(:,i)));
             if (size(z,2) > 2)
-                S.Phi_Huber(:,i) = (180/pi)*atan2(imag(S.Z_Huber(:,i)),real(S.Z_Huber(:,i)));
+                S.Phi_Huber(:,i) = atan2(imag(S.Z_Huber(:,i)),real(S.Z_Huber(:,i)));
             else
                 S.Phi_Huber(:,i) = NaN;
             end
@@ -144,37 +162,32 @@ function S = compute(S,In,Out,ts)
             
         end
     end
-
-
+    
     a = 60*10;
     b = 86400-a+1;
-    %a = 60*300/2;
-    %b = 86400/2-a+1;
-    %a = 1;
-    %b = size(In,1);
     
     if isfield(S,'ao')
         for k = 1:size(In,3) % Loop over days
 
-            tmp(:,1) = S.ao_Mean(1)*In(:,1,k) + S.bo_Mean(1)*In(:,2,k);
-            tmp(:,2) = S.ao_Mean(2)*In(:,1,k) + S.bo_Mean(2)*In(:,2,k);
+            S.Prediction_Mean(:,1,k) = S.ao_Mean(1)*In(:,1,k) + S.bo_Mean(1)*In(:,2,k);
+            S.Prediction_Mean(:,2,k) = S.ao_Mean(2)*In(:,1,k) + S.bo_Mean(2)*In(:,2,k);
 
-            S.PE_Mean(k,:)  = pe(Out(a:b,:,k),tmp(a:b,:));
-            S.MSE_Mean(k,:) = mse(Out(a:b,:,k),tmp(a:b,:));
-            S.CC_Mean(k,:)  = cc(Out(a:b,:,k),tmp(a:b,:));
+            S.PE_Mean(k,:)  = pe(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
+            S.MSE_Mean(k,:) = mse(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
+            S.CC_Mean(k,:)  = cc(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
 
-            S.PE_Median(k,:)  = pe(Out(a:b,:,k),tmp(a:b,:));
-            S.MSE_Median(k,:) = mse(Out(a:b,:,k),tmp(a:b,:));
-            S.CC_Median(k,:)  = cc(Out(a:b,:,k),tmp(a:b,:));
-
-            S.Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,opts);
-            S.Coherence_Mean(:,:,k) = smoothCoherence(Out(:,:,k),tmp,opts);
-
-            tmp(:,1) = S.ao_Median(1)*In(:,1,k) + S.bo_Median(1)*In(:,2,k);
-            tmp(:,2) = S.ao_Median(2)*In(:,1,k) + S.bo_Median(2)*In(:,2,k);
+            S.Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-S.Prediction_Mean(:,:,k),opts);
+            S.Coherence_Mean(:,:,k) = smoothCoherence(Out(:,:,k),S.Prediction_Mean(:,:,k),opts);
             
-            S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,opts);
-            S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),tmp,opts);
+            S.Prediction_Median(:,1,k) = S.ao_Median(1)*In(:,1,k) + S.bo_Median(1)*In(:,2,k);
+            S.Prediction_Median(:,2,k) = S.ao_Median(2)*In(:,1,k) + S.bo_Median(2)*In(:,2,k);
+            
+            S.PE_Median(k,:)  = pe(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+            S.MSE_Median(k,:) = mse(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+            S.CC_Median(k,:)  = cc(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+
+            S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-S.Prediction_Median(:,:,k),opts);
+            S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),S.Prediction_Median(:,:,k),opts);
             
             fprintf('%s, Interval %02d: PE in-sample: %6.3f; using mean: %6.3f;\n',...
                     ts,k,S.PE(k,2),S.PE_Mean(k,2));
@@ -185,36 +198,39 @@ function S = compute(S,In,Out,ts)
         for k = 1:size(In,3)
 
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-            tmp = Zpredict(S.fe,S.Z_Mean,In(:,:,k));
+            S.Prediction_Mean(:,:,k) = Zpredict(S.fe,S.Z_Mean,In(:,:,k));
 
-            S.PE_Mean(k,:)  = pe(Out(a:b,:,k),tmp(a:b,:));
-            S.MSE_Mean(k,:) = mse(Out(a:b,:,k),tmp(a:b,:));
-            S.CC_Mean(k,:)  = cc(Out(a:b,:,k),tmp(a:b,:));
+            S.PE_Mean(k,:)  = pe(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
+            S.MSE_Mean(k,:) = mse(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
+            S.CC_Mean(k,:)  = cc(Out(a:b,:,k),S.Prediction_Mean(a:b,:,k));
 
-            S.Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,opts);
-            S.Coherence_Mean(:,:,k) = smoothCoherence(Out(:,:,k),tmp,opts);
+            S.Error_PSD_Mean(:,:,k) = smoothSpectra(Out(:,:,k)-S.Prediction_Mean(:,:,k),opts);
+            S.Coherence_Mean(:,:,k) = smoothCoherence(Out(:,:,k),S.Prediction_Mean(:,:,k),opts);
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
-            tmp = Zpredict(S.fe,S.Z_Median,In(:,:,k));
+            S.Prediction_Median(:,:,k) = Zpredict(S.fe,S.Z_Median,In(:,:,k));
 
-            S.PE_Median(k,:)  = pe(Out(a:b,:,k),tmp(a:b,:));
-            S.MSE_Median(k,:) = mse(Out(a:b,:,k),tmp(a:b,:));
-            S.CC_Median(k,:)  = cc(Out(a:b,:,k),tmp(a:b,:));
-
-            S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,opts);
-            S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),tmp,opts);
+            S.PE_Median(k,:)  = pe(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+            S.MSE_Median(k,:) = mse(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+            S.CC_Median(k,:)  = cc(Out(a:b,:,k),S.Prediction_Median(a:b,:,k));
+        
+            S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-S.Prediction_Median(:,:,k),opts);
+            S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),S.Prediction_Median(:,:,k),opts);
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%            
 
             %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                        
             if ~all(S.Z_Huber)
-                tmp  = Zpredict(S.fe,S.Z_Huber,In(:,:,k));
-                S.PE_Huber(k,:)  = pe(Out(a:b,:,k),tmp(a:b,:));
-                S.MSE_Huber(k,:) = mse(Out(a:b,:,k),tmp(a:b,:));
-                S.CC_Huber(k,:)  = cc(Out(a:b,:,k),tmp(a:b,:));
-                S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-tmp,opts);
-                S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),tmp,opts);
+                S.Prediction_Huber(:,:,k)  = Zpredict(S.fe,S.Z_Huber,In(:,:,k));
+
+                S.PE_Huber(k,:)  = pe(Out(a:b,:,k),S.Prediction_Huber(a:b,:,k));
+                S.MSE_Huber(k,:) = mse(Out(a:b,:,k),S.Prediction_Huber(a:b,:,k));
+                S.CC_Huber(k,:)  = cc(Out(a:b,:,k),S.Prediction_Huber(a:b,:,k));
+
+                S.Error_PSD_Median(:,:,k) = smoothSpectra(Out(:,:,k)-S.Prediction_Huber(:,:,k),opts);
+                S.Coherence_Median(:,:,k) = smoothCoherence(Out(:,:,k),S.Prediction_Huber(:,:,k),opts);
             else
+                S.Prediction_Huber = NaN*S.Prediction_Mean;
                 S.PE_Huber(k,:)  = [NaN,NaN];
                 S.MSE_Huber(k,:) = [NaN,NaN];
                 S.CC_Huber(k,:)  = [NaN,NaN];
