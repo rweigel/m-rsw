@@ -1,4 +1,4 @@
-%function plot_TF_aves(filestr,png,allfigs)
+function plot_TF_aves(filestr,png,allfigs)
 
 % filestr = 'options-1';
 % png = 0;
@@ -19,6 +19,13 @@ F = load(file);
 F.EB.title = '$\mathbf{E} = \mathcal{Z}\mathbf{B}$; E in mV/m, B in nT';
 F.GE.title = '$G_B(\omega) = A(\omega)E_{x}(\omega) + B(\omega)E_{y}$';
 F.GB.title = '$G_E(\omega) = Z_x(\omega)B_{x}(\omega) + Z_y(\omega)B_{y}$';
+
+mtZplots(F.EB);
+mtrhoplots(F.EB);
+mtphiplots(F.EB);
+
+return
+
 
 parameterhistograms(F.GEo);
 
@@ -50,9 +57,6 @@ end
 
 return
 
-mtZplots(F.EB);
-mtrhoplots(F.EB);
-mtphiplots(F.EB);
 
 %errorhistograms(F.GE);
 
@@ -547,7 +551,7 @@ function mtZplots(S)
     
     sf = 1e3;
     components = {'$Z_{xx}$','$Z_{xy}$','$Z_{yx}$','$Z_{yy}$'};
-    c = ['k','r','b','g'];
+    c = ['y','r','b','g'];
     fn=fn+1;figure(fn);clf;
     for i = 1:size(S.Z,2)
         loglog(1./S.fe(2:end),sf*S.Zabs_Mean(2:end,i),c(i),...
@@ -577,7 +581,7 @@ function mtrhoplots(S)
     
     sf = 0.2;
     components = {'$\rho_{xx}$','$\rho_{xy}$','$\rho_{yx}$','$\rho_{yy}$'};
-    c = ['k','r','b','g'];
+    c = ['y','r','b','g'];
     fn=fn+1;figure(fn);clf;
     for i = 1:size(S.Z,2)
         loglog(1./S.fe(2:end),(sf./S.fe(2:end)).*S.Zabs_Mean(2:end,i).^2,c(i),...
@@ -598,11 +602,11 @@ end
 
 function mtphiplots(S)
     
-    c = {'k.','r.','b.','g.'};
+    c = {'y.','r.','b.','g.'};
     components = {'$\phi_{xx}$','$\phi_{xy}$','$\phi_{yx}$','$\phi_{yy}$'};
     fn=fn+1;figure(fn);clf;
     for i = 1:size(S.Z,2)
-        semilogx(1./S.fe(2:end),S.Phi_Mean(2:end,i),c{i},...
+        semilogx(1./S.fe(2:end),S.Phi_Mean2(2:end,i),c{i},...
             'Marker','.','MarkerSize',20);
         hold on;
     end

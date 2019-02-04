@@ -1,4 +1,4 @@
-function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,opts)
+function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
 %TRANSFERFNFD Estimates transfer function
 %
 %  Estimates complex transfer function Z(f) in one of
@@ -9,7 +9,7 @@ function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,opts)
 %
 %  where f is frequency.
 %
-%  [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,method,winfn,winopts)
+%  [Z,fe,H,t,Ep] = transferfnFD(B,E,method,winfn,winopts)
 %
 %  Methods:
 %
@@ -43,6 +43,41 @@ function [Z,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(B,E,opts)
 %  By = CyxEx + CyyEy
 
 verbose = 0;
+
+if (0)
+if ~isnan(opts.td.window.width)
+    Tw = opts.td.window.width;
+    Ts = opts.td.window.shift;
+    opts.td.window.width = NaN;
+    Io = [1:Ts:size(B,1)-Tw+1];
+    for i = 1:length(Io)
+        Iseg = [Io(i):Io(i)+Tw-1];
+        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of Ex using B = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of Ey using B = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
+        Z = struct();
+        Z.fe = Scell{1}.fe;
+        for i = 1:length(Scell)
+            Z.Z(:,:,i)  = Scell{i}.Z;
+            Z.E(:,:,i)  = Scell{i}.E;
+            Z.B(:,:,i)  = Scell{i}.B;
+            Z.H(:,:,i)  = Scell{i}.H;
+            Z.Ep(:,:,i) = Scell{i}.Ep;
+
+            Z.MSE(1,:,i) = Scell{i}.MSE;
+            Z.PE(1,:,i)  = Scell{i}.PE;
+            Z.CC(1,:,i)  = Scell{i}.CC;
+
+            Z.B_PSD(:,:,i)     = Scell{i}.B_PSD;
+            Z.E_PSD(:,:,i)     = Scell{i}.E_PSD;
+            Z.Err_PSD(:,:,i)   = Scell{i}.Err_PSD;
+            Z.Coherence(:,:,i) = Scell{i}.Coherence;
+            Z.Phi(:,:,i)       = Scell{i}.Phi;
+        end
+    end
+    return;
+end
+end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Caution - code below is duplicated in smoothSpectra()
@@ -79,11 +114,14 @@ if size(B,2) == 1 && size(E,2) == 1
     else
         % Bx = CxxEx
         method = method - 3;
-        [C,fe,H,t,Ep,SB,SE,SEerr] = transferfnFD(E,B,opts);        
+        [C,fe,H,t,Ep] = transferfnFD(E,B,opts);        
         Z = 1./C;
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
         [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
+        if nargout == 1
+            Z = createStruct(Z,fe,H,t,Ep,E,B);
+        end
         return;
     end
 end
@@ -102,16 +140,19 @@ if size(B,2) == 2 && size(E,2) == 2
     if method <= 3
         % Ex = ZxxBx + ZxyBy
         % Ey = ZyxBx + ZyyBy
-        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1),SB,SE(:,1),SEerr(:,1)] = transferfnFD(B,E(:,1),opts);
-        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2),SB,SE(:,2),SEerr(:,2)] = transferfnFD(B,E(:,2),opts);
-        return
+        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1)] = transferfnFD(B,E(:,1),opts);
+        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2)] = transferfnFD(B,E(:,2),opts);
+        if nargout == 1
+            Z = createStruct(Z,fe,H,t,Ep,E,B);
+        end
+        return;
     else
         % Bx = CxxEx + CxyEy
         % By = CyxEx + CyyEy
         method = method - 3;
-        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1),SE,SB(:,1),SBerr(:,1)] = transferfnFD(E,B(:,1),opts);
-        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2),SE,SB(:,2),SBerr(:,2)] = transferfnFD(E,B(:,2),opts);
-        
+        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1)] = transferfnFD(E,B(:,1),opts);
+        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2)] = transferfnFD(E,B(:,2),opts);
+
         % Compute Z = C^{-1}
         DET = C(:,1).*C(:,4)-C(:,2).*C(:,3);
         Z   = [C(:,4),-C(:,2),-C(:,3),C(:,1)]./repmat(DET,1,4);
@@ -119,6 +160,9 @@ if size(B,2) == 2 && size(E,2) == 2
         H = fftshift(H,1);
         [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),opts);
         [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);
+        if nargout == 1
+            Z = createStruct(Z,fe,H,t,Ep,E,B);
+        end
         return;
     end
 end
@@ -255,6 +299,33 @@ Ep = real(Zpredict(fe,Z,B));
 
 %[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
 SEerr = smoothSpectra(E,opts);
+
+if nargout == 1
+    Z = createStruct(Z,fe,H,t,Ep);
+end
+
+function S = createStruct(Z,fe,H,t,Ep,E,B)
+    S = struct();
+
+    S.E = E;
+    S.B = B;
+    
+    S.Z = Z;
+    S.fe = fe;
+    S.H = H;
+    S.t = t;
+    S.Ep = Ep;
+
+    S.PE  = pe_nonflag(E,Ep);
+    S.MSE = mse_nonflag(E,Ep);
+    S.CC  = cc_nonflag(E,Ep);
+
+    S.B_PSD     = smoothSpectra(B(:,1:2),opts);
+    S.E_PSD     = smoothSpectra(E,opts);
+    S.Err_PSD   = smoothSpectra(E-Ep,opts);
+    S.Coherence = smoothCoherence(E,Ep,opts);
+    S.Phi       = atan2(imag(Z),real(Z));
+end
 
 function [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts)
 

@@ -6,7 +6,9 @@ figprep(png,1000,800);
 
 figure;clf;orient tall
 
-[t,E,B] = timealign(tGIC,tE,E,B);
+%[t,E,B] = timealign(tGIC,tE,E,B);
+
+t = tGIC;
 
 %ha = tight_subplot(3,1,[0.01,0.01],[0.05,0.02],[0.08,0.02]);
 ha = tight_subplot(3,1,[0.015,0.015],[0.05,0.02],[0.055,0.04]);
