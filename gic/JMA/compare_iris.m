@@ -39,15 +39,10 @@ Ep_O = real(Ep_O);
 opts = main_options(1);
 opts.td.window.width = 86400;
 opts.td.window.shift = 86400;
-S = transferfnFD(B(:,1:2),E,opts);
+Sc = transferfnFD(B(:,1:2),E,opts);
+S = transferfnCombine(Sc);
+Savg = transferfnAverage(S);
 
-Savg = struct();
-Savg.fe = S.fe;
-Savg.Z = mean(S.Z,3);
-
-Savg.Phi = atan2(imag(Savg.Z),real(Savg.Z));
-Savg.Bunits = 'nT';
-Savg.Eunits = 'mV/km';
 
 Ep = Zpredict(Savg.fe,Savg.Z,B(:,1:2));
 

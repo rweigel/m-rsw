@@ -44,39 +44,22 @@ function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
 
 verbose = 0;
 
-if (0)
 if ~isnan(opts.td.window.width)
     Tw = opts.td.window.width;
     Ts = opts.td.window.shift;
     opts.td.window.width = NaN;
-    Io = [1:Ts:size(B,1)-Tw+1];
+    opts.td.window.shift = NaN;
+    Io = [1:Ts:size(B,1)];
+    if Io(end) > size(B,1)
+        Io = Io(1:end);
+    end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
-        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of Ex using B = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
-        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of Ey using B = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
-        Z = struct();
-        Z.fe = Scell{1}.fe;
-        for i = 1:length(Scell)
-            Z.Z(:,:,i)  = Scell{i}.Z;
-            Z.E(:,:,i)  = Scell{i}.E;
-            Z.B(:,:,i)  = Scell{i}.B;
-            Z.H(:,:,i)  = Scell{i}.H;
-            Z.Ep(:,:,i) = Scell{i}.Ep;
-
-            Z.MSE(1,:,i) = Scell{i}.MSE;
-            Z.PE(1,:,i)  = Scell{i}.PE;
-            Z.CC(1,:,i)  = Scell{i}.CC;
-
-            Z.B_PSD(:,:,i)     = Scell{i}.B_PSD;
-            Z.E_PSD(:,:,i)     = Scell{i}.E_PSD;
-            Z.Err_PSD(:,:,i)   = Scell{i}.Err_PSD;
-            Z.Coherence(:,:,i) = Scell{i}.Coherence;
-            Z.Phi(:,:,i)       = Scell{i}.Phi;
-        end
+        Z{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Z{i}.PE(1),Z{i}.CC(1),Z{i}.MSE(1));
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Z{i}.PE(2),Z{i}.CC(2),Z{i}.MSE(2));
     end
     return;
-end
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -307,22 +290,23 @@ end
 function S = createStruct(Z,fe,H,t,Ep,E,B)
     S = struct();
 
-    S.E = E;
-    S.B = B;
+    S.Out = E;
+    S.In = B;
     
     S.Z = Z;
     S.fe = fe;
     S.H = H;
     S.t = t;
-    S.Ep = Ep;
+    S.Predicted = Ep;
 
     S.PE  = pe_nonflag(E,Ep);
     S.MSE = mse_nonflag(E,Ep);
     S.CC  = cc_nonflag(E,Ep);
 
-    S.B_PSD     = smoothSpectra(B(:,1:2),opts);
-    S.E_PSD     = smoothSpectra(E,opts);
-    S.Err_PSD   = smoothSpectra(E-Ep,opts);
+    S.In_PSD    = smoothSpectra(B,opts);
+    S.Out_PSD   = smoothSpectra(E,opts);
+    S.Error_PSD = smoothSpectra(E-Ep,opts);
+    S.SN        = S.Out_PSD./S.Error_PSD;
     S.Coherence = smoothCoherence(E,Ep,opts);
     S.Phi       = atan2(imag(Z),real(Z));
 end

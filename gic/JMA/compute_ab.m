@@ -1,31 +1,76 @@
-function fname = compute_ab(t,GIC,E,B,dateo,intervalno,opts)
+function S = compute_ab(In,Out,opts)
 
-dirmat = sprintf('mat/%s',dateo);
+if ~isnan(opts.td.window.width)
+    Tw = opts.td.window.width;
+    Ts = opts.td.window.shift;
+    if Tw > size(In,1)
+        error('opts.ts.window.width must be <= size(In,1)');
+    end
+    if Ts > size(In,1)
+        warning('opts.ts.window.shift > size(In,1) - probably an error.');
+    end
+    if Ts <= 0
+        error('opts.ts.window.shift must be > 0.');
+    end
+    opts.td.window.width = NaN;
+    opts.td.window.shift = NaN;
+    Io = [1:Ts:size(In,1)-Tw+1];
+    if Io(end) > size(In,1)
+        Io = Io(1:end);
+    end
+    for i = 1:length(Io)
+        Iseg = [Io(i):Io(i)+Tw-1];
+        S{i} = compute_ab(In(Iseg,:),Out(Iseg,:),opts);
+        fprintf('compute_ab.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
+        fprintf('compute_ab.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
+    end
+    return;
+end
 
 % Important: Inputs/outputs must be zero mean.
+
+S = struct();
+
+if 0
+    In_averaged  = block_mean(In,60);
+    Out_averaged = block_mean(Out,60);
+else
+    In_averaged  = In;
+    Out_averaged = Out;
+end
 
 % Matrix method to compute ao and bo
 % GIC(:,i) = aoE(:,1) + boE(:,2);
 for i = 1:2
-    LIN = basic_linear(E,GIC(:,i));
-    GEo_Prediction(:,i) = basic_linear(E(:,:),LIN.Weights,'predict');
-    GEo_ao(i) = LIN.Weights(1);
-    GEo_bo(i) = LIN.Weights(2);
-    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',GEo_ao(i),GEo_bo(i));
-
-    GEo_PE(i) = pe_nonflag(GIC(:,i),GEo_Prediction(:,i));
-    GEo_MSE(i) = mse_nonflag(GIC(:,i),GEo_Prediction(:,i));
-    GEo_CC(i) = cc_nonflag(GIC(:,2),GEo_Prediction(:,i));
-    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
+    LIN = basic_linear(In_averaged,Out_averaged(:,i));
+    S.Predicted(:,i) = basic_linear(In,LIN.Weights,'predict');
+    S.ao(i) = LIN.Weights(1);
+    S.bo(i) = LIN.Weights(2);
+    %fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',S.ao(i),S.bo(i));
 end
 
-GEo_Dateo   = dateo;
-GEo_Seconds = [t(1),t(end)];
+S.PE  = pe_nonflag(Out,S.Predicted);
+S.CC  = cc_nonflag(Out,S.Predicted);
+S.MSE = mse_nonflag(Out,S.Predicted);
 
-GEo_Input_PSD  = smoothSpectra(E(:,1:2),opts);
-GEo_Output_PSD = smoothSpectra(GIC,opts);
-GEo_Error_PSD  = smoothSpectra(GIC - GEo_Prediction,opts);
-GEo_Coherence  = smoothCoherence(GIC,GEo_Prediction,opts);
+%fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
+
+S.In  = In;
+S.Out = Out;
+
+S.In_PSD     = smoothSpectra(In,opts);
+S.Out_PSD    = smoothSpectra(Out,opts);
+S.Error_PSD  = smoothSpectra(Out - S.Predicted,opts);
+S.SN         = S.Out_PSD./S.Error_PSD;
+S.Coherence  = smoothCoherence(Out,S.Predicted,opts);
+
+
+
+
+return
+
+GIC = Out;
+E = In;
 
 % Pulkkinen et al. 2007 method.
 d = (mean_nonflag(E(:,1).*E(:,2)))^2-mean_nonflag(E(:,1).*E(:,1))*mean_nonflag(E(:,2).*E(:,2));
@@ -56,6 +101,8 @@ LIN = basic_linear(E1h,GIC1h);
 ao1h = LIN.Weights(1);
 bo1h = LIN.Weights(2);
 fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-hr aves)\n',ao1h,bo1h);
+
+return
 
 for i = 1:2
     LIN = basic_linear(B(:,1:2),GIC(:,i));

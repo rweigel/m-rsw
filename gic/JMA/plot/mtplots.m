@@ -27,7 +27,11 @@ figure(1);clf;
         end
     end
     xlabel('Period [s]');
-    ylabel(sprintf('%s/(%s)',S.Bunits,S.Eunits));
+    if isfield(S,InUnits) && isfield(S.OutUnits)
+        ylabel(sprintf('[%s/(%s)]',OutUnits,InUnits));
+    else
+        ylabel(sprintf('[]/[]');
+    end
     lh = legend(components,'Location','Best');
 
 figure(2);clf;

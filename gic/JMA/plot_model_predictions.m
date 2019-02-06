@@ -1,5 +1,5 @@
 
-if 0
+if ~exist('F1','var')
     filestr = 'options-1';
     png = 0;
     allfigs = 0;
@@ -9,13 +9,10 @@ if 0
         mkdir(dirfig);
     end
 
-    fnamemat = sprintf('mat/aggregate_TFs-%s.mat',filestr);
-    fprintf('compute_TF_aves.m: Loading %s\n',fnamemat);
-    FIO = load(fnamemat);
-
-    file = sprintf('mat/compute_TF_aves-%s.mat',filestr);
-    fprintf('plot_TF_aves: Loading from %s\n',file);
-    F = load(file);
+    file = sprintf('mat/main_%s.mat','options-1');
+    fprintf('plot_model_predictions: Loading %s\n',file);
+    F1 = load(file);
+    fprintf('plot_model_predictions: Loaded %s\n',file);    
 end
 
 png = 1;
