@@ -1,4 +1,4 @@
-function parameterhistograms(GEo,GEoavg,filestr,png)
+function parameterhistograms(GEo,GEo_avg,filestr,png)
 
     fn = 0;
     figprep(png,1000,500);
@@ -19,8 +19,8 @@ function parameterhistograms(GEo,GEoavg,filestr,png)
         stairs(edgesao,nao,'k','LineWidth',2)
         stairs(edgesbo,nbo,'k--','LineWidth',2)
 
-        plot(1e3*GEoavg.ao(2),0,'k.','MarkerSize',30);
-        plot(1e3*GEoavg.bo(2),0,'ko','MarkerSize',7);
+        plot(1e3*GEo_avg.Mean.ao(2),0,'k.','MarkerSize',30);
+        plot(1e3*GEo_avg.Mean.bo(2),0,'ko','MarkerSize',7);
 
         set(gca,'XLim',[-320,200])
         set(gca,'XTick',[-300:50:200]);

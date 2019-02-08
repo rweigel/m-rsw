@@ -1,4 +1,5 @@
 function lims = boot95(z)
+    z = squeeze(z);
     V = bootstrp(1000,@mean,z);
     if size(z,2) == 1
         V = transpose(V);

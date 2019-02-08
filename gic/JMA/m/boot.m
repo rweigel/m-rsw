@@ -4,6 +4,8 @@ function lims = boot(z,fn,N,n)
 %
 %
 
+z = squeeze(z);
+
 if nargin < 2
     fn = @mean;
 end

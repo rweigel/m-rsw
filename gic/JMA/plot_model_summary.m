@@ -1,5 +1,14 @@
 function plot_model_summary(GEo,GE,GBo,GB,GBa,EB,filestr,png)
 
+if isfield(GEo,'Mean')
+    GEo = GEo.Mean;
+    GE  = GE.Mean;
+    GBo = GBo.Mean;
+    GB  = GB.Mean;
+    GBa = GBa.Mean;
+    Eb  = EB.Mean;
+end
+
 fn = 1;
 allfigs = 0;
 
@@ -132,19 +141,19 @@ function comparePhiplots(GE,GB,pn)
     sf = 180/pi;
     T = 1./GE.fe(2:end);
     
-    semilogx(T,0*GE.Phi_Mean2(2:end,3),'k.','MarkerSize',5);
+    semilogx(T,0*GE.Phi2(2:end,3),'k.','MarkerSize',5);
     hold on;box on;grid on;
-    semilogx(T,0*GE.Phi_Mean2(2:end,4),'ko','MarkerSize',5);
+    semilogx(T,0*GE.Phi2(2:end,4),'ko','MarkerSize',5);
 
-    semilogx(T,sf*GE.Phi_Mean2(2:end,3),'r.','MarkerSize',20);
-    semilogx(T,sf*GE.Phi_Mean2(2:end,4),'ro');
-    semilogx(T,sf*GB.Phi_Mean2(2:end,3),'b.','MarkerSize',20);
-    semilogx(T,sf*GB.Phi_Mean2(2:end,4),'bo');
+    semilogx(T,sf*GE.Phi2(2:end,3),'r.','MarkerSize',20);
+    semilogx(T,sf*GE.Phi2(2:end,4),'ro');
+    semilogx(T,sf*GB.Phi2(2:end,3),'b.','MarkerSize',20);
+    semilogx(T,sf*GB.Phi2(2:end,4),'bo');
 
-    errorbars(T,sf*GE.Phi_Mean2(2:end,3),sf*GE.Phi_StdErr(2:end,3),sf*GE.Phi_StdErr(2:end,3),'y','r');
-    errorbars(T,sf*GE.Phi_Mean2(2:end,4),sf*GE.Phi_StdErr(2:end,4),sf*GE.Phi_StdErr(2:end,4),'y','r');
-    errorbars(T,sf*GB.Phi_Mean2(2:end,3),sf*GB.Phi_StdErr(2:end,3),sf*GB.Phi_StdErr(2:end,3),'y','b');
-    errorbars(T,sf*GB.Phi_Mean2(2:end,4),sf*GB.Phi_StdErr(2:end,4),sf*GB.Phi_StdErr(2:end,4),'y','b');
+    errorbars(T,sf*GE.Phi2(2:end,3),sf*GE.Phi_StdErr(2:end,3),sf*GE.Phi_StdErr(2:end,3),'y','r');
+    errorbars(T,sf*GE.Phi2(2:end,4),sf*GE.Phi_StdErr(2:end,4),sf*GE.Phi_StdErr(2:end,4),'y','r');
+    errorbars(T,sf*GB.Phi2(2:end,3),sf*GB.Phi_StdErr(2:end,3),sf*GB.Phi_StdErr(2:end,3),'y','b');
+    errorbars(T,sf*GB.Phi2(2:end,4),sf*GB.Phi_StdErr(2:end,4),sf*GB.Phi_StdErr(2:end,4),'y','b');
 
     set(gca,'ytick',[-180:30:180])
     ylim([-210,210])

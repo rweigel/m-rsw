@@ -3,6 +3,10 @@ function [tGIC,GIC] = prep_GIC(dateo,datef,regenfiles)
 dirmat = sprintf('mat/%s',dateo);
 dirtxt = 'data/watari/GICall';
 
+if ~exist(dirmat,'dir')
+    mkdir(dirmat);
+end
+
 fnamemat = sprintf('%s/prepGIC_%s.mat',dirmat,dateo);
 if regenfiles == 0 && exist(fnamemat,'file')
     load(fnamemat)

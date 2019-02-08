@@ -1,4 +1,4 @@
-function S = compute_ab(In,Out,opts)
+function S = transferfnConst(In,Out,opts)
 
 if ~isnan(opts.td.window.width)
     Tw = opts.td.window.width;
@@ -20,9 +20,9 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        S{i} = compute_ab(In(Iseg,:),Out(Iseg,:),opts);
-        fprintf('compute_ab.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
-        fprintf('compute_ab.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
+        S{i} = transferfnConst(In(Iseg,:),Out(Iseg,:),opts);
+        fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
+        fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
     end
     return;
 end
@@ -46,14 +46,14 @@ for i = 1:2
     S.Predicted(:,i) = basic_linear(In,LIN.Weights,'predict');
     S.ao(i) = LIN.Weights(1);
     S.bo(i) = LIN.Weights(2);
-    %fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',S.ao(i),S.bo(i));
+    %fprintf('transferfnConst.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',S.ao(i),S.bo(i));
 end
 
 S.PE  = pe_nonflag(Out,S.Predicted);
 S.CC  = cc_nonflag(Out,S.Predicted);
 S.MSE = mse_nonflag(Out,S.Predicted);
 
-%fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
+%fprintf('transferfnConst.m:   PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2) = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
 
 S.In  = In;
 S.Out = Out;
@@ -78,7 +78,7 @@ an = mean_nonflag(GIC(:,2).*E(:,2))*mean_nonflag(E(:,1).*E(:,2)) - mean_nonflag(
 aoP = an/d;
 bn = mean_nonflag(GIC(:,2).*E(:,1))*mean_nonflag(E(:,1).*E(:,2)) - mean_nonflag(GIC(:,2).*E(:,2))*mean_nonflag(E(:,1).*E(:,1));
 boP = bn/d;
-fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (Pulkkinen 2007 et al. method)\n',aoP,boP);
+fprintf('transferfnConst.m: ao =  %7.4f; bo =  %7.4f (Pulkkinen 2007 et al. method)\n',aoP,boP);
 
 % GIC(:,2) = aoE(:,1) + boE(:,2); for 1-minute averaged data.
 % Attempt to reproduce Watari by averaging to 1 minute
@@ -89,7 +89,7 @@ GIC1m = block_detrend_nonflag(GIC1m,size(GIC1m,1));
 LIN = basic_linear(E1m,GIC1m);
 ao1m = LIN.Weights(1);
 bo1m = LIN.Weights(2);
-fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-min aves)\n',ao1m,bo1m);
+fprintf('transferfnConst.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-min aves)\n',ao1m,bo1m);
 
 % GIC(:,2) = aoE(:,1) + boE(:,2); for 1-hour averaged data.
 % Attempt to reproduce Watari by averaging to 1 minute
@@ -100,7 +100,7 @@ GIC1h = block_detrend_nonflag(GIC1h,size(GIC1h,1));
 LIN = basic_linear(E1h,GIC1h);
 ao1h = LIN.Weights(1);
 bo1h = LIN.Weights(2);
-fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-hr aves)\n',ao1h,bo1h);
+fprintf('transferfnConst.m: ao =  %7.4f; bo =  %7.4f (matrix method; 1-hr aves)\n',ao1h,bo1h);
 
 return
 
@@ -109,12 +109,12 @@ for i = 1:2
     GBo_Prediction(:,i) = basic_linear(B(:,1:2),LIN.Weights,'predict');
     GBo_ao(i) = LIN.Weights(1);
     GBo_bo(i) = LIN.Weights(2);
-    fprintf('compute_ab.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',GBo_ao(i),GBo_bo(i));
+    fprintf('transferfnConst.m: ao =  %7.4f; bo =  %7.4f (matrix method)\n',GBo_ao(i),GBo_bo(i));
 
     GBo_PE(i) = pe_nonflag(GIC(:,i),GBo_Prediction(:,i));
     GBo_MSE(i) = mse_nonflag(GIC(:,i),GBo_Prediction(:,i));
     GBo_CC(i) = cc_nonflag(GIC(:,2),GBo_Prediction(:,i));
-    fprintf('compute_ab.m:   PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
+    fprintf('transferfnConst.m:   PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
 end
 
 GBo_Dateo   = dateo;
@@ -131,12 +131,12 @@ LIN = basic_linear(dB,GIC(:,2));
 GIC_GdB(:,1) = basic_linear(dB,LIN.Weights,'predict');
 dhox = LIN.Weights(1);
 dhoy = LIN.Weights(2);
-fprintf('compute_ab.m: hxo = %7.4f; hyo = %7.4f (Using diff(magnetic field))\n',dhox,dhoy);
+fprintf('transferfnConst.m: hxo = %7.4f; hyo = %7.4f (Using diff(magnetic field))\n',dhox,dhoy);
 
 PE_GdB = pe_nonflag(GIC(:,2),GIC_GdB);
 MSE_GdB = mse_nonflag(GIC(:,2),GIC_GdB);
 CC_GdB = corr(GIC(:,2),GIC_GdB);
-fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxo dB(:,1) + hyo dB(:,2) = %.2f/%.2f/%.3f\n',PE_GdB,CC_GdB,MSE_GdB);
+fprintf('transferfnConst.m:   PE/CC/MSE of GIC using GIC(:,2) = hxo dB(:,1) + hyo dB(:,2) = %.2f/%.2f/%.3f\n',PE_GdB,CC_GdB,MSE_GdB);
 
 % GIC(:,2) = hxoB(:,1) + hyoB(:,2) + hzoB(:,3);
 LIN = basic_linear(B(:,1:3),GIC(:,2));
@@ -145,19 +145,19 @@ h3ox = LIN.Weights(1);
 h3oy = LIN.Weights(2);
 h3oz = LIN.Weights(3);
 
-fprintf('compute_ab.m: hxo = %7.4f; hyo = %7.4f; hzo = %.4f (Using magnetic field)\n',h3ox, h3oy, h3oz);
+fprintf('transferfnConst.m: hxo = %7.4f; hyo = %7.4f; hzo = %.4f (Using magnetic field)\n',h3ox, h3oy, h3oz);
 
 PE_GBo3 = pe_nonflag(GIC(:,2),GIC_GBo3);
 MSE_GBo3 = mse_nonflag(GIC(:,2),GIC_GBo3);
 CC_GBo3 = corr(GIC(:,2),GIC_GBo3,'rows','complete');
-fprintf('compute_ab.m:   PE/CC/MSE of GIC using GIC(:,2) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',PE_GBo3,CC_GBo3,MSE_GBo3);
+fprintf('transferfnConst.m:   PE/CC/MSE of GIC using GIC(:,2) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',PE_GBo3,CC_GBo3,MSE_GBo3);
 
 for i = 1:2
-    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2)   = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
-    fprintf('compute_ab.m: PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
+    fprintf('transferfnConst.m: PE/CC/MSE of GIC(:,%d) = aoE(:,1) + boE(:,2)   = %.2f/%.2f/%.3f\n',i,GEo_PE(i),GEo_CC(i),GEo_MSE(i));
+    fprintf('transferfnConst.m: PE/CC/MSE of GIC(:,%d) = hxoB(:,1) + hyoB(:,2) = %.2f/%.2f/%.3f\n',i,GBo_PE(i),GBo_CC(i),GBo_MSE(i));
 end
 
-fname = sprintf('%s/compute_ab_%s-%d.mat',dirmat,dateo,intervalno);
+fname = sprintf('%s/transferfnConst_%s-%d.mat',dirmat,dateo,intervalno);
 save(fname,'-regexp','GEo_','-regexp','GBo_');
-fprintf('compute_ab.m: Wrote %s\n',fname);
+fprintf('transferfnConst.m: Wrote %s\n',fname);
 

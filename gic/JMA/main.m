@@ -1,10 +1,7 @@
-%function main(rn)
+function main(rn)
 
-% close all;plot_TF_aves(0,filestr);
-
-clear
-
-rn = 2;
+%clear
+%rn = 1;
 
 setpaths;
 
@@ -14,7 +11,7 @@ regenfiles = 0; % If 0, used cached E,B,GIC mat files
 
 % All runs
 if nargin == 0
-    for rn = 1:5
+    for rn = 1:4
         main(rn);
     end
     return;
@@ -104,10 +101,10 @@ for i = 1:length(dateos)
     end
 
     fprintf('main.m: %s G/Eo\n',dateo);    
-    GEoc{i} = compute_ab(E,GIC,opts);
+    GEoc{i} = transferfnConst(E,GIC,opts);
 
     fprintf('main.m: %s G/Bo\n',dateo);    
-    GBoc{i} = compute_ab(B,GIC,opts);
+    GBoc{i} = transferfnConst(B,GIC,opts);
     
     fprintf('main.m: %s G/E\n',dateo);
     GEc{i} = transferfnFD(E,GIC,opts); 
@@ -150,7 +147,7 @@ GBa_avg = transferfnAverage(GBa,opts);
 fprintf('main.m: %s E/B\n',dateo);
 EB_avg  = transferfnAverage(EB,opts);
 
-savevars = {'GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
+savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});

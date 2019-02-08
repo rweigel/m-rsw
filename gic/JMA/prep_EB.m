@@ -2,6 +2,10 @@ function [tE,E,tB,B] = prep_EB(dateo,datef,regenfiles)
 
 dirmat = sprintf('mat/%s',dateo);
 
+if ~exist(dirmat,'dir')
+    mkdir(dirmat);
+end
+
 fnamemat = sprintf('%s/prepEB_%s-%s.mat',dirmat,dateo,datef);
 if regenfiles == 0 && exist(fnamemat,'file')
     load(fnamemat);

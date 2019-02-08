@@ -1,4 +1,5 @@
 function lims = norm95(z)
+    z = squeeze(z);
     if size(z,2) == 1
         z = transpose(z);
     end

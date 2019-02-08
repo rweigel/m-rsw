@@ -38,22 +38,21 @@ opts.td.window.width = 3600*24;
 opts.td.window.shift = 3600*24;
 
 if rn == 1
-    % Use defaults
-end
-
-if rn == 2
+    opts.description = 'Default';
+elseif rn == 2
+    opts.description = 'yulewalker(10) prewhiten';
     opts.td.prewhiten.method = 'yulewalker';
     opts.td.prewhiten.methodstr = 'yulewalker10';
     opts.td.prewhiten.options = 10;
-end
-
-if rn == 3
+elseif rn == 3
+    opts.description = 'Parzen window in FD';
     opts.fd.window.function = @parzenwin; 
     opts.fd.window.functionstr = 'parzen';
-end
-
-if rn == 4
+elseif rn == 4
+    opts.description = 'Robust regression';
     opts.fd.regression.method = 3; 
     opts.fd.regression.methodstr = 'robust_on_Z';
+else
+    error('Invalid option set number');
 end
 
