@@ -24,33 +24,65 @@ end
 
 S = struct();
 
-for i = 1:length(Scell)
-    S.In(:,:,i)  = Scell{i}.In;
-    S.Out(:,:,i)  = Scell{i}.Out;
-    S.Predicted(:,:,i) = Scell{i}.Predicted;
+S.In  = Scell{1}.In;
+S.Out = Scell{1}.Out;
+S.Predicted = Scell{1}.Predicted;
 
-    S.MSE(1,:,i) = Scell{i}.MSE;
-    S.PE(1,:,i)  = Scell{i}.PE;
-    S.CC(1,:,i)  = Scell{i}.CC;
-    
-    S.SN(:,:,i) = Scell{i}.SN;
-    
-    S.In_PSD(:,:,i)    = Scell{i}.In_PSD;
-    S.Out_PSD(:,:,i)   = Scell{i}.Out_PSD;
-    S.Error_PSD(:,:,i)   = Scell{i}.Error_PSD;
-    S.Coherence(:,:,i) = Scell{i}.Coherence;
+S.MSE = Scell{1}.MSE;
+S.PE  = Scell{1}.PE;
+S.CC  = Scell{1}.CC;
+
+S.SN = Scell{1}.SN;
+
+S.In_PSD    = Scell{1}.In_PSD;
+S.Out_PSD   = Scell{1}.Out_PSD;
+S.Error_PSD = Scell{1}.Error_PSD;
+S.Coherence = Scell{1}.Coherence;
+
+for i = 2:length(Scell)
+    S.In  = cat(3,S.In,Scell{i}.In);
+    S.Out = cat(3,S.Out,Scell{i}.Out);
+    S.Predicted = cat(3,S.Predicted,Scell{i}.Predicted);
+
+    S.PE  = cat(3,S.PE,Scell{i}.PE);
+    S.CC  = cat(3,S.CC,Scell{i}.CC);
+    S.MSE = cat(3,S.MSE,Scell{i}.MSE);
+
+    S.SN = cat(3,S.SN,Scell{i}.SN);
+
+    S.In_PSD    = cat(3,S.In_PSD,Scell{i}.In_PSD);
+    S.Out_PSD   = cat(3,S.Out_PSD,Scell{i}.Out_PSD);
+    S.Error_PSD = cat(3,S.Error_PSD,Scell{i}.Error_PSD);
+    S.Coherence = cat(3,S.Coherence,Scell{i}.Coherence);
 end
 
 if isfield(Scell{1},'ao')
-    for i = 1:length(Scell)
-        S.ao(:,:,i)   = Scell{i}.ao;
-        S.bo(:,:,i)   = Scell{i}.bo;
+    S.ao = Scell{1}.ao;
+    S.bo = Scell{1}.bo;
+    for i = 2:length(Scell)
+        S.ao = cat(3,S.ao,Scell{i}.ao);
+        S.bo = cat(3,S.bo,Scell{i}.bo);
     end
 else
-    S.fe = Scell{1}.fe;
-    for i = 1:length(Scell)
-        S.Z(:,:,i)   = Scell{i}.Z;
-        S.H(:,:,i)   = Scell{i}.H;
-        S.Phi(:,:,i) = Scell{i}.Phi;
+    S.fe  = Scell{1}.fe;
+    S.Z   = Scell{1}.Z;
+    S.H   = Scell{1}.H;
+    S.Phi = Scell{1}.Phi;
+
+    if isfield(Scell{1},'In_FT') % Alt TF does not have *_FT fields.    
+        S.In_FT  = Scell{1}.In_FT;
+        S.Out_FT = Scell{1}.Out_FT;
+        S.F_FT   = Scell{1}.F_FT;
+    end
+    for i = 2:length(Scell)
+        S.Z   = cat(3,S.Z,Scell{i}.Z);
+        S.H   = cat(3,S.H,Scell{i}.H);
+        S.Phi = cat(3,S.Phi,Scell{i}.Phi);
+
+        if isfield(Scell{i},'In_FT') % Alt TF does not have *_FT fields.
+            S.In_FT  = cat(3,S.In_FT,Scell{i}.In_FT);
+            S.Out_FT = cat(3,S.Out_FT,Scell{i}.Out_FT);
+            S.F_FT   = cat(3,S.F_FT,Scell{i}.F_FT);
+        end
     end
 end

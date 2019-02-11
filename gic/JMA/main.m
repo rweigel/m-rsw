@@ -1,13 +1,14 @@
-function main(rn)
+%function main(rn)
 
-%clear
-%rn = 1;
+clear
+rn = 1;
 
 setpaths;
 
-writepng = 0;   % Write png and pdf files
-intmplot = 0;   % Intermediate plots
-regenfiles = 0; % If 0, used cached E,B,GIC mat files
+writepng   = 0; % Write png and pdf files
+intmplot   = 0; % Intermediate plots
+regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
+oos_aves   = 0;
 
 % All runs
 if nargin == 0
@@ -129,24 +130,32 @@ GBa  = transferfnCombine(GBac);
 
 fprintf('________________________________________________________________\n');
 
+if oos_aves
+    % Requires Nintervals = size(GE.Z,3) more calculations. Will give almost
+    % identical results if Nintervals is large.
+    transferfnAverageFunction = @transferfnAverageOutofSample;
+else
+    transferfnAverageFunction = @transferfnAverage;    
+end
+
 fprintf('main.m: %s G/Eo\n',dateo);
-GEo_avg = transferfnAverage(GEo,opts);
+GEo_avg = transferfnAverageFunction(GEo,opts);
 
 fprintf('main.m: %s G/Bo\n',dateo);
-GBo_avg = transferfnAverage(GBo,opts);
+GBo_avg = transferfnAverageFunction(GBo,opts);
 
 fprintf('main.m: %s G/E\n',dateo);
-GE_avg = transferfnAverage(GE,opts);
+GE_avg = transferfnAverageFunction(GE,opts);
 
 fprintf('main.m: %s G/B\n',dateo);
-GB_avg = transferfnAverage(GB,opts);
+GB_avg = transferfnAverageFunction(GB,opts);
 
 fprintf('main.m: %s G/E''\n',dateo);
-GBa_avg = transferfnAverage(GBa,opts);
+GBa_avg = transferfnAverageFunction(GBa,opts);
 
 fprintf('main.m: %s E/B\n',dateo);
-EB_avg  = transferfnAverage(EB,opts);
-
+EB_avg  = transferfnAverageFunction(EB,opts);
+  
 savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);

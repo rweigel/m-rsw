@@ -24,6 +24,7 @@ if ~isnan(opts.td.window.width)
         fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
         fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
     end
+    S = transferfnCombine(S);
     return;
 end
 

@@ -1,4 +1,4 @@
-function Savg = transferfnAverage(S,opts)
+function Savg = transferfnAverage(S,opts,Ik)
 
 Savg        = struct();
 Savg.Mean   = struct();
@@ -7,6 +7,17 @@ Savg.Median = struct();
 
 a = 60*10;
 b = 86400-a+1;
+
+if nargin < 3
+    Ik = [1:size(S.In_PSD,3)];
+else
+    if isfield(S,'ao')
+        S.ao = S.ao(:,:,Ik);
+        S.bo = S.bo(:,:,Ik);
+    else
+        S.Z  = S.Z(:,:,Ik);
+    end        
+end
 
 Savg.Mean.In_PSD  = mean(S.In_PSD,3); 
 Savg.Mean.Out_PSD = mean(S.Out_PSD,3); 
@@ -49,54 +60,6 @@ if isfield(S,'ao')
     Savg.Huber.ao = mlochuber(squeeze(S.ao)')';
     Savg.Huber.bo = mlochuber(squeeze(S.bo)')';
 
-    for k = 1:size(S.In,3) % Loop over days
-        
-        Savg.Mean.Predicted(:,1,k) = Savg.Mean.ao(1)*S.In(:,1,k) + Savg.Mean.bo(1)*S.In(:,2,k);
-        Savg.Mean.Predicted(:,2,k) = Savg.Mean.ao(2)*S.In(:,1,k) + Savg.Mean.bo(2)*S.In(:,2,k);
-
-        Savg.Mean.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-        Savg.Mean.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-        Savg.Mean.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-
-        Savg.Mean.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Mean.Predicted(:,:,k),opts);
-        Savg.Mean.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Mean.Predicted(:,:,k),opts);
-
-        Savg.Mean.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Mean.Error_PSD(:,:,k);
-
-        %
-        
-        Savg.Median.Predicted(:,1,k) = Savg.Median.ao(1)*S.In(:,1,k) + Savg.Median.bo(1)*S.In(:,2,k);
-        Savg.Median.Predicted(:,2,k) = Savg.Median.ao(2)*S.In(:,1,k) + Savg.Median.bo(2)*S.In(:,2,k);
-
-        Savg.Median.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-        Savg.Median.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-        Savg.Median.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-
-        Savg.Median.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Median.Predicted(:,:,k),opts);
-        Savg.Median.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Median.Predicted(:,:,k),opts);
-        
-        Savg.Median.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Median.Error_PSD(:,:,k);
-
-        %
-        
-        Savg.Huber.Predicted(:,1,k) = Savg.Huber.ao(1)*S.In(:,1,k) + Savg.Huber.bo(1)*S.In(:,2,k);
-        Savg.Huber.Predicted(:,2,k) = Savg.Huber.ao(2)*S.In(:,1,k) + Savg.Huber.bo(2)*S.In(:,2,k);
-
-        Savg.Huber.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-        Savg.Huber.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-        Savg.Huber.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-        Savg.Huber.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Huber.Predicted(:,:,k),opts);
-        Savg.Huber.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Huber.Predicted(:,:,k),opts);
-        
-        Savg.Huber.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Huber.Error_PSD(:,:,k);
-        
-        fprintf('transferfnAverage.m: Interval %02d: PEx in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-                 k,S.PE(1,1,k),Savg.Mean.PE(1,1,k),Savg.Median.PE(1,1,k),Savg.Huber.PE(1,1,k));
-        fprintf('transferfnAverage.m: Interval %02d: PEy in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-                 k,S.PE(1,2,k),Savg.Mean.PE(1,2,k),Savg.Median.PE(1,2,k),Savg.Huber.PE(1,2,k));
-
-    end
 else
 
     Savg.Mean.fe = S.fe;
@@ -192,46 +155,57 @@ else
         % transposes b/c mlochuber only averages across rows.
 
     end
-    
-    for k = 1:size(S.In,3)
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        
+end
+
+for k = 1:size(S.In,3)
+
+    if isfield(S,'ao')    
+        Savg.Mean.Predicted(:,1,k) = Savg.Mean.ao(1)*S.In(:,1,k) + Savg.Mean.bo(1)*S.In(:,2,k);
+        Savg.Mean.Predicted(:,2,k) = Savg.Mean.ao(2)*S.In(:,1,k) + Savg.Mean.bo(2)*S.In(:,2,k);
+
+        Savg.Median.Predicted(:,1,k) = Savg.Median.ao(1)*S.In(:,1,k) + Savg.Median.bo(1)*S.In(:,2,k);
+        Savg.Median.Predicted(:,2,k) = Savg.Median.ao(2)*S.In(:,1,k) + Savg.Median.bo(2)*S.In(:,2,k);
+        Savg.Huber.Predicted(:,1,k) = Savg.Huber.ao(1)*S.In(:,1,k) + Savg.Huber.bo(1)*S.In(:,2,k);
+        Savg.Huber.Predicted(:,2,k) = Savg.Huber.ao(2)*S.In(:,1,k) + Savg.Huber.bo(2)*S.In(:,2,k);
+    else        
         Savg.Mean.Predicted(:,:,k)   = Zpredict(fe,Savg.Mean.Z,S.In(:,:,k));
         Savg.Median.Predicted(:,:,k) = Zpredict(fe,Savg.Median.Z,S.In(:,:,k));
         Savg.Huber.Predicted(:,:,k)  = Zpredict(fe,Savg.Huber.Z,S.In(:,:,k));    
-
-        Savg.Mean.PE(1,:,k)    = pe(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-        Savg.Median.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-        Savg.Huber.PE(1,:,k)   = pe(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-        Savg.Mean.MSE(1,:,k)   = mse(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-        Savg.Median.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-        Savg.Huber.MSE(1,:,k)  = mse(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-        Savg.Mean.CC(1,:,k)    = cc(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-        Savg.Median.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-        Savg.Huber.CC(1,:,k)   = cc(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-        Savg.Mean.Error_PSD(:,:,k)   = smoothSpectra(S.Out(:,:,k)-Savg.Mean.Predicted(:,:,k),opts);
-        Savg.Median.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Median.Predicted(:,:,k),opts);
-        Savg.Huber.Error_PSD(:,:,k)  = smoothSpectra(S.Out(:,:,k)-Savg.Huber.Predicted(:,:,k),opts);
-
-        Savg.Mean.Coherence(:,:,k)   = smoothCoherence(S.Out(:,:,k),Savg.Mean.Predicted(:,:,k),opts);
-        Savg.Median.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Median.Predicted(:,:,k),opts);
-        Savg.Huber.Coherence(:,:,k)  = smoothCoherence(S.Out(:,:,k),Savg.Huber.Predicted(:,:,k),opts);
-
-        Savg.Mean.SN(:,:,k)   = S.Out_PSD(:,:,k)./Savg.Mean.Error_PSD(:,:,k);    
-        Savg.Median.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Median.Error_PSD(:,:,k);    
-        Savg.Huber.SN(:,:,k)  = S.Out_PSD(:,:,k)./Savg.Huber.Error_PSD(:,:,k);    
-        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-        fprintf('transferfnAverage.m: Interval %02d: PEx in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-                 k,S.PE(1,1,k),Savg.Mean.PE(1,1,k),Savg.Median.PE(1,1,k),Savg.Huber.PE(1,1,k));
-        fprintf('transferfnAverage.m: Interval %02d: PEy in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-                 k,S.PE(1,2,k),Savg.Mean.PE(1,2,k),Savg.Median.PE(1,2,k),Savg.Huber.PE(1,2,k));
-
     end
     
+    Savg.Mean.PE(1,:,k)    = pe(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
+    Savg.Median.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
+    Savg.Huber.PE(1,:,k)   = pe(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
+
+    Savg.Mean.MSE(1,:,k)   = mse(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
+    Savg.Median.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
+    Savg.Huber.MSE(1,:,k)  = mse(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
+
+    Savg.Mean.CC(1,:,k)    = cc(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
+    Savg.Median.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
+    Savg.Huber.CC(1,:,k)   = cc(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
+
+    Savg.Mean.Error_PSD(:,:,k)   = smoothSpectra(S.Out(:,:,k)-Savg.Mean.Predicted(:,:,k),opts);
+    Savg.Median.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Median.Predicted(:,:,k),opts);
+    Savg.Huber.Error_PSD(:,:,k)  = smoothSpectra(S.Out(:,:,k)-Savg.Huber.Predicted(:,:,k),opts);
+
+    Savg.Mean.Coherence(:,:,k)   = smoothCoherence(S.Out(:,:,k),Savg.Mean.Predicted(:,:,k),opts);
+    Savg.Median.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Median.Predicted(:,:,k),opts);
+    Savg.Huber.Coherence(:,:,k)  = smoothCoherence(S.Out(:,:,k),Savg.Huber.Predicted(:,:,k),opts);
+
+    Savg.Mean.SN(:,:,k)   = S.Out_PSD(:,:,k)./Savg.Mean.Error_PSD(:,:,k);    
+    Savg.Median.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Median.Error_PSD(:,:,k);    
+    Savg.Huber.SN(:,:,k)  = S.Out_PSD(:,:,k)./Savg.Huber.Error_PSD(:,:,k);    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    fprintf('transferfnAverage.m: Interval %02d: PEx in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
+             k,S.PE(1,1,k),Savg.Mean.PE(1,1,k),Savg.Median.PE(1,1,k),Savg.Huber.PE(1,1,k));
+    fprintf('transferfnAverage.m: Interval %02d: PEy in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
+             k,S.PE(1,2,k),Savg.Mean.PE(1,2,k),Savg.Median.PE(1,2,k),Savg.Huber.PE(1,2,k));
+
 end
+
 
 end
 

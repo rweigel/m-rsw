@@ -1,4 +1,5 @@
-function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
+function S = transferfnFD(B,E,opts)
+%function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
 %TRANSFERFNFD Estimates transfer function
 %
 %  Estimates complex transfer function Z(f) in one of
@@ -55,9 +56,37 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        Z{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
-        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Z{i}.PE(1),Z{i}.CC(1),Z{i}.MSE(1));
-        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Z{i}.PE(2),Z{i}.CC(2),Z{i}.MSE(2));
+        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
+        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
+    end
+    S = transferfnCombine(Scell);
+    if (0)
+    for i = 1:length(Scell)
+        S.In(:,:,i)  = Scell{i}.In;
+        S.Out(:,:,i)  = Scell{i}.Out;
+        S.Predicted(:,:,i) = Scell{i}.Predicted;
+
+        S.fe = Scell{1}.fe;
+        S.Z(:,:,i)   = Scell{i}.Z;
+        S.H(:,:,i)   = Scell{i}.H;
+        S.Phi(:,:,i) = Scell{i}.Phi;
+        
+        S.MSE(1,:,i) = Scell{i}.MSE;
+        S.PE(1,:,i)  = Scell{i}.PE;
+        S.CC(1,:,i)  = Scell{i}.CC;
+
+        S.SN(:,:,i) = Scell{i}.SN;
+
+        S.In_FT(:,:,i)  = Scell{i}.In_FT;
+        S.Out_FT(:,:,i) = Scell{i}.Out_FT;
+        S.F_FT(:,:,i)   = Scell{i}.F_FT;
+
+        S.In_PSD(:,:,i)    = Scell{i}.In_PSD;
+        S.Out_PSD(:,:,i)   = Scell{i}.Out_PSD;
+        S.Error_PSD(:,:,i)   = Scell{i}.Error_PSD;
+        S.Coherence(:,:,i) = Scell{i}.Coherence;
+    end
     end
     return;
 end
@@ -97,14 +126,17 @@ if size(B,2) == 1 && size(E,2) == 1
     else
         % Bx = CxxEx
         method = method - 3;
-        [C,fe,H,t,Ep] = transferfnFD(E,B,opts);        
+        S = transferfnFD(E,B,opts);        
         Z = 1./C;
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
+        S.Z = Z;
+        S.H = H;        
         [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
-        if nargout == 1
-            Z = createStruct(Z,fe,H,t,Ep,E,B);
-        end
+        S = createStruct(Z,fe,H,t,Ep,f,E,B,S.E_FT,S.B_FT);
+        %if nargout == 1
+        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
+        %end
         return;
     end
 end
@@ -123,29 +155,39 @@ if size(B,2) == 2 && size(E,2) == 2
     if method <= 3
         % Ex = ZxxBx + ZxyBy
         % Ey = ZyxBx + ZyyBy
-        [Z(:,1:2),fe,H(:,1:2),t,Ep(:,1)] = transferfnFD(B,E(:,1),opts);
-        [Z(:,3:4),fe,H(:,3:4),t,Ep(:,2)] = transferfnFD(B,E(:,2),opts);
-        if nargout == 1
-            Z = createStruct(Z,fe,H,t,Ep,E,B);
+        %[Z(:,1:2),fe,H(:,1:2),t,Ep(:,1)] = transferfnFD(B,E(:,1),opts);
+        %[Z(:,3:4),fe,H(:,3:4),t,Ep(:,2)] = transferfnFD(B,E(:,2),opts);
+        if (1)
+            X = transferfnFD(B,E(:,1),opts);
+            Y = transferfnFD(B,E(:,2),opts);
+            S = createStruct([X.Z,Y.Z],X.fe,[X.H,Y.H],X.t,[X.Predicted,Y.Predicted],E,B,X.F_FT,[X.Out_FT,Y.Out_FT],[X.In_FT,Y.In_FT]);
         end
+        %if nargout == 1
+        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
+        %end
         return;
     else
         % Bx = CxxEx + CxyEy
         % By = CyxEx + CyyEy
         method = method - 3;
-        [C(:,1:2),fe,HB(:,1:2),t,Bp(:,1)] = transferfnFD(E,B(:,1),opts);
-        [C(:,3:4),fe,HB(:,3:4),t,Bp(:,2)] = transferfnFD(E,B(:,2),opts);
+        %[C(:,1:2),fe,HB(:,1:2),t,Bp(:,1)] = transferfnFD(E,B(:,1),opts);
+        %[C(:,3:4),fe,HB(:,3:4),t,Bp(:,2)] = transferfnFD(E,B(:,2),opts);
+        X = transferfnFD(E,B(:,1),opts);
+        Y = transferfnFD(E,B(:,2),opts);
 
         % Compute Z = C^{-1}
         DET = C(:,1).*C(:,4)-C(:,2).*C(:,3);
         Z   = [C(:,4),-C(:,2),-C(:,3),C(:,1)]./repmat(DET,1,4);
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
+
         [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),opts);
-        [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);
-        if nargout == 1
-            Z = createStruct(Z,fe,H,t,Ep,E,B);
-        end
+        [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);        
+        S = createStruct(Z,X.fe,H,X.t,Ep,X.F_FT,[X.Out_FT,Y.Out_FT],[X.In_FT,Y.In_FT]);
+
+        %if nargout == 1
+        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
+        %end
         return;
     end
 end
@@ -179,7 +221,7 @@ for j = 2:length(Ic)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     if 0
-        % Give higher weight to low freq (which has lower noise)
+        % Weight by input power
         W = W.*mean(PB(r,:),2);
         W = W/sum(W);
     end
@@ -222,26 +264,32 @@ for j = 2:length(Ic)
         end
     end
 
+    W = sqrt(W);
+    Wr = repmat(W,1,size(B,2));
+    E_FT{j,1} = W.*ftE(r,1);
+    B_FT{j,1} = Wr.*ftB(r,:);
+    F_FT{j,1} = f(r);
+    
     if method == 2
         % Same as method 1 except using regress function.
-        W = sqrt(W);
-        Wr = repmat(W,1,size(B,2));
+        %W = sqrt(W);
+        %Wr = repmat(W,1,size(B,2));
         Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
     end
 
     if 0 && j > 15
-        W = sqrt(W);
-        Wr = repmat(W,1,size(B,2));
+        %W = sqrt(W);
+        %Wr = repmat(W,1,size(B,2));
         Er_act = real(W.*ftE(r,1));
         Ei_act = real(W.*ftE(r,1));
 
         Z_rob(j,:) = robustfit(Wr.*ftB(r,:),W.*ftE(r,1),'cauchy',[],'off');        
-        Er_rob = real(Wr.*ftB(r,:))*real(Z_rob(j,:))';        
-        Ei_rob = imag(Wr.*ftB(r,:))*imag(Z_rob(j,:))';        
+        Er_rob = real(Wr.*ftB(r,:))*real(Z_rob(j,:)).';        
+        Ei_rob = imag(Wr.*ftB(r,:))*imag(Z_rob(j,:)).';        
 
         Z_ols(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
-        Er_ols = real(Wr.*ftB(r,:))*real(Z_ols(j,:))';
-        Ei_ols = imag(Wr.*ftB(r,:))*imag(Z_ols(j,:))';
+        Er_ols = real(Wr.*ftB(r,:))*real(Z_ols(j,:)).';
+        Ei_ols = imag(Wr.*ftB(r,:))*imag(Z_ols(j,:)).';
 
         clf;
         plot(Er_act,Er_rob,'r.','MarkerSize',20);
@@ -253,8 +301,8 @@ for j = 2:length(Ic)
         I = find(err/std(err) <= 1.5);
 
         Z_ols(j,:) = regress(W(I,:).*ftE(r(I),1),Wr(I,:).*ftB(r(I),:));
-        Er_ols = real(Wr(I,:).*ftB(r(I),:))*real(Z_ols(j,:))';
-        Ei_ols = imag(Wr(I,:).*ftB(r(I),:))*imag(Z_ols(j,:))';
+        Er_ols = real(Wr(I,:).*ftB(r(I),:))*real(Z_ols(j,:)).';
+        Ei_ols = imag(Wr(I,:).*ftB(r(I),:))*imag(Z_ols(j,:)).';
         plot(Er_act(I),Er_ols,'g.','MarkerSize',5);        
         legend('Re(FT(E)) OLS','Re(FT(E)) Robust','Re(FT(E) OLS Trimmed');
         keyboard
@@ -262,8 +310,8 @@ for j = 2:length(Ic)
     
     if method == 3
         % Same as method 1 except using robustfit function.
-        W = sqrt(W);
-        Wr = repmat(W,1,size(B,2));
+        %W = sqrt(W);
+        %Wr = repmat(W,1,size(B,2));
         if size(W,1) < 5
             Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
         else
@@ -281,17 +329,19 @@ t = [-n:n]';
 Ep = real(Zpredict(fe,Z,B));
 
 %[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
-SEerr = smoothSpectra(E,opts);
+%SEerr = smoothSpectra(E,opts);
 
-if nargout == 1
-    Z = createStruct(Z,fe,H,t,Ep);
-end
+S = createStruct(Z,fe,H,t,Ep,E,B,F_FT,E_FT,B_FT);
 
-function S = createStruct(Z,fe,H,t,Ep,E,B)
+function S = createStruct(Z,fe,H,t,Ep,E,B,F_FT,E_FT,B_FT)
     S = struct();
 
     S.Out = E;
     S.In = B;
+    
+    S.Out_FT = E_FT;
+    S.In_FT = B_FT;
+    S.F_FT = F_FT;
     
     S.Z = Z;
     S.fe = fe;
