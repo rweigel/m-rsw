@@ -1,4 +1,8 @@
-function S = transferfnConst(In,Out,opts)
+function S = transferfnConst(In,Out,opts,t)
+
+if nargin < 4
+    t = [1:size(In,1)]';
+end
 
 if ~isnan(opts.td.window.width)
     Tw = opts.td.window.width;
@@ -20,7 +24,7 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        S{i} = transferfnConst(In(Iseg,:),Out(Iseg,:),opts);
+        S{i} = transferfnConst(In(Iseg,:),Out(Iseg,:),opts,t(Iseg));
         fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
         fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
     end
@@ -31,6 +35,8 @@ end
 % Important: Inputs/outputs must be zero mean.
 
 S = struct();
+
+S.Time = t;
 
 if 0
     In_averaged  = block_mean(In,60);

@@ -4,6 +4,9 @@ opts = struct();
 
 opts.filestr = sprintf('options-%d',rn);
 
+% # of points at start and end to trim before computing pe/cc/mse
+opts.td.Ntrim = 600;
+
 opts.td.transform = 'none'; % pca
 
 opts.td.window.function = @rectwin;

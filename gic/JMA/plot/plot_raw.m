@@ -13,12 +13,14 @@ t = tGIC;
 %ha = tight_subplot(3,1,[0.01,0.01],[0.05,0.02],[0.08,0.02]);
 ha = tight_subplot(3,1,[0.015,0.015],[0.05,0.02],[0.055,0.04]);
     
-tf = [t(1):t(end)]'/86400;
-t = tf + datenum(dateo,'yyyymmdd');
+to = datenum('1970-01-01');
+tGIC = tGIC/(86400*1000)+ to;
+tE   = tE/(86400*1000)+ to;
+tB   = tB/(86400*1000)+ to;
 
-xl = [t(1),t(end)];
+xl = [min([tGIC(1),tE(1),tB(1)]),max([tGIC(end),tE(end),tB(end)])];
 axes(ha(3));
-    plot(t,GIC);
+    plot(tGIC,GIC);
     grid on;box on;
     ylabel('[A]');
     set(gca,'XLim',xl);
@@ -29,7 +31,7 @@ axes(ha(3));
     set(lo,'LineWidth',2);
     %th = title('Memambetsu 187 kV substation');    
 axes(ha(1));
-    plot(t,B(:,1:2));
+    plot(tB,B(:,1:2));
     grid on;box on;
     %xlabel(sprintf('Days since %s',dateo));
     ylabel('[nT]');
@@ -41,7 +43,7 @@ axes(ha(1));
     set(lo,'LineWidth',2);
     %th = title('Memambetsu Magnetic Observatory (MMB)');
 axes(ha(2));
-    plot(t,E);
+    plot(tE,E);
     grid on;box on;
     ylabel('[mV/km]')
     set(gca,'XLim',xl);

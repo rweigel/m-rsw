@@ -3,9 +3,9 @@ function D = readEDIXML(fname,base,regen,verbose)
 %
 %   D = READEDIXML() - reads the test file readEDIXML.xml
 %
-%   D = READEDIXML(fname,base) - uses .mat version if regen = 0.
+%   D = READEDIXML(fname) - Reads ./fname
 %
-%   D = READEDIXML(siteid,base) - 
+%   D = READEDIXML(fname,base) - Looks for fname in directory base
 %  
 
 % Find URL using table at http://ds.iris.edu/spud/emtf
@@ -19,6 +19,9 @@ if (nargin == 0)
     fname = 'readEDIXML.xml';
 end
 
+if nargin < 2
+    base = '';
+end
 if nargin < 3
   regen = 0;
 end
@@ -29,28 +32,28 @@ end
 % If siteid given
 if length(strfind(fname,'.xml')) == 0
     if verbose
-	fprintf('readEDIXML: Looking for file associated with %s\n',fname);
+    	fprintf('readEDIXML: Looking for file associated with %s\n',fname);
     end
     list = dir(base); % List of all files in all directory
     for i = 3:length(list)
-	el = list(i);
-	dirn = strsplit(list(i).name,'.');
-
-	if strcmp(dirn{2},fname)
-	    if verbose
-		fprintf('readEDIXML: Found file associated with %s\n',...
-			fname);
-	    end
-	    fname = [list(i).name,'/',strrep(list(i).name,'MT_TF_',''),'.xml'];
-	    D = readEDIXML(fname,base,regen);
-	    return;
-
-	end
-
+        el = list(i);
+        dirn = strsplit(list(i).name,'.');
+        if strcmp(dirn{2},fname)
+            if verbose
+            fprintf('readEDIXML: Found file associated with %s\n',...
+                fname);
+            end
+            fname = [list(i).name,'/',strrep(list(i).name,'MT_TF_',''),'.xml'];
+            D = readEDIXML(fname,base,regen);
+            return;
+        end
     end
 end
 
-fname = sprintf('%s/%s',base,fname);
+if length(base) > 0
+    fname = sprintf('%s/%s',base,fname);
+end
+
 if verbose
     fprintf('readEDIXML: Reading %s\n',fname);
 end
@@ -67,17 +70,20 @@ end
 
 So = xml2structure(fname);
 
-Latitude = str2num(So.Site.Location{2}.Latitude);
-Longitude = str2num(So.Site.Location{2}.Longitude);
+%Latitude = str2num(So.Site.Location{2}.Latitude);
+%Longitude = str2num(So.Site.Location{2}.Longitude);
+
+Latitude = str2num(So.Site.Location.Latitude);
+Longitude = str2num(So.Site.Location.Longitude);
 
 Start = So.Site.Start;
 Stop = So.Site.End;
 DataQualityRating = str2num(So.Site.DataQualityNotes.Rating);
 
-if isstr(So.Site.DataQualityNotes.Comments)
-  DataQualityComments = So.Site.DataQualityNotes.Comments;
+if isfield(So.Site.DataQualityNotes,'Comments')
+    DataQualityComments = So.Site.DataQualityNotes.Comments;
 else
-  DataQualityComments = So.Site.DataQualityNotes.Comments{end};
+    DataQualityComments = '';
 end
 
 if isfield(So.Site.DataQualityNotes,'GoodFromPeriod')
@@ -227,6 +233,9 @@ for k = 0:allListitems.getLength-1
                     tmp = str2num(char(dat));
                     Ty(k+1) = tmp(1)+j*tmp(2);
                 end
+            else
+                Tx(k+1) = NaN;
+                Ty(k+1) = NaN;
             end
             
             if strmatch(nm,'T.VAR','exact')
@@ -236,6 +245,9 @@ for k = 0:allListitems.getLength-1
                 if strmatch(nm2,'TY','exact')
                     TVARy(k+1) = str2num(char(dat));
                 end
+            else
+                TVARx(k+1) = NaN;
+                TVARy(k+1) = NaN;
             end            
 
             if strmatch(nm,'T.INVSIGCOV','exact')
@@ -254,7 +266,12 @@ for k = 0:allListitems.getLength-1
                 if ~isempty(strmatch(out,'HY','exact')) && ~isempty(strmatch(in,'HY','exact'))
                     tmp = str2num(char(dat));
                     TINVSIGCOVyy(k+1) = tmp(1)+j*tmp(2);
-                end        
+                end
+            else
+                TINVSIGCOVxx(k+1) = NaN;
+                TINVSIGCOVxy(k+1) = NaN;
+                TINVSIGCOVyx(k+1) = NaN;                
+                TINVSIGCOVyy(k+1) = NaN;                
             end
 
             if strmatch(nm,'T.RESIDCOV','exact')
@@ -262,6 +279,8 @@ for k = 0:allListitems.getLength-1
                     tmp = str2num(char(dat));
                     TRESIDCOVzz(k+1) = tmp(1)+j*tmp(2);
                 end
+            else
+                    TRESIDCOVzz(k+1) = NaN;
             end
             
         end

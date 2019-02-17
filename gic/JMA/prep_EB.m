@@ -38,6 +38,9 @@ tB = datenum(B(:,1:3)) - do;
 tB = 86400*tB + 60*60*B(:,4) + 60*B(:,5) + B(:,6); 
 B = B(:,8:10);
 
+dayoffset = datenum(dateo,'yyyymmdd') - datenum('1970-01-01');
+tB = tB*1000 + dayoffset*86400*1000; % Convert to milliseconds since 1970 (Unix Time).
+
 fill = 88888;
 for i = 1:3
     Ig = find(B(:,i) ~= fill);
@@ -81,6 +84,10 @@ end
 tE = datenum(E(:,1:3)) - do;
 tE = 86400*tE + 60*60*E(:,4) + 60*E(:,5) + E(:,6); 
 E  = E(:,8:9);
+
+dayoffset = datenum(dateo,'yyyymmdd') - datenum('1970-01-01');
+tE = tE*1000 + dayoffset*86400*1000; % Convert to milliseconds since 1970 (Unix Time).
+
 
 fill1 = 88888;
 fill2 = 99999;

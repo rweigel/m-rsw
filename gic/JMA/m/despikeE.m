@@ -1,4 +1,6 @@
-function E = despikeE(t,E)
+function E = despikeE(E)
+
+t = [1:size(E,1)]';
 
 for c = 1:size(E,2) % Columns
     I = find(abs(diff(E(:,c))) >= 1); % Find spikes

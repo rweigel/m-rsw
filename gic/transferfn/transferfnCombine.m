@@ -27,6 +27,7 @@ S = struct();
 S.In  = Scell{1}.In;
 S.Out = Scell{1}.Out;
 S.Predicted = Scell{1}.Predicted;
+S.Time      = Scell{1}.Time;
 
 S.MSE = Scell{1}.MSE;
 S.PE  = Scell{1}.PE;
@@ -43,6 +44,7 @@ for i = 2:length(Scell)
     S.In  = cat(3,S.In,Scell{i}.In);
     S.Out = cat(3,S.Out,Scell{i}.Out);
     S.Predicted = cat(3,S.Predicted,Scell{i}.Predicted);
+    S.Time      = cat(3,S.Time,Scell{i}.Time);
 
     S.PE  = cat(3,S.PE,Scell{i}.PE);
     S.CC  = cat(3,S.CC,Scell{i}.CC);

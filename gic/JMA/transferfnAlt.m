@@ -1,4 +1,8 @@
-function S = transferfnAlt(SGE,SEB,opts)
+function S = transferfnAlt(SGE,SEB,opts,t)
+
+if nargin < 4
+    t = [1:size(SGE.In,1)]';
+end
 
 S = struct();
 
@@ -22,7 +26,8 @@ for k = 1:Nint
     S.fe = SGE.fe;
     S.In(:,:,k) = SEB.In(:,:,k);
     S.Out(:,:,k) = SGE.Out(:,:,k);
-        
+    S.Time(:,:,k) = SEB.Time(:,:,k);
+    
     N = size(SGE.In,1);
     f = [0:N/2]'/N; % Assumes N is even.
     S.H(:,:,k) = Z2H(SGE.fe,S.Z(:,:,k),f);

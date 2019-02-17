@@ -6,10 +6,9 @@ function [t,E,B] = timealign(tGIC,tE,E,B)
 
 % Align start and stop times.
 a = find(tE == tGIC(1));
-b = 86400-a+1;
-L = size(E,1);
+b = find(tE == tGIC(end));
 
 % Trim off start and end of E and B so cover same timespan as GIC
-E = E(a:L-b,:); 
-B = B(a:L-b,:);
+E = E(a:b,:); 
+B = B(a:b,:);
 t = tGIC;

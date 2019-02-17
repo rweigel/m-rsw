@@ -5,8 +5,9 @@ Savg.Mean   = struct();
 Savg.Huber  = struct();
 Savg.Median = struct();
 
-a = 60*10;
-b = 86400-a+1;
+% TODO: Account for this when computing error spectra.
+a = opts.td.Ntrim;
+b = 86400-opts.td.Ntrim+1;
 
 if nargin < 3
     Ik = [1:size(S.In_PSD,3)];

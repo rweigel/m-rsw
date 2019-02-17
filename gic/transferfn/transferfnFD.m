@@ -1,4 +1,4 @@
-function S = transferfnFD(B,E,opts)
+function S = transferfnFD(B,E,opts,t)
 %function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
 %TRANSFERFNFD Estimates transfer function
 %
@@ -45,6 +45,10 @@ function S = transferfnFD(B,E,opts)
 
 verbose = 0;
 
+if nargin < 4
+    t = [1:size(B,1)]';
+end
+
 if ~isnan(opts.td.window.width)
     Tw = opts.td.window.width;
     Ts = opts.td.window.shift;
@@ -56,38 +60,11 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts);
+        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts,t(Iseg));
         fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
         fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
     end
     S = transferfnCombine(Scell);
-    if (0)
-    for i = 1:length(Scell)
-        S.In(:,:,i)  = Scell{i}.In;
-        S.Out(:,:,i)  = Scell{i}.Out;
-        S.Predicted(:,:,i) = Scell{i}.Predicted;
-
-        S.fe = Scell{1}.fe;
-        S.Z(:,:,i)   = Scell{i}.Z;
-        S.H(:,:,i)   = Scell{i}.H;
-        S.Phi(:,:,i) = Scell{i}.Phi;
-        
-        S.MSE(1,:,i) = Scell{i}.MSE;
-        S.PE(1,:,i)  = Scell{i}.PE;
-        S.CC(1,:,i)  = Scell{i}.CC;
-
-        S.SN(:,:,i) = Scell{i}.SN;
-
-        S.In_FT(:,:,i)  = Scell{i}.In_FT;
-        S.Out_FT(:,:,i) = Scell{i}.Out_FT;
-        S.F_FT(:,:,i)   = Scell{i}.F_FT;
-
-        S.In_PSD(:,:,i)    = Scell{i}.In_PSD;
-        S.Out_PSD(:,:,i)   = Scell{i}.Out_PSD;
-        S.Error_PSD(:,:,i)   = Scell{i}.Error_PSD;
-        S.Coherence(:,:,i) = Scell{i}.Coherence;
-    end
-    end
     return;
 end
 
@@ -126,17 +103,14 @@ if size(B,2) == 1 && size(E,2) == 1
     else
         % Bx = CxxEx
         method = method - 3;
-        S = transferfnFD(E,B,opts);        
+        S = transferfnFD(E,B,opts,t);        
         Z = 1./C;
         H = Z2H(fe,Z,f);
         H = fftshift(H,1);
         S.Z = Z;
         S.H = H;        
         [Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
-        S = createStruct(Z,fe,H,t,Ep,f,E,B,S.E_FT,S.B_FT);
-        %if nargout == 1
-        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
-        %end
+        S = createStruct(Z,fe,H,t,Ep,f,E,B,S.E_FT,S.B_FT,S.Time);
         return;
     end
 end
@@ -155,26 +129,18 @@ if size(B,2) == 2 && size(E,2) == 2
     if method <= 3
         % Ex = ZxxBx + ZxyBy
         % Ey = ZyxBx + ZyyBy
-        %[Z(:,1:2),fe,H(:,1:2),t,Ep(:,1)] = transferfnFD(B,E(:,1),opts);
-        %[Z(:,3:4),fe,H(:,3:4),t,Ep(:,2)] = transferfnFD(B,E(:,2),opts);
-        if (1)
-            X = transferfnFD(B,E(:,1),opts);
-            Y = transferfnFD(B,E(:,2),opts);
-            S = createStruct([X.Z,Y.Z],X.fe,[X.H,Y.H],X.t,[X.Predicted,Y.Predicted],E,B,X.F_FT,[X.Out_FT,Y.Out_FT],[X.In_FT,Y.In_FT]);
-        end
-        %if nargout == 1
-        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
-        %end
+        Sx = transferfnFD(B,E(:,1),opts,t);
+        Sy = transferfnFD(B,E(:,2),opts,t);
+        S = createStruct([Sx.Z,Sy.Z],Sx.fe,[Sx.H,Sx.H],Sx.t,[Sx.Predicted,Sy.Predicted],E,B,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],[Sx.In_FT,Sy.In_FT],Sx.Time);
         return;
     else
         % Bx = CxxEx + CxyEy
         % By = CyxEx + CyyEy
         method = method - 3;
-        %[C(:,1:2),fe,HB(:,1:2),t,Bp(:,1)] = transferfnFD(E,B(:,1),opts);
-        %[C(:,3:4),fe,HB(:,3:4),t,Bp(:,2)] = transferfnFD(E,B(:,2),opts);
-        X = transferfnFD(E,B(:,1),opts);
-        Y = transferfnFD(E,B(:,2),opts);
-
+        Sx = transferfnFD(E,B(:,1),opts,t);
+        Sy = transferfnFD(E,B(:,2),opts,t);
+        C = [Sx.Z,Sy.Z];
+        
         % Compute Z = C^{-1}
         DET = C(:,1).*C(:,4)-C(:,2).*C(:,3);
         Z   = [C(:,4),-C(:,2),-C(:,3),C(:,1)]./repmat(DET,1,4);
@@ -183,11 +149,7 @@ if size(B,2) == 2 && size(E,2) == 2
 
         [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),opts);
         [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);        
-        S = createStruct(Z,X.fe,H,X.t,Ep,X.F_FT,[X.Out_FT,Y.Out_FT],[X.In_FT,Y.In_FT]);
-
-        %if nargout == 1
-        %    Z = createStruct(Z,fe,H,t,Ep,E,B);
-        %end
+        S = createStruct(Z,Sx.fe,H,Sx.t,Ep,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],B,E,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],[Sx.In_FT,Sy.In_FT],Sx.Time);
         return;
     end
 end
@@ -324,20 +286,18 @@ end
 H = Z2H(fe,Z,f);
 H = fftshift(H,1);
 n = (size(H,1)-1)/2;
-t = [-n:n]';
+tH = [-n:n]';
 
 Ep = real(Zpredict(fe,Z,B));
 
-%[Ep,SEerr] = calcErrors(Z,B,E,winfn,winopts);
-%SEerr = smoothSpectra(E,opts);
+S = createStruct(Z,fe,H,tH,Ep,E,B,F_FT,E_FT,B_FT,t);
 
-S = createStruct(Z,fe,H,t,Ep,E,B,F_FT,E_FT,B_FT);
-
-function S = createStruct(Z,fe,H,t,Ep,E,B,F_FT,E_FT,B_FT)
+function S = createStruct(Z,fe,H,tH,Ep,E,B,F_FT,E_FT,B_FT,t)
     S = struct();
 
     S.Out = E;
     S.In = B;
+    S.Time = t;
     
     S.Out_FT = E_FT;
     S.In_FT = B_FT;
@@ -346,7 +306,7 @@ function S = createStruct(Z,fe,H,t,Ep,E,B,F_FT,E_FT,B_FT)
     S.Z = Z;
     S.fe = fe;
     S.H = H;
-    S.t = t;
+    S.t = tH;
     S.Predicted = Ep;
 
     S.PE  = pe_nonflag(E,Ep);

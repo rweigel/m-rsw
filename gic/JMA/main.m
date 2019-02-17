@@ -38,6 +38,7 @@ opts.data.dateos = dateos;
 opts.data.datefs = datefs;
 opts.data.dts    = dts;
 
+
 fname = sprintf('log/main_log_%s.txt',filestr);
 if exist(fname,'file'),delete(fname);end
 diary(fname);
@@ -67,22 +68,23 @@ for i = 1:length(dateos)
     [tGIC,GIC]  = prep_GIC(dateo,datef,regenfiles);        
 
     % Correct for clock drift
-    tGIC = tGIC + dt;
+    tGIC = tGIC + dt*1000;
 
     if intmplot
         close all;
         plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC raw','GIC 1 Hz filtered'});
     end
     
-    E    = despikeE(tE,E);
+    E    = despikeE(E);
     GICd = despikeGIC(GIC(:,2)); % Despike 1 Hz filtered column
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
+    [t,E,B] = timealign(tGIC,tE,E,B);
+        
     if intmplot
         plot_raw(tGIC,GIC(:,2),tE,E,tB,B,dateo,writepng,{'GIC'});
     end
-        
-    [t,E,B] = timealign(tGIC,tE,E,B);
+    
     [GIC,E,B] = removemean(GIC,E,B);
 
     if strmatch('pca',opts.td.transform,'exact')
@@ -101,23 +103,23 @@ for i = 1:length(dateos)
         plot_Z(dateo,intervalno,filestr,writepng);
     end
 
-    fprintf('main.m: %s G/Eo\n',dateo);    
-    GEoc{i} = transferfnConst(E,GIC,opts);
+    fprintf('main.m: %s G/Eo\n',dateo);
+    GEoc{i} = transferfnConst(E,GIC,opts,t);
 
-    fprintf('main.m: %s G/Bo\n',dateo);    
-    GBoc{i} = transferfnConst(B,GIC,opts);
+    fprintf('main.m: %s G/Bo\n',dateo);
+    GBoc{i} = transferfnConst(B,GIC,opts,t);
     
     fprintf('main.m: %s G/E\n',dateo);
-    GEc{i} = transferfnFD(E,GIC,opts); 
+    GEc{i} = transferfnFD(E,GIC,opts,t);
     
     fprintf('main.m: %s G/B\n',dateo);
-    GBc{i} = transferfnFD(B(:,1:2),GIC,opts); 
+    GBc{i} = transferfnFD(B(:,1:2),GIC,opts,t);
     
     fprintf('main.m: %s E/B\n',dateo);
-    EBc{i} = transferfnFD(B(:,1:2),E,opts);
-    
+    EBc{i} = transferfnFD(B(:,1:2),E,opts,t);
+
     fprintf('main.m: %s G/E''\n',dateo);
-    GBac{i} = transferfnAlt(GEc{i},EBc{i},opts);
+    GBac{i} = transferfnAlt(GEc{i},EBc{i},opts,t);
     
 end
 
@@ -155,7 +157,10 @@ GBa_avg = transferfnAverageFunction(GBa,opts);
 
 fprintf('main.m: %s E/B\n',dateo);
 EB_avg  = transferfnAverageFunction(EB,opts);
-  
+
+fprintf('main.m: %s G/E Fuji Z\n',dateo);
+EB_avg.Fuji = transferfnFuji(EB,opts);
+
 savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);

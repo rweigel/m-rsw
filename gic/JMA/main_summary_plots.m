@@ -11,3 +11,4 @@ end
 parameterhistograms(GEo,GEo_avg,filestr,writepng);
 
 plot_model_summary(GEo_avg,GE_avg,GBo_avg,GB_avg,GBa_avg,EB_avg,filestr,writepng);
+

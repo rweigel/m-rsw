@@ -36,6 +36,10 @@ end
 
 % GIC files do not have time.  Rows are seconds since file date JST.
 % JST is UT + 9 hours. 
-tGIC = -3600*9 + [0:size(GIC,1)-1]'; % UT
+tGIC = -3600*9 + [0:size(GIC,1)-1]'; % # of seconds relative to dateo UT
+
+dayoffset = datenum(dateo,'yyyymmdd') - datenum('1970-01-01');
+
+tGIC = tGIC*1000 + dayoffset*86400*1000; % Convert to milliseconds since 1970 (Unix Time).
 
 save(fnamemat,'tGIC','GIC');
