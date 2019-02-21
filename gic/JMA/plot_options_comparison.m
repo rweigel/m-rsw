@@ -9,10 +9,11 @@ if ~exist('Opts','var')
     end
 end
 
+png = 0;
+
 figprep(png,1000,500)
 
 fn = 0;
-sf = 1e3;
 
 c = ['k','r','g','b','m','c'];
 
@@ -24,138 +25,79 @@ for i = 1:length(Opts)
     end
 end
 
-% Error bars only shown for first options set.
-
-if 0
-    %F = load(file,'GE');
-    f = size(F.GE.Z,1);
-    [n,x] = hist(squeeze(abs(sf*F.GE.Z(f,3,:))));
-    %x = [x(1),x,x(end)];
-    %n = [0,n,0];
-    bar(x,n);
-    title(sprintf('T = %.1f',1./F.GE.fe(f)));
-    xlabel('$A(\omega)$');
-    ylabel('\#');
-end
+leglabels1 = {'Default','Prewhiten','Parzen FD weighting','Robust regression'};
+leglabels2 = {'Alt. Mean','Median','Alt. Median','Huber Loc.'};
 
 T = 1./Opts{1}.GE_avg.Mean.fe(2:end);
 
-% Compare options using Mean model
-titles = {'$A(\omega)$','$B(\omega)$'};
-for i = 3:4
-    fn=fn+1;figure(fn);clf;
-    for j = 1:length(Opts)
-        loglog(T,sf*Opts{j}.GE_avg.Mean.Zabs(2:end,i),c(j),...
-            'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-        hold on;grid on;axis tight;
+for m = 1:3
+
+    if m == 1
+        titles = {'$|a(\omega)| (non-despiked G)$','$|b(\omega)| (non-despiked G)$','$|a(\omega)|$','$|b(\omega)|$'};
+        units = ' [A/(V/km)]';
+        sf = 1e3; % A/(mV/km) -> A/(V/km)
+        for j = 1:length(Opts)
+            V{j} = Opts{j}.GE_avg;
+        end
+        cols = [3,4];
     end
-    errorbars(T,...
-              sf*Opts{1}.GE_avg.Mean.Zabs(2:end,i),...
-              2*sf*Opts{1}.GE_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.GE_avg.Mean.Zabs_StdErr(2:end,i),'y',c(1));
-    title(titles{i-2});
-    legend(leglabels{:},'Location','Best');
-end
-
-% Compare Mean, Median, and Huber averaged model for options set j.
-j = 1;
-for i = 3:4
-    fn=fn+1;figure(fn);clf;
-    loglog(T,sf*Opts{j}.GE_avg.Mean.Zabs(2:end,i),c(1),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    hold on;grid on;axis tight;
-    loglog(T,sf*Opts{j}.GE_avg.Mean.Zabs2(2:end,i),c(2),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GE_avg.Median.Zabs(2:end,i),c(3),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GE_avg.Median.Zabs2(2:end,i),c(4),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GE_avg.Huber.Zabs2(2:end,i),c(5),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    errorbars(T,...
-              sf*Opts{1}.GE_avg.Mean.Zabs(2:end,i),...
-              2*sf*Opts{1}.GE_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.GE_avg.Mean.Zabs_StdErr(2:end,i),'y',c(j));
-    title(sprintf('%s: %s',Opts{j}.description,titles{i-2}));
-    legend('Mean','Mean2','Median','Median2','Huber2','Location','Best');
-end
-
-titles = {'$Z_{x}$','$Z_{y}$'};
-for i = 3:4
-    fn=fn+1;figure(fn);clf;
-    for j = 1:length(Opts)
-        loglog(T,sf*Opts{j}.GB_avg.Mean.Zabs(2:end,i),c(j),...
-            'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-        hold on;grid on;axis tight;
+    if m == 2
+        titles = {'$|z_{x}| (non-despiked G)$','$|z_{y}| (non-despiked G)$','$|z_{x}|$','$|z_{y}|$'};
+        units = ' [A/nT]';
+        sf = 1; % A/nT -> A/nT
+        for j = 1:length(Opts)
+            V{j} = Opts{j}.GB_avg;
+        end
+        cols = [3,4];    
     end
-    errorbars(T,...
-              sf*Opts{1}.GB_avg.Mean.Zabs(2:end,i),....
-              2*sf*Opts{1}.GB_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.GB_avg.Mean.Zabs_StdErr(2:end,i),'y',c(1));
-    title(titles{i-2});
-    legend(leglabels{:},'Location','Best');
-end
-
-% Compare Mean, Median, and Huber averaged model for options set j.
-j = 1;
-for i = 3:4
-    fn=fn+1;figure(fn);clf;
-    loglog(T,sf*Opts{j}.GB_avg.Mean.Zabs(2:end,i),c(1),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    hold on;grid on;axis tight;
-    loglog(T,sf*Opts{j}.GB_avg.Mean.Zabs2(2:end,i),c(2),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GB_avg.Median.Zabs(2:end,i),c(3),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GB_avg.Median.Zabs2(2:end,i),c(4),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.GB_avg.Huber.Zabs2(2:end,i),c(5),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    errorbars(T,...
-              sf*Opts{1}.GB_avg.Mean.Zabs(2:end,i),...
-              2*sf*Opts{1}.GB_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.GB_avg.Mean.Zabs_StdErr(2:end,i),'y',c(j));
-    title(sprintf('%s: %s',Opts{j}.description,titles{i-2}));
-    legend('Mean','Mean2','Median','Median2','Huber2','Location','Best');
-end
-
-titles = {'$Z_{xx}$','$Z_{xy}$','$Z_{yy}$','$Z_{yx}$'};
-for i = 1:4       
-    fn=fn+1;figure(fn);clf;
-    for j = 1:length(Opts)
-        loglog(T,sf*Opts{j}.EB_avg.Mean.Zabs(2:end,i),c(j),...
-            'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-        hold on;grid on;axis tight;
+    if m == 3
+        titles = {'$|Z_{xx}|$','$|Z_{xy}|$','$|Z_{yx}|$','$|Z_{yy}|$'};
+        units = ' [(mV/km)/nT]'; % units = ' [V/A]'; % E = ZB/mu_o, E [mV/km], B [nT]; 10^{-9} nT = 10^{-9} V*s/m^2, mu_o = 4\pi e-7 V*s/(A*m). 
+        sf = 1;% 4*pi*1e4;
+        leglabels1{end+1} = 'BIRP (From Fuji et al. 2015)';       
+        for j = 1:length(Opts)
+            V{j} = Opts{j}.EB_avg;
+        end
+        cols = [1:4];        
     end
-    errorbars(T,...
-              sf*Opts{1}.EB_avg.Mean.Zabs(2:end,i),...
-              2*sf*Opts{1}.EB_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.EB_avg.Mean.Zabs_StdErr(2:end,i),'y',c(1));
-    title(titles{i});
-    legend(leglabels{:},'Location','Best');
-end
 
-% Compare Mean, Median, and Huber averaged model for options set j.
-j = 1;
-for i = 1:4
-    fn=fn+1;figure(fn);clf;
-    loglog(T,sf*Opts{j}.EB_avg.Mean.Zabs(2:end,i),c(1),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    hold on;grid on;axis tight;
-    loglog(T,sf*Opts{j}.EB_avg.Mean.Zabs2(2:end,i),c(2),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.EB_avg.Median.Zabs(2:end,i),c(3),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.EB_avg.Median.Zabs2(2:end,i),c(4),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    loglog(T,sf*Opts{j}.EB_avg.Huber.Zabs2(2:end,i),c(5),...
-          'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-    errorbars(T,...
-              sf*Opts{1}.EB_avg.Mean.Zabs(2:end,i),...
-              2*sf*Opts{1}.EB_avg.Mean.Zabs_StdErr(2:end,i),...
-              2*sf*Opts{1}.EB_avg.Mean.Zabs_StdErr(2:end,i),'y',c(j));
-    title(sprintf('%s: %s',Opts{j}.description,titles{i}));
-    legend('Mean','Mean2','Median','Median2','Huber2','Location','Best');
-end
+    for i = cols
+        fn=fn+1;figure(fn);clf;
+        
+        for j = 1:length(Opts)
+            loglog(T,sf*V{j}.Mean.Zabs(2:end,i),c(j),...
+                'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
+            hold on;grid on;axis tight;
+        end
+        
+        if m == 3
+            loglog(1./EB_avg.Fuji.fe(2:end),sf*abs(Opts{1}.EB_avg.Fuji.Z(2:end,i)),'k',...
+                  'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
+        end
+                
+        % Compare Mean, Median, and Huber averaged model for options set j.
+        loglog(T,sf*V{1}.Mean.Zabs2(2:end,i),c(2),...
+              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
+        loglog(T,sf*V{1}.Median.Zabs(2:end,i),c(3),...
+              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
+        loglog(T,sf*V{1}.Median.Zabs2(2:end,i),c(4),...
+              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
+        loglog(T,sf*V{1}.Huber.Zabs2(2:end,i),c(5),...
+              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
 
-       
+
+        % Error bars only shown for first options set.
+        errorbars(T,...
+                  sf*V{1}.Mean.Zabs(2:end,i),...
+                  2*sf*V{1}.Mean.Zabs_StdErr(2:end,i),...
+                  2*sf*V{1}.Mean.Zabs_StdErr(2:end,i),'y',c(1));
+              
+        vlines(1./GE_avg.Mean.fe(2));
+              
+        title([titles{i},units]);
+        set(gca,'XLim',[3,6e4]);
+        exponent_relabel(gca,'x');
+        xlabel('Period [s]');
+        legend(cat(2,leglabels1,leglabels2),'Location','Best');
+    end
+end       

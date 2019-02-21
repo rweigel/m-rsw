@@ -1,14 +1,14 @@
-%function main(rn)
+function main(rn)
 
-clear
-rn = 1;
+%clear
+%rn = 1;
 
 setpaths;
 
 writepng   = 0; % Write png and pdf files
 intmplot   = 0; % Intermediate plots
 regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
-oos_aves   = 0;
+oos_aves   = 0; % Compute Out-of-Sample averages for metrics
 
 % All runs
 if nargin == 0
@@ -169,6 +169,6 @@ fprintf('main.m: Saved %s\n',fname);
 
 diary off
 
-main_summary_log;
+main_log;
 
-main_summary_plots;
+main_plots;

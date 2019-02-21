@@ -1,8 +1,9 @@
 function transferfnSummary(S,Savg,desc)
 
-fprintf('___________________________________________________________________________\n')
+fprintf('___________________________________________________________________________\n');
 fprintf('%s\n',desc);
-fprintf('___________________________________________________________________________\n')
+fprintf('___________________________________________________________________________\n');
+
 if isfield(S,'ao')
     fprintf('Ave ao       mean:              %6.3f;         median: %6.2f;       huber: %6.2f\n',...
         mean(Savg.Mean.ao(2)),mean(Savg.Median.ao(2)),mean(Savg.Huber.ao(2)));
@@ -19,24 +20,46 @@ if isfield(S,'ao')
             boot(squeeze(S.bo(1,2,:)),@mean,1000,50));
 end
 
-fprintf('Ave PE            :  in-sample: %6.3f;   using mean:   %6.3f;   |   median: %6.3f;   mlochuber:    %6.3f\n',...
-        mean(S.PE(1,2,:)),mean(Savg.Mean.PE(1,2,:)),mean(Savg.Median.PE(1,2,:)),mean(Savg.Huber.PE(1,2,:)));
-fprintf('   95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        norm95(S.PE(1,2,:)),norm95(Savg.Mean.PE(1,2,:)));
-fprintf('   95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        boot(S.PE(1,2,:),@mean,1000,50),boot(Savg.Mean.PE(1,2,:),@mean,1000,50));
+comps = ['x','y'];
+for j = 1:2
+    if isfield(Savg,'Fuji')
+        fprintf('Ave PE%s            :  in-sample: %6.3f;   using mean:   %6.3f;   |   fuji: %6.3f;   median: %6.3f;   mlochuber:    %6.3f\n',...
+                comps(j),mean(S.PE(1,j,:)),mean(Savg.Mean.PE(1,j,:)),mean(Savg.Fuji.PE(1,j,:)),mean(Savg.Median.PE(1,j,:)),mean(Savg.Huber.PE(1,j,:)));
+    else
+        fprintf('Ave PE%s            :  in-sample: %6.3f;   using mean:   %6.3f;   |   median: %6.3f;   mlochuber:    %6.3f\n',...
+                comps(j),mean(S.PE(1,j,:)),mean(Savg.Mean.PE(1,j,:)),mean(Savg.Median.PE(1,j,:)),mean(Savg.Huber.PE(1,j,:)));
+    end
+    fprintf('   95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            norm95(S.PE(1,j,:)),norm95(Savg.Mean.PE(1,j,:)));
+    fprintf('   95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            boot(S.PE(1,j,:),@mean,1000,50),boot(Savg.Mean.PE(1,j,:),@mean,1000,50));
+    end
+for j = 1:2
+    if isfield(Savg,'Fuji')
+        fprintf('Ave CC%s            :  in-sample: %6.3f;   using mean: %6.3f;     |   fuji %6.3f\n',...
+                comps(j),mean(S.CC(1,j,:)),mean(Savg.Mean.CC(1,j,:)),mean(Savg.Fuji.CC(1,j,:)));
+    else
+        fprintf('Ave CC%s            :  in-sample: %6.3f;   using mean: %6.3f;\n',...
+                comps(j),mean(S.CC(1,j,:)),mean(Savg.Mean.CC(1,j,:)));    
+    end
+    fprintf('   95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            norm95(S.CC(1,j,:)),norm95(Savg.Mean.CC(1,j,:)));
+    fprintf('   95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            boot(S.CC(1,j,:),@mean,1000,50),boot(Savg.Mean.CC(1,j,:),@mean,1000,50));
+end
 
-fprintf('Ave CC            :  in-sample: %6.3f;   using mean: %6.3f;\n',...
-        mean(S.CC(1,2,:)),mean(Savg.Mean.CC(1,2,:)));
-fprintf('   95%% Lims (norm):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        norm95(S.CC(1,2,:)),norm95(Savg.Mean.CC(1,2,:)));
-fprintf('   95%% Lims (boot):        [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        boot(S.CC(1,2,:),@mean,1000,50),boot(Savg.Mean.CC(1,2,:),@mean,1000,50));
+for j = 1:2
+    if isfield(Savg,'Fuji')
+        fprintf('Ave MSE%s           :  in-sample: %6.3f;   using mean: %6.3f;     | fuji %6.3f\n',...
+                comps(j),mean(S.MSE(1,j,:)),mean(Savg.Mean.MSE(1,j,:)),mean(Savg.Fuji.MSE(1,j,:)));    
 
-fprintf('Ave MSE           :  in-sample: %6.3f;   using mean: %6.3f;\n',...
-        mean(S.MSE(1,2,:)),mean(Savg.Mean.MSE(1,2,:)));
-fprintf('   95%% Lims (norm):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        norm95(S.MSE(1,2,:)),norm95(Savg.Mean.MSE(1,2,:)));
-fprintf('   95%% Lims (boot):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
-        boot(S.MSE(1,2,:),@mean,1000,50),boot(Savg.Mean.MSE(1,2,:),@mean,1000,50));
+    else
+        fprintf('Ave MSE%           :  in-sample: %6.3f;   using mean: %6.3f;\n',...
+                comps(j),mean(S.MSE(1,j,:)),mean(Savg.Mean.MSE(1,j,:)));
+    end
+    fprintf('   95%% Lims (norm):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            norm95(S.MSE(1,j,:)),norm95(Savg.Mean.MSE(1,j,:)));
+    fprintf('   95%% Lims (boot):       [%6.3f,%6.3f];        [%6.3f,%6.3f];\n',...
+            boot(S.MSE(1,j,:),@mean,1000,50),boot(Savg.Mean.MSE(1,j,:),@mean,1000,50));
+end
 fprintf('___________________________________________________________________________\n')

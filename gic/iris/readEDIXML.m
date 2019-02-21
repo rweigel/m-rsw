@@ -32,19 +32,19 @@ end
 % If siteid given
 if length(strfind(fname,'.xml')) == 0
     if verbose
-    	fprintf('readEDIXML: Looking for file associated with %s\n',fname);
+    	fprintf('readEDIXML: Looking for file associated with %s under directory %s\n',fname,base);
     end
     list = dir(base); % List of all files in all directory
     for i = 3:length(list)
         el = list(i);
         dirn = strsplit(list(i).name,'.');
         if strcmp(dirn{2},fname)
-            if verbose
-            fprintf('readEDIXML: Found file associated with %s\n',...
-                fname);
-            end
             fname = [list(i).name,'/',strrep(list(i).name,'MT_TF_',''),'.xml'];
-            D = readEDIXML(fname,base,regen);
+            if verbose
+                fprintf('readEDIXML: Found file associated with %s: %s\n',...
+                    fname,list(i).name);
+            end
+            D = readEDIXML(fname,base,regen,verbose);
             return;
         end
     end
@@ -54,27 +54,28 @@ if length(base) > 0
     fname = sprintf('%s/%s',base,fname);
 end
 
+fnamemat = strrep(fname,'.xml','.mat');
+if exist(fnamemat,'file') && regen == 0
+  if verbose
+      fprintf('readEDIXML: Found existing .mat version of .xml. Reading.\n',fname);
+  end
+  load(fnamemat);
+  return;
+end
+
 if verbose
     fprintf('readEDIXML: Reading %s\n',fname);
 end
 
-fnamemat = strrep(fname,'.xml','.mat');
-if exist(fnamemat) && regen == 0
-  if verbose
-      fprintf('readEDIXML: Found existing .mat version of .xml. Reading.\n',...
-	      fname);
-      load(fnamemat);
-      return;
-  end
-end
-
 So = xml2structure(fname);
 
-%Latitude = str2num(So.Site.Location{2}.Latitude);
-%Longitude = str2num(So.Site.Location{2}.Longitude);
-
-Latitude = str2num(So.Site.Location.Latitude);
-Longitude = str2num(So.Site.Location.Longitude);
+if iscell(So.Site.Location)
+    Latitude = str2num(So.Site.Location{2}.Latitude);
+    Longitude = str2num(So.Site.Location{2}.Longitude);
+else
+    Latitude = str2num(So.Site.Location.Latitude);
+    Longitude = str2num(So.Site.Location.Longitude);
+end
 
 Start = So.Site.Start;
 Stop = So.Site.End;
@@ -311,29 +312,26 @@ else
     TRESIDCOVzz = [];
 end
 
-
-D = struct(...
-    'DataQualityRating',DataQualityRating,...
-    'DataQualityNotes',DataQualityComments,...
-    'DataQualityGoodPeriodRange',DataQualityGoodPeriodRange,...
-    'Latitude',Latitude,...
-    'Longitude',Longitude,...
-    'Start',Start,...
-    'Stop',Stop,...
-    'Description',char(Description),...
-    'ProductId',char(ProductId),...
-    'FileName',char(FileName),...
-    'PERIOD',T,...
-    'Z',[Zxx;Zxy;Zyx;Zyy],...
-    'ZVAR',[ZVARxx;ZVARxy;ZVARyx;ZVARyy],...
-    'ZINVSIGCOV',ZINVSIGCOV,...
-    'ZRESIDCOV',ZRESIDCOV,...
-    'T',[Tx;Ty],...
-    'TVAR',[TVARx;TVARy],...
-    'TINVSIGCOV',TINVSIGCOV,...
-    'TRESIDCOVzz',[TRESIDCOVzz]...
-);
-
+D = struct();
+D.DataQualityRating =DataQualityRating;
+D.DataQualityNotes = DataQualityComments;
+D.DataQualityGoodPeriodRange = DataQualityGoodPeriodRange;
+D.Latitude = Latitude;
+D.Longitude = Longitude;
+D.Start = Start;
+D.Stop = Stop;
+D.Description =char(Description);
+D.ProductId =char(ProductId);
+D.FileName = char(FileName);
+D.PERIOD =T;
+D.Z = [Zxx;Zxy;Zyx;Zyy];
+D.ZVAR = [ZVARxx;ZVARxy;ZVARyx;ZVARyy]
+D.ZINVSIGCOV = ZINVSIGCOV;
+D.ZRESIDCOV = ZRESIDCOV;
+D.T = [Tx;Ty];
+D.TVAR =[TVARx;TVARy];
+D.TINVSIGCOV = TINVSIGCOV;
+D.TRESIDCOVzz = [TRESIDCOVzz];
 
 if verbose
   fprintf('readEDIXML: Saving %s\n',fnamemat);

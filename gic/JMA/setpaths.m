@@ -1,13 +1,13 @@
-addpath('./m');
-addpath('./plot');
-addpath('./m/export_fig');
-addpath('./m/LIBRA'); % For mlochuber().
-addpath('m/spunt-printstruct')
+addpath([fileparts(mfilename('fullpath')),'/m']);
+addpath([fileparts(mfilename('fullpath')),'/plot']);
+addpath([fileparts(mfilename('fullpath')),'/m/export_fig']);
+addpath([fileparts(mfilename('fullpath')),'/m/LIBRA']); % For mlochuber().
+addpath([fileparts(mfilename('fullpath')),'/m/spunt-printstruct'])
 
-addpath('../../time'); % TODO: Used?
-addpath('../../stats');
-addpath('../transferfn');
+addpath([fileparts(mfilename('fullpath')),'/../../time']); % TODO: Used?
+addpath([fileparts(mfilename('fullpath')),'/../../stats']);
+addpath([fileparts(mfilename('fullpath')),'/../transferfn']);
 
-addpath('./fuji');    % For transferfnFuji()
-addpath('../iris');   % For readEDIXML() used by transferfnFuji()
-addpath('../../xml'); % For xml2struct() used by readEDIXML()
+addpath([fileparts(mfilename('fullpath')),'/fuji']);    % For transferfnFuji()
+addpath([fileparts(mfilename('fullpath')),'/../iris']);   % For readEDIXML() used by transferfnFuji()
+addpath([fileparts(mfilename('fullpath')),'/../../xml']); % For xml2struct() used by readEDIXML()

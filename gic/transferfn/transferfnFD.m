@@ -2,19 +2,20 @@ function S = transferfnFD(B,E,opts,t)
 %function [Z,fe,H,t,Ep] = transferfnFD(B,E,opts)
 %TRANSFERFNFD Estimates transfer function
 %
-%  Estimates complex transfer function Z(f) in one of
+%  Estimates the complex-valued transfer function Z(f) in
 %
-%  E(f) = Z(f)B(f)
-%
-%  E(f) = Zx(f)Bx(f) + Zy(f)By(f)
+%  E(f) = Z(f)B(f) or E(f) = Zx(f)Bx(f) + Zy(f)By(f)
 %
 %  where f is frequency.
 %
-%  [Z,fe,H,t,Ep] = transferfnFD(B,E,method,winfn,winopts)
+%  S = transferfnFD(B,E,opts) where E is a 1-column time series and
+%  B is a 1- or 2-column time series.
+%
+%  S = transferfnFD(B,E,opts,t)
 %
 %  Methods:
 %
-%  Compute Z in E = ZB
+%  Compute Z in E = ZB or E = ZxBx + ZyBy
 %    method 1: Uses closed-form equations
 %    method 2: Uses regress()
 %    method 3: Uses robustfit()
@@ -60,9 +61,11 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        Scell{i} = transferfnFD(B(Iseg,1:2),E(Iseg,:),opts,t(Iseg));
+        Scell{i} = transferfnFD(B(Iseg,:),E(Iseg,:),opts,t(Iseg));
         fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
-        fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
+        if size(E,2) > 1
+            fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
+        end
     end
     S = transferfnCombine(Scell);
     return;
@@ -102,7 +105,7 @@ if size(B,2) == 1 && size(E,2) == 1
         % Case is handled by default.
     else
         % Bx = CxxEx
-        method = method - 3;
+        opts.method.fd = opts.method.fd - 3;
         S = transferfnFD(E,B,opts,t);        
         Z = 1./C;
         H = Z2H(fe,Z,f);
@@ -113,30 +116,28 @@ if size(B,2) == 1 && size(E,2) == 1
         S = createStruct(Z,fe,H,t,Ep,f,E,B,S.E_FT,S.B_FT,S.Time);
         return;
     end
-end
-
-if size(B,2) == 2 && size(E,2) == 1
+elseif size(B,2) == 2 && size(E,2) == 1
     if method <= 3
         % Ex = ZxBx + ZyBy
         % Case is handled by default.
     else
         % Bx = CxxEx + CxyEy does not make sense to request
-        error('Method cannot be used give input dimensions.')
+        error('Method requires input and output to both have two columns.')
     end
-end
-
-if size(B,2) == 2 && size(E,2) == 2
+elseif size(B,2) == 2 && size(E,2) == 2
     if method <= 3
         % Ex = ZxxBx + ZxyBy
         % Ey = ZyxBx + ZyyBy
         Sx = transferfnFD(B,E(:,1),opts,t);
         Sy = transferfnFD(B,E(:,2),opts,t);
-        S = createStruct([Sx.Z,Sy.Z],Sx.fe,[Sx.H,Sx.H],Sx.t,[Sx.Predicted,Sy.Predicted],E,B,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],[Sx.In_FT,Sy.In_FT],Sx.Time);
+        S = createStruct([Sx.Z,Sy.Z],Sx.fe,[Sx.H,Sx.H],Sx.t,...
+            [Sx.Predicted,Sy.Predicted],E,B,Sx.F_FT,...
+            [Sx.Out_FT,Sy.Out_FT],[Sx.In_FT,Sy.In_FT],Sx.Time);
         return;
     else
         % Bx = CxxEx + CxyEy
         % By = CyxEx + CyyEy
-        method = method - 3;
+        opts.method.fd = opts.method.fd - 3;
         Sx = transferfnFD(E,B(:,1),opts,t);
         Sy = transferfnFD(E,B(:,2),opts,t);
         C = [Sx.Z,Sy.Z];
@@ -149,9 +150,13 @@ if size(B,2) == 2 && size(E,2) == 2
 
         [Ep(:,1),SEerr(:,1)] = calcErrors(Z(:,1:2),B,E(:,1),opts);
         [Ep(:,2),SEerr(:,2)] = calcErrors(Z(:,3:4),B,E(:,2),opts);        
-        S = createStruct(Z,Sx.fe,H,Sx.t,Ep,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],B,E,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],[Sx.In_FT,Sy.In_FT],Sx.Time);
+        S = createStruct(Z,Sx.fe,H,Sx.t,Ep,Sx.F_FT,...
+            [Sx.Out_FT,Sy.Out_FT],B,E,Sx.F_FT,[Sx.Out_FT,Sy.Out_FT],...
+            [Sx.In_FT,Sy.In_FT],Sx.Time);
         return;
     end
+else
+    error('Invalid input/output dimensions.');
 end
 
 if nargin > 2 & strmatch(opts.td.prewhiten.method,'yulewalker','exact')
@@ -181,27 +186,10 @@ for j = 2:length(Ic)
     fb = f(Ic(j)+Ne(j));
     % End duplicated code
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    if 0
-        % Weight by input power
-        W = W.*mean(PB(r,:),2);
-        W = W/sum(W);
-    end
     
     if verbose
         fprintf('Window at f = %.8f has %d points; fl = %.8f fh = %.8f\n',...
                 fe(j),length(r),fa,fb)
-    end
-
-    BxBx(j) = sum(W.*(ftB(r,1).*conj(ftB(r,1)))); 
-    ExEx(j) = sum(W.*(ftE(r,1).*conj(ftE(r,1))));
-
-    SE(j,1) = ExEx(j);
-    if size(B,2) == 1
-        SB(j,1) = BxBx(j);
-    else
-        ByBy(j) = sum(W.*(ftB(r,2).*conj(ftB(r,2))));    
-        SB(j,1:2) = [BxBx(j),ByBy(j)];
     end
     
     if method == 1
@@ -209,8 +197,10 @@ for j = 2:length(Ic)
             % Ex = ZxxBx
             Z(j,1) = sum(W.*(ftE(r,1).*conj(ftB(r,1))))/sum(W.*(ftB(r,1).*conj(ftB(r,1))));
         else
-            % Ex = ZxxBx + ZxyBy
-            % OLS solution to above. Minimizes errors in Ex.
+            % OLS solution to Ex = ZxxBx + ZxyBy. Minimizes errors in Ex.
+            BxBx(j) = sum(W.*(ftB(r,1).*conj(ftB(r,1)))); 
+            ExEx(j) = sum(W.*(ftE(r,1).*conj(ftE(r,1))));
+
             BxBy(j) = sum(W.*(ftB(r,1).*conj(ftB(r,2))));
             ByBx(j) = sum(W.*(ftB(r,2).*conj(ftB(r,1))));
 
@@ -233,47 +223,37 @@ for j = 2:length(Ic)
     F_FT{j,1} = f(r);
     
     if method == 2
-        % Same as method 1 except using regress function.
-        %W = sqrt(W);
-        %Wr = repmat(W,1,size(B,2));
+        % Same as method 1 except uses MATLAB's regress function.
         Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
     end
 
     if 0 && j > 15
-        %W = sqrt(W);
-        %Wr = repmat(W,1,size(B,2));
         Er_act = real(W.*ftE(r,1));
         Ei_act = real(W.*ftE(r,1));
 
         Z_rob(j,:) = robustfit(Wr.*ftB(r,:),W.*ftE(r,1),'cauchy',[],'off');        
-        Er_rob = real(Wr.*ftB(r,:))*real(Z_rob(j,:)).';        
-        Ei_rob = imag(Wr.*ftB(r,:))*imag(Z_rob(j,:)).';        
+        Er_rob = real(Wr.*ftB(r,:)*Z_rob(j,:).');
+        Ei_rob = imag(Wr.*ftB(r,:)*Z_rob(j,:).');
 
         Z_ols(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
-        Er_ols = real(Wr.*ftB(r,:))*real(Z_ols(j,:)).';
-        Ei_ols = imag(Wr.*ftB(r,:))*imag(Z_ols(j,:)).';
+        Er_ols = real(Wr.*ftB(r,:)*Z_ols(j,:).');
+        Ei_ols = imag(Wr.*ftB(r,:)*Z_ols(j,:).');
 
-        clf;
-        plot(Er_act,Er_rob,'r.','MarkerSize',20);
-        hold on;
-        plot(Er_act,Er_ols,'b.','MarkerSize',10);
-
-        err = Er_act-Er_rob;
-        % Remove "outlier" errors.
-        I = find(err/std(err) <= 1.5);
-
-        Z_ols(j,:) = regress(W(I,:).*ftE(r(I),1),Wr(I,:).*ftB(r(I),:));
-        Er_ols = real(Wr(I,:).*ftB(r(I),:))*real(Z_ols(j,:)).';
-        Ei_ols = imag(Wr(I,:).*ftB(r(I),:))*imag(Z_ols(j,:)).';
-        plot(Er_act(I),Er_ols,'g.','MarkerSize',5);        
-        legend('Re(FT(E)) OLS','Re(FT(E)) Robust','Re(FT(E) OLS Trimmed');
+        keyboard
+        
+        figure();
+            plot(Er_act,Er_rob,'r.','MarkerSize',20);
+            hold on;
+            plot(Er_act,Er_ols,'b.','MarkerSize',10);
+        figure()
+            qqplot(Er_act-Er_rob);
+            hold on;
+            qqplot(Er_act-Er_ols);
         keyboard
     end
     
     if method == 3
-        % Same as method 1 except using robustfit function.
-        %W = sqrt(W);
-        %Wr = repmat(W,1,size(B,2));
+        % Same as method 1 except using MATLAB's robustfit function.
         if size(W,1) < 5
             Z(j,:) = regress(W.*ftE(r,1),Wr.*ftB(r,:));
         else

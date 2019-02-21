@@ -4,12 +4,6 @@ addpath('../../time');
 addpath('../../stats');
 addpath('../transferfn');
 
-%mtplots(SI)
-
-opts = main_options(4);
-
-dateo = '20031029';
-datef = '20031031';
 
 dateo = '20031029';
 datef = '20031031';
@@ -23,6 +17,8 @@ datef = '20060410';
 %dateo = '20150110';
 %datef = '20150116';
 
+dateo = '20031030';
+datef = '20031031';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 opts = main_options(1);
@@ -35,11 +31,17 @@ GIC = E;
 
 [GIC,E,B] = removemean(GIC,E,B);
 
-B = B(1:86400,:);
-E = E(1:86400,:);
+opts.td.window.width = size(B,1);
+opts.td.window.shift = size(B,1);
 
-S = transferfnFD(B(:,1:2),E,opts);
+So = transferfnFD(B(:,1:2),E,opts);
+Sf = transferfnFuji(So,opts);
 
+% Note that the differences between Kelbert 2017 and what is found here for CC
+% in Ex for 2003-10-29 through 2003-10-31 is probably due to the fact that
+% Ex is clipped in the data from JMA. She must have used different data.
+% Her PE table is definitely wrong. PEs should be lower than CC.
+break
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

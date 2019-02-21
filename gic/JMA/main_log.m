@@ -13,7 +13,7 @@ if exist(fname,'file'),delete(fname);end
 diary(fname);
 
 fprintf('________________________________________________________________\n');
-fprintf('%s',opts.description);
+fprintf('Options description: %s\n',opts.description);
 fprintf('________________________________________________________________\n');
 transferfnSummary(GBo,GBo_avg,'Model 0 - G/Bo');
 transferfnSummary(GEo,GEo_avg,'Model 1 - G/Eo');

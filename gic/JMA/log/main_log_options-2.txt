@@ -47,6 +47,7 @@ opts
    |       |       |----- function : [1x1 Unknown]
    |       |    
    |       |-- transform : 'none'
+   |       |------ Ntrim : 600
    |    
    |-- description : 'yulewalker(10) prewhiten'
    |------ filestr : 'options-2'
@@ -92,6 +93,14 @@ transferfnConst.m: 7/8 PE/CC/MSE of In_y = 0.71/0.84/0.022
 transferfnConst.m: 8/8 PE/CC/MSE of In_x = 0.42/0.65/0.029
 transferfnConst.m: 8/8 PE/CC/MSE of In_y = 0.42/0.65/0.029
 main.m: 20060403 G/E
+[Warning: "../../stats" not found in path.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('rmpath', '/usr/local/MATLAB/R2015a/toolbox/matlab/general/rmpath.m', 57)" style="font-weight:bold">rmpath</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/matlab/general/rmpath.m',57,0)">line 57</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('prewhiten', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/prewhiten.m', 3)" style="font-weight:bold">prewhiten</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/prewhiten.m',3,0)">line 3</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 163)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',163,0)">line 163</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 131)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',131,0)">line 131</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 64)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',64,0)">line 64</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 113)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',113,0)">line 113</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 16)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',16,0)">line 16</a>)] 
 transferfnFD.m: 1/8 PE/CC/MSE of In_x = 0.85/0.95/0.002
 transferfnFD.m: 1/8 PE/CC/MSE of In_y = 0.85/0.95/0.002
 transferfnFD.m: 2/8 PE/CC/MSE of In_x = 0.90/0.96/0.001
@@ -1018,5 +1027,76 @@ transferfnAverage.m: Interval 34: PEx in-sample:  0.804; using: mean:  0.663 | m
 transferfnAverage.m: Interval 34: PEy in-sample:  0.574; using: mean:  0.577 | median  0.583 | huber  0.602
 transferfnAverage.m: Interval 35: PEx in-sample:  0.690; using: mean:  0.558 | median  0.625 | huber  0.578
 transferfnAverage.m: Interval 35: PEy in-sample:  0.760; using: mean:  0.446 | median  0.464 | huber  0.476
+main.m: 20061201 G/E Fuji Z
+transferfnFuji.m: 1/35 PE/CC/MSE of In_x = 0.06/0.91/1.222
+transferfnFuji.m: 1/35 PE/CC/MSE of In_y = 0.60/0.90/0.140
+transferfnFuji.m: 2/35 PE/CC/MSE of In_x = 0.16/0.88/1.877
+transferfnFuji.m: 2/35 PE/CC/MSE of In_y = 0.30/0.85/0.376
+transferfnFuji.m: 3/35 PE/CC/MSE of In_x = 0.59/0.96/7.062
+transferfnFuji.m: 3/35 PE/CC/MSE of In_y = 0.77/0.96/0.772
+transferfnFuji.m: 4/35 PE/CC/MSE of In_x = 0.25/0.78/4.548
+transferfnFuji.m: 4/35 PE/CC/MSE of In_y = 0.09/0.64/0.922
+transferfnFuji.m: 5/35 PE/CC/MSE of In_x = 0.65/0.89/0.701
+transferfnFuji.m: 5/35 PE/CC/MSE of In_y = 0.38/0.69/0.260
+transferfnFuji.m: 6/35 PE/CC/MSE of In_x = 0.70/0.95/0.992
+transferfnFuji.m: 6/35 PE/CC/MSE of In_y = 0.59/0.90/0.264
+transferfnFuji.m: 7/35 PE/CC/MSE of In_x = 0.81/0.98/2.254
+transferfnFuji.m: 7/35 PE/CC/MSE of In_y = 0.91/0.98/0.237
+transferfnFuji.m: 8/35 PE/CC/MSE of In_x = 0.84/0.97/1.227
+transferfnFuji.m: 8/35 PE/CC/MSE of In_y = 0.91/0.96/0.109
+transferfnFuji.m: 9/35 PE/CC/MSE of In_x = 0.84/0.94/2.125
+transferfnFuji.m: 9/35 PE/CC/MSE of In_y = 0.53/0.75/1.211
+transferfnFuji.m: 10/35 PE/CC/MSE of In_x = 0.90/0.95/2.531
+transferfnFuji.m: 10/35 PE/CC/MSE of In_y = 0.77/0.89/1.209
+transferfnFuji.m: 11/35 PE/CC/MSE of In_x = 0.73/0.92/1.054
+transferfnFuji.m: 11/35 PE/CC/MSE of In_y = 0.41/0.72/0.901
+transferfnFuji.m: 12/35 PE/CC/MSE of In_x = 0.08/0.80/2.449
+transferfnFuji.m: 12/35 PE/CC/MSE of In_y = 0.19/0.49/0.421
+transferfnFuji.m: 13/35 PE/CC/MSE of In_x = 0.53/0.78/0.821
+transferfnFuji.m: 13/35 PE/CC/MSE of In_y = 0.14/0.44/0.602
+transferfnFuji.m: 14/35 PE/CC/MSE of In_x = 0.77/0.88/0.477
+transferfnFuji.m: 14/35 PE/CC/MSE of In_y = 0.44/0.67/0.341
+transferfnFuji.m: 15/35 PE/CC/MSE of In_x = 0.78/0.93/9.156
+transferfnFuji.m: 15/35 PE/CC/MSE of In_y = 0.75/0.90/1.334
+transferfnFuji.m: 16/35 PE/CC/MSE of In_x = 0.91/0.96/0.936
+transferfnFuji.m: 16/35 PE/CC/MSE of In_y = 0.57/0.77/0.652
+transferfnFuji.m: 17/35 PE/CC/MSE of In_x = 0.82/0.91/1.007
+transferfnFuji.m: 17/35 PE/CC/MSE of In_y = 0.37/0.62/0.966
+transferfnFuji.m: 18/35 PE/CC/MSE of In_x = 0.35/0.85/2.677
+transferfnFuji.m: 18/35 PE/CC/MSE of In_y = 0.63/0.92/0.406
+transferfnFuji.m: 19/35 PE/CC/MSE of In_x = 0.61/0.84/35.791
+transferfnFuji.m: 19/35 PE/CC/MSE of In_y = 0.86/0.94/2.170
+transferfnFuji.m: 20/35 PE/CC/MSE of In_x = 0.84/0.92/0.462
+transferfnFuji.m: 20/35 PE/CC/MSE of In_y = 0.52/0.83/0.454
+transferfnFuji.m: 21/35 PE/CC/MSE of In_x = 0.68/0.84/0.836
+transferfnFuji.m: 21/35 PE/CC/MSE of In_y = 0.50/0.73/0.577
+transferfnFuji.m: 22/35 PE/CC/MSE of In_x = 0.86/0.93/2.597
+transferfnFuji.m: 22/35 PE/CC/MSE of In_y = 0.45/0.74/1.409
+transferfnFuji.m: 23/35 PE/CC/MSE of In_x = 0.78/0.89/2.013
+transferfnFuji.m: 23/35 PE/CC/MSE of In_y = 0.53/0.75/1.087
+transferfnFuji.m: 24/35 PE/CC/MSE of In_x = -2.36/0.50/11.714
+transferfnFuji.m: 24/35 PE/CC/MSE of In_y = -0.02/0.46/1.530
+transferfnFuji.m: 25/35 PE/CC/MSE of In_x = 0.67/0.88/1.474
+transferfnFuji.m: 25/35 PE/CC/MSE of In_y = 0.41/0.70/0.677
+transferfnFuji.m: 26/35 PE/CC/MSE of In_x = 0.69/0.92/1.434
+transferfnFuji.m: 26/35 PE/CC/MSE of In_y = 0.60/0.81/0.468
+transferfnFuji.m: 27/35 PE/CC/MSE of In_x = 0.85/0.92/2.047
+transferfnFuji.m: 27/35 PE/CC/MSE of In_y = 0.81/0.93/0.666
+transferfnFuji.m: 28/35 PE/CC/MSE of In_x = 0.78/0.92/0.849
+transferfnFuji.m: 28/35 PE/CC/MSE of In_y = 0.59/0.86/0.236
+transferfnFuji.m: 29/35 PE/CC/MSE of In_x = 0.66/0.93/0.652
+transferfnFuji.m: 29/35 PE/CC/MSE of In_y = 0.31/0.60/0.528
+transferfnFuji.m: 30/35 PE/CC/MSE of In_x = 0.63/0.91/0.618
+transferfnFuji.m: 30/35 PE/CC/MSE of In_y = 0.43/0.78/0.163
+transferfnFuji.m: 31/35 PE/CC/MSE of In_x = 0.80/0.91/5.440
+transferfnFuji.m: 31/35 PE/CC/MSE of In_y = 0.86/0.94/0.675
+transferfnFuji.m: 32/35 PE/CC/MSE of In_x = 0.71/0.85/0.558
+transferfnFuji.m: 32/35 PE/CC/MSE of In_y = 0.63/0.79/0.101
+transferfnFuji.m: 33/35 PE/CC/MSE of In_x = 0.88/0.94/0.295
+transferfnFuji.m: 33/35 PE/CC/MSE of In_y = 0.39/0.63/0.294
+transferfnFuji.m: 34/35 PE/CC/MSE of In_x = 0.68/0.83/0.587
+transferfnFuji.m: 34/35 PE/CC/MSE of In_y = 0.49/0.72/0.171
+transferfnFuji.m: 35/35 PE/CC/MSE of In_x = 0.57/0.78/1.335
+transferfnFuji.m: 35/35 PE/CC/MSE of In_y = 0.35/0.70/0.220
 main.m: Saving mat/main_options-2.mat
 main.m: Saved mat/main_options-2.mat

@@ -103,6 +103,8 @@ function compareZplots(GE,GEo,GB,GBa,pn)
     loglog(1./GB.fe(2:end),sf*GB.Zabs(2:end,3),'b--','LineWidth',2);
     loglog(1./GB.fe(2:end),sf*GB.Zabs(2:end,4),'b','LineWidth',2);
 
+    %loglog(1./GE.fe(2:end),GE.Zabs(2:end,4)./GE.Zabs(2:end,3),'k');
+    
     errorbars(1./GE.fe(2:end),sf*GE.Zabs(2:end,3),sf*GE.Zabs_StdErr(2:end,3),sf*GE.Zabs_StdErr(2:end,3),'y','r');
     errorbars(1./GE.fe(2:end),sf*GE.Zabs(2:end,4),sf*GE.Zabs_StdErr(2:end,4),sf*GE.Zabs_StdErr(2:end,4),'y','r');    
     errorbars(1./GE.fe(2:end),sf*GB.Zabs(2:end,3),sf*GB.Zabs_StdErr(2:end,3),sf*GB.Zabs_StdErr(2:end,3),'y','b');

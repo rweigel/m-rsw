@@ -1,4 +1,4 @@
-function lims = boot(z,fn,N,n)
+function [lims,bias] = boot(z,fn,N,n)
 %BOOT
 %
 %
@@ -20,10 +20,11 @@ if size(z,2) == 1
     z = transpose(z);
 end
 
-V = bootstrp(N,fn,z); % Each column contains N bootstrap samples from that column
+V = bootstrp(N,fn,z); % Each row contains N bootstrap samples from that column
 V = sort(V,1); % Sort each column
 l = V(n,:);
 u = V(N-n+1,:); 
 lims = [l',u'];
+
 
 end
