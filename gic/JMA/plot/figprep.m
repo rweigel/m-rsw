@@ -5,7 +5,7 @@ set(0,'DefaultLegendInterpreter','latex')
 set(0,'DefaultAxesTickLabelInterpreter','latex');
 
 if png
-    close all
+    %close all
     % Open each figure in new window
     set(0,'defaultFigureWindowStyle','normal');
     % Next line needed because when last plot was docked, first plot
@@ -15,6 +15,6 @@ if png
     set(0,'defaultFigureColor', [1,1,1]);
 else
     % Dock figure windows
-    figure();close; % Otherwise first is undocked if last state docked
+    figure();close all; % Otherwise first is undocked if last state docked
     set(0,'defaultFigureWindowStyle','docked');
 end

@@ -1,8 +1,9 @@
-function S = transferfnFuji(S,opts)
+function S = transferfnFuji(S,site,opts)
 
 % Replace predictions, metrics with that using transfer function from
-% from http://ds.iris.edu/spud/emtf/13598200
-D = readEDIXML([fileparts(mfilename('fullpath')),'/MMB.xml']);
+% from http://ds.iris.edu/spud/emtf/13598200 (MMB)
+% http://ds.iris.edu/spud/emtf/13597847 (KAK)
+D = readEDIXML([fileparts(mfilename('fullpath')),sprintf('/%s.xml',upper(site))]);
 
 fe = transpose(1./D.PERIOD);
 

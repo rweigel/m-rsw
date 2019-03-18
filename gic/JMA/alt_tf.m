@@ -1,47 +1,20 @@
-%load('mat/main_options-1.mat','GE');
-for i = 1:size(GE.In_FT,1)
-    CIn(i)  = cc(squeeze(GE.In_PSD(i,2,:)),squeeze(abs(GE.Z(i,3,:))));
-    COut(i) = cc(squeeze(GE.Out_PSD(i,2,:)),squeeze(abs(GE.Z(i,3,:))));    
-    CErr(i) = cc(squeeze(GE.Error_PSD(i,2,:)),squeeze(abs(GE.Z(i,3,:))));    
-    CPE(i)  = cc(squeeze(GE.PE(1,2,:)),squeeze(abs(GE.Z(i,3,:))));    
-
-    %[~,I] = sort(squeeze(GE.In_PSD(i,2,:)));
-    [~,I] = sort(squeeze(GE.PE(1,2,:)));    
-    Zmin(i,3) = mean(abs(GE.Z(i,3,I(1:end/2))),3);
-    Zave(i,3) = mean(abs(GE.Z(i,3,:)),3);
-    Zmax(i,3) = mean(abs(GE.Z(i,3,I(end/2:end))),3);    
-end
-
-T = 1./GE.fe;
-
-figure(2);clf;
-    loglog(T,Zmax(:,3),'r');
-    hold on;
-    loglog(T,Zmin(:,3),'g');    
-    loglog(T,Zave(:,3),'b');
-
-figure(1);clf;
-    semilogx(T,CIn,'r');
-    hold on;grid on;
-    semilogx(T,COut,'g');
-    semilogx(T,CErr,'b');
-    semilogx(T,CPE,'k');    
-break
 clear
 %addpath('m-statrobust'); % So one can put breakpoints in MATLAB's code.
 
+load('mat/main_options-1.mat','GE*');
+
+function S = transfer
 for i = 2:size(GE.In_FT,1) % Loop over evaluation frequencies
-    i
-    for j = 1:2 % Loop over outputs (Ex and Ey)
+    for j = 1:2 % Loop over outputs
         cols = [1,2];
-        if j == 1
+        if j == 2
             cols = [3,4];
         end
         x = GE.In_FT{i,j,1};
         y = GE.Out_FT{i,j,1};
         Zk(i,cols,1) = regress(y,x);
         %Zk(i,cols,1) = mvregress(x,y);
-        for k = 2:size(GE.In_FT,3) % Loop over days
+        for k = 2:size(GE.In_FT,3) % Loop over sections
             xk = GE.In_FT{i,j,k};
             yk = GE.Out_FT{i,j,k};
             x = cat(1,x,xk);
@@ -85,19 +58,22 @@ end
 sf = 1;
 %fe = GE.fe;
 fe = GE.fe(1:size(Zols1,1));
-figure(2);
-    loglog(1./fe(2:end),sf*abs(Zols1(2:end,3)),'c--','LineWidth',3);
+figure(2);clf
+    loglog(1./fe(2:end),sf*abs(Zols1(2:end,3)),'c--','LineWidth',4);
     hold on;
     %loglog(1./fe(2:end),sf*abs(Zmvr(2:end,3)),'r--','LineWidth',3);    
     loglog(1./fe(2:end),sf*abs(Zrob(2:end,3)),'k--','LineWidth',3);        
-    loglog(1./fe(2:end),sf*mean(abs(Zk(2:end,3)),3),'b--','LineWidth',3);        
-    
-break
+    loglog(1./fe(2:end),sf*abs(mean(Zk(2:end,3,:),3)),'b--','LineWidth',2);        
+    loglog(1./fe(2:end),sf*abs(GE_avg.Mean.Z(2:end,3)),'m--','LineWidth',4);            
+    loglog(1./fe(2:end),sf*abs(mean(GE.Z(2:end,3,:),3)),'ro','LineWidth',4);        
+    %legend('OLS','Robust','OLS Stack Zk','OLS Stack GE_avg.Mean.Z','OLS Stack mean(GE.Z,3)');
 
+    
 Zka = mean(Zk,3);
 
 S = struct();
 S.Z = Zrob;
+opts = main_options(1);
 
 Nint = size(GE.Z,3);
 for k = 1:Nint

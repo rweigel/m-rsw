@@ -1,0 +1,345 @@
+________________________________________________________________
+Options description: PCA rotation
+________________________________________________________________
+___________________________________________________________________________
+Model 0 - G/Bo
+___________________________________________________________________________
+Ave ao: Using:
+Mean            -0.004 [-0.008,-0.001]
+Huber           -0.004 [-0.007,-0.001]
+Median          -0.004 [-0.010,-0.000]
+MeanPEWeighted  -0.004 [-0.008,-0.001]
+Ave bo: Using:
+Mean             0.026 [0.022,0.030]
+Huber            0.026 [0.022,0.029]
+Median           0.023 [0.021,0.030]
+MeanPEWeighted   0.026 [0.023,0.030]
+Ave x PE in-sample:        0.765 [0.723,0.808]
+Ave x PE Mean:            -4.548 [-5.744,-3.431]
+Ave x PE Huber:           -4.298 [-5.431,-3.221]
+Ave x PE Median:          -3.262 [-4.217,-2.367]
+Ave x PE MeanPEWeighted:  -4.548 [-5.688,-3.424]
+Ave y PE in-sample:        0.768 [0.727,0.808]
+Ave y PE Mean:            -4.558 [-5.728,-3.356]
+Ave y PE Huber:           -4.310 [-5.440,-3.184]
+Ave y PE Median:          -3.199 [-4.112,-2.416]
+Ave y PE MeanPEWeighted:  -4.558 [-5.751,-3.380]
+Ave x CC in-sample:        0.870 [0.844,0.893]
+Ave x CC Mean:             0.457 [0.410,0.501]
+Ave x CC Huber:            0.461 [0.416,0.507]
+Ave x CC Median:           0.469 [0.425,0.515]
+Ave x CC MeanPEWeighted:   0.457 [0.407,0.500]
+Ave y CC in-sample:        0.872 [0.847,0.896]
+Ave y CC Mean:             0.459 [0.411,0.503]
+Ave y CC Huber:            0.460 [0.415,0.508]
+Ave y CC Median:           0.466 [0.422,0.514]
+Ave y CC MeanPEWeighted:   0.459 [0.412,0.503]
+Ave x MSE in-sample:        0.009 [0.006,0.013]
+Ave x MSE Mean:            0.143 [0.109,0.179]
+Ave x MSE Huber:           0.137 [0.106,0.172]
+Ave x MSE Median:          0.111 [0.083,0.140]
+Ave x MSE MeanPEWeighted:  0.143 [0.109,0.180]
+Ave y MSE in-sample:        0.009 [0.005,0.013]
+Ave y MSE Mean:            0.143 [0.109,0.180]
+Ave y MSE Huber:           0.137 [0.105,0.167]
+Ave y MSE Median:          0.108 [0.085,0.137]
+Ave y MSE MeanPEWeighted:  0.143 [0.110,0.182]
+___________________________________________________________________________
+___________________________________________________________________________
+Model 1 - G/Eo
+___________________________________________________________________________
+Ave ao: Using:
+Mean            -0.040 [-0.044,-0.036]
+Huber           -0.041 [-0.044,-0.037]
+Median          -0.041 [-0.045,-0.038]
+MeanPEWeighted  -0.040 [-0.044,-0.036]
+Ave bo: Using:
+Mean             0.094 [0.069,0.122]
+Huber            0.090 [0.063,0.119]
+Median           0.092 [0.052,0.125]
+MeanPEWeighted   0.094 [0.067,0.124]
+Ave x PE in-sample:        0.640 [0.604,0.672]
+Ave x PE Mean:             0.350 [0.247,0.446]
+Ave x PE Huber:            0.356 [0.237,0.450]
+Ave x PE Median:           0.348 [0.235,0.442]
+Ave x PE MeanPEWeighted:   0.350 [0.245,0.448]
+Ave y PE in-sample:        0.642 [0.606,0.677]
+Ave y PE Mean:             0.351 [0.237,0.446]
+Ave y PE Huber:            0.357 [0.252,0.450]
+Ave y PE Median:           0.348 [0.232,0.446]
+Ave y PE MeanPEWeighted:   0.351 [0.246,0.445]
+Ave x CC in-sample:        0.795 [0.768,0.817]
+Ave x CC Mean:             0.695 [0.648,0.738]
+Ave x CC Huber:            0.697 [0.653,0.735]
+Ave x CC Median:           0.697 [0.655,0.739]
+Ave x CC MeanPEWeighted:   0.695 [0.646,0.735]
+Ave y CC in-sample:        0.796 [0.769,0.820]
+Ave y CC Mean:             0.696 [0.651,0.737]
+Ave y CC Huber:            0.698 [0.656,0.740]
+Ave y CC Median:           0.698 [0.655,0.738]
+Ave y CC MeanPEWeighted:   0.696 [0.647,0.740]
+Ave x MSE in-sample:        0.019 [0.008,0.036]
+Ave x MSE Mean:            0.027 [0.014,0.046]
+Ave x MSE Huber:           0.027 [0.014,0.047]
+Ave x MSE Median:          0.027 [0.014,0.047]
+Ave x MSE MeanPEWeighted:  0.027 [0.014,0.045]
+Ave y MSE in-sample:        0.018 [0.008,0.035]
+Ave y MSE Mean:            0.026 [0.014,0.046]
+Ave y MSE Huber:           0.026 [0.013,0.046]
+Ave y MSE Median:          0.027 [0.013,0.048]
+Ave y MSE MeanPEWeighted:  0.026 [0.013,0.045]
+___________________________________________________________________________
+___________________________________________________________________________
+Model 2 - G/E
+___________________________________________________________________________
+Ave x PE in-sample:        0.862 [0.840,0.881]
+Ave x PE Mean:              0.600 [0.540,0.647]
+Ave x PE Huber:             0.603 [0.548,0.655]
+Ave x PE Median:            0.597 [0.534,0.653]
+Ave x PE MeanPEWeighted:    0.598 [0.544,0.654]
+Ave x PE NoStack_OLS:       0.448
+Ave x PE NoStack_Robust1:   0.439
+Ave x PE NoStack_Robust2:   0.439
+Ave y PE in-sample:        0.865 [0.843,0.885]
+Ave y PE Mean:              0.602 [0.545,0.657]
+Ave y PE Huber:             0.606 [0.543,0.658]
+Ave y PE Median:            0.598 [0.535,0.652]
+Ave y PE MeanPEWeighted:    0.601 [0.544,0.655]
+Ave y PE NoStack_OLS:       0.452
+Ave y PE NoStack_Robust1:   0.443
+Ave y PE NoStack_Robust2:   0.444
+Ave x CC in-sample:        0.935 [0.921,0.946]
+Ave x CC Mean:              0.804 [0.770,0.835]
+Ave x CC Huber:             0.806 [0.771,0.837]
+Ave x CC Median:            0.806 [0.771,0.837]
+Ave x CC MeanPEWeighted:    0.804 [0.769,0.836]
+Ave x CC NoStack_OLS:       0.803
+Ave x CC NoStack_Robust1:   0.771
+Ave x CC NoStack_Robust2:   0.771
+Ave y CC in-sample:        0.937 [0.925,0.948]
+Ave y CC Mean:              0.805 [0.768,0.836]
+Ave y CC Huber:             0.808 [0.773,0.838]
+Ave y CC Median:            0.807 [0.770,0.838]
+Ave y CC MeanPEWeighted:    0.806 [0.769,0.836]
+Ave y CC NoStack_OLS:       0.808
+Ave y CC NoStack_Robust1:   0.775
+Ave y CC NoStack_Robust2:   0.777
+Ave x MSE in-sample:        0.008 [0.003,0.015]
+Ave x MSE Mean:             0.020 [0.009,0.039]
+Ave x MSE Huber:            0.021 [0.009,0.039]
+Ave x MSE Median:           0.021 [0.009,0.041]
+Ave x MSE MeanPEWeighted:   0.020 [0.009,0.039]
+Ave x MSE NoStack_OLS:      0.006
+Ave x MSE NoStack_Robust1:  0.006
+Ave x MSE NoStack_Robust2:  0.006
+Ave y MSE in-sample:        0.008 [0.003,0.016]
+Ave y MSE Mean:             0.020 [0.009,0.039]
+Ave y MSE Huber:            0.021 [0.009,0.040]
+Ave y MSE Median:           0.021 [0.009,0.041]
+Ave y MSE MeanPEWeighted:   0.020 [0.009,0.039]
+Ave y MSE NoStack_OLS:      0.006
+Ave y MSE NoStack_Robust1:  0.006
+Ave y MSE NoStack_Robust2:  0.006
+___________________________________________________________________________
+___________________________________________________________________________
+Model 3 - G/E'
+___________________________________________________________________________
+Ave x PE in-sample:        0.849 [0.828,0.871]
+Ave x PE Mean:             0.775 [0.751,0.799]
+Ave x PE Huber:            0.780 [0.757,0.801]
+Ave x PE Median:           0.787 [0.764,0.808]
+Ave x PE MeanPEWeighted:   0.778 [0.756,0.800]
+Ave y PE in-sample:        0.853 [0.831,0.874]
+Ave y PE Mean:             0.778 [0.755,0.801]
+Ave y PE Huber:            0.783 [0.760,0.804]
+Ave y PE Median:           0.791 [0.770,0.811]
+Ave y PE MeanPEWeighted:   0.782 [0.759,0.803]
+Ave x CC in-sample:        0.936 [0.925,0.946]
+Ave x CC Mean:             0.913 [0.899,0.925]
+Ave x CC Huber:            0.916 [0.903,0.927]
+Ave x CC Median:           0.914 [0.901,0.925]
+Ave x CC MeanPEWeighted:   0.913 [0.899,0.926]
+Ave y CC in-sample:        0.938 [0.927,0.948]
+Ave y CC Mean:             0.915 [0.901,0.926]
+Ave y CC Huber:            0.918 [0.905,0.929]
+Ave y CC Median:           0.916 [0.904,0.926]
+Ave y CC MeanPEWeighted:   0.915 [0.903,0.926]
+Ave x MSE in-sample:        0.007 [0.003,0.014]
+Ave x MSE Mean:            0.009 [0.005,0.015]
+Ave x MSE Huber:           0.009 [0.005,0.015]
+Ave x MSE Median:          0.009 [0.005,0.014]
+Ave x MSE MeanPEWeighted:  0.009 [0.005,0.014]
+Ave y MSE in-sample:        0.007 [0.003,0.014]
+Ave y MSE Mean:            0.009 [0.005,0.014]
+Ave y MSE Huber:           0.009 [0.005,0.014]
+Ave y MSE Median:          0.009 [0.005,0.014]
+Ave y MSE MeanPEWeighted:  0.009 [0.005,0.014]
+___________________________________________________________________________
+___________________________________________________________________________
+Model 4 - G/B
+___________________________________________________________________________
+Ave x PE in-sample:        0.893 [0.871,0.912]
+Ave x PE Mean:              0.822 [0.795,0.848]
+Ave x PE Huber:             0.830 [0.804,0.854]
+Ave x PE Median:            0.831 [0.808,0.855]
+Ave x PE MeanPEWeighted:    0.822 [0.794,0.846]
+Ave x PE NoStack_OLS:       0.787
+Ave x PE NoStack_Robust1:   0.786
+Ave x PE NoStack_Robust2:   0.786
+Ave y PE in-sample:        0.896 [0.878,0.914]
+Ave y PE Mean:              0.826 [0.796,0.850]
+Ave y PE Huber:             0.833 [0.809,0.857]
+Ave y PE Median:            0.833 [0.810,0.857]
+Ave y PE MeanPEWeighted:    0.825 [0.798,0.849]
+Ave y PE NoStack_OLS:       0.790
+Ave y PE NoStack_Robust1:   0.789
+Ave y PE NoStack_Robust2:   0.789
+Ave x CC in-sample:        0.955 [0.944,0.964]
+Ave x CC Mean:              0.925 [0.910,0.939]
+Ave x CC Huber:             0.929 [0.914,0.942]
+Ave x CC Median:            0.930 [0.916,0.943]
+Ave x CC MeanPEWeighted:    0.924 [0.909,0.939]
+Ave x CC NoStack_OLS:       0.922
+Ave x CC NoStack_Robust1:   0.917
+Ave x CC NoStack_Robust2:   0.917
+Ave y CC in-sample:        0.957 [0.947,0.966]
+Ave y CC Mean:              0.927 [0.910,0.941]
+Ave y CC Huber:             0.931 [0.916,0.944]
+Ave y CC Median:            0.931 [0.918,0.943]
+Ave y CC MeanPEWeighted:    0.926 [0.911,0.940]
+Ave y CC NoStack_OLS:       0.924
+Ave y CC NoStack_Robust1:   0.919
+Ave y CC NoStack_Robust2:   0.920
+Ave x MSE in-sample:        0.004 [0.002,0.005]
+Ave x MSE Mean:             0.005 [0.003,0.007]
+Ave x MSE Huber:            0.005 [0.003,0.007]
+Ave x MSE Median:           0.005 [0.004,0.008]
+Ave x MSE MeanPEWeighted:   0.005 [0.003,0.006]
+Ave x MSE NoStack_OLS:      0.002
+Ave x MSE NoStack_Robust1:  0.002
+Ave x MSE NoStack_Robust2:  0.002
+Ave y MSE in-sample:        0.003 [0.002,0.005]
+Ave y MSE Mean:             0.005 [0.003,0.006]
+Ave y MSE Huber:            0.005 [0.003,0.007]
+Ave y MSE Median:           0.006 [0.003,0.008]
+Ave y MSE MeanPEWeighted:   0.005 [0.003,0.006]
+Ave y MSE NoStack_OLS:      0.002
+Ave y MSE NoStack_Robust1:  0.002
+Ave y MSE NoStack_Robust2:  0.002
+___________________________________________________________________________
+___________________________________________________________________________
+E/B
+___________________________________________________________________________
+Ave x PE in-sample:        0.826 [0.788,0.859]
+Ave x PE Mean:              0.685 [0.604,0.746]
+Ave x PE Huber:             0.689 [0.614,0.751]
+Ave x PE Median:            0.682 [0.601,0.750]
+Ave x PE MeanPEWeighted:    0.689 [0.611,0.752]
+Ave x PE Fuji:              0.535
+Ave x PE NoStack_OLS:       0.698
+Ave x PE NoStack_Robust1:   0.695
+Ave x PE NoStack_Robust2:   0.695
+Ave y PE in-sample:        0.454 [0.332,0.554]
+Ave y PE Mean:              0.168 [0.037,0.293]
+Ave y PE Huber:             0.185 [0.044,0.310]
+Ave y PE Median:            0.195 [0.047,0.325]
+Ave y PE MeanPEWeighted:    0.155 [0.019,0.296]
+Ave y PE Fuji:             -2.726
+Ave y PE NoStack_OLS:       0.222
+Ave y PE NoStack_Robust1:   0.174
+Ave y PE NoStack_Robust2:   0.175
+Ave x CC in-sample:        0.935 [0.924,0.946]
+Ave x CC Mean:              0.882 [0.858,0.902]
+Ave x CC Huber:             0.883 [0.860,0.905]
+Ave x CC Median:            0.881 [0.856,0.903]
+Ave x CC MeanPEWeighted:    0.883 [0.858,0.905]
+Ave x CC Fuji:              0.851
+Ave x CC NoStack_OLS:       0.932
+Ave x CC NoStack_Robust1:   0.932
+Ave x CC NoStack_Robust2:   0.932
+Ave y CC in-sample:        0.818 [0.782,0.848]
+Ave y CC Mean:              0.602 [0.535,0.665]
+Ave y CC Huber:             0.614 [0.542,0.678]
+Ave y CC Median:            0.618 [0.551,0.689]
+Ave y CC MeanPEWeighted:    0.604 [0.536,0.675]
+Ave y CC Fuji:              0.284
+Ave y CC NoStack_OLS:       0.579
+Ave y CC NoStack_Robust1:   0.598
+Ave y CC NoStack_Robust2:   0.598
+Ave x MSE in-sample:        1.918 [0.986,3.279]
+Ave x MSE Mean:             2.834 [1.645,4.327]
+Ave x MSE Huber:            2.812 [1.677,4.355]
+Ave x MSE Median:           2.993 [1.731,4.717]
+Ave x MSE MeanPEWeighted:   2.796 [1.617,4.278]
+Ave x MSE Fuji:             3.985
+Ave x MSE NoStack_OLS:      0.477
+Ave x MSE NoStack_Robust1:  0.482
+Ave x MSE NoStack_Robust2:  0.482
+Ave y MSE in-sample:        0.320 [0.192,0.500]
+Ave y MSE Mean:             0.473 [0.312,0.680]
+Ave y MSE Huber:            0.463 [0.307,0.669]
+Ave y MSE Median:           0.460 [0.298,0.657]
+Ave y MSE MeanPEWeighted:   0.492 [0.322,0.724]
+Ave y MSE Fuji:             1.858
+Ave y MSE NoStack_OLS:      0.045
+Ave y MSE NoStack_Robust1:  0.048
+Ave y MSE NoStack_Robust2:  0.048
+___________________________________________________________________________
+___________________________________________________________________________
+G/Eo'
+___________________________________________________________________________
+Ave ao: Using:
+Mean            -0.044 [-0.048,-0.040]
+Huber           -0.044 [-0.049,-0.040]
+Median          -0.047 [-0.050,-0.038]
+MeanPEWeighted  -0.044 [-0.048,-0.039]
+Ave bo: Using:
+Mean             0.163 [0.128,0.199]
+Huber            0.163 [0.125,0.204]
+Median           0.168 [0.119,0.211]
+MeanPEWeighted   0.163 [0.123,0.201]
+Ave x PE in-sample:        0.681 [0.651,0.713]
+Ave x PE Mean:             0.526 [0.461,0.590]
+Ave x PE Huber:            0.525 [0.458,0.585]
+Ave x PE Median:           0.514 [0.443,0.578]
+Ave x PE MeanPEWeighted:   0.526 [0.464,0.587]
+Ave y PE in-sample:        0.683 [0.652,0.714]
+Ave y PE Mean:             0.528 [0.467,0.589]
+Ave y PE Huber:            0.527 [0.460,0.587]
+Ave y PE Median:           0.514 [0.442,0.577]
+Ave y PE MeanPEWeighted:   0.528 [0.464,0.591]
+Ave x CC in-sample:        0.822 [0.801,0.843]
+Ave x CC Mean:             0.766 [0.724,0.802]
+Ave x CC Huber:            0.766 [0.728,0.799]
+Ave x CC Median:           0.766 [0.726,0.801]
+Ave x CC MeanPEWeighted:   0.766 [0.725,0.801]
+Ave y CC in-sample:        0.823 [0.801,0.843]
+Ave y CC Mean:             0.767 [0.730,0.803]
+Ave y CC Huber:            0.767 [0.729,0.802]
+Ave y CC Median:           0.767 [0.728,0.803]
+Ave y CC MeanPEWeighted:   0.767 [0.729,0.802]
+Ave x MSE in-sample:        0.015 [0.007,0.026]
+Ave x MSE Mean:            0.019 [0.010,0.032]
+Ave x MSE Huber:           0.019 [0.011,0.032]
+Ave x MSE Median:          0.019 [0.010,0.032]
+Ave x MSE MeanPEWeighted:  0.019 [0.010,0.033]
+Ave y MSE in-sample:        0.015 [0.007,0.027]
+Ave y MSE Mean:            0.019 [0.010,0.032]
+Ave y MSE Huber:           0.019 [0.010,0.032]
+Ave y MSE Median:          0.019 [0.011,0.033]
+Ave y MSE MeanPEWeighted:  0.019 [0.010,0.032]
+___________________________________________________________________________
+main_log.m: Running bootstrap tests
+p value to reject Model 1 PE = Model 2 PE: 0.000
+p value to reject Model 1 PE = Model 2 PE: 0.000
+p value to reject Model 1 PE = Model 2 PE: 0.013
+Using mean:   <Model 1 (Eo) MSE/Model 2 (E) MSE>   = 1.75 +/- [1.56,1.96] (Alt. ratio = 1.30)
+Using median: <Model 1 (Eo) MSE/Model 2 (E) MSE>   = 1.79 +/- [1.56,1.96] (Alt. ratio = 1.30)
+Using median: <Model 1 (Eo) MSE/Model 2 (E) MSE>   = 1.76 +/- [1.56,1.96] (Alt. ratio = 1.30)
+Using mean:   <Model 1 (Eo) MSE/Model 3 (E') MSE>  = 3.10 +/- [2.69,3.50] (Alt. ratio = 2.89)
+Using median: <Model 1 (Eo) MSE/Model 3 (E') MSE>  = 3.29 +/- [2.69,3.50] (Alt. ratio = 2.89)
+Using huber:  <Model 1 (Eo) MSE/Model 3 (E') MSE>  = 3.12 +/- [2.69,3.50] (Alt. ratio = 2.89)
+Using mean:   <Model 1 (Eo) MSE/Model 4 (B) MSE>   = 4.52 +/- [3.76,5.33] (Alt. ratio = 5.49)
+Using median: <Model 1 (Eo) MSE/Model 4 (B) MSE>   = 4.51 +/- [3.76,5.33] (Alt. ratio = 5.49)
+Using huber:  <Model 1 (Eo) MSE/Model 4 (B) MSE>   = 4.67 +/- [3.76,5.33] (Alt. ratio = 5.49)
+________________________________________________________________

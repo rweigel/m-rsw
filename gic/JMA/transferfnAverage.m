@@ -7,7 +7,7 @@ Savg.Median = struct();
 
 % TODO: Account for this when computing error spectra.
 a = opts.td.Ntrim;
-b = 86400-opts.td.Ntrim+1;
+b = opts.td.window.width-opts.td.Ntrim+1;
 
 if nargin < 3
     Ik = [1:size(S.In_PSD,3)];
@@ -20,193 +20,175 @@ else
     end        
 end
 
-Savg.Mean.In_PSD  = mean(S.In_PSD,3); 
-Savg.Mean.Out_PSD = mean(S.Out_PSD,3); 
+Method = struct();
+Method.Mean.Function   = @cmean;
+Method.Median.Function = @cmedian;
+Method.Huber.Function  = @cmlochuber;
 
-Savg.Median.In_PSD  = median(S.In_PSD,3); 
-Savg.Median.Out_PSD = median(S.Out_PSD,3); 
+Method.MeanPEWeighted.Function  = @cmean;    
+Method.MeanPEWeighted.WeightStr = 'PE';        
 
 function z = cmedian(z,dim)
     z = median(real(z),dim) + sqrt(-1)*median(imag(z),dim);
-    % Note that when computing median of complex numbers, 
-    % it seems we should be able to do median(z,2) as is done with
-    % mean(z,2). But there seems to be a bug in MATLAB:
+    % There seems to be a bug in MATLAB so that the median of a complex
+    % number is not always correct. If
     % u = [-1+2*sqrt(-1),0+2*sqrt(-1),1+2*sqrt(-1),2+2*sqrt(-1)];
-    % Returns true as expected: real(mean(u,2)) == mean(real(u),2)
+    %
+    % Returns true:  real(mean(u,2)) == mean(real(u),2)
     % Returns false: real(median(u,2)) == median(real(u),2))
+    %
     % So the median is calculated by splitting z into real and
     % imaginary components. For consistency, this is done for mean() even
     % though it is not needed.
 end
 
 function z = cmean(z,dim)
-    z = mean(real(z),dim) + sqrt(-1)*median(imag(z),dim);
+    % Not actually needed, but used for consistent notation.
+    z = mean(real(z),dim) + sqrt(-1)*mean(imag(z),dim);
 end
 
 function z = cmlochuber(z,dim)
     if dim == 1
         z = ( mlochuber(real(z)) + sqrt(-1)*mlochuber(imag(z)) );
-    else
-        % .' is non-conjugate transpose.
+    end
+    if dim == 2
+        % .' is non-conjugate transpose. mlochuber assumes observations are
+        % rows and variables are columns.
         z = ( mlochuber(real(z.')) + sqrt(-1)*mlochuber(imag(z.')) ).';
     end
-end        
-    
-if isfield(S,'ao')
-
-    Savg.Mean.ao = mean(S.ao,3);
-    Savg.Mean.bo = mean(S.bo,3);
-    Savg.Median.ao = median(S.ao,3);
-    Savg.Median.bo = median(S.bo,3);
-    Savg.Huber.ao = mlochuber(squeeze(S.ao)')';
-    Savg.Huber.bo = mlochuber(squeeze(S.bo)')';
-
-else
-
-    Savg.Mean.fe = S.fe;
-    Savg.Median.fe = S.fe;
-    Savg.Huber.fe  = S.fe;
-
-    fe = S.fe;
-    
-    for i = 1:4
-
-        z = squeeze(S.Z(:,i,:));
-
-        nancol = NaN*ones(size(z,1),1);
-
-        W = ones(size(z));
-        z = z.*W;
-        
-        % Z
-        Savg.Mean.Z(:,i)        = mean(z,2);
-        Savg.Mean.Z_StdErr(:,i) = std(z,0,2)/sqrt(size(z,2));
-
-        Savg.Median.Z(:,i)          = cmedian(z,2);
-        Savg.Median.Z_StdError(:,i) = Savg.Mean.Z_StdErr(:,i);
-
-        Savg.Huber.Z(:,i) = nancol;
-        Savg.Huber.Z_StdError(:,i) = nancol;
-        if (size(z,2) > 2) % Need more than two points to compute 
-            Savg.Huber.Z(:,i) = cmlochuber(z,2);
-            Savg.Huber.Z_StdError(:,i) = Savg.Mean.Z_StdErr(:,i);
+    if dim == 3
+        for i = 1:size(z,2)
+            za(:,i) = cmlochuber(squeeze(z(:,i,:)),2);
         end
-
-        % |Z|
-        Savg.Mean.Zabs(:,i)  = mean(abs(z),2);
-        Savg.Mean.Zabs2(:,i) = abs(Savg.Mean.Z(:,i));
-
-        Savg.Mean.Zabs_StdErr(:,i)  = std(abs(z),0,2)/sqrt(size(z,2));            
-        Savg.Mean.Zabs2_StdErr(:,i) = Savg.Mean.Zabs_StdErr(:,i);
-        
-        Savg.Median.Zabs(:,i)  = median(abs(z),2);
-        Savg.Median.Zabs2(:,i) = abs(Savg.Median.Z(:,i));
-        Savg.Median.Zabs_StdErr(:,i)  = Savg.Mean.Zabs_StdErr(:,i);
-        Savg.Median.Zabs2_StdErr(:,i) = Savg.Mean.Zabs_StdErr(:,i);
-
-        Savg.Huber.Zabs(:,i)  = nancol;
-        Savg.Huber.Zabs2(:,i) = nancol;
-        Savg.Huber.Zabs_StdErr(:,i)  = nancol;
-        Savg.Huber.Zabs2_StdErr(:,i) = nancol;
-        
-        if (size(z,2) > 2) % Need more than two points to compute 
-            % mlochuber not applicable to on-sided distribution so
-            % Savg.Huber.Zabs(:,i)  = mlochuber(abs(z)')';
-            % is not applicable.
-            Savg.Huber.Zabs2(:,i) = abs(Savg.Huber.Z(:,i));
-            Savg.Huber.Zabs2_StdErr(:,i) = Savg.Mean.Zabs_StdErr(:,i);
-        end
-
-        % Phi
-        phi = atan2(imag(z),real(z));
-        phi = unwrap(phi,[],2);
-
-        Savg.Mean.Phi(:,i)   = mean(phi,2);
-        Savg.Mean.Phi2(:,i)  = atan2(imag(Savg.Mean.Z(:,i)),real(Savg.Mean.Z(:,i)));
-        Savg.Mean.Phi_StdErr(:,i)  = std(phi,0,2)/sqrt(size(z,2));            
-        Savg.Mean.Phi2_StdErr(:,i) = Savg.Mean.Phi_StdErr(:,i);
-        
-        Savg.Median.Phi(:,i)  = median(phi,2);
-        Savg.Median.Phi2(:,i) = atan2(imag(Savg.Median.Z(:,i)),real(Savg.Median.Z(:,i)));
-        Savg.Mean.Phi_StdErr(:,i)  = Savg.Mean.Phi_StdErr(:,i);
-        Savg.Mean.Phi2_StdErr(:,i) = Savg.Mean.Phi_StdErr(:,i);
-
-        Savg.Huber.Phi(:,i)  = nancol;
-        Savg.Huber.Phi2(:,i) = nancol;
-        Savg.Huber.Phi_StdErr(:,i)  = nancol;
-        Savg.Huber.Phi2_StdErr(:,i) = nancol;
-        if (size(z,2) > 2) % Need more than two points to compute 
-            Savg.Huber.Phi(:,i)  = mlochuber(phi.')';
-            Savg.Huber.Phi2(:,i) = atan2(imag(Savg.Huber.Z(:,i)),real(Savg.Huber.Z(:,i)));
-        end
-
-        % H
-        h = squeeze(S.H(:,i,:));
-        Savg.Mean.H(:,i)   = mean(h,2);
-        Savg.Mean.H_StdErr(:,i) = std(h,0,2)/sqrt(size(h,2));
-
-        Savg.Median.H(:,i) = median(h,2);
-        Savg.Median.H_StdErr(:,i) = Savg.Mean.H_StdErr(:,i);
-        
-        % Very slow. TODO: Consider only a restricted range of h.
-        %V = sort(bootstrp(1000,@mean,abs(h).').',2);
-        %S.H_Mean_StdErr_Upper(:,i) = V(:,150); 
-        %S.H_Mean_StdErr_Lower(:,i) = V(:,1000-150);        
-        %S.H_Huber(:,i)  = ( mlochuber(h') )';
-        % transposes b/c mlochuber only averages across rows.
-
     end
+end        
+
+function w = weights(S,i,method)
+    if strmatch('PE',method,'exact')
+        if i < 3
+            tmp = squeeze(S.PE(1,1,:))';
+        else
+            tmp = squeeze(S.PE(1,2,:))';
+        end
+        w = repmat(tmp,size(S.Z,1),1);
+        w = w/mean(tmp);
+    else
+        w = ones([size(S.Z,1),size(S.Z,3)]);
+    end
+end
+
+keys = fieldnames(Method);
+for f = 1:length(keys)
+    
+    Savg.(keys{f}).In_PSD  = Method.(keys{f}).Function(S.In_PSD,3); 
+    Savg.(keys{f}).Out_PSD = Method.(keys{f}).Function(S.Out_PSD,3); 
+
+    if isfield(S,'ao')
         
+        Savg.(keys{f}).ao(1,:) = Method.(keys{f}).Function(squeeze(S.ao),2);
+        Savg.(keys{f}).bo(1,:) = Method.(keys{f}).Function(squeeze(S.bo),2);
+        for i = 1:2
+            Savg.(keys{f}).ao_CI95(:,i) = boot(squeeze(S.ao(1,i,:)),@(x) Method.(keys{f}).Function(x,1),1000,50);
+            Savg.(keys{f}).bo_CI95(:,i) = boot(squeeze(S.bo(1,i,:)),@(x) Method.(keys{f}).Function(x,1),1000,50);        
+        end
+
+    else            
+        tmp = getfield(Method,keys{f});
+        afunc = tmp.Function;
+        wstr = '';
+        if isfield(tmp,'WeightStr')
+            wstr = tmp.WeightStr;
+        end
+        
+        T = struct();
+        T.fe = S.fe;
+
+        for i = 1:size(S.Z,2)
+            z = squeeze(S.Z(:,i,:));
+            if length(wstr) > 0
+                W = weights(S,i,wstr);
+                z = z.*W;
+            end
+
+            % Z
+            T.Z(:,i)        = afunc(z,2);
+            T.Z_StdErr(:,i) = std(z,0,2)/sqrt(size(z,2));
+            T.Z_CI95(:,i,:) = boot(transpose(z),@(x) cmean(x,1),1000,159);
+            
+            % |Z|
+            T.Zabs(:,i)  = afunc(abs(z),2);
+            T.Zabs2(:,i) = abs(T.Z(:,i));
+
+            T.Zabs_StdErr(:,i)  = std(abs(z),0,2)/sqrt(size(z,2));
+            T.Zabs_CI95(:,i,:)  = boot(abs(z)',@(x) mean(x,1),1000,159);
+            T.Zabs2_StdErr(:,i) = T.Zabs_StdErr(:,i);
+
+            % Phi
+            phi = atan2(imag(z),real(z));
+            phi = unwrap(phi,[],2);
+
+            T.Phi(:,i)   = afunc(phi,2);
+            T.Phi2(:,i)  = atan2(imag(T.Z(:,i)),real(T.Z(:,i)));
+            T.Phi_StdErr(:,i) = std(phi,0,2)/sqrt(size(z,2));            
+            T.Phi_CI95(:,i,:)   = boot(phi',@(x) mean(x,1),1000,159);
+            T.Phi2_StdErr(:,i) = T.Phi_StdErr(:,i);
+
+            % H
+            h = squeeze(S.H(:,i,:));
+            if strcmp(keys{f},'Huber')
+                % mlochuber too slow. TODO: Consider only a restricted range of h.
+                T.H(:,i) = repmat(NaN,size(h,1),1);
+                T.H_StdErr(:,i) = repmat(NaN,size(h,1),1);
+            else
+                T.H(:,i) = afunc(h,2);
+                T.H_StdErr(:,i) = std(h,0,2)/sqrt(size(h,2));
+                % Bootstrap is too slow for this.
+            end
+        end
+        Savg = setfield(Savg,keys{f},T);
+    end
 end
 
 for k = 1:size(S.In,3)
 
-    if isfield(S,'ao')    
-        Savg.Mean.Predicted(:,1,k) = Savg.Mean.ao(1)*S.In(:,1,k) + Savg.Mean.bo(1)*S.In(:,2,k);
-        Savg.Mean.Predicted(:,2,k) = Savg.Mean.ao(2)*S.In(:,1,k) + Savg.Mean.bo(2)*S.In(:,2,k);
+    keys = fieldnames(Savg);
+    for f = 1:length(keys)
+        T = getfield(Savg,keys{f});
+        if isfield(S,'ao')
+            Savg.(keys{f}).Predicted(:,1,k) = Savg.(keys{f}).ao(1)*S.In(:,1,k) + Savg.(keys{f}).bo(1)*S.In(:,2,k);
+            Savg.(keys{f}).Predicted(:,2,k) = Savg.(keys{f}).ao(2)*S.In(:,1,k) + Savg.(keys{f}).bo(2)*S.In(:,2,k);
+        else
+            %keys{f}
+            Savg.(keys{f}).Predicted(:,:,k) = Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
+        end
+        Savg.(keys{f}).PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
+        Savg.(keys{f}).MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
+        Savg.(keys{f}).CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
 
-        Savg.Median.Predicted(:,1,k) = Savg.Median.ao(1)*S.In(:,1,k) + Savg.Median.bo(1)*S.In(:,2,k);
-        Savg.Median.Predicted(:,2,k) = Savg.Median.ao(2)*S.In(:,1,k) + Savg.Median.bo(2)*S.In(:,2,k);
-        Savg.Huber.Predicted(:,1,k) = Savg.Huber.ao(1)*S.In(:,1,k) + Savg.Huber.bo(1)*S.In(:,2,k);
-        Savg.Huber.Predicted(:,2,k) = Savg.Huber.ao(2)*S.In(:,1,k) + Savg.Huber.bo(2)*S.In(:,2,k);
-    else        
-        Savg.Mean.Predicted(:,:,k)   = Zpredict(fe,Savg.Mean.Z,S.In(:,:,k));
-        Savg.Median.Predicted(:,:,k) = Zpredict(fe,Savg.Median.Z,S.In(:,:,k));
-        Savg.Huber.Predicted(:,:,k)  = Zpredict(fe,Savg.Huber.Z,S.In(:,:,k));    
+        Savg.(keys{f}).Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.(keys{f}).Predicted(:,:,k),opts);    
+        Savg.(keys{f}).Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.(keys{f}).Predicted(:,:,k),opts);
+        Savg.(keys{f}).SN(:,:,k)        = S.Out_PSD(:,:,k)./Savg.(keys{f}).Error_PSD(:,:,k);    
     end
     
-    Savg.Mean.PE(1,:,k)    = pe(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-    Savg.Median.PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-    Savg.Huber.PE(1,:,k)   = pe(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-    Savg.Mean.MSE(1,:,k)   = mse(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-    Savg.Median.MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-    Savg.Huber.MSE(1,:,k)  = mse(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-    Savg.Mean.CC(1,:,k)    = cc(S.Out(a:b,:,k),Savg.Mean.Predicted(a:b,:,k));
-    Savg.Median.CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.Median.Predicted(a:b,:,k));
-    Savg.Huber.CC(1,:,k)   = cc(S.Out(a:b,:,k),Savg.Huber.Predicted(a:b,:,k));
-
-    Savg.Mean.Error_PSD(:,:,k)   = smoothSpectra(S.Out(:,:,k)-Savg.Mean.Predicted(:,:,k),opts);
-    Savg.Median.Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.Median.Predicted(:,:,k),opts);
-    Savg.Huber.Error_PSD(:,:,k)  = smoothSpectra(S.Out(:,:,k)-Savg.Huber.Predicted(:,:,k),opts);
-
-    Savg.Mean.Coherence(:,:,k)   = smoothCoherence(S.Out(:,:,k),Savg.Mean.Predicted(:,:,k),opts);
-    Savg.Median.Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.Median.Predicted(:,:,k),opts);
-    Savg.Huber.Coherence(:,:,k)  = smoothCoherence(S.Out(:,:,k),Savg.Huber.Predicted(:,:,k),opts);
-
-    Savg.Mean.SN(:,:,k)   = S.Out_PSD(:,:,k)./Savg.Mean.Error_PSD(:,:,k);    
-    Savg.Median.SN(:,:,k) = S.Out_PSD(:,:,k)./Savg.Median.Error_PSD(:,:,k);    
-    Savg.Huber.SN(:,:,k)  = S.Out_PSD(:,:,k)./Savg.Huber.Error_PSD(:,:,k);    
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-    fprintf('transferfnAverage.m: Interval %02d: PEx in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-             k,S.PE(1,1,k),Savg.Mean.PE(1,1,k),Savg.Median.PE(1,1,k),Savg.Huber.PE(1,1,k));
-    fprintf('transferfnAverage.m: Interval %02d: PEy in-sample: %6.3f; using: mean: %6.3f | median %6.3f | huber %6.3f\n',...
-             k,S.PE(1,2,k),Savg.Mean.PE(1,2,k),Savg.Median.PE(1,2,k),Savg.Huber.PE(1,2,k));
-
+    cstr = ['x','y'];
+    for c = 1:size(Savg.(keys{1}).PE,2)
+        fprintf('transferfnAverage.m: Interval %02d: %s PE in-sample: %6.3f; using: | ', k,cstr(c),S.PE(1,c,k));
+        for f = 1:length(keys)
+            fprintf('%s: %6.3f | ',keys{f},Savg.(keys{f}).PE(1,c,k));
+        end
+        fprintf('\n');
+    end
+    
 end
 
+keys = fieldnames(Savg);
+for f = 1:length(keys)
+    for i = 1:size(Savg.(keys{1}).PE,2)
+        Savg.(keys{f}).PE_CI95(:,i) = boot( squeeze( Savg.(keys{f}).PE(1,i,:) ),@(x) mean(x,1),1000,50);
+        Savg.(keys{f}).CC_CI95(:,i) = boot( squeeze( Savg.(keys{f}).CC(1,i,:) ),@(x) mean(x,1),1000,50);
+        Savg.(keys{f}).MSE_CI95(:,i) = boot( squeeze( Savg.(keys{f}).MSE(1,i,:) ),@(x) mean(x,1),1000,50);
+    end
+end
 
 end
 

@@ -16,7 +16,7 @@ if ~exist('F','var')
 end
 
 fdir = 'figures/predictions';
-png = 0;
+png = 1;
 figprep(png,1000,800);
 
 for k = 22:22%size(F.GE.Predicted,3)

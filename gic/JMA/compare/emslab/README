@@ -1,0 +1,6 @@
+Files ems01.asc and emslab.txt obtained from
+
+http://www.complete-mt-solutions.com/mtnet/data/emslab/emslab.txt
+
+emsl2columns.py converts ems01.asc file to ems01.csv which is a CSV file
+with each line containing measurements at a given timestep.

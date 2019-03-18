@@ -7,6 +7,8 @@ opts.filestr = sprintf('options-%d',rn);
 % # of points at start and end to trim before computing pe/cc/mse
 opts.td.Ntrim = 600;
 
+opts.td.detrend = 0;
+
 opts.td.transform = 'none'; % pca
 
 opts.td.window.function = @rectwin;
@@ -55,6 +57,14 @@ elseif rn == 4
     opts.description = 'Robust regression';
     opts.fd.regression.method = 3; 
     opts.fd.regression.methodstr = 'robust_on_Z';
+elseif rn == 5
+    opts.description = 'PCA rotation';
+    opts.td.transform = 'pca';
+    %opts.td.transform.methodstr = 'pca';
+elseif rn == 6
+    opts.description = '1.5 day window';
+    opts.td.window.width = 3600*48;
+    opts.td.window.shift = 3600*24;
 else
     error('Invalid option set number');
 end

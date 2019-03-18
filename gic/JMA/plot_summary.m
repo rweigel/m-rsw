@@ -1,4 +1,4 @@
-function plot_model_summary(GEo,GE,GBo,GB,GBa,EB,filestr,png)
+function plot_summary(GEo,GE,GBo,GB,GBa,EB,filestr,png)
 
 if isfield(GEo,'Mean')
     GEo = GEo.Mean;
@@ -6,7 +6,7 @@ if isfield(GEo,'Mean')
     GBo = GBo.Mean;
     GB  = GB.Mean;
     GBa = GBa.Mean;
-    Eb  = EB.Mean;
+    EB  = EB.Mean;
 end
 
 fn = 1;
@@ -31,6 +31,15 @@ if allfigs
     signaltoNoiseMean1(GE,GEo,GB,GBa);
 end
 
+fname = sprintf('mat/main_%s.mat',filestr);
+fprintf('main.m: Loading %s\n',fname);
+F = load(fname);
+fprintf('main.m: Loaded %s\n',fname);    
+keyboard
+
+signaltoNoiseInSample1(F.GE,F.GEo,F.GB,F.GBa);
+signaltoNoiseInSample2(F.GE,F.GEo,F.GB,F.GBa);
+signaltoNoiseMean1(F.GE.Out_PSD,GE,GEo,GB,GBa);
 signaltoNoiseMean2(GE,GEo,GB,GBa);
 
 if allfigs
@@ -369,58 +378,57 @@ end
 
 function signaltoNoiseInSample1(GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GEo.Output_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GEo.Out_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         hold on;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GE.Out_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Out_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2)
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GB.Out_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
         title('Signal to noise - In-Sample Predictions (method 1)');
         vlines(1/F.GE.fe(2));
-        legend('GIC','Model 1 ($G_o$) Error','Model 2 ($G_E$) Error','Model 3 ($G_{E''}$) Error','Model 4 ($G_B$) Error','Location','Best');
+        legend('Model 1','Model 2','Model 3','Model 4','Location','NorthWest');    
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end
 
 function signaltoNoiseInSample2(GE,GEo,GB,GBa)
-    
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GEo.Output_PSD(:,2,:))./squeeze(GEo.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GEo.Out_PSD(:,2,:))./squeeze(GEo.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
        hold on;
-        loglog(1./GE.fe,mean(squeeze(GE.Output_PSD(:,2,:))./squeeze(GE.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(GE.Out_PSD(:,2,:))./squeeze(GE.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GBa.Output_PSD(:,2,:))./squeeze(GBa.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GBa.Out_PSD(:,2,:))./squeeze(GBa.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2)
-        loglog(1./GB.fe,mean(squeeze(GB.Output_PSD(:,2,:))./squeeze(GB.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(GB.Out_PSD(:,2,:))./squeeze(GB.Error_PSD(:,2,:)),2),...
                'Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
         title('Signal to noise - In-Sample Predictions (method 2)');
         vlines(1/F.GE.fe(2))
-        legend('GIC','Model 1 ($G_o$) Error','Model 2 ($G_E$) Error','Model 3 ($G_{E''}$) Error','Model 4 ($G_B$) Error','Location','Best');
+        legend('Model 1','Model 2','Model 3','Model 4','Location','NorthWest');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end
 
-function signaltoNoiseMean1(GE,GEo,GB,GBa)
+function signaltoNoiseMean1(Out_PSD,GE,GEo,GB,GBa)
     fn=fn+1;figure(fn);clf;
-        loglog(1./GE.fe,mean(squeeze(GE.Out_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(Out_PSD(:,2,:)),2)./mean(squeeze(GEo.Error_PSD(:,2,:)),2),...
                'k','Marker','.','MarkerSize',20,'LineWidth',2);
         hold on;
-        loglog(1./GE.fe,mean(squeeze(GE.Out_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
+        loglog(1./GE.fe,mean(squeeze(Out_PSD(:,2,:)),2)./mean(squeeze(GE.Error_PSD(:,2,:)),2),...
                'r','Marker','.','MarkerSize',20,'LineWidth',2);
-        loglog(1./GB.fe,mean(squeeze(GBa.Out_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(Out_PSD(:,2,:)),2)./mean(squeeze(GBa.Error_PSD(:,2,:)),2),...
                'g','Marker','.','MarkerSize',20,'LineWidth',2)
-        loglog(1./GB.fe,mean(squeeze(GB.Out_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
+        loglog(1./GB.fe,mean(squeeze(Out_PSD(:,2,:)),2)./mean(squeeze(GB.Error_PSD(:,2,:)),2),...
                'b','Marker','.','MarkerSize',20,'LineWidth',2);
         grid on;
         title('Signal to noise - $<GIC(\omega)>/<Error(\omega)>$');
         vlines(1/GE.fe(2))
-        legend('GIC','Model 1 ($G_o$) Error','Model 2 ($G_E$) Error','Model 3 ($G_{E''}$) Error','Model 4 ($G_B$) Error','Location','Best');
+        legend('Model 1','Model 2','Model 3','Model 4','Location','NorthWest');
         xlabel('Period [s]');
         exponent_relabel(gca,'y');
 end

@@ -32,16 +32,21 @@ axes(ha(3));
     %th = title('Memambetsu 187 kV substation');    
 axes(ha(1));
     plot(tB,B(:,1:2));
-    grid on;box on;
-    %xlabel(sprintf('Days since %s',dateo));
+    grid on;box on;hold on;
+    if size(B,3) > 1
+       plot(tB,squeeze(B(:,1:2,2)));
+    end
     ylabel('[nT]');
     set(gca,'XLim',xl);
     datetick('x','HH:MM');
     datetick_adjust();
-    set(gca,'XTickLabel',[]);    
-    [lh,lo] = legend('$B_x$','$B_y$','Location','SouthWest');
+    set(gca,'XTickLabel',[]);
+    if size(B,3) > 1
+        [lh,lo] = legend('$B_x$ MMB','$B_y$ MMB','$B_x$ KAK','$B_y$ KAK','Location','SouthWest');
+    else
+        [lh,lo] = legend('$B_x$ MMB','$B_y$ MMB','Location','NorthWest');    
+    end
     set(lo,'LineWidth',2);
-    %th = title('Memambetsu Magnetic Observatory (MMB)');
 axes(ha(2));
     plot(tE,E);
     grid on;box on;
@@ -50,9 +55,8 @@ axes(ha(2));
     datetick('x','HH:MM');
     datetick_adjust();
     set(gca,'XTickLabel',[]);    
-    [lh,lo] = legend('$E_x$','$E_y$','Location','NorthWest');
+    [lh,lo] = legend('$E_x$ MMB','$E_y$ MMB','Location','NorthWest');
     set(lo,'LineWidth',2);
-    %th = title('Memambetsu Magnetic Observatory (MMB)');
 
 if png
     figsave(sprintf('%s/plot_raw_All_%s.pdf',dirfig,dateo));

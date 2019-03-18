@@ -10,5 +10,5 @@ b = find(tE == tGIC(end));
 
 % Trim off start and end of E and B so cover same timespan as GIC
 E = E(a:b,:); 
-B = B(a:b,:);
+B = B(a:b,:,:);
 t = tGIC;

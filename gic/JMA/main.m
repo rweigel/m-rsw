@@ -1,7 +1,7 @@
-function main(rn)
+%function main(rn)
 
-%clear
-%rn = 1;
+clear
+rn = 5;
 
 setpaths;
 
@@ -38,7 +38,6 @@ opts.data.dateos = dateos;
 opts.data.datefs = datefs;
 opts.data.dts    = dts;
 
-
 fname = sprintf('log/main_log_%s.txt',filestr);
 if exist(fname,'file'),delete(fname);end
 diary(fname);
@@ -49,9 +48,14 @@ fprintf('-----------------------------------------------------------------------
 printstruct(opts)
 fprintf('------------------------------------------------------------------------\n')
 
+if opts.td.detrend
+    [GICt,Et,Bt,GICa,Ea,Ba] = computeTrend(GIC,E,B);
+end
+
+di = 0;
 for i = 1:length(dateos)
 %for i = 1:2
-
+    
     fprintf('------------------------------------------------------------------------\n')
     fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
     fprintf('------------------------------------------------------------------------\n')
@@ -60,18 +64,42 @@ for i = 1:length(dateos)
     datef = datefs{i};
     dt    = dts(i);
 
+    i = i-di;
+
+    if (datenum(datef,'yyyymmdd')-datenum(dateo,'yyyymmdd')+1)*86400 < opts.td.window.width
+        di = di+1;
+        fprintf('main.m: Skipping interval %s-%s due to opts.td.window.width\n',dateo,datef);
+        continue;
+    end
+    
+
+    % Read 1s B data for remote reference
+    [~,~,tBr,Br] = prep_EB(dateo,datef,'kak',regenfiles); 
+
     % Read 1s E and B data from Kyoto
-    [tE,E,tB,B] = prep_EB(dateo,datef,regenfiles); 
+    [tE,E,tB,B] = prep_EB(dateo,datef,'mmb',regenfiles); 
 
     % Read GIC data from Watari
     % First column is raw, second is 1 Hz filtered.
     [tGIC,GIC]  = prep_GIC(dateo,datef,regenfiles);        
 
+    if opts.td.detrend
+        % Remove daily trend
+        E = removeTrend(E,Et);
+        B = removeTrend(B,Bt);
+        Br = removeTrend(B,Brt);        
+        GIC = removeTrend(GIC,GICt);
+    end
+    
+    B(:,:,2) = Br;
+    
     % Correct for clock drift
     tGIC = tGIC + dt*1000;
 
-    if intmplot
-        close all;
+    if 1 || intmplot
+        if i == 1
+            close all;
+        end
         plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC raw','GIC 1 Hz filtered'});
     end
     
@@ -87,12 +115,13 @@ for i = 1:length(dateos)
     
     [GIC,E,B] = removemean(GIC,E,B);
 
-    if strmatch('pca',opts.td.transform,'exact')
+    if strcmp('pca',opts.td.transform)
         if i == 1
-            [V,D] = eig(cov(E));
+            [RE,DE] = eig(cov(E(:,1:2)));
+            [RB,DB] = eig(cov(B(:,1:2)));            
         end
-        E = fliplr((V*E')');
-        B(:,1:2) = fliplr((V*B(:,1:2)')');
+        B(:,1:2) = fliplr((RB*B(:,1:2)')');
+        E(:,1:2) = fliplr((RE*E(:,1:2)')');
     end
     
     if intmplot
@@ -118,8 +147,22 @@ for i = 1:length(dateos)
     fprintf('main.m: %s E/B\n',dateo);
     EBc{i} = transferfnFD(B(:,1:2),E,opts,t);
 
+    fprintf('main.m: %s E/B Remote Reference\n',dateo);
+    topts = opts;
+    topts.fd.regression.method = 1; % Remote reference not implemented for other methods.
+    EBrc{i} = transferfnFD(B(:,1:2,:),E,topts,t);
+    
     fprintf('main.m: %s G/E''\n',dateo);
     GBac{i} = transferfnAlt(GEc{i},EBc{i},opts,t);
+
+    fprintf('main.m: %s G/Eo''\n',dateo);
+    Eprime = [];
+    GICx = [];
+    for zz = 1:size(EBc{i}.Predicted,3)
+        Eprime = [Eprime;EBc{i}.Predicted(:,:,zz)];
+        %GICx   = [GICx;EBc{i}.Out(:,:,zz)];
+    end
+    GBoac{i} = transferfnConst(Eprime,GIC,opts,t);
     
 end
 
@@ -128,7 +171,9 @@ GBo  = transferfnCombine(GBoc);
 GE   = transferfnCombine(GEc);
 GB   = transferfnCombine(GBc);
 EB   = transferfnCombine(EBc);
+EBr  = transferfnCombine(EBrc);
 GBa  = transferfnCombine(GBac);
+GBoa = transferfnCombine(GBoac);
 
 fprintf('________________________________________________________________\n');
 
@@ -140,28 +185,61 @@ else
     transferfnAverageFunction = @transferfnAverage;    
 end
 
-fprintf('main.m: %s G/Eo\n',dateo);
+fprintf('main.m: G/Eo\n');
 GEo_avg = transferfnAverageFunction(GEo,opts);
+transferfnSummary(GEo,GEo_avg,'Model 1 - G/Eo');
 
-fprintf('main.m: %s G/Bo\n',dateo);
+fprintf('main.m: G/E''o\n');
+GBoa_avg = transferfnAverageFunction(GBoa,opts);
+transferfnSummary(GBoa,GBoa_avg,'Model 1'' - G/E''o');
+
+fprintf('main.m: G/Bo\n');
 GBo_avg = transferfnAverageFunction(GBo,opts);
+transferfnSummary(GBo,GBo_avg,'Model 0 - G/Bo');
 
-fprintf('main.m: %s G/E\n',dateo);
+fprintf('main.m: G/E\n');
 GE_avg = transferfnAverageFunction(GE,opts);
+%transferfnSummary(GE,GE_avg,'Model 2 - G/E');
 
-fprintf('main.m: %s G/B\n',dateo);
+fprintf('main.m: G/E No stack\n');
+GE_ns = transferfnFD2(GE,opts);
+GE_avg.NoStack_OLS = GE_ns.OLS;
+GE_avg.NoStack_Robust1 = GE_ns.Robust1;
+GE_avg.NoStack_Robust2 = GE_ns.Robust2;
+transferfnSummary(GE,GE_avg,'G/E No stack');
+
+fprintf('main.m: G/B\n');
 GB_avg = transferfnAverageFunction(GB,opts);
+%transferfnSummary(GB,GB_avg,'Model 4 - G/B');
 
-fprintf('main.m: %s G/E''\n',dateo);
+fprintf('main.m: G/B No stack\n');
+GB_ns = transferfnFD2(GB,opts);
+GB_avg.NoStack_OLS = GB_ns.OLS;
+GB_avg.NoStack_Robust1 = GB_ns.Robust1;
+GB_avg.NoStack_Robust2 = GB_ns.Robust2;
+transferfnSummary(GB,GB_avg,'G/B');
+
+fprintf('main.m: G/E''\n');
 GBa_avg = transferfnAverageFunction(GBa,opts);
+transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
-fprintf('main.m: %s E/B\n',dateo);
+fprintf('main.m: E/B\n');
 EB_avg  = transferfnAverageFunction(EB,opts);
+EB_avg.Fuji = transferfnFuji(EB,'mmb',opts);
+%transferfnSummary(EB,EB_avg,'E/B')
 
-fprintf('main.m: %s G/E Fuji Z\n',dateo);
-EB_avg.Fuji = transferfnFuji(EB,opts);
+fprintf('main.m: E/B No stack\n');
+EB_ns = transferfnFD2(EB,opts);
+EB_avg.NoStack_OLS = EB_ns.OLS;
+EB_avg.NoStack_Robust1 = EB_ns.Robust1;
+EB_avg.NoStack_Robust2 = EB_ns.Robust2;
+transferfnSummary(EB,EB_avg,'E/B');
 
-savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
+fprintf('main.m: E/B Remote Reference\n');
+EBr_avg = transferfnAverageFunction(EBr,opts);
+transferfnSummary(EBr,EBr_avg,'E/B Remote Reference')
+
+savevars = {'opts','GEo','GBo','GE','GB','EB','EBr','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','EBr_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});

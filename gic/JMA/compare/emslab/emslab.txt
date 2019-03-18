@@ -1,0 +1,564 @@
+3 MARCH 1987
+Modification History:
+***01 June 1989: added comments regarding 1s and 10s filters on tellurics
+ 
+This is README file for distribution EMSLAB data tape from Alan G. Jones, now of 
+DIAS, but formerly of the Geological Survey of Canada.
+Please address all communication to:-
+Prof. Alan G. Jones
+School of Cosmic Physics
+Dublin Institute for Advanced Studies
+5 Merrion Square
+Dublin 2
+Ireland
+tel: +353-1-662-1333
+email: alan@cp.dias.ie
+ 
+The EMSLAB time series data may be used for research and analysis purposes provided
+that you agree to the following caveats:
+(1) On any publication resulting from any use of this data, I am invited to be
+    a co-author. However, should you make any statements in the publication
+    with which I do not agree, and should we be unable to come to some
+    compromise, then I will only require that the data source be acknowledged.
+    I am prepared to work with you in a co-operative manner if you so desire.
+(2) This data is given on a "caveat emptor" basis. There are still "glitches"
+    in it,mainly "steps" as discussed for sites EMSL02, EMSL05 & EMSL11. I
+    have tried to clean it up as much as I can.
+(3) You inform me that you have downloaded the data.
+(4) You inform me of any major corrections to the data that you make. This
+    is so that I can keep an updated error file for distribution.
+ 
+
+ 
+File       Contents             length in records
+1          this info            563
+2          EMSL01               97966
+3          EMSL02               87718
+4          EMSL04               87718
+5          EMSL05               97112
+6          EMSL06               95465
+7          EMSL08               96807
+8          EMSL10               87840
+9          EMSL11               87596
+10         EMSL13               84851
+11         EMSL14               84729
+ 
+ 
+DATA
+====
+ 
+The 5 field components were sampled at 20 s, and the data are stored between
+hour markers, which are on the hour. The data are multiplexed, and are stored
+in the order Hx(H), Hy(D), Hz(Z), Ex(N), Ey(E), in units of 1/10 nT and
+1/10 mV/km respectively.
+ 
+The data format is a "header" record, giving the 6-character station code
+followed by a 10-character hour time (yymmddhhmm), followed by 60 records
+giving the data for that hour in 15I5. The first data points AFTER the hour
+mark are for one digitizing interval later.
+Thus the data for the hour beginning 1 pm on 16th September, 1985, for station
+MF1.01 (EMSL01) looks like:-
+ 
+EMSL018509161300
+   26  615   53   93  195   21  615   53   97  195   24  617   56   93  187
+   24  620   56  102  184   24  625   58  102  176   26  634   63  115  161
+etc.
+where the Hx field at 13:00:20 is  2.6 nT
+          Hy                      61.5 nT
+          Hz                       5.3 nT
+          Ex                       9.3 mV/km
+          Ey                      19.5 mV/km
+ 
+The missing data marker (caused either by cassette changing, no data, off-scale
+components, or data deleted by myself because of known errors) is  -9999.
+ 
+The data are in GEOMAGNETIC co-ordinates, and an appropriate general
+declination value to use for all sites is  -19.5,  i.e., 19.5 degrees anti-
+clockwise, to rotate into geographical co-ordinates.
+ 
+ 
+ 
+ 
+INSTRUMENTS
+===========
+ 
+Magnetometers: EDA Fluxgates,
+               sensitivity of approx. 0.25 nT,
+               Filters: HiPass -3dB points at 40 s
+                       no LoPass filters used,
+                       (NOTE: the objective of these data were to give the MT
+                       responses out to 30000 s, so not all sites were
+                       sufficiently well protected to permit estimation of the
+                       GDS transfer functions much beyond that due to thermal
+                       effects. Please contact me for more information on this
+                       point if you wish to derive very long period GDS
+                       transfer functions)
+ 
+Tellurometers: generally 100 m dipoles, Pb-PbCO4 electrodes, X-array
+               configuration, contact to the ground ensured by using a
+               conducting jelly (amorphous silicate, salt & water)
+               sensitivity of typically 0.25 nV/km,
+               Filters: HiPass -3dB points at 40 s
+                        LoPass -3dB points at 30000 s
+               ***Additional HiPass filters on the telluric channels
+                  at both 1s and 10s. Thus there are three (3) HiPass
+                  filter stages, each of 2-pole Butterworth
+ 
+Recorders: DATEL cassette recorders with a 12 bit A/D
+           timing (by an hour mark) to better than 20 s with less than 20 s
+                  drift over one week
+           cassettes changed weekly (precise time of change available on
+                  request)
+ 
+Filters: 2-pole Butterworth filters with matched components such that the
+         filters can be characterized to better than 1% by their -3dB points.
+         See APPENDIX 1 for information on how to remove the filter response
+         from the cross-spectra
+ 
+System Box: An aluminium box with 2 inches of insulation on the sides and
+            bottom, and 4 inches of insulation on the top. Tests by Lawrie Law
+            and Ron Kurtz indicate that this insulation is equivalent to about
+            1 - 2 feet of earth.
+ 
+ 
+ 
+SITE INFORMATION
+================
+ 
+ 
+Site MF1.01 (EMSL01); Drat Creek     44 54.2N  123 55.1W   (10.6 km from coast)
+===============================================================================
+ 
+Site located in a wood with head buried well and system box well shaded.
+Unfortunately there was a small prking area nearby (within 100 m) so that
+there may be very occassional noise on the magnetic channels due to traffic
+18 July - 22 Sept continuous.
+Data of generally high quality with few problems, occassional offsets (See
+EMSL02).
+ 
+The following list gives on the first record:-
+(a) the station (EMSL01)
+(b) the time interval for which these calibration settings and filter -3dB
+    points are valid (8507072345-8507180115)
+(c) the number of channels (5)
+(d) the MT system used (MT#9),
+(e) the magnetometer used (31)
+(f) the tellurometer used (0841)
+(g) the Datel used (1029)
+followed by five records, one for each component, giving:-
+(a) the component name
+(b) the calibration factor (NOTE: do not use as this data is in field values)
+(c) the LoPass -3dB point
+(d) the HiPass -3dB point (NOTE: no HiPass filters on magnetic channels)
+(e1) the magnetometer calibration factor, or
+(e2) the dipole length followed by the gain factor on the tellurometer
+(f) the Datel calibration factor
+ 
+EMSL01 8507072345-8507180115 5 020   MT#9  Mag:31 Tell:0841 Datel:1029
+'H' 0.099906  42.8   0.0          Mag:0.0999360   Datel:0.9997779
+'D' 0.100004  46.6   0.0          Mag:0.0999940   Datel:1.0005559
+'Z' 0.100021  43.1   0.0          Mag:0.1000010   Datel:1.0001111
+'N' 18.1745   45.9   31027.1      Ex:55m   x1     Datel:0.9997779
+'E' 15.3892   40.6   30840.7      Ey:65m   x1     Datel:1.0003334
+EMSL01 8507180116-8508132239 5 020   MT#9  Mag:31 Tell:0841 Datel:1029
+'H' 0.099906  42.8   0.0          Mag:0.0999360   Datel:0.9997779
+'D' 0.100004  46.6   0.0          Mag:0.0999940   Datel:1.0005559
+'Z' 0.100021  43.1   0.0          Mag:0.1000010   Datel:1.0001111
+'N' 0.181745  45.9   31027.1      Ex:55m   x100   Datel:0.9997779
+'E' 0.153892  40.6   30840.7      Ey:65m   x100   Datel:1.0003334
+EMSL01 8508132240-8508202238 5 020   MT#9  Mag:31 Tell:0841 Datel:1029
+'H' 0.099906  42.8   0.0          Mag:0.0999360   Datel:0.9997779
+'D' 0.100004  46.6   0.0          Mag:0.0999940   Datel:1.0005559
+'Z' 0.100021  43.1   0.0          Mag:0.1000010   Datel:1.0001111
+'N' 0.363490  45.9   31027.1      Ex:55m   x50    Datel:0.9997779
+'E' 0.307784  40.6   30840.7      Ey:65m   x50    Datel:1.0003334
+EMSL01 8508202239-8509222203 5 020   MT#9  Mag:31 Tell:0841 Datel:1029
+'H' 0.099906  42.8   0.0          Mag:0.0999360   Datel:0.9997779
+'D' 0.100004  46.6   0.0          Mag:0.0999940   Datel:1.0005559
+'Z' 0.100021  43.1   0.0          Mag:0.1000010   Datel:1.0001111
+'N' 0.181745  45.9   31027.1      Ex:55m   x100   Datel:0.9997779
+'E' 0.153892  40.6   30840.7      Ey:65m   x100   Datel:1.0003334
+ 
+ 
+ 
+Site MF1.02 (EMSL02); Gravel Creek   44 53.5N  123 46.5W   (19.3 km from coast)
+===============================================================================
+ 
+Site very isolated in a wood with the head well buried and the system box well
+shaded.
+25 July - 22 Sept. missing 1 - 7 August.
+Many offsets in the data caused by sticking bits on the Datel recorder used.
+These offsets have been removed in an automatic manner by first-differencing,
+de-spiking, then first-integrating. This method looses the baseline such that
+successive cassettes of data may have a different "zero" line. Thus, if you
+intend to interpolate over a cassette change missing data interval, you must
+consider that there will probably be a "step" as well.
+ 
+EMSL02 8507082054-8508132134 5 020   MT#8  Mag:28 Tell:1334 Datel:1028
+'H' 0.09995   41.3   0.0          Mag:0.0999980   Datel:0.9995558
+'D' 0.09996   36.9   0.0          Mag:0.1000300   Datel:0.9993338
+'Z' 0.09997   43.4   0.0          Mag:0.1000100   Datel:0.9995558
+'N' 0.09996   36.8   30372.9      Ex:100m  x100   Datel:0.9995558
+'E' 0.12490   44.1   31322.0      Ey:80m   x100   Datel:0.9992228
+EMSL02 8508132134-8508202047 5 020   MT#8  Mag:28 Tell:1334 Datel:1028
+'H' 0.09995   41.3   0.0          Mag:0.0999980   Datel:0.9995558
+'D' 0.09996   36.9   0.0          Mag:0.1000300   Datel:0.9993338
+'Z' 0.09997   43.4   0.0          Mag:0.1000100   Datel:0.9995558
+'N' 0.09996   36.8   30372.9      Ex:100m  x100   Datel:0.9995558
+'E' 0.24980   44.1   31322.0      Ey:80m   x50    Datel:0.9992228
+EMSL02 8508202048-8509221934 5 020   MT#8  Mag:28 Tell:1334 Datel:1028
+'H' 0.09995   41.3   0.0          Mag:0.0999980   Datel:0.9995558
+'D' 0.09996   36.9   0.0          Mag:0.1000300   Datel:0.9993338
+'Z' 0.09997   43.4   0.0          Mag:0.1000100   Datel:0.9995558
+'N' 0.09996   36.8   30372.9      Ex:100m  x100   Datel:0.9995558
+'E' 0.12490   44.1   31322.0      Ey:80m   x100   Datel:0.9992228
+ 
+ 
+Site MF1.04 (EMSL04); Black Rock     44 51.2N  123 31.6W   (40.0 km from coast)
+===============================================================================
+ 
+Site located in an open old logging cut with is relativelt flat in the EW
+direction but does have a gradient estimated at some 4 m over the NS dipole.
+Thus there will be topographic effects on the Ex data. The head was reasonably
+well buried but the system box was exposed.
+24 July - 22 Sept. continuous.
+High quality data with few problems.
+ 
+EMSL04 8507100209-8509221638 5 020  MT#11  Mag:34 Tell:50546 Datel:1031
+'H' 0.10007   43.0   0.0          Mag:0.1000420   Datel:1.0003334
+'D' 0.10003   46.5   0.0          Mag:0.1000000   Datel:1.0003334
+'Z' 0.09994   42.5   0.0          Mag:0.0999300   Datel:1.0004447
+'N' 0.10007   47.8   29694.9      Ex:100m  x100   Datel:1.0006671
+'E' 0.10001   41.5   30203.4      Ey:100m  x100   Datel:1.0001111
+ 
+ 
+Site MF1.05 (EMSL05); Bridgeport     44 50.1N  123 24.6W   (48.9 km from coast)
+===============================================================================
+ 
+Site located in a very flat marshy plain within a small valley. The head was
+reasonably well buried but the system box was exposed. This should of been
+named the "100 DOLLAR SITE" as that was the "fee" I had to pay for the use of
+the field.
+17 July - 22 Sept. missing 24 - 31 July.
+Serious offsets as for Site EMSL02
+ 
+EMSL05 8507102024-8508131743 5 020  MT#6  Mag:25 Tell:1331 Datel:1026
+'H' 0.10011   42.0   0.0          Mag:0.1001542   Datel:0.9995558
+'D' 0.09982   39.6   0.0          Mag:0.0998881   Datel:0.9993338
+'Z' 0.10000   43.2   0.0          Mag:0.1000020   Datel:0.9998889
+'N' 0.09999   45.8   30033.9      Ex:100   x100   Datel:0.9998889
+'E' 0.09998   45.6   28135.6      Ey:100   x100   Datel:0.9997779
+EMSL05 8508131744-8509220039 5 020  MT#6  Mag:25 Tell:1331 Datel:1023
+'H' 0.10021   43.2   0.0          Mag:0.1001542   Datel:1.0005559
+'D' 0.09998   48.7   0.0          Mag:0.0998881   Datel:1.0008897
+'Z' 0.10011   44.4   0.0          Mag:0.1000020   Datel:1.0008897
+'N' 0.10009   46.1   30033.9      Ex:100   x100   Datel:1.0008897
+'E' 0.10020   47.0   28135.6      Ey:100   x100   Datel:1.0020040
+EMSL06 8507110108-8507181830 5 020  MT#3  Mag:18 Tell:1321 Datel:1023
+'H' 0.10002   43.2   0.0          Mag:0.0999600   Datel:1.0005559
+'D' 0.10005   48.7   0.0          Mag:0.0999600   Datel:1.0008897
+'Z' 0.10009   44.4   0.0          Mag:0.1000000   Datel:1.0008897
+'N' 0.10009   46.1   30406.8      Ex:100m  x100   Datel:1.0008897
+'E' 0.10020   47.0   31966.1      Ey:100m  x100   Datel:1.0020040
+ 
+ 
+Site MF2.06 (EMSL06); Monmouth       44 49.2N  123 17.3W   (58.8 km from coast)
+===============================================================================
+ 
+Site located in an experimental tree station. Head under 2 feet of soil and
+system box exposed.
+18 July - 22 Sept missing 25 - 31 July.
+Generally good data but with drifts in H & D that appear linear. Noisy during
+23 - 27 August due to seeds being harvested off the trees.
+ 
+EMSL06 8507181831-8509212313 5 020  MT#2  Mag:18 Tell:1285 Datel:1022
+'H' 0.09957   42.6   0.0          Mag:0.0999600   Datel:0.9961261
+'D' 0.09951   37.6   0.0          Mag:0.0999600   Datel:0.9954651
+'Z' 0.09956   47.9   0.0          Mag:0.1000000   Datel:0.9955752
+'N' 0.09950   39.1   30576.3      Ex:100m  x100   Datel:0.9950249
+'E' 0.09950   42.7   29457.6      Ey:100m  x100   Datel:0.9950249
+ 
+ 
+Site MF2.08 (EMSL08); Looney Butte   44 45.9N  122 58.6W   (84.1 km from coast)
+===============================================================================
+ 
+Site located in the unused corner of a hay field.
+18 July - 22 Sept. missing 24 - 30 July & 6 - 12 August.
+This part of the Willammette Valley is so populated that I had to come
+off-line to the South, and then had to use an unsatisfactory location just to
+the South of the outcropping Salem Hills (expect static-shift effects). The
+head was not well buried (the mud was like concrete to dig!) and John Booker
+later reburied it; and the electrode lines were as an L-array instead of the
+usual X-array configuration. The jelly may have dried out partially during the
+experiment, such that the ground contact resistance may have become very high.
+Use the telluric data with care; but the magnetic channels are OK.
+ 
+ 
+EMSL08 8507120343-8509212032 5 020  MT#7  Mag:27 Tell:1332 Datel:1027
+'H' 0.09993   46.8   0.0          Mag:0.0998921   Datel:1.0003334
+'D' 0.10010   43.1   0.0          Mag:0.1001041   Datel:1.0000000
+'Z' 0.09982   46.8   0.0          Mag:0.0998163   Datel:1.0000000
+'N' 0.12500   44.7   29355.9      Ex:80m  x100    Datel:1.0000000
+'E' 0.12504   46.1   30101.7      Ey:80m  x100    Datel:1.0003334
+ 
+ 
+Site MF2.10 (EMSL10); McCully Mtn    44 44.8N  122 38.2W  (111.6 km from coast)
+===============================================================================
+ 
+Site located on a flat large plateau with the head well buried and shaded, and
+the system box partially shaded.
+23 July - 22 Sept. continuous but with a magnetometer change on 30 July.
+High quality data but with a non-linear drift in H.
+ 
+EMSL10 8507122143-8509022145 5 020  MT#5  Mag:24 Tell:1330 Datel:1025
+'H' 0.09992   47.3   0.0          Mag:0.0999640   Datel:0.9995558
+'D' 0.09984   41.3   0.0          Mag:0.0999201   Datel:0.9992228
+'Z' 0.09993   48.7   0.0          Mag:0.1000260   Datel:0.9990010
+'N' 0.09990   48.0   29525.4      Ex:100m  x100   Datel:0.9990010
+'E' 0.13145   40.5   30678.0      Ey:80m   x100   Datel:0.9990010
+EMSL10 8509022146-8509211821 5 020  MT#5  Mag:24 Tell:1330 Datel:1021
+'H' 0.09996   47.0   0.0          Mag:0.0999640   Datel:1.0000000
+'D' 0.09988   45.4   0.0          Mag:0.0999201   Datel:0.9995558
+'Z' 0.10001   46.6   0.0          Mag:0.1000260   Datel:0.9998889
+'N' 0.09999   45.2   29525.4      Ex:100m  x100   Datel:0.9998889
+'E' 0.13145   47.3   30678.0      Ey:80m   x100   Datel:1.0002222
+ 
+ 
+Site MF2.11 (EMSL11); Tom Rock       44 43.0N  122 27.6W  (124.3 km from coast)
+===============================================================================
+ 
+Site located within the confines of an experimental tree farm. Very well shaded
+and cool with the head well buried and the system box well shaded.
+1 August - 21 Sept. continuous
+Offsets in the data removed automatically as for site EMSL02, also non-linear
+drifts in H.
+ 
+EMSL11 8507131928-8509211614 5 020  MT#1  Mag:08 Tell:1279 Datel:1034
+'H' 0.10006   42.8   0.0          Mag:0.100046   Datel:1.0001111
+'D' 0.10001   45.7   0.0          Mag:0.100000   Datel:1.0001111
+'Z' 0.10005   42.8   0.0          Mag:0.100021   Datel:1.0003334
+'N' 0.10001   41.0   30067.8      Ex:100m x100   Datel:1.0001111
+'E' 0.10003   42.4   28339.0      Ey:100m x100   Datel:1.0003334
+ 
+ 
+Site MF2.13 (EMSL13); Lucky Butte    44 37.9N  122 09.2W  (146.3 km from coast)
+===============================================================================
+ 
+Site located within in small copse of bushes in saddle-like topography (expect
+topographic effects). Head reasonably well buried (2 feet of soil) and system
+box shaded).
+24 July - 21 Sept. continuous.
+Excellent high quality data
+ 
+EMSL13 8507150112-8507310235 5 020  MT#4  Mag:22 Tell:1329 Datel:MT-4
+'H' 0.09999   48.5   0.0          Mag:0.0999660   Datel:1.0002222
+'D' 0.10012   48.1   0.0          Mag:0.1000160   Datel:1.0010010
+'Z' 0.09964   46.4   0.0          Mag:0.0995381   Datel:1.0010010
+'N' 0.10537   46.7   29355.9      Ex:95m   x100   Datel:1.0010010
+'E' 0.11120   47.3   29898.3      Ey:90m   x100   Datel:1.0007783
+EMSL13 8507310236-8509201833 5 020  MT#4  Mag:38 Tell:1329 Datel:MT-4
+'H' 0.10003   48.5   0.0          Mag:0.1000060   Datel:1.0002222
+'D' 0.09999   48.1   0.0          Mag:0.0998861   Datel:1.0010010
+'Z' 0.09964   46.4   0.0          Mag:0.0999780   Datel:1.0010010
+'N' 0.10537   46.7   29355.9      Ex:95m   x100   Datel:1.0010010
+'E' 0.11120   47.3   29898.3      Ey:90m   x100   Datel:1.0007783
+ 
+ 
+Site MF2.14 (EMSL14); Bachelor Mtn   44 44.1N  122 03.8W  (156.8 km from coast)
+===============================================================================
+ 
+Site located on an open scrub brush clearing on top of a small rise (expect
+topographic effects). Head well buried and system box partially shaded.
+24 July - 21 Sept. continuous.
+Strange H channel that goes "dead" for a while and then recovers and records
+properly. Could use H from EMSL13 instead. All other data fine.
+ 
+ 
+EMSL14 8507152003-8509201741 5 020  MT#10  Mag:32 Tell:1544 Datel:1030
+'H' 0.09991   49.0   0.0          Mag:0.1000140   Datel:0.9990010
+'D' 0.09987   47.5   0.0          Mag:0.0999920   Datel:0.9987792
+'Z' 0.09964   48.3   0.0          Mag:0.0998183   Datel:0.9982254
+'N' 0.12482   48.0   32389.8      Ex:80m   x100   Datel:0.9985576
+'E' 0.10550   46.5   30840.7      Ey:95m   x100   Datel:1.0022272
+ 
+ 
+ 
+ 
+ 
+ 
+APPENDIX 1 - Removal of system response from cross-spectra
+==========================================================
+Note that because the -3dB points are occassionally below the Nyquist
+frequency, it is not possible to correct for the instrument response in the
+time domain. If you require this then you must apply the correction in the
+frequency domain, then inverse Fourier transform.
+ 
+LOW-Pass filter response removal
+--------------------------------
+Assume we have a cross-spectra between the x & y components at period t
+(Sxy(t)), and that the x-channel & y-channel had -3dB low-pass filter points
+of tx & ty respectively. Then derive the corrected cross-spectra from:-
+ 
+Sr = real(Sxy(t))
+Si = imag(Sxy(t))
+Ax = 1. - (tx/t)**2.
+Ay = 1. - (ty/t)**2.
+Cx = 1.414*(tx/t)
+Cy = 1.414*(ty/t)
+CORRx = Ax*Ay + Cx*Cy
+CORRy = Ax*Cy - Ay*Cx
+X = CORRx*Sr - CORRy*Si
+Y = CORRy*Sr + CORRx*Si
+Sxy(t)_corrected = CMPLX(X,Y)
+ 
+HIGH-Pass filter response removal
+---------------------------------
+The x-channel & y-channel have -3dB high-pass filter points of tx & ty
+respectively. Then derive the corrected cross spectra from:-
+ 
+Sr = real(Sxy(t))
+Si = imag(Sxy(t))
+Ax = 1. - (t/tx)**2.
+Ay = 1. - (t/ty)**2.
+Cx = -1.414*(t/tx)
+Cy = -1.414*(t/ty)
+CORRx = Ax*Ay + Cx*Cy
+CORRy = Ax*Cy - Ay*Cx
+X = CORRx*Sr - CORRy*Si
+Y = CORRy*Sr + CORRx*Si
+Sxy(t)_corrected = CMPLX(X,Y)
+ 
+ 
+APPENDIX 2 - Corrections applied to these data, noted errors, & missing data
+============================================================================
+ 
+The following corrections were applied to the Datel bits, not to the field
+data, and so to convert these corrections into field values you must:-
+(1) take the appropriate calibration factor given above, which convertd Datel
+    mV into field values,
+(2) multiply this by 5000/2048, which converts the bits to mV
+&
+(3) multiply the magnetic components only by -1. This compensates for the
+    Datel recorder having the highest order bits for negative voltages, which
+    introduces a factor of -1 for all channels, and for the fact that we are
+    recording potential differences, not electric fields themselves, which
+    introduces a factor of -1 for the telluric channels only.
+ 
+Most corretions are for "offsets" caused by bit-sticking of the Datel
+recorders. For most recorders this is only a problem for the first hour after
+a cassette change, with the exceptions of EMSL02, EMSL05 & EMSL11 (see above).
+The corrections and comments are listed in order of site, then in order of the
+cassette number (basically week beginning 8507070000), then the start time of
+the hour, in format YYMMDDHHMM.
+An asterisk (*) following the start time indicates that the comments are for
+the whole of that cassette.
+The numbers given must be added (or subtracted) to the particular channel for
+the whole of the hour, given in the order of the five component
+(Hx, Hy, Hz, Ex, Ey).
+A correction of -9999 indicates that the data for that component for that hour
+was not worth retaining and has thus been deleted and is not subsequently
+included in this dataset.
+A marker of XXXXX indicates that the data for that component for that hour are
+known to be erroneous, but that they have been retained and are in these data.
+A "J" indicates that there are known offset jumps on that component for that
+hour.
+An "N" indicates known noise problems for that hour.
+A "+/-" indicates that the sign bit was considered to be in error.
+A "x" indicates missing data for that hour.
+ 
+STN   tape   hour            corrections                 comments
+---   ----   ----            -----------                 --------
+ 
+EMSL01 02 8507180116   -512  -704  +512     0 -1024  1st hour
+          8507221016      0  +928     0     0     0
+       04 8507312238   +256     0  -256   +64     0  1st hour
+       05 8508062027  XXXXX                          1st hour
+       06 8508132240  -9999 -9999 -9999 -9999 -9999  1st hour-gains altered
+       07 8508222138                  J
+       08 8508272220      0  -128  -160     0     0  1st hour
+       09 8509031930      0  -192     0     0     0  1st hour
+ 
+EMSL02 02 8507172357*     x     x     x     x     x  tape inserted upsidedown
+       03 8507242214  -9999 -9999 -9999 -9999 -9999  1st hour
+NOTE: many offsets in data from this Datel have been removed automatically
+ 
+EMSL04 02 8507172128*     x     x     x     x     x  tape inserted upsidedown
+       03 8507241909  -9999 -9999 -9999 -9999 -9999  1st hour
+       04 8507311828   +949 -1632  +692  -177  -304  1st hour/no reset
+       05 8508061643   +430  +338  +305     0     0  1st hour
+       06 8508131743   +730  +624  +512     0     0  1st hour/no reset
+       07 8508201907  +1073 -2036  +248 +2013     0  1st hour
+       08 8508271907   +476  +752  +390     0     0  1st hour
+       09 8509031607  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+          8509050807      0 -1000     0     0     0
+       10 8509091630      0     0  -137     0     0  1st hour
+       11 8509161730  +2817  +400  +404     0  +165  1st hour
+NOTE: there are some offsets in channel 5 (Ey) still in these data
+ 
+EMSL05 06                                         N  broken telluric line
+NOTE: many offsets in data from this Datel have been removed automatically
+ 
+EMSL06 03 8507241745*     x     x     x     x     x  tape jammed
+       04 8507311727  -9999 -9999 -9999 -9999 -9999  1st hour
+       05 8508061510  -9999 -9999 -9999 -9999 -9999  1st hour
+       06 8508131610  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+       07 8508201610  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+          8508201610*     N     N     N     N     N  seeds harvested this week
+       08 8508271751  -9999 -9999 -9999 -9999 -9999  1st hour
+              "           N     N                    Hx & Hy re-zeroed
+       09 8509031551  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+       10 8509091451  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+       11 8509160929  -9999 -9999 -9999 -9999 -9999  1st hour
+ 
+EMSL08 02 8507171705  -9999 -9999 -9999 -9999 -9999  1st hour
+       03 8507231803*     x     x     x     x     x  tape inserted upsidedown  -
+       04 8507302019  -9999 -9999 -9999 -9999 -9999  1st hour
+       05 8508051919*     x     x     x     x     x  tape head not closed
+       06 8508121519*                       N     N  ground contact poor
+          8508161709                        N     N  tellurics go off-scale
+          8508192219                    -9999 -9999
+       07 8508192313  -9999 -9999 -9999 -9999 -9999  1st hour
+          8508192312*     N     N     N     N     N  fiels nearby ploughed
+       08 8508261606  -9999 -9999 -9999 -9999 -9999  1st hour
+       09 8509022042  -9999 -9999 -9999 -9999 -9999  1st hour
+       10 8509090042  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+       11 8509152105  -9999 -9999 -9999 -9999 -9999  1st hour
+NOTE: the telluric data from this station must be analysed with care. Possibly
+a time-varying MT transfer function due to ground contact problems.
+ 
+EMSL10 02 8507130343*     x     x     x     x     x  tape inserted upsidedown
+       03 8507231818  -9999 -9999 -9999 -9999 -9999  1st hour
+       05 8508052132   -952  -407  -383     0     0  1st hour
+       06 8508121716  -1287  -866  -383     0     0  1st hour/no reset
+          8508121716*                                many errors in data
+       07 8508251244  -9999 -9999 -9999 -9999 -9999
+          8508251344  -9999 -9999 -9999 -9999 -9999
+       08 8508261838  -1393  -695  +348     0     0  1st hour
+       10 8509090003  +1152  -243     0     0     0  1st hour
+ 
+EMSL11 03 8507232144*     x     x     x     x     x  tape inserted upsidedown
+NOTE: many offsets in data from this Datel have been removed automatically
+ 
+EMSL13 02 8507162249*     x     x     x     x     x  tape inserted upsidedown
+       03 8507242149  -9999 -9999 -9999 -9999 -9999  1st hour
+          8507242149                                 mag fields suspect
+       04 8507310236  +2048 -1024 -1024     0     0  1st hour
+          8507310236*                                magnetometer changed
+       05 8508052236  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+       07 8508200256      0  -382     0     0     0  1st hour
+       08 8509030329      0  -403  -431     0     0  1st hour
+       09 8509030329    +/-  -566   +/-     0     0  1st hour
+       10 8509061829      0     0     0     0 +1848
+       11 8509160042      0 +1024     0 XXXXX XXXXX  1st hour
+ 
+EMSL14 02 85071621??*     x     x     x     x     x  tape inserted upsidedown
+       04 8507310122      0  +768     0     0     0  1st hour
+       05 8508060017    +/-   +/-     0     0     0  1st hour
+       07 8508231056  +1340  -280 +1374     0     0
+          8508250756      J     J     J     J     J
+       08 8508262205  -2048     0     0     0     0  1st hour
+              "         +/-     0     0     0     0  1st hour
+       11 8509160100  -9999 -9999 -9999 -9999 -9999  1st hour/no reset
+NOTE: the Hx channel goes intermittently "dead"
+ 
+ 

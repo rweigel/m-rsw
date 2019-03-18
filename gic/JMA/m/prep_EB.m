@@ -1,12 +1,14 @@
-function [tE,E,tB,B] = prep_EB(dateo,datef,regenfiles)
+function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles)
 
-dirmat = sprintf('mat/%s',dateo);
+dirbase = [fileparts(mfilename('fullpath')),'/..'];
+    
+dirmat = sprintf('%s/mat/%s',dirbase,dateo);
 
 if ~exist(dirmat,'dir')
     mkdir(dirmat);
 end
 
-fnamemat = sprintf('%s/prepEB_%s-%s.mat',dirmat,dateo,datef);
+fnamemat = sprintf('%s/prepEB_%s_%s-%s.mat',dirmat,station,dateo,datef);
 if regenfiles == 0 && exist(fnamemat,'file')
     load(fnamemat);
     return;
@@ -16,6 +18,7 @@ extE = 'dgef.sec';
 extB = 'dsec.sec';
 
 % Replaces - and - with blank and keeps lines that start with 0 through 9.
+% Much faster read.
 GREP = 'grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt';
 
 do = datenum(dateo,'yyyymmdd');
@@ -25,7 +28,7 @@ B = [];
 % -1 due to shift in GIC data by 9 hours
 for i = do-1:df
     ds = datestr(i,'yyyymmdd');
-    fname = sprintf('data/jma/mmb/B/mmb%s%s',ds,extB);
+    fname = sprintf('%s/data/jma/%s/B/%s%s%s',dirbase,station,station,ds,extB);
     fprintf('Reading %s\n',fname);
     com = sprintf(GREP,fname);
     system(com);
@@ -33,13 +36,9 @@ for i = do-1:df
     B = [B;tmp];
 end
 
+tB = datenum(B(:,1:6));
 
-tB = datenum(B(:,1:3)) - do;
-tB = 86400*tB + 60*60*B(:,4) + 60*B(:,5) + B(:,6); 
 B = B(:,8:10);
-
-dayoffset = datenum(dateo,'yyyymmdd') - datenum('1970-01-01');
-tB = tB*1000 + dayoffset*86400*1000; % Convert to milliseconds since 1970 (Unix Time).
 
 fill = 88888;
 for i = 1:3
@@ -51,7 +50,7 @@ end
 
 I = find(B > 5.7e4);
 if ~isempty(I)
-    fprintf('Removing %d values of B > 5.7e4 as likey missed spikes\n',length(I));
+    fprintf('Removing %d values of B > 5.7e4 as probable missed spikes\n',length(I));
     B(I) = NaN;
 end
 
@@ -68,11 +67,12 @@ for i = 1:3
 end
 B = Bi;
 
+
 E = [];
 % -1 due to shift in GIC data by 9 hours
 for i = -1+do:df
     ds = datestr(i,'yyyymmdd');
-    fname = sprintf('data/jma/mmb/E/mmb%s%s',ds,extE);
+    fname = sprintf('%s/data/jma/%s/E/%s%s%s',dirbase,station,station,ds,extE);
     fprintf('Reading %s\n',fname);
     com = sprintf(GREP,fname);
     system(com);
@@ -81,13 +81,8 @@ for i = -1+do:df
 end
 
 % Compute seconds since dateo
-tE = datenum(E(:,1:3)) - do;
-tE = 86400*tE + 60*60*E(:,4) + 60*E(:,5) + E(:,6); 
+tE = datenum(E(:,1:6));
 E  = E(:,8:9);
-
-dayoffset = datenum(dateo,'yyyymmdd') - datenum('1970-01-01');
-tE = tE*1000 + dayoffset*86400*1000; % Convert to milliseconds since 1970 (Unix Time).
-
 
 fill1 = 88888;
 fill2 = 99999;
