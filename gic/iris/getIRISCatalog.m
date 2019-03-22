@@ -13,7 +13,8 @@ fname1 = 'getIRISCatalog1.mat';
 fname2 = 'getIRISCatalog2.mat';
 
 if ~exist(fname) || update
-  urlwrite(url,fname);
+    fprintf('Getting %s\n',url);
+    urlwrite(url,fname);
 end
 
 if ~exist(fname1) || update
@@ -30,12 +31,13 @@ if ~exist(fname1) || update
 		end
 	end
 	fclose(fid);
+    fprintf('Writing %s\n',fname1);    
 	save getIRISCatalog1.mat c
 else
 	load getIRISCatalog1.mat
 end
 
-if ~exist(fname2)
+if ~exist(fname2) || update
 
 	C{1}{1} = c{1}{2};
 	C{1}{2} = c{1}{5};
@@ -72,7 +74,8 @@ if ~exist(fname2)
 			C{k}{3} = c{i+1}{6};
 			C{k}{4} = c{i+1}{4};
 		end
-	end
+    end
+    fprintf('Writing %s\n',fname2);
 	save(fname2,'C')
 else
 	load(fname2)

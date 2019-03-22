@@ -8,7 +8,7 @@ keys = fieldnames(Savg);
 
 if isfield(S,'ao')
 
-    % Get padding
+    % Get padding for fprintf.
     for f = 1:length(keys)
         L(f) = length(keys{f});
     end

@@ -26,88 +26,98 @@ for i = 2:size(So.In_FT,1) % Loop over evaluation frequencies
         
         % x and y now have all input and output FTs
         Zols1(i,cols) = x\y;
-        Zols2(i,cols) = (ctranspose(x)*x)^(-1)*ctranspose(x)*y;
-        Zols3(i,cols) = regress(y,x);
         Zrob1(i,cols)  = robustfit(x,y,[],[],'off');
-        %Zmvr(i,cols)  = mvregress(x,y);
-        %addpath('m/m-statrobust'); % So one can put breakpoints in MATLAB's code.
 
-        Eols1{i,1} = y - x*Zols1(i,cols).';
-        Erob1{i,1} = y - x*Zrob1(i,cols).';
-        SN{i,1}    = mean(Eols1{i,1}.*conj(Eols1{i,1}))/mean(y.*conj(y));
+        if 0
+            Zols2(i,cols) = (ctranspose(x)*x)^(-1)*ctranspose(x)*y;
+            Zols3(i,cols) = regress(y,x);
 
-        Zrob2(i,cols) = regress(y,x); % Start with OLS
-        Zo = Zrob2(i,cols);
-        stepmax = 50;
-        step = 1;
 
-        % MATLAB's robust fit seems to do this without accounting for
-        % fact that residuals can be complex.
-        [Q,R] = qr(x,0);
-        E = x/R;
-        % MATLAB's version:
-        % h = min(.9999, sum(E.*E,2));
-        % adjfactor = 1 ./ sqrt(1-h);
-        % Correct version:
-        hr = min(.9999, sum(real(E).*real(E),2));
-        hi = min(.9999, sum(imag(E).*imag(E),2));
-        adjfactor = 1./ sqrt(1-hr) + sqrt(-1)./ sqrt(1-hi);
-        adjfactor = 1; % No leverage correction.
-        laststep = 0;
-        while 1
-            % stop = 1 if either
-            % |Zx-Zx_last|/|Zx_last| < eps
-            % or
-            % |Zy-Zy_last|/|Zy_last| < eps
-            stop = any( abs(Zrob2(i,cols)-Zo) < eps*abs(Zo) );
-            if step > 1 && (step == stepmax || stop == 1)
-                fprintf('Stopping at step %d for Te = %8d\n',step,round(1/So.fe(i)));
-                laststep = 1;
-            end
-            step = step + 1;
-            Zo = Zrob2(i,cols);            
-            E = y - x*transpose(Zrob2(i,cols));    % Residuals (Errors)
-            Es = sort(abs(E));  % Sorted residuals
-            p = 2; % Number of input variables.
-            s = median(Es(p:end))/0.6745; % Median abs redisual estimation of standard deviation
-            if strmatch(weightfn,'bisquare');
-                const = 4.685;
-                E = adjfactor.*E/(s*const);
-                w = (abs(E)<1) .* (1 - E.^2).^2; % Bi-square weights
-                if laststep
-                    w(abs(E/(s*const)) > 2.8) = 0;
+            Zrob1(i,cols)  = robustfit(x,y,[],[],'off');
+            %Zmvr(i,cols)  = mvregress(x,y);
+            %addpath('m/m-statrobust'); % So one can put breakpoints in MATLAB's code.
+
+            Eols1{i,1} = y - x*Zols1(i,cols).';
+            Erob1{i,1} = y - x*Zrob1(i,cols).';
+            SN{i,1}    = mean(Eols1{i,1}.*conj(Eols1{i,1}))/mean(y.*conj(y));
+
+            Zrob2(i,cols) = regress(y,x); % Start with OLS
+            Zo = Zrob2(i,cols);
+            stepmax = 50;
+            step = 1;
+
+            % MATLAB's robust fit seems to do this without accounting for
+            % fact that residuals can be complex.
+            [Q,R] = qr(x,0);
+            E = x/R;
+            % MATLAB's version:
+            % h = min(.9999, sum(E.*E,2));
+            % adjfactor = 1 ./ sqrt(1-h);
+            % Correct version:
+            hr = min(.9999, sum(real(E).*real(E),2));
+            hi = min(.9999, sum(imag(E).*imag(E),2));
+            adjfactor = 1./ sqrt(1-hr) + sqrt(-1)./ sqrt(1-hi);
+            adjfactor = 1; % No leverage correction.
+            laststep = 0;
+            while 1
+                % stop = 1 if either
+                % |Zx-Zx_last|/|Zx_last| < eps
+                % or
+                % |Zy-Zy_last|/|Zy_last| < eps
+                stop = any( abs(Zrob2(i,cols)-Zo) < eps*abs(Zo) );
+                if step > 1 && (step == stepmax || stop == 1)
+                    fprintf('Stopping at step %d for Te = %8d\n',step,round(1/So.fe(i)));
+                    laststep = 1;
                 end
-            elseif strmatch(weightfn,'huber');
-                const = 1.345;
-                E = adjfactor.*E/(s*const);
-                w = (abs(E)>1)./abs(E); % Huber weights                            
-                if laststep
-                    w(abs(E/(s*const)) > 2.8) = 0;
+                step = step + 1;
+                Zo = Zrob2(i,cols);            
+                E = y - x*transpose(Zrob2(i,cols));    % Residuals (Errors)
+                Es = sort(abs(E));  % Sorted residuals
+                p = 2; % Number of input variables.
+                s = median(Es(p:end))/0.6745; % Median abs redisual estimation of standard deviation
+                if strmatch(weightfn,'bisquare');
+                    const = 4.685;
+                    E = adjfactor.*E/(s*const);
+                    w = (abs(E)<1) .* (1 - E.^2).^2; % Bi-square weights
+                    if laststep
+                        w(abs(E/(s*const)) > 2.8) = 0;
+                    end
+                elseif strmatch(weightfn,'huber');
+                    const = 1.345;
+                    E = adjfactor.*E/(s*const);
+                    w = (abs(E)>1)./abs(E); % Huber weights                            
+                    if laststep
+                        w(abs(E/(s*const)) > 2.8) = 0;
+                    end
                 end
-            end
-            Zrob2(i,cols) = regress(y.*sqrt(w),x.*sqrt([w,w]));
-            if laststep
-                break;
+                Zrob2(i,cols) = regress(y.*sqrt(w),x.*sqrt([w,w]));
+                if laststep
+                    break;
+                end
             end
         end
-        
     end
 end
 
 S = struct();
 fprintf('transferfnFD2: OLS\n');
 S.OLS = createStruct(Zols1);
+
 fprintf('transferfnFD2: Robust 1\n');
 S.Robust1 = createStruct(Zrob1);
+
+if 0
 fprintf('transferfnFD2: Robust 2\n');
 S.Robust2 = createStruct(Zrob2);
+end
 
 function Sx = createStruct(Z);
 
     Sx = struct();
     Sx.Z = Z;
 
-    Nint = size(Z,3);
+    Nint = size(So.In,3);
+    %Nint = size(Z,3);
     for k = 1:Nint
 
         Sx.fe = So.fe;

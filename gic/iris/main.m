@@ -39,10 +39,21 @@ sta = 'UTP18'; % http://ds.iris.edu/spud/emtf/1362488
 sta = 'COO20'; % http://ds.iris.edu/spud/emtf/1349640
 sta = 'UTP17'; 
 sta = 'RET54';
+sta = 'MBB01';
+sta = 'MBB02';
+sta = 'NEK25';
+sta = 'NEK26';
+sta = 'NEK27';
+sta = 'NEK28'; % http://ds.iris.edu/spud/emtf/17329406
+sta = 'NEK29'; % http://ds.iris.edu/spud/emtf/17329628
+sta = 'NEK30';
+sta = 'NEK31';
+sta = 'NEK32';
 
+sta = 'NEK27';
 % Note: getIRISCatalog() does not work for stations with multiple
 % instruments such as MBB05.
-C = getIRISCatalog();
+C = getIRISCatalog(1);
 for i = 1:length(C)
     if strmatch(sta,C{i},'exact')
         start = C{i}{2}(1:10);
@@ -51,25 +62,10 @@ for i = 1:length(C)
         break
     end
 end
+
 chas = unique(chas);
 if (length(chas) > 5)
   error('Too many channels')
-end
-
-if strcmp(sta,'MBB03')
-  start = '2010-10-25';
-  stop = '2010-11-16';
-end
-if strcmp(sta,'MBB03')
-  start = '2011-07-15';
-  stop = '2011-08-13';
-end
-if strcmp(sta,'MNF35')
-  start = '2011-10-10';
-  stop = '2011-10-24';
-end
-if strcmp(sta,'MNG35')
-  stop = '2011-10-06';
 end
 
 units = 'counts';

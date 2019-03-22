@@ -40,19 +40,10 @@ datef = '20041231';
 IbE = [1.668208e+06:1.670850e+06];
 IbB = [];
 
-
-% Matches Fujii
-dateo = '20051202';
-datef = '20051226';
-IbE = [1051358:1052475,1570893:1571885];
-IbB = [1389888:1390322];
-
-
 dateo = '20060302';
 datef = '20060331';
 IbE = [1.663546e+06:1.664708e+06];
 IbB = [];
-
 
 dateo = '20060502';
 datef = '20060530';
@@ -65,17 +56,24 @@ datef = '20060131';
 IbE = [457658:457682,871643:872792];
 IbB = [957879:958349,881469:888762];
 
+
+% Matches Fujii
+dateo = '20051202';
+datef = '20051226';
+IbE = [1051358:1052475,1570893:1571885];
+IbB = [1389888:1390322];
+
+dateo = '20060403';
+datef = '20060430';
+IbE = [882227:882233,1323746:1324585,1402202:1403151];
+IbB = [];
+
 % Does not match Fujii
 % Consider this interval leaving spike in. Here robust full fails, but
 % stack is better.
 dateo = '20060203';
 datef = '20060228';
 IbE = [9.64944e+05:9.66299e+05];
-IbB = [];
-
-dateo = '20060403';
-datef = '20060430';
-IbE = [882227:882233,1323746:1324585,1402202:1403151];
 IbB = [];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -135,7 +133,6 @@ GIC = E;
 
 opts.td.window.width = 86400;
 opts.td.window.shift = 86400;
-
 opts.fd.regression.method = 1;
 methods{1} = 'OLS';
 Sc{1} = transferfnFD(B(:,1:2,1),E,opts);
@@ -159,8 +156,8 @@ Sc{3} = transferfnFD2(Sc{2},opts);
     fe{3} = Sc{3}.OLS.fe;
     methods{3} = 'OLS No Stack';
     
-    Z{4} = Sc{3}.Robust2.Z;
-    fe{4} = Sc{3}.Robust2.fe;
+    Z{4} = Sc{3}.Robust1.Z;
+    fe{4} = Sc{3}.Robust1.fe;
     methods{4} = 'Robust No Stack';
 
 methods{5} = 'Fujii et al. 2015';    
@@ -173,28 +170,28 @@ Np = 0;
 Ezp = [zeros(86400*Np,2);E;zeros(86400*Np,2)];
 Bzp = [zeros(86400*Np,3);B;zeros(86400*Np,3)];
 I = [1:size(Bzp,1)];
-opts.td.window.width = length(I);
-opts.td.window.shift = length(I);
+opts.td.window.width = length(I)/4;
+opts.td.window.shift = length(I)/4;
 opts.fd.regression.method = 3;
-%tE = [tE(1)-5:1/86400:tE(end)+5];
-
-if 0
-    w = parzenwin(length(I));
-    for i = 1:2
-        Ezp(:,i) = w.*Ezp(:,i);
-        Bzp(:,i) = w.*Bzp(:,i);
-    end
-end
-
 opts.description = 'Parzen window in FD';
 opts.fd.window.function = @parzenwin; 
 opts.fd.window.functionstr = 'parzen';
 
-Sc{6} = transferfnFD(Bzp(I,1:2,1),Ezp(I,:),opts);
-    fe{6} = Sc{6}.fe;
-    Z{6} = Sc{6}.Z;
+Sc{6} = transferfnFD(Bzp(:,1:2,1),Ezp(:,:),opts);
+
+    if 0
+        fe{6} = Sc{6}.fe;
+        Z{6} = Sc{6}.Z;
+        methods{6} = 'Robust Full + Parzen';
+        Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
+    end
+
+    Sa{6} = transferfnAverage(Sc{6},opts);
+    fe{6} = Sa{6}.Mean.fe;
+    Z{6} = Sa{6}.Mean.Z;
     methods{6} = 'Robust Full + Parzen';
-Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
+    Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
+
 
 a = 600;
 b = size(B,1)-600;
@@ -226,7 +223,7 @@ S = struct();
 S.OLS = Sa{1}.Mean;
 S.Robust = Sa{2}.Mean;
 S.OLS_No_Stack = Sc{3}.OLS;
-S.Robust_No_Stack = Sc{3}.Robust2;
+S.Robust_No_Stack = Sc{3}.Robust1;
 S.Fujii = Sc{5};
 S.OLS_Full = Sc{6};
 transferfnSummary(Sc{1},S,'');
@@ -316,17 +313,18 @@ subplot(4,1,4);grid on;hold on;box on;
 
 %figsave(sprintf('figures/%s-Predictions-%s-%s.pdf',upper(site),dateo,datef));
 
+lw = [2,1,2,1,2,2];
 figure(3);clf;
     subplot(2,1,1)
         for i = 1:length(SN)
-            loglog(1./xfe(2:end),SN{i}(2:end,1),'LineWidth',2);
+            loglog(1./xfe(2:end),SN{i}(2:end,1),'LineWidth',lw(i));
             grid on; hold on;
         end
         ylabel('SN for $E_x$')
         legend(methods);        
     subplot(2,1,2)
         for i = 1:length(SN)
-            loglog(1./xfe(2:end),SN{i}(2:end,2),'LineWidth',2);
+            loglog(1./xfe(2:end),SN{i}(2:end,2),'LineWidth',lw(i));
             grid on; hold on;
         end
         ylabel('SN for $E_y$')
@@ -335,14 +333,14 @@ figure(3);clf;
 figure(4);clf;
     subplot(2,1,1)
         for i = 1:length(keys)
-            loglog(1./fex{i}(2:end),SNx{i}(2:end,1),'LineWidth',2);
+            loglog(1./fex{i}(2:end),SNx{i}(2:end,1),'LineWidth',lw(i));
             grid on; hold on;
         end
         ylabel('SN for $E_x$')
         legend(methods,'Location','Best');        
     subplot(2,1,2)
         for i = 1:length(keys)
-            loglog(1./fex{i}(2:end),SNx{i}(2:end,2),'LineWidth',2);
+            loglog(1./fex{i}(2:end),SNx{i}(2:end,2),'LineWidth',lw(i));
             grid on; hold on;
         end
         ylabel('SN for $E_y$')

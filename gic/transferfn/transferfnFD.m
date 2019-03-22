@@ -61,7 +61,11 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        Scell{i} = transferfnFD(B(Iseg,:,:),E(Iseg,:),opts,t(Iseg));
+        if isfield(opts.td,'pad') && opts.td.pad > 0
+            Scell{i} = transferfnFD([B(Iseg,:,:);zeros(opts.td.pad,size(B,2))],[E(Iseg,:);zeros(opts.td.pad,size(E,2))],opts,t(Iseg));
+        else
+            Scell{i} = transferfnFD(B(Iseg,:,:),E(Iseg,:),opts,t(Iseg));
+        end
         fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(1),Scell{i}.CC(1),Scell{i}.MSE(1));
         if size(E,2) > 1
             fprintf('transferfnFD.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),Scell{i}.PE(2),Scell{i}.CC(2),Scell{i}.MSE(2));
@@ -85,6 +89,10 @@ if nargin > 2
         [fe,Ne,Ic] = evalfreq(f);
     end
 end
+if isfield(opts.fd,'evalfreqN')
+    [fe,Ic,Ne] = evalfreq2(N,opts.fd.evalfreqN);
+end
+
 % End duplicated code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

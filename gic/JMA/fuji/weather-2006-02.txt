@@ -1,0 +1,272 @@
+# 2006-02-01
+12:00 AM	17  F	10  F	72 % SSW   2 mph	0 mph	30.2 in	0.0 in	0.0 in N/A
+3:00 AM	17  F	9  F	71 % SSE  2 mph  0 mph  30.2 in 0.0 in	0.0 in Partly Cloudy
+6:00 AM	17  F	8  F	70 % S    3 mph  0 mph  30.2 in 0.0 in	0.0 in Mostly Cloudy
+9:00 AM	23  F	12  F	64 % SSE  1 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	27  F	12  F	53 % SSE   5 mph	0 mph	30.1 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	28  F	14  F	56 % NNE  3 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+6:00 PM	27  F	15  F	61 % N    3 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+9:00 PM	24  F	18  F	76 % S    3 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-02
+12:00 AM	25  F	16  F	70 % NW    7 mph	0 mph	29.9 in	0.0 in	0.0 in N/A
+3:00 AM	23  F	17  F	76 % N    6 mph  0 mph   29.8 in	0.0 in	0.0 inMostly Cloudy
+6:00 AM	22  F	14  F	70 % S    2 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	22  F	20  F	89 % W    2 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+12:00 PM	24  F	13  F	63 % NW    14 mph	0 mph	29.9 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	20  F	6  F	55 % NNW  8 mph  0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+6:00 PM	17  F	10  F	76 % SSW  5 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+9:00 PM	17  F	6  F	63 % W    5 mph  0 mph  29.9 in 0.0 in	0.0 in Cloudy
+
+# 2006-02-03
+12:00 AM	14  F	4  F	65 % W     2 mph	0 mph	29.9 in	0.0 in	0.0 in N/A
+3:00 AM	15  F	-2  F	46 % WNW  6 mph  0 mph   29.9 in	0.0 in	0.0 in Fair
+6:00 AM	14  F	2  F	59 % N    3 mph  0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+9:00 AM	16  F	3  F	55 % SE   2 mph  0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+12:00 PM	17  F	6  F	63 % NW    10 mph	0 mph	29.8 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	18  F	-3  F	40 % W    12 mph 0 mph   29.8 in	0.0 in	0.0 in Partly Cloudy
+6:00 PM	16  F	-5  F	38 % WSW  5 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	21  F	17  F	85 % WNW  15 mph 0 mph   29.7 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-04
+12:00 AM	23  F	20  F	85 % NW    23 mph	0 mph	29.8 in	0.0 in	0.0 in N/A
+3:00 AM	26  F	18  F	69 % NW   20 mph 0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	26  F	18  F	73 % NNW  22 mph 0 mph   29.8 in	0.0 in	0.0 in Cloudy
+9:00 AM	25  F	21  F	86 % NNW  15 mph 0 mph   29.9 in	0.0 in	0.0 in Cloudy
+12:00 PM	25  F	21  F	86 % N     13 mph	0 mph	29.9 in	0.0 in	0.0 in Cloudy
+3:00 PM	24  F	21  F	88 % NW   15 mph 0 mph   29.9 in	0.0 in	0.0 in Cloudy
+6:00 PM	23  F	20  F	88 % N    3 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+9:00 PM	22  F	19  F	88 % NW   5 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-05
+12:00 AM	22  F	18  F	87 % NNW   5 mph	0 mph	30.0 in	0.0 in	0.0 in N/A
+3:00 AM	17  F	12  F	83 % SE   2 mph  0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	16  F	10  F	77 % S    2 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	20  F	11  F	68 % SSE  6 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	24  F	19  F	82 % NNW   14 mph	0 mph	30.0 in	0.0 in	0.0 in Cloudy
+3:00 PM	25  F	16  F	67 % NW   8 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	22  F	16  F	79 % NNW  9 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	22  F	10  F	60 % NW   7 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-06
+12:00 AM    15  F   6  F   66 % W     2 mph 0 mph   30.1 in   0.0 in	0.0 in N/A
+3:00 AM	16  F	8  F	72 % S    3 mph  0 mph  30.1 in 0.0 in	0.0 in Mostly Cloudy
+6:00 AM	21  F	7  F	54 % W    10 mph 0 mph  30.1 in 0.0 in	0.0 in Mostly Cloudy
+9:00 AM	22  F	8  F	56 % ESE  2 mph  0 mph  30.2 in 0.0 in	0.0 in Mostly Cloudy
+12:00 PM	27  F	11  F	52 % NNW   12 mph	0 mph	30.2 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	26  F	12  F	55 % N    8 mph  0 mph   30.2 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	24  F	13  F	63 % SSE  5 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+9:00 PM	23  F	13  F	64 % S    5 mph  0 mph   30.2 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-07
+12:00 AM    19  F   13  F      75 % S     3 mph 0 mph   30.1 in   0.0 in	0.0 in N/A
+3:00 AM	    21  F   12  F	70 % SSE  2 mph  0 mph   30.1 in	0.0 in	0.0 in Cloudy
+6:00 AM	    19  F   10  F	68 % SSE  6 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	    22  F   11  F	64 % SE   3 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM    29  F   13  F	53 % ESE   6 mph	0 mph	29.9 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	27  F	15  F	60 % N    6 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	28  F	13  F	55 % NW   8 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	27  F	15  F	60 % NNW  3 mph  0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-08
+12:00 AM    23  F   15  F  71 % NNW   2 mph 0 mph   29.6 in   0.0 in	0.0 in N/A
+3:00 AM	23  F	11  F	60 % NNE  5 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	23  F	12  F	64 % WNW  2 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	24  F	11  F	58 % W    1 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	26  F	17  F	69 % NW    7 mph	0 mph	29.8 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	26  F	13  F	60 % NNW  9 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	24  F	13  F	63 % NW   3 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	21  F	15  F	77 % W    2 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-09
+12:00 AM	22  F	15  F	74 % NNW   5 mph	0 mph	29.7 in	0.0 in	0.0 in N/A
+3:00 AM	22  F	13  F	69 % SSW  2 mph  0 mph   29.7 in	0.0 in	0.0 in Fair
+6:00 AM	21  F	12  F	69 % W    5 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	20  F	11  F	68 % W    3 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	19  F	6  F	58 % W     8 mph	0 mph	29.8 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	18  F	4  F	54 % NW   12 mph 0 mph  29.8 in 0.0 in	0.0 in Mostly Cloudy
+6:00 PM	19  F	4  F	52 % WNW  13 mph 0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+9:00 PM	20  F	9  F	62 % SSE  7 mph  0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-10
+12:00 AM	19  F	13  F	78 % S     9 mph	0 mph	29.9 in	0.0 in	0.0 in N/A
+3:00 AM	19  F	15  F	81 % SSE  8 mph  0 mph   29.8 in	0.0 in	0.0 in Cloudy
+6:00 AM	22  F	17  F	83 % SE   9 mph  0 mph   29.6 in	0.0 in	0.0 in Cloudy
+9:00 AM	24  F	20  F	85 % NW   5 mph  0 mph   29.6 in	0.0 in	0.0 in Cloudy
+12:00 PM	29  F	25  F	86 % NNW   5 mph	0 mph	29.5 in	0.0 in	0.0 in Cloudy
+3:00 PM	31  F	17  F	57 % W    14 mph 0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	26  F	13  F	58 % W    7 mph  0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	26  F	19  F	74 % SSW  3 mph  0 mph   29.6 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-11
+12:00 AM    26  F   15  F  63 % WNW   9 mph 0 mph   29.6 in   0.0 in	0.0 in N/A
+3:00 AM	23  F	12  F	61 % WNW  12 mph 0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	22  F	6  F	50 % NW   6 mph  0 mph  29.7 in 0.0 in	0.0 in Mostly Cloudy
+9:00 AM	24  F	2  F	39 % W    10 mph 0 mph  29.7 in 0.0 in	0.0 in Fair
+12:00 PM	25  F	5  F	42 % NNW   12 mph	0 mph	29.7 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	23  F	11  F	59 % NNW  12 mph 0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	20  F	5  F	53 % NW   5 mph  0 mph  29.7 in 0.0 in	0.0 in Fair
+9:00 PM	17  F	6  F	63 % SSE  2 mph  0 mph  29.7 in 0.0 in	0.0 in Fair
+
+# 2006-02-12
+12:00 AM    17  F  1  F	49 % WNW   7 mph 0 mph  29.7 in 0.0 in	0.0 in N/A
+3:00 AM	15  F	0  F	50 % WNW  3 mph  0 mph  29.7 in 0.0 in	0.0 in Fair
+6:00 AM	17  F	-1  F	46 % W    12 mph 0 mph   29.7 in	0.0 in	0.0 in Partly Cloudy
+9:00 AM	20  F	-1  F	40 % WNW  8 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	21  F	0  F	40 % W     18 mph	0 mph	29.7 in	0.0 in	0.0 in Fair
+3:00 PM	21  F	1  F	43 % WNW  15 mph 0 mph  29.7 in 0.0 in	0.0 in Fair
+6:00 PM	19  F	3  F	51 % WSW  5 mph  0 mph  29.8 in 0.0 in	0.0 in Mostly Cloudy
+9:00 PM	20  F	5  F	51 % WNW  12 mph 0 mph  29.8 in 0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-13
+12:00 AM	20  F	8  F	59 % WSW   5 mph	0 mph	29.8 in	0.0 in	0.0 in N/A
+6:00 AM	22  F	17  F	80 % SSE  3 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	28  F	21  F	74 % SSE  8 mph  0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	34  F	25  F	70 % SSE   6 mph	0 mph	29.6 in	0.0 in	0.0 in Cloudy
+3:00 PM	34  F	31  F	87 % SE   3 mph  0 mph   29.5 in	0.0 in	0.0 in Cloudy
+6:00 PM	34  F	31  F	91 % SSW  2 mph  0 mph   29.6 in	0.0 in	0.0 in Cloudy
+9:00 PM	36  F	27  F	71 % NW   12 mph 0 mph   29.7 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-14
+12:00 AM	35  F	25  F	68 % NNW   6 mph	0 mph	29.8 in	0.0 in	0.0 in N/A
+3:00 AM	31  F	23  F	75 % SSW  2 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	30  F	24  F	76 % SE   6 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	35  F	25  F	67 % SSE  10 mph 0 mph   29.8 in	0.0 in	0.0 in Cloudy
+12:00 PM	35  F	30  F	83 % SSE   9 mph	0 mph	29.7 in	0.0 in	0.0 in Cloudy
+3:00 PM	36  F	31  F	82 % SE   9 mph  0 mph   29.6 in	0.0 in	0.0 in Cloudy
+6:00 PM	37  F	33  F	84 % SSE  10 mph 0 mph   29.6 in	0.0 in	0.0 in Cloudy
+9:00 PM	37  F	33  F	84 % SSE  10 mph 0 mph   29.5 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-15
+12:00 AM	37  F	33  F	87 % W     3 mph	0 mph	29.5 in	0.0 in	0.0 in N/A
+3:00 AM	37  F	32  F	84 % NNW  7 mph  0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	36  F	31  F	82 % NNW  13 mph 0 mph   29.6 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	36  F	23  F	61 % NNW  17 mph 0 mph   29.8 in	0.0 in	0.0 in Fair
+12:00 PM	36  F	20  F	53 % NNW   16 mph	0 mph	29.8 in	0.0 in	0.0 in Partly Cloudy
+3:00 PM	35  F	14  F	41 % NW   9 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	30  F	15  F	53 % NNW  9 mph  0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	29  F	14  F	54 % NNW  2 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-16
+12:00 AM	29  F	13  F	50 % W     8 mph	0 mph	30.0 in	0.0 in	0.0 in N/A
+3:00 AM	28  F	15  F	59 % WSW  6 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	26  F	17  F	68 % WSW  2 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	31  F	17  F	56 % S    7 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+12:00 PM	34  F	15  F	47 % SSE   8 mph	0 mph	29.9 in	0.0 in	0.0 in Cloudy
+3:00 PM	34  F	19  F	54 % NNW  6 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+6:00 PM	30  F	25  F	82 % SE   6 mph  0 mph   29.8 in	0.0 in	0.0 in Cloudy
+9:00 PM	29  F	23  F	77 % S    7 mph  0 mph   29.7 in	0.0 in	0.0 in
+
+# 2006-02-17
+12:00 AM    31  F   21  F	68 % S     12 mph	0 mph	29.6 in	0.0 in	0.0 in N/A
+3:00 AM	29  F	25  F	87 % NW   15 mph 0 mph   29.6 in	0.0 in	0.0 in Cloudy
+6:00 AM	21  F	17  F	86 % NW   20 mph 0 mph   29.7 in	0.0 in	0.0 in Cloudy
+9:00 AM	20  F	0  F	42 % WNW  15 mph 0 mph  29.8 in 0.0 in	0.0 in Mostly Cloudy
+12:00 PM	19  F	2  F	47 % NW    18 mph	0 mph	29.8 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	19  F	-1  F	41 % WNW  15 mph 0 mph   29.8 in	0.0 in	0.0 in Partly Cloudy
+6:00 PM	17  F	2  F	51 % NW   12 mph 0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+9:00 PM	18  F	6  F	59 % ESE  2 mph  0 mph  29.9 in 0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-18
+12:00 AM    18  F  9  F	68 % S     6 mph 0 mph  29.9 in 0.0 in	0.0 in N/A
+3:00 AM	18  F	14  F	83 % SSE  3 mph  0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	21  F	12  F	69 % W    3 mph  0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	22  F	15  F	73 % SE   7 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	26  F	16  F	66 % N     3 mph	0 mph	29.9 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	29  F	16  F	57 % NNW  8 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	28  F	20  F	72 % S    9 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+9:00 PM	29  F	18  F	64 % SSE  3 mph  0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-19
+12:00 AM	31  F	23  F	72 % SE    3 mph	0 mph	30.0 in	0.0 in	0.0 in N/A
+3:00 AM	33  F	21  F	61 % ESE  3 mph  0 mph   30.0 in	0.0 in	0.0 in Cloudy
+6:00 AM	31  F	18  F	57 % S    9 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	35  F	24  F	64 % S    7 mph  0 mph   30.1 in	0.0 in	0.0 in Partly Cloudy
+12:00 PM	37  F	27  F	66 % N     3 mph	0 mph	30.1 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	34  F	30  F	86 % N    3 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	34  F	29  F	83 % SSE  3 mph  0 mph   30.2 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	30  F	26  F	84 % S    5 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+
+# 2006-02-20
+
+12:00 AM	30  F	20  F	67 % SSE   7 mph	0 mph	30.2 in	0.0 in	0.0 in N/A
+3:00 AM	26  F	15  F	65 % SSE  5 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+6:00 AM	25  F	14  F	65 % SE   7 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+9:00 AM	35  F	24  F	66 % SE   9 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+12:00 PM	42  F	26  F	54 % SSE   20 mph	0 mph	30.1 in	0.0 in	0.0 in Fair
+3:00 PM	40  F	29  F	64 % SSE  17 mph 0 mph   30.1 in	0.0 in	0.0 in Fair
+6:00 PM	38  F	29  F	70 % SSE  12 mph 0 mph   30.1 in	0.0 in	0.0 in Fair
+9:00 PM	37  F	30  F	77 % SSE  12 mph 0 mph   30.2 in	0.0 in	0.0 in Fair
+
+# 2006-02-21
+12:00 AM	37  F	32  F	83 % SSE   10 mph	0 mph	30.1 in	0.0 in	0.0 in N/A
+3:00 AM	35  F	29  F	80 % SSE  12 mph 0 mph   30.1 in	0.0 in	0.0 in Fair
+6:00 AM	35  F	29  F	79 % SSE  7 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	40  F	29  F	63 % SE   8 mph  0 mph   30.2 in	0.0 in	0.0 in Fair
+12:00 PM	46  F	31  F	55 % ESE   8 mph	0 mph	30.1 in	0.0 in	0.0 in Fair
+3:00 PM	42  F	32  F	68 % ESE  8 mph  0 mph   30.1 in	0.0 in	0.0 in Partly Cloudy
+6:00 PM	40  F	32  F	73 % SE   5 mph  0 mph   30.1 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	38  F	30  F	72 % SE   8 mph  0 mph   30.1 in	0.0 in	0.0 in Partly Cloudy
+
+# 2006-02-22
+12:00 AM	34  F	29  F	81 % ESE   10 mph	0 mph	30.1 in	0.0 in	0.0 in N/A
+3:00 AM	37  F	29  F	70 % ESE  12 mph 0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	38  F	29  F	71 % SE   15 mph 0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	39  F	29  F	69 % SE   15 mph 0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	43  F	0  F	65 % SSE   22 mph	0 mph	29.9 in	0.0 in	0.0 in Cloudy
+3:00 PM	44  F	32  F	64 % SE   9 mph  0 mph   29.9 in	0.0 in	0.0 in Cloudy
+6:00 PM	41  F	33  F	74 % SSE  10 mph 0 mph   29.9 in	0.0 in	0.0 in Cloudy
+9:00 PM	39  F	33  F	78 % SE   8 mph  0 mph   29.8 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-23
+12:00 AM	37  F	34  F	90 % NNW   3 mph	0 mph	29.8 in	0.0 in	0.0 in N/A
+3:00 AM	33  F	30  F	89 % NNW  16 mph 0 mph   29.9 in	0.0 in	0.0 in Cloudy
+6:00 AM	33  F	22  F	63 % NW   16 mph 0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	34  F	21  F	60 % NNW  15 mph 0 mph   30.0 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	33  F	21  F	62 % NNW   17 mph	0 mph	30.1 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	32  F	13  F	46 % NNW  15 mph 0 mph   30.1 in	0.0 in	0.0 in Fair
+6:00 PM	28  F	8  F	44 % NW   7 mph  0 mph  30.2 in 0.0 in	0.0 in Fair
+9:00 PM	26  F	5  F	41 % W    2 mph  0 mph  30.3 in 0.0 in	0.0 in Fair
+
+# 2006-02-24
+12:00 AM	25  F	10  F	53 % S     5 mph	0 mph	30.3 in	0.0 in	0.0 in N/A
+3:00 AM	24  F	10  F	55 % S    2 mph  0 mph   30.3 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	25  F	13  F	61 % W    3 mph  0 mph   30.3 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	26  F	20  F	78 % SSE  2 mph  0 mph   30.3 in	0.0 in	0.0 in Cloudy
+12:00 PM	27  F	23  F	83 % N     6 mph	0 mph	30.3 in	0.0 in	0.0 in Cloudy
+3:00 PM	28  F	23  F	82 % NNW  5 mph  0 mph   30.3 in	0.0 in	0.0 in Cloudy
+6:00 PM	28  F	24  F	85 % NNW  6 mph  0 mph   30.3 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	28  F	24  F	86 % N    6 mph  0 mph   30.4 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-25
+12:00 AM	27  F	23  F	85 % WNW   2 mph	0 mph	30.4 in	0.0 in	0.0 in N/A
+3:00 AM	26  F	20  F	77 % W    2 mph  0 mph   30.4 in	0.0 in	0.0 in Mostly Cloudy
+6:00 AM	23  F	17  F	79 % S    2 mph  0 mph   30.5 in	0.0 in	0.0 in Fair
+9:00 AM	29  F	15  F	56 % S    3 mph  0 mph   30.5 in	0.0 in	0.0 in Fair
+12:00 PM	32  F	16  F	51 % N     7 mph	0 mph	30.5 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	31  F	16  F	52 % ESE  3 mph  0 mph   30.4 in	0.0 in	0.0 in Mostly Cloudy
+6:00 PM	30  F	15  F	53 % S    13 mph 0 mph   30.4 in	0.0 in	0.0 in Mostly Cloudy
+9:00 PM	30  F	17  F	59 % SSE  10 mph 0 mph   30.4 in	0.0 in	0.0 in Mostly Cloudy
+
+# 2006-02-26
+12:00 AM	31  F	20  F	61 % ESE   13 mph	0 mph	30.3 in	0.0 in	0.0 in N/A
+3:00 AM	33  F	26  F	76 % SSE  10 mph 0 mph   30.3 in	0.0 in	0.0 in Cloudy
+6:00 AM	35  F	27  F	74 % SSE  17 mph 0 mph   30.2 in	0.0 in	0.0 in Cloudy
+9:00 AM	37  F	32  F	82 % SSE  25 mph 0 mph   30.1 in	0.0 in	0.0 in Cloudy
+12:00 PM	40  F	34  F	79 % SSE   23 mph	0 mph	29.9 in	0.0 in	0.0 in Cloudy
+3:00 PM	38  F	33  F	83 % SSE  29 mph 0 mph   29.8 in	0.0 in	0.0 in Cloudy
+6:00 PM	39  F	34  F	84 % S    28 mph 0 mph   29.6 in	0.0 in	0.0 in Cloudy
+9:00 PM	39  F	35  F	85 % S    20 mph 0 mph   29.5 in	0.0 in	0.0 in Cloudy
+
+# 2006-02-27
+12:00 AM	43  F	28  F	57 % SW    17 mph	0 mph	29.5 in	0.0 in	0.0 in N/A
+3:00 AM	33  F	22  F	64 % WSW  10 mph 0 mph   29.6 in	0.0 in	0.0 in Cloudy
+6:00 AM	27  F	17  F	66 % WSW  15 mph 0 mph   29.7 in	0.0 in	0.0 in Mostly Cloudy
+9:00 AM	26  F	13  F	58 % WNW  7 mph  0 mph   29.8 in	0.0 in	0.0 in Mostly Cloudy
+12:00 PM	26  F	10  F	51 % N     8 mph	0 mph	29.9 in	0.0 in	0.0 in Mostly Cloudy
+3:00 PM	25  F	13  F	61 % NW   12 mph 0 mph   29.9 in	0.0 in	0.0 in Mostly Cloudy
+
+
+
+
+

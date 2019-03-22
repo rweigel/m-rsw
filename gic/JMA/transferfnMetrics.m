@@ -7,7 +7,7 @@ S.fe = fe;
 S.Z = Z;
 
 a = opts.td.Ntrim;
-b = 86400-opts.td.Ntrim+1;
+b = size(In,1)-opts.td.Ntrim+1;
 
 for k = 1:size(In,3)
     S.Predicted(:,:,k) = real(Zpredict(fe,Z,In(:,:,k)));

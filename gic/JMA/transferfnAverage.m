@@ -2,12 +2,20 @@ function Savg = transferfnAverage(S,opts,Ik)
 
 Savg        = struct();
 Savg.Mean   = struct();
-Savg.Huber  = struct();
-Savg.Median = struct();
+%Savg.Huber  = struct();
+%Savg.Median = struct();
+
+Method = struct();
+Method.Mean.Function   = @cmean;
+%Method.Median.Function = @cmedian;
+%Method.Huber.Function  = @cmlochuber;
+%Method.MeanPEWeighted.Function  = @cmean;    
+%Method.MeanPEWeighted.WeightStr = 'PE';        
 
 % TODO: Account for this when computing error spectra.
 a = opts.td.Ntrim;
-b = opts.td.window.width-opts.td.Ntrim+1;
+%b = opts.td.window.width-opts.td.Ntrim+1;
+b = size(S.In,1)-opts.td.Ntrim+1;
 
 if nargin < 3
     Ik = [1:size(S.In_PSD,3)];
@@ -20,13 +28,6 @@ else
     end        
 end
 
-Method = struct();
-Method.Mean.Function   = @cmean;
-Method.Median.Function = @cmedian;
-Method.Huber.Function  = @cmlochuber;
-
-Method.MeanPEWeighted.Function  = @cmean;    
-Method.MeanPEWeighted.WeightStr = 'PE';        
 
 function z = cmedian(z,dim)
     z = median(real(z),dim) + sqrt(-1)*median(imag(z),dim);

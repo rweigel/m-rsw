@@ -7,7 +7,8 @@ dir = '../data/iris';
 fnameout = sprintf('%s/%s/data/%s-%s-original.mat',dir,sta,sta,units);
 
 if exist(fnameout)
-    load(fnameout);
+    fprintf('Found %s. Skipping.\n',fnameout);
+    %load(fnameout);
     return
 end
 
