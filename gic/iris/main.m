@@ -21,8 +21,9 @@ sta = 'CAM05';
 sta = 'NVN08';
 sta = 'UTN19';
 sta = 'CON20';
-sta = 'ORF03';
 sta = 'CON21';
+sta = 'ORF03';
+
 sta = 'ORF09';
 sta = 'ORF10';
 sta = 'MBB03';
@@ -39,21 +40,35 @@ sta = 'UTP18'; % http://ds.iris.edu/spud/emtf/1362488
 sta = 'COO20'; % http://ds.iris.edu/spud/emtf/1349640
 sta = 'UTP17'; 
 sta = 'RET54';
-sta = 'MBB01';
-sta = 'MBB02';
-sta = 'NEK25';
-sta = 'NEK26';
-sta = 'NEK27';
+
+
+sta = 'NEK25'; % http://ds.iris.edu/spud/emtf/17328740
+sta = 'NEK26'; % http://ds.iris.edu/spud/emtf/17328962
+sta = 'NEK27'; % http://ds.iris.edu/spud/emtf/17329184
 sta = 'NEK28'; % http://ds.iris.edu/spud/emtf/17329406
 sta = 'NEK29'; % http://ds.iris.edu/spud/emtf/17329628
 sta = 'NEK30';
 sta = 'NEK31';
 sta = 'NEK32';
 
+%sta = 'MBB02';
+%sta = 'MBB01';
+
+sta = 'NEK28';
+sta = 'NEK29';
 sta = 'NEK27';
+sta = 'NEK25';
+
+sta = 'VAQ57'; % http://ds.iris.edu/spud/emtf/15014349
+sta = 'VAQ58'; % http://ds.iris.edu/spud/emtf/15014571
+sta = 'VAQ59'; % http://ds.iris.edu/spud/emtf/15014793
+
+
+
 % Note: getIRISCatalog() does not work for stations with multiple
 % instruments such as MBB05.
-C = getIRISCatalog(1);
+update_catalog = 0;
+C = getIRISCatalog(update_catalog);
 for i = 1:length(C)
     if strmatch(sta,C{i},'exact')
         start = C{i}{2}(1:10);
@@ -65,11 +80,12 @@ end
 
 chas = unique(chas);
 if (length(chas) > 5)
-  error('Too many channels')
+  error('Too many channels.')
 end
 
 units = 'counts';
-%units = 'natural';
+%units = 'natural'; % Data is often missing when this selected. See
+% scale/scalefactors.m
 
 getIRIS(sta,start,stop,chas,units);
 prepIRIS(sta,start,stop,chas,units);

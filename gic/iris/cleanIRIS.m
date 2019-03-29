@@ -84,21 +84,59 @@ if strmatch(sta,'WII41','exact')
     D(749700:749000,:) = NaN;        
 end
 
-t = [1:size(D,1)]/1000;
+if strmatch(sta,'NEK32','exact')
+    %D(749700:749000,:) = NaN;
+    D([234041:234115],1:3) = NaN;
+
+end
+
+if strmatch(sta,'NEK29','exact')
+    D([965331:970507],1:3) = NaN;
+    D([640974:669541],4) = NaN;
+    D([109262:109281],4) = NaN;
+    D([111373:111390],4) = NaN;
+    D([213449:213756],5) = NaN;
+    D(:,4:5) = despikeE(D(:,4:5),1e4,[-2,6]);
+end
+
+if strmatch(sta,'NEK28','exact')
+    D([152083:152395],1:3) = NaN;
+    D(:,4:5) = despikeE(D(:,4:5),1e4,[-2,6]);
+end
+
+if strmatch(sta,'NEK27','exact')
+    % TODO: Calibration factor for By and Bz probably different from
+    % Bx.
+    D(844459:end,2) = D(844459:end,2) - (1881000-1849000);
+    D(844459:end,3) = D(844459:end,3) - (5027000-4753000);
+    D(:,2) = D(:,2) - 1.8e6;
+    D(:,3) = D(:,3) - 5.e6;
+    D(:,4:5) = despikeE(D(:,4:5),1e4,[-2,6]);
+    D([1651038:1658275],4:5) = NaN;
+end
+
+t = [1:size(D,1)];
 for i = 1:size(D,2)
     figure(i);clf
-    plot(t,D(:,i)/1e6);
+    plot(t,D(:,i));
     drawnow;
-    title(sprintf('%s %s [counts/1e6]',sta,chas{i}));
+    title(sprintf('%s %s [counts/1e6] %s-%s',sta,chas{i},start,stop));
     xlabel('(measurement #)/1000')
     grid on;
     grid minor;
+    zoom off;
+    hB = zoom(gca);
+    hB.ActionPreCallback = @(obj,evd) fprintf('');
+    hB.ActionPostCallback = @(obj,evd) fprintf('Showing D([%d:%d],%d)\n',round(evd.Axes.XLim),i);
 end
-s = input('OK [y]/n?','s');
-if ~isempty(s) && s(1) == 'n'
+
+fprintf('Zoom in on bad areas, record index range and place in cleanIRIS.m\n');
+s = input('Write output file y/[n]?','s');
+if isempty(s) | s(1) == 'n'
     keyboard
 end
 
+fprintf('Removing mean.\n');
 for i = 1:size(D,2)
   D(:,i) = D(:,i) - nanmean(D(:,i));
 end

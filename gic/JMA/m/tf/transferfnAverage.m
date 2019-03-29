@@ -150,6 +150,7 @@ for f = 1:length(keys)
     end
 end
 
+
 for k = 1:size(S.In,3)
 
     keys = fieldnames(Savg);
@@ -160,6 +161,8 @@ for k = 1:size(S.In,3)
             Savg.(keys{f}).Predicted(:,2,k) = Savg.(keys{f}).ao(2)*S.In(:,1,k) + Savg.(keys{f}).bo(2)*S.In(:,2,k);
         else
             %keys{f}
+            %[Savg.(keys{f}).Predicted(:,:,k),Savg.(keys{f}).Zi] = ...
+            %        Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
             Savg.(keys{f}).Predicted(:,:,k) = Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
         end
         Savg.(keys{f}).PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));

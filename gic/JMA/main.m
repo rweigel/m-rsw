@@ -1,7 +1,7 @@
 %function main(rn)
 
-clear
-rn = 5;
+clear;
+rn = 1;
 
 setpaths;
 
@@ -54,7 +54,7 @@ end
 
 di = 0;
 for i = 1:length(dateos)
-%for i = 1:2
+%for i = 7:length(dateos)
     
     fprintf('------------------------------------------------------------------------\n')
     fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
@@ -65,13 +65,11 @@ for i = 1:length(dateos)
     dt    = dts(i);
 
     i = i-di;
-
     if (datenum(datef,'yyyymmdd')-datenum(dateo,'yyyymmdd')+1)*86400 < opts.td.window.width
         di = di+1;
         fprintf('main.m: Skipping interval %s-%s due to opts.td.window.width\n',dateo,datef);
         continue;
     end
-    
 
     % Read 1s B data for remote reference
     [~,~,tBr,Br] = prep_EB(dateo,datef,'kak',regenfiles); 
@@ -94,28 +92,28 @@ for i = 1:length(dateos)
     B(:,:,2) = Br;
     
     % Correct for clock drift
-    tGIC = tGIC + dt*1000;
+    %tGIC = tGIC + dt/86400;
 
-    if 1 || intmplot
+    if intmplot
         if i == 1
             close all;
         end
         plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC raw','GIC 1 Hz filtered'});
     end
-    
+
     E    = despikeE(E);
     GICd = despikeGIC(GIC(:,2)); % Despike 1 Hz filtered column
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
     [t,E,B] = timealign(tGIC,tE,E,B);
-        
+
     if intmplot
-        plot_raw(tGIC,GIC(:,2),tE,E,tB,B,dateo,writepng,{'GIC'});
+        plot_raw(t,GIC(:,2),t,E,t,B,dateo,writepng,{'GIC'});
     end
-    
+
     [GIC,E,B] = removemean(GIC,E,B);
 
-    if strcmp('pca',opts.td.transform)
+    if 0 && strcmp('pca',opts.td.transform)
         if i == 1
             [RE,DE] = eig(cov(E(:,1:2)));
             [RB,DB] = eig(cov(B(:,1:2)));            
@@ -136,21 +134,22 @@ for i = 1:length(dateos)
     GEoc{i} = transferfnConst(E,GIC,opts,t);
 
     fprintf('main.m: %s G/Bo\n',dateo);
-    GBoc{i} = transferfnConst(B,GIC,opts,t);
+    GBoc{i} = transferfnConst(B(:,1:2,1),GIC,opts,t);
     
     fprintf('main.m: %s G/E\n',dateo);
     GEc{i} = transferfnFD(E,GIC,opts,t);
     
     fprintf('main.m: %s G/B\n',dateo);
-    GBc{i} = transferfnFD(B(:,1:2),GIC,opts,t);
+    GBc{i} = transferfnFD(B(:,1:2,1),GIC,opts,t);
     
     fprintf('main.m: %s E/B\n',dateo);
-    EBc{i} = transferfnFD(B(:,1:2),E,opts,t);
+    EBc{i} = transferfnFD(B(:,1:2,1),E,opts,t);
 
-    fprintf('main.m: %s E/B Remote Reference\n',dateo);
-    topts = opts;
-    topts.fd.regression.method = 1; % Remote reference not implemented for other methods.
-    EBrc{i} = transferfnFD(B(:,1:2,:),E,topts,t);
+    %Need to re-implement this in transferfnFD.m. Lost verion that had it.
+    %fprintf('main.m: %s E/B Remote Reference\n',dateo);
+    %topts = opts;
+    %topts.fd.regression.method = 1; % Remote reference not implemented for other methods.
+    %EBrc{i} = transferfnFD(B(:,1:2,:),E,topts,t);
     
     fprintf('main.m: %s G/E''\n',dateo);
     GBac{i} = transferfnAlt(GEc{i},EBc{i},opts,t);
@@ -171,7 +170,7 @@ GBo  = transferfnCombine(GBoc);
 GE   = transferfnCombine(GEc);
 GB   = transferfnCombine(GBc);
 EB   = transferfnCombine(EBc);
-EBr  = transferfnCombine(EBrc);
+%EBr  = transferfnCombine(EBrc);
 GBa  = transferfnCombine(GBac);
 GBoa = transferfnCombine(GBoac);
 
@@ -225,7 +224,7 @@ transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
 fprintf('main.m: E/B\n');
 EB_avg  = transferfnAverageFunction(EB,opts);
-EB_avg.Fuji = transferfnFuji(EB,'mmb',opts);
+EB_avg.Fuji = transferfnFujii(EB,'mmb',opts);
 %transferfnSummary(EB,EB_avg,'E/B')
 
 fprintf('main.m: E/B No stack\n');
@@ -235,11 +234,12 @@ EB_avg.NoStack_Robust1 = EB_ns.Robust1;
 EB_avg.NoStack_Robust2 = EB_ns.Robust2;
 transferfnSummary(EB,EB_avg,'E/B');
 
-fprintf('main.m: E/B Remote Reference\n');
-EBr_avg = transferfnAverageFunction(EBr,opts);
-transferfnSummary(EBr,EBr_avg,'E/B Remote Reference')
+%fprintf('main.m: E/B Remote Reference\n');
+%EBr_avg = transferfnAverageFunction(EBr,opts);
+%transferfnSummary(EBr,EBr_avg,'E/B Remote Reference')
 
-savevars = {'opts','GEo','GBo','GE','GB','EB','EBr','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','EBr_avg','GBa_avg'};
+%savevars = {'opts','GEo','GBo','GE','GB','EB','EBr','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','EBr_avg','GBa_avg'};
+savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});

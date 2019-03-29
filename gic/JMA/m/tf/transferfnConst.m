@@ -24,9 +24,11 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        S{i} = transferfnConst(In(Iseg,:),Out(Iseg,:),opts,t(Iseg));
-        fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_x = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(1),S{i}.CC(1),S{i}.MSE(1));
-        fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_y = %.2f/%.2f/%.3f\n',i,length(Io),S{i}.PE(2),S{i}.CC(2),S{i}.MSE(2));
+        S{i} = transferfnConst(removemean(In(Iseg,:)),removemean(Out(Iseg,:)),opts,t(Iseg));
+        comp = ['x','y'];
+        for j = 1:size(Out,2)
+            fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_%s = %.2f/%.2f/%.3f\n',i,length(Io),comp(j),S{i}.PE(j),S{i}.CC(j),S{i}.MSE(j));
+        end
     end
     S = transferfnCombine(S);
     return;
@@ -47,8 +49,8 @@ else
 end
 
 % Matrix method to compute ao and bo
-% GIC(:,i) = aoE(:,1) + boE(:,2);
-for i = 1:2
+% Out = ao*In(:,1) + bo*In(:,2);
+for i = 1:size(In_averaged,2)
     LIN = basic_linear(In_averaged,Out_averaged(:,i));
     S.Predicted(:,i) = basic_linear(In,LIN.Weights,'predict');
     S.ao(i) = LIN.Weights(1);

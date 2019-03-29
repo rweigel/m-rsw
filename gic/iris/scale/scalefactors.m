@@ -1,5 +1,20 @@
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&correct=true&units=DEF&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&correct=true&units=DEF&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=ascii
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=ascii
+
+
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=NEK32&loc=--&cha=LFE&starttime=2018-05-09T23:00:00&endtime=2018-05-10T01:00:00&output=plot
+http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=NEK32&loc=--&cha=LFE&correct=true&units=DEF&starttime=2018-05-09T23:00:00&endtime=2018-05-10T01:00:00&output=plot
+
 % ORF03, LQE, counts
 % http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot
+
+sta = 'ORF03';
+cha = 'LQE';
+start = '
 
 urlwrite('http://service.iris.edu/irisws/timeseries/1/query?net=EM&sta=ORF03&loc=--&cha=LQE&starttime=2007-09-01T00:00:00&endtime=2007-09-01T23:59:59&output=plot','Counts.png');
 Ic = imread('Counts.png');
@@ -28,6 +43,7 @@ imagesc(In);
 grid on;
 set(gca,'YTick',[32:1:1000])
 
+% My calculation.
 % -1 @ 602
 % 1.5 @ 127
 % Max @ 31
@@ -40,7 +56,8 @@ set(gca,'YTick',[32:1:1000])
 % length_X = 100; % m (approximate)
 % length_Y = 100; % m (approximate)
 % gain     = 200; % (approximate)
-% Ecount   = 8.192*1e3/(256*256*256)/gain; % 2.4414e-6 (units?, what is 8.192 from)
+% Ecount   = 8.192*1e3/(256*256*256)/gain; % 2.4414e-6 (units? 8192 is 2^13
+% - where is this from?)
 % lengthX  = Ex_wire_length*1e-3; % km
 % lengthY  = Ey_wire_length*1e-3; % km
 % EX = Data(4,:)*Ecount/lengthX; % mV/km

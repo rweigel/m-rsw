@@ -1,8 +1,5 @@
 clear
 
-% Does not match Fujii
-% Consider this interval leaving spike in. Here robust full fails, but
-% stack is better.
 dateo = '20060203';
 datef = '20060228';
 IbE = [9.64944e+05:9.66299e+05];

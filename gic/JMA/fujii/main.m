@@ -30,10 +30,6 @@ dateo = '20031030';
 datef = '20031101';
 Ib = [];
 
-dateo = '20031202';
-datef = '20031222';
-Ib = [1.487153e+06:1.488627e+06];
-%datef = '20031231';
 
 dateo = '20041202';
 datef = '20041231';
@@ -50,12 +46,6 @@ datef = '20060530';
 IbE = [];
 IbB = [];
 
-% Does not match Fujii
-dateo = '20060106';
-datef = '20060131';
-IbE = [457658:457682,871643:872792];
-IbB = [957879:958349,881469:888762];
-
 
 % Matches Fujii
 dateo = '20051202';
@@ -69,11 +59,22 @@ IbE = [882227:882233,1323746:1324585,1402202:1403151];
 IbB = [];
 
 % Does not match Fujii
+dateo = '20060106';
+datef = '20060131';
+IbE = [457658:457682,871643:872792];
+IbB = [957879:958349,881469:888762];
+
+% Does not match Fujii
 % Consider this interval leaving spike in. Here robust full fails, but
 % stack is better.
 dateo = '20060203';
 datef = '20060228';
 IbE = [9.64944e+05:9.66299e+05];
+IbB = [];
+
+dateo = '20031202';
+datef = '20031222';
+IbE = [1.487153e+06:1.488627e+06];
 IbB = [];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,7 +144,9 @@ Sc{1} = transferfnFD(B(:,1:2,1),E,opts);
     fe{1} = Sa{1}.Mean.fe;
 
 opts.fd.regression.method = 3;
-methods{2} = 'Robust';
+opts.fd.window.function = @parzenwin; 
+opts.fd.window.functionstr = 'parzen';
+methods{2} = 'Robust + Parzen';
 Sc{2} = transferfnFD(B(:,1:2,1),E,opts);
     Sa{2} = transferfnAverage(Sc{2},opts);
     transferfnSummary(Sc{2},Sa{2},methods{2});
@@ -161,37 +164,24 @@ Sc{3} = transferfnFD2(Sc{2},opts);
     methods{4} = 'Robust No Stack';
 
 methods{5} = 'Fujii et al. 2015';    
-Sc{5} = transferfnFuji(Sc{1},site,opts);
+Sc{5} = transferfnFujii(Sc{1},site,opts);
     fe{5} = Sc{5}.fe;
     Z{5}  = Sc{5}.Z;
 
 
-Np = 0;
-Ezp = [zeros(86400*Np,2);E;zeros(86400*Np,2)];
-Bzp = [zeros(86400*Np,3);B;zeros(86400*Np,3)];
-I = [1:size(Bzp,1)];
-opts.td.window.width = length(I)/4;
-opts.td.window.shift = length(I)/4;
+opts.td.window.width = size(B,1);
+opts.td.window.shift = size(B,1);
 opts.fd.regression.method = 3;
 opts.description = 'Parzen window in FD';
 opts.fd.window.function = @parzenwin; 
 opts.fd.window.functionstr = 'parzen';
 
-Sc{6} = transferfnFD(Bzp(:,1:2,1),Ezp(:,:),opts);
-
-    if 0
-        fe{6} = Sc{6}.fe;
-        Z{6} = Sc{6}.Z;
-        methods{6} = 'Robust Full + Parzen';
-        Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
-    end
-
-    Sa{6} = transferfnAverage(Sc{6},opts);
-    fe{6} = Sa{6}.Mean.fe;
-    Z{6} = Sa{6}.Mean.Z;
-    methods{6} = 'Robust Full + Parzen';
-    Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
-
+Sc{6} = transferfnFD(B(:,1:2,1),E,opts);
+fe{6} = Sc{6}.fe;
+Z{6} = Sc{6}.Z;
+methods{6} = 'Robust Full + Parzen';
+% Re-do metrics using 1-day segments
+Sc{6} = transferfnMetrics(Sc{1}.In,Sc{1}.Out,fe{6},Z{6},opts);
 
 a = 600;
 b = size(B,1)-600;
@@ -199,12 +189,7 @@ b = size(B,1)-600;
 [N,xfe] = smoothSpectra(E(a:b,:));
 
 for i = 1:length(Z)
-    I = find(fe{i}(2:end) >= fe{1}(2) & fe{i}(2:end) <= fe{1}(end));
-    I = I+1;
-    I = [1;I(1)-1;I];
-    fer{i} = fe{i}(I);
-    Zr{i} = Z{i}(I,:);
-    Ep{i} = Zpredict(fe{i}(I),Z{i}(I,:),B(:,1:2));
+    Ep{i} = Zpredict(fe{i},Z{i},B(:,1:2));
     SN{i} = N./smoothSpectra(E(a:b,:)-Ep{i}(a:b,:));
 end
 

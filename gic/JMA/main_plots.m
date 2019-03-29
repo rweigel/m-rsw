@@ -8,16 +8,21 @@ if ~exist('filestr','var')
     fprintf('main.m: Loaded %s\n',fname);    
 end
 
-writepng = 0
+writepng = 0;
+
+f.compareZplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,EB_avg.Mean,filestr,writepng);
+f.comparePhiplots(GE_avg.Mean,GB_avg.Mean,EB_avg.Mean,filestr,writepng);
+
+break
 
 parameterhistograms(GEo,GEo_avg,filestr,writepng);
 
 f = summaryPlots();
 
-f.compareHplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,filestr,writepng)
-f.compareZplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,GBa_avg.Mean,filestr,writepng)
-f.comparePhiplots(GE_avg.Mean,GB_avg.Mean,filestr,writepng)
-f.compareSN2(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,GBa_avg.Mean,'',filestr,writepng)
+f.compareHplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,filestr,writepng);
+f.compareZplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,GBa_avg.Mean,filestr,writepng);
+f.comparePhiplots(GE_avg.Mean,GB_avg.Mean,filestr,writepng);
+f.compareSN2(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,GBa_avg.Mean,'',filestr,writepng);
 
 
 %plot_summary(GEo_avg,GE_avg,GBo_avg,GB_avg,GBa_avg,EB_avg,filestr,writepng);

@@ -6,18 +6,11 @@ figprep(png,1000,800);
 
 figure;clf;orient tall
 
-%[t,E,B] = timealign(tGIC,tE,E,B);
-
 t = tGIC;
 
 %ha = tight_subplot(3,1,[0.01,0.01],[0.05,0.02],[0.08,0.02]);
 ha = tight_subplot(3,1,[0.015,0.015],[0.05,0.02],[0.055,0.04]);
     
-to = datenum('1970-01-01');
-tGIC = tGIC/(86400*1000)+ to;
-tE   = tE/(86400*1000)+ to;
-tB   = tB/(86400*1000)+ to;
-
 xl = [min([tGIC(1),tE(1),tB(1)]),max([tGIC(end),tE(end),tB(end)])];
 axes(ha(3));
     plot(tGIC,GIC);
@@ -60,7 +53,4 @@ axes(ha(2));
 
 if png
     figsave(sprintf('%s/plot_raw_All_%s.pdf',dirfig,dateo));
-else
-    axes(ha(1));
-    title('In-sample model predictions');
 end

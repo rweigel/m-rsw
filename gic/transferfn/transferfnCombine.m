@@ -22,6 +22,17 @@ if k > 1
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+if 0
+    k = 1;
+    for i = 1:length(Scell)
+        if ~isempty(Scell{i})
+            I(k) = i;
+            k = k+1;
+        end
+    end
+    Scell = Scell(I); % Removes empty elements
+end
+
 S = struct();
 
 S.In  = Scell{1}.In;

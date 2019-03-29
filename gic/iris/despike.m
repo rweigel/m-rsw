@@ -1,11 +1,12 @@
-function E = despikeE(E)
+function E = despikeE(E,thresh,window)
 
 t = [1:size(E,1)]';
 
 for c = 1:size(E,2) % Columns
-    I = find(abs(diff(E(:,c))) >= 1); % Find spikes
+    I = find(abs(diff(E(:,c))) >= thresh); % Find spikes
     for i = 1:length(I)
-        a = 2;b = 4;
+        a = window(1);
+        b = window(2);
         if (I(i) - a < 1),a = 0;end
         if (I(i) + b >= size(E,1)),b = 0;end
         E(I(i)-a:I(i)+b,c) = NaN;

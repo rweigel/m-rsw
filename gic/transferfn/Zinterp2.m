@@ -6,21 +6,31 @@ function Zi = Zinterp(fe,Z,fg,verbose)
 %
 %  Rows of fe are frequencies of corresponding rows of Z. Each column of
 %  Z is interpolated using INTERP1. If fe(1) = 0, it is not used for
-%  interpolation. If fg(1) = 0, the first row of Zi is set equal to first
+%  interpolation. If fg(1) = 0, first row of Zi is set equal to first
 %  row of Z if fe(1) = 0. Otherwise, first row of Zi is zeros.
 %
 %  Zi = Zinterp(fe,Z,fgrid,verbose) Displays logging information if
 %  verbose = 1.
+%
+%  See also Z2H.
 
-if nargin < 4
+if (nargin < 4)
     verbose = 0;
 end
-if size(fe,1) ~= size(Z,1)
+if (size(fe,1) ~= size(Z,1))
     fe = fe';
 end
-if size(fe,1) ~= size(fg,1)
+if (size(fe,1) ~= size(fg,1))
     fg = fg';
 end
+
+if any(fe < 0) || any(fg < 0)
+    error('fe and fg must be greater than or equal to zero');
+end
+
+% If 1, use value of Z for smallest non-zero fe as interpolated value
+% of Z for fg < fe
+extendLF = 1;
 
 if nargin == 3 && (length(fe) == length(fg))
     if all(fe == fg)
@@ -32,31 +42,28 @@ if nargin == 3 && (length(fe) == length(fg))
     end
 end
 
-if verbose
+if (verbose)
     fprintf('Zinterp.m: First grid frequency       : %.4f\n',fg(1));
     fprintf('Zinterp.m: First evaluation frequency : %.4f\n',fe(1));
     fprintf('Zinterp.m: Last grid frequency        : %.4f\n',fg(end));
     fprintf('Zinterp.m: Last evaluation frequency  : %.4f\n',fe(end));
 end
 
-if 0
-    % Remove fe = 0
-    fe0 = 0;
-    if fe(1) == 0
-        fe0 = 1;
-        fe = fe(2:end);
-        Z = Z(2:end,:);    
-    end
-
-    % Remove fg = 0
-    fg0 = 0;
-    if fg(1) == 0
-        fg0 = 1;
-        fg = fg(2:end);
-    end
+% Remove fe = 0
+fe0 = 0;
+if fe(1) == 0
+    fe0 = 1;
+    fe = fe(2:end);
+    Z = Z(2:end,:);    
 end
 
-extendLF = 0;
+% Remove fg = 0
+fg0 = 0;
+if fg(1) == 0
+    fg0 = 1;
+    fg = fg(2:end);
+end
+
 if extendLF
     if fe(1) > fg(1)
         % Set lowest evaluation frequency to be the lowest grid
@@ -81,36 +88,33 @@ for k = 1:size(Z,2)
         Zio(:,k) = interp1(fe,Z(:,k),fg,'cubic');
         Zi(:,k) = Zio(:,k);
     end
-
-    % Find non-NaN elements.
+    
+    % Will remove any NaN element.
     Ig = ~isnan(Z(:,k));
     if verbose && (length(Ig) ~= size(Z,1))
         fprintf('Zinterp.m: Dropping %d NaN values in Z(:,%d)\n',size(Z,1)-length(Ig),k);
     end
-    
-    % Interpolate using non-NaN elements. Outside of fe(Ig) range, Zi
-    % will be zero (values of fg outside of fe(Ig) are set to NaN
-    % by interp1).
     Zi(:,k) = interp1(fe(Ig),Z(Ig,k),fg,'linear');
+    %Zi(:,k) = Zio(:,k);
 
     % Set NaN values to zero
-    Ig = find(isnan(Zi(:,k)));
-    if length(Ig) > 0
+    % (values of fg outside of fe are set to NaN by interp1)
+    I = find(isnan(Zi(:,k)));
+    if (length(I) > 0)
         if (verbose)
-            fprintf('Zinterp.m: Setting %d value(s) outside of non-NaN fe range to zero in Z(:,%d)\n',length(Ig),k);
+            fprintf('Zinterp.m: Setting %d value(s) to zero in Z(:,%d)\n',length(I),k);
         end
     end
-    Zi(Ig,k) = 0;
+    Zi(I,k) = 0;
+    
 end
 
-if 0
-    if fg0 % If lowest grid frequency is zero (and so was removed)
-        if fe0 == 0
-            % If Z was given at fe = 0, use it as the "interpolated" value.
-            Zi = [Z(1,:);Zi];
-        else
-            % Otherwise, set it to zero
-            Zi = [zeros(1,size(Z,2));Zi];
-        end
+if fg0 % If lowest grid frequency is zero (and so was removed)
+    if fe0 == 0
+        % If Z was given at fe = 0, use it as the "interpolated" value.
+        Zi = [Z(1,:);Zi];
+    else
+        % Otherwise, set it to zero
+        Zi = [zeros(1,size(Z,2));Zi];
     end
 end

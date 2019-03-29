@@ -44,7 +44,7 @@ Ep_O = real(Ep_O);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 addpath('..')
-opts = main_options(2);
+opts = main_options(1);
 opts.td.window.width = 86400;
 opts.td.window.shift = 86400;
 Sc = transferfnFD(B(:,1:2),E,opts);
@@ -63,26 +63,28 @@ figure(1);clf;
     hold on;
     plot(E(I,1),'k');
     plot(Ep(I,1),'r');
+    legend('Data','Default','IRIS');
     
 figure(2);clf;
     plot(-Ep_O(1:86400,2),'g');
     hold on;
     plot(E(1:86400,2),'k');
     plot(Ep(1:86400,2),'r');    
-
+    legend('Data','Default','IRIS');
 
 components = {'$Z_{xx}$','$Z_{xy}$','$Z_{yx}$','$Z_{yy}$'};
 c = ['y','r','b','g'];
 fe = Savg.Mean.fe;
 T = D.PERIOD;
 for i = 1:4
-    figure(i);clf;
+    figure(i+2);clf;
     loglog(1./fe(2:end),abs(Savg.Mean.Z(2:end,i)),'r');
     hold on;grid on;
     loglog(T,abs(D.Z(i,:)),'g--');
-    loglog(1./W,abs(Z_P(i,:)),'k');
+    %loglog(1./W,abs(Z_P(i,:)),'k');
     title(components{i});
-    legend('Default','IRIS','Antti');
+    %legend('Default','IRIS','Antti');
+    legend('Default','IRIS');
 end
 
 

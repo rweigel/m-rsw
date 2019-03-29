@@ -1,4 +1,4 @@
-function Ep = Zpredict(fe,Z,B,verbose)
+function [Ep,Z] = Zpredict(fe,Z,B,verbose)
 
 if nargin < 4
   verbose = 0;

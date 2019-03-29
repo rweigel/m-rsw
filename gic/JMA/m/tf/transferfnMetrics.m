@@ -23,3 +23,9 @@ for k = 1:size(In,3)
     S.SN(:,:,k)         = S.Out_PSD(:,:,k)./S.Error_PSD(:,:,k);
     S.Coherence(:,:,k)  = smoothCoherence(S.Out(:,:,k),S.Predicted(:,:,k),opts);
 end
+
+for i = 1:size(S.PE,2)
+    S.PE_CI95(:,i) = boot( squeeze( S.PE(1,i,:) ),@(x) mean(x,1),1000,50);
+    S.CC_CI95(:,i) = boot( squeeze( S.CC(1,i,:) ),@(x) mean(x,1),1000,50);
+    S.MSE_CI95(:,i) = boot( squeeze( S.MSE(1,i,:) ),@(x) mean(x,1),1000,50);
+end

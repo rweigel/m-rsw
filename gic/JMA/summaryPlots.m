@@ -48,10 +48,45 @@ function f = summaryPlots()
     end
     f.compareHplots = @compareHplots;
 
-    function compareZplots(GEo,GE,GB,GBa,filestr,png)
+    function compareZplots(GEo,GE,GB,EB,filestr,png)
 
         figure();clf;box on;          
 
+        loglog(1./EB.fe(2:end),EB.Zabs(2:end,1),'r','LineWidth',2);
+        hold on;grid on;
+        loglog(1./EB.fe(2:end),EB.Zabs(2:end,2),'r--','LineWidth',2);
+        loglog(1./EB.fe(2:end),EB.Zabs(2:end,3),'b--','LineWidth',2);
+        loglog(1./EB.fe(2:end),EB.Zabs(2:end,4),'b','LineWidth',2);
+
+        % Multiply x by a fraction so vertical error bars don't exactly
+        % overlap.
+        errorbars(0.98*1./EB.fe(2:end),EB.Zabs(2:end,1),EB.Zabs_StdErr(2:end,1),EB.Zabs_StdErr(2:end,1),'y','r');
+        errorbars(0.99*1./EB.fe(2:end),EB.Zabs(2:end,2),EB.Zabs_StdErr(2:end,2),EB.Zabs_StdErr(2:end,2),'y','r--');    
+        errorbars(1./EB.fe(2:end),EB.Zabs(2:end,3),EB.Zabs_StdErr(2:end,3),EB.Zabs_StdErr(2:end,3),'y','b--');
+        errorbars(1.01*1./EB.fe(2:end),EB.Zabs(2:end,4),EB.Zabs_StdErr(2:end,4),EB.Zabs_StdErr(2:end,4),'y','b');
+
+        yl = get(gca,'YLim');
+        yl(1) = 0.04;
+        yl(2) = 2;
+        set(gca,'YLim',yl);
+        vlines(1./EB.fe(2));
+        lh = legend(...
+                sprintf('$|Z_{xx}|$'),...
+                sprintf('$|Z_{xy}|$'),...
+                sprintf('$|Z_{yx}|$'),...
+                sprintf('$|Z_{yy}|$'),...
+                'Location','NorthWest');
+        set(lh,'interpreter','latex');
+        xlabel('Period [s]');
+        ylabel('[(mV/km)/nT]');
+        exponent_relabel(gca,'x');
+        exponent_relabel(gca,'y');
+
+        if png
+            figsave(sprintf('figures/combined/plot_model_summary_Z_MT-%s.pdf',filestr));
+        end
+        
+        figure();clf;box on;          
         sf = 1e3;
         loglog(1./GE.fe(2:end),sf*repmat(abs(GEo.ao(2)),length(GE.fe(2:end)),1),'k');
         hold on;grid on;
@@ -64,10 +99,10 @@ function f = summaryPlots()
 
         %loglog(1./GE.fe(2:end),GE.Zabs(2:end,4)./GE.Zabs(2:end,3),'k');
 
-        errorbars(1./GE.fe(2:end),sf*GE.Zabs(2:end,3),sf*GE.Zabs_StdErr(2:end,3),sf*GE.Zabs_StdErr(2:end,3),'y','r');
-        errorbars(1./GE.fe(2:end),sf*GE.Zabs(2:end,4),sf*GE.Zabs_StdErr(2:end,4),sf*GE.Zabs_StdErr(2:end,4),'y','r');    
+        errorbars(0.98*1./GE.fe(2:end),sf*GE.Zabs(2:end,3),sf*GE.Zabs_StdErr(2:end,3),sf*GE.Zabs_StdErr(2:end,3),'y','r');
+        errorbars(0.99*1./GE.fe(2:end),sf*GE.Zabs(2:end,4),sf*GE.Zabs_StdErr(2:end,4),sf*GE.Zabs_StdErr(2:end,4),'y','r');    
         errorbars(1./GE.fe(2:end),sf*GB.Zabs(2:end,3),sf*GB.Zabs_StdErr(2:end,3),sf*GB.Zabs_StdErr(2:end,3),'y','b');
-        errorbars(1./GE.fe(2:end),sf*GB.Zabs(2:end,4),sf*GB.Zabs_StdErr(2:end,4),sf*GB.Zabs_StdErr(2:end,4),'y','b');
+        errorbars(1.01*1./GE.fe(2:end),sf*GB.Zabs(2:end,4),sf*GB.Zabs_StdErr(2:end,4),sf*GB.Zabs_StdErr(2:end,4),'y','b');
         yl = get(gca,'YLim');
         yl(1) = 1;
         yl(2) = 300;
@@ -84,6 +119,7 @@ function f = summaryPlots()
         set(lh,'interpreter','latex');
         xlabel('Period [s]');
         exponent_relabel(gca,'x');
+        exponent_relabel(gca,'y');
 
         if png
             figsave(sprintf('figures/combined/plot_model_summary_Z-%s.pdf',filestr));
@@ -92,8 +128,56 @@ function f = summaryPlots()
     end
     f.compareZplots = @compareZplots;
 
+    function comparePhiplots(GE,GB,EB,filestr,png)
 
-    function comparePhiplots(GE,GB,filestr,png)
+        figure();clf;    
+
+        sf = 180/pi;
+        T = 1./GE.fe(2:end);
+
+        % Manually unwrap certain parts
+        In = find(EB.Phi2(:,1) < 0);
+        EB.Phi2(In,1) = EB.Phi2(In,1)+2*pi;
+        semilogx(T,sf*EB.Phi2(2:end,1),'r.','MarkerSize',20);
+        hold on;box on;grid on;
+
+        In = find(EB.Phi2(:,2) > 0);
+        EB.Phi2(In,2) = EB.Phi2(In,2)-2*pi;
+        semilogx(T,sf*EB.Phi2(2:end,2),'ro');
+
+        In = find(EB.Phi2(:,3) > 0);
+        EB.Phi2(In,3) = EB.Phi2(In,3)-2*pi;
+        semilogx(T,sf*EB.Phi2(2:end,3),'bo');
+
+        semilogx(T,sf*EB.Phi2(2:end,3),'b.','MarkerSize',20);
+        
+        In = find(EB.Phi2(:,4) < 0);
+        EB.Phi2(In,4) = EB.Phi2(In,4)+2*pi;
+        semilogx(T,sf*EB.Phi2(2:end,4),'bo');
+
+        errorbars(0.98*T,sf*EB.Phi2(2:end,1),sf*EB.Phi_StdErr(2:end,1),sf*EB.Phi_StdErr(2:end,1),'y','r');
+        errorbars(0.99*T,sf*EB.Phi2(2:end,2),sf*EB.Phi_StdErr(2:end,2),sf*EB.Phi_StdErr(2:end,2),'y','r--');
+        errorbars(T,sf*EB.Phi2(2:end,3),sf*EB.Phi_StdErr(2:end,3),sf*EB.Phi_StdErr(2:end,3),'y','b--');
+        errorbars(1.01*T,sf*EB.Phi2(2:end,4),sf*EB.Phi_StdErr(2:end,4),sf*EB.Phi_StdErr(2:end,4),'y','b');
+
+        set(gca,'ytick',[-270:30:270])
+        ylim([-270,270])
+        vlines(1./EB.fe(2));
+        exponent_relabel(gca,'x');
+
+        lh = legend(...
+                sprintf('$\\phi_{xx}$'),...
+                sprintf('$\\phi_{xy}$'),...
+                sprintf('$\\phi_{yx}$'),...
+                sprintf('$\\phi_{yy}$'),...
+                'Location','Best');
+        set(lh,'interpreter','latex')
+        xlabel('Period [s]');
+        ylabel('[degrees]');
+
+        if png
+            figsave(sprintf('figures/combined/plot_model_summary_Phi_MT-%s.pdf',filestr));
+        end
 
         figure();clf;    
 
@@ -109,10 +193,10 @@ function f = summaryPlots()
         semilogx(T,sf*GB.Phi2(2:end,3),'b.','MarkerSize',20);
         semilogx(T,sf*GB.Phi2(2:end,4),'bo');
 
-        errorbars(T,sf*GE.Phi2(2:end,3),sf*GE.Phi_StdErr(2:end,3),sf*GE.Phi_StdErr(2:end,3),'y','r');
-        errorbars(T,sf*GE.Phi2(2:end,4),sf*GE.Phi_StdErr(2:end,4),sf*GE.Phi_StdErr(2:end,4),'y','r');
+        errorbars(0.98*T,sf*GE.Phi2(2:end,3),sf*GE.Phi_StdErr(2:end,3),sf*GE.Phi_StdErr(2:end,3),'y','r');
+        errorbars(0.99*T,sf*GE.Phi2(2:end,4),sf*GE.Phi_StdErr(2:end,4),sf*GE.Phi_StdErr(2:end,4),'y','r');
         errorbars(T,sf*GB.Phi2(2:end,3),sf*GB.Phi_StdErr(2:end,3),sf*GB.Phi_StdErr(2:end,3),'y','b');
-        errorbars(T,sf*GB.Phi2(2:end,4),sf*GB.Phi_StdErr(2:end,4),sf*GB.Phi_StdErr(2:end,4),'y','b');
+        errorbars(1.01*T,sf*GB.Phi2(2:end,4),sf*GB.Phi_StdErr(2:end,4),sf*GB.Phi_StdErr(2:end,4),'y','b');
 
         set(gca,'ytick',[-180:30:180])
         ylim([-210,210])
@@ -138,7 +222,6 @@ function f = summaryPlots()
     end
     f.comparePhiplots = @comparePhiplots;
 
-    
     function compareSN2(GEo,GE,GB,GBa,titlestr,filestr,png)
 
         figure();clf;
@@ -156,16 +239,16 @@ function f = summaryPlots()
         loglog(T,GB_SNm(:,2),'b','Marker','.','MarkerSize',2,'LineWidth',2);
 
         ye = boot(squeeze(GEo.SN(:,2,:))',@mean,1000,159);
-        errorbars(T,GEo_SNm(:,2),GEo_SNm(:,2)-ye(:,1),ye(:,2)-GEo_SNm(:,2),'y','k');
+        errorbars(0.98*T,GEo_SNm(:,2),GEo_SNm(:,2)-ye(:,1),ye(:,2)-GEo_SNm(:,2),'y','k');
 
         ye = boot(squeeze(GE.SN(:,2,:))',@mean,1000,159);
-        errorbars(T,GE_SNm(:,2),GE_SNm(:,2)-ye(:,1),ye(:,2)-GE_SNm(:,2),'y','r');
+        errorbars(0.99*T,GE_SNm(:,2),GE_SNm(:,2)-ye(:,1),ye(:,2)-GE_SNm(:,2),'y','r');
 
         ye = boot(squeeze(GBa.SN(:,2,:))',@mean,1000,159);
         errorbars(T,GBa_SNm(:,2),GBa_SNm(:,2)-ye(:,1),ye(:,2)-GBa_SNm(:,2),'y','g');
 
         ye = boot(squeeze(GB.SN(:,2,:))',@mean,1000,159);
-        errorbars(T,GB_SNm(:,2),GB_SNm(:,2)-ye(:,1),ye(:,2)-GB_SNm(:,2),'y','b');        
+        errorbars(1.01*T,GB_SNm(:,2),GB_SNm(:,2)-ye(:,1),ye(:,2)-GB_SNm(:,2),'y','b');        
 
         ylabel('Signal to Noise');
         vlines(1/GE.fe(2))

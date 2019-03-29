@@ -52,47 +52,43 @@ b2 = bootstrp(Nb,@mean,m2);
 b3 = bootstrp(Nb,@mean,m3);
 b4 = bootstrp(Nb,@mean,m4);
 I = find(b2-b1<0);
-fprintf('p value to reject Model 1 %s = Model 2 %s: %.3f\n',var,var,length(I)/Nb);
+fprintf('p value to reject "Model 1 %s = Model 2 %s": %.3f\n',var,var,length(I)/Nb);
 I = find(b3-b2<0);
-fprintf('p value to reject Model 1 %s = Model 2 %s: %.3f\n',var,var,length(I)/Nb);
+fprintf('p value to reject "Model 2 %s = Model 3 %s": %.3f\n',var,var,length(I)/Nb);
 I = find(b4-b3<0);
-fprintf('p value to reject Model 1 %s = Model 2 %s: %.3f\n',var,var,length(I)/Nb);
+fprintf('p value to reject "Model 3 %s = Model 4 %s": %.3f\n',var,var,length(I)/Nb);
 
-r = transpose(squeeze(GEo_avg.Mean.MSE./GE_avg.Mean.MSE));
-rm = mean(r(:,2));
-rb = boot95(r(:,2));
-ra = mean(GEo_avg.Mean.MSE(1,2,:),3)./mean(GE_avg.Mean.MSE(1,2,:),3);
-fprintf('Using mean:   <Model 1 (Eo) MSE/Model 2 (E) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Median.MSE./GE_avg.Median.MSE));
-rm = mean(r(:,2));
-fprintf('Using median: <Model 1 (Eo) MSE/Model 2 (E) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Huber.MSE./GE_avg.Huber.MSE));
-rm = mean(r(:,2));
-fprintf('Using median: <Model 1 (Eo) MSE/Model 2 (E) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
+Reference = GEo_avg.Mean.MSE;
+fn = fieldnames(GE_avg);
+p = pad(fn);
+for i = 1:length(fn)
+    meth = fn{i};
+    r = transpose(squeeze(Reference./GE_avg.(meth).MSE));
+    rm = mean(r(:,2));
+    rb = boot95(r(:,2));
+    ra = mean(Reference(1,2,:),3)./mean(GE_avg.(meth).MSE(1,2,:),3);
+    fprintf('Using %s %s:   <Model 1 (Eo) MSE/Model 2 (E) MSE>    = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',meth,p{i},rm,rb,ra);
+end
 
-r = transpose(squeeze(GEo_avg.Mean.MSE./GBa_avg.Mean.MSE));
-rm = mean(r(:,2));
-rb = boot95(r(:,2));
-ra = mean(GEo_avg.Mean.MSE(1,2,:),3)./mean(GBa_avg.Mean.MSE(1,2,:),3);
-fprintf('Using mean:   <Model 1 (Eo) MSE/Model 3 (E'') MSE>  = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Median.MSE./GBa_avg.Median.MSE));
-rm = mean(r(:,2));
-fprintf('Using median: <Model 1 (Eo) MSE/Model 3 (E'') MSE>  = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Huber.MSE./GBa_avg.Huber.MSE));
-rm = mean(r(:,2));
-fprintf('Using huber:  <Model 1 (Eo) MSE/Model 3 (E'') MSE>  = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
+fn = fieldnames(GBa_avg);
+for i = 1:length(fn)
+    meth = fn{i};
+    r = transpose(squeeze(Reference./GBa_avg.(meth).MSE));
+    rm = mean(r(:,2));
+    rb = boot95(r(:,2));
+    ra = mean(Reference(1,2,:),3)./mean(GBa_avg.(meth).MSE(1,2,:),3);
+    fprintf('Using %s %s:   <Model 1 (Eo) MSE/Model 3 (E'') MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',meth,p{i},rm,rb,ra);
+end
 
-r = transpose(squeeze(GEo_avg.Mean.MSE./GB_avg.Mean.MSE));
-rm = mean(r(:,2));
-rb = boot95(r(:,2));
-ra = mean(GEo_avg.Mean.MSE(1,2,:),3)./mean(GB_avg.Mean.MSE(1,2,:),3);
-fprintf('Using mean:   <Model 1 (Eo) MSE/Model 4 (B) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Median.MSE./GB_avg.Median.MSE));
-rm = mean(r(:,2));
-fprintf('Using median: <Model 1 (Eo) MSE/Model 4 (B) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
-r = transpose(squeeze(GEo_avg.Huber.MSE./GB_avg.Huber.MSE));
-rm = mean(r(:,2));
-fprintf('Using huber:  <Model 1 (Eo) MSE/Model 4 (B) MSE>   = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',rm,rb,ra);
+fn = fieldnames(GB_avg);
+for i = 1:length(fn)
+    meth = fn{i};
+    r = transpose(squeeze(Reference./GB_avg.(meth).MSE));
+    rm = mean(r(:,2));
+    rb = boot95(r(:,2));
+    ra = mean(Reference(1,2,:),3)./mean(GB_avg.(meth).MSE(1,2,:),3);
+    fprintf('Using %s %s:   <Model 1 (Eo) MSE/Model 4 (B) MSE>    = %4.2f +/- [%4.2f,%4.2f] (Alt. ratio = %4.2f)\n',meth,p{i},rm,rb,ra);
+end
 
 fprintf('________________________________________________________________\n');
 diary off

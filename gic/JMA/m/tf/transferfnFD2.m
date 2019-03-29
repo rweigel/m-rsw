@@ -28,7 +28,7 @@ for i = 2:size(So.In_FT,1) % Loop over evaluation frequencies
         Zols1(i,cols) = x\y;
         Zrob1(i,cols)  = robustfit(x,y,[],[],'off');
 
-        if 0
+        if 1
             Zols2(i,cols) = (ctranspose(x)*x)^(-1)*ctranspose(x)*y;
             Zols3(i,cols) = regress(y,x);
 
@@ -106,10 +106,8 @@ S.OLS = createStruct(Zols1);
 fprintf('transferfnFD2: Robust 1\n');
 S.Robust1 = createStruct(Zrob1);
 
-if 0
 fprintf('transferfnFD2: Robust 2\n');
 S.Robust2 = createStruct(Zrob2);
-end
 
 function Sx = createStruct(Z);
 
