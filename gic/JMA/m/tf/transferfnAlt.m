@@ -1,4 +1,4 @@
-function S = transferfnAlt(SGE,SEB,opts,t)
+function S = transferfnAlt(SGE,SEB,opts)
 
 if nargin < 4
     t = [1:size(SGE.In,1)]';
@@ -7,6 +7,17 @@ end
 S = struct();
 
 Nint = size(SGE.Z,3);
+
+
+% Needed for Fuji case
+if size(SEB.Z,3) == 1
+    Zi = Zinterp(SEB.fe,SEB.Z,SGE.fe);
+    SEB.Z = Zi;
+    for k = 1:Nint
+        SEB.Z(:,:,k) = Zi;
+    end
+end
+
 for k = 1:Nint
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

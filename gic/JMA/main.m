@@ -101,6 +101,7 @@ for i = 1:length(dateos)
         plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC raw','GIC 1 Hz filtered'});
     end
 
+    B    = despikeB(B,dateo);
     E    = despikeE(E);
     GICd = despikeGIC(GIC(:,2)); % Despike 1 Hz filtered column
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
@@ -152,7 +153,7 @@ for i = 1:length(dateos)
     %EBrc{i} = transferfnFD(B(:,1:2,:),E,topts,t);
     
     fprintf('main.m: %s G/E''\n',dateo);
-    GBac{i} = transferfnAlt(GEc{i},EBc{i},opts,t);
+    GBac{i} = transferfnAlt(GEc{i},EBc{i},opts);
 
     fprintf('main.m: %s G/Eo''\n',dateo);
     Eprime = [];
@@ -196,50 +197,57 @@ fprintf('main.m: G/Bo\n');
 GBo_avg = transferfnAverageFunction(GBo,opts);
 transferfnSummary(GBo,GBo_avg,'Model 0 - G/Bo');
 
-fprintf('main.m: G/E\n');
-GE_avg = transferfnAverageFunction(GE,opts);
-%transferfnSummary(GE,GE_avg,'Model 2 - G/E');
-
-fprintf('main.m: G/E No stack\n');
-GE_ns = transferfnFD2(GE,opts);
-GE_avg.NoStack_OLS = GE_ns.OLS;
-GE_avg.NoStack_Robust1 = GE_ns.Robust1;
-GE_avg.NoStack_Robust2 = GE_ns.Robust2;
-transferfnSummary(GE,GE_avg,'G/E No stack');
-
-fprintf('main.m: G/B\n');
-GB_avg = transferfnAverageFunction(GB,opts);
-%transferfnSummary(GB,GB_avg,'Model 4 - G/B');
-
-fprintf('main.m: G/B No stack\n');
-GB_ns = transferfnFD2(GB,opts);
-GB_avg.NoStack_OLS = GB_ns.OLS;
-GB_avg.NoStack_Robust1 = GB_ns.Robust1;
-GB_avg.NoStack_Robust2 = GB_ns.Robust2;
-transferfnSummary(GB,GB_avg,'G/B');
-
-fprintf('main.m: G/E''\n');
-GBa_avg = transferfnAverageFunction(GBa,opts);
-transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
 fprintf('main.m: E/B\n');
 EB_avg  = transferfnAverageFunction(EB,opts);
-EB_avg.Fuji = transferfnFujii(EB,'mmb',opts);
-%transferfnSummary(EB,EB_avg,'E/B')
-
-fprintf('main.m: E/B No stack\n');
-EB_ns = transferfnFD2(EB,opts);
-EB_avg.NoStack_OLS = EB_ns.OLS;
-EB_avg.NoStack_Robust1 = EB_ns.Robust1;
-EB_avg.NoStack_Robust2 = EB_ns.Robust2;
-transferfnSummary(EB,EB_avg,'E/B');
 
 %fprintf('main.m: E/B Remote Reference\n');
 %EBr_avg = transferfnAverageFunction(EBr,opts);
-%transferfnSummary(EBr,EBr_avg,'E/B Remote Reference')
+%EB_avg.RR = EBr_avg.Mean;
 
-%savevars = {'opts','GEo','GBo','GE','GB','EB','EBr','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','EBr_avg','GBa_avg'};
-savevars = {'opts','GEo','GBo','GE','GB','EB','GBa','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
+fprintf('main.m: E/B Fujii\n');
+EBf = transferfnFujii(EB,'mmb',opts);
+EB_avg.Fuji = EBf;
+
+fprintf('main.m: E/B No stack\n');
+EBns = transferfnFD2(EB,opts);
+EB_avg.NoStack_OLS = EBns.OLS;
+EB_avg.NoStack_Robust1 = EBns.Robust1;
+EB_avg.NoStack_Robust2 = EBns.Robust2;
+transferfnSummary(EB,EB_avg,'E/B');
+
+
+fprintf('main.m: G/E\n');
+GE_avg = transferfnAverageFunction(GE,opts);
+
+fprintf('main.m: G/E No stack\n');
+GEns = transferfnFD2(GE,opts);
+GE_avg.NoStack_OLS = GEns.OLS;
+GE_avg.NoStack_Robust1 = GEns.Robust1;
+GE_avg.NoStack_Robust2 = GEns.Robust2;
+transferfnSummary(GE,GE_avg,'G/E No stack');
+
+
+fprintf('main.m: G/B\n');
+GB_avg = transferfnAverageFunction(GB,opts);
+
+fprintf('main.m: G/B No stack\n');
+GBns = transferfnFD2(GB,opts);
+GB_avg.NoStack_OLS = GBns.OLS;
+GB_avg.NoStack_Robust1 = GBns.Robust1;
+GB_avg.NoStack_Robust2 = GBns.Robust2;
+transferfnSummary(GB,GB_avg,'G/B');
+
+
+fprintf('main.m: G/E''\n');
+GBa_avg = transferfnAverageFunction(GBa,opts);
+fprintf('main.m: G/E'' Fujii\n');
+GBaf = transferfnAlt(GE, EBf, opts);
+GBa_avg.Fujii = GBaf;
+transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
+
+
+savevars = {'opts','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});

@@ -194,6 +194,9 @@ for i = 1:length(Z)
 end
 
 comp = ['x','y'];
+% TODO: Filter both E and Ep above 12 h so comparison is only
+% for frequencies that the model predicts.
+% Should also plot only E and Ep filtered.
 for i = 1:length(Ep)
     M{i}(1,:) = pe(E(a:b,:),Ep{i}(a:b,:));
     M{i}(2,:) = cc(E(a:b,:),Ep{i}(a:b,:));

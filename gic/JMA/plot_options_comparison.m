@@ -1,5 +1,5 @@
 if ~exist('Opts','var')
-    for i = 1:5
+    for i = 1:4
         file = sprintf('mat/main_%s.mat',sprintf('options-%d',i));
         fprintf('plot_options_comparison: Loading from %s\n',file);
         Opts{i} = load(file,'*_avg');
@@ -53,20 +53,15 @@ c = ['k','r','g','b','m','c'];
 
 for i = 1:length(Opts)
     if isfield(Opts{i},'description')
-        leglabels{i} = Opts{i}.description;
+        leglabels1{i} = Opts{i}.description;
     else
-        leglabels{i} = sprintf('Options %d',i);
+        leglabels1{i} = sprintf('Options %d',i);
     end
 end
 
-leglabels1 = {'Default','Prewhiten','Parzen FD weighting','Robust regression','PCA'};
-leglabels2 = {'Alt. Mean','Median','Alt. Median','Huber Loc.'};
-leglabels3 = {'No Stack OLS','No Stack Robust'};
-leglabels4 = {'BIRP (From Fuji et al. 2015)','OLS + Remote Reference'};
-
 T = 1./Opts{1}.GE_avg.Mean.fe(2:end);
 
-for m = 1:3
+for m = 1:3 % Model #
 
     if m == 1
         titles = {'$|a(\omega)| (non-despiked G)$','$|b(\omega)| (non-despiked G)$','$|a(\omega)|$','$|b(\omega)|$'};
@@ -82,7 +77,7 @@ for m = 1:3
         titles = {'$|z_{x}| (non-despiked G)$','$|z_{y}| (non-despiked G)$','$|z_{x}|$','$|z_{y}|$'};
         files = {'zx_notdespiked','zy_notdespiked','zx','zy'};
         units = ' [A/nT]';
-        sf = 1; % A/nT -> A/nT
+        sf = 1;
         for j = 1:length(Opts)
             V{j} = Opts{j}.GB_avg;
         end
@@ -91,8 +86,8 @@ for m = 1:3
     if m == 3
         titles = {'$|Z_{xx}|$','$|Z_{xy}|$','$|Z_{yx}|$','$|Z_{yy}|$'};
         files = {'Zxx','Zxy','Zyx','Zyy'};
-        units = ' [(mV/km)/nT]'; % units = ' [V/A]'; % E = ZB/mu_o, E [mV/km], B [nT]; 10^{-9} nT = 10^{-9} V*s/m^2, mu_o = 4\pi e-7 V*s/(A*m). 
-        sf = 1;% 4*pi*1e4;
+        units = ' [(mV/km)/nT]';
+        sf = 1;
         for j = 1:length(Opts)
             V{j} = Opts{j}.EB_avg;
         end
@@ -101,37 +96,21 @@ for m = 1:3
 
     for i = cols
         fn=fn+1;figure(fn);clf;
-        
+
+        % Plot Z using Mean method for all options
         for j = 1:length(Opts)
-            loglog(T,sf*V{j}.Mean.Zabs(2:end,i),c(j),...
-                'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
+            loglog(T,sf*V{j}.Mean.Zabs(2:end,i),'LineStyle','-','LineWidth',1);
             hold on;grid on;axis tight;
         end
 
-        % Compare Mean, Median, and Huber averaged model for options set j.
-        loglog(T,sf*V{1}.Mean.Zabs2(2:end,i),c(2),...
-              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
-        loglog(T,sf*V{1}.Median.Zabs(2:end,i),c(3),...
-              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
-        loglog(T,sf*V{1}.Median.Zabs2(2:end,i),c(4),...
-              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
-        loglog(T,sf*V{1}.Huber.Zabs2(2:end,i),c(5),...
-              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
-
-        loglog(T,sf*abs(V{1}.NoStack_OLS.Z(2:end,i)),'c',...
-              'LineStyle','--','LineWidth',1);%'Marker','.','MarkerSize',20);
-        loglog(T,sf*abs(V{1}.NoStack_Robust1.Z(2:end,i)),'c',...
-              'LineStyle','-.','LineWidth',1);%'Marker','.','MarkerSize',20);
-
-        if m == 3
-            loglog(1./Opts{1}.EB_avg.Fuji.fe(2:end),sf*abs(Opts{1}.EB_avg.Fuji.Z(2:end,i)),'k',...
-                  'LineStyle','-','LineWidth',1);%'Marker','.','MarkerSize',20);
-            loglog(1./Opts{1}.EBr_avg.Mean.fe(2:end),sf*abs(Opts{1}.EBr_avg.Mean.Z(2:end,i)),'k',...
-                  'LineStyle',':','LineWidth',1);%'Marker','.','MarkerSize',20);
-            legend(cat(2,leglabels1,leglabels2,leglabels3,leglabels4),'Location','Best');
-        else
-            legend(cat(2,leglabels1,leglabels2,leglabels3),'Location','Best');
+        fns = fieldnames(V{1});
+        for f = 1:length(fns)
+            T = 1./V{1}.(fns{f}).fe(2:end);
+            loglog(T,sf*abs(V{1}.(fns{f}).Z(2:end,i)),'LineStyle','--','LineWidth',1);
+            leglabels2{f} = fns{f};
         end
+
+        legend(cat(2,leglabels1,leglabels2),'Location','Best');
           
         % Error bars only shown for first options set.
         errorbars(T,...

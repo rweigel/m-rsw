@@ -1,6 +1,15 @@
+
 function f = summaryPlots()
     f = struct();
     
+    function legendadjust(lh)
+        pa = get(gca,'Position');
+        p = get(lh,'Position');
+        p(1) = pa(1)*1.02;
+        p(2) = p(2) + 0.022; % TODO: Use legend height + axis position to move.
+        set(lh,'Position',p);
+    end
+
     function compareHplots(GEo,GE,GB,filestr,png)
 
         figure();clf;box on;grid on;hold on;
@@ -71,16 +80,18 @@ function f = summaryPlots()
         set(gca,'YLim',yl);
         vlines(1./EB.fe(2));
         lh = legend(...
-                sprintf('$|Z_{xx}|$'),...
-                sprintf('$|Z_{xy}|$'),...
-                sprintf('$|Z_{yx}|$'),...
-                sprintf('$|Z_{yy}|$'),...
+                sprintf('$|Z_{xx}(\\omega)|$'),...
+                sprintf('$|Z_{xy}(\\omega)|$'),...
+                sprintf('$|Z_{yx}(\\omega)|$'),...
+                sprintf('$|Z_{yy}(\\omega)|$'),...
                 'Location','NorthWest');
         set(lh,'interpreter','latex');
         xlabel('Period [s]');
         ylabel('[(mV/km)/nT]');
         exponent_relabel(gca,'x');
         exponent_relabel(gca,'y');
+        
+        legendadjust(lh);
 
         if png
             figsave(sprintf('figures/combined/plot_model_summary_Z_MT-%s.pdf',filestr));
@@ -120,6 +131,8 @@ function f = summaryPlots()
         xlabel('Period [s]');
         exponent_relabel(gca,'x');
         exponent_relabel(gca,'y');
+        
+        legendadjust(lh);
 
         if png
             figsave(sprintf('figures/combined/plot_model_summary_Z-%s.pdf',filestr));
@@ -130,7 +143,7 @@ function f = summaryPlots()
 
     function comparePhiplots(GE,GB,EB,filestr,png)
 
-        figure();clf;    
+        figure();clf;box on;    
 
         sf = 180/pi;
         T = 1./GE.fe(2:end);
@@ -139,7 +152,7 @@ function f = summaryPlots()
         In = find(EB.Phi2(:,1) < 0);
         EB.Phi2(In,1) = EB.Phi2(In,1)+2*pi;
         semilogx(T,sf*EB.Phi2(2:end,1),'r.','MarkerSize',20);
-        hold on;box on;grid on;
+        hold on;grid on;
 
         In = find(EB.Phi2(:,2) > 0);
         EB.Phi2(In,2) = EB.Phi2(In,2)-2*pi;
@@ -160,7 +173,7 @@ function f = summaryPlots()
         errorbars(T,sf*EB.Phi2(2:end,3),sf*EB.Phi_StdErr(2:end,3),sf*EB.Phi_StdErr(2:end,3),'y','b--');
         errorbars(1.01*T,sf*EB.Phi2(2:end,4),sf*EB.Phi_StdErr(2:end,4),sf*EB.Phi_StdErr(2:end,4),'y','b');
 
-        set(gca,'ytick',[-270:30:270])
+        set(gca,'ytick',[-270:45:270])
         ylim([-270,270])
         vlines(1./EB.fe(2));
         exponent_relabel(gca,'x');
@@ -170,16 +183,18 @@ function f = summaryPlots()
                 sprintf('$\\phi_{xy}$'),...
                 sprintf('$\\phi_{yx}$'),...
                 sprintf('$\\phi_{yy}$'),...
-                'Location','Best');
+                'Location','NorthWest');
         set(lh,'interpreter','latex')
         xlabel('Period [s]');
         ylabel('[degrees]');
+        
+        legendadjust(lh);
 
         if png
             figsave(sprintf('figures/combined/plot_model_summary_Phi_MT-%s.pdf',filestr));
         end
 
-        figure();clf;    
+        figure();clf;
 
         sf = 180/pi;
         T = 1./GE.fe(2:end);
@@ -198,22 +213,24 @@ function f = summaryPlots()
         errorbars(T,sf*GB.Phi2(2:end,3),sf*GB.Phi_StdErr(2:end,3),sf*GB.Phi_StdErr(2:end,3),'y','b');
         errorbars(1.01*T,sf*GB.Phi2(2:end,4),sf*GB.Phi_StdErr(2:end,4),sf*GB.Phi_StdErr(2:end,4),'y','b');
 
-        set(gca,'ytick',[-180:30:180])
+        set(gca,'ytick',[-180:60:180])
         ylim([-210,210])
         vlines(1./GE.fe(2));
         exponent_relabel(gca,'x');
 
-        lh = legend(...
+        [lh,lg] = legend(...
                 sprintf('$\\phi_{ao}$'),...
                 sprintf('$\\phi_{bo}$'),...    
                 sprintf('$\\phi_{a}$'),...
                 sprintf('$\\phi_{b}$'),...    
                     sprintf('$\\phi_{zx}$'),...
                     sprintf('$\\phi_{zy}$'),...    
-                'Location','Best');
+                'Location','NorthWest');
         set(lh,'interpreter','latex')
         xlabel('Period [s]');
         ylabel('[degrees]');
+
+        legendadjust(lh);
 
         if png
             figsave(sprintf('figures/combined/plot_model_summary_Phi-%s.pdf',filestr));
@@ -254,8 +271,10 @@ function f = summaryPlots()
         vlines(1/GE.fe(2))
 
         set(gca,'YLim',[0.099,40.1]);        
-        title(titlestr);
-        legend('Model 1','Model 2','Model 3','Model 4','Location','NorthWest');
+        title(titlestr,'FontWeight','normal');
+        lh = legend('Model 1','Model 2','Model 3','Model 4','Location','NorthWest');
+
+        legendadjust(lh);
         
         xlabel('Period [s]');
         exponent_relabel(gca);
@@ -265,5 +284,44 @@ function f = summaryPlots()
         end
     end    
     f.compareSN2 = @compareSN2;
-    
+
+    function parameterHistograms(GEo,GEo_avg,filestr,png)
+
+        %figprep(png,1000,500);
+
+        figure();box on;grid on;hold on;
+
+        edgesao = [0:20:180]';
+        edgesbo = [-300:50:100]';
+
+        [nao,xao] = histc(1e3*squeeze(GEo.ao(1,2,:)),edgesao);
+        [nbo,xbo] = histc(1e3*squeeze(GEo.bo(1,2,:)),edgesbo);
+
+        edgesao = [edgesao(1);edgesao];
+        nao = [0;nao];
+        edgesbo = [edgesbo(1);edgesbo];
+        nbo = [0;nbo];
+
+        stairs(edgesao,nao,'k','LineWidth',2)
+        stairs(edgesbo,nbo,'k--','LineWidth',2)
+
+        plot(1e3*GEo_avg.Mean.ao(2),0,'k.','MarkerSize',30);
+        plot(1e3*GEo_avg.Mean.bo(2),0,'ko','MarkerSize',7);
+
+        set(gca,'XLim',[-320,200])
+        set(gca,'XTick',[-300:50:200]);
+        set(gca,'YTick',[0:9]);
+        ylabel('Count');
+        xlabel('A/(V/km)');
+        [lh,lo] = legend({'$a_o$','$b_o$','$\overline{a}_o$','$\overline{b}_o$'},...
+                'Interpreter','latex','Location','NorthWest');
+
+        legendadjust(lh);
+
+        if png
+            figsave(sprintf('figures/combined/plot_model_summary_aobo_histograms-%s.pdf',filestr));
+        end
+    end
+    f.parameterHistograms = @parameterHistograms;
+
 end
