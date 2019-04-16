@@ -33,6 +33,9 @@ end
 
 metric = {'PE','CC','MSE'};
 
+Savg.InSample = S;
+keys = fieldnames(Savg);
+
 % Get padding
 for m = 1:length(metric)
     for j = 1:length(keys)
@@ -49,19 +52,19 @@ end
 
 comps = ['x','y'];
 for m = 1:length(metric)
-    for j = 1:2
+    for j = 1:size(S.(metric{m}),2)
         keys = fieldnames(Savg);
-        fprintf('Ave %s %s in-sample:       %6.3f [%.3f,%.3f]\n',...
-            comps(j),metric{m},mean(S.(metric{m})(1,j,:)),boot(S.(metric{m})(1,j,:),@mean,1000,50));
+        %fprintf('Ave %s %s in-sample: %6.3f [%.3f,%.3f]\n',...
+        %    comps(j),metric{m},mean(S.(metric{m})(1,j,:)),boot(S.(metric{m})(1,j,:),@mean,1000,50));
         for f = 1:length(keys)
             cistr = [metric{m},'_CI95'];
             if isfield(Savg.(keys{f}),cistr)
-                fprintf('Ave %s %s %s:%s %6.3f [%.3f,%.3f]\n',...
+                fprintf('Ave %s %s %s: %s %7.3f [%.3f,%.3f]\n',...
                     comps(j),metric{m},keys{f},s{m,f},...
                     mean(Savg.(keys{f}).(metric{m})(1,j,:)),...
                     Savg.(keys{f}).(cistr)(:,j));
             else
-                fprintf('Ave %s %s %s:%s %6.3f\n',...
+                fprintf('Ave %s %s %s: %s %7.3f\n',...
                     comps(j),metric{m},keys{f},s{m,f},...
                     mean(Savg.(keys{f}).(metric{m})(1,j,:)));
             end

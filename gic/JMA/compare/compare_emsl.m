@@ -24,12 +24,13 @@ end
 
 %plot(X)
 
-%a = 3*60*24*(datenum('1985-09-02')-datenum('1985-07-18'));
-%b = 3*60*24*(datenum('1985-09-06')-datenum('1985-07-18'));
+% Quiet interval
+a = 3*60*24*(datenum('1985-09-02')-datenum('1985-07-18'));
+b = 3*60*24*(datenum('1985-09-06')-datenum('1985-07-18'));
 
 % Active Interval
-a = 3*60*24*(datenum('1985-09-13')-datenum('1985-07-18'));
-b = 3*60*24*(datenum('1985-09-17')-datenum('1985-07-18'));
+%a = 3*60*24*(datenum('1985-09-13')-datenum('1985-07-18'));
+%b = 3*60*24*(datenum('1985-09-17')-datenum('1985-07-18'));
 
 t = [1:size(X,1)]';
 dn = datenum(1985,7,18) + t/(3*60*24);

@@ -11,7 +11,7 @@ writepng = 1;
 
 figprep(writepng,1000,500);
 set(0,'DefaultAxesFontSize',14);
-f = summaryPlots();
+f = summaryPlotFunctions();
 
 %f.compareHplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,filestr,writepng);
 f.compareZplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,EB_avg.Mean,filestr,writepng);

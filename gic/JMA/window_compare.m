@@ -1,73 +1,31 @@
 clear
 
-dateo = '20060203';
-datef = '20060228';
-IbE = [9.64944e+05:9.66299e+05];
-IbB = [];
-
-%dateo = '20060302';
-datef = '20060331';
-IbE = [IbE,86400*27+[1.663546e+06:1.664708e+06]];
-IbB = [];
-
-regen = 0;
+interval = 11;
 site = 'mmb';
-remote = 'kak';
 
-if strcmp(site,'mmb')
-    [tE,E,tB,B] = prep_EB(dateo,datef,'mmb',regen);
-    %[tEr,Er,tBr,Br] = prep_EB(dateo,datef,'kak',regen);
-else
-    [tE,E,tB,B] = prep_EB(dateo,datef,'kak',regen);
-    %[tEr,Er,tBr,Br] = prep_EB(dateo,datef,'mmb',regen);
+[t,E,B,datakey] = main_data(interval,site);
+dateo = datestr(t(1),'yyyy-mm-dd');
+datef = datestr(t(end),'yyyy-mm-dd');
+
+if size(B,1)/86400 > 27
+    B = B(1:27*86400,:);
+    E = E(1:27*86400,:);
+    t = t(1:27*86400);
 end
 
-if ~isempty(IbB)
-    B(IbB,:) = NaN;
-    Ig = setdiff([1:size(B,1)],IbB);
-    for i = 1:size(B,2)
-        B(:,i) = interp1(tB(Ig),B(Ig,i),tB);
-    end
-end
-
-if ~isempty(IbE)
-    E(IbE,:) = NaN;
-    Ig = setdiff([1:size(E,1)],IbE);
-    for i = 1:size(E,2)
-        E(:,i) = interp1(tE(Ig),E(Ig,i),tE);
-    end
-end
-
-if 0
-    figure(1);clf;
-        plot(B);
-        zoom off;
-        hB = zoom(gca);
-        hB.ActionPreCallback = @(obj,evd) fprintf('');
-        hB.ActionPostCallback = @(obj,evd) fprintf('Showing B([%d:%d],:)\n',round(evd.Axes.XLim));
-    figure(2);clf;
-        plot(E);
-        zoom off;
-        hB = zoom(gca);
-        hB.ActionPreCallback = @(obj,evd) fprintf('');
-        hB.ActionPostCallback = @(obj,evd) fprintf('Showing E([%d:%d],:)\n',round(evd.Axes.XLim));
-
-    keyboard
-end
-
+[E,B] = removemean(E,B);
 
 opts = main_options(1);
-
-a = 600;
-b = size(B,1)-600;
+a = opts.td.Ntrim;
+b = size(B,1)-a;
 
 [Nf,fef] = smoothSpectra(E(a:b,:));
 comp = ['x','y'];
 
 d = 0;
-for v = [1,9,27,54]
-%for v = [1]
+for v = [1,9,27]
     d = d+1;
+    W(d) = v;
     opts.td.window.width = 86400*v;
     opts.td.window.shift = 86400*v;
     opts.fd.regression.method = 3;
@@ -88,41 +46,42 @@ for v = [1,9,27,54]
             fe{d,m} = Sc{d,m}.fe;
         end
 
-    m = 2;
-        methods{m} = 'Robust No Stack';
-        Sc{d,m} = transferfnFD2(Sc{d,1},opts);
-            Z{d,m} = Sc{d,m}.Robust1.Z;
-            fe{d,m} = Sc{d,m}.Robust1.fe;
+    if 1
+        m = 2;
+            methods{m} = 'Robust No Stack';
+            Sc{d,m} = transferfnFD2(Sc{d,1},opts);
+                Z{d,m} = Sc{d,m}.Robust1.Z;
+                fe{d,m} = Sc{d,m}.Robust1.fe;
 
-    m = 3;
-        methods{m} = 'Robust Pad';
-        opts.td.pad = 86400*v;
-        Sc{d,m} = transferfnFD(B(:,1:2,1),E,opts);
-        if size(Sc{d,m}.In,3) > 1
-            Sa{d,m} = transferfnAverage(Sc{d,m},opts);
-            transferfnSummary(Sc{d,m},Sa{d,m},methods{m});
-            Z{d,m} = Sa{d,m}.Mean.Z;
-            fe{d,m} = Sa{d,m}.Mean.fe;
-        else
-            Z{d,3} = Sc{d,3}.Z;
-            fe{d,3} = Sc{d,3}.fe;
-        end
+        m = 3;
+            methods{m} = 'Robust Pad';
+            opts.td.pad = 86400*v;
+            Sc{d,m} = transferfnFD(B(:,1:2,1),E,opts);
+            if size(Sc{d,m}.In,3) > 1
+                Sa{d,m} = transferfnAverage(Sc{d,m},opts);
+                transferfnSummary(Sc{d,m},Sa{d,m},methods{m});
+                Z{d,m} = Sa{d,m}.Mean.Z;
+                fe{d,m} = Sa{d,m}.Mean.fe;
+            else
+                Z{d,3} = Sc{d,3}.Z;
+                fe{d,3} = Sc{d,3}.fe;
+            end
 
-    m = 4;
-        methods{m} = 'Robust 10/decade';
-        opts.td.pad = 0;
-        opts.fd.evalfreqN = 10;
-        Sc{d,m} = transferfnFD(B(:,1:2,1),E,opts);
-        if size(Sc{d,m}.In,3) > 1
-            Sa{d,m} = transferfnAverage(Sc{d,m},opts);
-            transferfnSummary(Sc{d,m},Sa{d,m},methods{1});
-            Z{d,m} = Sa{d,m}.Mean.Z;
-            fe{d,m} = Sa{d,m}.Mean.fe;
-        else
-            Z{d,m} = Sc{d,m}.Z;
-            fe{d,m} = Sc{d,m}.fe;
-        end
-
+        m = 4;
+            methods{m} = 'Robust 10/decade';
+            opts.td.pad = 0;
+            opts.fd.evalfreqN = 10;
+            Sc{d,m} = transferfnFD(B(:,1:2,1),E,opts);
+            if size(Sc{d,m}.In,3) > 1
+                Sa{d,m} = transferfnAverage(Sc{d,m},opts);
+                transferfnSummary(Sc{d,m},Sa{d,m},methods{1});
+                Z{d,m} = Sa{d,m}.Mean.Z;
+                fe{d,m} = Sa{d,m}.Mean.fe;
+            else
+                Z{d,m} = Sc{d,m}.Z;
+                fe{d,m} = Sc{d,m}.fe;
+            end
+    end
 
     % Get padding for fprintf.
     for m = 1:length(methods)
@@ -154,32 +113,35 @@ for v = [1,9,27,54]
         M{d,i}(2,:) = cc(E(a:b,:),Ep{d,i}(a:b,:));
         M{d,i}(3,:) = mse(E(a:b,:),Ep{d,i}(a:b,:));
         for j = 1:2
-            LL{d,i,j} = sprintf('%s %sw = %d; PE/CC/MSE = %.2f/%.2f/%.2f',methods{i},pad{m},v,M{d,i}(:,j)'); 
+            LL{d,i,j} = sprintf('%s %sw = %d; PE/CC/MSE = %.2f/%.2f/%.2f',...
+                methods{i},pad{m},W(d),M{d,i}(:,j)'); 
             fprintf('%s %s\n',comp(j),LL{d,i,j});
         end
     end
 end
 
 
-for d = 1:1
-    z = Z{1,1};
-    z(19,:) = Z{4,1}(31,:);
-    for i = 1:size(Z,2) % Loop over methods
-        for s = 1:size(Sc{1,1}.In,3) % Loop over segments
-            [Ns,fes] = smoothSpectra(Out(as:bs,:,s));
-            Eps{d,i} = Zpredict(fe{d,i},z,In(:,:,s));
-            sns(:,:,s) = Ns./smoothSpectra(Out(as:bs,:,s)-Eps{d,i}(as:bs,:));
-        end
-        SNs{d,i} = mean(sns, 3);
-        SNs{d,i}(19,:)
-    end 
+if 0
+    % Use optimization to adjust parameter value
+    for d = 1:1
+        z = Z{1,1};
+        z(19,:) = Z{4,1}(31,:);
+        for i = 1:size(Z,2) % Loop over methods
+            for s = 1:size(Sc{1,1}.In,3) % Loop over segments
+                [Ns,fes] = smoothSpectra(Out(as:bs,:,s));
+                Eps{d,i} = Zpredict(fe{d,i},z,In(:,:,s));
+                sns(:,:,s) = Ns./smoothSpectra(Out(as:bs,:,s)-Eps{d,i}(as:bs,:));
+            end
+            SNs{d,i} = mean(sns, 3);
+            SNs{d,i}(19,:)
+        end 
+    end
+
+    po = fminsearch(@(p) sncalc(p,Z{1,1},fe{1,1},In,Out),[1,1,1,1]);
+
+    Z{1,1}(19,3) = po(1)*real(Z{1,1}(19,3)) + po(2)*sqrt(-1)*imag(Z{1,1}(19,3));
+    Z{1,1}(19,4) = po(3)*real(Z{1,1}(19,4)) + po(4)*sqrt(-1)*imag(Z{1,1}(19,4));
 end
-
-po = fminsearch(@(p) sncalc(p,Z{1,1},fe{1,1},In,Out),[1,1,1,1]);
-
-Z{1,1}(19,3) = po(1)*real(Z{1,1}(19,3)) + po(2)*sqrt(-1)*imag(Z{1,1}(19,3));
-Z{1,1}(19,4) = po(3)*real(Z{1,1}(19,4)) + po(4)*sqrt(-1)*imag(Z{1,1}(19,4));
-
 
 if 0
     [tw,D] = weather();
@@ -227,10 +189,10 @@ for i = 1:4
             loglog(1./fe{d,m}(2:end),abs(Z{d,m}(2:end,i)),...
                   'LineStyle','-','LineWidth',1,'Marker','.','MarkerSize',10);
             hold on;grid on;
-            ll{k} = sprintf('%s w = %d',methods{m},d);
+            ll{k} = sprintf('%s w = %d',methods{m},W(d));
         end
     end
-    title(sprintf('%s %s; %s-%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
+    title(sprintf('%s %s; %s--%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
     legend(ll,'Location','Best');
     xlabel('Period [s]');
     ylabel('[(mV/km)/nT]');
@@ -291,9 +253,7 @@ figure(7);clf;
 m1 = 2;
 m2 = 2;
 d1 = 1;
-d2 = 4;
-
-t = tE;
+d2 = 3;
 
 figprep(1,800,1000);
 figure(8);clf;

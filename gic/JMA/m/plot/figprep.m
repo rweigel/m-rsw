@@ -15,6 +15,6 @@ if png
     set(0,'defaultFigureColor', [1,1,1]);
 else
     % Dock figure windows
-    figure();close all; % Otherwise first is undocked if last state docked
+    %figure();close all; % Otherwise first is undocked if last state docked
     set(0,'defaultFigureWindowStyle','docked');
 end

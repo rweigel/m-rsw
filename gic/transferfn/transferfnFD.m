@@ -50,20 +50,32 @@ if nargin < 4
 end
 
 if ~isnan(opts.td.window.width)
+    assert(opts.td.window.width > 1,'opts.td.window.width must be greater than 1');
+    assert(opts.td.window.shift > 1,'opts.td.window.shift must be greater than 1');
+    assert(opts.td.window.width <= size(B,1),'opts.td.window.width must be less than or equal to size(B,1)');
     Tw = opts.td.window.width;
     Ts = opts.td.window.shift;
     opts.td.window.width = NaN;
     opts.td.window.shift = NaN;
-    Io = [1:Ts:size(B,1)];
-    if Io(end) > size(B,1)
-        Io = Io(1:end);
+    a = [1:Ts:size(B,1)];
+    b = a + Tw - 1;
+    if b(end) > size(B,1)
+        a = a(1:end-1);
+        b = b(1:end-1);
     end
-    for i = 1:length(Io)
-        Iseg = [Io(i):Io(i)+Tw-1];
-        Scell{i} = transferfnFD(removemean(B(Iseg,:)),removemean(E(Iseg,:)),opts,t(Iseg));
+    if b(end) ~= size(B,1)
+        warning(sprintf('opts.td.window.width = %d, opts.td.window.shift = %d, size(B,1) = %d.\n\t Last %d point(s) will not be used.\n',...
+                Tw,...
+                Ts,...
+                size(B,1),...
+                size(B,1)-b(end)));
+    end
+    for s = 1:length(a)
+        Iseg = [a(s):b(s)];
+        Scell{s} = transferfnFD(removemean(B(Iseg,:)),removemean(E(Iseg,:)),opts,t(Iseg));
         for j = 1:size(E,2)
             fprintf('transferfnFD.m: %d/%d PE/CC/MSE of Out(%d:%d,%d) = %.2f/%.2f/%.3f\n',...
-                    i,length(Io),Iseg(1),Iseg(end),j,Scell{i}.PE(j),Scell{i}.CC(j),Scell{i}.MSE(j));
+                    s,length(a),Iseg(1),Iseg(end),j,Scell{s}.PE(j),Scell{s}.CC(j),Scell{s}.MSE(j));
         end
     end
     S = transferfnCombine(Scell);
@@ -167,8 +179,8 @@ end
 
 ftB = fft(Bw);
 ftE = fft(Ew);
-ftB = ftB(1:N/2+1,:);
-ftE = ftE(1:N/2+1,:);
+ftB = ftB(1:floor(N/2)+1,:);
+ftE = ftE(1:floor(N/2+1),:);
 
 for j = 2:length(Ic)
 

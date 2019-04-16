@@ -1,6 +1,6 @@
 function [t,D] = weather()
 
-fid = fopen('weather-2006-02.txt','r');
+fid = fopen('weather/weather-2006-02.txt','r');
 
 k = 1;
 while 1

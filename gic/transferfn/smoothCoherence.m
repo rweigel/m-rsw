@@ -23,9 +23,9 @@ end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ftx = fft(x);
-ftx = ftx(1:N/2+1,:);
+ftx = ftx(1:floor(N/2)+1,:);
 fty = fft(y);
-fty = fty(1:N/2+1,:);
+fty = fty(1:floor(N/2)+1,:);
 
 for j = 2:length(Ic)
 
