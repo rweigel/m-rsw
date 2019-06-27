@@ -1,11 +1,13 @@
 clear;
+setpaths;
 
 site = 'mmb';
+regen = 0;
 opts = main_options(1);
 
-for interval = 8:8
+for interval = 9:9
     
-    [t,E,B,datakey] = main_data(interval,site);
+    [t,E,B,datakey] = main_data(interval,site,regen);
 
     fname = sprintf('./mat/%s_%s.mat',upper(site),datakey); % Save file name
 

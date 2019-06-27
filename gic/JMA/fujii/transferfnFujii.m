@@ -14,10 +14,8 @@ Z  = transpose(D.Z);
 [fe,I] = sort(fe);
 Z = Z(I,:);
 
-% Coordinate system appears to be x = East, y = South. Convert to
-% y = North.
-Z(:,2) = -Z(:,2);
-Z(:,4) = -Z(:,4);
+%Z(:,2) = -Z(:,2);
+%Z(:,4) = -Z(:,4);
 
 % Add zero frequency (need to remove need for this in Zpredict; Zpredict
 % should check if fe(1) == 0 and if not, add a zero frequency)
@@ -33,7 +31,7 @@ S.fe = fe;
 S.Phi = atan2(imag(Z),real(Z));
 
 a = opts.td.Ntrim;
-b = 86400-opts.td.Ntrim+1;
+b = size(S.Out,1)-opts.td.Ntrim+1;
 
 for k = 1:size(S.In,3)
     S.Predicted(:,:,k) = real(Zpredict(S.fe,S.Z,S.In(:,:,k)));

@@ -2,7 +2,7 @@
 
 setpaths;
 
-writepng = 1;
+writepng = 0;
 show = {'Robust_Parzen_Stack','Fujii','Robust_Parzen_Full'};
 
 if 0

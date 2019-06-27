@@ -7,7 +7,7 @@ setpaths;
 
 writepng   = 0; % Write png and pdf files
 intmplot   = 0; % Intermediate plots
-regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
+regenfiles = 1; % If 0, used cached E, B, and GIC .mat files
 oos_aves   = 0; % Compute Out-of-Sample averages for metrics
 
 % All runs
@@ -72,7 +72,7 @@ for i = 1:length(dateos)
     end
 
     % Read 1s B data for remote reference
-    [~,~,tBr,Br] = prep_EB(dateo,datef,'kak',regenfiles); 
+    %[~,~,tBr,Br] = prep_EB(dateo,datef,'kak',regenfiles); 
 
     % Read 1s E and B data from Kyoto
     [tE,E,tB,B] = prep_EB(dateo,datef,'mmb',regenfiles); 
@@ -85,11 +85,11 @@ for i = 1:length(dateos)
         % Remove daily trend
         E = removeTrend(E,Et);
         B = removeTrend(B,Bt);
-        Br = removeTrend(B,Brt);        
+        %Br = removeTrend(B,Brt);        
         GIC = removeTrend(GIC,GICt);
     end
     
-    B(:,:,2) = Br;
+    %B(:,:,2) = Br;
     
     % Correct for clock drift
     %tGIC = tGIC + dt/86400;

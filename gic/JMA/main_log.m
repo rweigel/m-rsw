@@ -71,6 +71,7 @@ for i = 1:length(fn)
 end
 
 fn = fieldnames(GBa_avg);
+p = pad(fn);
 for i = 1:length(fn)
     meth = fn{i};
     r = transpose(squeeze(Reference./GBa_avg.(meth).MSE));
@@ -81,6 +82,7 @@ for i = 1:length(fn)
 end
 
 fn = fieldnames(GB_avg);
+p = pad(fn);
 for i = 1:length(fn)
     meth = fn{i};
     r = transpose(squeeze(Reference./GB_avg.(meth).MSE));

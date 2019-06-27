@@ -3,6 +3,8 @@ function [tE,E,B,datakey] = main_data(interval,site,regen,showplot)
 % To add a new interval, add new cell array element with start and stop
 % dates. Then set showplot=0 and use zoom to find intervals which should
 % be interpolated over.
+%
+% Example: main_data(15,'mmb',1,1);
 
 remote = 'kak';
 
@@ -60,9 +62,9 @@ S{8}.IbB = [1389888:1390322];
 S{9} = struct();
 S{9}.dateo = '20060106';
 S{9}.datef = '20060131';
-S{9}.IbE = [457658:457682,871643:872792,458258:458280];
-S{9}.IbB = [957879:958349,881469:888762,1157529:1171710,881177:889435];
-
+S{9}.IbE = [457658:457682,871643:872792,1159462:1167084,458258:458280];
+S{9}.IbB = [957879:958349,881469:888762,881177:889435];
+%,1157529:1171710
 % Does not match Fujii
 % Consider this interval leaving spike in. Here robust full fails, but
 % stack is better.
@@ -90,6 +92,12 @@ S{14}.dateo = '20091212';
 S{14}.datef = '20091231';
 S{14}.IbB = [1.398600e+06:1.413476e+06,1.400477e+06:1.402522e+06];
 S{14}.IbE = [626661:627765,634832:641330];
+
+S{15} = struct();
+S{15}.dateo = '20121102';
+S{15}.datef = '20121129';
+S{15}.IbB = [102703:103857];
+S{15}.IbE = [782268:782287,783491:783495];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -119,16 +127,18 @@ end
 
 if showplot
     figure;clf;
-        plot(tE,B);
+        plot(tB,B);
         datetick('x','dd');
+        legend('Bx','By','Bz');
         zoom off;
         hB = zoom(gca);
         hB.ActionPreCallback = @(obj,evd) fprintf('');
         hB.ActionPostCallback = @(obj,evd) fprintf('Showing B([%d:%d],:)\n',...
-            round(evd.Axes.XLim-tE(1)*86400));
+            round((evd.Axes.XLim-tB(1))*86400));
     figure;clf;
         plot(tE,E);
         datetick('x','dd');
+        legend('Ex','Ey');
         zoom off;
         hB = zoom(gca);
         hB.ActionPreCallback = @(obj,evd) fprintf('');
