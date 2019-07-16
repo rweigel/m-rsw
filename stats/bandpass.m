@@ -1,28 +1,31 @@
-function [xbp,aib,aibo,f] = bandpass(x,Tkeep)
+function [x,aib] = bandpass(x,fb)
 %BANDPASS
 %
+%  y = bandpass(x,f)
+%
 
-y   = x-mean(x);
-aib = fft(y);
-P   = aib.*conj(aib);
+aib = fft(x);
 N   = length(x);
-f   = [1:N/2-1]/(N);
-T   = (1./f);
+f   = fftfreq(N);
 
-if (length(Tkeep) == 1)
-  I = find( T == Tkeep );
+if (length(fb) == 1)
+  I = find( fb == f );
   if isempty(I)
-    [Tm,I] = min(abs(T - Tkeep));  
-    fprintf('bandpass.m: Warning: No exact match for requested period. ');
-    fprintf(sprintf('Using %f\n',T(I)));
+    [fm,I] = min(abs(fb - f));  
+    warning('No exact match for requested period. Using nearest frequency = %f',f(I));
   end
 else
-  I = find( T >= Tkeep(1) | T <= Tkeep(2) );
+  if fb(2) == fb(1)
+    warning('fb(2) == fb(1). Calling bandpass with a single frequency.');
+	[x,aib] = bandpass(x,fb);
+	return;
+  end
+  assert(fb(2) > fb(1),'fb(2) must be greater than fb(1)');
+  Ib = find( abs(f) < fb(2) & abs(f) > fb(1) );
 end
 
-Ikeep = [I+1,length(aib)-I+1];
-Iomit = setdiff(1:length(aib),Ikeep);
-aibo  = aib;
+Io = ones(size(f)); % Io is index of omitted frequencies
+Io(Ib) = 0;         % Mask band frequencies
+aib(Io) = 0;        % Set DFT coeficients to zero outside band
 
-aib(Iomit) = 0;
-xbp = real(ifft(aib));
+x = real(ifft(aib));
