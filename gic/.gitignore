@@ -1,5 +1,6 @@
-tmp/
-data
-data-private
-figures
+/tmp/
+/data
+/data-private
+/figures
+/mat
 *~

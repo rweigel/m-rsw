@@ -1,3 +1,5 @@
-mat/
-m/m-statrobust
-paper/
+mat
+/m/m-statrobust
+/paper
+/data
+/data-private
