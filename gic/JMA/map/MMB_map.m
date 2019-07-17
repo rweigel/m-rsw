@@ -25,7 +25,9 @@ clf
 
 dock = 0;
 if dock
-    set(0,'defaultFigureWindowStyle','docked');
+    set(gcf,'WindowStyle','Docked');
+else
+    set(gcf,'WindowStyle','Normal');
 end
 
 set(gcf,'color','w');
@@ -47,7 +49,7 @@ m_map_path = 'm_map';
 %mlat_path=[Root,'Research\Geomagnetics\APEX\'];
 
 projection='Mercator'; 
-mlat_file='Apex_geomagnetic_isolines_5deg_spacing.txt';
+mlat_file='Apex_geomagnetic_isolines_1deg_spacing.txt';
 set(0,'DefaultAxesFontSize',14);
 
 %addpath(script_path);
@@ -153,22 +155,22 @@ m_text(142.2,42.8,sprintf('Hokkaido\nIsland'),'FontSize',16,'FontWeight','bold')
 Memanbetsu.Lon=144.217082;
 Memanbetsu.Lat=43.832029;
 Memanbetsu.name=sprintf('Memanbetsu\nsubstation');
-m_plot(Memanbetsu.Lon,Memanbetsu.Lat,'r^','LineWidth',2);
+m_plot(Memanbetsu.Lon,Memanbetsu.Lat,'k^','LineWidth',2);
 m_text(Memanbetsu.Lon+0.05,Memanbetsu.Lat-0.05,Memanbetsu.name,'FontSize',16);
 
 Ashoro.Lon=143.546246; 
 Ashoro.Lat=43.226309;
 Ashoro.name=sprintf('Ashoro power station');
-m_plot(Ashoro.Lon,Ashoro.Lat,'r^','LineWidth',2);
-m_text(Ashoro.Lon+0.1,Ashoro.Lat-0.03,Ashoro.name,'FontSize',16);
+m_plot(Ashoro.Lon,Ashoro.Lat,'k^','LineWidth',2);
+m_text(Ashoro.Lon+0.0,Ashoro.Lat-0.05,Ashoro.name,'VerticalAlignment','top','FontSize',16);
 
 %% Plot MMB Magnetic Observatory
 MMB.Lon=144.189;
 MMB.Lat=43.910;
 MMB_text=sprintf('Memanbetsu Magnetic Observatory');
 m_plot(MMB.Lon,MMB.Lat,'ksq','LineWidth',2);
-m_text(MMB.Lon-0.1,MMB.Lat+0.0,MMB_text,'FontSize',16,'HorizontalAlignment','right');
-
+m_text(MMB.Lon-0.2,MMB.Lat-0.05,MMB_text,'FontSize',16,'HorizontalAlignment','right');
+m_line([MMB.Lon-0.2,MMB.Lon],[MMB.Lat-0.05,MMB.Lat],'Color','k');
 
 %% Plot the 187 kV power line from Ashoro power station to Memanbetsu substation
 m_plot(lons,lats,'r','LineWidth',2);
@@ -177,23 +179,40 @@ m_plot(lons,lats,'r','LineWidth',2);
 %cd(mlat_path);
 D=load(mlat_file);
 glons=D(:,1);
-mlats=-70:5:70;
+% find the magnetic latitudes in header line 3 of the mlat_file
+fid=fopen(mlat_file);
+for ip=1:3
+    hl=fgetl(fid);
+end
+fclose(fid);
+mlat_ind=findstr(hl,'(mag)');
+mlats=[];
+for ip=1:numel(mlat_ind)
+    mlat_str=hl(mlat_ind(ip)-3:mlat_ind(ip)-1);
+    mlats=[mlats;str2double(mlat_str)];
+end
+% mlats=-70:5:70;
 % find mlat index range
-mlat_ind=find(mlats>=35 & mlats<=45);
-glon_ind=find(glons>=138 & glons<=146);
+mlat_ind=find(mlats>=35 & mlats<=39);
+glon_ind=find(glons>=141 & glons<=146);
 glon_p=glons(glon_ind);
 
 % Extract and plot the lines of magnetic latitude that intersect the map
 hold on
-for ip=1:numel(mlat_ind)
+for ip=1:numel(mlat_ind)-1
     mlat_col=mlat_ind(ip)+1;
     glat_p=D(glon_ind,mlat_col);
     m_plot(glon_p,glat_p,':','Color',[0.5,0.5,0.5],'Linewidth',2);
-    mlat_txt_x=145.1;
-    mlat_txt_y=mean(glat_p)+0.2;
-    m_lat_txt=sprintf('mag. lat=%3.0f%s',mlats(mlat_col),char(176));
+    mlat_txt_x=141.05;
+    mlat_txt_y=glat_p(1)-0.05;
+    % Note: Should be mlats(mlat_col) not
+    % mlats(mlat_col) - 1, but this corrects off-by-one error in code
+    % that generated the data file. See email.
+    m_lat_txt=sprintf('%3.0f%s',mlats(mlat_col)-1,char(176));
     m_text(mlat_txt_x,mlat_txt_y,m_lat_txt,'FontSize',16);
 end
+
+m_ruler([.41 .59],.1,4,'fontsize',16)
 
 %% change the size of the map
 if dock == 0
