@@ -56,32 +56,34 @@ opts
 ------------------------------------------------------------------------
 Continuous data interval 1 of 10. Start date: 20060403
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060402dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060403dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060404dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060405dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060406dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060407dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060408dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060409dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060410dsec.sec
+prep_EB.m: Called with dateo/datef = 20060403/20060410, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060402dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060403dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060404dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060405dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060406dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060407dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060408dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060409dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060410dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 777600 points in B_1
 Interpolated over 0 of 777600 points in B_2
 Interpolated over 0 of 777600 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060402dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060403dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060404dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060405dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060406dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060407dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060408dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060409dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060410dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060402dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060403dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060404dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060405dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060406dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060407dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060408dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060409dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060410dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 777600 points in E_1
 Interpolated over 0 of 777600 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20060403/prepEB_mmb_20060403-20060410.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060403.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060404.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060405.txt
@@ -90,18 +92,15 @@ prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/wat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060408.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060409.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060410.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20060403/prepGIC_20060403.mat
-
-dateo =
-
-20060403
-
-Interpolated over 0 of 777600 points in B_1
-Interpolated over 0 of 777600 points in B_2
-Interpolated over 0 of 777600 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060403-20060410.mat
+despikeB.m: Interpolated over 0 of 777600 points in B_1
+despikeB.m: Interpolated over 0 of 777600 points in B_2
+despikeB.m: Interpolated over 0 of 777600 points in B_3
 despikeE.m: Removed 19 possible spikes in E(:,1). 0.01% of data modified
 despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
 despikeGIC.m: Removed 354 possible spikes in GIC. 2.30% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060403-20060410-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060403-20060410-despiked.mat
 main.m: 20060403 G/Eo
 transferfnConst.m: 1/8 PE/CC/MSE of In_x = 0.71/0.84/0.003
 transferfnConst.m: 1/8 PE/CC/MSE of In_y = 0.71/0.84/0.003
@@ -224,37 +223,36 @@ transferfnConst.m: 8/8 PE/CC/MSE of In_y = 0.70/0.84/0.015
 ------------------------------------------------------------------------
 Continuous data interval 2 of 10. Start date: 20060819
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060818dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060819dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060820dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060821dsec.sec
+prep_EB.m: Called with dateo/datef = 20060819/20060821, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060818dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060819dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060820dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060821dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 345600 points in B_1
 Interpolated over 0 of 345600 points in B_2
 Interpolated over 0 of 345600 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060818dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060819dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060820dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060821dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060818dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060819dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060820dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060821dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 345600 points in E_1
 Interpolated over 0 of 345600 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20060819/prepEB_mmb_20060819-20060821.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060819.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060820.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060821.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20060819/prepGIC_20060819.mat
-
-dateo =
-
-20060819
-
-Interpolated over 0 of 345600 points in B_1
-Interpolated over 0 of 345600 points in B_2
-Interpolated over 0 of 345600 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060819-20060821.mat
+despikeB.m: Interpolated over 0 of 345600 points in B_1
+despikeB.m: Interpolated over 0 of 345600 points in B_2
+despikeB.m: Interpolated over 0 of 345600 points in B_3
 despikeE.m: Removed 42 possible spikes in E(:,1). 0.06% of data modified
 despikeE.m: Removed 1 possible spikes in E(:,2). 0.00% of data modified
 despikeGIC.m: Removed 115 possible spikes in GIC. 1.84% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060819-20060821-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060819-20060821-despiked.mat
 main.m: 20060819 G/Eo
 transferfnConst.m: 1/3 PE/CC/MSE of In_x = 0.64/0.80/0.016
 transferfnConst.m: 1/3 PE/CC/MSE of In_y = 0.64/0.80/0.016
@@ -307,46 +305,45 @@ transferfnConst.m: 3/3 PE/CC/MSE of In_y = 0.74/0.86/0.003
 ------------------------------------------------------------------------
 Continuous data interval 3 of 10. Start date: 20061107
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061106dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061107dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061108dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061109dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061110dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061111dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061112dsec.sec
+prep_EB.m: Called with dateo/datef = 20061107/20061112, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061106dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061107dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061108dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061109dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061110dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061111dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061112dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 604800 points in B_1
 Interpolated over 0 of 604800 points in B_2
 Interpolated over 0 of 604800 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061106dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061107dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061108dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061109dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061110dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061111dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061112dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061106dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061107dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061108dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061109dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061110dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061111dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061112dgef.sec
 Interpolating over fill values in E.
 Interpolated over 34 of 604800 points in E_1
 Interpolated over 34 of 604800 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20061107/prepEB_mmb_20061107-20061112.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061107.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061108.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061109.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061110.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061111.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061112.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20061107/prepGIC_20061107.mat
-
-dateo =
-
-20061107
-
-Interpolated over 0 of 604800 points in B_1
-Interpolated over 0 of 604800 points in B_2
-Interpolated over 0 of 604800 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061107-20061112.mat
+despikeB.m: Interpolated over 0 of 604800 points in B_1
+despikeB.m: Interpolated over 0 of 604800 points in B_2
+despikeB.m: Interpolated over 0 of 604800 points in B_3
 despikeE.m: Removed 127 possible spikes in E(:,1). 0.10% of data modified
 despikeE.m: Removed 53 possible spikes in E(:,2). 0.03% of data modified
 despikeGIC.m: Removed 320 possible spikes in GIC. 2.62% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061107-20061112-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061107-20061112-despiked.mat
 main.m: 20061107 G/Eo
 transferfnConst.m: 1/6 PE/CC/MSE of In_x = 0.64/0.80/0.004
 transferfnConst.m: 1/6 PE/CC/MSE of In_y = 0.65/0.81/0.004
@@ -441,34 +438,33 @@ transferfnConst.m: 6/6 PE/CC/MSE of In_y = 0.64/0.80/0.007
 ------------------------------------------------------------------------
 Continuous data interval 4 of 10. Start date: 20061214
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061213dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061214dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061215dsec.sec
+prep_EB.m: Called with dateo/datef = 20061214/20061215, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061213dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061214dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061215dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 259200 points in B_1
 Interpolated over 0 of 259200 points in B_2
 Interpolated over 0 of 259200 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061213dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061214dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061215dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061213dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061214dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061215dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 259200 points in E_1
 Interpolated over 0 of 259200 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20061214/prepEB_mmb_20061214-20061215.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061214.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061215.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20061214/prepGIC_20061214.mat
-
-dateo =
-
-20061214
-
-Interpolated over 0 of 259200 points in B_1
-Interpolated over 0 of 259200 points in B_2
-Interpolated over 0 of 259200 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061214-20061215.mat
+despikeB.m: Interpolated over 0 of 259200 points in B_1
+despikeB.m: Interpolated over 0 of 259200 points in B_2
+despikeB.m: Interpolated over 0 of 259200 points in B_3
 despikeE.m: Removed 312 possible spikes in E(:,1). 0.35% of data modified
 despikeE.m: Removed 31 possible spikes in E(:,2). 0.04% of data modified
 despikeGIC.m: Removed 269 possible spikes in GIC. 4.10% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061214-20061215-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061214-20061215-despiked.mat
 main.m: 20061214 G/Eo
 transferfnConst.m: 1/2 PE/CC/MSE of In_x = 0.24/0.49/0.008
 transferfnConst.m: 1/2 PE/CC/MSE of In_y = 0.24/0.49/0.008
@@ -507,41 +503,40 @@ transferfnConst.m: 2/2 PE/CC/MSE of In_y = 0.73/0.86/0.107
 ------------------------------------------------------------------------
 Continuous data interval 5 of 10. Start date: 20060805
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060804dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060805dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060806dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060807dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060808dsec.sec
+prep_EB.m: Called with dateo/datef = 20060805/20060808, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060804dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060805dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060806dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060807dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060808dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 432000 points in B_1
 Interpolated over 0 of 432000 points in B_2
 Interpolated over 0 of 432000 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060804dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060805dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060806dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060807dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060808dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060804dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060805dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060806dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060807dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060808dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 432000 points in E_1
 Interpolated over 0 of 432000 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20060805/prepEB_mmb_20060805-20060808.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060805.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060806.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060807.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060808.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20060805/prepGIC_20060805.mat
-
-dateo =
-
-20060805
-
-Removing 36 values of B > 5.7e4 as probable missed spikes
-Interpolated over 0 of 432000 points in B_1
-Interpolated over 0 of 432000 points in B_2
-Interpolated over 0 of 432000 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060805-20060808.mat
+despikeB.m: Removing 36 values of B > 5.7e4 as probable missed spikes
+despikeB.m: Interpolated over 0 of 432000 points in B_1
+despikeB.m: Interpolated over 0 of 432000 points in B_2
+despikeB.m: Interpolated over 0 of 432000 points in B_3
 despikeE.m: Removed 135 possible spikes in E(:,1). 0.15% of data modified
 despikeE.m: Removed 117 possible spikes in E(:,2). 0.11% of data modified
 despikeGIC.m: Removed 159 possible spikes in GIC. 2.02% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060805-20060808-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060805-20060808-despiked.mat
 main.m: 20060805 G/Eo
 transferfnConst.m: 1/4 PE/CC/MSE of In_x = 0.64/0.80/0.007
 transferfnConst.m: 1/4 PE/CC/MSE of In_y = 0.64/0.80/0.007
@@ -608,43 +603,42 @@ transferfnConst.m: 4/4 PE/CC/MSE of In_y = 0.67/0.82/0.005
 ------------------------------------------------------------------------
 Continuous data interval 6 of 10. Start date: 20060725
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060724dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060725dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060726dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060727dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060728dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20060729dsec.sec
+prep_EB.m: Called with dateo/datef = 20060725/20060729, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060724dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060725dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060726dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060727dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060728dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060729dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 518400 points in B_1
 Interpolated over 0 of 518400 points in B_2
 Interpolated over 0 of 518400 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060724dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060725dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060726dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060727dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060728dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20060729dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060724dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060725dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060726dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060727dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060728dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060729dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 518400 points in E_1
 Interpolated over 0 of 518400 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20060725/prepEB_mmb_20060725-20060729.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060725.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060726.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060727.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060728.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20060729.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20060725/prepGIC_20060725.mat
-
-dateo =
-
-20060725
-
-Interpolated over 0 of 518400 points in B_1
-Interpolated over 0 of 518400 points in B_2
-Interpolated over 0 of 518400 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060725-20060729.mat
+despikeB.m: Interpolated over 0 of 518400 points in B_1
+despikeB.m: Interpolated over 0 of 518400 points in B_2
+despikeB.m: Interpolated over 0 of 518400 points in B_3
 despikeE.m: Removed 57 possible spikes in E(:,1). 0.06% of data modified
 despikeE.m: Removed 18 possible spikes in E(:,2). 0.01% of data modified
 despikeGIC.m: Removed 170 possible spikes in GIC. 1.62% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060725-20060729-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060725-20060729-despiked.mat
 main.m: 20060725 G/Eo
 transferfnConst.m: 1/5 PE/CC/MSE of In_x = 0.68/0.82/0.006
 transferfnConst.m: 1/5 PE/CC/MSE of In_y = 0.68/0.83/0.006
@@ -725,37 +719,36 @@ transferfnConst.m: 5/5 PE/CC/MSE of In_y = 0.76/0.87/0.004
 ------------------------------------------------------------------------
 Continuous data interval 7 of 10. Start date: 20071118
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071117dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071118dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071119dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071120dsec.sec
+prep_EB.m: Called with dateo/datef = 20071118/20071120, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071117dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071118dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071119dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071120dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 345600 points in B_1
 Interpolated over 0 of 345600 points in B_2
 Interpolated over 0 of 345600 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071117dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071118dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071119dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071120dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071117dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071118dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071119dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071120dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 345600 points in E_1
 Interpolated over 0 of 345600 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20071118/prepEB_mmb_20071118-20071120.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20071118.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20071119.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20071120.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20071118/prepGIC_20071118.mat
-
-dateo =
-
-20071118
-
-Interpolated over 0 of 345600 points in B_1
-Interpolated over 0 of 345600 points in B_2
-Interpolated over 0 of 345600 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071118-20071120.mat
+despikeB.m: Interpolated over 0 of 345600 points in B_1
+despikeB.m: Interpolated over 0 of 345600 points in B_2
+despikeB.m: Interpolated over 0 of 345600 points in B_3
 despikeE.m: Removed 65 possible spikes in E(:,1). 0.11% of data modified
 despikeE.m: Removed 4 possible spikes in E(:,2). 0.01% of data modified
 despikeGIC.m: Removed 170 possible spikes in GIC. 3.27% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20071118-20071120-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20071118-20071120-despiked.mat
 main.m: 20071118 G/Eo
 transferfnConst.m: 1/3 PE/CC/MSE of In_x = 0.70/0.84/0.003
 transferfnConst.m: 1/3 PE/CC/MSE of In_y = 0.71/0.84/0.003
@@ -808,31 +801,30 @@ transferfnConst.m: 3/3 PE/CC/MSE of In_y = 0.72/0.85/0.016
 ------------------------------------------------------------------------
 Continuous data interval 8 of 10. Start date: 20071122
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071121dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20071122dsec.sec
+prep_EB.m: Called with dateo/datef = 20071122/20071122, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071121dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071122dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 172800 points in B_1
 Interpolated over 0 of 172800 points in B_2
 Interpolated over 0 of 172800 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071121dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20071122dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071121dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071122dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 172800 points in E_1
 Interpolated over 0 of 172800 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20071122/prepEB_mmb_20071122-20071122.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20071122.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20071122/prepGIC_20071122.mat
-
-dateo =
-
-20071122
-
-Interpolated over 0 of 172800 points in B_1
-Interpolated over 0 of 172800 points in B_2
-Interpolated over 0 of 172800 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071122-20071122.mat
+despikeB.m: Interpolated over 0 of 172800 points in B_1
+despikeB.m: Interpolated over 0 of 172800 points in B_2
+despikeB.m: Interpolated over 0 of 172800 points in B_3
 despikeE.m: Removed 15 possible spikes in E(:,1). 0.05% of data modified
 despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
 despikeGIC.m: Removed 79 possible spikes in GIC. 4.00% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20071122-20071122-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20071122-20071122-despiked.mat
 main.m: 20071122 G/Eo
 transferfnConst.m: 1/1 PE/CC/MSE of In_x = 0.72/0.85/0.002
 transferfnConst.m: 1/1 PE/CC/MSE of In_y = 0.72/0.85/0.002
@@ -857,34 +849,33 @@ transferfnConst.m: 1/1 PE/CC/MSE of In_y = 0.81/0.90/0.001
 ------------------------------------------------------------------------
 Continuous data interval 9 of 10. Start date: 20061128
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061127dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061128dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061129dsec.sec
+prep_EB.m: Called with dateo/datef = 20061128/20061129, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061127dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061128dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061129dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 259200 points in B_1
 Interpolated over 0 of 259200 points in B_2
 Interpolated over 0 of 259200 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061127dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061128dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061129dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061127dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061128dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061129dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 259200 points in E_1
 Interpolated over 0 of 259200 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20061128/prepEB_mmb_20061128-20061129.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061128.txt
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061129.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20061128/prepGIC_20061128.mat
-
-dateo =
-
-20061128
-
-Interpolated over 0 of 259200 points in B_1
-Interpolated over 0 of 259200 points in B_2
-Interpolated over 0 of 259200 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061128-20061129.mat
+despikeB.m: Interpolated over 0 of 259200 points in B_1
+despikeB.m: Interpolated over 0 of 259200 points in B_2
+despikeB.m: Interpolated over 0 of 259200 points in B_3
 despikeE.m: Removed 33 possible spikes in E(:,1). 0.07% of data modified
 despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
 despikeGIC.m: Removed 87 possible spikes in GIC. 2.16% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061128-20061129-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061128-20061129-despiked.mat
 main.m: 20061128 G/Eo
 transferfnConst.m: 1/2 PE/CC/MSE of In_x = 0.60/0.78/0.004
 transferfnConst.m: 1/2 PE/CC/MSE of In_y = 0.61/0.78/0.004
@@ -923,31 +914,30 @@ transferfnConst.m: 2/2 PE/CC/MSE of In_y = 0.80/0.89/0.002
 ------------------------------------------------------------------------
 Continuous data interval 10 of 10. Start date: 20061201
 ------------------------------------------------------------------------
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061130dsec.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/B/mmb20061201dsec.sec
+prep_EB.m: Called with dateo/datef = 20061201/20061201, station = mmb, regenfiles = 1
+prep_EB.m: Creating /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201.mat.
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061130dsec.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061201dsec.sec
 Interpolating over fill values in B.
 Interpolated over 0 of 172800 points in B_1
 Interpolated over 0 of 172800 points in B_2
 Interpolated over 0 of 172800 points in B_3
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061130dgef.sec
-Reading /home/weigel/git/m-rsw/gic/data/jma/mmb/E/mmb20061201dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061130dgef.sec
+Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061201dgef.sec
 Interpolating over fill values in E.
 Interpolated over 0 of 172800 points in E_1
 Interpolated over 0 of 172800 points in E_2
-Writing /home/weigel/git/m-rsw/gic/mat/20061201/prepEB_mmb_20061201-20061201.mat
+Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201.mat
 prep_GIC.m: Reading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/GICall/20061201.txt
-prep_GIC: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../mat/20061201/prepGIC_20061201.mat
-
-dateo =
-
-20061201
-
-Interpolated over 0 of 172800 points in B_1
-Interpolated over 0 of 172800 points in B_2
-Interpolated over 0 of 172800 points in B_3
+prep_GIC.m: Writing /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061201-20061201.mat
+despikeB.m: Interpolated over 0 of 172800 points in B_1
+despikeB.m: Interpolated over 0 of 172800 points in B_2
+despikeB.m: Interpolated over 0 of 172800 points in B_3
 despikeE.m: Removed 19 possible spikes in E(:,1). 0.06% of data modified
 despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
 despikeGIC.m: Removed 48 possible spikes in GIC. 2.20% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061201-20061201-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061201-20061201-despiked.mat
 main.m: 20061201 G/Eo
 transferfnConst.m: 1/1 PE/CC/MSE of In_x = 0.75/0.87/0.004
 transferfnConst.m: 1/1 PE/CC/MSE of In_y = 0.75/0.87/0.004
@@ -2157,12 +2147,12 @@ Stopping at step 50 for Te =     7855
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
-  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 235)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',235,0)">line 235</a>)] 
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',244,0)">line 244</a>)] 
 [Warning: Iteration limit reached.] 
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
-  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 235)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',235,0)">line 235</a>)] 
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',244,0)">line 244</a>)] 
 Stopping at step 50 for Te =     7855
 Stopping at step 40 for Te =     5760
 Stopping at step 33 for Te =     5760
@@ -2176,12 +2166,12 @@ Stopping at step 30 for Te =     2009
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
-  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 235)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',235,0)">line 235</a>)] 
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',244,0)">line 244</a>)] 
 [Warning: Iteration limit reached.] 
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
-  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 235)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',235,0)">line 235</a>)] 
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',244,0)">line 244</a>)] 
 Stopping at step 50 for Te =     1440
 Stopping at step 50 for Te =     1440
 Stopping at step 47 for Te =     1016
@@ -2601,33 +2591,4 @@ transferfnAlt.m: Interval 31/35: PE/CC/MSE of In_x = 0.77/0.88/0.013
 transferfnAlt.m: Interval 31/35: PE/CC/MSE of In_y = 0.77/0.88/0.013
 transferfnAlt.m: Interval 32/35: PE/CC/MSE of In_x = 0.45/0.68/0.004
 transferfnAlt.m: Interval 32/35: PE/CC/MSE of In_y = 0.46/0.68/0.004
-transferfnAlt.m: Interval 33/35: PE/CC/MSE of In_x = 0.52/0.72/0.005
-transferfnAlt.m: Interval 33/35: PE/CC/MSE of In_y = 0.52/0.73/0.005
-transferfnAlt.m: Interval 34/35: PE/CC/MSE of In_x = 0.46/0.70/0.006
-transferfnAlt.m: Interval 34/35: PE/CC/MSE of In_y = 0.47/0.71/0.006
-transferfnAlt.m: Interval 35/35: PE/CC/MSE of In_x = 0.53/0.81/0.007
-transferfnAlt.m: Interval 35/35: PE/CC/MSE of In_y = 0.54/0.81/0.007
-___________________________________________________________________________
-Model 3 - G/E'
-___________________________________________________________________________
-Ave x PE Mean:         0.796 [0.770,0.820]
-Ave x PE Fujii:        0.609
-Ave x PE InSample:     0.867
-Ave y PE Mean:         0.799 [0.775,0.824]
-Ave y PE Fujii:        0.611
-Ave y PE InSample:     0.871
-Ave x CC Mean:         0.915 [0.902,0.927]
-Ave x CC Fujii:        0.848
-Ave x CC InSample:     0.939
-Ave y CC Mean:         0.917 [0.904,0.930]
-Ave y CC Fujii:        0.850
-Ave y CC InSample:     0.940
-Ave x MSE Mean:        0.009 [0.005,0.014]
-Ave x MSE Fujii:       0.012
-Ave x MSE InSample:    0.004
-Ave y MSE Mean:        0.008 [0.005,0.015]
-Ave y MSE Fujii:       0.012
-Ave y MSE InSample:    0.004
-___________________________________________________________________________
-main.m: Saving mat/main_options-1.mat
-main.m: Saved mat/main_options-1.mat
+transferf

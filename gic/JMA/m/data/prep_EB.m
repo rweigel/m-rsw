@@ -3,17 +3,28 @@ function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles)
 % Note that automated downloads of JMA data can be made using
 % using
   
-dirbase = '/home/weigel/git/m-rsw/gic';
-dirmat = sprintf('%s/mat/%s',dirbase,dateo);
+dirbase = [fileparts(mfilename('fullpath')),'/../..'];
+dirmat = sprintf('%s/data/jma/mat',dirbase);
 
 if ~exist(dirmat,'dir')
     mkdir(dirmat);
 end
 
+fprintf('prep_EB.m: Called with dateo/datef = %s/%s, station = %s, regenfiles = %d\n',...
+            dateo,datef,station,regenfiles);
 fnamemat = sprintf('%s/prepEB_%s_%s-%s.mat',dirmat,station,dateo,datef);
-if regenfiles == 0 && exist(fnamemat,'file')
-    load(fnamemat);
-    return;
+if regenfiles == 0
+    if exist(fnamemat,'file')
+        fprintf('prep_EB.m: Loading %s\n',fnamemat);
+        load(fnamemat);
+        fprintf('prep_EB.m: Done\n');
+        return;
+    else
+        fprintf('prep_EB.m: Did not find %s.\n',fnamemat);    
+        fprintf('prep_EB.m: Will create it.\n');
+    end
+else
+    fprintf('prep_EB.m: Creating %s.\n',fnamemat);
 end
 
 extE = 'dgef.sec';

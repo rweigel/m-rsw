@@ -55,7 +55,7 @@ end
 di = 0;
 for i = 1:length(dateos)
 %for i = 7:length(dateos)
-    
+%for i = 1:1
     fprintf('------------------------------------------------------------------------\n')
     fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
     fprintf('------------------------------------------------------------------------\n')
@@ -79,6 +79,7 @@ for i = 1:length(dateos)
 
     % Read GIC data from Watari
     % First column is raw, second is 1 Hz filtered.
+
     [tGIC,GIC]  = prep_GIC(dateo,datef,regenfiles);        
 
     if opts.td.detrend
@@ -107,6 +108,14 @@ for i = 1:length(dateos)
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
     [t,E,B] = timealign(tGIC,tE,E,B);
+
+    fnamemat = sprintf('data/jma/mat/prepEB_%s_%s-%s-despiked.mat','mmb',dateo,datef);
+    save(fnamemat,'tE','E','tB','B');
+    fprintf('main.m: Wrote %s\n',fnamemat);
+
+    fnamemat = sprintf('data-private/watari/mat/prepGIC_%s-%s-despiked.mat',dateo,datef);
+    save(fnamemat,'tGIC','GIC');
+    fprintf('main.m: Wrote %s\n',fnamemat);
 
     if intmplot
         plot_raw(t,GIC(:,2),t,E,t,B,dateo,writepng,{'GIC'});
@@ -246,6 +255,8 @@ GBaf = transferfnAlt(GE, EBf, opts);
 GBa_avg.Fujii = GBaf;
 transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
+
+break
 
 savevars = {'opts','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);

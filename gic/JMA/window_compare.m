@@ -2,8 +2,10 @@ clear
 
 interval = 11;
 site = 'mmb';
+regen = 0;
+showplot = 1;
 
-[t,E,B,datakey] = main_data(interval,site);
+[t,E,B,datakey] = window_compare_data(interval,site,regen,showplot);
 dateo = datestr(t(1),'yyyy-mm-dd');
 datef = datestr(t(end),'yyyy-mm-dd');
 
@@ -17,7 +19,7 @@ end
 
 opts = main_options(1);
 a = opts.td.Ntrim;
-b = size(B,1)-a;
+b = size(B,1)-a; 
 
 [Nf,fef] = smoothSpectra(E(a:b,:));
 comp = ['x','y'];

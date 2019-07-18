@@ -1,15 +1,17 @@
 function [tGIC,GIC] = prep_GIC(dateo,datef,regenfiles)
 
 dirbase = [fileparts(mfilename('fullpath')),'/../..'];
-dirmat = sprintf('%s/mat/%s',dirbase,dateo);
 dirtxt = sprintf('%s/data-private/watari/GICall',dirbase);
+
+dirmat   = sprintf('%s/data-private/watari/mat',dirbase);
+fnamemat = sprintf('%s/prepGIC_%s-%s.mat',dirmat,dateo,datef);
 
 if ~exist(dirmat,'dir')
     mkdir(dirmat);
 end
 
-fnamemat = sprintf('%s/prepGIC_%s.mat',dirmat,dateo);
 if regenfiles == 0 && exist(fnamemat,'file')
+    fprintf('prep_GIC.m: Loading %s\n',fnamemat);    
     load(fnamemat)
     return;
 end
@@ -40,6 +42,6 @@ end
 tGIC = -3600*9 + [0:size(GIC,1)-1]'; % # of seconds relative to dateo UT
 tGIC = datenum(dateo,'yyyymmdd')+tGIC/86400;
 
-fprintf('prep_GIC: Writing %s\n',fnamemat);
+fprintf('prep_GIC.m: Writing %s\n',fnamemat);
 
 save(fnamemat,'tGIC','GIC');
