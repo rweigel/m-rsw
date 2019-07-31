@@ -1,0 +1,187 @@
+________________________________________________________________
+Options description: Default
+________________________________________________________________
+___________________________________________________________________________
+Model 0 - G/Bo
+___________________________________________________________________________
+Ave ao: Using:
+Mean   0.005 [0.004,0.007]
+Ave bo: Using:
+Mean  -0.007 [-0.007,-0.006]
+Ave x PE Mean:         0.234 [0.125,0.344]
+Ave x PE InSample:     0.530
+Ave y PE Mean:         0.236 [0.121,0.339]
+Ave y PE InSample:     0.533
+Ave x CC Mean:         0.603 [0.546,0.662]
+Ave x CC InSample:     0.714
+Ave y CC Mean:         0.605 [0.550,0.664]
+Ave y CC InSample:     0.716
+Ave x MSE Mean:        0.039 [0.021,0.062]
+Ave x MSE InSample:    0.020
+Ave y MSE Mean:        0.039 [0.021,0.062]
+Ave y MSE InSample:    0.020
+___________________________________________________________________________
+___________________________________________________________________________
+Model 1 - G/Eo
+___________________________________________________________________________
+Ave ao: Using:
+Mean   0.073 [0.062,0.084]
+Ave bo: Using:
+Mean  -0.072 [-0.096,-0.047]
+Ave x PE Mean:         0.420 [0.329,0.494]
+Ave x PE InSample:     0.639
+Ave y PE Mean:         0.421 [0.335,0.493]
+Ave y PE InSample:     0.641
+Ave x CC Mean:         0.694 [0.650,0.738]
+Ave x CC InSample:     0.794
+Ave y CC Mean:         0.695 [0.649,0.738]
+Ave y CC InSample:     0.795
+Ave x MSE Mean:        0.025 [0.013,0.044]
+Ave x MSE InSample:    0.018
+Ave y MSE Mean:        0.025 [0.013,0.044]
+Ave y MSE InSample:    0.018
+___________________________________________________________________________
+___________________________________________________________________________
+Model 2 - G/E
+___________________________________________________________________________
+Ave x PE Mean:                0.609 [0.556,0.663]
+Ave x PE NoStack_OLS:         0.552
+Ave x PE NoStack_Robust1:     0.544
+Ave x PE NoStack_Robust2:     0.545
+Ave x PE InSample:            0.873
+Ave y PE Mean:                0.611 [0.555,0.666]
+Ave y PE NoStack_OLS:         0.555
+Ave y PE NoStack_Robust1:     0.547
+Ave y PE NoStack_Robust2:     0.548
+Ave y PE InSample:            0.876
+Ave x CC Mean:                0.803 [0.766,0.836]
+Ave x CC NoStack_OLS:         0.769
+Ave x CC NoStack_Robust1:     0.765
+Ave x CC NoStack_Robust2:     0.765
+Ave x CC InSample:            0.935
+Ave y CC Mean:                0.804 [0.768,0.835]
+Ave y CC NoStack_OLS:         0.771
+Ave y CC NoStack_Robust1:     0.767
+Ave y CC NoStack_Robust2:     0.768
+Ave y CC InSample:            0.937
+Ave x MSE Mean:               0.020 [0.008,0.039]
+Ave x MSE NoStack_OLS:        0.018
+Ave x MSE NoStack_Robust1:    0.019
+Ave x MSE NoStack_Robust2:    0.019
+Ave x MSE InSample:           0.007
+Ave y MSE Mean:               0.020 [0.008,0.038]
+Ave y MSE NoStack_OLS:        0.018
+Ave y MSE NoStack_Robust1:    0.019
+Ave y MSE NoStack_Robust2:    0.019
+Ave y MSE InSample:           0.007
+___________________________________________________________________________
+___________________________________________________________________________
+Model 3 - G/E'
+___________________________________________________________________________
+Ave x PE Mean:         0.788 [0.764,0.813]
+Ave x PE Fujii:        0.586
+Ave x PE InSample:     0.860
+Ave y PE Mean:         0.791 [0.765,0.816]
+Ave y PE Fujii:        0.588
+Ave y PE InSample:     0.863
+Ave x CC Mean:         0.914 [0.902,0.927]
+Ave x CC Fujii:        0.842
+Ave x CC InSample:     0.936
+Ave y CC Mean:         0.916 [0.903,0.929]
+Ave y CC Fujii:        0.844
+Ave y CC InSample:     0.937
+Ave x MSE Mean:        0.009 [0.005,0.015]
+Ave x MSE Fujii:       0.016
+Ave x MSE InSample:    0.007
+Ave y MSE Mean:        0.009 [0.005,0.015]
+Ave y MSE Fujii:       0.016
+Ave y MSE InSample:    0.007
+___________________________________________________________________________
+___________________________________________________________________________
+Model 4 - G/B
+___________________________________________________________________________
+Ave x PE Mean:                0.837 [0.809,0.862]
+Ave x PE NoStack_OLS:         0.815
+Ave x PE NoStack_Robust1:     0.820
+Ave x PE NoStack_Robust2:     0.819
+Ave x PE InSample:            0.903
+Ave y PE Mean:                0.840 [0.814,0.865]
+Ave y PE NoStack_OLS:         0.818
+Ave y PE NoStack_Robust1:     0.823
+Ave y PE NoStack_Robust2:     0.823
+Ave y PE InSample:            0.906
+Ave x CC Mean:                0.926 [0.911,0.940]
+Ave x CC NoStack_OLS:         0.919
+Ave x CC NoStack_Robust1:     0.919
+Ave x CC NoStack_Robust2:     0.920
+Ave x CC InSample:            0.955
+Ave y CC Mean:                0.928 [0.913,0.942]
+Ave y CC NoStack_OLS:         0.921
+Ave y CC NoStack_Robust1:     0.921
+Ave y CC NoStack_Robust2:     0.921
+Ave y CC InSample:            0.957
+Ave x MSE Mean:               0.005 [0.003,0.007]
+Ave x MSE NoStack_OLS:        0.006
+Ave x MSE NoStack_Robust1:    0.006
+Ave x MSE NoStack_Robust2:    0.006
+Ave x MSE InSample:           0.003
+Ave y MSE Mean:               0.005 [0.003,0.006]
+Ave y MSE NoStack_OLS:        0.006
+Ave y MSE NoStack_Robust1:    0.006
+Ave y MSE NoStack_Robust2:    0.006
+Ave y MSE InSample:           0.003
+___________________________________________________________________________
+___________________________________________________________________________
+E/B
+___________________________________________________________________________
+Ave x PE Mean:                0.773 [0.747,0.801]
+Ave x PE Fuji:                0.714
+Ave x PE NoStack_OLS:         0.726
+Ave x PE NoStack_Robust1:     0.725
+Ave x PE NoStack_Robust2:     0.725
+Ave x PE InSample:            0.871
+Ave y PE Mean:                0.580 [0.527,0.632]
+Ave y PE Fuji:                0.571
+Ave y PE NoStack_OLS:         0.552
+Ave y PE NoStack_Robust1:     0.555
+Ave y PE NoStack_Robust2:     0.555
+Ave y PE InSample:            0.786
+Ave x CC Mean:                0.897 [0.882,0.911]
+Ave x CC Fuji:                0.895
+Ave x CC NoStack_OLS:         0.879
+Ave x CC NoStack_Robust1:     0.877
+Ave x CC NoStack_Robust2:     0.877
+Ave x CC InSample:            0.935
+Ave y CC Mean:                0.770 [0.733,0.806]
+Ave y CC Fuji:                0.777
+Ave y CC NoStack_OLS:         0.755
+Ave y CC NoStack_Robust1:     0.756
+Ave y CC NoStack_Robust2:     0.756
+Ave y CC InSample:            0.896
+Ave x MSE Mean:               2.178 [1.136,3.488]
+Ave x MSE Fuji:               2.612
+Ave x MSE NoStack_OLS:        2.604
+Ave x MSE NoStack_Robust1:    2.635
+Ave x MSE NoStack_Robust2:    2.637
+Ave x MSE InSample:           1.541
+Ave y MSE Mean:               0.638 [0.469,0.850]
+Ave y MSE Fuji:               0.571
+Ave y MSE NoStack_OLS:        0.667
+Ave y MSE NoStack_Robust1:    0.664
+Ave y MSE NoStack_Robust2:    0.666
+Ave y MSE InSample:           0.332
+___________________________________________________________________________
+main_log.m: Running bootstrap tests
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('internal.stats.parallel.smartForSliceout', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/+internal/+stats/+parallel/smartForSliceout.m', 193)" style="font-weight:bold">internal.stats.parallel.smartForSliceout</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/+internal/+stats/+parallel/smartForSliceout.m',193,0)">line 193</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('bootstrp', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/bootstrp.m', 189)" style="font-weight:bold">bootstrp</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/bootstrp.m',189,0)">line 189</a>)
+        bootstat = internal.stats.parallel.smartForSliceout( ...
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_log', '/home/weigel/git/m-rsw/gic/JMA/main_log.m', 52)" style="font-weight:bold">main_log</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main_log.m',52,0)">line 52</a>)
+b3 = bootstrp(Nb,@mean,m3);
+} 
+clear filestr
+main_log
+main.m: Loading mat/main_options-1-v1-o0.mat
+main.m: Loaded mat/main_options-1-v1-o0.mat

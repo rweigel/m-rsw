@@ -1,0 +1,708 @@
+------------------------------------------------------------------------
+Options set #1
+------------------------------------------------------------------------
+opts
+   |    
+   |--- data
+   |       |    
+   |       |----- dts : [0 17 32 66 0 0 0 0 0 0]
+   |       |-- datefs : [1x10 Cell]
+   |       |-- dateos : [1x10 Cell]
+   |    
+   |--- fd
+   |       |    
+   |       |--- evalfreq
+   |       |       |    
+   |       |       |----- method : 'logarithmic'
+   |       |       |-- methodstr : 'logarithmic'
+   |       |       |---- options : [ ]
+   |       |    
+   |       |--- regression
+   |       |       |    
+   |       |       |-- methodstr : 'ols_on_Z'
+   |       |       |----- method : 2
+   |       |    
+   |       |--- window
+   |       |       |    
+   |       |       |-- functionstr : 'rectangular'
+   |       |       |----- function : [1x1 Unknown]
+   |       |    
+   |    
+   |--- td
+   |       |    
+   |       |--- prewhiten
+   |       |       |    
+   |       |       |----- method : 'none'
+   |       |       |-- methodstr : 'none'
+   |       |       |---- options : [ ]
+   |       |    
+   |       |--- window
+   |       |       |    
+   |       |       |--- options
+   |       |       |       |    
+   |       |       |    
+   |       |       |-- functionstr : 'rectangular'
+   |       |       |-------- shift : 86400
+   |       |       |-------- width : 86400
+   |       |       |----- function : [1x1 Unknown]
+   |       |    
+   |       |-- transform : 'none'
+   |       |------ Ntrim : 600
+   |       |---- detrend : 0
+   |    
+   |-- description : 'Default'
+   |------ filestr : 'options-1'
+------------------------------------------------------------------------
+------------------------------------------------------------------------
+Continuous data interval 1 of 10. Start date: 20060403
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20060403/20060410, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060403-20060410.mat
+despikeB.m: Interpolated over 0 of 777600 points in B_1
+despikeB.m: Interpolated over 0 of 777600 points in B_2
+despikeB.m: Interpolated over 0 of 777600 points in B_3
+despikeE.m: Removed 19 possible spikes in E(:,1). 0.01% of data modified
+despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
+despikeGIC.m: Removed 354 possible spikes in GIC. 2.30% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060403-20060410-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060403-20060410-v0-despiked.mat
+plot_raw.m: Writing figures/20060403/plot_raw_All_20060403-v0.pdf
+plot_raw.m: Wrote figures/20060403/plot_raw_All_20060403-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 2 of 10. Start date: 20060819
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20060819/20060821, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060819-20060821.mat
+despikeB.m: Interpolated over 0 of 345600 points in B_1
+despikeB.m: Interpolated over 0 of 345600 points in B_2
+despikeB.m: Interpolated over 0 of 345600 points in B_3
+despikeE.m: Removed 42 possible spikes in E(:,1). 0.06% of data modified
+despikeE.m: Removed 1 possible spikes in E(:,2). 0.00% of data modified
+despikeGIC.m: Removed 115 possible spikes in GIC. 1.84% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060819-20060821-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060819-20060821-v0-despiked.mat
+plot_raw.m: Writing figures/20060819/plot_raw_All_20060819-v0.pdf
+plot_raw.m: Wrote figures/20060819/plot_raw_All_20060819-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 3 of 10. Start date: 20061107
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20061107/20061112, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061107-20061112.mat
+despikeB.m: Interpolated over 0 of 604800 points in B_1
+despikeB.m: Interpolated over 0 of 604800 points in B_2
+despikeB.m: Interpolated over 0 of 604800 points in B_3
+despikeE.m: Removed 126 possible spikes in E(:,1). 0.10% of data modified
+despikeE.m: Removed 53 possible spikes in E(:,2). 0.03% of data modified
+despikeGIC.m: Removed 320 possible spikes in GIC. 2.62% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061107-20061112-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061107-20061112-v0-despiked.mat
+plot_raw.m: Writing figures/20061107/plot_raw_All_20061107-v0.pdf
+plot_raw.m: Wrote figures/20061107/plot_raw_All_20061107-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 4 of 10. Start date: 20061214
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20061214/20061215, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061214-20061215.mat
+despikeB.m: Interpolated over 0 of 259200 points in B_1
+despikeB.m: Interpolated over 0 of 259200 points in B_2
+despikeB.m: Interpolated over 0 of 259200 points in B_3
+despikeE.m: Removed 308 possible spikes in E(:,1). 0.34% of data modified
+despikeE.m: Removed 31 possible spikes in E(:,2). 0.04% of data modified
+despikeGIC.m: Removed 269 possible spikes in GIC. 4.10% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061214-20061215-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061214-20061215-v0-despiked.mat
+plot_raw.m: Writing figures/20061214/plot_raw_All_20061214-v0.pdf
+plot_raw.m: Wrote figures/20061214/plot_raw_All_20061214-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 5 of 10. Start date: 20060805
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20060805/20060808, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060805-20060808.mat
+despikeB.m: Removing 36 values of B > 5.7e4 as probable missed spikes
+despikeB.m: Interpolated over 0 of 432000 points in B_1
+despikeB.m: Interpolated over 0 of 432000 points in B_2
+despikeB.m: Interpolated over 0 of 432000 points in B_3
+despikeE.m: Removed 135 possible spikes in E(:,1). 0.15% of data modified
+despikeE.m: Removed 117 possible spikes in E(:,2). 0.11% of data modified
+despikeGIC.m: Removed 159 possible spikes in GIC. 2.02% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060805-20060808-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060805-20060808-v0-despiked.mat
+plot_raw.m: Writing figures/20060805/plot_raw_All_20060805-v0.pdf
+plot_raw.m: Wrote figures/20060805/plot_raw_All_20060805-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 6 of 10. Start date: 20060725
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20060725/20060729, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060725-20060729.mat
+despikeB.m: Interpolated over 0 of 518400 points in B_1
+despikeB.m: Interpolated over 0 of 518400 points in B_2
+despikeB.m: Interpolated over 0 of 518400 points in B_3
+despikeE.m: Removed 57 possible spikes in E(:,1). 0.06% of data modified
+despikeE.m: Removed 18 possible spikes in E(:,2). 0.01% of data modified
+despikeGIC.m: Removed 170 possible spikes in GIC. 1.62% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20060725-20060729-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20060725-20060729-v0-despiked.mat
+plot_raw.m: Writing figures/20060725/plot_raw_All_20060725-v0.pdf
+plot_raw.m: Wrote figures/20060725/plot_raw_All_20060725-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 7 of 10. Start date: 20071118
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20071118/20071120, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071118-20071120.mat
+despikeB.m: Interpolated over 0 of 345600 points in B_1
+despikeB.m: Interpolated over 0 of 345600 points in B_2
+despikeB.m: Interpolated over 0 of 345600 points in B_3
+despikeE.m: Removed 65 possible spikes in E(:,1). 0.11% of data modified
+despikeE.m: Removed 4 possible spikes in E(:,2). 0.01% of data modified
+despikeGIC.m: Removed 170 possible spikes in GIC. 3.27% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20071118-20071120-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20071118-20071120-v0-despiked.mat
+plot_raw.m: Writing figures/20071118/plot_raw_All_20071118-v0.pdf
+plot_raw.m: Wrote figures/20071118/plot_raw_All_20071118-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 8 of 10. Start date: 20071122
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20071122/20071122, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071122-20071122.mat
+despikeB.m: Interpolated over 0 of 172800 points in B_1
+despikeB.m: Interpolated over 0 of 172800 points in B_2
+despikeB.m: Interpolated over 0 of 172800 points in B_3
+despikeE.m: Removed 15 possible spikes in E(:,1). 0.05% of data modified
+despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
+despikeGIC.m: Removed 79 possible spikes in GIC. 4.00% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20071122-20071122-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20071122-20071122-v0-despiked.mat
+plot_raw.m: Writing figures/20071122/plot_raw_All_20071122-v0.pdf
+plot_raw.m: Wrote figures/20071122/plot_raw_All_20071122-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 9 of 10. Start date: 20061128
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20061128/20061129, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061128-20061129.mat
+despikeB.m: Interpolated over 0 of 259200 points in B_1
+despikeB.m: Interpolated over 0 of 259200 points in B_2
+despikeB.m: Interpolated over 0 of 259200 points in B_3
+despikeE.m: Removed 33 possible spikes in E(:,1). 0.07% of data modified
+despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
+despikeGIC.m: Removed 87 possible spikes in GIC. 2.16% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061128-20061129-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061128-20061129-v0-despiked.mat
+plot_raw.m: Writing figures/20061128/plot_raw_All_20061128-v0.pdf
+plot_raw.m: Wrote figures/20061128/plot_raw_All_20061128-v0.pdf
+------------------------------------------------------------------------
+Continuous data interval 10 of 10. Start date: 20061201
+------------------------------------------------------------------------
+prep_EB.m: Called with dateo/datef = 20061201/20061201, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201-v0.mat
+prep_EB.m: Done.
+prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061201-20061201.mat
+despikeB.m: Interpolated over 0 of 172800 points in B_1
+despikeB.m: Interpolated over 0 of 172800 points in B_2
+despikeB.m: Interpolated over 0 of 172800 points in B_3
+despikeE.m: Removed 19 possible spikes in E(:,1). 0.06% of data modified
+despikeE.m: Removed 0 possible spikes in E(:,2). 0.00% of data modified
+despikeGIC.m: Removed 48 possible spikes in GIC. 2.20% of data modified.
+main.m: Wrote data/jma/mat/prepEB_mmb_20061201-20061201-v0-despiked.mat
+main.m: Wrote data-private/watari/mat/prepGIC_20061201-20061201-v0-despiked.mat
+plot_raw.m: Writing figures/20061201/plot_raw_All_20061201-v0.pdf
+plot_raw.m: Wrote figures/20061201/plot_raw_All_20061201-v0.pdf
+{Undefined function or variable 'GEoc'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 202)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',202,0)">line 202</a>)
+GEo  = transferfnCombine(GEoc);
+} 
+main_plots
+{Undefined variable "GEo_avg" or function "GEo_avg.Mean".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main_plots', '/home/weigel/git/m-rsw/gic/JMA/main_plots.m', 29)" style="font-weight:bold">main_plots</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main_plots.m',29,0)">line 29</a>)
+f.compareZplots(GEo_avg.Mean,GE_avg.Mean,GB_avg.Mean,EB_avg.Mean,filestr,writepng);
+} 
+filestr
+
+filestr =
+
+options-1-v0-o0
+
+clear filestr
+main_plots
+main.m: Loading mat/main_options-1-v1-o0.mat
+main.m: Loaded mat/main_options-1-v1-o0.mat
+summaryPlotFunctions/compareZplots.m: Writing figures/summary/plot_model_summary_Z_MT-options-1-v1-o0.pdf
+summaryPlotFunctions/compareZplots.m: Wrote figures/summary/plot_model_summary_Z_MT-options-1-v1-o0.pdf
+summaryPlotFunctions/compareZplots.m: Writing figures/summary/plot_model_summary_Z-options-1-v1-o0.pdf
+summaryPlotFunctions/compareZplots.m: Wrote figures/summary/plot_model_summary_Z-options-1-v1-o0.pdf
+summaryPlotFunctions/comparePhiplots.m: Writing figures/summary/plot_model_summary_Phi_MT-options-1-v1-o0.pdf
+summaryPlotFunctions/comparePhiplots.m: Wrote figures/summary/plot_model_summary_Phi_MT-options-1-v1-o0.pdf
+summaryPlotFunctions/comparePhiplots.m: Writing figures/summary/plot_model_summary_Phi-options-1-v1-o0.pdf
+summaryPlotFunctions/comparePhiplots.m: Wrote figures/summary/plot_model_summary_Phi-options-1-v1-o0.pdf
+summaryPlotFunctions/compareSN2.m: Writing figures/summary/plot_model_summary_SN-options-1-v1-o0.pdf
+summaryPlotFunctions/compareSN2.m: Wrote figures/summary/plot_model_summary_SN-options-1-v1-o0.pdf
+summaryPlotFunctions/parameterHistograms.m: Writing figures/summary/plot_model_summary_aobo_histograms-options-1-v1-o0.pdf
+summaryPlotFunctions/parameterHistograms.m: Wrote figures/summary/plot_model_summary_aobo_histograms-options-1-v1-o0.pdf
+close all
+plot_GIC_predictions
+{Undefined function or variable 'png'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_GIC_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m', 6)" style="font-weight:bold">plot_GIC_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m',6,0)">line 6</a>)
+figprep(png,1000,800);
+} 
+plot_GIC_predictions
+{Undefined function or variable 'start'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_GIC_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m', 5)" style="font-weight:bold">plot_GIC_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m',5,0)">line 5</a>)
+fname = sprintf('%s/plot_GIC_predictions-MeanModel-%s.pdf',fdir,start)
+} 
+plot_GIC_predictions
+{Undefined variable "F" or function "F.GE.Predicted".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_GIC_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m', 9)" style="font-weight:bold">plot_GIC_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m',9,0)">line 9</a>)
+for k = 1:size(F.GE.Predicted,3)
+} 
+plot_GIC_predictions
+{Undefined variable "F" or function "F.GE.Predicted".
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_GIC_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m', 9)" style="font-weight:bold">plot_GIC_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m',9,0)">line 9</a>)
+for k = 1:size(F.GE.Predicted,3)
+} 
+plot_GIC_predictions
+{Undefined function or variable 'png'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_GIC_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m', 95)" style="font-weight:bold">plot_GIC_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_GIC_predictions.m',95,0)">line 95</a>)
+    if png
+} 
+plot_GIC_predictions
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-02.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-02.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-02.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-02.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-03.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-03.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-03.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-03.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-20.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-20.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-20.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-20.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-10.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-10.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-10.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-10.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-11.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-11.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-11.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-11.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-12-13.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-12-13.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-12-13.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-12-13.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-12-14.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-12-14.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-12-14.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-12-14.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-24.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-24.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-24.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-24.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-25.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-25.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-25.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-25.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-26.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-26.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-26.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-26.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-17.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-17.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-17.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-17.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-21.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-21.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-21.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-21.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-30.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-30.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-30.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-30.pdf
+plot_EB_predictions
+{Reference to non-existent field 'Time'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('plot_EB_predictions', '/home/weigel/git/m-rsw/gic/JMA/plot_EB_predictions.m', 20)" style="font-weight:bold">plot_EB_predictions</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/plot_EB_predictions.m',20,0)">line 20</a>)
+    t = EB.Time(:,1,k);
+} 
+EB
+
+EB = 
+
+              fe: [29x1 double]
+               Z: [29x4 double]
+        Z_StdErr: [29x4 double]
+          Z_CI95: [29x4x2 double]
+            Zabs: [29x4 double]
+           Zabs2: [29x4 double]
+     Zabs_StdErr: [29x4 double]
+       Zabs_CI95: [29x4x2 double]
+    Zabs2_StdErr: [29x4 double]
+             Phi: [29x4 double]
+            Phi2: [29x4 double]
+      Phi_StdErr: [29x4 double]
+        Phi_CI95: [29x4x2 double]
+     Phi2_StdErr: [29x4 double]
+               H: [86401x4 double]
+        H_StdErr: [86401x4 double]
+       Predicted: [86400x2x35 double]
+              PE: [1x2x35 double]
+             MSE: [1x2x35 double]
+              CC: [1x2x35 double]
+       Error_PSD: [29x2x35 double]
+       Coherence: [29x2x35 double]
+              SN: [29x2x35 double]
+         PE_CI95: [2x2 double]
+         CC_CI95: [2x2 double]
+        MSE_CI95: [2x2 double]
+
+GE
+
+GE = 
+
+           In: [86400x2x35 double]
+          Out: [86400x2x35 double]
+    Predicted: [86400x2x35 double]
+         Time: [86400x1x35 double]
+          MSE: [1x2x35 double]
+           PE: [1x2x35 double]
+           CC: [1x2x35 double]
+           SN: [29x2x35 double]
+       In_PSD: [29x2x35 double]
+      Out_PSD: [29x2x35 double]
+    Error_PSD: [29x2x35 double]
+    Coherence: [29x2x35 double]
+           fe: [29x1 double]
+            Z: [29x4x35 double]
+            H: [86401x4x35 double]
+          Phi: [29x4x35 double]
+        In_FT: {29x2x35 cell}
+       Out_FT: {29x2x35 cell}
+         F_FT: {29x1x35 cell}
+
+EB
+
+EB = 
+
+              fe: [29x1 double]
+               Z: [29x4 double]
+        Z_StdErr: [29x4 double]
+          Z_CI95: [29x4x2 double]
+            Zabs: [29x4 double]
+           Zabs2: [29x4 double]
+     Zabs_StdErr: [29x4 double]
+       Zabs_CI95: [29x4x2 double]
+    Zabs2_StdErr: [29x4 double]
+             Phi: [29x4 double]
+            Phi2: [29x4 double]
+      Phi_StdErr: [29x4 double]
+        Phi_CI95: [29x4x2 double]
+     Phi2_StdErr: [29x4 double]
+               H: [86401x4 double]
+        H_StdErr: [86401x4 double]
+       Predicted: [86400x2x35 double]
+              PE: [1x2x35 double]
+             MSE: [1x2x35 double]
+              CC: [1x2x35 double]
+       Error_PSD: [29x2x35 double]
+       Coherence: [29x2x35 double]
+              SN: [29x2x35 double]
+         PE_CI95: [2x2 double]
+         CC_CI95: [2x2 double]
+        MSE_CI95: [2x2 double]
+
+EB_avg
+
+EB_avg = 
+
+               Mean: [1x1 struct]
+               Fuji: [1x1 struct]
+        NoStack_OLS: [1x1 struct]
+    NoStack_Robust1: [1x1 struct]
+    NoStack_Robust2: [1x1 struct]
+
+EB_avg.Mean
+
+ans = 
+
+              fe: [29x1 double]
+               Z: [29x4 double]
+        Z_StdErr: [29x4 double]
+          Z_CI95: [29x4x2 double]
+            Zabs: [29x4 double]
+           Zabs2: [29x4 double]
+     Zabs_StdErr: [29x4 double]
+       Zabs_CI95: [29x4x2 double]
+    Zabs2_StdErr: [29x4 double]
+             Phi: [29x4 double]
+            Phi2: [29x4 double]
+      Phi_StdErr: [29x4 double]
+        Phi_CI95: [29x4x2 double]
+     Phi2_StdErr: [29x4 double]
+               H: [86401x4 double]
+        H_StdErr: [86401x4 double]
+       Predicted: [86400x2x35 double]
+              PE: [1x2x35 double]
+             MSE: [1x2x35 double]
+              CC: [1x2x35 double]
+       Error_PSD: [29x2x35 double]
+       Coherence: [29x2x35 double]
+              SN: [29x2x35 double]
+         PE_CI95: [2x2 double]
+         CC_CI95: [2x2 double]
+        MSE_CI95: [2x2 double]
+
+
+main_plots
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-02.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-02.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-02.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-02.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-03.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-03.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-03.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-03.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-04-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-04-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-04-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-04-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-20.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-20.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-20.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-20.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-08.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-08.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-09.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-09.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-10.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-10.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-10.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-10.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-11.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-11.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-11.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-11.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-12-13.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-12-13.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-12-13.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-12-13.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-12-14.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-12-14.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-12-14.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-12-14.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-04.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-04.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-05.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-05.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-06.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-06.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-08-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-08-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-08-07.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-08-07.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-24.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-24.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-24.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-24.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-25.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-25.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-25.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-25.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-26.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-26.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-26.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-26.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-07-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-07-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-07-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-07-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-17.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-17.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-17.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-17.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-18.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-18.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-19.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-19.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2007-11-21.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2007-11-21.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2007-11-21.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2007-11-21.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-27.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-27.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-28.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-28.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-InSample-2006-11-30.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-InSample-2006-11-30.pdf
+plot_GIC_predictions.m: Writing figures/predictions/plot_GIC_predictions-MeanModel-2006-11-30.pdf
+plot_GIC_predictions.m: Wrote figures/predictions/plot_GIC_predictions-MeanModel-2006-11-30.pdf
+close all
+main
