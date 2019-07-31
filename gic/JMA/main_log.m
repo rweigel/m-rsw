@@ -1,11 +1,11 @@
 setpaths;
 
 if ~exist('filestr','var')
-    filestr = 'options-1';
+    filestr  = 'options-1-v1-o1';
     fname = sprintf('mat/main_%s.mat',filestr);
-    fprintf('main_log.m: Loading %s\n',fname);
+    fprintf('main.m: Loading %s\n',fname);
     load(fname);
-    fprintf('main_log.m: Loaded %s\n',fname);    
+    fprintf('main.m: Loaded %s\n',fname);    
 end
 
 fname = sprintf('log/main_summary_log_%s.txt',filestr);
@@ -21,7 +21,7 @@ transferfnSummary(GE,GE_avg,'Model 2 - G/E');
 transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 transferfnSummary(GB,GB_avg,'Model 4 - G/B');
 transferfnSummary(EB,EB_avg,'E/B')
-transferfnSummary(GBoa,GBoa_avg,'G/Eo''')
+%transferfnSummary(GBoa,GBoa_avg,'G/Eo''')
 
 if 0
     RSS2 = mean(squeeze(GE_avg.Mean.MSE(:,2,:)));

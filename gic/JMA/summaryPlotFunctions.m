@@ -1,6 +1,11 @@
 
 function f = summaryPlots()
     f = struct();
+
+    fdir = sprintf('figures/summary');
+    if ~exist(fdir,'dir')
+        mkdir(fdir);
+    end
     
     function legendadjust(lh)
         pa = get(gca,'Position');
@@ -51,7 +56,7 @@ function f = summaryPlots()
         xlabel('Time [s]');
 
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_H-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_H-%s.pdf',filestr));
         end
 
     end
@@ -94,7 +99,7 @@ function f = summaryPlots()
         legendadjust(lh);
 
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_Z_MT-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_Z_MT-%s.pdf',filestr));
         end
         
         figure();clf;box on;          
@@ -135,7 +140,7 @@ function f = summaryPlots()
         legendadjust(lh);
 
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_Z-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_Z-%s.pdf',filestr));
         end
 
     end
@@ -154,19 +159,20 @@ function f = summaryPlots()
         semilogx(T,sf*EB.Phi2(2:end,1),'r.','MarkerSize',20);
         hold on;grid on;
 
-        In = find(EB.Phi2(:,2) > 0);
-        EB.Phi2(In,2) = EB.Phi2(In,2)-2*pi;
+        %In = find(EB.Phi2(:,2) > 0);
+        %EB.Phi2(In,2) = EB.Phi2(In,2)-2*pi;
         semilogx(T,sf*EB.Phi2(2:end,2),'ro');
 
         In = find(EB.Phi2(:,3) > 0);
         EB.Phi2(In,3) = EB.Phi2(In,3)-2*pi;
         semilogx(T,sf*EB.Phi2(2:end,3),'bo');
 
-        semilogx(T,sf*EB.Phi2(2:end,3),'b.','MarkerSize',20);
+        %semilogx(T,sf*EB.Phi2(2:end,3),'b.','MarkerSize',20);
         
-        In = find(EB.Phi2(:,4) < 0);
-        EB.Phi2(In,4) = EB.Phi2(In,4)+2*pi;
-        semilogx(T,sf*EB.Phi2(2:end,4),'bo');
+        %In = find(EB.Phi2(:,4) < 0);
+        %EB.Phi2(In,4) = EB.Phi2(In,4)+2*pi;
+        semilogx(T,sf*EB.Phi2(2:end,4),'b.','MarkerSize',20);
+
 
         errorbars(0.98*T,sf*EB.Phi2(2:end,1),sf*EB.Phi_StdErr(2:end,1),sf*EB.Phi_StdErr(2:end,1),'y','r');
         errorbars(0.99*T,sf*EB.Phi2(2:end,2),sf*EB.Phi_StdErr(2:end,2),sf*EB.Phi_StdErr(2:end,2),'y','r--');
@@ -189,9 +195,10 @@ function f = summaryPlots()
         ylabel('[degrees]');
         
         legendadjust(lh);
-
+        
+        
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_Phi_MT-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_Phi_MT-%s.pdf',filestr));
         end
 
         figure();clf;
@@ -233,7 +240,7 @@ function f = summaryPlots()
         legendadjust(lh);
 
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_Phi-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_Phi-%s.pdf',filestr));
         end
 
     end
@@ -280,7 +287,7 @@ function f = summaryPlots()
         exponent_relabel(gca);
         
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_SN-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_SN-%s.pdf',filestr));
         end
     end    
     f.compareSN2 = @compareSN2;
@@ -319,7 +326,7 @@ function f = summaryPlots()
         legendadjust(lh);
 
         if png
-            figsave(sprintf('figures/combined/plot_model_summary_aobo_histograms-%s.pdf',filestr));
+            figsave(sprintf('figures/summary/plot_model_summary_aobo_histograms-%s.pdf',filestr));
         end
     end
     f.parameterHistograms = @parameterHistograms;

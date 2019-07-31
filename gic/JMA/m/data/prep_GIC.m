@@ -28,7 +28,7 @@ for i = do:df
     fid=fopen(file);
     tmp = fscanf(fid,'%f,%f\n');
     fclose(fid);
-    if length(tmp) == 86400*2
+    if length(tmp) == 86400*2 % Two columns; 86400 rows.
         tmp = reshape(tmp,2,86400)';
     else
         fprintf('prep_GIC.m: GIC file %s.txt is missing data. Using NaNs for day\n',ds)

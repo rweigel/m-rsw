@@ -1,0 +1,14 @@
+Number of ao, bo pairs = 3500
+  cc(ang,std(G)) = 0.04
+  cc(ang,std(Ex)) = 0.03
+  cc(ang,std(Ey)) = 0.04
+  cc(ang,|E|) = 0.02
+  cc(ang,angle E) = 0.05
+--
+Number of ao, bo pairs = 35
+  cc(ang,std(G)) = 0.35
+  cc(ang,std(Ex)) = 0.31
+  cc(ang,std(Ey)) = 0.30
+  cc(ang,|E|) = 0.25
+  cc(ang,angle E) = -0.46
+--

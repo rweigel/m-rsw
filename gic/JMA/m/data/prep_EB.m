@@ -1,8 +1,5 @@
-function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles)
+function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles,codever)
 
-% Note that automated downloads of JMA data can be made using
-% using
-  
 dirbase = [fileparts(mfilename('fullpath')),'/../..'];
 dirmat = sprintf('%s/data/jma/mat',dirbase);
 
@@ -12,27 +9,33 @@ end
 
 fprintf('prep_EB.m: Called with dateo/datef = %s/%s, station = %s, regenfiles = %d\n',...
             dateo,datef,station,regenfiles);
-fnamemat = sprintf('%s/prepEB_%s_%s-%s.mat',dirmat,station,dateo,datef);
+fnamemat = sprintf('%s/prepEB_%s_%s-%s-v%d.mat',dirmat,station,dateo,datef,codever);
 if regenfiles == 0
     if exist(fnamemat,'file')
         fprintf('prep_EB.m: Loading %s\n',fnamemat);
         load(fnamemat);
-        fprintf('prep_EB.m: Done\n');
+        fprintf('prep_EB.m: Done.\n');
         return;
     else
         fprintf('prep_EB.m: Did not find %s.\n',fnamemat);    
         fprintf('prep_EB.m: Will create it.\n');
     end
 else
-    fprintf('prep_EB.m: Creating %s.\n',fnamemat);
+    %fprintf('prep_EB.m: Creating %s.\n',fnamemat);
 end
 
 extE = 'dgef.sec';
 extB = 'dsec.sec';
 
-% Replaces - and : with space and keeps lines that start with 0 through 9.
-% Much faster read.
-GREP = 'grep "^[0-9]" %s | sed "s/\\([0-9]\\)-/\\1 /g" | sed "s/:/ /g" > tmp.txt';
+% Much faster read using grep/sed modification of file so MATLAB load
+% can be used.
+if codever == 0
+    % Incorrect code that leads to sign error for By.
+    GREP = 'grep "^[0-9]" %s | sed "s/-/ /g" | sed "s/:/ /g" > tmp.txt';
+else
+    % Replaces [0-9]- and [0-9]: with space and keeps lines that start with 0 through 9.
+    GREP = 'grep "^[0-9]" %s | sed "s/\\([0-9]\\)-/\\1 /g" | sed "s/:/ /g" > tmp.txt';    
+end
 
 do = datenum(dateo,'yyyymmdd');
 df = datenum(datef,'yyyymmdd');

@@ -1,4 +1,4 @@
-function S = transferfnConst(In,Out,opts,t)
+function S = transferfnConst(In,Out,opts,t,codever)
 
 if nargin < 4
     t = [1:size(In,1)]';
@@ -24,7 +24,15 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        S{i} = transferfnConst(removemean(In(Iseg,:)),removemean(Out(Iseg,:)),opts,t(Iseg));
+        if codever == 1
+            % Should remove mean of interval. Mean of multi-day intervals
+            % was removed, but here we are computing ao and bo for a 1-day
+            % interval which may not have zero mean. This increases Model 1
+            % PE from 0.35 to 0.42.
+            S{i} = transferfnConst(removemean(In(Iseg,:)),removemean(Out(Iseg,:)),opts,t(Iseg));
+        else
+            S{i} = transferfnConst(In(Iseg,:),Out(Iseg,:),opts,t(Iseg));
+        end
         comp = ['x','y'];
         for j = 1:size(Out,2)
             fprintf('transferfnConst.m: %d/%d PE/CC/MSE of In_%s = %.2f/%.2f/%.3f\n',i,length(Io),comp(j),S{i}.PE(j),S{i}.CC(j),S{i}.MSE(j));

@@ -1,23 +1,16 @@
 %function main_plot(interval)
 
+%clear
+load(fname);
+
 setpaths;
 
-writepng = 0;
+writepng = 1;
 show = {'Robust_Parzen_Stack','Fujii','Robust_Parzen_Full'};
+show = {'Robust_Parzen_Stack','Fujii'};
 
-if 0
-    site = 'mmb';
-    dateo = '20051202';
-    datef = '20051226';
-
-    fname = sprintf('./mat/%s_%s-%s.mat',upper(site),dateo,datef);
-    fprintf('Loading %s\n',fname);
-    load(fname);
-    fprintf('Loaded %s\n',fname);
-end
-
-a = opts.td.Ntrim+1; % Metrics calculation exclusion points at start of interval
-b = size(B,1)-a;     % At end of interval
+%a = opts.td.Ntrim+1; % Metrics calculation exclusion points at start of interval
+%b = size(B,1)-a;     % At end of interval
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do this in case prep_EB does not return data over full time range
@@ -46,7 +39,7 @@ figprep(writepng,1200,1200);
 
 fns = fieldnames(S);
 
-figure(1);clf;
+figure();clf;
 for i = 1:4
     subplot(2,2,i)
     clear lstr
@@ -68,9 +61,35 @@ if writepng
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+components = {'$\phi_{xx}$','$\phi_{xy}$','$\phi_{yx}$','$\phi_{yy}$'};
+
 figprep(writepng,1200,1200);
 
+fns = fieldnames(S);
+
+figure();clf;
+for i = 1:4
+    subplot(2,2,i)
+    clear lstr
+    for m = 1:length(show)
+        semilogx(1./S.(show{m}).fe(2:end),(180/pi)*(S.(show{m}).Phi(2:end,i)),...
+              'LineStyle','-','LineWidth',1,'Marker','.','MarkerSize',25-3*m);
+        hold on;grid on;
+        lstr{m} = sprintf('%s %s',components{i},methods{m});
+    end
+    set(gca,'XLim',[10,86400/2]);
+    title(sprintf('%s %s; %s-%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
+    legend(methods{showi},'Location','Best');
+    xlabel('Period [s]');
+    ylabel('[degrees]');
+end
+drawnow;
+if writepng
+    figsave(sprintf('figures/%s-Phi-%s-%s.pdf',upper(site),dateo,datef));
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 fns = fieldnames(S);
 for i = 1:length(fns)
     for j = 1:2
@@ -83,7 +102,8 @@ for i = 1:length(fns)
 end
  
 lw = [2,1,2,1,2,2];
-figure(2);clf;
+figprep(writepng,1200,1200);
+figure();clf;
     subplot(2,1,1)
         for i = showi
             loglog(1./S.(fns{i}).Full.SNfe(2:end),...
@@ -110,7 +130,7 @@ figure(2);clf;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figprep(writepng,1200,1200);
-figure(3);clf;
+figure();clf;
     keys = fieldnames(S);
 
     % TODO: This SN does not use trimmed output and predictions. It should.
@@ -142,7 +162,7 @@ m1 = showi(1);
 m2 = showi(2);
 
 figprep(writepng,800,1000);
-figure(4);clf;
+figure();clf;
 subplot(5,1,1);grid on;hold on;box on;
     title(sprintf('%s',upper(site)),'FontWeight','normal');
     plot(t(a:b),B(a:b,1:2));

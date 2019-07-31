@@ -1,25 +1,14 @@
-setpaths;
-if ~exist('F','var')
-    filestr = 'options-1';
-
-    dirfig = sprintf('figures/combined');
-    if ~exist(dirfig,'dir')
-        mkdir(dirfig);
-    end
-
-    file = sprintf('mat/main_%s.mat','options-1');
-    fprintf('plot_model_predictions: Loading %s\n',file);
-    F = load(file);
-    fprintf('plot_model_predictions: Loaded %s\n',file);    
+fdir = 'figures/predictions';
+if ~exist(fdir,'dir')
+    mkdir(fdir);
 end
 
-EB = F.EB_avg.Mean;
-EBf = F.EB_avg.Fuji;
+figprep(writepng,1000,800);
 
-png = 0;
-fdir = 'figures/predictions';
-figprep(png,1000,800);
-a = F.opts.td.Ntrim;
+EB = EB_avg.Mean;
+EBf = EB_avg.Fuji;
+
+a = opts.td.Ntrim;
 b = size(EB.Predicted,1)-a+1;
 EB.Predicted(1:a,:,:) = NaN;
 EB.Predicted(b:end,:,:) = NaN;
@@ -28,7 +17,7 @@ EBf.Predicted(b:end,:,:) = NaN;
 
 for k = 1:size(EB.Predicted,3)
 
-    t = F.EB.Time(:,1,k);
+    t = EB.Time(:,1,k);
     start = datestr(t(1),'yyyy-mm-dd');
 
     figure(1);clf;
@@ -36,7 +25,6 @@ for k = 1:size(EB.Predicted,3)
     %ha = tight_subplot(5,1,[0.015,0.015],[0.05,0.02],[0.04,0.04]);
     ha = tight_subplot(5,1);
 
-    if 1
     yl1 = [-60,60]*1.01;
     yl2 = [-30,30]*1.01;
     yl3 = [-10,10]*1.01;
@@ -44,12 +32,11 @@ for k = 1:size(EB.Predicted,3)
     yt1  = [-60:10:60];
     yt2  = [-30:10:30];
     yt3  = [-10:5:10];    
-    end
     
     axes(ha(1));
-        plot(t,F.EB.In(:,1,k),'c');
+        plot(t,EB.In(:,1,k),'c');
         box on;grid on;hold on;        
-        plot(t,F.EB.In(:,2,k),'m');
+        plot(t,EB.In(:,2,k),'m');
         if exist('yl1')
             set(gca,'YLim',yl1);
             set(gca,'YTick',yt1);
@@ -59,7 +46,7 @@ for k = 1:size(EB.Predicted,3)
         [lh,lo] = legend({'$E_x$','$E_y$'},'Orientation','Horizontal','Location','NorthWest');
         set(lo,'LineWidth',2);        
     axes(ha(2));
-        plot(t,F.EB.Out(:,1,k),'k');
+        plot(t,EB.Out(:,1,k),'k');
         box on;grid on;hold on;
         plot(t,EB.Predicted(:,1,k),'r');
         plot(t,EBf.Predicted(:,1,k),'b');
@@ -73,7 +60,7 @@ for k = 1:size(EB.Predicted,3)
         [lh,lo] = legend({'$E_x$','Method 1','Fujii'},'Location','NorthWest');
         set(lo,'LineWidth',2);
     axes(ha(3));
-        plot(t,F.EB.Out(:,2,k),'k');
+        plot(t,EB.Out(:,2,k),'k');
         box on;grid on;hold on;        
         plot(t,EB.Predicted(:,2,k),'r');
         plot(t,EBf.Predicted(:,2,k),'b');
@@ -87,9 +74,9 @@ for k = 1:size(EB.Predicted,3)
         [lh,lo] = legend({'$E_y$','Method 1','Fujii'},'Location','NorthWest');
         set(lo,'LineWidth',2);
     axes(ha(4));
-        plot(t,F.EB.Out(:,1,k)-EB.Predicted(:,1,k),'r');
+        plot(t,EB.Out(:,1,k)-EB.Predicted(:,1,k),'r');
         box on;grid on;hold on;        
-        plot(t,F.EB.Out(:,1,k)-EBf.Predicted(:,1,k),'b');
+        plot(t,EB.Out(:,1,k)-EBf.Predicted(:,1,k),'b');
         set(gca,'YAxisLocation','right');
         if exist('yl2')        
             set(gca,'YLim',yl2/5);
@@ -105,9 +92,9 @@ for k = 1:size(EB.Predicted,3)
                         },'Location','NorthWest');
         set(lo,'LineWidth',2);
     axes(ha(5));
-        plot(t,F.EB.Out(:,2,k)-EB.Predicted(:,2,k),'r');
+        plot(t,EB.Out(:,2,k)-EB.Predicted(:,2,k),'r');
         box on;grid on;hold on;        
-        plot(t,F.EB.Out(:,2,k)-EBf.Predicted(:,2,k),'b');
+        plot(t,EB.Out(:,2,k)-EBf.Predicted(:,2,k),'b');
         set(gca,'YAxisLocation','right');
         if exist('yl3')
             set(gca,'YLim',yl3/5);
@@ -125,10 +112,11 @@ for k = 1:size(EB.Predicted,3)
         datetick('x');
         datetick_adjust();
   
-    if png
-        figsave(sprintf('%s/plot_EB_predictions-%s.pdf',fdir,start));
+    if writepng
+        fname = sprintf('%s/plot_EB_predictions-%s-v%d-o%d.pdf',fdir,start,codever,oos_aves);
+        figsave(fname);
+    else
+        input('Continue');
     end
-    
-    input('Continue');
     
 end

@@ -1,4 +1,4 @@
-function S = transferfnFuji(S,site,opts)
+function S = transferfnFuji(S,site,opts,codever)
 
 % Replace predictions and metrics in S with that using transfer function from
 % from http://ds.iris.edu/spud/emtf/13598200 (MMB)
@@ -14,8 +14,11 @@ Z  = transpose(D.Z);
 [fe,I] = sort(fe);
 Z = Z(I,:);
 
-%Z(:,2) = -Z(:,2);
-%Z(:,4) = -Z(:,4);
+if codever == 0
+    % prep_EB produced By with wrong sign
+    Z(:,2) = -Z(:,2);
+    Z(:,4) = -Z(:,4);
+end
 
 % Add zero frequency (need to remove need for this in Zpredict; Zpredict
 % should check if fe(1) == 0 and if not, add a zero frequency)

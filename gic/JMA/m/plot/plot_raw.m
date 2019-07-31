@@ -1,15 +1,20 @@
-function plot_raw(tGIC,GIC,tE,E,tB,B,dateo,png,giclabels)
+function plot_raw(tGIC,GIC,tE,E,tB,B,dateo,png,giclabels,codever)
 
 dirfig = sprintf('figures/%s',dateo);
 
-figprep(png,1000,800);
+if ~exist(dirfig,'dir')
+    mkdir(dirfig);
+end
+fname = sprintf('%s/plot_raw_All_%s-v%d.pdf',dirfig,dateo,codever);
 
-figure;clf;orient tall
+figprep(png,1000,800);
+fh = figure;clf;orient tall
+set(fh,'DefaultAxesFontSize',12);
 
 t = tGIC;
 
-%ha = tight_subplot(3,1,[0.01,0.01],[0.05,0.02],[0.08,0.02]);
-ha = tight_subplot(3,1,[0.015,0.015],[0.05,0.02],[0.055,0.04]);
+ha = tight_subplot(3,1,[0.02,0.02],[0.05,0.02],[0.08,0.04]);
+%ha = tight_subplot(3,1,[0.015,0.015],[0.05,0.02],[0.055,0.04]);
     
 xl = [min([tGIC(1),tE(1),tB(1)]),max([tGIC(end),tE(end),tB(end)])];
 axes(ha(3));
@@ -20,7 +25,7 @@ axes(ha(3));
     datetick('x','HH:MM');
     datetick_adjust();
     xt = get(gca,'XTick');
-    [lh,lo] = legend(giclabels,'Location','SouthWest');
+    [lh,lo] = legend(giclabels,'Location','NorthWest');
     set(lo,'LineWidth',2);
     %th = title('Memambetsu 187 kV substation');    
 axes(ha(1));
@@ -37,7 +42,7 @@ axes(ha(1));
     if size(B,3) > 1
         [lh,lo] = legend('$B_x$ MMB','$B_y$ MMB','$B_x$ KAK','$B_y$ KAK','Location','SouthWest');
     else
-        [lh,lo] = legend('$B_x$ MMB','$B_y$ MMB','Location','NorthWest');    
+        [lh,lo] = legend('$B_x$','$B_y$','Location','NorthWest');    
     end
     set(lo,'LineWidth',2);
 axes(ha(2));
@@ -48,9 +53,9 @@ axes(ha(2));
     datetick('x','HH:MM');
     datetick_adjust();
     set(gca,'XTickLabel',[]);    
-    [lh,lo] = legend('$E_x$ MMB','$E_y$ MMB','Location','NorthWest');
+    [lh,lo] = legend('$E_x$','$E_y$','Location','NorthWest');
     set(lo,'LineWidth',2);
 
 if png
-    figsave(sprintf('%s/plot_raw_All_%s.pdf',dirfig,dateo));
+    figsave(fname);
 end

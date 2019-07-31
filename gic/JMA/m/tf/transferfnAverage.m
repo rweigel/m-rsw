@@ -14,7 +14,6 @@ Method.Mean.Function   = @cmean;
 
 % TODO: Account for this when computing error spectra.
 a = opts.td.Ntrim;
-%b = opts.td.window.width-opts.td.Ntrim+1;
 b = size(S.In,1)-opts.td.Ntrim+1;
 
 if nargin < 3
@@ -89,8 +88,10 @@ for f = 1:length(keys)
         Savg.(keys{f}).ao(1,:) = Method.(keys{f}).Function(squeeze(S.ao),2);
         Savg.(keys{f}).bo(1,:) = Method.(keys{f}).Function(squeeze(S.bo),2);
         for i = 1:2
-            Savg.(keys{f}).ao_CI95(:,i) = boot(squeeze(S.ao(1,i,:)),@(x) Method.(keys{f}).Function(x,1),1000,50);
-            Savg.(keys{f}).bo_CI95(:,i) = boot(squeeze(S.bo(1,i,:)),@(x) Method.(keys{f}).Function(x,1),1000,50);        
+            Savg.(keys{f}).ao_CI95(:,i) = boot(squeeze(S.ao(1,i,:)),...
+                            @(x) Method.(keys{f}).Function(x,1),1000,50);
+            Savg.(keys{f}).bo_CI95(:,i) = boot(squeeze(S.bo(1,i,:)),...
+                            @(x) Method.(keys{f}).Function(x,1),1000,50);        
         end
 
     else            
@@ -137,7 +138,8 @@ for f = 1:length(keys)
             % H
             h = squeeze(S.H(:,i,:));
             if strcmp(keys{f},'Huber')
-                % mlochuber too slow. TODO: Consider only a restricted range of h.
+                % mlochuber too slow. 
+                % TODO: Consider only a restricted range of h.
                 T.H(:,i) = repmat(NaN,size(h,1),1);
                 T.H_StdErr(:,i) = repmat(NaN,size(h,1),1);
             else
@@ -150,33 +152,36 @@ for f = 1:length(keys)
     end
 end
 
-
 for k = 1:size(S.In,3)
 
     keys = fieldnames(Savg);
     for f = 1:length(keys)
         T = getfield(Savg,keys{f});
         if isfield(S,'ao')
-            Savg.(keys{f}).Predicted(:,1,k) = Savg.(keys{f}).ao(1)*S.In(:,1,k) + Savg.(keys{f}).bo(1)*S.In(:,2,k);
-            Savg.(keys{f}).Predicted(:,2,k) = Savg.(keys{f}).ao(2)*S.In(:,1,k) + Savg.(keys{f}).bo(2)*S.In(:,2,k);
+            Savg.(keys{f}).Predicted(:,1,k) = Savg.(keys{f}).ao(1)*S.In(:,1,k) ...
+                                            + Savg.(keys{f}).bo(1)*S.In(:,2,k);
+            Savg.(keys{f}).Predicted(:,2,k) = Savg.(keys{f}).ao(2)*S.In(:,1,k) ...
+                                            + Savg.(keys{f}).bo(2)*S.In(:,2,k);
         else
-            %keys{f}
-            %[Savg.(keys{f}).Predicted(:,:,k),Savg.(keys{f}).Zi] = ...
-            %        Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
-            Savg.(keys{f}).Predicted(:,:,k) = Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
+            Savg.(keys{f}).Predicted(:,:,k) = ...
+                Zpredict(Savg.(keys{f}).fe,Savg.(keys{f}).Z,S.In(:,:,k));
         end
         Savg.(keys{f}).PE(1,:,k)  = pe(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
         Savg.(keys{f}).MSE(1,:,k) = mse(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
         Savg.(keys{f}).CC(1,:,k)  = cc(S.Out(a:b,:,k),Savg.(keys{f}).Predicted(a:b,:,k));
 
-        Savg.(keys{f}).Error_PSD(:,:,k) = smoothSpectra(S.Out(:,:,k)-Savg.(keys{f}).Predicted(:,:,k),opts);    
-        Savg.(keys{f}).Coherence(:,:,k) = smoothCoherence(S.Out(:,:,k),Savg.(keys{f}).Predicted(:,:,k),opts);
-        Savg.(keys{f}).SN(:,:,k)        = S.Out_PSD(:,:,k)./Savg.(keys{f}).Error_PSD(:,:,k);    
+        Savg.(keys{f}).Error_PSD(:,:,k) = ...
+                smoothSpectra(S.Out(:,:,k)-Savg.(keys{f}).Predicted(:,:,k),opts);    
+        Savg.(keys{f}).Coherence(:,:,k) = ...
+                smoothCoherence(S.Out(:,:,k),Savg.(keys{f}).Predicted(:,:,k),opts);
+        Savg.(keys{f}).SN(:,:,k)        = ...
+                S.Out_PSD(:,:,k)./Savg.(keys{f}).Error_PSD(:,:,k);    
     end
     
     cstr = ['x','y'];
     for c = 1:size(Savg.(keys{1}).PE,2)
-        fprintf('transferfnAverage.m: Interval %02d: %s PE in-sample: %6.3f; using: | ', k,cstr(c),S.PE(1,c,k));
+        fprintf('transferfnAverage.m: Interval %02d: %s PE in-sample: %6.3f; using: | ',...
+                k,cstr(c),S.PE(1,c,k));
         for f = 1:length(keys)
             fprintf('%s: %6.3f | ',keys{f},Savg.(keys{f}).PE(1,c,k));
         end

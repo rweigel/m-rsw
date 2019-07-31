@@ -1,6 +1,10 @@
 setpaths;
 if ~exist('filestr','var')
-    filestr  = 'options-1';
+    codever = 0;
+    oos_aves = 0;
+    
+    filestr = sprintf('options-1-v%d-o%d',codever,oos_aves);
+    
     fname = sprintf('mat/main_%s.mat',filestr);
     fprintf('main.m: Loading %s\n',fname);
     load(fname);
@@ -8,6 +12,10 @@ if ~exist('filestr','var')
 end
 
 writepng = 1;
+
+plot_GIC_predictions;
+break
+%plot_EB_predictions;
 
 figprep(writepng,1000,500);
 set(0,'DefaultAxesFontSize',14);
