@@ -8,7 +8,7 @@ setpaths;
 writepng   = 0; % Write png and pdf files
 intmplot   = 0; % Intermediate plots
 regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
-oos_aves   = 0; % Compute Out-of-Sample averages for metrics
+oos_aves   = 1; % Compute Out-of-Sample averages for metrics
 codever    = 1; % 0 corresponds to original submission. 
                 % 1 corresponds to corrections made to prep_EB.m (signs
                 % were dropped by regex - this clipped some E values and
@@ -69,9 +69,9 @@ if 0
 end
 
 di = 0;
-%for i = 1:length(dateos)
+for i = 1:length(dateos)
 %for i = 7:length(dateos)
-for i = 5:5
+%for i = 5:5
     fprintf('------------------------------------------------------------------------\n')
     fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
     fprintf('------------------------------------------------------------------------\n')
@@ -122,7 +122,7 @@ for i = 5:5
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
     plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered','GIC despiked'},codever);
-    continue
+
     [t,E,B] = timealign(tGIC,tE,E,B);
     
     fnamemat = sprintf('data/jma/mat/prepEB_%s_%s-%s-v%d-despiked.mat','mmb',dateo,datef,codever);
@@ -135,7 +135,7 @@ for i = 5:5
     
     % Always save pngs of raw data
     plot_raw(t,GIC(:,2),t,E,t,B,dateo,1,{'GIC'},codever);
-    break
+
     if intmplot && writepng == 0
         plot_raw(t,GIC(:,2),t,E,t,B,dateo,writepng,{'GIC'},codever);
     end

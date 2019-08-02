@@ -1,11 +1,17 @@
 clear
 
-interval = 11;
+interval = 8;
 site = 'mmb';
 regen = 0;
-showplot = 1;
+codever = 1;
 
-[t,E,B,datakey] = window_compare_data(interval,site,regen,showplot);
+% When using a new interval, use showplot = 1 and uncomment break. Then
+% use zoom to find indices of data values to set to NaN and update
+% window_compare_data.m.
+showplot = 0;
+[t,E,B,datakey] = window_compare_data(interval,site,regen,showplot,codever);
+% break
+
 dateo = datestr(t(1),'yyyy-mm-dd');
 datef = datestr(t(end),'yyyy-mm-dd');
 
@@ -145,30 +151,6 @@ if 0
     Z{1,1}(19,4) = po(3)*real(Z{1,1}(19,4)) + po(4)*sqrt(-1)*imag(Z{1,1}(19,4));
 end
 
-if 0
-    [tw,D] = weather();
-
-    tw = tw(9:end);
-    D = D(9:end,:);
-
-    for i = 1:size(D,2)
-        Di(:,i) = interp1(tw,D(:,i),tE);
-        Di(:,i) = (Di(:,i)-mean(Di(~isnan(Di(:,i)),i)));
-    end
-
-    I = find(isnan(Di(:,1)));
-    Di(I,:) = 0;
-
-    opts.td.window.width = 86400*27;
-    opts.td.window.shift = 86400*27;
-    opts.fd.regression.method = 3;
-
-    err = E(:,1)-Ep{1,1}(:,1);
-    Sw = transferfnFD(Di(:,1:2),err,opts);
-    Sw = transferfnFD(Di(:,3:4),Sw.Predicted-Sw.Out,opts);
-end
-
-
 fprintf('________________________________\n');
 for j = 1:2
     for i = 1:size(Z,2) % Loop over methods
@@ -177,129 +159,3 @@ for j = 1:2
         end
     end
 end
-
-components = {'$Z_{xx}$','$Z_{xy}$','$Z_{yx}$','$Z_{yy}$'};
-
-figprep(1,1200,1200);
-figure(5);clf;
-for i = 1:4
-    subplot(2,2,i)
-    k = 0;
-    for d = 1:size(Z,1)
-        for m = 1:size(Z,2)
-            k = k+1;
-            loglog(1./fe{d,m}(2:end),abs(Z{d,m}(2:end,i)),...
-                  'LineStyle','-','LineWidth',1,'Marker','.','MarkerSize',10);
-            hold on;grid on;
-            ll{k} = sprintf('%s w = %d',methods{m},W(d));
-        end
-    end
-    title(sprintf('%s %s; %s--%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
-    legend(ll,'Location','Best');
-    xlabel('Period [s]');
-    ylabel('[(mV/km)/nT]');
-end
-
-lc = ['r','g','b','k'];
-ls = ['-','-','-','-'];
-
-figure(6);clf;
-    subplot(2,1,1)
-        k = 0;
-        for d = 1:size(SNf,1)
-            for m = 1:size(SNf,2)
-                k = k+1;
-                loglog(1./fef(2:end),SNf{d,m}(2:end,1),[lc(m),ls(d)],'LineWidth',d);
-                grid on; hold on;
-                ll{k} = sprintf('%s w = %d',methods{m},d);
-            end
-        end
-        ylabel('SN for $E_x$')
-        legend(ll,'Location','Best');        
-    subplot(2,1,2)
-        for d = 1:size(SNf,1)
-            for m = 1:size(SNf,2)
-                loglog(1./fef(2:end),SNf{d,m}(2:end,2),[lc(m),ls(d)],'LineWidth',d);
-                grid on; hold on;
-            end
-        end
-        ylabel('SN for $E_y$')
-        legend(ll,'Location','Best');   
-        xl = get(gca,'XLim');
-
-figure(7);clf;
-    subplot(2,1,1)
-        k = 0;
-        for d = 1:size(SNs,1)
-            for m = 1:size(SNs,2)
-                k = k+1;
-                loglog(1./fes(2:end),SNs{d,m}(2:end,1),[lc(m),ls(d)],'LineWidth',d);
-                grid on; hold on;
-                ll{k} = sprintf('%s w = %d',methods{m},d);
-            end
-        end
-        set(gca,'XLim',xl);
-        ylabel('SN for $E_x$')
-        legend(ll,'Location','Best');        
-    subplot(2,1,2)
-        for d = 1:size(SNs,1)
-            for m = 1:size(SNs,2)
-                loglog(1./fes(2:end),SNs{d,m}(2:end,2),[lc(m),ls(d)],'LineWidth',d);
-                grid on; hold on;
-            end
-        end
-        set(gca,'XLim',xl);
-        ylabel('SN for $E_y$')
-        legend(ll,'Location','Best');        
-
-m1 = 2;
-m2 = 2;
-d1 = 1;
-d2 = 3;
-
-figprep(1,800,1000);
-figure(8);clf;
-subplot(4,1,1);grid on;hold on;box on;
-    plot(t(a:b),E(a:b,1),'k');
-    plot(t(a:b),Ep{d1,m1}(a:b,1),'b');
-    plot(t(a:b),Ep{d2,m2}(a:b,1),'r');
-    set(gca,'XLim',[t(1),t(end)]);
-    datetick('x');
-    ylabel('mV/m');
-    legend('$E_x$ Measured',methods{m1},methods{m2},'Location','Best');        
-    title(sprintf('%s',upper(site)),'FontWeight','normal');
-    hx = zoom(gca);
-    hx.ActionPreCallback = @(obj,evd) fprintf('');
-    hx.ActionPostCallback = @(obj,evd) fprintf('The new X-Limits are E([%d:%d],1)\n.',(evd.Axes.XLim-t(a))*86400);
-subplot(4,1,2);grid on;hold on;box on;
-    plot(t(a:b),E(a:b,1)-Ep{d1,m1}(a:b,1),'b');
-    plot(t(a:b),E(a:b,1)-Ep{d2,m2}(a:b,1),'r');
-    set(gca,'XLim',[t(1),t(end)]);
-    datetick('x','dd');
-    ylabel('mV/m');
-    yl = get(gca,'YLim');
-    text(t(1),yl(2),'$E_x$ Prediction Error','VerticalAlignment','top');
-    legend(LL{d1,m1,1},LL{d2,m2,1},'Location','Best');    
-subplot(4,1,3);grid on;hold on;box on;
-    plot(t(a:b),E(a:b,2),'k');
-    plot(t(a:b),Ep{d1,m1}(a:b,2),'b');
-    plot(t(a:b),Ep{d2,m2}(a:b,2),'r');
-    set(gca,'XLim',[t(1),t(end)]);
-    datetick('x')    
-    ylabel('mV/m');
-    legend('$E_y$ Measured',methods{m1},methods{m2},'Location','Best');        
-    hy = zoom(gca);
-    hy.ActionPreCallback = @(obj,evd) fprintf('');
-    hy.ActionPostCallback = @(obj,evd) fprintf('The new X-Limits are E([%d:%d],1)\n.',(evd.Axes.XLim-t(a))*86400);
-subplot(4,1,4);grid on;hold on;box on;
-    plot(t(a:b),E(a:b,2)-Ep{d1,m1}(a:b,2),'b');
-    plot(t(a:b),E(a:b,2)-Ep{d2,m2}(a:b,2),'r');
-    set(gca,'XLim',[t(1),t(end)]);
-    datetick('x');
-    ylabel('mV/m');
-    yl = get(gca,'YLim');
-    text(t(1),yl(2),'$E_y$ Prediction Error','VerticalAlignment','top');
-    xl = cellstr(get(gca,'XTickLabel'));
-    xl{1} = [xl{1},'/',dateo(1:4)];
-    set(gca,'XTickLabel',xl);
-    legend(LL{d1,m1,2},LL{d2,m2,2},'Location','Best');    

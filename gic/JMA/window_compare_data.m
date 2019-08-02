@@ -1,7 +1,7 @@
-function [tE,E,B,datakey] = window_compare_data(interval,site,regen,showplot)
+function [tE,E,B,datakey] = window_compare_data(interval,site,regen,showplot,codever)
 
 % To add a new interval, add new cell array element with start and stop
-% dates. Then set showplot=0 and use zoom to find intervals which should
+% dates. Then set showplot = 0 and use zoom to find intervals which should
 % be interpolated over.
 %
 % Example: main_data(15,'mmb',1,1);
@@ -54,7 +54,7 @@ S{7}.IbE = [1.668208e+06:1.670850e+06];
 % Matches Fujii
 S{8} = struct();
 S{8}.dateo = '20051202';
-S{8}.datef = '20051226';
+S{8}.datef = '20051227';
 S{8}.IbE = [1051358:1052475,1570893:1571885];
 S{8}.IbB = [1389888:1390322];
 
@@ -104,7 +104,7 @@ S{15}.IbE = [782268:782287,783491:783495];
 dateo = S{interval}.dateo;
 datef = S{interval}.datef;
 
-[tE,E,tB,B] = prep_EB(dateo,datef,site,regen);
+[tE,E,tB,B] = prep_EB(dateo,datef,site,regen,codever);
 %[tEr,Er,tBr,Br] = prep_EB(dateo,datef,remote,regen);
 
 if isfield(S{interval},'IbB')
@@ -126,7 +126,7 @@ if isfield(S{interval},'IbE')
 end
 
 if showplot
-    figure;clf;
+    figure(1);clf;
         plot(tB,B);
         datetick('x','dd');
         legend('Bx','By','Bz');
@@ -135,7 +135,7 @@ if showplot
         hB.ActionPreCallback = @(obj,evd) fprintf('');
         hB.ActionPostCallback = @(obj,evd) fprintf('Showing B([%d:%d],:)\n',...
             round((evd.Axes.XLim-tB(1))*86400));
-    figure;clf;
+    figure(2);clf;
         plot(tE,E);
         datetick('x','dd');
         legend('Ex','Ey');

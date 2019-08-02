@@ -1,7 +1,6 @@
 clear;
 load('../mat/main_options-1-v1-o0.mat','GE','GE_avg','GEo');
 
-d = 3; % Day
 sf = (180/pi);
 
 Ex = [];

@@ -13,9 +13,8 @@ end
 
 writepng = 1;
 
-plot_GIC_predictions;
-break
-%plot_EB_predictions;
+%plot_GIC_predictions;
+plot_EB_predictions;
 
 figprep(writepng,1000,500);
 set(0,'DefaultAxesFontSize',14);

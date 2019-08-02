@@ -1,12 +1,20 @@
 
-clear;
-load('../mat/main_options-1-v1-o0.mat','GE','GE_avg','GEo');
+%clear;
+%load('../mat/main_options-1-v1-o0.mat','GE');
 
-d = 3; % Day
+if 0
+ftEx = fft(GE.In(:,1,d));
+ftEy = fft(GE.In(:,2,d));
+aEx = atan2(imag(ftEx),real(ftEx));
+aEy = atan2(imag(ftEy),real(ftEy));
+semilogx(aEx-aEy)
+end
+
+d = 1; % Day
 sf = (180/pi);
 
-SE = smoothFT(GE.Out);
-SG = smoothFT(GE.In(:,2));
+SE = smoothFT(GE.In(:,:,d));
+SG = smoothFT(GE.Out(:,2,d));
 
 % Phase of E on day d as a function of period
 aEx = sf*atan2(imag(SE(:,1)),real(SE(:,1)));

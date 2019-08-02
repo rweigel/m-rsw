@@ -15,8 +15,13 @@ b = 1;
 
 alpha = 2*pi*t/t(end); % linear variation between 0 and 2*pi over range of t
 
-Ex = cos(2*pi*t/T).*cos(alpha);
-Ey = cos(2*pi*t/T).*sin(alpha);
+%Ex = cos(2*pi*t/T).*cos(alpha);
+%Ey = cos(2*pi*t/T).*sin(alpha);
+
+Ex = cos(2*pi*t/T + 10*alpha);
+Ey = cos(2*pi*t/T + 10*alpha);
+
+alpha = atan2(Ey,Ex);
 
 Ex = Ex - mean(Ex);
 Ey = Ey - mean(Ey);
@@ -55,10 +60,6 @@ subplot(3,1,2)
     plot(t,Ex,'r');
     hold on;grid on;
     plot(t,Ey,'b');
-%    plot(Imax,Ex(Imax),'r.','MarkerSize',20);
-%    plot(Imin,Ex(Imin),'b.','MarkerSize',20);        
-%    plot(Imax,Ex(Imax),'ro','MarkerSize',1);
-%    plot(Imin,Ex(Imin),'bo','MarkerSize',1);        
     legend('$E_x$','$E_y$');
 subplot(3,1,3)
     plot(t,GIC,'k');
@@ -67,7 +68,6 @@ subplot(3,1,3)
     plot(Imin,minGIC,'b.','MarkerSize',20);
     plot(Imina,minGICa,'k.','MarkerSize',20);         
     legend('$GIC$','max GIC','min GIC','min abs(GIC)');
-    
 
 print -dpdf time_varying_angle.pdf
 
