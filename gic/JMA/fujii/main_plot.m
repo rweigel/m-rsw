@@ -1,45 +1,35 @@
-%function main_plot(interval)
-
-%clear
 load(fname);
-
 setpaths;
 
 writepng = 1;
-show = {'Robust_Parzen_Stack','Fujii','Robust_Parzen_Full'};
-show = {'Robust_Parzen_Stack','Fujii'};
+show = {'OLS_Stack','OLS_Full','OLS_No_Stack',...
+        'Robust_Stack','Robust_No_Stack','Robust_Full',...
+        'Fujii'};
 
-%a = opts.td.Ntrim+1; % Metrics calculation exclusion points at start of interval
-%b = size(B,1)-a;     % At end of interval
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Do this in case prep_EB does not return data over full time range
-% requested.
-dateo = datestr(t(1),'yyyymmdd');
-datef = datestr(t(end),'yyyymmdd');
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+    
 fns = fieldnames(S);
 for i = 1:length(show)
     showi(i) = strmatch(show{i},fns,'exact');
 end
-
-% Temporary description
-%S.Robust_Parzen_Full.description = 'Robust';
-
 for m = 1:length(fns)
     methods{m} = S.(fns{m}).description;
 end
 
+% Time series to compare (only two)
+m1 = showi(1); 
+m2 = showi(2);
+
+dateo = datestr(t(1),'yyyymmdd');
+datef = datestr(t(end),'yyyymmdd');
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%c = {[255/255,168/255,0],'r','b','g','m','c','k'};
 components = {'$Z_{xx}$','$Z_{xy}$','$Z_{yx}$','$Z_{yy}$'};
 
 figprep(writepng,1200,1200);
 
 fns = fieldnames(S);
 
-figure();clf;
+figure(1);clf;
 for i = 1:4
     subplot(2,2,i)
     clear lstr
@@ -50,14 +40,16 @@ for i = 1:4
         lstr{m} = sprintf('%s %s',components{i},methods{m});
     end
     set(gca,'XLim',[10,86400/2]);
-    title(sprintf('%s %s; %s-%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
+    title(sprintf('%s %s; %s-%s',...
+            upper(site),components{i},dateo,datef),'FontWeight','normal');
     legend(methods{showi},'Location','Best');
     xlabel('Period [s]');
     ylabel('[(mV/km)/nT]');
 end
 drawnow;
 if writepng
-    figsave(sprintf('figures/%s-Z-%s-%s.pdf',upper(site),dateo,datef));
+    figsave(sprintf('figures/main_plot_%s-Z-%s-%s-v%d.pdf',...
+            upper(site),dateo,datef,codever));
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -67,7 +59,7 @@ figprep(writepng,1200,1200);
 
 fns = fieldnames(S);
 
-figure();clf;
+figure(2);clf;
 for i = 1:4
     subplot(2,2,i)
     clear lstr
@@ -78,14 +70,16 @@ for i = 1:4
         lstr{m} = sprintf('%s %s',components{i},methods{m});
     end
     set(gca,'XLim',[10,86400/2]);
-    title(sprintf('%s %s; %s-%s',upper(site),components{i},dateo,datef),'FontWeight','normal');
+    title(sprintf('%s %s; %s-%s',upper(site),components{i},dateo,datef),...
+                'FontWeight','normal');
     legend(methods{showi},'Location','Best');
     xlabel('Period [s]');
     ylabel('[degrees]');
 end
 drawnow;
 if writepng
-    figsave(sprintf('figures/%s-Phi-%s-%s.pdf',upper(site),dateo,datef));
+    figsave(sprintf('figures/main_plot_%s-Phi-%s-%s-v%d.pdf',...
+            upper(site),dateo,datef,codever));
 end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -101,16 +95,16 @@ for i = 1:length(fns)
     end
 end
  
-lw = [2,1,2,1,2,2];
+lw = [2,2,2,1,2,2,2,2];
 figprep(writepng,1200,1200);
-figure();clf;
+figure(3);clf;
     subplot(2,1,1)
         for i = showi
             loglog(1./S.(fns{i}).Full.SNfe(2:end),...
                 S.(fns{i}).Full.SN(2:end,1),'LineWidth',lw(i));
             grid on; hold on;
         end
-        set(gca,'XLim',[10,86400/2]);
+        %set(gca,'XLim',[10,86400/2]);
         ylabel('SN for $E_x$')
         legend(methods{showi},'Location','Best');
     subplot(2,1,2)
@@ -119,18 +113,19 @@ figure();clf;
                 S.(fns{i}).Full.SN(2:end,2),'LineWidth',lw(i));
             grid on; hold on;
         end
-        set(gca,'XLim',[10,86400/2]);
+        %set(gca,'XLim',[10,86400/2]);
         ylabel('SN for $E_y$')
         legend(methods{showi},'Location','Best');        
     drawnow;
     if writepng
-        figsave(sprintf('figures/%s-SN-%s-%s.pdf',upper(site),dateo,datef));
+        figsave(sprintf('figures/main_plot_%s-SN-Full-%s-%s-v%d.pdf',...
+                upper(site),dateo,datef,codever));
     end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figprep(writepng,1200,1200);
-figure();clf;
+figure(4);clf;
     keys = fieldnames(S);
 
     % TODO: This SN does not use trimmed output and predictions. It should.
@@ -153,16 +148,18 @@ figure();clf;
         end
         ylabel('SN for $E_y$')
         legend(methods{showi},'Location','Best');
-    drawnow;        
+    drawnow;
+    if writepng
+        figsave(sprintf('figures/main_plot_%s-SN-%s-%s-v%d.pdf',...
+                upper(site),dateo,datef,codever));
+    end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-m1 = showi(1);
-m2 = showi(2);
 
 figprep(writepng,800,1000);
-figure();clf;
+figure(5);clf;
 subplot(5,1,1);grid on;hold on;box on;
     title(sprintf('%s',upper(site)),'FontWeight','normal');
     plot(t(a:b),B(a:b,1:2));

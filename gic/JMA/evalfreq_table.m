@@ -8,6 +8,13 @@ function evalfreq_table()
     ss = '\\';
     caption = '';
     
+    if 1
+        fprintf(' i     N    fl      fe       fh\n');
+        for i = 2:length(fe)
+            fprintf('%2d %5d %6.2e %6.2e %6.2e\n',i,2*Ne(i)+1,f(Ic(i)-Ne(i)),fe(i),f(Ic(i)+Ne(i)));
+        end
+        return
+    end
     
     fprintf('\\begin{table}\n');
     fprintf('\\caption{%s}\n',caption);
@@ -26,7 +33,7 @@ function evalfreq_table()
         Te = 1/fe(i);
         Tefmt = fmtstr(Te);
 
-        fprintf(['%d & %d & ',Tefmt,' & ',Tlfmt,' & ',Thfmt,' %s\n'],i-1,Ne(i)+1,Te,Tl,Th,ss);
+        fprintf(['%d & %d & ',Tefmt,' & ',Tlfmt,' & ',Thfmt,' %s\n'],i-1,2*Ne(i)+1,Te,Tl,Th,ss);
     end
     fprintf('\\hline %s\n',ss);
     fprintf('\\end{tabular}\n');

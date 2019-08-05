@@ -15,6 +15,8 @@ showplot = 0;
 dateo = datestr(t(1),'yyyy-mm-dd');
 datef = datestr(t(end),'yyyy-mm-dd');
 
+diary(sprintf('log/window_compare_%s-%s-v%d.log',dateo,datef,codever));
+
 if size(B,1)/86400 > 27
     B = B(1:27*86400,:);
     E = E(1:27*86400,:);
@@ -159,3 +161,6 @@ for j = 1:2
         end
     end
 end
+
+diary off;
+window_compare_plot
