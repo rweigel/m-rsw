@@ -1,0 +1,1210 @@
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,1) = 0.92/0.96/0.441
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,2) = 0.86/0.94/0.157
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,1) = 0.86/0.93/0.670
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,2) = 0.84/0.93/0.119
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,1) = 0.92/0.96/0.466
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,2) = 0.82/0.91/0.193
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,1) = 0.87/0.94/0.277
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,2) = 0.71/0.88/0.201
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,1) = 0.65/0.81/0.503
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,2) = 0.55/0.75/0.222
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,1) = 0.80/0.90/0.287
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,2) = 0.60/0.79/0.412
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,1) = 0.89/0.95/0.105
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,2) = 0.76/0.89/0.192
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,1) = 0.93/0.97/0.102
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,2) = 0.83/0.93/0.097
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,1) = 0.93/0.96/0.182
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,2) = 0.90/0.95/0.046
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,1) = 0.93/0.97/0.321
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,2) = 0.93/0.97/0.041
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,1) = 0.95/0.98/0.816
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,2) = 0.90/0.95/0.264
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,1) = 0.84/0.92/0.506
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,2) = 0.86/0.93/0.064
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,1) = 0.72/0.86/0.639
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,2) = 0.70/0.85/0.138
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,1) = 0.91/0.95/0.114
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,2) = 0.81/0.90/0.064
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,1) = 0.80/0.92/0.168
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,2) = 0.75/0.94/0.123
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,1) = 0.81/0.91/0.426
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,2) = 0.62/0.81/0.351
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,1) = 0.69/0.85/0.698
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,2) = 0.67/0.85/0.272
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,1) = 0.75/0.87/0.470
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,2) = 0.76/0.88/0.113
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,1) = 0.71/0.85/1.255
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,2) = 0.68/0.83/0.253
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,1) = 0.83/0.92/1.042
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,2) = 0.86/0.93/0.099
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,1) = 0.93/0.97/0.261
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,2) = 0.75/0.88/0.232
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,1) = 0.91/0.96/0.098
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,2) = 0.82/0.91/0.028
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,1) = 0.92/0.96/0.085
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,2) = 0.80/0.89/0.070
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,1) = 0.94/0.97/0.133
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,2) = 0.90/0.95/0.048
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,1) = 0.93/0.97/0.350
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,2) = 0.88/0.94/0.094
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,1) = 0.77/0.89/0.871
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,2) = 0.84/0.93/0.093
+transferfnAverage.m: Interval 01: x PE in-sample:  0.915; using: | Mean:  0.809 | 
+transferfnAverage.m: Interval 01: y PE in-sample:  0.857; using: | Mean:  0.380 | 
+transferfnAverage.m: Interval 02: x PE in-sample:  0.858; using: | Mean:  0.716 | 
+transferfnAverage.m: Interval 02: y PE in-sample:  0.841; using: | Mean:  0.397 | 
+transferfnAverage.m: Interval 03: x PE in-sample:  0.917; using: | Mean:  0.823 | 
+transferfnAverage.m: Interval 03: y PE in-sample:  0.815; using: | Mean:  0.651 | 
+transferfnAverage.m: Interval 04: x PE in-sample:  0.865; using: | Mean:  0.642 | 
+transferfnAverage.m: Interval 04: y PE in-sample:  0.705; using: | Mean:  0.357 | 
+transferfnAverage.m: Interval 05: x PE in-sample:  0.653; using: | Mean:  0.473 | 
+transferfnAverage.m: Interval 05: y PE in-sample:  0.546; using: | Mean:  0.236 | 
+transferfnAverage.m: Interval 06: x PE in-sample:  0.802; using: | Mean:  0.655 | 
+transferfnAverage.m: Interval 06: y PE in-sample:  0.602; using: | Mean:  0.260 | 
+transferfnAverage.m: Interval 07: x PE in-sample:  0.894; using: | Mean:  0.674 | 
+transferfnAverage.m: Interval 07: y PE in-sample:  0.758; using: | Mean:  0.302 | 
+transferfnAverage.m: Interval 08: x PE in-sample:  0.935; using: | Mean:  0.795 | 
+transferfnAverage.m: Interval 08: y PE in-sample:  0.829; using: | Mean:  0.426 | 
+transferfnAverage.m: Interval 09: x PE in-sample:  0.926; using: | Mean:  0.761 | 
+transferfnAverage.m: Interval 09: y PE in-sample:  0.902; using: | Mean:  0.502 | 
+transferfnAverage.m: Interval 10: x PE in-sample:  0.935; using: | Mean:  0.800 | 
+transferfnAverage.m: Interval 10: y PE in-sample:  0.933; using: | Mean:  0.484 | 
+transferfnAverage.m: Interval 11: x PE in-sample:  0.949; using: | Mean:  0.845 | 
+transferfnAverage.m: Interval 11: y PE in-sample:  0.903; using: | Mean:  0.500 | 
+transferfnAverage.m: Interval 12: x PE in-sample:  0.836; using: | Mean:  0.791 | 
+transferfnAverage.m: Interval 12: y PE in-sample:  0.864; using: | Mean:  0.616 | 
+transferfnAverage.m: Interval 13: x PE in-sample:  0.722; using: | Mean:  0.574 | 
+transferfnAverage.m: Interval 13: y PE in-sample:  0.697; using: | Mean:  0.317 | 
+transferfnAverage.m: Interval 14: x PE in-sample:  0.907; using: | Mean:  0.654 | 
+transferfnAverage.m: Interval 14: y PE in-sample:  0.812; using: | Mean:  0.460 | 
+transferfnAverage.m: Interval 15: x PE in-sample:  0.804; using: | Mean:  0.292 | 
+transferfnAverage.m: Interval 15: y PE in-sample:  0.747; using: | Mean:  0.184 | 
+transferfnAverage.m: Interval 16: x PE in-sample:  0.814; using: | Mean:  0.678 | 
+transferfnAverage.m: Interval 16: y PE in-sample:  0.619; using: | Mean:  0.379 | 
+transferfnAverage.m: Interval 17: x PE in-sample:  0.689; using: | Mean:  0.436 | 
+transferfnAverage.m: Interval 17: y PE in-sample:  0.673; using: | Mean:  0.366 | 
+transferfnAverage.m: Interval 18: x PE in-sample:  0.754; using: | Mean:  0.597 | 
+transferfnAverage.m: Interval 18: y PE in-sample:  0.760; using: | Mean:  0.384 | 
+transferfnAverage.m: Interval 19: x PE in-sample:  0.712; using: | Mean:  0.783 | 
+transferfnAverage.m: Interval 19: y PE in-sample:  0.679; using: | Mean:  0.725 | 
+transferfnAverage.m: Interval 20: x PE in-sample:  0.833; using: | Mean:  0.673 | 
+transferfnAverage.m: Interval 20: y PE in-sample:  0.857; using: | Mean:  0.465 | 
+transferfnAverage.m: Interval 21: x PE in-sample:  0.932; using: | Mean:  0.830 | 
+transferfnAverage.m: Interval 21: y PE in-sample:  0.750; using: | Mean:  0.471 | 
+transferfnAverage.m: Interval 22: x PE in-sample:  0.915; using: | Mean:  0.828 | 
+transferfnAverage.m: Interval 22: y PE in-sample:  0.823; using: | Mean:  0.577 | 
+transferfnAverage.m: Interval 23: x PE in-sample:  0.923; using: | Mean:  0.832 | 
+transferfnAverage.m: Interval 23: y PE in-sample:  0.796; using: | Mean:  0.632 | 
+transferfnAverage.m: Interval 24: x PE in-sample:  0.941; using: | Mean:  0.832 | 
+transferfnAverage.m: Interval 24: y PE in-sample:  0.898; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 25: x PE in-sample:  0.932; using: | Mean:  0.568 | 
+transferfnAverage.m: Interval 25: y PE in-sample:  0.881; using: | Mean:  0.214 | 
+transferfnAverage.m: Interval 26: x PE in-sample:  0.775; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 26: y PE in-sample:  0.845; using: | Mean:  0.642 | 
+___________________________________________________________________________
+OLS Stack
+___________________________________________________________________________
+Ave x PE Mean:         0.694 [0.650,0.738]
+Ave x PE InSample:     0.852
+Ave y PE Mean:         0.447 [0.398,0.495]
+Ave y PE InSample:     0.784
+Ave x CC Mean:         0.836 [0.806,0.865]
+Ave x CC InSample:     0.926
+Ave y CC Mean:         0.681 [0.645,0.719]
+Ave y CC InSample:     0.896
+Ave x MSE Mean:        0.900 [0.722,1.097]
+Ave x MSE InSample:    0.434
+Ave y MSE Mean:        0.408 [0.330,0.490]
+Ave y MSE InSample:    0.153
+___________________________________________________________________________
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,1) = 0.82/0.91/0.634
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,2) = 0.65/0.81/0.286
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_x = 0.89/0.95/0.563
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_y = 0.49/0.70/0.560
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_x = 0.86/0.93/0.663
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_y = 0.66/0.81/0.255
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_x = 0.87/0.93/0.739
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_y = 0.75/0.87/0.261
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_x = 0.73/0.86/0.549
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_y = 0.47/0.69/0.359
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_x = 0.69/0.84/0.452
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_y = 0.68/0.85/0.159
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_x = 0.82/0.91/0.264
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_y = 0.54/0.83/0.476
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_x = 0.86/0.93/0.143
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_y = 0.72/0.95/0.224
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_x = 0.87/0.95/0.196
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_y = 0.84/0.93/0.092
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_x = 0.83/0.93/0.404
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_y = 0.84/0.94/0.071
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_x = 0.83/0.91/0.858
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_y = 0.50/0.74/0.305
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_x = 0.96/0.98/0.633
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_y = 0.88/0.94/0.341
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_x = 0.82/0.91/0.562
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_y = 0.65/0.81/0.169
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_x = 0.53/0.74/1.100
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_y = 0.10/0.37/0.414
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_x = 0.52/0.73/0.574
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_y = 0.19/0.48/0.281
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_x = 0.32/0.57/0.583
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_y = 0.21/0.46/0.387
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_x = 0.79/0.89/0.482
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_y = 0.63/0.82/0.342
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_x = 0.58/0.76/0.960
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_y = 0.33/0.59/0.561
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_x = 0.72/0.85/0.533
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_y = 0.44/0.67/0.265
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_x = 0.77/0.88/0.982
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_y = 0.76/0.87/0.192
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_x = 0.85/0.92/0.963
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_y = 0.39/0.75/0.425
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_x = 0.90/0.95/0.390
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_y = 0.39/0.64/0.574
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_x = 0.89/0.94/0.130
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_y = 0.64/0.82/0.058
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_x = 0.92/0.97/0.083
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_y = 0.95/0.98/0.018
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_x = 0.87/0.94/0.282
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_y = 0.60/0.82/0.185
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_x = 0.91/0.96/0.481
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_y = 0.79/0.89/0.167
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_x = 0.79/0.90/0.812
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_y = 0.80/0.90/0.111
+Stopping at step 15 for Te =    43200
+Stopping at step 15 for Te =    43200
+Stopping at step 25 for Te =    28800
+Stopping at step 20 for Te =    28800
+Stopping at step 50 for Te =    21600
+Stopping at step 27 for Te =    21600
+Stopping at step 16 for Te =    14400
+Stopping at step 39 for Te =    14400
+Stopping at step 50 for Te =    10800
+Stopping at step 21 for Te =    10800
+Stopping at step 15 for Te =     7855
+Stopping at step 16 for Te =     7855
+Stopping at step 22 for Te =     5760
+Stopping at step 23 for Te =     5760
+Stopping at step 29 for Te =     3927
+Stopping at step 24 for Te =     3927
+Stopping at step 23 for Te =     2880
+Stopping at step 29 for Te =     2880
+Stopping at step 20 for Te =     2009
+Stopping at step 38 for Te =     2009
+Stopping at step 24 for Te =     1440
+Stopping at step 31 for Te =     1440
+Stopping at step 22 for Te =     1016
+Stopping at step 44 for Te =     1016
+Stopping at step 22 for Te =      720
+Stopping at step 19 for Te =      720
+Stopping at step 23 for Te =      511
+Stopping at step 17 for Te =      511
+Stopping at step 30 for Te =      362
+Stopping at step 25 for Te =      362
+Stopping at step 29 for Te =      256
+Stopping at step 14 for Te =      256
+Stopping at step 23 for Te =      181
+Stopping at step 17 for Te =      181
+Stopping at step 21 for Te =      128
+Stopping at step 16 for Te =      128
+Stopping at step 20 for Te =       90
+Stopping at step 13 for Te =       90
+Stopping at step 24 for Te =       64
+Stopping at step 15 for Te =       64
+Stopping at step 22 for Te =       45
+Stopping at step 15 for Te =       45
+Stopping at step 24 for Te =       32
+Stopping at step 20 for Te =       32
+Stopping at step 22 for Te =       23
+Stopping at step 24 for Te =       23
+Stopping at step 23 for Te =       16
+Stopping at step 31 for Te =       16
+Stopping at step 24 for Te =       11
+Stopping at step 31 for Te =       11
+Stopping at step 24 for Te =        8
+Stopping at step 24 for Te =        8
+Stopping at step 50 for Te =        6
+Stopping at step 20 for Te =        6
+Stopping at step 16 for Te =        4
+Stopping at step 15 for Te =        4
+transferfnFD2: OLS
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.032
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.570
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.185
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.49/0.70/0.381
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.162
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.55/0.74/0.474
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.52/0.73/0.985
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.13/0.40/0.592
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.48/0.69/0.758
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.19/0.44/0.395
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.84/0.449
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.29/0.57/0.738
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.65/0.81/0.345
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.547
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.81/0.92/0.297
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.291
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.460
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.84/0.142
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.86/0.94/0.706
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.79/0.89/0.129
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.93/0.98/1.188
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.439
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.642
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.70/0.85/0.140
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.053
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.273
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.50/0.71/0.608
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.43/0.770
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = 0.01/0.20/0.483
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.794
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.34/0.58/0.609
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.195
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.30/0.58/0.579
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.58/0.76/0.808
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.36/0.61/0.299
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.60/0.77/0.317
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.443
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.68/0.84/0.220
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.538
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.564
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.133
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.86/0.94/0.152
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.59/0.78/0.141
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.303
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.76/0.91/0.112
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.821
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.69/0.83/1.211
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.77/0.90/0.140
+transferfnFD2: Robust 1
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.041
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.569
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.190
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.48/0.69/0.389
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.186
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.54/0.74/0.475
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.51/0.72/1.002
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.12/0.39/0.601
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.47/0.69/0.769
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.18/0.43/0.399
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.83/0.456
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.28/0.57/0.741
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.64/0.80/0.358
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.549
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.80/0.91/0.319
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.289
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.467
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.85/0.138
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.85/0.94/0.725
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.81/0.90/0.117
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.92/0.98/1.224
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.427
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.655
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.69/0.84/0.145
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.058
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.274
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.51/0.71/0.605
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.42/0.769
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = -0.00/0.18/0.489
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.796
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.33/0.58/0.616
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.187
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.29/0.57/0.588
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.57/0.75/0.823
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.35/0.60/0.306
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.59/0.77/0.323
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.406
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.69/0.84/0.211
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.544
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.568
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.139
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.85/0.94/0.161
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.58/0.77/0.143
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.323
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.77/0.92/0.108
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.811
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.68/0.83/1.225
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.76/0.89/0.143
+transferfnFD2: Robust 2
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.041
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.569
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.192
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.48/0.69/0.389
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.188
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.54/0.74/0.475
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.51/0.72/1.004
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.12/0.39/0.601
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.47/0.69/0.769
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.18/0.43/0.399
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.83/0.457
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.28/0.57/0.741
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.64/0.80/0.356
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.549
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.80/0.91/0.319
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.289
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.465
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.85/0.138
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.85/0.94/0.729
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.81/0.90/0.117
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.92/0.98/1.229
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.427
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.656
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.69/0.84/0.145
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.057
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.274
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.51/0.71/0.607
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.42/0.770
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = -0.00/0.18/0.489
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.796
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.33/0.58/0.615
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.188
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.29/0.57/0.588
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.57/0.76/0.822
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.35/0.60/0.306
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.59/0.77/0.323
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.422
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.69/0.84/0.211
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.549
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.568
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.138
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.85/0.94/0.161
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.58/0.77/0.143
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.324
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.77/0.92/0.108
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.813
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.68/0.83/1.225
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.76/0.89/0.143
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,1) = 0.92/0.96/0.442
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,2) = 0.86/0.94/0.158
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,1) = 0.86/0.93/0.673
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,2) = 0.84/0.93/0.119
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,1) = 0.92/0.96/0.475
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,2) = 0.81/0.91/0.194
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,1) = 0.86/0.94/0.279
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,2) = 0.71/0.88/0.201
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,1) = 0.65/0.81/0.503
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,2) = 0.55/0.75/0.222
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,1) = 0.80/0.90/0.288
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,2) = 0.60/0.79/0.412
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,1) = 0.89/0.95/0.105
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,2) = 0.76/0.89/0.192
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,1) = 0.93/0.97/0.104
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,2) = 0.83/0.93/0.098
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,1) = 0.93/0.96/0.182
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,2) = 0.90/0.95/0.046
+{Operation terminated by user during <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit>wfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 161)" style="font-weight:bold">statrobustfit>wfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',161,0)">after line 161</a>)
+
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 88)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',88,0)">line 88</a>)
+   [b(perm),wxrank] = wfit(y,X(:,perm),w);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
+[varargout{:}] = statrobustfit(X,y,wfun,tune,wasnan,doconst,priorw,dowarn);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 294)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',294,0)">line 294</a>)
+            Z(j,:) = robustfit(Wr.*ftB(r,:),W.*ftE(r,1),[],[],'off');
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 146)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',146,0)">line 146</a>)
+        Sx = transferfnFD(B,E(:,1),opts,t);
+
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 75)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',75,0)">line 75</a>)
+        Scell{s} =
+        transferfnFD(removemean(B(Iseg,:)),removemean(E(Iseg,:)),opts,t(Iseg));
+        
+In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/fujii/main.m', 77)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/fujii/main.m',77,0)">line 77</a>)
+    Sc{4} = transferfnFD(B(:,1:2,1),E,opts);
+} 
+mainmain
+{Undefined function or variable 'mainmain'.
+} 
+main
+prep_EB.m: Called with dateo/datef = 20051202/20051226, station = mmb, regenfiles = 0
+prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20051202-20051226-v1.mat
+prep_EB.m: Done.
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,1) = 0.92/0.96/0.441
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,2) = 0.86/0.94/0.157
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,1) = 0.86/0.93/0.670
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,2) = 0.84/0.93/0.119
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,1) = 0.92/0.96/0.466
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,2) = 0.82/0.91/0.193
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,1) = 0.87/0.94/0.277
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,2) = 0.71/0.88/0.201
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,1) = 0.65/0.81/0.503
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,2) = 0.55/0.75/0.222
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,1) = 0.80/0.90/0.287
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,2) = 0.60/0.79/0.412
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,1) = 0.89/0.95/0.105
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,2) = 0.76/0.89/0.192
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,1) = 0.93/0.97/0.102
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,2) = 0.83/0.93/0.097
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,1) = 0.93/0.96/0.182
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,2) = 0.90/0.95/0.046
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,1) = 0.93/0.97/0.321
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,2) = 0.93/0.97/0.041
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,1) = 0.95/0.98/0.816
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,2) = 0.90/0.95/0.264
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,1) = 0.84/0.92/0.506
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,2) = 0.86/0.93/0.064
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,1) = 0.72/0.86/0.639
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,2) = 0.70/0.85/0.138
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,1) = 0.91/0.95/0.114
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,2) = 0.81/0.90/0.064
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,1) = 0.80/0.92/0.168
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,2) = 0.75/0.94/0.123
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,1) = 0.81/0.91/0.426
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,2) = 0.62/0.81/0.351
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,1) = 0.69/0.85/0.698
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,2) = 0.67/0.85/0.272
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,1) = 0.75/0.87/0.470
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,2) = 0.76/0.88/0.113
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,1) = 0.71/0.85/1.255
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,2) = 0.68/0.83/0.253
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,1) = 0.83/0.92/1.042
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,2) = 0.86/0.93/0.099
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,1) = 0.93/0.97/0.261
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,2) = 0.75/0.88/0.232
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,1) = 0.91/0.96/0.098
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,2) = 0.82/0.91/0.028
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,1) = 0.92/0.96/0.085
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,2) = 0.80/0.89/0.070
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,1) = 0.94/0.97/0.133
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,2) = 0.90/0.95/0.048
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,1) = 0.93/0.97/0.350
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,2) = 0.88/0.94/0.094
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,1) = 0.77/0.89/0.871
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,2) = 0.84/0.93/0.093
+transferfnAverage.m: Interval 01: x PE in-sample:  0.915; using: | Mean:  0.809 | 
+transferfnAverage.m: Interval 01: y PE in-sample:  0.857; using: | Mean:  0.380 | 
+transferfnAverage.m: Interval 02: x PE in-sample:  0.858; using: | Mean:  0.716 | 
+transferfnAverage.m: Interval 02: y PE in-sample:  0.841; using: | Mean:  0.397 | 
+transferfnAverage.m: Interval 03: x PE in-sample:  0.917; using: | Mean:  0.823 | 
+transferfnAverage.m: Interval 03: y PE in-sample:  0.815; using: | Mean:  0.651 | 
+transferfnAverage.m: Interval 04: x PE in-sample:  0.865; using: | Mean:  0.642 | 
+transferfnAverage.m: Interval 04: y PE in-sample:  0.705; using: | Mean:  0.357 | 
+transferfnAverage.m: Interval 05: x PE in-sample:  0.653; using: | Mean:  0.473 | 
+transferfnAverage.m: Interval 05: y PE in-sample:  0.546; using: | Mean:  0.236 | 
+transferfnAverage.m: Interval 06: x PE in-sample:  0.802; using: | Mean:  0.655 | 
+transferfnAverage.m: Interval 06: y PE in-sample:  0.602; using: | Mean:  0.260 | 
+transferfnAverage.m: Interval 07: x PE in-sample:  0.894; using: | Mean:  0.674 | 
+transferfnAverage.m: Interval 07: y PE in-sample:  0.758; using: | Mean:  0.302 | 
+transferfnAverage.m: Interval 08: x PE in-sample:  0.935; using: | Mean:  0.795 | 
+transferfnAverage.m: Interval 08: y PE in-sample:  0.829; using: | Mean:  0.426 | 
+transferfnAverage.m: Interval 09: x PE in-sample:  0.926; using: | Mean:  0.761 | 
+transferfnAverage.m: Interval 09: y PE in-sample:  0.902; using: | Mean:  0.502 | 
+transferfnAverage.m: Interval 10: x PE in-sample:  0.935; using: | Mean:  0.800 | 
+transferfnAverage.m: Interval 10: y PE in-sample:  0.933; using: | Mean:  0.484 | 
+transferfnAverage.m: Interval 11: x PE in-sample:  0.949; using: | Mean:  0.845 | 
+transferfnAverage.m: Interval 11: y PE in-sample:  0.903; using: | Mean:  0.500 | 
+transferfnAverage.m: Interval 12: x PE in-sample:  0.836; using: | Mean:  0.791 | 
+transferfnAverage.m: Interval 12: y PE in-sample:  0.864; using: | Mean:  0.616 | 
+transferfnAverage.m: Interval 13: x PE in-sample:  0.722; using: | Mean:  0.574 | 
+transferfnAverage.m: Interval 13: y PE in-sample:  0.697; using: | Mean:  0.317 | 
+transferfnAverage.m: Interval 14: x PE in-sample:  0.907; using: | Mean:  0.654 | 
+transferfnAverage.m: Interval 14: y PE in-sample:  0.812; using: | Mean:  0.460 | 
+transferfnAverage.m: Interval 15: x PE in-sample:  0.804; using: | Mean:  0.292 | 
+transferfnAverage.m: Interval 15: y PE in-sample:  0.747; using: | Mean:  0.184 | 
+transferfnAverage.m: Interval 16: x PE in-sample:  0.814; using: | Mean:  0.678 | 
+transferfnAverage.m: Interval 16: y PE in-sample:  0.619; using: | Mean:  0.379 | 
+transferfnAverage.m: Interval 17: x PE in-sample:  0.689; using: | Mean:  0.436 | 
+transferfnAverage.m: Interval 17: y PE in-sample:  0.673; using: | Mean:  0.366 | 
+transferfnAverage.m: Interval 18: x PE in-sample:  0.754; using: | Mean:  0.597 | 
+transferfnAverage.m: Interval 18: y PE in-sample:  0.760; using: | Mean:  0.384 | 
+transferfnAverage.m: Interval 19: x PE in-sample:  0.712; using: | Mean:  0.783 | 
+transferfnAverage.m: Interval 19: y PE in-sample:  0.679; using: | Mean:  0.725 | 
+transferfnAverage.m: Interval 20: x PE in-sample:  0.833; using: | Mean:  0.673 | 
+transferfnAverage.m: Interval 20: y PE in-sample:  0.857; using: | Mean:  0.465 | 
+transferfnAverage.m: Interval 21: x PE in-sample:  0.932; using: | Mean:  0.830 | 
+transferfnAverage.m: Interval 21: y PE in-sample:  0.750; using: | Mean:  0.471 | 
+transferfnAverage.m: Interval 22: x PE in-sample:  0.915; using: | Mean:  0.828 | 
+transferfnAverage.m: Interval 22: y PE in-sample:  0.823; using: | Mean:  0.577 | 
+transferfnAverage.m: Interval 23: x PE in-sample:  0.923; using: | Mean:  0.832 | 
+transferfnAverage.m: Interval 23: y PE in-sample:  0.796; using: | Mean:  0.632 | 
+transferfnAverage.m: Interval 24: x PE in-sample:  0.941; using: | Mean:  0.832 | 
+transferfnAverage.m: Interval 24: y PE in-sample:  0.898; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 25: x PE in-sample:  0.932; using: | Mean:  0.568 | 
+transferfnAverage.m: Interval 25: y PE in-sample:  0.881; using: | Mean:  0.214 | 
+transferfnAverage.m: Interval 26: x PE in-sample:  0.775; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 26: y PE in-sample:  0.845; using: | Mean:  0.642 | 
+___________________________________________________________________________
+OLS Stack
+___________________________________________________________________________
+Ave x PE Mean:         0.694 [0.645,0.738]
+Ave x PE InSample:     0.852
+Ave y PE Mean:         0.447 [0.400,0.496]
+Ave y PE InSample:     0.784
+Ave x CC Mean:         0.836 [0.804,0.866]
+Ave x CC InSample:     0.926
+Ave y CC Mean:         0.681 [0.644,0.717]
+Ave y CC InSample:     0.896
+Ave x MSE Mean:        0.900 [0.712,1.103]
+Ave x MSE InSample:    0.434
+Ave y MSE Mean:        0.408 [0.328,0.502]
+Ave y MSE InSample:    0.153
+___________________________________________________________________________
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,1) = 0.82/0.91/0.634
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,2) = 0.65/0.81/0.286
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_x = 0.89/0.95/0.563
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_y = 0.49/0.70/0.560
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_x = 0.86/0.93/0.663
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_y = 0.66/0.81/0.255
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_x = 0.87/0.93/0.739
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_y = 0.75/0.87/0.261
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_x = 0.73/0.86/0.549
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_y = 0.47/0.69/0.359
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_x = 0.69/0.84/0.452
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_y = 0.68/0.85/0.159
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_x = 0.82/0.91/0.264
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_y = 0.54/0.83/0.476
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_x = 0.86/0.93/0.143
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_y = 0.72/0.95/0.224
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_x = 0.87/0.95/0.196
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_y = 0.84/0.93/0.092
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_x = 0.83/0.93/0.404
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_y = 0.84/0.94/0.071
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_x = 0.83/0.91/0.858
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_y = 0.50/0.74/0.305
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_x = 0.96/0.98/0.633
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_y = 0.88/0.94/0.341
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_x = 0.82/0.91/0.562
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_y = 0.65/0.81/0.169
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_x = 0.53/0.74/1.100
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_y = 0.10/0.37/0.414
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_x = 0.52/0.73/0.574
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_y = 0.19/0.48/0.281
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_x = 0.32/0.57/0.583
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_y = 0.21/0.46/0.387
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_x = 0.79/0.89/0.482
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_y = 0.63/0.82/0.342
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_x = 0.58/0.76/0.960
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_y = 0.33/0.59/0.561
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_x = 0.72/0.85/0.533
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_y = 0.44/0.67/0.265
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_x = 0.77/0.88/0.982
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_y = 0.76/0.87/0.192
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_x = 0.85/0.92/0.963
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_y = 0.39/0.75/0.425
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_x = 0.90/0.95/0.390
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_y = 0.39/0.64/0.574
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_x = 0.89/0.94/0.130
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_y = 0.64/0.82/0.058
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_x = 0.92/0.97/0.083
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_y = 0.95/0.98/0.018
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_x = 0.87/0.94/0.282
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_y = 0.60/0.82/0.185
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_x = 0.91/0.96/0.481
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_y = 0.79/0.89/0.167
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_x = 0.79/0.90/0.812
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_y = 0.80/0.90/0.111
+Stopping at step 15 for Te =    43200
+Stopping at step 15 for Te =    43200
+Stopping at step 25 for Te =    28800
+Stopping at step 20 for Te =    28800
+Stopping at step 50 for Te =    21600
+Stopping at step 27 for Te =    21600
+Stopping at step 16 for Te =    14400
+Stopping at step 39 for Te =    14400
+Stopping at step 50 for Te =    10800
+Stopping at step 21 for Te =    10800
+Stopping at step 15 for Te =     7855
+Stopping at step 16 for Te =     7855
+Stopping at step 22 for Te =     5760
+Stopping at step 23 for Te =     5760
+Stopping at step 29 for Te =     3927
+Stopping at step 24 for Te =     3927
+Stopping at step 23 for Te =     2880
+Stopping at step 29 for Te =     2880
+Stopping at step 20 for Te =     2009
+Stopping at step 38 for Te =     2009
+Stopping at step 24 for Te =     1440
+Stopping at step 31 for Te =     1440
+Stopping at step 22 for Te =     1016
+Stopping at step 44 for Te =     1016
+Stopping at step 22 for Te =      720
+Stopping at step 19 for Te =      720
+Stopping at step 23 for Te =      511
+Stopping at step 17 for Te =      511
+Stopping at step 30 for Te =      362
+Stopping at step 25 for Te =      362
+Stopping at step 29 for Te =      256
+Stopping at step 14 for Te =      256
+Stopping at step 23 for Te =      181
+Stopping at step 17 for Te =      181
+Stopping at step 21 for Te =      128
+Stopping at step 16 for Te =      128
+Stopping at step 20 for Te =       90
+Stopping at step 13 for Te =       90
+Stopping at step 24 for Te =       64
+Stopping at step 15 for Te =       64
+Stopping at step 22 for Te =       45
+Stopping at step 15 for Te =       45
+Stopping at step 24 for Te =       32
+Stopping at step 20 for Te =       32
+Stopping at step 22 for Te =       23
+Stopping at step 24 for Te =       23
+Stopping at step 23 for Te =       16
+Stopping at step 31 for Te =       16
+Stopping at step 24 for Te =       11
+Stopping at step 31 for Te =       11
+Stopping at step 24 for Te =        8
+Stopping at step 24 for Te =        8
+Stopping at step 50 for Te =        6
+Stopping at step 20 for Te =        6
+Stopping at step 16 for Te =        4
+Stopping at step 15 for Te =        4
+transferfnFD2: OLS
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.032
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.570
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.185
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.49/0.70/0.381
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.162
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.55/0.74/0.474
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.52/0.73/0.985
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.13/0.40/0.592
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.48/0.69/0.758
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.19/0.44/0.395
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.84/0.449
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.29/0.57/0.738
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.65/0.81/0.345
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.547
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.81/0.92/0.297
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.291
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.460
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.84/0.142
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.86/0.94/0.706
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.79/0.89/0.129
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.93/0.98/1.188
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.439
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.642
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.70/0.85/0.140
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.053
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.273
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.50/0.71/0.608
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.43/0.770
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = 0.01/0.20/0.483
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.794
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.34/0.58/0.609
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.195
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.30/0.58/0.579
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.58/0.76/0.808
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.36/0.61/0.299
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.60/0.77/0.317
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.443
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.68/0.84/0.220
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.538
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.564
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.133
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.86/0.94/0.152
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.59/0.78/0.141
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.303
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.76/0.91/0.112
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.821
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.69/0.83/1.211
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.77/0.90/0.140
+transferfnFD2: Robust 1
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.041
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.569
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.190
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.48/0.69/0.389
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.186
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.54/0.74/0.475
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.51/0.72/1.002
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.12/0.39/0.601
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.47/0.69/0.769
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.18/0.43/0.399
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.83/0.456
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.28/0.57/0.741
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.64/0.80/0.358
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.549
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.80/0.91/0.319
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.289
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.467
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.85/0.138
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.85/0.94/0.725
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.81/0.90/0.117
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.92/0.98/1.224
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.427
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.655
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.69/0.84/0.145
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.058
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.274
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.51/0.71/0.605
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.42/0.769
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = -0.00/0.18/0.489
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.796
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.33/0.58/0.616
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.187
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.29/0.57/0.588
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.57/0.75/0.823
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.35/0.60/0.306
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.59/0.77/0.323
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.406
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.69/0.84/0.211
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.544
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.568
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.139
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.85/0.94/0.161
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.58/0.77/0.143
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.323
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.77/0.92/0.108
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.811
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.68/0.83/1.225
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.76/0.89/0.143
+transferfnFD2: Robust 2
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_x = 0.80/0.90/1.041
+transferfnFD2.m: Interval 1/26: PE/CC/MSE of In_y = 0.48/0.70/0.569
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_x = 0.75/0.87/1.192
+transferfnFD2.m: Interval 2/26: PE/CC/MSE of In_y = 0.48/0.69/0.389
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_x = 0.79/0.89/1.188
+transferfnFD2.m: Interval 3/26: PE/CC/MSE of In_y = 0.54/0.74/0.475
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_x = 0.51/0.72/1.004
+transferfnFD2.m: Interval 4/26: PE/CC/MSE of In_y = 0.12/0.39/0.601
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_x = 0.47/0.69/0.769
+transferfnFD2.m: Interval 5/26: PE/CC/MSE of In_y = 0.18/0.43/0.399
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_x = 0.69/0.83/0.457
+transferfnFD2.m: Interval 6/26: PE/CC/MSE of In_y = 0.28/0.57/0.741
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_x = 0.64/0.80/0.356
+transferfnFD2.m: Interval 7/26: PE/CC/MSE of In_y = 0.31/0.60/0.549
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_x = 0.80/0.91/0.319
+transferfnFD2.m: Interval 8/26: PE/CC/MSE of In_y = 0.49/0.74/0.289
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_x = 0.81/0.91/0.465
+transferfnFD2.m: Interval 9/26: PE/CC/MSE of In_y = 0.70/0.85/0.138
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_x = 0.85/0.94/0.729
+transferfnFD2.m: Interval 10/26: PE/CC/MSE of In_y = 0.81/0.90/0.117
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_x = 0.92/0.98/1.229
+transferfnFD2.m: Interval 11/26: PE/CC/MSE of In_y = 0.84/0.93/0.427
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_x = 0.79/0.90/0.656
+transferfnFD2.m: Interval 12/26: PE/CC/MSE of In_y = 0.69/0.84/0.145
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_x = 0.54/0.76/1.057
+transferfnFD2.m: Interval 13/26: PE/CC/MSE of In_y = 0.40/0.65/0.274
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_x = 0.51/0.71/0.607
+transferfnFD2.m: Interval 14/26: PE/CC/MSE of In_y = 0.28/0.54/0.245
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_x = 0.10/0.42/0.770
+transferfnFD2.m: Interval 15/26: PE/CC/MSE of In_y = -0.00/0.18/0.489
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_x = 0.65/0.81/0.796
+transferfnFD2.m: Interval 16/26: PE/CC/MSE of In_y = 0.33/0.58/0.615
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_x = 0.47/0.69/1.188
+transferfnFD2.m: Interval 17/26: PE/CC/MSE of In_y = 0.29/0.57/0.588
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_x = 0.57/0.76/0.822
+transferfnFD2.m: Interval 18/26: PE/CC/MSE of In_y = 0.35/0.60/0.306
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_x = 0.61/0.79/1.709
+transferfnFD2.m: Interval 19/26: PE/CC/MSE of In_y = 0.59/0.77/0.323
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_x = 0.77/0.88/1.422
+transferfnFD2.m: Interval 20/26: PE/CC/MSE of In_y = 0.69/0.84/0.211
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_x = 0.86/0.93/0.549
+transferfnFD2.m: Interval 21/26: PE/CC/MSE of In_y = 0.39/0.63/0.568
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_x = 0.88/0.94/0.138
+transferfnFD2.m: Interval 22/26: PE/CC/MSE of In_y = 0.59/0.78/0.065
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_x = 0.85/0.94/0.161
+transferfnFD2.m: Interval 23/26: PE/CC/MSE of In_y = 0.58/0.77/0.143
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_x = 0.86/0.96/0.324
+transferfnFD2.m: Interval 24/26: PE/CC/MSE of In_y = 0.77/0.92/0.108
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_x = 0.84/0.95/0.813
+transferfnFD2.m: Interval 25/26: PE/CC/MSE of In_y = 0.80/0.92/0.157
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_x = 0.68/0.83/1.225
+transferfnFD2.m: Interval 26/26: PE/CC/MSE of In_y = 0.76/0.89/0.143
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,1) = 0.92/0.96/0.442
+transferfnFD.m: 1/26 PE/CC/MSE of Out(1:86400,2) = 0.86/0.94/0.158
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,1) = 0.86/0.93/0.673
+transferfnFD.m: 2/26 PE/CC/MSE of Out(86401:172800,2) = 0.84/0.93/0.119
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,1) = 0.92/0.96/0.475
+transferfnFD.m: 3/26 PE/CC/MSE of Out(172801:259200,2) = 0.81/0.91/0.194
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,1) = 0.86/0.94/0.279
+transferfnFD.m: 4/26 PE/CC/MSE of Out(259201:345600,2) = 0.71/0.88/0.201
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,1) = 0.65/0.81/0.503
+transferfnFD.m: 5/26 PE/CC/MSE of Out(345601:432000,2) = 0.55/0.75/0.222
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,1) = 0.80/0.90/0.288
+transferfnFD.m: 6/26 PE/CC/MSE of Out(432001:518400,2) = 0.60/0.79/0.412
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,1) = 0.89/0.95/0.105
+transferfnFD.m: 7/26 PE/CC/MSE of Out(518401:604800,2) = 0.76/0.89/0.192
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,1) = 0.93/0.97/0.104
+transferfnFD.m: 8/26 PE/CC/MSE of Out(604801:691200,2) = 0.83/0.93/0.098
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,1) = 0.93/0.96/0.182
+transferfnFD.m: 9/26 PE/CC/MSE of Out(691201:777600,2) = 0.90/0.95/0.046
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,1) = 0.93/0.97/0.323
+transferfnFD.m: 10/26 PE/CC/MSE of Out(777601:864000,2) = 0.93/0.97/0.041
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,1) = 0.95/0.98/0.827
+transferfnFD.m: 11/26 PE/CC/MSE of Out(864001:950400,2) = 0.90/0.95/0.266
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,1) = 0.84/0.92/0.503
+transferfnFD.m: 12/26 PE/CC/MSE of Out(950401:1036800,2) = 0.86/0.93/0.064
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,1) = 0.72/0.86/0.639
+transferfnFD.m: 13/26 PE/CC/MSE of Out(1036801:1123200,2) = 0.70/0.85/0.138
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,1) = 0.91/0.95/0.115
+transferfnFD.m: 14/26 PE/CC/MSE of Out(1123201:1209600,2) = 0.81/0.90/0.064
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,1) = 0.80/0.92/0.168
+transferfnFD.m: 15/26 PE/CC/MSE of Out(1209601:1296000,2) = 0.75/0.94/0.123
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,1) = 0.81/0.91/0.426
+transferfnFD.m: 16/26 PE/CC/MSE of Out(1296001:1382400,2) = 0.62/0.81/0.351
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,1) = 0.69/0.85/0.699
+transferfnFD.m: 17/26 PE/CC/MSE of Out(1382401:1468800,2) = 0.67/0.85/0.271
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,1) = 0.75/0.87/0.470
+transferfnFD.m: 18/26 PE/CC/MSE of Out(1468801:1555200,2) = 0.76/0.88/0.113
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,1) = 0.71/0.85/1.255
+transferfnFD.m: 19/26 PE/CC/MSE of Out(1555201:1641600,2) = 0.68/0.83/0.252
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,1) = 0.83/0.92/1.065
+transferfnFD.m: 20/26 PE/CC/MSE of Out(1641601:1728000,2) = 0.85/0.93/0.100
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,1) = 0.93/0.97/0.262
+transferfnFD.m: 21/26 PE/CC/MSE of Out(1728001:1814400,2) = 0.75/0.88/0.232
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,1) = 0.91/0.96/0.099
+transferfnFD.m: 22/26 PE/CC/MSE of Out(1814401:1900800,2) = 0.82/0.91/0.028
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,1) = 0.92/0.96/0.085
+transferfnFD.m: 23/26 PE/CC/MSE of Out(1900801:1987200,2) = 0.80/0.89/0.070
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,1) = 0.94/0.97/0.133
+transferfnFD.m: 24/26 PE/CC/MSE of Out(1987201:2073600,2) = 0.90/0.95/0.048
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,1) = 0.93/0.97/0.350
+transferfnFD.m: 25/26 PE/CC/MSE of Out(2073601:2160000,2) = 0.88/0.94/0.094
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,1) = 0.77/0.89/0.872
+transferfnFD.m: 26/26 PE/CC/MSE of Out(2160001:2246400,2) = 0.84/0.93/0.093
+transferfnAverage.m: Interval 01: x PE in-sample:  0.915; using: | Mean:  0.809 | 
+transferfnAverage.m: Interval 01: y PE in-sample:  0.856; using: | Mean:  0.379 | 
+transferfnAverage.m: Interval 02: x PE in-sample:  0.858; using: | Mean:  0.716 | 
+transferfnAverage.m: Interval 02: y PE in-sample:  0.841; using: | Mean:  0.397 | 
+transferfnAverage.m: Interval 03: x PE in-sample:  0.916; using: | Mean:  0.823 | 
+transferfnAverage.m: Interval 03: y PE in-sample:  0.814; using: | Mean:  0.651 | 
+transferfnAverage.m: Interval 04: x PE in-sample:  0.864; using: | Mean:  0.642 | 
+transferfnAverage.m: Interval 04: y PE in-sample:  0.705; using: | Mean:  0.357 | 
+transferfnAverage.m: Interval 05: x PE in-sample:  0.653; using: | Mean:  0.473 | 
+transferfnAverage.m: Interval 05: y PE in-sample:  0.546; using: | Mean:  0.236 | 
+transferfnAverage.m: Interval 06: x PE in-sample:  0.802; using: | Mean:  0.654 | 
+transferfnAverage.m: Interval 06: y PE in-sample:  0.602; using: | Mean:  0.260 | 
+transferfnAverage.m: Interval 07: x PE in-sample:  0.894; using: | Mean:  0.674 | 
+transferfnAverage.m: Interval 07: y PE in-sample:  0.758; using: | Mean:  0.302 | 
+transferfnAverage.m: Interval 08: x PE in-sample:  0.934; using: | Mean:  0.795 | 
+transferfnAverage.m: Interval 08: y PE in-sample:  0.829; using: | Mean:  0.426 | 
+transferfnAverage.m: Interval 09: x PE in-sample:  0.926; using: | Mean:  0.761 | 
+transferfnAverage.m: Interval 09: y PE in-sample:  0.902; using: | Mean:  0.502 | 
+transferfnAverage.m: Interval 10: x PE in-sample:  0.934; using: | Mean:  0.799 | 
+transferfnAverage.m: Interval 10: y PE in-sample:  0.932; using: | Mean:  0.484 | 
+transferfnAverage.m: Interval 11: x PE in-sample:  0.949; using: | Mean:  0.845 | 
+transferfnAverage.m: Interval 11: y PE in-sample:  0.902; using: | Mean:  0.500 | 
+transferfnAverage.m: Interval 12: x PE in-sample:  0.837; using: | Mean:  0.791 | 
+transferfnAverage.m: Interval 12: y PE in-sample:  0.864; using: | Mean:  0.616 | 
+transferfnAverage.m: Interval 13: x PE in-sample:  0.722; using: | Mean:  0.574 | 
+transferfnAverage.m: Interval 13: y PE in-sample:  0.697; using: | Mean:  0.317 | 
+transferfnAverage.m: Interval 14: x PE in-sample:  0.907; using: | Mean:  0.654 | 
+transferfnAverage.m: Interval 14: y PE in-sample:  0.812; using: | Mean:  0.460 | 
+transferfnAverage.m: Interval 15: x PE in-sample:  0.804; using: | Mean:  0.292 | 
+transferfnAverage.m: Interval 15: y PE in-sample:  0.747; using: | Mean:  0.185 | 
+transferfnAverage.m: Interval 16: x PE in-sample:  0.814; using: | Mean:  0.678 | 
+transferfnAverage.m: Interval 16: y PE in-sample:  0.619; using: | Mean:  0.379 | 
+transferfnAverage.m: Interval 17: x PE in-sample:  0.688; using: | Mean:  0.436 | 
+transferfnAverage.m: Interval 17: y PE in-sample:  0.674; using: | Mean:  0.366 | 
+transferfnAverage.m: Interval 18: x PE in-sample:  0.754; using: | Mean:  0.597 | 
+transferfnAverage.m: Interval 18: y PE in-sample:  0.760; using: | Mean:  0.384 | 
+transferfnAverage.m: Interval 19: x PE in-sample:  0.712; using: | Mean:  0.783 | 
+transferfnAverage.m: Interval 19: y PE in-sample:  0.680; using: | Mean:  0.725 | 
+transferfnAverage.m: Interval 20: x PE in-sample:  0.829; using: | Mean:  0.673 | 
+transferfnAverage.m: Interval 20: y PE in-sample:  0.854; using: | Mean:  0.465 | 
+transferfnAverage.m: Interval 21: x PE in-sample:  0.932; using: | Mean:  0.831 | 
+transferfnAverage.m: Interval 21: y PE in-sample:  0.750; using: | Mean:  0.471 | 
+transferfnAverage.m: Interval 22: x PE in-sample:  0.915; using: | Mean:  0.828 | 
+transferfnAverage.m: Interval 22: y PE in-sample:  0.823; using: | Mean:  0.577 | 
+transferfnAverage.m: Interval 23: x PE in-sample:  0.923; using: | Mean:  0.831 | 
+transferfnAverage.m: Interval 23: y PE in-sample:  0.796; using: | Mean:  0.632 | 
+transferfnAverage.m: Interval 24: x PE in-sample:  0.941; using: | Mean:  0.832 | 
+transferfnAverage.m: Interval 24: y PE in-sample:  0.898; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 25: x PE in-sample:  0.932; using: | Mean:  0.568 | 
+transferfnAverage.m: Interval 25: y PE in-sample:  0.881; using: | Mean:  0.214 | 
+transferfnAverage.m: Interval 26: x PE in-sample:  0.775; using: | Mean:  0.692 | 
+transferfnAverage.m: Interval 26: y PE in-sample:  0.845; using: | Mean:  0.642 | 
+___________________________________________________________________________
+Robust Stack
+___________________________________________________________________________
+Ave x PE Mean:         0.694 [0.651,0.737]
+Ave x PE InSample:     0.851
+Ave y PE Mean:         0.447 [0.398,0.494]
+Ave y PE InSample:     0.784
+Ave x CC Mean:         0.836 [0.805,0.865]
+Ave x CC InSample:     0.926
+Ave y CC Mean:         0.681 [0.645,0.717]
+Ave y CC InSample:     0.896
+Ave x MSE Mean:        0.900 [0.715,1.103]
+Ave x MSE InSample:    0.436
+Ave y MSE Mean:        0.408 [0.331,0.499]
+Ave y MSE InSample:    0.153
+___________________________________________________________________________
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 294)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',294,0)">line 294</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 146)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',146,0)">line 146</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD', '/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m', 75)" style="font-weight:bold">transferfnFD</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/../transferfn/transferfnFD.m',75,0)">line 75</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/fujii/main.m', 93)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/fujii/main.m',93,0)">line 93</a>)] 
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,1) = 0.76/0.88/0.849
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,2) = 0.67/0.82/0.269
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_x = 0.85/0.92/0.806
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_y = 0.54/0.74/0.503
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_x = 0.75/0.86/1.203
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_y = 0.79/0.90/0.157
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_x = 0.87/0.93/0.743
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_y = 0.72/0.85/0.297
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_x = 0.45/0.69/1.120
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_y = 0.37/0.61/0.424
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_x = 0.44/0.66/0.819
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_y = 0.67/0.88/0.164
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_x = 0.70/0.84/0.445
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_y = 0.54/0.83/0.477
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_x = 0.60/0.78/0.397
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_y = 0.64/0.91/0.285
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_x = 0.65/0.81/0.551
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_y = 0.81/0.94/0.107
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_x = 0.76/0.88/0.587
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_y = 0.81/0.90/0.087
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_x = 0.86/0.93/0.701
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_y = 0.57/0.77/0.260
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_x = 0.93/0.97/1.134
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_y = 0.85/0.92/0.414
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_x = 0.75/0.87/0.782
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_y = 0.72/0.85/0.131
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_x = 0.49/0.70/1.182
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_y = 0.28/0.53/0.331
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_x = 0.62/0.79/0.461
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_y = 0.32/0.57/0.233
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_x = 0.04/0.39/0.822
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_y = 0.17/0.41/0.406
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_x = 0.65/0.81/0.810
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_y = 0.65/0.82/0.327
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_x = 0.49/0.70/1.148
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_y = 0.41/0.66/0.490
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_x = 0.44/0.67/1.084
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_y = 0.53/0.73/0.226
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_x = 0.78/0.89/0.950
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_y = 0.74/0.86/0.202
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_x = 0.90/0.95/0.614
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_y = 0.39/0.75/0.419
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_x = 0.85/0.92/0.581
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_y = 0.32/0.59/0.634
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_x = 0.83/0.91/0.195
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_y = 0.67/0.82/0.052
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_x = 0.74/0.87/0.282
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_y = 0.90/0.97/0.036
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_x = 0.86/0.94/0.323
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_y = 0.72/0.87/0.130
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_x = 0.89/0.98/0.575
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_y = 0.81/0.90/0.153
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_x = 0.63/0.80/1.424
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_y = 0.84/0.92/0.093
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,1) = 0.85/0.93/0.523
+transferfnFD.m: 1/1 PE/CC/MSE of Out(1:2246400,2) = 0.72/0.85/0.229
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_x = 0.91/0.95/0.473
+transferfnMetrics.m: 1/26 PE/CC/MSE of In_y = 0.52/0.73/0.526
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_x = 0.92/0.96/0.381
+transferfnMetrics.m: 2/26 PE/CC/MSE of In_y = 0.85/0.93/0.114
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_x = 0.90/0.95/0.590
+transferfnMetrics.m: 3/26 PE/CC/MSE of In_y = 0.74/0.86/0.278
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_x = 0.75/0.87/0.511
+transferfnMetrics.m: 4/26 PE/CC/MSE of In_y = 0.39/0.63/0.412
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_x = 0.70/0.85/0.442
+transferfnMetrics.m: 5/26 PE/CC/MSE of In_y = 0.75/0.92/0.121
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_x = 0.79/0.89/0.303
+transferfnMetrics.m: 6/26 PE/CC/MSE of In_y = 0.61/0.86/0.408
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_x = 0.75/0.87/0.247
+transferfnMetrics.m: 7/26 PE/CC/MSE of In_y = 0.71/0.93/0.233
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_x = 0.80/0.90/0.311
+transferfnMetrics.m: 8/26 PE/CC/MSE of In_y = 0.85/0.94/0.083
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_x = 0.86/0.93/0.350
+transferfnMetrics.m: 9/26 PE/CC/MSE of In_y = 0.80/0.90/0.089
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_x = 0.80/0.90/0.982
+transferfnMetrics.m: 10/26 PE/CC/MSE of In_y = 0.42/0.71/0.350
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_x = 0.96/0.98/0.612
+transferfnMetrics.m: 11/26 PE/CC/MSE of In_y = 0.80/0.90/0.551
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_x = 0.85/0.92/0.452
+transferfnMetrics.m: 12/26 PE/CC/MSE of In_y = 0.64/0.82/0.173
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_x = 0.59/0.77/0.959
+transferfnMetrics.m: 13/26 PE/CC/MSE of In_y = 0.27/0.52/0.338
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_x = 0.71/0.84/0.345
+transferfnMetrics.m: 14/26 PE/CC/MSE of In_y = 0.32/0.58/0.233
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_x = 0.36/0.61/0.547
+transferfnMetrics.m: 15/26 PE/CC/MSE of In_y = 0.21/0.46/0.386
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_x = 0.79/0.89/0.491
+transferfnMetrics.m: 16/26 PE/CC/MSE of In_y = 0.72/0.86/0.256
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_x = 0.62/0.79/0.856
+transferfnMetrics.m: 17/26 PE/CC/MSE of In_y = 0.48/0.71/0.435
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_x = 0.75/0.87/0.480
+transferfnMetrics.m: 18/26 PE/CC/MSE of In_y = 0.56/0.75/0.210
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_x = 0.76/0.88/1.031
+transferfnMetrics.m: 19/26 PE/CC/MSE of In_y = 0.78/0.88/0.171
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_x = 0.87/0.94/0.789
+transferfnMetrics.m: 20/26 PE/CC/MSE of In_y = 0.14/0.72/0.591
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_x = 0.91/0.96/0.329
+transferfnMetrics.m: 21/26 PE/CC/MSE of In_y = 0.29/0.59/0.669
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_x = 0.83/0.91/0.197
+transferfnMetrics.m: 22/26 PE/CC/MSE of In_y = 0.68/0.83/0.050
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_x = 0.83/0.91/0.183
+transferfnMetrics.m: 23/26 PE/CC/MSE of In_y = 0.92/0.97/0.027
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_x = 0.84/0.92/0.349
+transferfnMetrics.m: 24/26 PE/CC/MSE of In_y = 0.58/0.84/0.195
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_x = 0.86/0.93/0.742
+transferfnMetrics.m: 25/26 PE/CC/MSE of In_y = 0.73/0.87/0.215
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_x = 0.79/0.89/0.814
+transferfnMetrics.m: 26/26 PE/CC/MSE of In_y = 0.81/0.90/0.108
+transferfnFuji.m: 1/26 PE/CC/MSE of In_x = 0.87/0.93/0.702
+transferfnFuji.m: 1/26 PE/CC/MSE of In_y = 0.53/0.73/0.510
+transferfnFuji.m: 2/26 PE/CC/MSE of In_x = 0.81/0.90/0.900
+transferfnFuji.m: 2/26 PE/CC/MSE of In_y = 0.37/0.63/0.478
+transferfnFuji.m: 3/26 PE/CC/MSE of In_x = 0.86/0.93/0.769
+transferfnFuji.m: 3/26 PE/CC/MSE of In_y = 0.49/0.72/0.539
+transferfnFuji.m: 4/26 PE/CC/MSE of In_x = 0.51/0.74/0.995
+transferfnFuji.m: 4/26 PE/CC/MSE of In_y = -0.07/0.27/0.723
+transferfnFuji.m: 5/26 PE/CC/MSE of In_x = 0.49/0.70/0.747
+transferfnFuji.m: 5/26 PE/CC/MSE of In_y = 0.07/0.30/0.458
+transferfnFuji.m: 6/26 PE/CC/MSE of In_x = 0.72/0.85/0.409
+transferfnFuji.m: 6/26 PE/CC/MSE of In_y = 0.28/0.54/0.756
+transferfnFuji.m: 7/26 PE/CC/MSE of In_x = 0.66/0.81/0.337
+transferfnFuji.m: 7/26 PE/CC/MSE of In_y = 0.23/0.49/0.613
+transferfnFuji.m: 8/26 PE/CC/MSE of In_x = 0.76/0.88/0.371
+transferfnFuji.m: 8/26 PE/CC/MSE of In_y = 0.46/0.69/0.307
+transferfnFuji.m: 9/26 PE/CC/MSE of In_x = 0.82/0.91/0.443
+transferfnFuji.m: 9/26 PE/CC/MSE of In_y = 0.64/0.80/0.161
+transferfnFuji.m: 10/26 PE/CC/MSE of In_x = 0.89/0.94/0.555
+transferfnFuji.m: 10/26 PE/CC/MSE of In_y = 0.96/0.98/0.025
+transferfnFuji.m: 11/26 PE/CC/MSE of In_x = 0.96/0.98/0.707
+transferfnFuji.m: 11/26 PE/CC/MSE of In_y = 0.93/0.97/0.185
+transferfnFuji.m: 12/26 PE/CC/MSE of In_x = 0.80/0.89/0.628
+transferfnFuji.m: 12/26 PE/CC/MSE of In_y = 0.61/0.78/0.187
+transferfnFuji.m: 13/26 PE/CC/MSE of In_x = 0.55/0.75/1.040
+transferfnFuji.m: 13/26 PE/CC/MSE of In_y = 0.42/0.65/0.268
+transferfnFuji.m: 14/26 PE/CC/MSE of In_x = 0.61/0.79/0.470
+transferfnFuji.m: 14/26 PE/CC/MSE of In_y = 0.28/0.55/0.249
+transferfnFuji.m: 15/26 PE/CC/MSE of In_x = 0.12/0.46/0.748
+transferfnFuji.m: 15/26 PE/CC/MSE of In_y = -0.16/0.08/0.569
+transferfnFuji.m: 16/26 PE/CC/MSE of In_x = 0.68/0.82/0.745
+transferfnFuji.m: 16/26 PE/CC/MSE of In_y = 0.32/0.57/0.628
+transferfnFuji.m: 17/26 PE/CC/MSE of In_x = 0.51/0.72/1.103
+transferfnFuji.m: 17/26 PE/CC/MSE of In_y = 0.24/0.49/0.634
+transferfnFuji.m: 18/26 PE/CC/MSE of In_x = 0.54/0.74/0.879
+transferfnFuji.m: 18/26 PE/CC/MSE of In_y = 0.25/0.54/0.355
+transferfnFuji.m: 19/26 PE/CC/MSE of In_x = 0.78/0.88/0.967
+transferfnFuji.m: 19/26 PE/CC/MSE of In_y = 0.57/0.76/0.334
+transferfnFuji.m: 20/26 PE/CC/MSE of In_x = 0.88/0.94/0.764
+transferfnFuji.m: 20/26 PE/CC/MSE of In_y = 0.68/0.85/0.222
+transferfnFuji.m: 21/26 PE/CC/MSE of In_x = 0.89/0.95/0.416
+transferfnFuji.m: 21/26 PE/CC/MSE of In_y = 0.30/0.58/0.655
+transferfnFuji.m: 22/26 PE/CC/MSE of In_x = 0.87/0.93/0.144
+transferfnFuji.m: 22/26 PE/CC/MSE of In_y = 0.48/0.72/0.083
+transferfnFuji.m: 23/26 PE/CC/MSE of In_x = 0.81/0.90/0.205
+transferfnFuji.m: 23/26 PE/CC/MSE of In_y = 0.46/0.68/0.185
+transferfnFuji.m: 24/26 PE/CC/MSE of In_x = 0.88/0.94/0.270
+transferfnFuji.m: 24/26 PE/CC/MSE of In_y = 0.86/0.95/0.067
+transferfnFuji.m: 25/26 PE/CC/MSE of In_x = 0.89/0.96/0.592
+transferfnFuji.m: 25/26 PE/CC/MSE of In_y = 0.81/0.90/0.152
+transferfnFuji.m: 26/26 PE/CC/MSE of In_x = 0.68/0.83/1.225
+transferfnFuji.m: 26/26 PE/CC/MSE of In_y = 0.71/0.84/0.166
+main.m: Segement prediction averaged metrics.
+___________________________________________________________________________
+
+___________________________________________________________________________
+Ave x PE OLS_Stack:           0.694 [0.645,0.738]
+Ave x PE OLS_Full:            0.784 [0.736,0.830]
+Ave x PE OLS_No_Stack:        0.696
+Ave x PE Robust_No_Stack:     0.693
+Ave x PE Robust_Stack:        0.694 [0.651,0.737]
+Ave x PE Robust_Full:         0.789 [0.747,0.825]
+Ave x PE Fujii:               0.725
+Ave x PE InSample:            0.852
+Ave y PE OLS_Stack:           0.447 [0.400,0.496]
+Ave y PE OLS_Full:            0.585 [0.513,0.654]
+Ave y PE OLS_No_Stack:        0.493
+Ave y PE Robust_No_Stack:     0.491
+Ave y PE Robust_Stack:        0.447 [0.398,0.494]
+Ave y PE Robust_Full:         0.599 [0.531,0.670]
+Ave y PE Fujii:               0.451
+Ave y PE InSample:            0.784
+Ave x CC OLS_Stack:           0.836 [0.804,0.866]
+Ave x CC OLS_Full:            0.886 [0.856,0.912]
+Ave x CC OLS_No_Stack:        0.837
+Ave x CC Robust_No_Stack:     0.835
+Ave x CC Robust_Stack:        0.836 [0.805,0.865]
+Ave x CC Robust_Full:         0.888 [0.863,0.910]
+Ave x CC Fujii:               0.849
+Ave x CC InSample:            0.926
+Ave y CC OLS_Stack:           0.681 [0.644,0.717]
+Ave y CC OLS_Full:            0.773 [0.717,0.819]
+Ave y CC OLS_No_Stack:        0.696
+Ave y CC Robust_No_Stack:     0.693
+Ave y CC Robust_Stack:        0.681 [0.645,0.717]
+Ave y CC Robust_Full:         0.793 [0.748,0.837]
+Ave y CC Fujii:               0.657
+Ave y CC InSample:            0.896
+Ave x MSE OLS_Stack:          0.900 [0.712,1.103]
+Ave x MSE OLS_Full:           0.553 [0.464,0.644]
+Ave x MSE OLS_No_Stack:       0.798
+Ave x MSE Robust_No_Stack:    0.806
+Ave x MSE Robust_Stack:       0.900 [0.715,1.103]
+Ave x MSE Robust_Full:        0.529 [0.451,0.613]
+Ave x MSE Fujii:              0.659
+Ave x MSE InSample:           0.434
+Ave y MSE OLS_Stack:          0.408 [0.328,0.502]
+Ave y MSE OLS_Full:           0.279 [0.227,0.330]
+Ave y MSE OLS_No_Stack:       0.348
+Ave y MSE Robust_No_Stack:    0.349
+Ave y MSE Robust_Stack:       0.408 [0.331,0.499]
+Ave y MSE Robust_Full:        0.278 [0.220,0.335]
+Ave y MSE Fujii:              0.366
+Ave y MSE InSample:           0.153
+___________________________________________________________________________
+main.m: Full time series prediction metrics.
+Ave x PE OLS_Stack:           0.710
+Ave x PE OLS_Full:            0.824
+Ave x PE OLS_No_Stack:        0.761
+Ave x PE Robust_No_Stack:     0.758
+Ave x PE Robust_Stack:        0.710
+Ave x PE Robust_Full:         0.854
+Ave x PE Fujii:               0.779
+Ave y PE OLS_Stack:           0.414
+Ave y PE OLS_Full:            0.650
+Ave y PE OLS_No_Stack:        0.496
+Ave y PE Robust_No_Stack:     0.495
+Ave y PE Robust_Stack:        0.414
+Ave y PE Robust_Full:         0.720
+Ave y PE Fujii:               0.477
+Ave x CC OLS_Stack:           0.710
+Ave x CC OLS_Full:            0.824
+Ave x CC OLS_No_Stack:        0.761
+Ave x CC Robust_No_Stack:     0.758
+Ave x CC Robust_Stack:        0.710
+Ave x CC Robust_Full:         0.854
+Ave x CC Fujii:               0.779
+Ave y CC OLS_Stack:           0.414
+Ave y CC OLS_Full:            0.650
+Ave y CC OLS_No_Stack:        0.496
+Ave y CC Robust_No_Stack:     0.495
+Ave y CC Robust_Stack:        0.414
+Ave y CC Robust_Full:         0.720
+Ave y CC Fujii:               0.477
+Ave x MSE OLS_Stack:          0.710
+Ave x MSE OLS_Full:           0.824
+Ave x MSE OLS_No_Stack:       0.761
+Ave x MSE Robust_No_Stack:    0.758
+Ave x MSE Robust_Stack:       0.710
+Ave x MSE Robust_Full:        0.854
+Ave x MSE Fujii:              0.779
+Ave y MSE OLS_Stack:          0.414
+Ave y MSE OLS_Full:           0.650
+Ave y MSE OLS_No_Stack:       0.496
+Ave y MSE Robust_No_Stack:    0.495
+Ave y MSE Robust_Stack:       0.414
+Ave y MSE Robust_Full:        0.720
+Ave y MSE Fujii:              0.477
+Saving ./mat/main_MMB_20051202-20051226-v1.mat
+Saved ./mat/main_MMB_20051202-20051226-v1.mat
