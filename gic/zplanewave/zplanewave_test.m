@@ -77,7 +77,9 @@ T = logspace(-3,3,30);
 f = 1./T;
 
 s = [1/1000,1/10,1/100,1/5]';
-h = 1e3*[10,20,400,Inf];
+h = 1e3*[10,20,380,Inf]; 
+% Plot has 10^0 to 10^1 = 9 for first thickness, but most likely they started
+# at depth of 0.
 
 C    = zplanewave(s,h,f);
 Z    = j*2*pi*f.*C;
