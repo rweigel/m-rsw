@@ -28,7 +28,7 @@ axes(ha(3));
     [lh,lo] = legend(giclabels,'Location','NorthWest');
     set(lo,'LineWidth',2);
     %th = title('Memambetsu 187 kV substation');    
-axes(ha(1));
+    axes(ha(1));
     plot(tB,B(:,1:2));
     grid on;box on;hold on;
     if size(B,3) > 1
@@ -45,7 +45,7 @@ axes(ha(1));
         [lh,lo] = legend('$B_x$','$B_y$','Location','NorthWest');    
     end
     set(lo,'LineWidth',2);
-axes(ha(2));
+    axes(ha(2));
     plot(tE,E);
     grid on;box on;
     ylabel('[mV/km]')

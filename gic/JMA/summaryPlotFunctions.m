@@ -1,5 +1,5 @@
 
-function f = summaryPlots()
+function f = summaryPlotFunctions()
     f = struct();
 
     fdir = sprintf('figures/summary');

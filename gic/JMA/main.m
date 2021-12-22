@@ -1,4 +1,4 @@
-%function main(rn)
+function main(rn)
 
 clear;
 rn = 1;
@@ -96,7 +96,7 @@ for i = 1:length(dateos)
     % Read GIC data from Watari
     % First column is raw, second is 1 Hz filtered.
     [tGIC,GIC]  = prep_GIC(dateo,datef,regenfiles);        
-
+    
     if opts.td.detrend
         % Remove daily trend
         E = removeTrend(E,Et);
@@ -145,8 +145,8 @@ for i = 1:length(dateos)
 
     if 0 && strcmp('pca',opts.td.transform)
         if i == 1
-            [RE,DE] = eig(cov(E(:,1:2)));
-            [RB,DB] = eig(cov(B(:,1:2)));            
+            [RE,~] = eig(cov(E(:,1:2)));
+            [RB,~] = eig(cov(B(:,1:2)));            
         end
         B(:,1:2) = fliplr((RB*B(:,1:2)')');
         E(:,1:2) = fliplr((RE*E(:,1:2)')');
@@ -273,8 +273,14 @@ GBaf = transferfnAlt(GE, EBf, opts);
 GBa_avg.Fujii = GBaf;
 transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
+<<<<<<< HEAD
+
+savevars = {'opts','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
+fname = sprintf('data/jma/mat/main_%s.mat',filestr);
+=======
 savevars = {'opts','dateos','datefs','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('mat/main_%s.mat',filestr);
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});
 fprintf('main.m: Saved %s\n',fname);

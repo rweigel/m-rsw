@@ -1,11 +1,16 @@
 setpaths;
 if ~exist('filestr','var')
+<<<<<<< HEAD
+    filestr  = 'options-1';
+    fname = sprintf('data/mat/main_%s.mat',filestr);
+=======
     codever = 0;
     oos_aves = 0;
     
     filestr = sprintf('options-1-v%d-o%d',codever,oos_aves);
     
     fname = sprintf('mat/main_%s.mat',filestr);
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
     fprintf('main.m: Loading %s\n',fname);
     load(fname);
     fprintf('main.m: Loaded %s\n',fname);    

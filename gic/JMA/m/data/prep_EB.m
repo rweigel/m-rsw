@@ -1,5 +1,16 @@
+<<<<<<< HEAD
+function [tE,E,tB,B,meanE,meanB] = prep_EB(dateo,datef,station,regenfiles)
+
+% Note that automated downloads of JMA data can be made using
+% using
+
+meanE = [];
+meanB = [];
+
+=======
 function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles,codever)
 
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
 dirbase = [fileparts(mfilename('fullpath')),'/../..'];
 dirmat = sprintf('%s/data/jma/mat',dirbase);
 
@@ -60,6 +71,7 @@ fill = 88888;
 for i = 1:3
     Ig = find(B(:,i) ~= fill);
     Ib = find(B(:,i) == fill);
+    meanB(1,i) = mean(B(Ig,i));
     B(Ig,i) = B(Ig,i)-mean(B(Ig,i));
     B(Ib,i) = NaN;
 end
@@ -100,6 +112,7 @@ fill2 = 99999;
 for i = 1:2
     Ig = find(E(:,i) ~= fill1 & E(:,i) ~= fill2); % "good" values
     Ib = find(E(:,i) == fill1 | E(:,i) == fill2); % "bad" values
+    meanE(1,i) = mean(E(Ig,i));
     E(:,i) = E(:,i)-mean(E(Ig,i));
     E(Ib,i) = NaN;
 end

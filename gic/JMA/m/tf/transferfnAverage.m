@@ -1,3 +1,4 @@
+
 function Savg = transferfnAverage(S,opts,Ik)
 
 Savg        = struct();

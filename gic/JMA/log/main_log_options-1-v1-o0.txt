@@ -56,10 +56,50 @@ opts
 ------------------------------------------------------------------------
 Continuous data interval 1 of 10. Start date: 20060403
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20060403/20060410, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060402dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060403dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060404dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060405dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060406dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060407dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060408dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060409dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060410dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 777600 points in B_1
+Interpolated over 0 of 777600 points in B_2
+Interpolated over 0 of 777600 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060402dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060403dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060404dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060405dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060406dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060407dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060408dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060409dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060410dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 777600 points in E_1
+Interpolated over 0 of 777600 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060403.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060404.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060405.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060406.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060407.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060408.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060409.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060410.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060403-20060410.mat
+=======
 prep_EB.m: Called with dateo/datef = 20060403/20060410, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060403-20060410-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060403-20060410.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 777600 points in B_1
 despikeB.m: Interpolated over 0 of 777600 points in B_2
 despikeB.m: Interpolated over 0 of 777600 points in B_3
@@ -192,10 +232,35 @@ transferfnConst.m: 8/8 PE/CC/MSE of In_y = 0.70/0.84/0.015
 ------------------------------------------------------------------------
 Continuous data interval 2 of 10. Start date: 20060819
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20060819/20060821, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060818dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060819dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060820dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060821dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 345600 points in B_1
+Interpolated over 0 of 345600 points in B_2
+Interpolated over 0 of 345600 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060818dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060819dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060820dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060821dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 345600 points in E_1
+Interpolated over 0 of 345600 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060819.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060820.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060821.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060819-20060821.mat
+=======
 prep_EB.m: Called with dateo/datef = 20060819/20060821, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060819-20060821-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060819-20060821.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 345600 points in B_1
 despikeB.m: Interpolated over 0 of 345600 points in B_2
 despikeB.m: Interpolated over 0 of 345600 points in B_3
@@ -258,10 +323,44 @@ transferfnConst.m: 3/3 PE/CC/MSE of In_y = 0.74/0.86/0.003
 ------------------------------------------------------------------------
 Continuous data interval 3 of 10. Start date: 20061107
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20061107/20061112, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061106dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061107dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061108dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061109dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061110dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061111dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061112dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 604800 points in B_1
+Interpolated over 0 of 604800 points in B_2
+Interpolated over 0 of 604800 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061106dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061107dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061108dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061109dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061110dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061111dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061112dgef.sec
+Interpolating over fill values in E.
+Interpolated over 34 of 604800 points in E_1
+Interpolated over 34 of 604800 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061107.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061108.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061109.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061110.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061111.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061112.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061107-20061112.mat
+=======
 prep_EB.m: Called with dateo/datef = 20061107/20061112, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061107-20061112-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061107-20061112.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 604800 points in B_1
 despikeB.m: Interpolated over 0 of 604800 points in B_2
 despikeB.m: Interpolated over 0 of 604800 points in B_3
@@ -366,10 +465,32 @@ transferfnConst.m: 6/6 PE/CC/MSE of In_y = 0.64/0.80/0.007
 ------------------------------------------------------------------------
 Continuous data interval 4 of 10. Start date: 20061214
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20061214/20061215, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061213dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061214dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061215dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 259200 points in B_1
+Interpolated over 0 of 259200 points in B_2
+Interpolated over 0 of 259200 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061213dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061214dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061215dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 259200 points in E_1
+Interpolated over 0 of 259200 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061214.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061215.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061214-20061215.mat
+=======
 prep_EB.m: Called with dateo/datef = 20061214/20061215, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061214-20061215-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061214-20061215.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 259200 points in B_1
 despikeB.m: Interpolated over 0 of 259200 points in B_2
 despikeB.m: Interpolated over 0 of 259200 points in B_3
@@ -418,10 +539,38 @@ transferfnConst.m: 2/2 PE/CC/MSE of In_y = 0.73/0.86/0.107
 ------------------------------------------------------------------------
 Continuous data interval 5 of 10. Start date: 20060805
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20060805/20060808, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060804dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060805dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060806dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060807dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060808dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 432000 points in B_1
+Interpolated over 0 of 432000 points in B_2
+Interpolated over 0 of 432000 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060804dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060805dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060806dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060807dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060808dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 432000 points in E_1
+Interpolated over 0 of 432000 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060805.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060806.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060807.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060808.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060805-20060808.mat
+=======
 prep_EB.m: Called with dateo/datef = 20060805/20060808, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060805-20060808-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060805-20060808.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Removing 36 values of B > 5.7e4 as probable missed spikes
 despikeB.m: Interpolated over 0 of 432000 points in B_1
 despikeB.m: Interpolated over 0 of 432000 points in B_2
@@ -499,10 +648,41 @@ transferfnConst.m: 4/4 PE/CC/MSE of In_y = 0.67/0.82/0.005
 ------------------------------------------------------------------------
 Continuous data interval 6 of 10. Start date: 20060725
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20060725/20060729, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060724dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060725dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060726dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060727dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060728dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20060729dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 518400 points in B_1
+Interpolated over 0 of 518400 points in B_2
+Interpolated over 0 of 518400 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060724dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060725dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060726dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060727dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060728dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20060729dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 518400 points in E_1
+Interpolated over 0 of 518400 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060725.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060726.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060727.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060728.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20060729.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060725-20060729.mat
+=======
 prep_EB.m: Called with dateo/datef = 20060725/20060729, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20060725-20060729-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20060725-20060729.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 518400 points in B_1
 despikeB.m: Interpolated over 0 of 518400 points in B_2
 despikeB.m: Interpolated over 0 of 518400 points in B_3
@@ -593,10 +773,35 @@ transferfnConst.m: 5/5 PE/CC/MSE of In_y = 0.76/0.87/0.004
 ------------------------------------------------------------------------
 Continuous data interval 7 of 10. Start date: 20071118
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20071118/20071120, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071117dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071118dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071119dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071120dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 345600 points in B_1
+Interpolated over 0 of 345600 points in B_2
+Interpolated over 0 of 345600 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071117dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071118dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071119dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071120dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 345600 points in E_1
+Interpolated over 0 of 345600 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20071118.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20071119.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20071120.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071118-20071120.mat
+=======
 prep_EB.m: Called with dateo/datef = 20071118/20071120, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071118-20071120-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071118-20071120.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 345600 points in B_1
 despikeB.m: Interpolated over 0 of 345600 points in B_2
 despikeB.m: Interpolated over 0 of 345600 points in B_3
@@ -659,10 +864,29 @@ transferfnConst.m: 3/3 PE/CC/MSE of In_y = 0.72/0.85/0.016
 ------------------------------------------------------------------------
 Continuous data interval 8 of 10. Start date: 20071122
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20071122/20071122, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071121dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20071122dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 172800 points in B_1
+Interpolated over 0 of 172800 points in B_2
+Interpolated over 0 of 172800 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071121dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20071122dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 172800 points in E_1
+Interpolated over 0 of 172800 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20071122.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071122-20071122.mat
+=======
 prep_EB.m: Called with dateo/datef = 20071122/20071122, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20071122-20071122-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20071122-20071122.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 172800 points in B_1
 despikeB.m: Interpolated over 0 of 172800 points in B_2
 despikeB.m: Interpolated over 0 of 172800 points in B_3
@@ -697,10 +921,32 @@ transferfnConst.m: 1/1 PE/CC/MSE of In_y = 0.81/0.90/0.001
 ------------------------------------------------------------------------
 Continuous data interval 9 of 10. Start date: 20061128
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20061128/20061129, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061127dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061128dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061129dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 259200 points in B_1
+Interpolated over 0 of 259200 points in B_2
+Interpolated over 0 of 259200 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061127dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061128dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061129dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 259200 points in E_1
+Interpolated over 0 of 259200 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061128.txt
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061129.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061128-20061129.mat
+=======
 prep_EB.m: Called with dateo/datef = 20061128/20061129, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061128-20061129-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061128-20061129.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 259200 points in B_1
 despikeB.m: Interpolated over 0 of 259200 points in B_2
 despikeB.m: Interpolated over 0 of 259200 points in B_3
@@ -749,10 +995,29 @@ transferfnConst.m: 2/2 PE/CC/MSE of In_y = 0.80/0.89/0.002
 ------------------------------------------------------------------------
 Continuous data interval 10 of 10. Start date: 20061201
 ------------------------------------------------------------------------
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+prep_EB.m: Called with dateo/datef = 20061201/20061201, station = mmb, regenfiles = 1
+prep_EB.m: Creating /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201.mat.
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061130dsec.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/B/mmb20061201dsec.sec
+Interpolating over fill values in B.
+Interpolated over 0 of 172800 points in B_1
+Interpolated over 0 of 172800 points in B_2
+Interpolated over 0 of 172800 points in B_3
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061130dgef.sec
+Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mmb/E/mmb20061201dgef.sec
+Interpolating over fill values in E.
+Interpolated over 0 of 172800 points in E_1
+Interpolated over 0 of 172800 points in E_2
+Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201.mat
+prep_GIC.m: Reading /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/GICall/20061201.txt
+prep_GIC.m: Writing /Users/weigel/git/m-rsw-mag/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061201-20061201.mat
+=======
 prep_EB.m: Called with dateo/datef = 20061201/20061201, station = mmb, regenfiles = 0
 prep_EB.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data/jma/mat/prepEB_mmb_20061201-20061201-v1.mat
 prep_EB.m: Done.
 prep_GIC.m: Loading /home/weigel/git/m-rsw/gic/JMA/m/data/../../data-private/watari/mat/prepGIC_20061201-20061201.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 despikeB.m: Interpolated over 0 of 172800 points in B_1
 despikeB.m: Interpolated over 0 of 172800 points in B_2
 despikeB.m: Interpolated over 0 of 172800 points in B_3
@@ -860,6 +1125,20 @@ ___________________________________________________________________________
 Model 1 - G/Eo
 ___________________________________________________________________________
 Ave ao: Using:
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Mean   0.075 [0.066,0.086]
+Ave bo: Using:
+Mean  -0.080 [-0.106,-0.054]
+Ave x PE Mean:         0.414 [0.325,0.493]
+Ave x PE InSample:     0.655
+Ave y PE Mean:         0.416 [0.323,0.497]
+Ave y PE InSample:     0.657
+Ave x CC Mean:         0.700 [0.652,0.743]
+Ave x CC InSample:     0.806
+Ave y CC Mean:         0.701 [0.652,0.741]
+Ave y CC InSample:     0.807
+Ave x MSE Mean:        0.020 [0.012,0.031]
+=======
 Mean   0.075 [0.065,0.086]
 Ave bo: Using:
 Mean  -0.080 [-0.105,-0.051]
@@ -872,6 +1151,7 @@ Ave x CC InSample:     0.806
 Ave y CC Mean:         0.701 [0.653,0.746]
 Ave y CC InSample:     0.807
 Ave x MSE Mean:        0.020 [0.013,0.030]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x MSE InSample:    0.012
 Ave y MSE Mean:        0.020 [0.013,0.031]
 Ave y MSE InSample:    0.012
@@ -951,6 +1231,20 @@ ___________________________________________________________________________
 Model 1' - G/E'o
 ___________________________________________________________________________
 Ave ao: Using:
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Mean   0.101 [0.089,0.116]
+Ave bo: Using:
+Mean  -0.134 [-0.168,-0.100]
+Ave x PE Mean:         0.532 [0.463,0.600]
+Ave x PE InSample:     0.683
+Ave y PE Mean:         0.533 [0.467,0.596]
+Ave y PE InSample:     0.685
+Ave x CC Mean:         0.766 [0.728,0.803]
+Ave x CC InSample:     0.823
+Ave y CC Mean:         0.768 [0.732,0.804]
+Ave y CC InSample:     0.825
+Ave x MSE Mean:        0.017 [0.010,0.027]
+=======
 Mean   0.101 [0.087,0.116]
 Ave bo: Using:
 Mean  -0.134 [-0.169,-0.097]
@@ -963,6 +1257,7 @@ Ave x CC InSample:     0.823
 Ave y CC Mean:         0.768 [0.726,0.804]
 Ave y CC InSample:     0.825
 Ave x MSE Mean:        0.017 [0.010,0.028]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x MSE InSample:    0.012
 Ave y MSE Mean:        0.017 [0.010,0.027]
 Ave y MSE InSample:    0.012
@@ -1045,6 +1340,19 @@ Ave ao: Using:
 Mean   0.005 [0.004,0.007]
 Ave bo: Using:
 Mean   0.007 [0.006,0.008]
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x PE Mean:         0.234 [0.124,0.336]
+Ave x PE InSample:     0.530
+Ave y PE Mean:         0.236 [0.119,0.341]
+Ave y PE InSample:     0.533
+Ave x CC Mean:         0.603 [0.542,0.664]
+Ave x CC InSample:     0.714
+Ave y CC Mean:         0.605 [0.546,0.662]
+Ave y CC InSample:     0.716
+Ave x MSE Mean:        0.039 [0.021,0.062]
+Ave x MSE InSample:    0.020
+Ave y MSE Mean:        0.039 [0.021,0.062]
+=======
 Ave x PE Mean:         0.234 [0.126,0.336]
 Ave x PE InSample:     0.530
 Ave y PE Mean:         0.236 [0.133,0.347]
@@ -1056,6 +1364,7 @@ Ave y CC InSample:     0.716
 Ave x MSE Mean:        0.039 [0.020,0.064]
 Ave x MSE InSample:    0.020
 Ave y MSE Mean:        0.039 [0.022,0.062]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y MSE InSample:    0.020
 ___________________________________________________________________________
 main.m: E/B
@@ -1202,61 +1511,61 @@ transferfnFuji.m: 35/35 PE/CC/MSE of In_x = 0.57/0.78/1.334
 transferfnFuji.m: 35/35 PE/CC/MSE of In_y = 0.35/0.70/0.219
 main.m: E/B No stack
 Stopping at step 14 for Te =    43200
-Stopping at step 29 for Te =    43200
+Stopping at step 28 for Te =    43200
 Stopping at step 17 for Te =    28800
-Stopping at step 20 for Te =    28800
-Stopping at step 19 for Te =    21600
-Stopping at step 27 for Te =    21600
-Stopping at step 21 for Te =    14400
+Stopping at step 23 for Te =    28800
+Stopping at step 20 for Te =    21600
+Stopping at step 17 for Te =    21600
+Stopping at step 22 for Te =    14400
 Stopping at step 37 for Te =    14400
-Stopping at step 45 for Te =    10800
+Stopping at step 43 for Te =    10800
 Stopping at step 50 for Te =    10800
-Stopping at step 36 for Te =     7855
-Stopping at step 29 for Te =     7855
-Stopping at step 40 for Te =     5760
+Stopping at step 38 for Te =     7855
+Stopping at step 26 for Te =     7855
+Stopping at step 41 for Te =     5760
 Stopping at step 50 for Te =     5760
-Stopping at step 40 for Te =     3927
-Stopping at step 40 for Te =     3927
+Stopping at step 41 for Te =     3927
+Stopping at step 50 for Te =     3927
 Stopping at step 50 for Te =     2880
 Stopping at step 50 for Te =     2880
-Stopping at step 46 for Te =     2009
+Stopping at step 36 for Te =     2009
 Stopping at step 39 for Te =     2009
-Stopping at step 50 for Te =     1440
+Stopping at step 35 for Te =     1440
 Stopping at step 50 for Te =     1440
 Stopping at step 50 for Te =     1016
 Stopping at step 50 for Te =     1016
 Stopping at step 50 for Te =      720
 Stopping at step 50 for Te =      720
-Stopping at step 41 for Te =      511
+Stopping at step 40 for Te =      511
 Stopping at step 50 for Te =      511
 Stopping at step 50 for Te =      362
 Stopping at step 50 for Te =      362
-Stopping at step 47 for Te =      256
-Stopping at step 49 for Te =      256
+Stopping at step 50 for Te =      256
+Stopping at step 50 for Te =      256
 Stopping at step 50 for Te =      181
-Stopping at step 44 for Te =      181
+Stopping at step 46 for Te =      181
 Stopping at step 50 for Te =      128
-Stopping at step 50 for Te =      128
+Stopping at step 49 for Te =      128
 Stopping at step 50 for Te =       90
-Stopping at step 46 for Te =       90
+Stopping at step 44 for Te =       90
 Stopping at step 50 for Te =       64
 Stopping at step 46 for Te =       64
 Stopping at step 50 for Te =       45
-Stopping at step 50 for Te =       45
+Stopping at step 46 for Te =       45
 Stopping at step 50 for Te =       32
 Stopping at step 50 for Te =       32
-Stopping at step 40 for Te =       23
+Stopping at step 42 for Te =       23
 Stopping at step 50 for Te =       23
-Stopping at step 37 for Te =       16
+Stopping at step 38 for Te =       16
 Stopping at step 50 for Te =       16
-Stopping at step 35 for Te =       11
+Stopping at step 34 for Te =       11
 Stopping at step 50 for Te =       11
-Stopping at step 31 for Te =        8
-Stopping at step 40 for Te =        8
-Stopping at step 28 for Te =        6
+Stopping at step 30 for Te =        8
+Stopping at step 42 for Te =        8
+Stopping at step 26 for Te =        6
 Stopping at step 28 for Te =        6
 Stopping at step 29 for Te =        4
-Stopping at step 24 for Te =        4
+Stopping at step 22 for Te =        4
 transferfnFD2: OLS
 transferfnFD2.m: Interval 1/35: PE/CC/MSE of In_x = 0.88/0.94/0.159
 transferfnFD2.m: Interval 1/35: PE/CC/MSE of In_y = 0.74/0.86/0.093
@@ -1473,37 +1782,61 @@ transferfnFD2.m: Interval 35/35: PE/CC/MSE of In_y = 0.34/0.64/0.230
 ___________________________________________________________________________
 E/B
 ___________________________________________________________________________
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x PE Mean:                0.780 [0.751,0.809]
+=======
 Ave x PE Mean:                0.780 [0.752,0.810]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x PE Fuji:                0.733
 Ave x PE NoStack_OLS:         0.740
 Ave x PE NoStack_Robust1:     0.738
 Ave x PE NoStack_Robust2:     0.738
 Ave x PE InSample:            0.880
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y PE Mean:                0.580 [0.528,0.637]
+=======
 Ave y PE Mean:                0.580 [0.523,0.635]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y PE Fuji:                0.571
 Ave y PE NoStack_OLS:         0.552
 Ave y PE NoStack_Robust1:     0.555
 Ave y PE NoStack_Robust2:     0.555
 Ave y PE InSample:            0.786
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x CC Mean:                0.902 [0.888,0.917]
+=======
 Ave x CC Mean:                0.902 [0.886,0.916]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x CC Fuji:                0.901
 Ave x CC NoStack_OLS:         0.884
 Ave x CC NoStack_Robust1:     0.883
 Ave x CC NoStack_Robust2:     0.883
 Ave x CC InSample:            0.940
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y CC Mean:                0.770 [0.732,0.806]
+=======
 Ave y CC Mean:                0.770 [0.735,0.807]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y CC Fuji:                0.777
 Ave y CC NoStack_OLS:         0.755
 Ave y CC NoStack_Robust1:     0.756
 Ave y CC NoStack_Robust2:     0.756
 Ave y CC InSample:            0.896
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x MSE Mean:               1.778 [1.157,2.571]
+=======
 Ave x MSE Mean:               1.778 [1.139,2.574]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x MSE Fuji:               1.721
 Ave x MSE NoStack_OLS:        2.209
 Ave x MSE NoStack_Robust1:    2.272
 Ave x MSE NoStack_Robust2:    2.276
 Ave x MSE InSample:           1.056
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y MSE Mean:               0.638 [0.471,0.850]
+=======
 Ave y MSE Mean:               0.638 [0.468,0.827]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y MSE Fuji:               0.571
 Ave y MSE NoStack_OLS:        0.667
 Ave y MSE NoStack_Robust1:    0.664
@@ -1582,59 +1915,59 @@ transferfnAverage.m: Interval 34: y PE in-sample:  0.884; using: | Mean:  0.668 
 transferfnAverage.m: Interval 35: x PE in-sample:  0.829; using: | Mean:  0.789 | 
 transferfnAverage.m: Interval 35: y PE in-sample:  0.832; using: | Mean:  0.794 | 
 main.m: G/E No stack
-Stopping at step 20 for Te =    43200
-Stopping at step 24 for Te =    43200
+Stopping at step 21 for Te =    43200
+Stopping at step 21 for Te =    43200
 Stopping at step 32 for Te =    28800
-Stopping at step 32 for Te =    28800
-Stopping at step 30 for Te =    21600
-Stopping at step 38 for Te =    21600
+Stopping at step 31 for Te =    28800
+Stopping at step 29 for Te =    21600
+Stopping at step 36 for Te =    21600
 Stopping at step 26 for Te =    14400
 Stopping at step 31 for Te =    14400
+Stopping at step 14 for Te =    10800
 Stopping at step 15 for Te =    10800
-Stopping at step 17 for Te =    10800
 Stopping at step 26 for Te =     7855
-Stopping at step 47 for Te =     7855
-Stopping at step 14 for Te =     5760
-Stopping at step 26 for Te =     5760
-Stopping at step 26 for Te =     3927
-Stopping at step 29 for Te =     3927
-Stopping at step 37 for Te =     2880
-Stopping at step 50 for Te =     2880
-Stopping at step 33 for Te =     2009
-Stopping at step 35 for Te =     2009
-Stopping at step 36 for Te =     1440
-Stopping at step 44 for Te =     1440
+Stopping at step 39 for Te =     7855
+Stopping at step 15 for Te =     5760
+Stopping at step 24 for Te =     5760
+Stopping at step 25 for Te =     3927
+Stopping at step 27 for Te =     3927
+Stopping at step 35 for Te =     2880
+Stopping at step 28 for Te =     2880
+Stopping at step 29 for Te =     2009
+Stopping at step 38 for Te =     2009
+Stopping at step 39 for Te =     1440
+Stopping at step 29 for Te =     1440
 Stopping at step 50 for Te =     1016
-Stopping at step 38 for Te =     1016
+Stopping at step 36 for Te =     1016
 Stopping at step 34 for Te =      720
-Stopping at step 42 for Te =      720
+Stopping at step 38 for Te =      720
 Stopping at step 22 for Te =      511
-Stopping at step 22 for Te =      511
+Stopping at step 23 for Te =      511
 Stopping at step 21 for Te =      362
-Stopping at step 25 for Te =      362
-Stopping at step 22 for Te =      256
-Stopping at step 24 for Te =      256
-Stopping at step 20 for Te =      181
-Stopping at step 28 for Te =      181
+Stopping at step 21 for Te =      362
+Stopping at step 23 for Te =      256
+Stopping at step 25 for Te =      256
+Stopping at step 19 for Te =      181
+Stopping at step 24 for Te =      181
 Stopping at step 24 for Te =      128
-Stopping at step 30 for Te =      128
-Stopping at step 22 for Te =       90
-Stopping at step 26 for Te =       90
+Stopping at step 24 for Te =      128
+Stopping at step 21 for Te =       90
+Stopping at step 25 for Te =       90
 Stopping at step 25 for Te =       64
 Stopping at step 26 for Te =       64
-Stopping at step 20 for Te =       45
-Stopping at step 25 for Te =       45
-Stopping at step 27 for Te =       32
+Stopping at step 21 for Te =       45
+Stopping at step 26 for Te =       45
+Stopping at step 28 for Te =       32
 Stopping at step 29 for Te =       32
-Stopping at step 27 for Te =       23
-Stopping at step 26 for Te =       23
+Stopping at step 25 for Te =       23
+Stopping at step 28 for Te =       23
 Stopping at step 24 for Te =       16
 Stopping at step 27 for Te =       16
-Stopping at step 19 for Te =       11
-Stopping at step 24 for Te =       11
-Stopping at step 18 for Te =        8
+Stopping at step 20 for Te =       11
+Stopping at step 23 for Te =       11
+Stopping at step 17 for Te =        8
 Stopping at step 20 for Te =        8
-Stopping at step 17 for Te =        6
+Stopping at step 18 for Te =        6
 Stopping at step 18 for Te =        6
 Stopping at step 12 for Te =        4
 Stopping at step 12 for Te =        4
@@ -1854,17 +2187,29 @@ transferfnFD2.m: Interval 35/35: PE/CC/MSE of In_y = 0.81/0.90/0.003
 ___________________________________________________________________________
 G/E No stack
 ___________________________________________________________________________
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x PE Mean:                0.621 [0.561,0.682]
+=======
 Ave x PE Mean:                0.621 [0.561,0.678]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x PE NoStack_OLS:         0.577
 Ave x PE NoStack_Robust1:     0.568
 Ave x PE NoStack_Robust2:     0.569
 Ave x PE InSample:            0.885
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y PE Mean:                0.623 [0.564,0.679]
+=======
 Ave y PE Mean:                0.623 [0.561,0.676]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y PE NoStack_OLS:         0.581
 Ave y PE NoStack_Robust1:     0.572
 Ave y PE NoStack_Robust2:     0.572
 Ave y PE InSample:            0.888
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x CC Mean:                0.817 [0.785,0.846]
+=======
 Ave x CC Mean:                0.817 [0.786,0.847]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x CC NoStack_OLS:         0.793
 Ave x CC NoStack_Robust1:     0.786
 Ave x CC NoStack_Robust2:     0.786
@@ -1957,18 +2302,29 @@ transferfnAverage.m: Interval 34: y PE in-sample:  0.943; using: | Mean:  0.819 
 transferfnAverage.m: Interval 35: x PE in-sample:  0.889; using: | Mean:  0.858 | 
 transferfnAverage.m: Interval 35: y PE in-sample:  0.895; using: | Mean:  0.864 | 
 main.m: G/B No stack
+Stopping at step 26 for Te =    43200
 Stopping at step 27 for Te =    43200
-Stopping at step 27 for Te =    43200
-Stopping at step 17 for Te =    28800
-Stopping at step 18 for Te =    28800
+Stopping at step 16 for Te =    28800
+Stopping at step 15 for Te =    28800
 Stopping at step 17 for Te =    21600
-Stopping at step 16 for Te =    21600
+Stopping at step 15 for Te =    21600
 Stopping at step 29 for Te =    14400
-Stopping at step 34 for Te =    14400
-Stopping at step 19 for Te =    10800
-Stopping at step 35 for Te =    10800
+Stopping at step 32 for Te =    14400
+Stopping at step 20 for Te =    10800
+Stopping at step 34 for Te =    10800
 Stopping at step 50 for Te =     7855
 [Warning: Iteration limit reached.] 
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m', 80)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m',80,0)">line 80</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m', 114)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m',114,0)">line 114</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/Users/weigel/git/m-rsw-mag/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/main.m',244,0)">line 244</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m', 80)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m',80,0)">line 80</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m', 114)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m',114,0)">line 114</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/Users/weigel/git/m-rsw-mag/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/main.m',244,0)">line 244</a>)] 
+=======
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
@@ -1978,16 +2334,28 @@ Stopping at step 50 for Te =     7855
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 263)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',263,0)">line 263</a>)] 
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Stopping at step 50 for Te =     7855
-Stopping at step 40 for Te =     5760
-Stopping at step 33 for Te =     5760
-Stopping at step 30 for Te =     3927
-Stopping at step 34 for Te =     3927
-Stopping at step 46 for Te =     2880
-Stopping at step 34 for Te =     2880
-Stopping at step 48 for Te =     2009
-Stopping at step 30 for Te =     2009
+Stopping at step 34 for Te =     5760
+Stopping at step 34 for Te =     5760
+Stopping at step 31 for Te =     3927
+Stopping at step 36 for Te =     3927
+Stopping at step 37 for Te =     2880
+Stopping at step 33 for Te =     2880
+Stopping at step 35 for Te =     2009
+Stopping at step 36 for Te =     2009
 [Warning: Iteration limit reached.] 
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m', 80)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m',80,0)">line 80</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m', 114)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m',114,0)">line 114</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/Users/weigel/git/m-rsw-mag/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/main.m',244,0)">line 244</a>)] 
+[Warning: Iteration limit reached.] 
+[> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m', 80)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/private/statrobustfit.m',80,0)">line 80</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m', 114)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/Applications/MATLAB_R2018b.app/toolbox/stats/stats/robustfit.m',114,0)">line 114</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
+  In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/Users/weigel/git/m-rsw-mag/gic/JMA/main.m', 244)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/Users/weigel/git/m-rsw-mag/gic/JMA/main.m',244,0)">line 244</a>)] 
+=======
 [> In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('statrobustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m', 76)" style="font-weight:bold">statrobustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/private/statrobustfit.m',76,0)">line 76</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 29)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',29,0)">line 29</a>)
@@ -1997,42 +2365,43 @@ Stopping at step 30 for Te =     2009
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('robustfit', '/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m', 105)" style="font-weight:bold">robustfit</a> (<a href="matlab: opentoline('/usr/local/MATLAB/R2015a/toolbox/stats/stats/robustfit.m',105,0)">line 105</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('transferfnFD2', '/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m', 36)" style="font-weight:bold">transferfnFD2</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/m/tf/transferfnFD2.m',36,0)">line 36</a>)
   In <a href="matlab:matlab.internal.language.introspective.errorDocCallback('main', '/home/weigel/git/m-rsw/gic/JMA/main.m', 263)" style="font-weight:bold">main</a> (<a href="matlab: opentoline('/home/weigel/git/m-rsw/gic/JMA/main.m',263,0)">line 263</a>)] 
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Stopping at step 50 for Te =     1440
 Stopping at step 50 for Te =     1440
-Stopping at step 47 for Te =     1016
 Stopping at step 49 for Te =     1016
-Stopping at step 45 for Te =      720
-Stopping at step 45 for Te =      720
-Stopping at step 50 for Te =      511
+Stopping at step 39 for Te =     1016
+Stopping at step 42 for Te =      720
+Stopping at step 50 for Te =      720
+Stopping at step 48 for Te =      511
 Stopping at step 50 for Te =      511
 Stopping at step 50 for Te =      362
-Stopping at step 49 for Te =      362
-Stopping at step 43 for Te =      256
+Stopping at step 47 for Te =      362
+Stopping at step 45 for Te =      256
 Stopping at step 50 for Te =      256
+Stopping at step 41 for Te =      181
 Stopping at step 50 for Te =      181
-Stopping at step 50 for Te =      181
-Stopping at step 32 for Te =      128
-Stopping at step 47 for Te =      128
-Stopping at step 39 for Te =       90
-Stopping at step 43 for Te =       90
-Stopping at step 42 for Te =       64
-Stopping at step 44 for Te =       64
-Stopping at step 35 for Te =       45
-Stopping at step 37 for Te =       45
+Stopping at step 31 for Te =      128
+Stopping at step 42 for Te =      128
+Stopping at step 36 for Te =       90
+Stopping at step 50 for Te =       90
+Stopping at step 41 for Te =       64
+Stopping at step 45 for Te =       64
+Stopping at step 36 for Te =       45
+Stopping at step 36 for Te =       45
 Stopping at step 37 for Te =       32
-Stopping at step 47 for Te =       32
+Stopping at step 49 for Te =       32
 Stopping at step 38 for Te =       23
-Stopping at step 47 for Te =       23
+Stopping at step 50 for Te =       23
 Stopping at step 31 for Te =       16
-Stopping at step 45 for Te =       16
-Stopping at step 32 for Te =       11
+Stopping at step 47 for Te =       16
+Stopping at step 31 for Te =       11
 Stopping at step 36 for Te =       11
-Stopping at step 27 for Te =        8
-Stopping at step 27 for Te =        8
-Stopping at step 23 for Te =        6
-Stopping at step 24 for Te =        6
-Stopping at step 17 for Te =        4
-Stopping at step 20 for Te =        4
+Stopping at step 26 for Te =        8
+Stopping at step 28 for Te =        8
+Stopping at step 21 for Te =        6
+Stopping at step 25 for Te =        6
+Stopping at step 18 for Te =        4
+Stopping at step 19 for Te =        4
 transferfnFD2: OLS
 transferfnFD2.m: Interval 1/35: PE/CC/MSE of In_x = 0.84/0.92/0.002
 transferfnFD2.m: Interval 1/35: PE/CC/MSE of In_y = 0.84/0.92/0.002
@@ -2249,12 +2618,20 @@ transferfnFD2.m: Interval 35/35: PE/CC/MSE of In_y = 0.86/0.93/0.002
 ___________________________________________________________________________
 G/B
 ___________________________________________________________________________
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x PE Mean:                0.837 [0.810,0.862]
+=======
 Ave x PE Mean:                0.837 [0.811,0.862]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x PE NoStack_OLS:         0.815
 Ave x PE NoStack_Robust1:     0.820
 Ave x PE NoStack_Robust2:     0.819
 Ave x PE InSample:            0.903
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y PE Mean:                0.840 [0.814,0.864]
+=======
 Ave y PE Mean:                0.840 [0.814,0.865]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y PE NoStack_OLS:         0.818
 Ave y PE NoStack_Robust1:     0.823
 Ave y PE NoStack_Robust2:     0.823
@@ -2264,7 +2641,11 @@ Ave x CC NoStack_OLS:         0.919
 Ave x CC NoStack_Robust1:     0.919
 Ave x CC NoStack_Robust2:     0.920
 Ave x CC InSample:            0.955
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave y CC Mean:                0.928 [0.913,0.942]
+=======
 Ave y CC Mean:                0.928 [0.913,0.943]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave y CC NoStack_OLS:         0.921
 Ave y CC NoStack_Robust1:     0.921
 Ave y CC NoStack_Robust2:     0.921
@@ -2425,6 +2806,21 @@ transferfnAlt.m: Interval 35/35: PE/CC/MSE of In_y = 0.54/0.81/0.007
 ___________________________________________________________________________
 Model 3 - G/E'
 ___________________________________________________________________________
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+Ave x PE Mean:         0.796 [0.769,0.820]
+Ave x PE Fujii:        0.609
+Ave x PE InSample:     0.867
+Ave y PE Mean:         0.799 [0.777,0.823]
+Ave y PE Fujii:        0.611
+Ave y PE InSample:     0.871
+Ave x CC Mean:         0.915 [0.901,0.929]
+Ave x CC Fujii:        0.848
+Ave x CC InSample:     0.939
+Ave y CC Mean:         0.917 [0.905,0.929]
+Ave y CC Fujii:        0.850
+Ave y CC InSample:     0.940
+Ave x MSE Mean:        0.009 [0.005,0.015]
+=======
 Ave x PE Mean:         0.796 [0.773,0.820]
 Ave x PE Fujii:        0.609
 Ave x PE InSample:     0.867
@@ -2438,11 +2834,17 @@ Ave y CC Mean:         0.917 [0.904,0.929]
 Ave y CC Fujii:        0.850
 Ave y CC InSample:     0.940
 Ave x MSE Mean:        0.009 [0.005,0.014]
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt
 Ave x MSE Fujii:       0.012
 Ave x MSE InSample:    0.004
 Ave y MSE Mean:        0.008 [0.005,0.014]
 Ave y MSE Fujii:       0.012
 Ave y MSE InSample:    0.004
 ___________________________________________________________________________
+<<<<<<< HEAD:gic/JMA/log/main_log_options-1.txt
+main.m: Saving data/jma/mat/main_options-1.mat
+main.m: Saved data/jma/mat/main_options-1.mat
+=======
 main.m: Saving mat/main_options-1-v1-o0.mat
 main.m: Saved mat/main_options-1-v1-o0.mat
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418:gic/JMA/log/main_log_options-1-v1-o0.txt

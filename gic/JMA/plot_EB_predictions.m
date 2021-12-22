@@ -1,6 +1,22 @@
+<<<<<<< HEAD
+setpaths;
+if ~exist('F','var')
+    filestr = 'options-1';
+
+    dirfig = sprintf('figures/combined');
+    if ~exist(dirfig,'dir')
+        mkdir(dirfig);
+    end
+
+    file = sprintf('data/mat/main_%s.mat','options-1');
+    fprintf('plot_model_predictions: Loading %s\n',file);
+    F = load(file);
+    fprintf('plot_model_predictions: Loaded %s\n',file);    
+=======
 fdir = 'figures/predictions';
 if ~exist(fdir,'dir')
     mkdir(fdir);
+>>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
 end
 
 figprep(writepng,1000,800);
