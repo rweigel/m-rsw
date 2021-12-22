@@ -1,16 +1,5 @@
-<<<<<<< HEAD
-function [tE,E,tB,B,meanE,meanB] = prep_EB(dateo,datef,station,regenfiles)
-
-% Note that automated downloads of JMA data can be made using
-% using
-
-meanE = [];
-meanB = [];
-
-=======
 function [tE,E,tB,B] = prep_EB(dateo,datef,station,regenfiles,codever)
 
->>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
 dirbase = [fileparts(mfilename('fullpath')),'/../..'];
 dirmat = sprintf('%s/data/jma/mat',dirbase);
 

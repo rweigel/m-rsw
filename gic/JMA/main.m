@@ -5,10 +5,10 @@ rn = 1;
 
 setpaths;
 
-writepng   = 0; % Write png and pdf files
 intmplot   = 0; % Intermediate plots
-regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
-oos_aves   = 1; % Compute Out-of-Sample averages for metrics
+writepng   = 0; % Write png and pdf files for intermediate plots
+regenfiles = 1; % If 0, used cached E, B, and GIC .mat files
+oos_aves   = 0; % Compute Out-of-Sample averages for metrics
 codever    = 1; % 0 corresponds to original submission. 
                 % 1 corresponds to corrections made to prep_EB.m (signs
                 % were dropped by regex - this clipped some E values and
@@ -273,14 +273,8 @@ GBaf = transferfnAlt(GE, EBf, opts);
 GBa_avg.Fujii = GBaf;
 transferfnSummary(GBa,GBa_avg,'Model 3 - G/E''');
 
-<<<<<<< HEAD
-
-savevars = {'opts','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
+savevars = {'opts','codever', 'oos_aves', 'dateos','datefs','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
 fname = sprintf('data/jma/mat/main_%s.mat',filestr);
-=======
-savevars = {'opts','dateos','datefs','GEo','GBo','GE','GB','EB','EBf','GBa','GBaf','GEo_avg','GBo_avg','GE_avg','GB_avg','EB_avg','GBa_avg'};
-fname = sprintf('mat/main_%s.mat',filestr);
->>>>>>> fe9a2ba1c3e488df269213e42cf42fbeebab6418
 fprintf('main.m: Saving %s\n',fname);
 save(fname,savevars{:});
 fprintf('main.m: Saved %s\n',fname);
