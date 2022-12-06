@@ -24,7 +24,7 @@ if ~isnan(opts.td.window.width)
     end
     for i = 1:length(Io)
         Iseg = [Io(i):Io(i)+Tw-1];
-        if codever == 1
+        if nargin < 5 || codever == 1
             % Should remove mean of interval. Mean of multi-day intervals
             % was removed, but here we are computing ao and bo for a 1-day
             % interval which may not have zero mean. This increases Model 1
