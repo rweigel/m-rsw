@@ -58,13 +58,17 @@ elseif rn == 4
     opts.fd.regression.method = 3; 
     opts.fd.regression.methodstr = 'robust_on_Z';
 elseif rn == 5
+    opts.description = 'Rotate E by ao, bo';
+    opts.td.transform = 'rotateE1';
+    %opts.td.transform.methodstr = 'rotateE';
+elseif rn == 6
+    opts.description = 'Rotate E parallel to line';
+    opts.td.transform = 'rotateE2';
+    %opts.td.transform.methodstr = 'rotateE';
+elseif rn == 7
     opts.description = 'PCA rotation';
     opts.td.transform = 'pca';
     %opts.td.transform.methodstr = 'pca';
-elseif rn == 6
-    opts.description = '1.5 day window';
-    opts.td.window.width = 3600*48;
-    opts.td.window.shift = 3600*24;
 else
     error('Invalid option set number');
 end

@@ -113,7 +113,7 @@ for k = 1:size(EB.Predicted,3)
         datetick_adjust();
   
     if writepng
-        fname = sprintf('%s/plot_EB_predictions-%s-v%d-o%d.pdf',fdir,start,codever,oos_aves);
+        fname = sprintf('%s/plot_EB_predictions-%s-options-%d-v%d-o%d.pdf',fdir,start,rn,codever,oos_aves);
         figsave(fname);
     else
         input('Continue');

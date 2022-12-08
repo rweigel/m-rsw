@@ -1,0 +1,188 @@
+________________________________________________________________
+Options description: Parzen window in FD
+________________________________________________________________
+___________________________________________________________________________
+Model 0 - G/Bo
+___________________________________________________________________________
+Ave ao: Using:
+Mean   0.005 [0.004,0.007]
+Ave bo: Using:
+Mean   0.007 [0.006,0.008]
+Ave x PE Mean:         0.234 [0.119,0.343]
+Ave x PE InSample:     0.530
+Ave y PE Mean:         0.236 [0.122,0.347]
+Ave y PE InSample:     0.533
+Ave x CC Mean:         0.603 [0.540,0.664]
+Ave x CC InSample:     0.714
+Ave y CC Mean:         0.605 [0.546,0.659]
+Ave y CC InSample:     0.716
+Ave x MSE Mean:        0.039 [0.021,0.062]
+Ave x MSE InSample:    0.020
+Ave y MSE Mean:        0.039 [0.021,0.063]
+Ave y MSE InSample:    0.020
+___________________________________________________________________________
+___________________________________________________________________________
+Model 1 - G/Eo
+___________________________________________________________________________
+Ave ao: Using:
+Mean   0.075 [0.065,0.087]
+Ave bo: Using:
+Mean  -0.080 [-0.105,-0.055]
+Ave x PE Mean:         0.414 [0.325,0.490]
+Ave x PE InSample:     0.655
+Ave y PE Mean:         0.416 [0.324,0.496]
+Ave y PE InSample:     0.657
+Ave x CC Mean:         0.700 [0.653,0.742]
+Ave x CC InSample:     0.806
+Ave y CC Mean:         0.701 [0.653,0.746]
+Ave y CC InSample:     0.807
+Ave x MSE Mean:        0.020 [0.013,0.030]
+Ave x MSE InSample:    0.012
+Ave y MSE Mean:        0.020 [0.013,0.030]
+Ave y MSE InSample:    0.012
+___________________________________________________________________________
+___________________________________________________________________________
+Model 2 - G/E
+___________________________________________________________________________
+Ave x PE Mean:                0.618 [0.552,0.680]
+Ave x PE NoStack_OLS:         0.518
+Ave x PE NoStack_Robust1:     0.521
+Ave x PE NoStack_Robust2:     0.525
+Ave x PE InSample:            0.918
+Ave y PE Mean:                0.620 [0.554,0.681]
+Ave y PE NoStack_OLS:         0.520
+Ave y PE NoStack_Robust1:     0.524
+Ave y PE NoStack_Robust2:     0.528
+Ave y PE InSample:            0.921
+Ave x CC Mean:                0.816 [0.782,0.849]
+Ave x CC NoStack_OLS:         0.785
+Ave x CC NoStack_Robust1:     0.779
+Ave x CC NoStack_Robust2:     0.780
+Ave x CC InSample:            0.960
+Ave y CC Mean:                0.817 [0.780,0.848]
+Ave y CC NoStack_OLS:         0.786
+Ave y CC NoStack_Robust1:     0.781
+Ave y CC NoStack_Robust2:     0.782
+Ave y CC InSample:            0.961
+Ave x MSE Mean:               0.014 [0.008,0.021]
+Ave x MSE NoStack_OLS:        0.012
+Ave x MSE NoStack_Robust1:    0.013
+Ave x MSE NoStack_Robust2:    0.013
+Ave x MSE InSample:           0.003
+Ave y MSE Mean:               0.013 [0.008,0.021]
+Ave y MSE NoStack_OLS:        0.012
+Ave y MSE NoStack_Robust1:    0.012
+Ave y MSE NoStack_Robust2:    0.012
+Ave y MSE InSample:           0.003
+___________________________________________________________________________
+___________________________________________________________________________
+Model 3 - G/E'
+___________________________________________________________________________
+Ave x PE Mean:         0.818 [0.794,0.842]
+Ave x PE Fujii:        0.557
+Ave x PE InSample:     0.906
+Ave y PE Mean:         0.821 [0.796,0.843]
+Ave y PE Fujii:        0.559
+Ave y PE InSample:     0.909
+Ave x CC Mean:         0.924 [0.910,0.936]
+Ave x CC Fujii:        0.841
+Ave x CC InSample:     0.955
+Ave y CC Mean:         0.925 [0.912,0.939]
+Ave y CC Fujii:        0.843
+Ave y CC InSample:     0.956
+Ave x MSE Mean:        0.007 [0.004,0.012]
+Ave x MSE Fujii:       0.013
+Ave x MSE InSample:    0.003
+Ave y MSE Mean:        0.007 [0.004,0.011]
+Ave y MSE Fujii:       0.013
+Ave y MSE InSample:    0.003
+___________________________________________________________________________
+___________________________________________________________________________
+Model 4 - G/B
+___________________________________________________________________________
+Ave x PE Mean:                0.846 [0.818,0.871]
+Ave x PE NoStack_OLS:         0.845
+Ave x PE NoStack_Robust1:     0.844
+Ave x PE NoStack_Robust2:     0.844
+Ave x PE InSample:            0.928
+Ave y PE Mean:                0.849 [0.820,0.875]
+Ave y PE NoStack_OLS:         0.849
+Ave y PE NoStack_Robust1:     0.848
+Ave y PE NoStack_Robust2:     0.848
+Ave y PE InSample:            0.932
+Ave x CC Mean:                0.927 [0.911,0.942]
+Ave x CC NoStack_OLS:         0.926
+Ave x CC NoStack_Robust1:     0.925
+Ave x CC NoStack_Robust2:     0.925
+Ave x CC InSample:            0.965
+Ave y CC Mean:                0.929 [0.913,0.943]
+Ave y CC NoStack_OLS:         0.928
+Ave y CC NoStack_Robust1:     0.927
+Ave y CC NoStack_Robust2:     0.927
+Ave y CC InSample:            0.967
+Ave x MSE Mean:               0.004 [0.003,0.005]
+Ave x MSE NoStack_OLS:        0.005
+Ave x MSE NoStack_Robust1:    0.005
+Ave x MSE NoStack_Robust2:    0.005
+Ave x MSE InSample:           0.002
+Ave y MSE Mean:               0.004 [0.003,0.005]
+Ave y MSE NoStack_OLS:        0.004
+Ave y MSE NoStack_Robust1:    0.004
+Ave y MSE NoStack_Robust2:    0.004
+Ave y MSE InSample:           0.002
+___________________________________________________________________________
+___________________________________________________________________________
+E/B
+___________________________________________________________________________
+Ave x PE Mean:                0.802 [0.775,0.826]
+Ave x PE Fuji:                0.733
+Ave x PE NoStack_OLS:         0.751
+Ave x PE NoStack_Robust1:     0.758
+Ave x PE NoStack_Robust2:     0.758
+Ave x PE InSample:            0.930
+Ave y PE Mean:                0.584 [0.531,0.641]
+Ave y PE Fuji:                0.571
+Ave y PE NoStack_OLS:         0.546
+Ave y PE NoStack_Robust1:     0.558
+Ave y PE NoStack_Robust2:     0.558
+Ave y PE InSample:            0.822
+Ave x CC Mean:                0.910 [0.895,0.924]
+Ave x CC Fuji:                0.901
+Ave x CC NoStack_OLS:         0.886
+Ave x CC NoStack_Robust1:     0.889
+Ave x CC NoStack_Robust2:     0.889
+Ave x CC InSample:            0.965
+Ave y CC Mean:                0.771 [0.732,0.807]
+Ave y CC Fuji:                0.777
+Ave y CC NoStack_OLS:         0.750
+Ave y CC NoStack_Robust1:     0.759
+Ave y CC NoStack_Robust2:     0.759
+Ave y CC InSample:            0.918
+Ave x MSE Mean:               1.593 [1.040,2.272]
+Ave x MSE Fuji:               1.721
+Ave x MSE NoStack_OLS:        1.969
+Ave x MSE NoStack_Robust1:    2.138
+Ave x MSE NoStack_Robust2:    2.136
+Ave x MSE InSample:           0.616
+Ave y MSE Mean:               0.607 [0.447,0.785]
+Ave y MSE Fuji:               0.571
+Ave y MSE NoStack_OLS:        0.651
+Ave y MSE NoStack_Robust1:    0.674
+Ave y MSE NoStack_Robust2:    0.674
+Ave y MSE InSample:           0.266
+___________________________________________________________________________
+main_log.m: Running bootstrap tests
+p value to reject "Model 1 PE = Model 2 PE": 0.000
+p value to reject "Model 2 PE = Model 3 PE": 0.000
+p value to reject "Model 3 PE = Model 4 PE": 0.098
+Using Mean            :   <Model 1 (Eo) MSE/Model 2 (E) MSE>    = 1.72 +/- [1.54,1.91] (Alt. ratio = 1.49)
+Using NoStack_OLS     :   <Model 1 (Eo) MSE/Model 2 (E) MSE>    = 1.68 +/- [1.40,2.00] (Alt. ratio = 1.63)
+Using NoStack_Robust1 :   <Model 1 (Eo) MSE/Model 2 (E) MSE>    = 1.67 +/- [1.39,2.02] (Alt. ratio = 1.61)
+Using NoStack_Robust2 :   <Model 1 (Eo) MSE/Model 2 (E) MSE>    = 1.68 +/- [1.38,2.05] (Alt. ratio = 1.61)
+Using Mean  :   <Model 1 (Eo) MSE/Model 3 (E') MSE>   = 3.72 +/- [3.23,4.23] (Alt. ratio = 2.87)
+Using Fujii :   <Model 1 (Eo) MSE/Model 3 (E') MSE>   = 2.07 +/- [1.41,2.99] (Alt. ratio = 1.55)
+Using Mean            :   <Model 1 (Eo) MSE/Model 4 (B) MSE>    = 4.97 +/- [4.08,6.06] (Alt. ratio = 5.22)
+Using NoStack_OLS     :   <Model 1 (Eo) MSE/Model 4 (B) MSE>    = 5.01 +/- [4.16,5.92] (Alt. ratio = 4.56)
+Using NoStack_Robust1 :   <Model 1 (Eo) MSE/Model 4 (B) MSE>    = 5.07 +/- [4.21,6.11] (Alt. ratio = 4.53)
+Using NoStack_Robust2 :   <Model 1 (Eo) MSE/Model 4 (B) MSE>    = 5.07 +/- [4.21,6.08] (Alt. ratio = 4.53)
+________________________________________________________________

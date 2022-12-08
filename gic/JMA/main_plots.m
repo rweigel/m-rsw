@@ -1,8 +1,8 @@
 setpaths;
-if ~exist('filestr','var')
+if 1 || ~exist('filestr','var')
     codever = 1;
     oos_aves = 0;
-    filestr = sprintf('options-1-v%d-o%d',codever,oos_aves);
+    filestr = sprintf('options-%d-v%d-o%d',rn,codever,oos_aves);
     fname = sprintf('data/jma/mat/main_%s.mat',filestr);
     fprintf('main.m: Loading %s\n',fname);
     load(fname);

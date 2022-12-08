@@ -1,13 +1,10 @@
 function main(rn)
 
-clear;
-rn = 1;
-
 setpaths;
 
 intmplot   = 0; % Intermediate plots
-writepng   = 0; % Write png and pdf files for intermediate plots
-regenfiles = 1; % If 0, used cached E, B, and GIC .mat files
+writepng   = 1; % Write png and pdf files for intermediate plots
+regenfiles = 0; % If 0, used cached E, B, and GIC .mat files
 oos_aves   = 0; % Compute Out-of-Sample averages for metrics
 codever    = 1; % 0 corresponds to original submission. 
                 % 1 corresponds to corrections made to prep_EB.m (signs
@@ -16,12 +13,13 @@ codever    = 1; % 0 corresponds to original submission.
 
 % All runs
 if nargin == 0
-    for rn = 1:4
+    for rn = 1:6
         main(rn);
     end
     return;
 end
 
+close all;
 opts = main_options(rn);
 filestr = sprintf('%s-v%d-o%d',opts.filestr,codever,oos_aves);
 fnamelog = sprintf('log/main_log_%s.txt',filestr);
@@ -71,7 +69,7 @@ end
 di = 0;
 for i = 1:length(dateos)
 %for i = 7:length(dateos)
-%for i = 5:5
+%for i = 1:1
     fprintf('------------------------------------------------------------------------\n')
     fprintf('Continuous data interval %d of %d. Start date: %s\n',i,length(dateos),dateos{i});
     fprintf('------------------------------------------------------------------------\n')
@@ -121,8 +119,10 @@ for i = 1:length(dateos)
     GICd = despikeGIC(GIC(:,2)); % Despike 1 Hz filtered column
     GIC  = [GIC(:,2),GICd];      % Keep 1 Hz filtered column and despiked column
 
-    plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered','GIC despiked'},codever);
-
+    if intmplot
+        plot_raw(tGIC,GIC,tE,E,tB,B,dateo,writepng,{'GIC 1 Hz filtered','GIC despiked'},codever);
+    end
+    
     [t,E,B] = timealign(tGIC,tE,E,B);
     
     fnamemat = sprintf('data/jma/mat/prepEB_%s_%s-%s-v%d-despiked.mat','mmb',dateo,datef,codever);
@@ -134,9 +134,7 @@ for i = 1:length(dateos)
     fprintf('main.m: Wrote %s\n',fnamemat);
     
     % Always save pngs of raw data
-    plot_raw(t,GIC(:,2),t,E,t,B,dateo,1,{'GIC'},codever);
-
-    if intmplot && writepng == 0
+    if rn == 1
         plot_raw(t,GIC(:,2),t,E,t,B,dateo,writepng,{'GIC'},codever);
     end
     
@@ -151,7 +149,27 @@ for i = 1:length(dateos)
         B(:,1:2) = fliplr((RB*B(:,1:2)')');
         E(:,1:2) = fliplr((RE*E(:,1:2)')');
     end
+
+    if strcmp('rotateE1',opts.td.transform)
+        a = 75;
+        b = -75;
+        c = sqrt(a^2 + b^2);
+        Etmp(:,1) = (a/c)*E(:,1) + (b/c)*E(:,2);  % parallel
+        Etmp(:,2) = -(b/c)*E(:,1) + (a/c)*E(:,2); % perp
+        E = Etmp;
+        clear Etmp;
+    end
     
+    if strcmp('rotateE2',opts.td.transform)
+        a = cosd(38);
+        b = sind(38);
+        c = sqrt(a^2 + b^2);
+        Etmp(:,1) = (a/c)*E(:,1) + (b/c)*E(:,2);  % parallel
+        Etmp(:,2) = -(b/c)*E(:,1) + (a/c)*E(:,2); % perp
+        E = Etmp;
+        clear Etmp;
+    end
+
     if intmplot
         plot_timeseries(dateo,intervalno,filestr,writepng);
         plot_correlations(dateo,intervalno,filestr,writepng);

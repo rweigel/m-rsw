@@ -5,8 +5,8 @@ end
 
 figprep(writepng,1000,800);
 
-for k = 22:22%size(GE.Predicted,3)
-%for k = 1:size(GE.Predicted,3)
+%for k = 22:22%size(GE.Predicted,3)
+for k = 1:size(GE.Predicted,3)
 
     t = GE.Time(:,1,k);
     start = datestr(t(1),'yyyy-mm-dd');
@@ -94,8 +94,8 @@ for k = 22:22%size(GE.Predicted,3)
         datetick_adjust();
  
     if writepng
-        fname = sprintf('%s/plot_GIC_predictions-InSample-%s-v%d-o%d.pdf',...
-                        fdir,start,codever,oos_aves);        
+        fname = sprintf('%s/plot_GIC_predictions-InSample-%s-options-%d-v%d-o%d.pdf',...
+                        fdir,start,rn,codever,oos_aves);        
         figsave(fname);
     else
         axes(ha(1));
@@ -215,8 +215,8 @@ for k = 22:22%size(GE.Predicted,3)
         
         
     if writepng
-        fname = sprintf('%s/plot_GIC_predictions-MeanModel-%s-v%d-o%d.pdf',...
-                        fdir,start,codever,oos_aves);
+        fname = sprintf('%s/plot_GIC_predictions-MeanModel-%s-options-%d-v%d-o%d.pdf',...
+                        fdir,start,rn, codever,oos_aves);
         figsave(fname);
     else
         axes(ha(1));        
